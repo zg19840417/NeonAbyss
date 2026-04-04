@@ -1,6 +1,7 @@
 import Character from '../entities/Character.js';
 import Equipment from './Equipment.js';
 import { CharacterClass } from '../data/CharacterClass.js';
+import Const from '../data/Const.js';
 
 export default class BaseSystem {
   constructor(gameData = {}) {
@@ -9,7 +10,7 @@ export default class BaseSystem {
     this.energyDrinks = gameData.energyDrinks || [];
     this.characters = (gameData.characters || []).map(c => Character.fromJSON(c));
     this.team = gameData.team || [];
-    this.availableRecruits = gameData.availableRecruits || [];
+    this.availableRecruits = (gameData.availableRecruits || []).map(c => Character.fromJSON(c));
     this.lastRefreshTime = gameData.lastRefreshTime || Date.now();
   }
   
@@ -184,7 +185,7 @@ export default class BaseSystem {
   }
   
   addToTeam(characterId) {
-    if (this.team.length >= 5) {
+    if (this.team.length >= Const.GAME.MAX_TEAM_SIZE) {
       return { success: false, reason: 'team_full' };
     }
     

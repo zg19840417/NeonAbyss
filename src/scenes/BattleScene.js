@@ -1,4 +1,5 @@
 import BattleSystem, { BattlePhase, Enemy } from '../game/systems/BattleSystem.js';
+import EventBus from '../game/EventBus.js';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -38,8 +39,6 @@ export default class BattleScene extends Phaser.Scene {
     this.currentDimension = data.dimension || 1;
     this.enemies = data.enemies || [];
     this.players = data.players || [];
-    this.onVictoryCallback = data.onVictory || null;
-    this.onDefeatCallback = data.onDefeat || null;
   }
 
   create() {
@@ -427,26 +426,16 @@ export default class BattleScene extends Phaser.Scene {
       isBoss: e.isBoss
     })));
 
-    this.battleSystem.on('onAttack', (data) => {
-      this.updateHPDisplay(data.target);
-    });
+    this._battleListeners = {
+      onAttack: (data) => this.updateHPDisplay(data.target),
+      onDamage: (data) => { if (data.isCrit) this.showDamageNumber(data.target, data.damage, true); },
+      onBattleLog: (data) => this.addLogEntry(data.action, data.result),
+      onVictory: (data) => this.onBattleVictory(data),
+      onDefeat: (data) => this.onBattleDefeat(data)
+    };
 
-    this.battleSystem.on('onDamage', (data) => {
-      if (data.isCrit) {
-        this.showDamageNumber(data.target, data.damage, true);
-      }
-    });
-
-    this.battleSystem.on('onBattleLog', (data) => {
-      this.addLogEntry(data.action, data.result);
-    });
-
-    this.battleSystem.on('onVictory', (data) => {
-      this.onBattleVictory(data);
-    });
-
-    this.battleSystem.on('onDefeat', (data) => {
-      this.onBattleDefeat(data);
+    Object.entries(this._battleListeners).forEach(([event, callback]) => {
+      this.battleSystem.on(event, callback);
     });
   }
 
@@ -505,7 +494,7 @@ export default class BattleScene extends Phaser.Scene {
 
   onSkillAnimation(character, targets, skill, onComplete) {
     const isPlayer = this.players.some(p => p.name === character.name);
-    const skillText = this.add.text(character.name, {
+    const skillText = this.add.text(this.cameras.main.width / 2, 120, `${character.name} 使用技能`, {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
@@ -757,16 +746,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   continueToNextFloor() {
-    if (this.onVictoryCallback) {
-      this.onVictoryCallback(this.currentFloor);
-    } else {
-      this.scene.start('BattleScene', {
-        floor: this.currentFloor + 1,
-        dimension: this.currentDimension,
-        enemies: this.generateNewEnemies(this.currentFloor + 1),
-        players: this.players
-      });
-    }
+    EventBus.emit('battle:victory', { floor: this.currentFloor });
   }
 
   generateNewEnemies(floor) {
@@ -800,9 +780,7 @@ export default class BattleScene extends Phaser.Scene {
       this.battleSystem.pause();
     }
     
-    if (this.onDefeatCallback) {
-      this.onDefeatCallback(this.currentFloor);
-    }
+    EventBus.emit('battle:defeat', { floor: this.currentFloor });
     
     this.scene.start('BaseScene');
   }
@@ -819,6 +797,12 @@ export default class BattleScene extends Phaser.Scene {
 
   shutdown() {
     if (this.battleSystem) {
+      if (this._battleListeners) {
+        Object.entries(this._battleListeners).forEach(([event, callback]) => {
+          this.battleSystem.off(event, callback);
+        });
+        this._battleListeners = null;
+      }
       this.battleSystem.pause();
     }
     this.tweens.killAll();

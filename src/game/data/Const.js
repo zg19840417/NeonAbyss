@@ -87,7 +87,7 @@ export const Const = {
   },
 
   GAME: {
-    MAX_TEAM_SIZE: 5,
+    MAX_TEAM_SIZE: 3,
     INITIAL_COINS: 10000,
     SAVE_DELAY: 100
   },

@@ -10,6 +10,12 @@ export default class Character {
     this.exp = data.exp || 0;
     this.maxExp = this.calculateMaxExp();
     
+    this.equipment = {
+      weapon: data.equipment?.weapon || null,
+      armor: data.equipment?.armor || null,
+      accessory: data.equipment?.accessory || null
+    };
+    
     this.hp = data.hp || this.getBaseHp();
     this.maxHp = this.getMaxHp();
     
@@ -26,12 +32,6 @@ export default class Character {
     
     this.buffs = [];
     this.debuffs = [];
-    
-    this.equipment = {
-      weapon: data.equipment?.weapon || null,
-      armor: data.equipment?.armor || null,
-      accessory: data.equipment?.accessory || null
-    };
     
     this.status = 'idle';
     this.isDead = false;

@@ -1,4 +1,5 @@
 import DungeonSystem from '../game/systems/DungeonSystem.js';
+import EventBus from '../game/EventBus.js';
 
 export default class DungeonScene extends Phaser.Scene {
   constructor() {
@@ -15,6 +16,7 @@ export default class DungeonScene extends Phaser.Scene {
     this.initializeDungeonSystem();
     this.createBackground(width, height);
     this.showDungeonInfo(width, height);
+    this.setupEventListeners();
     this.startAutoBattle(width, height);
   }
 
@@ -77,6 +79,16 @@ export default class DungeonScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
+  setupEventListeners() {
+    this._eventListeners = {
+      battleVictory: (data) => this.onBattleVictory(data),
+      battleDefeat: (data) => this.onBattleDefeat(data)
+    };
+
+    EventBus.on('battle:victory', this._eventListeners.battleVictory);
+    EventBus.on('battle:defeat', this._eventListeners.battleDefeat);
+  }
+
   startAutoBattle(width, height) {
     this.time.delayedCall(1500, () => {
       const players = this.getPlayerTeam();
@@ -94,9 +106,7 @@ export default class DungeonScene extends Phaser.Scene {
           level: e.level,
           isBoss: e.isBoss
         })),
-        players: players,
-        onVictoryCallback: (floor) => this.onBattleVictory(floor),
-        onDefeatCallback: (floor) => this.onBattleDefeat(floor)
+        players: players
       });
     });
   }
@@ -120,7 +130,8 @@ export default class DungeonScene extends Phaser.Scene {
     ];
   }
 
-  onBattleVictory(currentFloor) {
+  onBattleVictory(data) {
+    const currentFloor = data.floor || this.currentFloor;
     this.dungeonSystem.onBattleVictory(currentFloor);
     this.currentFloor++;
     
@@ -135,10 +146,13 @@ export default class DungeonScene extends Phaser.Scene {
     window.gameData.dungeon = this.dungeonSystem.toJSON();
     this.dungeonSystem.save();
 
+    const players = this.getPlayerTeam();
+    const enemies = this.dungeonSystem.generateEnemiesForFloor(this.currentFloor);
+
     this.scene.start('BattleScene', {
       floor: this.currentFloor,
       dimension: this.currentDimension,
-      enemies: this.dungeonSystem.generateEnemiesForFloor(this.currentFloor).map(e => ({
+      enemies: enemies.map(e => ({
         id: e.id,
         name: e.name,
         hp: e.currentHp || e.maxHp,
@@ -147,13 +161,12 @@ export default class DungeonScene extends Phaser.Scene {
         level: e.level,
         isBoss: e.isBoss
       })),
-      players: this.getPlayerTeam(),
-      onVictoryCallback: (floor) => this.onBattleVictory(floor),
-      onDefeatCallback: (floor) => this.onBattleDefeat(floor)
+      players: players
     });
   }
 
-  onBattleDefeat(currentFloor) {
+  onBattleDefeat(data) {
+    const currentFloor = data.floor || this.currentFloor;
     const rewards = this.dungeonSystem.calculateRewards(
       this.dungeonSystem.generateEnemiesForFloor(currentFloor)
     );
@@ -172,6 +185,11 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   shutdown() {
+    if (this._eventListeners) {
+      EventBus.off('battle:victory', this._eventListeners.battleVictory);
+      EventBus.off('battle:defeat', this._eventListeners.battleDefeat);
+      this._eventListeners = null;
+    }
     this.dungeonSystem?.save();
   }
 }
