@@ -93,6 +93,7 @@ export default class DungeonScene extends Phaser.Scene {
     this.time.delayedCall(1500, () => {
       const players = this.getPlayerTeam();
       const enemies = this.dungeonSystem.generateEnemiesForFloor(this.currentFloor);
+      const equipmentCard = this.getEquipmentCard();
 
       this.scene.start('BattleScene', {
         floor: this.currentFloor,
@@ -106,9 +107,21 @@ export default class DungeonScene extends Phaser.Scene {
           level: e.level,
           isBoss: e.isBoss
         })),
-        players: players
+        players: players,
+        equipmentCard: equipmentCard
       });
     });
+  }
+
+  getEquipmentCard() {
+    if (window.gameData && window.gameData.equipmentCardManager) {
+      const equippedId = window.gameData.equipmentCardManager.equippedCardId;
+      if (equippedId) {
+        const card = window.gameData.equipmentCardManager.ownedCards?.find(c => c.id === equippedId);
+        return card || null;
+      }
+    }
+    return null;
   }
 
   getPlayerTeam() {
@@ -148,6 +161,7 @@ export default class DungeonScene extends Phaser.Scene {
 
     const players = this.getPlayerTeam();
     const enemies = this.dungeonSystem.generateEnemiesForFloor(this.currentFloor);
+    const equipmentCard = this.getEquipmentCard();
 
     this.scene.start('BattleScene', {
       floor: this.currentFloor,
@@ -161,7 +175,8 @@ export default class DungeonScene extends Phaser.Scene {
         level: e.level,
         isBoss: e.isBoss
       })),
-      players: players
+      players: players,
+      equipmentCard: equipmentCard
     });
   }
 

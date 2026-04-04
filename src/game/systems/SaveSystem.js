@@ -120,7 +120,6 @@ export default class SaveSystem {
     if (!saveData.version) return false;
     if (!saveData.base) return false;
     if (!saveData.dungeon) return false;
-    
     return true;
   }
   

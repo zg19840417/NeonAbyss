@@ -1,11 +1,15 @@
 import BaseSystem from '../game/systems/BaseSystem.js';
 import Lang, { t } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
+import EquipmentView from './views/EquipmentView.js';
+import EquipmentCard from '../game/entities/EquipmentCard.js';
+import EquipmentCardManager from '../game/systems/EquipmentCardManager.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BaseScene' });
     this.baseSystem = null;
+    this.equipmentView = null;
     this.currentTab = 'tavern';
     this.tabButtons = {};
     this.modalOpen = false;
@@ -44,6 +48,21 @@ export default class BaseScene extends Phaser.Scene {
 
     this.baseSystem = new BaseSystem(window.gameData.base);
     this.cleanCharacterData();
+
+    if (!window.gameData.equipmentCardManager) {
+      window.gameData.equipmentCardManager = {
+        ownedCards: [],
+        equippedCardId: null
+      };
+    }
+    this.equipmentCardManager = new EquipmentCardManager();
+    this.equipmentCardManager.ownedCards = (window.gameData.equipmentCardManager.ownedCards || []).map(c => {
+      if (c instanceof EquipmentCard) return c;
+      return EquipmentCard.fromJSON(c);
+    });
+    if (window.gameData.equipmentCardManager.equippedCardId) {
+      this.equipmentCardManager.equipCard(window.gameData.equipmentCardManager.equippedCardId);
+    }
   }
 
   cleanCharacterData() {
@@ -83,6 +102,7 @@ export default class BaseScene extends Phaser.Scene {
     const glowColors = {
       tavern: { color: Const.COLORS.PURPLE, alpha: 0.08 },
       team: { color: Const.COLORS.CYAN, alpha: 0.06 },
+      equipment: { color: Const.COLORS.YELLOW, alpha: 0.08 },
       dungeon: { color: Const.COLORS.MAGENTA, alpha: 0.08 },
       shop: { color: Const.COLORS.PINK, alpha: 0.06 },
       settings: { color: Const.COLORS.CYAN, alpha: 0.05 }
@@ -169,6 +189,7 @@ export default class BaseScene extends Phaser.Scene {
     const tabs = [
       { key: 'tavern', icon: '酒', label: t('tavern') },
       { key: 'team', icon: '队', label: t('team') },
+      { key: 'equipment', icon: '装', label: t('equipment') },
       { key: 'dungeon', icon: '牢', label: t('dungeon') },
       { key: 'shop', icon: '店', label: t('shop') },
       { key: 'settings', icon: '设', label: t('settings') }
@@ -248,6 +269,7 @@ export default class BaseScene extends Phaser.Scene {
     const titles = {
       tavern: t('tavern'),
       team: t('team'),
+      equipment: t('equipment'),
       dungeon: t('dungeon'),
       shop: t('shop'),
       settings: t('settings')
@@ -263,6 +285,9 @@ export default class BaseScene extends Phaser.Scene {
         break;
       case 'team':
         this.showTeamContent();
+        break;
+      case 'equipment':
+        this.showEquipmentContent();
         break;
       case 'dungeon':
         this.showDungeonContent();
@@ -757,6 +782,14 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
+  showEquipmentContent() {
+    if (this.equipmentView) {
+      this.equipmentView.destroy();
+    }
+    this.equipmentView = new EquipmentView(this);
+    this.equipmentView.show();
+  }
+
   tryEnterDungeon() {
     const teamCount = this.baseSystem.getTeamMemberCount();
     
@@ -928,6 +961,11 @@ export default class BaseScene extends Phaser.Scene {
       if (tab.container) preserved.push(tab.container);
     });
 
+    if (this.equipmentView) {
+      this.equipmentView.destroy();
+      this.equipmentView = null;
+    }
+
     const childrenToDestroy = this.children.list.filter(child => {
       return !preserved.includes(child);
     });
@@ -947,6 +985,10 @@ export default class BaseScene extends Phaser.Scene {
 
   saveGameData() {
     window.gameData.base = this.baseSystem.toJSON();
+    window.gameData.equipmentCardManager = {
+      ownedCards: this.equipmentCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
+      equippedCardId: this.equipmentCardManager.equippedCard?.id || null
+    };
     localStorage.setItem('sodaDungeonSave', JSON.stringify(window.gameData));
   }
 

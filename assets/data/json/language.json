@@ -233,5 +233,150 @@
     "id": "price",
     "zh_cn": "{price} 币",
     "en_us": "{price} Coins"
+  },
+  {
+    "id": "equipment",
+    "zh_cn": "装备",
+    "en_us": "Equipment"
+  },
+  {
+    "id": "equipment_card",
+    "zh_cn": "装备卡",
+    "en_us": "Equip Card"
+  },
+  {
+    "id": "equip_card",
+    "zh_cn": "装备卡",
+    "en_us": "Equip"
+  },
+  {
+    "id": "star_upgrade",
+    "zh_cn": "升星",
+    "en_us": "Star Upgrade"
+  },
+  {
+    "id": "merge",
+    "zh_cn": "合成",
+    "en_us": "Merge"
+  },
+  {
+    "id": "equip",
+    "zh_cn": "装备",
+    "en_us": "Equip"
+  },
+  {
+    "id": "unequip",
+    "zh_cn": "卸下",
+    "en_us": "Unequip"
+  },
+  {
+    "id": "current_equipped",
+    "zh_cn": "当前装备",
+    "en_us": "Currently Equipped"
+  },
+  {
+    "id": "my_cards",
+    "zh_cn": "我的装备卡",
+    "en_us": "My Cards"
+  },
+  {
+    "id": "stat_bonus",
+    "zh_cn": "属性加成",
+    "en_us": "Stat Bonus"
+  },
+  {
+    "id": "skills",
+    "zh_cn": "技能",
+    "en_us": "Skills"
+  },
+  {
+    "id": "skill_type_aura",
+    "zh_cn": "光环",
+    "en_us": "Aura"
+  },
+  {
+    "id": "skill_type_trigger",
+    "zh_cn": "触发",
+    "en_us": "Trigger"
+  },
+  {
+    "id": "skill_type_modify",
+    "zh_cn": "改造",
+    "en_us": "Modify"
+  },
+  {
+    "id": "no_card_equipped",
+    "zh_cn": "未装备卡牌",
+    "en_us": "No Card Equipped"
+  },
+  {
+    "id": "tap_to_equip",
+    "zh_cn": "点击选择装备",
+    "en_us": "Tap to Select"
+  },
+  {
+    "id": "upgrade_preview",
+    "zh_cn": "升星预览",
+    "en_us": "Upgrade Preview"
+  },
+  {
+    "id": "material_upgrade",
+    "zh_cn": "材料升星",
+    "en_us": "Material Upgrade"
+  },
+  {
+    "id": "merge_upgrade",
+    "zh_cn": "合成升星",
+    "en_us": "Merge Upgrade"
+  },
+  {
+    "id": "star_stone",
+    "zh_cn": "星辉石",
+    "en_us": "Star Stone"
+  },
+  {
+    "id": "required",
+    "zh_cn": "需要",
+    "en_us": "Required"
+  },
+  {
+    "id": "owned",
+    "zh_cn": "拥有",
+    "en_us": "Owned"
+  },
+  {
+    "id": "insufficient_material",
+    "zh_cn": "材料不足",
+    "en_us": "Insufficient Material"
+  },
+  {
+    "id": "upgrade_success",
+    "zh_cn": "升星成功！",
+    "en_us": "Upgrade Success!"
+  },
+  {
+    "id": "upgrade_failed",
+    "zh_cn": "升星失败",
+    "en_us": "Upgrade Failed"
+  },
+  {
+    "id": "max_star",
+    "zh_cn": "已满星",
+    "en_us": "Max Star"
+  },
+  {
+    "id": "trigger_condition",
+    "zh_cn": "触发条件",
+    "en_us": "Trigger"
+  },
+  {
+    "id": "effect",
+    "zh_cn": "效果",
+    "en_us": "Effect"
+  },
+  {
+    "id": "unlocked_at_star",
+    "zh_cn": "{star}星解锁",
+    "en_us": "Unlock at {star}★"
   }
 ]

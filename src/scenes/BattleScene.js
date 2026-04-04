@@ -39,6 +39,7 @@ export default class BattleScene extends Phaser.Scene {
     this.currentDimension = data.dimension || 1;
     this.enemies = data.enemies || [];
     this.players = data.players || [];
+    this.equipmentCard = data.equipmentCard || null;
   }
 
   create() {
@@ -72,6 +73,13 @@ export default class BattleScene extends Phaser.Scene {
       ];
     }
     
+    if (!window.gameData.equipmentCardManager && this.equipmentCard) {
+      window.gameData.equipmentCardManager = {
+        ownedCards: [this.equipmentCard],
+        equippedCardId: this.equipmentCard.id
+      };
+    }
+
     this.isPaused = false;
     this.battleEnded = false;
   }

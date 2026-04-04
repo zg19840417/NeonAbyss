@@ -1,3 +1,9 @@
+/**
+ * @deprecated
+ * 此文件已废弃，请使用 src/game/entities/EquipmentCard.js 和 src/game/systems/EquipmentCardManager.js
+ * 旧装备系统（每角色3部位装备）已被装备卡系统（3随从+1装备卡）替代
+ */
+
 export default class Equipment {
   constructor(data) {
     this.id = data.equipId || data.id || this.generateId();

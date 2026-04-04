@@ -16,8 +16,11 @@ export default class Character {
       accessory: data.equipment?.accessory || null
     };
     
-    this.hp = data.hp || this.getBaseHp();
+    this.currentHp = data.currentHp || data.hp || this.getBaseHp();
     this.maxHp = this.getMaxHp();
+    
+    this.mp = data.mp || 100;
+    this.maxMp = data.maxMp || 100;
     
     this.atk = this.getAtk();
     this.critRate = this.getCritRate();
@@ -153,7 +156,7 @@ export default class Character {
     
     let oldMaxHp = this.maxHp;
     this.maxHp = this.getMaxHp();
-    this.hp += (this.maxHp - oldMaxHp);
+    this.currentHp += (this.maxHp - oldMaxHp);
     
     this.atk = this.getAtk();
     
@@ -165,10 +168,10 @@ export default class Character {
     
     let actualDamage = Math.max(1, Math.floor(damage * (1 - this.getBaseDamageReduction())));
     
-    this.hp -= actualDamage;
+    this.currentHp -= actualDamage;
     
-    if (this.hp <= 0) {
-      this.hp = 0;
+    if (this.currentHp <= 0) {
+      this.currentHp = 0;
       this.isDead = true;
       this.status = 'dead';
     }
@@ -179,8 +182,8 @@ export default class Character {
   heal(amount) {
     if (this.isDead) return 0;
     
-    let actualHeal = Math.min(amount, this.maxHp - this.hp);
-    this.hp += actualHeal;
+    let actualHeal = Math.min(amount, this.maxHp - this.currentHp);
+    this.currentHp += actualHeal;
     
     return actualHeal;
   }
@@ -239,7 +242,7 @@ export default class Character {
         break;
       case 'hp_up':
         this.maxHp = Math.floor(this.maxHp * (1 + buff.value));
-        this.hp = Math.floor(this.hp * (1 + buff.value));
+        this.currentHp = Math.floor(this.currentHp * (1 + buff.value));
         break;
       case 'crit_up':
         this.critRate = Math.min(this.critRate + buff.value, 0.90);
@@ -306,7 +309,7 @@ export default class Character {
           break;
         case 'hp_up':
           this.maxHp = this.getMaxHp();
-          this.hp = Math.min(this.hp, this.maxHp);
+          this.currentHp = Math.min(this.currentHp, this.maxHp);
           break;
         case 'crit_up':
           this.critRate = this.getCritRate();
@@ -347,7 +350,7 @@ export default class Character {
   }
   
   getHpPercent() {
-    return this.maxHp > 0 ? this.hp / this.maxHp : 0;
+    return this.maxHp > 0 ? this.currentHp / this.maxHp : 0;
   }
   
   toJSON() {
@@ -357,8 +360,10 @@ export default class Character {
       charClass: this.charClass,
       level: this.level,
       exp: this.exp,
-      hp: this.hp,
+      currentHp: this.currentHp,
       maxHp: this.maxHp,
+      mp: this.mp,
+      maxMp: this.maxMp,
       atk: this.atk,
       critRate: this.critRate,
       dodgeRate: this.dodgeRate,

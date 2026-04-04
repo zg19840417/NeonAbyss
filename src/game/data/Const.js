@@ -99,7 +99,19 @@ export const Const = {
     MODAL_OVERLAY: 1000,
     MODAL_CONTENT: 1001,
     MODAL_UI: 1002
-  }
+  },
+
+  EQUIPMENT_QUALITY: {
+    N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通' },
+    R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有' },
+    SR: { color: '#9b59b6', textColor: '#9b59b6', glow: 0.5, name: '史诗' },
+    SSR: { color: '#f39c12', textColor: '#f39c12', glow: 0.7, name: '传说' },
+    'SSR+': { color: '#e74c3c', textColor: '#e74c3c', glow: 1.0, name: '神话' }
+  },
+
+  EQUIPMENT_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
+  EQUIPMENT_SKILL_MULTIPLIER: { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.7, 5: 2.0 },
+  STAR_UPGRADE_COST: { 1: 10, 2: 30, 3: 80, 4: 200 }
 };
 
 export default Const;
