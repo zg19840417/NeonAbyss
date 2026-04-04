@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>苏打地牢 - 美术资源预览</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: #1a1815;
+      color: #d4ccc0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #d4a574;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    
+    h2 {
+      color: #d4a574;
+      border-bottom: 2px solid #4a4540;
+      padding-bottom: 10px;
+      margin: 40px 0 20px 0;
+    }
+    
+    h3 {
+      color: #a8d8a8;
+      margin: 20px 0 10px 0;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .card {
+      background: #2a2520;
+      border: 1px solid #4a4540;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .card-preview {
+      width: 100%;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-info {
+      padding: 15px;
+    }
+    
+    .card-name {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    
+    .card-type {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    
+    .card-desc {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.4;
+    }
+    
+    /* 角色类型颜色 */
+    .type-tank { border-left: 4px solid #4a90d9; }
+    .type-dps { border-left: 4px solid #d94a4a; }
+    .type-support { border-left: 4px solid #d9a54a; }
+    .type-healer { border-left: 4px solid #4ad97a; }
+    .type-legendary { border-left: 4px solid #d94ad9; }
+    .type-enemy { border-left: 4px solid #8b4513; }
+    .type-boss { border-left: 4px solid #ff4444; }
+    
+    /* 角色占位符样式 */
+    .char-placeholder {
+      width: 140px;
+      height: 200px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .char-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.1;
+    }
+    
+    /* 坦克类 - 深绿青铜 */
+    .char-tank {
+      background: linear-gradient(135deg, #2d4a3e 0%, #1a2f26 100%);
+      border: 2px solid #4a7c59;
+    }
+    .char-tank::before { background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(168,216,168,0.1) 10px, rgba(168,216,168,0.1) 20px); }
+    
+    /* 输出类 - 血红暗金 */
+    .char-dps {
+      background: linear-gradient(135deg, #4a2d2d 0%, #2f1a1a 100%);
+      border: 2px solid #7c4a4a;
+    }
+    .char-dps::before { background: radial-gradient(circle at 50% 50%, rgba(216,168,168,0.2), transparent); }
+    
+    /* 辅助类 - 军绿金 */
+    .char-support {
+      background: linear-gradient(135deg, #3e4a2d 0%, #262f1a 100%);
+      border: 2px solid #6b7c4a;
+    }
+    .char-support::before { background: linear-gradient(180deg, transparent, rgba(212,165,116,0.1)); }
+    
+    /* 治疗类 - 白金神圣 */
+    .char-healer {
+      background: linear-gradient(135deg, #4a4a3e 0%, #2f2f26 100%);
+      border: 2px solid #c0c0a0;
+    }
+    .char-healer::before { background: radial-gradient(ellipse at center, rgba(255,255,220,0.15), transparent); }
+    
+    /* 传说级 - 黑金血红 */
+    .char-legendary {
+      background: linear-gradient(135deg, #2d2d3e 0%, #1a1a26 100%);
+      border: 2px solid #7c6b8c;
+      box-shadow: 0 0 20px rgba(217,74,217,0.3);
+    }
+    .char-legendary::before { 
+      background: conic-gradient(from 0deg, transparent, rgba(217,74,217,0.2), transparent, rgba(212,165,116,0.2), transparent); 
+    }
+    
+    /* 敌人 - 暗色调 */
+    .char-enemy {
+      background: linear-gradient(135deg, #3e2d2d 0%, #261a1a 100%);
+      border: 2px solid #5c3d3d;
+    }
+    .char-enemy::before { background: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(139,69,19,0.1) 5px, rgba(139,69,19,0.1) 10px); }
+    
+    /* BOSS - 红黑警告色 */
+    .char-boss {
+      background: linear-gradient(135deg, #4a1a1a 0%, #2f0d0d 100%);
+      border: 3px solid #ff4444;
+      box-shadow: 0 0 25px rgba(255,68,68,0.4);
+      animation: bossGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes bossGlow {
+      from { box-shadow: 0 0 25px rgba(255,68,68,0.4); }
+      to { box-shadow: 0 0 35px rgba(255,68,68,0.6); }
+    }
+    .char-boss::before { 
+      background: radial-gradient(circle at 50% 30%, rgba(255,68,68,0.3), transparent 70%); 
+    }
+    
+    .char-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+    
+    .char-name-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    /* UI 元素展示 */
+    .ui-showcase {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 20px;
+      background: #222;
+      border-radius: 8px;
+    }
+    
+    .ui-item {
+      text-align: center;
+    }
+    
+    .btn-demo {
+      padding: 14px 28px;
+      background: #2a2520;
+      border: 1px solid #4a4540;
+      color: #d4ccc0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .btn-demo:hover {
+      background: #3a3530;
+      color: #d4a574;
+      transform: scale(1.05);
+    }
+    
+    .hp-bar-demo {
+      width: 200px;
+      height: 14px;
+      background: #1a1815;
+      border-radius: 0;
+      position: relative;
+      margin: 10px auto;
+    }
+    
+    .hp-fill {
+      height: 100%;
+      border-radius: 0;
+      transition: width 0.3s;
+    }
+    
+    .hp-friendly {
+      background: linear-gradient(90deg, #a8d8a8, #c8f0c8);
+      width: 75%;
+    }
+    
+    .hp-enemy {
+      background: linear-gradient(90deg, #d8a8a8, #e8c8c8);
+      width: 60%;
+    }
+    
+    .hp-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    
+    /* 统计信息 */
+    .stats {
+      display: inline-flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #222;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .stat-label {
+      color: #888;
+    }
+    
+    .stat-value {
+      color: #d4a574;
+      font-weight: bold;
+    }
+    
+    /* 颜色样本 */
+    .color-palette {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    
+    .color-swatch {
+      width: 80px;
+      height: 60px;
+      border-radius: 6px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 5px;
+      font-size: 10px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      font-weight: bold;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      border-top: 1px solid #4a4540;
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎮 苏打地牢 - 美术资源设计规范</h1>
+
+<div class="section">
+  <h2>📊 项目概览</h2>
+  <div class="stats">
+    <div class="stat-item"><span class="stat-label">职业总数:</span><span class="stat-value">16种</span></div>
+    <div class="stat-item"><span class="stat-label">普通敌人:</span><span class="stat-value">10种</span></div>
+    <div class="stat-item"><span class="stat-label">BOSS:</span><span class="stat-value">5个</span></div>
+    <div class="stat-item"><span class="stat-label">UI元素:</span><span class="stat-value">完整</span></div>
+    <div class="stat-item"><span class="stat-label">场景背景:</span><span class="stat-value">3套</span></div>
+  </div>
+  
+  <h3 style="margin-top: 20px;">🎨 核心色彩方案</h3>
+  <div class="color-palette">
+    <div class="color-swatch" style="background: #1a1815;">#1a1815<br>背景</div>
+    <div class="color-swatch" style="background: #2a2520;">#2a2520<br>面板</div>
+    <div class="color-swatch" style="background: #4a4540;">#4a4540<br>边框</div>
+    <div class="color-swatch" style="background: #d4ccc0;">#d4ccc0<br>文字</div>
+    <div class="color-swatch" style="background: #d4a574;">#d4a574<br>琥珀</div>
+    <div class="color-swatch" style="background: #a8d8a8;">#a8d8a8<br>神圣绿</div>
+    <div class="color-swatch" style="background: #d8a8a8;">#d8a8a8<br>腐败红</div>
+  </div>
+</div>
+
+<!-- 坦克类职业 -->
+<div class="section">
+  <h2>🛡️ 坦克类职业（4种）</h2>
+  <div class="card-grid">
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #4a7c59;">🛡️</div>
+          <div class="char-name-overlay">铁壁卫士</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">铁壁卫士 (Iron Wall Guardian)</div>
+        <div class="card-type">坦克 · 植物+重甲融合</div>
+        <div class="card-desc">厚重板甲缠绕发光藤蔓，翠绿色眼睛，持巨盾姿态稳重</div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #c0c0a0;">✨</div>
+          <div class="char-name-overlay">生命守护者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">生命守护者 (Life Guardian)</div>
+        <div class="card-type">坦克/治疗 · 动物融合</div>
+        <div class="card-desc">白色长袍绣生命之树，灵鹿角，手持光球法杖</div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #ff8c00;">⚙️</div>
+          <div class="char-name-overlay">钢铁壁垒</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">钢铁壁垒 (Steel Bastion)</div>
+        <div class="card-type">坦克 · 纯机械</div>
+        <div class="card-desc">全覆盖重型装甲，橙色能量核心，单向透明面罩</div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #cd853f;">💪</div>
+          <div class="char-name-overlay">不屈意志</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">不屈意志 (Unyielding Will)</div>
+        <div class="card-type">坦克 · 岩石融合</div>
+        <div class="card-desc">半身岩石结晶覆盖，神秘符文发光，肌肉充满力量感</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 输出类职业 -->
+<div class="section">
+  <h2>⚔️ 输出类职业（6种）</h2>
+  <div class="card-grid">
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #dc143c;">🐺</div>
+          <div class="char-name-overlay">狂战士</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">狂战士 (Berserker)</div>
+        <div class="card-type">输出 · 野兽融合</div>
+        <div class="card-desc">裸露上身有兽纹，双臂巨大兽爪，兽瞳红光，兽影残像</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #9370db;">🔮</div>
+          <div class="char-name-overlay">元素法师</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">元素法师 (Elemental Mage)</div>
+        <div class="card-type">输出 · 元素融合</div>
+        <div class="card-desc">流动元素纹路长袍，左火右冰，元素粒子环绕</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #8b008b;">🗡️</div>
+          <div class="char-name-overlay">影子刺客</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">影子刺客 (Shadow Assassin)</div>
+        <div class="card-type">输出 · 暗影融合</div>
+        <div class="card-desc">全身被暗影包裹，只露紫光眼，双匕首暗影波动</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #ff8c00;">🔧</div>
+          <div class="char-name-overlay">机械工程师</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">机械工程师 (Mech Engineer)</div>
+        <div class="card-type">输出 · 机械改造</div>
+        <div class="card-desc">工装工具袋，右臂机械炮台，HUD护目镜</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #4b0082;">💀</div>
+          <div class="char-name-overlay">毁灭术士</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">毁灭术士 (Destruction Warlock)</div>
+        <div class="card-type">输出 · 虚空融合</div>
+        <div class="card-desc">黑暗法袍空间裂缝，不稳定能量球，扭曲空间效果</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #ffd700;">⚔️</div>
+          <div class="char-name-overlay">机甲战神</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">机甲战神 (Mecha War God)</div>
+        <div class="card-type">输出 · 战神融合</div>
+        <div class="card-desc">流线型轻型机甲，发光战神纹章，光翼展开，能量长剑</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 辅助类职业 -->
+<div class="section">
+  <h2>🎯 辅助类职业（3种）</h2>
+  <div class="card-grid">
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #556b2f;">🎖️</div>
+          <div class="char-name-overlay">战术指挥官</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">战术指挥官 (Tactical Commander)</div>
+        <div class="card-type">辅助 · 智能融合</div>
+        <div class="card-desc">干练军装造型，神经接口装置，战术平板，数据流眼镜</div>
+      </div>
+    </div>
+    
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #87ceeb;">🌀</div>
+          <div class="char-name-overlay">疾风剑客</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">疾风剑客 (Wind Swordsman)</div>
+        <div class="card-type">辅助 · 风元素融合</div>
+        <div class="card-desc">轻盈武士服，透明风之翼，风属性细刀，风的轨迹</div>
+      </div>
+    </div>
+    
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #c0c0c0;">⏰</div>
+          <div class="char-name-overlay">时空行者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">时空行者 (Time Walker)</div>
+        <div class="card-type">辅助 · 时间融合</div>
+        <div class="card-desc">未来感服装，时钟眼眸，时间碎片漂浮，沙漏法器</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 治疗类职业 -->
+<div class="section">
+  <h2>💚 治疗类职业（3种）</h2>
+  <div class="card-grid">
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="color: #228b22;">🌿</div>
+          <div class="char-name-overlay">自然治愈师</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">自然治愈师 (Natural Healer)</div>
+        <div class="card-type">治疗 · 自然融合</div>
+        <div class="card-desc">树叶花瓣装束，花冠藤蔓发，木杖生命之花，脚下花草生长</div>
+      </div>
+    </div>
+    
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="color: #fffacd;">✝️</div>
+          <div class="char-name-overlay">神圣牧师</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">神圣牧师 (Holy Priest)</div>
+        <div class="card-type">治疗 · 光明融合</div>
+        <div class="card-desc">华丽长袍十字纹样，光之羽翼，柔和光环，治愈光芒双手</div>
+      </div>
+    </div>
+    
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="background: linear-gradient(45deg, red, blue, green, yellow); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🌈</div>
+          <div class="char-name-overlay">元素领主</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">元素领主 (Elemental Lord)</div>
+        <div class="card-type">治疗 · 全元素融合</div>
+        <div class="card-desc">多元素构成身体，左火右冰，闪电头发，四元素环</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 传说级职业 -->
+<div class="section">
+  <h2>⭐ 传说级职业（4种）</h2>
+  <div class="card-grid">
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #ffd700;">👑</div>
+          <div class="char-name-overlay">铁血狂卫</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">铁血狂卫 (Iron Blood Guardian)</div>
+        <div class="card-type">传说 · 终极坦克</div>
+        <div class="card-desc">黑金终极装甲，流动血红纹路，六臂各持武器，暗影羽翼</div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #dda0dd;">👥</div>
+          <div class="char-name-overlay">幻影战将</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">幻影战将 (Phantom General)</div>
+        <div class="card-type">传说 · 幻影分身</div>
+        <div class="card-desc">半透明本体+3实体影子，深渊眼，空间不断扭曲</div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #4169e1;">🌌</div>
+          <div class="char-name-overlay">永恒守望者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">永恒守望者 (Eternal Watcher)</div>
+        <div class="card-type">传说 · 时间守护</div>
+        <div class="card-desc">星光身体，银河披风，时光权杖，宇宙眼眸</div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #ffd700;">🎭</div>
+          <div class="char-name-overlay">命运编织者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">命运编织者 (Fate Weaver)</div>
+        <div class="card-type">传说 · 因果律者</div>
+        <div class="card-desc">悬浮空中，命运丝线交织，过去现在未来影像，无法直视真容</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 敌人设计 -->
+<div class="section">
+  <h2>👹 普通敌人（10种）</h2>
+  <div class="card-grid">
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #b22222;">🐕</div>
+          <div class="char-name-overlay">机械猎犬</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">机械猎犬 (Mechanical Hound)</div>
+        <div class="card-type">生物机械 · 输出型</div>
+        <div class="card-desc">机械骨架+生物组织，红色电子眼，鞭状能量尾</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #556b2f;">🤖</div>
+          <div class="char-name-overlay">巡逻机甲</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">巡逻机甲 (Patrol Mech)</div>
+        <div class="card-type">机械 · 坦克型</div>
+        <div class="card-desc">笨重双足机器人，扫描仪胸，单眼激光，电击警棍</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #9932cc;">🕷️</div>
+          <div class="char-name-overlay">变异蜘蛛</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">变异蜘蛛 (Mutant Spider)</div>
+        <div class="card-type">变异生物 · 敏捷型</div>
+        <div class="card-desc">八腿巨型蜘蛛，放射斑纹，多发大小不一眼，毒液口器</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #daa520;">🔫</div>
+          <div class="char-name-overlay">炮台</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">炮台 (Turret)</div>
+        <div class="card-type">机械 · 远程型</div>
+        <div class="card-desc">圆柱底座，旋转双管炮塔，红色瞄准激光，传感器探头</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #2f4f4f;">☠️</div>
+          <div class="char-name-overlay">腐化者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">腐化者 (Corruptor)</div>
+        <div class="card-type">融合失败体 · 减益型</div>
+        <div class="card-desc">严重扭曲人形，腐蚀痕迹皮肤，黑色粘液流出，面部模糊</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #8b0000;">💢</div>
+          <div class="char-name-overlay">暴走者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">暴走者 (Berserker)</div>
+        <div class="card-type">狂暴融合体 · 狂暴型</div>
+        <div class="card-desc">极度膨胀肌肉，暗红血管暴起，全白眼睛，热浪扭曲</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #4b0082;">🗡️</div>
+          <div class="char-name-overlay">影子刺客</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">影子刺客 (Shadow Assassin)</div>
+        <div class="card-type">失心者 · 刺客型</div>
+        <div class="card-desc">阴影半实体，仅轮廓可见，弯曲暗影匕首，移动残影</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #696969;">🛡️</div>
+          <div class="char-name-overlay">重装卫士</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">重装卫士 (Heavy Guardian)</div>
+        <div class="card-type">机械精英 · 重坦型</div>
+        <div class="card-desc">巨型球形身体，四条粗腿，巨大独眼，明显装甲板</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #32cd32;">☣️</div>
+          <div class="char-name-overlay">毒液喷射者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">毒液喷射者 (Toxic Spitter)</div>
+        <div class="card-type">变异精英 · 范围伤害</div>
+        <div class="card-desc">胸前巨大毒囊，口部变喷射管，病态绿皮肤，毒气云雾</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #faebd7;">💀</div>
+          <div class="char-name-overlay">灵魂收割者</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">灵魂收割者 (Soul Reaper)</div>
+        <div class="card-type">高级失心者 · 吸血型</div>
+        <div class="card-desc苍白骷髅面孔，破烂黑袍，巨大镰刀，灵魂火焰燃烧</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOSS设计 -->
+<div class="section">
+  <h2>👿 BOSS敌人（5个）</h2>
+  <div class="card-grid">
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #ff4500;">👹</div>
+          <div class="char-name-overlay">Lvl 10 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">🔥 毁灭领主·阿尔戈斯</div>
+        <div class="card-type">Floor 10 BOSS · 召唤型</div>
+        <div class="card-desc">三头六臂巨型机甲，中央AI控制两侧武器系统，背部召唤法阵</div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #9400d3;">👑</div>
+          <div class="char-name-overlay">Lvl 20 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">🌑 暗影帝王·诺克萨斯</div>
+        <div class="card-type">Floor 20 BOSS · 分身型</div>
+        <div class="card-desc">纯粹暗影人形，黑暗皇袍，凝固暗影皇冠，暗影权杖</div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #00bfff;">🧠</div>
+          <div class="char-name-overlay">Lvl 30 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">💠 天网核心·普莱姆</div>
+        <div class="card-type">Floor 30 BOSS · 控制型</div>
+        <div class="desc">巨型球形AI核心，数据流表面，卫星节点环绕，发光处理器</div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #ff6347;">🏭</div>
+          <div class="char-name-overlay">Lvl 40 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">⚙️ 机械母体·创世纪</div>
+        <div class="card-type">Floor 40 BOSS · 召唤型</div>
+        <div class="card-desc">工厂形态巨型机械，多个生产管道，小型出口，中央控制室</div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; background: linear-gradient(45deg, gold, red, purple, cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🌀</div>
+          <div class="char-name-overlay">FINAL BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">♾️ 终焉之神·奥米茄</div>
+        <div class="card-type">Floor 50 FINAL BOSS · 三阶段变身</div>
+        <div class="card-desc">P1完美战士→P2暗影堕落→P3宇宙能量体，终极存在</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UI元素展示 -->
+<div class="section">
+  <h2>🎨 UI元素设计</h2>
+  
+  <h3>按钮样式</h3>
+  <div class="ui-showcase">
+    <div class="ui-item">
+      <button class="btn-demo">开始游戏</button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">主要操作按钮</p>
+    </div>
+    <div class="ui-item">
+      <button class="btn-demo">攻击</button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">战斗操作按钮</p>
+    </div>
+    <div class="ui-item">
+      <button class="btn-demo">撤退</button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">危险操作按钮</p>
+    </div>
+  </div>
+  
+  <h3>血条样式</h3>
+  <div class="ui-showcase">
+    <div class="ui-item">
+      <p style="font-size: 12px; margin-bottom: 5px;">友方血条（绿色渐变）</p>
+      <div class="hp-bar-demo">
+        <div class="hp-fill hp-friendly"></div>
+        <div class="hp-text">750 / 1000</div>
+      </div>
+    </div>
+    <div class="ui-item">
+      <p style="font-size: 12px; margin-bottom: 5px;">敌方血条（红色渐变）</p>
+      <div class="hp-bar-demo">
+        <div class="hp-fill hp-enemy"></div>
+        <div class="hp-text">300 / 500</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>苏打地牢 (Soda Dungeon) - 美术资源设计规范 v1.0</p>
+  <p>风格定位：废土 + 神圣融合 | 设计分辨率：375×812 | 引擎：Phaser 3</p>
+  <p>生成时间：2026-04-03 | 文档版本：1.0</p>
+</footer>
+
+</body>
+</html>

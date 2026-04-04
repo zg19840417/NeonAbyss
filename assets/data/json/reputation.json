@@ -1,0 +1,154 @@
+[
+  {
+    "level": "2",
+    "name": "见习驾驶员",
+    "requiredPoints": "100",
+    "unlockFacility": "设施2级",
+    "unlockEnergy": "活力苏打",
+    "unlockCharacter": "⭐普通"
+  },
+  {
+    "level": "1",
+    "name": "新手拾荒者",
+    "requiredPoints": "0",
+    "unlockFacility": "基础",
+    "unlockEnergy": "普通能量",
+    "unlockCharacter": "⭐普通"
+  },
+  {
+    "level": "3",
+    "name": "正式队员",
+    "requiredPoints": "300",
+    "unlockFacility": "设施3级",
+    "unlockEnergy": "强力能量,精准燃料",
+    "unlockCharacter": "⭐⭐中级"
+  },
+  {
+    "level": "2",
+    "name": "见习驾驶员",
+    "requiredPoints": "100",
+    "unlockFacility": "设施2级",
+    "unlockEnergy": "活力苏打",
+    "unlockCharacter": "⭐普通"
+  },
+  {
+    "level": "4",
+    "name": "资深探险家",
+    "requiredPoints": "600",
+    "unlockFacility": "设施4级",
+    "unlockEnergy": "精准燃料",
+    "unlockCharacter": "⭐⭐中级"
+  },
+  {
+    "level": "3",
+    "name": "正式队员",
+    "requiredPoints": "300",
+    "unlockFacility": "设施3级",
+    "unlockEnergy": "强力能量,精准燃料",
+    "unlockCharacter": "⭐⭐中级"
+  },
+  {
+    "level": "5",
+    "name": "队长",
+    "requiredPoints": "1000",
+    "unlockFacility": "设施5级,黑客终端",
+    "unlockEnergy": "超频能量,战意激化剂,守护合剂",
+    "unlockCharacter": "⭐⭐⭐高级"
+  },
+  {
+    "level": "4",
+    "name": "资深探险家",
+    "requiredPoints": "600",
+    "unlockFacility": "设施4级",
+    "unlockEnergy": "精准燃料",
+    "unlockCharacter": "⭐⭐中级"
+  },
+  {
+    "level": "6",
+    "name": "英雄",
+    "requiredPoints": "1500",
+    "unlockFacility": "设施6级",
+    "unlockEnergy": "战意激化剂,守护合剂",
+    "unlockCharacter": "⭐⭐⭐高级"
+  },
+  {
+    "level": "5",
+    "name": "队长",
+    "requiredPoints": "1000",
+    "unlockFacility": "设施5级,黑客终端",
+    "unlockEnergy": "超频能量,战意激化剂,守护合剂",
+    "unlockCharacter": "⭐⭐⭐高级"
+  },
+  {
+    "level": "7",
+    "name": "传奇人物",
+    "requiredPoints": "2500",
+    "unlockFacility": "设施7级",
+    "unlockEnergy": "传说能量",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "6",
+    "name": "英雄",
+    "requiredPoints": "1500",
+    "unlockFacility": "设施6级",
+    "unlockEnergy": "战意激化剂,守护合剂",
+    "unlockCharacter": "⭐⭐⭐高级"
+  },
+  {
+    "level": "8",
+    "name": "废土领袖",
+    "requiredPoints": "4000",
+    "unlockFacility": "设施8级",
+    "unlockEnergy": "传说能量,源初精华",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "7",
+    "name": "传奇人物",
+    "requiredPoints": "2500",
+    "unlockFacility": "设施7级",
+    "unlockEnergy": "传说能量",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "9",
+    "name": "方舟使者",
+    "requiredPoints": "6000",
+    "unlockFacility": "设施9级",
+    "unlockEnergy": "源初精华,禁忌药剂",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "8",
+    "name": "废土领袖",
+    "requiredPoints": "4000",
+    "unlockFacility": "设施8级",
+    "unlockEnergy": "传说能量,源初精华",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "10",
+    "name": "传奇永恒",
+    "requiredPoints": "10000",
+    "unlockFacility": "设施满级",
+    "unlockEnergy": "禁忌药剂",
+    "unlockCharacter": "全部品质"
+  },
+  {
+    "level": "9",
+    "name": "方舟使者",
+    "requiredPoints": "6000",
+    "unlockFacility": "设施9级",
+    "unlockEnergy": "源初精华,禁忌药剂",
+    "unlockCharacter": "⭐⭐⭐⭐传说"
+  },
+  {
+    "level": "10",
+    "name": "传奇永恒",
+    "requiredPoints": "10000",
+    "unlockFacility": "设施满级",
+    "unlockEnergy": "禁忌药剂",
+    "unlockCharacter": "全部品质"
+  }
+]

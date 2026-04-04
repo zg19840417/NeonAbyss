@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战斗界面示意图 V2 - 融合纪元</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1f1c1a;
+            --bg-panel: #2d2824;
+            --bg-card: #252220;
+            --border: #4a4540;
+            --holy-light: #f0e6d3;
+            --fusion-green: #a8d8a8;
+            --corrupt-red: #c89090;
+            --amber: #d4a574;
+            --text-primary: #ffffff;
+            --text-secondary: #8a7a6a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(180deg, #1f1c1a 0%, #2d2824 50%, #1f1c1a 100%);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 80px rgba(0,0,0,0.5),
+                0 0 30px rgba(168,216,168,0.08);
+            position: relative;
+        }
+
+        .top-bar {
+            background: linear-gradient(180deg, rgba(168,216,168,0.06) 0%, transparent 100%);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(168,216,168,0.1);
+        }
+
+        .floor-indicator {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--fusion-green);
+        }
+
+        .round-indicator {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .enemy-zone {
+            padding: 12px 10px 4px;
+        }
+
+        .zone-label {
+            font-size: 11px;
+            color: var(--corrupt-red);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .row {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .card {
+            flex: 1;
+            max-width: 140px;
+            background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.2s ease;
+            min-height: 240px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .card:active {
+            transform: scale(0.95);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--corrupt-red), #e8c8c8);
+            z-index: 10;
+        }
+
+        .card.boss::before {
+            height: 4px;
+            background: linear-gradient(90deg, var(--amber), #e8d4a8);
+        }
+
+        .avatar-large {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-placeholder {
+            font-size: 44px;
+        }
+
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        // 伤害飘字效果
+        .damage-text {
+            position: absolute;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            pointer-events: none;
+            z-index: 100;
+            animation: damageFloat 1s ease-out forwards;
+        }
+
+        .damage-text.damage {
+            color: #ff4444;
+            text-shadow: 0 0 5px rgba(255,0,0,0.5);
+        }
+
+        .damage-text.heal {
+            color: #44ff44;
+            text-shadow: 0 0 5px rgba(0,255,0,0.5);
+        }
+
+        .damage-text.critical {
+            font-size: 28px;
+            color: #ffaa00;
+            text-shadow: 0 0 10px rgba(255,170,0,0.7);
+        }
+
+        @keyframes damageFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-30px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0.8);
+            }
+        }
+
+        .avatar-large::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
+        }
+
+        .avatar-placeholder {
+            font-size: 44px;
+        }
+
+        .avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            color: #d4ccc0;
+            margin: 6px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 0 10px;
+        }
+
+        .boss-tag {
+            color: var(--amber);
+            font-size: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .hp-bar-container {
+            width: 100%;
+            height: 14px;
+            background: #1a1815;
+            border-radius: 0;
+            overflow: visible;
+            margin: 0;
+            position: relative;
+            padding: 0;
+        }
+
+        .hp-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--corrupt-red), #e8c8c8);
+            border-radius: 0;
+            transition: width 0.3s ease-out;
+            z-index: 1;
+            box-shadow: inset 0 0 3px rgba(255,255,255,0.2);
+        }
+
+        .hp-bar.low-hp {
+            animation: hpPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes hpPulse {
+            0%, 100% { opacity: 1; box-shadow: inset 0 0 5px rgba(255,255,255,0.3); }
+            50% { opacity: 0.5; box-shadow: inset 0 0 10px rgba(255,255,255,0.5); }
+        }
+
+        .hp-text {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-55%);
+            z-index: 2;
+            text-shadow:
+                0 0 3px rgba(0,0,0,0.9),
+                0 0 6px rgba(0,0,0,0.7),
+                1px 1px 0 rgba(0,0,0,0.9);
+            padding: 0 6px;
+        }
+
+        .battle-center {
+            padding: 3px 20px;
+            text-align: center;
+            background: rgba(168,216,168,0.02);
+            border-top: 1px solid rgba(168,216,168,0.1);
+            border-bottom: 1px solid rgba(168,216,168,0.1);
+        }
+
+        .battle-title {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--holy-light);
+            margin-bottom: 2px;
+        }
+
+        .battle-log {
+            font-size: 7px;
+            font-weight: 500;
+            color: var(--amber);
+            line-height: 1.0;
+            max-height: 18px;
+            overflow: hidden;
+        }
+
+        .battle-log.heal {
+            color: var(--fusion-green);
+        }
+
+        .battle-log.damage {
+            color: var(--corrupt-red);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168,216,168,0.2), transparent);
+        }
+
+        .divider-icon {
+            font-size: 14px;
+            color: var(--fusion-green);
+            opacity: 0.4;
+        }
+
+        .team-zone {
+            padding: 4px 10px 8px;
+        }
+
+        .team-zone .zone-label {
+            color: var(--fusion-green);
+        }
+
+        .team-zone .card {
+            background: linear-gradient(180deg, var(--bg-panel) 0%, #282a24 100%);
+            border-color: #4a5040;
+        }
+
+        .team-zone .card::before {
+            background: linear-gradient(90deg, var(--fusion-green), #c8e8c8);
+            height: 3px;
+            top: auto;
+            bottom: 0;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .team-zone .avatar-large {
+            background: linear-gradient(180deg, #2d3028 0%, #1f2218 100%);
+            border-color: rgba(168,216,168,0.3);
+            box-shadow: 0 4px 15px rgba(168,216,168,0.1);
+        }
+
+        .team-zone .hp-bar {
+            background: linear-gradient(90deg, var(--fusion-green), #c8e8c8);
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 0;
+            transition: width 0.3s ease-out;
+            z-index: 1;
+        }
+
+        .team-zone .name {
+            color: #c8d8c0;
+        }
+
+        .card.active {
+            border-color: var(--fusion-green);
+            box-shadow: 0 0 20px rgba(168,216,168,0.2);
+        }
+
+        .card.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--fusion-green);
+            border-radius: 12px;
+            animation: borderPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.15; }
+        }
+
+        .card.dead {
+            opacity: 0.4;
+            filter: grayscale(0.8);
+        }
+
+        // 战斗动画效果
+        .card.attacking {
+            animation: attackAnimation 0.5s ease-out;
+        }
+
+        @keyframes attackAnimation {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(10px); }
+            50% { transform: translateX(-5px); }
+            75% { transform: translateX(3px); }
+            100% { transform: translateX(0); }
+        }
+
+        .card.attacked {
+            animation: attackedAnimation 0.3s ease-out;
+        }
+
+        @keyframes attackedAnimation {
+            0% { transform: translateX(0); filter: brightness(1); }
+            25% { transform: translateX(-5px); filter: brightness(1.5); }
+            50% { transform: translateX(3px); filter: brightness(1.2); }
+            75% { transform: translateX(-2px); filter: brightness(1.1); }
+            100% { transform: translateX(0); filter: brightness(1); }
+        }
+
+        .card.skill {
+            animation: skillAnimation 0.8s ease-out;
+        }
+
+        @keyframes skillAnimation {
+            0% { transform: scale(1); filter: brightness(1); }
+            25% { transform: scale(1.05); filter: brightness(1.3); }
+            50% { transform: scale(1.1); filter: brightness(1.5); }
+            75% { transform: scale(1.05); filter: brightness(1.3); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        .card.healing {
+            animation: healingAnimation 0.6s ease-out;
+        }
+
+        @keyframes healingAnimation {
+            0% { filter: brightness(1) hue-rotate(0deg); }
+            50% { filter: brightness(1.2) hue-rotate(60deg); }
+            100% { filter: brightness(1) hue-rotate(0deg); }
+        }
+
+        .bottom-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px 24px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 20px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .action-btn.primary {
+            border-color: var(--fusion-green);
+            box-shadow: 0 4px 15px rgba(168,216,168,0.3);
+            background: linear-gradient(180deg, rgba(168,216,168,0.15) 0%, var(--bg-card) 100%);
+            min-width: 110px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .action-btn.primary:hover {
+            box-shadow: 0 6px 20px rgba(168,216,168,0.4);
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 8px rgba(168,216,168,0.2);
+        }
+
+        .action-btn .icon {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="top-bar">
+            <div class="floor-indicator">FLOOR 15</div>
+            <div class="round-indicator">回合 3</div>
+        </div>
+
+        <div class="enemy-zone">
+            <div class="zone-label">失心者</div>
+            <div class="row">
+                <div class="card boss">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <div class="avatar-placeholder">🤖</div>
+                        </div>
+                        <div class="name">
+                            堕落守卫
+                            <span class="boss-tag">⚠ BOSS</span>
+                        </div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar" style="width: 65%;"></div>
+                            <div class="hp-text">6500/10000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <div class="avatar-placeholder">🦾</div>
+                        </div>
+                        <div class="name">狂乱兽</div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar low-hp" style="width: 30%;"></div>
+                            <div class="hp-text">600/2000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <div class="avatar-placeholder">⚙️</div>
+                        </div>
+                        <div class="name">畸变体</div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar" style="width: 80%;"></div>
+                            <div class="hp-text">800/1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="battle-center">
+            <div class="battle-title">BATTLE</div>
+            <div class="battle-log heal">翠绿医者对全体队友恢复 280 HP</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-icon">▼</span>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+
+        <div class="team-zone">
+            <div class="zone-label">融合者</div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <div class="avatar-placeholder">🛡️</div>
+                        </div>
+                        <div class="name">铁血狂卫</div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar" style="width: 85%;"></div>
+                            <div class="hp-text">850/1000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card active">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <img src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-04-03%2FMiniMax-M2.7-highspeed%2F2039258261374378147%2F21891c4e60aa6b8097c006ec0c514636476cd9681865a7bdafe5fbfc880854f2..png?Expires=1775294967&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=wt2ThPGNPtjzSN3UMciKfVu%2Fs6c%3D" alt="翠绿医者">
+                        </div>
+                        <div class="name">翠绿医者</div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar" style="width: 95%;"></div>
+                            <div class="hp-text">950/1000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="avatar-large">
+                            <div class="avatar-placeholder">⚔️</div>
+                        </div>
+                        <div class="name">幻影战将</div>
+                        <div class="hp-bar-container">
+                            <div class="hp-bar" style="width: 60%;"></div>
+                            <div class="hp-text">480/800</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-actions">
+            <div class="action-btn">🎒</div>
+            <div class="action-btn primary">⚡ 技能</div>
+            <div class="action-btn">🏃</div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏状态管理器
+        const GameState = {
+            isPaused: false,
+            pauseCallbacks: [],
+            resumeCallbacks: [],
+            
+            pause: function() {
+                this.isPaused = true;
+                this.pauseCallbacks.forEach(callback => callback());
+            },
+            
+            resume: function() {
+                this.isPaused = false;
+                this.resumeCallbacks.forEach(callback => callback());
+            },
+            
+            onPause: function(callback) {
+                this.pauseCallbacks.push(callback);
+            },
+            
+            onResume: function(callback) {
+                this.resumeCallbacks.push(callback);
+            }
+        };
+
+        // 战斗动画管理器
+        const BattleAnimations = {
+            // 攻击动画
+            playAttack: function(cardElement) {
+                if (GameState.isPaused) return;
+                cardElement.classList.add('attacking');
+                setTimeout(() => cardElement.classList.remove('attacking'), 500);
+            },
+            
+            // 受击动画
+            playAttacked: function(cardElement) {
+                if (GameState.isPaused) return;
+                cardElement.classList.add('attacked');
+                setTimeout(() => cardElement.classList.remove('attacked'), 300);
+            },
+            
+            // 技能动画
+            playSkill: function(cardElement) {
+                if (GameState.isPaused) return;
+                cardElement.classList.add('skill');
+                setTimeout(() => cardElement.classList.remove('skill'), 800);
+            },
+            
+            // 治疗动画
+            playHealing: function(cardElement) {
+                if (GameState.isPaused) return;
+                cardElement.classList.add('healing');
+                setTimeout(() => cardElement.classList.remove('healing'), 600);
+            }
+        };
+
+        // 飘字管理器
+        const FloatingText = {
+            // 显示伤害飘字
+            showDamage: function(cardElement, amount, isCritical = false) {
+                if (GameState.isPaused) return;
+                this._createFloatingText(cardElement, amount, 'damage', isCritical);
+            },
+            
+            // 显示治疗飘字
+            showHeal: function(cardElement, amount) {
+                if (GameState.isPaused) return;
+                this._createFloatingText(cardElement, '+' + amount, 'heal', false);
+            },
+            
+            // 创建飘字元素
+            _createFloatingText: function(cardElement, text, type, isCritical) {
+                const floatingText = document.createElement('div');
+                floatingText.className = 'damage-text ' + type;
+                if (isCritical) {
+                    floatingText.classList.add('critical');
+                    text = '暴击 ' + text;
+                }
+                floatingText.textContent = text;
+                
+                // 获取卡片位置
+                const rect = cardElement.getBoundingClientRect();
+                floatingText.style.left = (rect.left + rect.width / 2 - 20) + 'px';
+                floatingText.style.top = (rect.top + rect.height / 2) + 'px';
+                
+                // 添加到文档
+                document.body.appendChild(floatingText);
+                
+                // 动画结束后移除元素
+                setTimeout(() => floatingText.remove(), 1000);
+            }
+        };
+
+        // 点击立绘全屏显示功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatarImages = document.querySelectorAll('.avatar-large img');
+            
+            avatarImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    // 创建全屏覆盖层
+                    const overlay = document.createElement('div');
+                    overlay.className = 'fullscreen-overlay';
+                    
+                    // 创建全屏图片
+                    const fullscreenImg = document.createElement('img');
+                    fullscreenImg.className = 'fullscreen-image';
+                    fullscreenImg.src = img.src;
+                    fullscreenImg.alt = img.alt;
+                    
+                    // 添加到覆盖层
+                    overlay.appendChild(fullscreenImg);
+                    
+                    // 添加到文档
+                    document.body.appendChild(overlay);
+                    
+                    // 游戏暂停
+                    GameState.pause();
+                    
+                    // 点击覆盖层关闭全屏
+                    overlay.addEventListener('click', function() {
+                        overlay.remove();
+                        // 游戏继续
+                        GameState.resume();
+                    });
+                });
+            });
+            
+            // 示例：注册暂停回调
+            GameState.onPause(function() {
+                console.log('游戏已暂停');
+                // 这里可以添加实际的暂停逻辑，比如停止动画、计时器等
+            });
+            
+            // 示例：注册继续回调
+            GameState.onResume(function() {
+                console.log('游戏继续');
+                // 这里可以添加实际的继续逻辑，比如恢复动画、计时器等
+            });
+        });
+    </script>
+</body>
+</html>

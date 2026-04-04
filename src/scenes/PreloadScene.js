@@ -1,0 +1,154 @@
+export default class PreloadScene extends Phaser.Scene {
+  constructor() {
+    super({ key: 'PreloadScene' });
+    this.config = this.initConfig();
+  }
+
+  initConfig() {
+    return {
+      colors: {
+        bgDark: 0x1a1815,
+        bgMid: 0x252220,
+        amber: 0xd4a574,
+        textPrimary: '#d4ccc0',
+        textSecondary: '#8a7a6a'
+      }
+    };
+  }
+
+  preload() {
+    const width = this.cameras.main.width;
+    const height = this.cameras.main.height;
+
+    const progressBg = this.add.graphics();
+    progressBg.fillStyle(0x222222, 0.8);
+    progressBg.fillRect(width / 2 - 160, height / 2 - 25, 320, 50);
+    progressBg.lineStyle(1, this.config.colors.amber, 0.3);
+    progressBg.strokeRect(width / 2 - 160, height / 2 - 25, 320, 50);
+
+    const progressBar = this.add.graphics();
+    progressBar.setName('progressBar');
+
+    const loadingText = this.add.text(width / 2, height / 2 - 50, '加载中...', {
+      fontSize: '16px',
+      fill: this.config.colors.textPrimary,
+      fontFamily: 'Noto Sans SC'
+    }).setOrigin(0.5);
+
+    const tipText = this.add.text(width / 2, height / 2 + 40, '正在初始化游戏资源', {
+      fontSize: '12px',
+      fill: this.config.colors.textSecondary,
+      fontFamily: 'Noto Sans SC'
+    }).setOrigin(0.5);
+
+    this.load.on('progress', (value) => {
+      progressBar.clear();
+      progressBar.fillStyle(this.config.colors.amber, 1);
+      progressBar.fillRect(width / 2 - 150, height / 2 - 15, 300 * value, 30);
+      
+      const percent = Math.floor(value * 100);
+      tipText.setText(`加载进度: ${percent}%`);
+    });
+
+    this.load.on('complete', () => {
+      progressBar.destroy();
+      progressBg.destroy();
+      loadingText.destroy();
+      tipText.destroy();
+      this.scene.start('MainMenuScene');
+    });
+
+    this.load.on('loaderror', (file) => {
+      console.warn('Load error (non-fatal):', file.key);
+      tipText.setText('部分资源加载失败，继续中...');
+    });
+
+    this.initializeGameData();
+  }
+
+  initializeGameData() {
+    if (!window.gameData) {
+      window.gameData = {};
+    }
+
+    if (!window.gameData.base) {
+      window.gameData.base = {
+        coins: 10000,
+        facilities: null,
+        characters: [],
+        team: [
+          { id: 1, name: '艾伦', maxHp: 100, hp: 100, atk: 20, level: 1 },
+          { id: 2, name: '莉莉', maxHp: 80, hp: 80, atk: 25, level: 1 },
+          { id: 3, name: '杰克', maxHp: 120, hp: 120, atk: 18, level: 1 }
+        ],
+        availableRecruits: []
+      };
+    }
+
+    if (!window.gameData.dungeon) {
+      window.gameData.dungeon = {
+        currentFloor: 1,
+        maxReachedFloor: 1,
+        currentDimension: 1,
+        totalBattlesWon: 0,
+        totalGoldEarned: 0,
+        offlineProgress: {
+          enabled: false,
+          lastBattleTime: Date.now(),
+          battlesWon: 0,
+          goldEarned: 0
+        }
+      };
+    }
+
+    if (!window.gameData.settings) {
+      window.gameData.settings = {
+        masterVolume: 0.8,
+        bgmVolume: 0.7,
+        seVolume: 0.8,
+        autoBattle: true,
+        autoEquipment: true,
+        battleSpeed: 1
+      };
+    }
+
+    if (!window.gameData.achievements) {
+      window.gameData.achievements = {
+        progress: {},
+        unlocked: [],
+        claimedRewards: []
+      };
+    }
+
+    this.loadSavedData();
+  }
+
+  loadSavedData() {
+    try {
+      const saved = localStorage.getItem('sodaDungeonSave');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        
+        if (parsed.base) {
+          window.gameData.base = parsed.base;
+        }
+        if (parsed.dungeon) {
+          window.gameData.dungeon = parsed.dungeon;
+        }
+        if (parsed.settings) {
+          window.gameData.settings = parsed.settings;
+        }
+        if (parsed.achievements) {
+          window.gameData.achievements = parsed.achievements;
+        }
+        
+        console.log('存档已恢复');
+      }
+    } catch (e) {
+      console.warn('存档加载失败，使用默认数据:', e);
+    }
+  }
+
+  create() {
+  }
+}

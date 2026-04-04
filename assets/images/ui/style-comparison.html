@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI风格对比 - 融合纪元</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            padding: 30px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #888888;
+            margin-bottom: 40px;
+        }
+
+        .styles-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .style-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .style-label {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        /* ===== 风格1：赛博朋克（原始） ===== */
+        .style-1 .style-label {
+            background: linear-gradient(135deg, rgba(0,245,255,0.2), rgba(255,0,170,0.2));
+            color: #00f5ff;
+            border: 1px solid #00f5ff;
+        }
+
+        .style-1 .game-container {
+            width: 280px;
+            height: 600px;
+            background: linear-gradient(180deg, #0d0d15 0%, #1a1a2e 50%, #0d0d15 100%);
+            border: 2px solid #00f5ff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,245,255,0.3);
+            position: relative;
+        }
+
+        .style-1 .top-bar {
+            background: linear-gradient(180deg, rgba(0,245,255,0.1) 0%, transparent 100%);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0,245,255,0.2);
+        }
+
+        .style-1 .floor { font-family: 'Orbitron'; font-size: 14px; color: #00f5ff; text-shadow: 0 0 10px #00f5ff; }
+        .style-1 .round { font-family: 'Orbitron'; font-size: 12px; color: #ff00aa; }
+
+        .style-1 .enemy-zone { padding: 15px; background: rgba(255,51,102,0.03); }
+        .style-1 .zone-label { font-size: 9px; font-family: 'Orbitron'; color: #ff3366; opacity: 0.5; letter-spacing: 2px; margin-bottom: 10px; }
+
+        .style-1 .row { display: flex; gap: 8px; justify-content: center; }
+        .style-1 .card {
+            width: 80px;
+            background: linear-gradient(135deg, #1a1a25 0%, rgba(255,51,102,0.1) 100%);
+            border: 1px solid rgba(255,51,102,0.3);
+            border-radius: 10px;
+            padding: 8px 5px;
+            text-align: center;
+        }
+        .style-1 .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: #ff3366; box-shadow: 0 0 8px #ff3366;
+        }
+        .style-1 .avatar { width: 36px; height: 36px; background: #2a2a3a; border-radius: 8px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(255,51,102,0.3); }
+        .style-1 .name { font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+        .style-1 .hp-bar { height: 5px; background: rgba(0,0,0,0.5); border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+        .style-1 .hp-fill { height: 100%; background: linear-gradient(90deg, #ff3366 0%, #ff6688 100%); border-radius: 3px; }
+        .style-1 .hp-text { font-family: 'Orbitron'; font-size: 8px; color: #8888aa; }
+        .style-1 .stats { display: flex; justify-content: center; gap: 6px; font-size: 8px; color: #8888aa; margin-top: 4px; }
+
+        .style-1 .battle-center { padding: 12px; text-align: center; background: rgba(0,245,255,0.02); }
+        .style-1 .battle-title { font-family: 'Orbitron'; font-size: 14px; font-weight: 900; background: linear-gradient(90deg, #00f5ff, #ff00aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+        .style-1 .battle-log { font-size: 10px; color: #f0ff00; font-family: 'Orbitron'; text-shadow: 0 0 8px #f0ff00; }
+
+        .style-1 .team-zone { padding: 15px; background: rgba(0,255,136,0.03); }
+        .style-1 .team-zone .zone-label { color: #00ff88; }
+        .style-1 .team-zone .card { background: linear-gradient(135deg, #1a1a25 0%, rgba(0,255,136,0.05) 100%); border-color: rgba(0,255,136,0.2); }
+        .style-1 .team-zone .card::before { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+        .style-1 .team-zone .avatar { border-color: rgba(0,255,136,0.3); }
+        .style-1 .team-zone .hp-fill { background: linear-gradient(90deg, #00ff88 0%, #88ff88 100%); }
+        .style-1 .card.active { border-color: #00f5ff; box-shadow: 0 0 12px rgba(0,245,255,0.3); }
+
+        /* ===== 风格2：废土写实 ===== */
+        .style-2 .style-label {
+            background: linear-gradient(135deg, rgba(196,163,90,0.2), rgba(139,77,77,0.2));
+            color: #c4a35a;
+            border: 1px solid #c4a35a;
+        }
+
+        .style-2 .game-container {
+            width: 280px;
+            height: 600px;
+            background: linear-gradient(180deg, #2a2520 0%, #3d362e 50%, #2a2520 100%);
+            border: 2px solid #4a4540;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .style-2 .top-bar {
+            background: linear-gradient(180deg, rgba(196,163,90,0.1) 0%, transparent 100%);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(196,163,90,0.2);
+        }
+
+        .style-2 .floor { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #c4a35a; }
+        .style-2 .round { font-family: 'Noto Sans SC'; font-size: 12px; color: #8b7355; }
+
+        .style-2 .enemy-zone { padding: 15px; }
+        .style-2 .zone-label { font-size: 9px; font-family: 'Noto Sans SC'; color: #8b4d4d; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+
+        .style-2 .row { display: flex; gap: 8px; justify-content: center; }
+        .style-2 .card {
+            width: 80px;
+            background: linear-gradient(180deg, #3d362e 0%, #2d2824 100%);
+            border: 1px solid #4a4540;
+            border-radius: 8px;
+            padding: 8px 5px;
+            text-align: center;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        .style-2 .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: #8b4d4d;
+        }
+        .style-2 .avatar { width: 36px; height: 36px; background: #2d2824; border-radius: 6px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid #4a4540; }
+        .style-2 .name { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: #d4c4a8; }
+        .style-2 .hp-bar { height: 5px; background: #1a1815; border-radius: 2px; overflow: hidden; margin-bottom: 3px; }
+        .style-2 .hp-fill { height: 100%; background: linear-gradient(90deg, #8b4d4d 0%, #a86060 100%); border-radius: 2px; }
+        .style-2 .hp-text { font-family: 'Noto Sans SC'; font-size: 8px; color: #8b7355; }
+        .style-2 .stats { display: flex; justify-content: center; gap: 6px; font-size: 8px; color: #8b7355; margin-top: 4px; }
+
+        .style-2 .battle-center { padding: 12px; text-align: center; background: rgba(196,163,90,0.02); }
+        .style-2 .battle-title { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #c4a35a; margin-bottom: 6px; }
+        .style-2 .battle-log { font-size: 10px; color: #d4a574; }
+
+        .style-2 .team-zone { padding: 15px; }
+        .style-2 .team-zone .zone-label { color: #5a8b5a; }
+        .style-2 .team-zone .card { background: linear-gradient(180deg, #3d362e 0%, #2d3428 100%); border-color: #4a5040; }
+        .style-2 .team-zone .card::before { background: #5a8b5a; }
+        .style-2 .team-zone .avatar { border-color: #4a5040; }
+        .style-2 .team-zone .hp-fill { background: linear-gradient(90deg, #5a8b5a 0%, #7aab7a 100%); }
+        .style-2 .card.active { border-color: #c4a35a; box-shadow: inset 0 0 10px rgba(196,163,90,0.2); }
+
+        /* ===== 风格3：自然融合 ===== */
+        .style-3 .style-label {
+            background: linear-gradient(135deg, rgba(126,200,126,0.2), rgba(212,232,212,0.2));
+            color: #7ec87e;
+            border: 1px solid #7ec87e;
+        }
+
+        .style-3 .game-container {
+            width: 280px;
+            height: 600px;
+            background: linear-gradient(180deg, #1a2418 0%, #263028 50%, #1a2418 100%);
+            border: 2px solid #3a4a38;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(126,200,126,0.15);
+            position: relative;
+        }
+
+        .style-3 .top-bar {
+            background: linear-gradient(180deg, rgba(126,200,126,0.1) 0%, transparent 100%);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(126,200,126,0.2);
+        }
+
+        .style-3 .floor { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #7ec87e; }
+        .style-3 .round { font-family: 'Noto Sans SC'; font-size: 12px; color: #5a7a5a; }
+
+        .style-3 .enemy-zone { padding: 15px; }
+        .style-3 .zone-label { font-size: 9px; font-family: 'Noto Sans SC'; color: #c87a7a; letter-spacing: 2px; margin-bottom: 10px; }
+
+        .style-3 .row { display: flex; gap: 8px; justify-content: center; }
+        .style-3 .card {
+            width: 80px;
+            background: linear-gradient(180deg, #263028 0%, #1e2a1e 100%);
+            border: 1px solid #3a4a38;
+            border-radius: 16px;
+            padding: 10px 5px;
+            text-align: center;
+        }
+        .style-3 .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #c87a7a, #e8a8a8);
+            border-radius: 16px 16px 0 0;
+        }
+        .style-3 .avatar { width: 36px; height: 36px; background: #1e2a1e; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid #3a4a38; }
+        .style-3 .name { font-size: 10px; font-weight: 700; margin-bottom: 6px; color: #d4e8d4; }
+        .style-3 .hp-bar { height: 6px; background: #1a2018; border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+        .style-3 .hp-fill { height: 100%; background: linear-gradient(90deg, #c87a7a, #e8a8a8); border-radius: 3px; }
+        .style-3 .hp-text { font-family: 'Noto Sans SC'; font-size: 8px; color: #7a9a7a; }
+        .style-3 .stats { display: flex; justify-content: center; gap: 6px; font-size: 8px; color: #7a9a7a; margin-top: 6px; }
+
+        .style-3 .battle-center { padding: 15px; text-align: center; background: rgba(212,232,212,0.03); }
+        .style-3 .battle-title { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #d4e8d4; margin-bottom: 8px; }
+        .style-3 .battle-log { font-size: 10px; color: #d4a574; }
+
+        .style-3 .team-zone { padding: 15px; }
+        .style-3 .team-zone .zone-label { color: #7ec87e; }
+        .style-3 .team-zone .card { background: linear-gradient(180deg, #263028 0%, #2a3a2a 100%); border-color: #4a5a48; }
+        .style-3 .team-zone .card::before { background: linear-gradient(90deg, #7ec87e, #a8e8a8); }
+        .style-3 .team-zone .avatar { border-color: #4a5a48; }
+        .style-3 .team-zone .hp-fill { background: linear-gradient(90deg, #7ec87e, #a8e8a8); }
+        .style-3 .card.active { border-color: #7ec87e; box-shadow: 0 0 15px rgba(126,200,126,0.3); }
+
+        /* ===== 风格4：废土+神圣融合 ===== */
+        .style-4 .style-label {
+            background: linear-gradient(135deg, rgba(240,230,211,0.2), rgba(168,216,168,0.2));
+            color: #f0e6d3;
+            border: 1px solid #a8d8a8;
+        }
+
+        .style-4 .game-container {
+            width: 280px;
+            height: 600px;
+            background: linear-gradient(180deg, #1f1c1a 0%, #2d2824 50%, #1f1c1a 100%);
+            border: 2px solid #4a4540;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(168,216,168,0.1), inset 0 0 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .style-4 .top-bar {
+            background: linear-gradient(180deg, rgba(168,216,168,0.08) 0%, transparent 100%);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(168,216,168,0.15);
+        }
+
+        .style-4 .floor { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #a8d8a8; }
+        .style-4 .round { font-family: 'Noto Sans SC'; font-size: 12px; color: #8a7a6a; }
+
+        .style-4 .enemy-zone { padding: 15px; }
+        .style-4 .zone-label { font-size: 9px; font-family: 'Noto Sans SC'; color: #c89090; letter-spacing: 2px; margin-bottom: 10px; }
+
+        .style-4 .row { display: flex; gap: 8px; justify-content: center; }
+        .style-4 .card {
+            width: 80px;
+            background: linear-gradient(180deg, #2d2824 0%, #252220 100%);
+            border: 1px solid #4a4540;
+            border-radius: 10px;
+            padding: 8px 5px;
+            text-align: center;
+            position: relative;
+        }
+        .style-4 .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #c89090, #e8c8c8);
+        }
+        .style-4 .avatar { width: 36px; height: 36px; background: #252220; border-radius: 8px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid #4a4540; box-shadow: 0 0 10px rgba(168,216,168,0.1); }
+        .style-4 .name { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: #d4ccc0; }
+        .style-4 .hp-bar { height: 5px; background: #1a1815; border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+        .style-4 .hp-fill { height: 100%; background: linear-gradient(90deg, #c89090, #e8c8c8); border-radius: 3px; }
+        .style-4 .hp-text { font-family: 'Noto Sans SC'; font-size: 8px; color: #8a7a6a; }
+        .style-4 .stats { display: flex; justify-content: center; gap: 6px; font-size: 8px; color: #8a7a6a; margin-top: 4px; }
+
+        .style-4 .battle-center { padding: 12px; text-align: center; background: rgba(168,216,168,0.02); }
+        .style-4 .battle-title { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #f0e6d3; margin-bottom: 6px; }
+        .style-4 .battle-log { font-size: 10px; color: #d4a574; }
+
+        .style-4 .team-zone { padding: 15px; }
+        .style-4 .team-zone .zone-label { color: #a8d8a8; }
+        .style-4 .team-zone .card { background: linear-gradient(180deg, #2d2824 0%, #282a24 100%); border-color: #4a5040; }
+        .style-4 .team-zone .card::before { background: linear-gradient(90deg, #a8d8a8, #c8e8c8); }
+        .style-4 .team-zone .avatar { border-color: #4a5040; box-shadow: 0 0 10px rgba(168,216,168,0.15); }
+        .style-4 .team-zone .hp-fill { background: linear-gradient(90deg, #a8d8a8, #c8e8c8); }
+        .style-4 .card.active { border-color: #a8d8a8; box-shadow: 0 0 12px rgba(168,216,168,0.2); }
+
+        /* ===== 风格5：极简主义 ===== */
+        .style-5 .style-label {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(107,142,107,0.1));
+            color: #ffffff;
+            border: 1px solid #4a4a4a;
+        }
+
+        .style-5 .game-container {
+            width: 280px;
+            height: 600px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .style-5 .top-bar {
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .style-5 .floor { font-family: 'Noto Sans SC'; font-size: 14px; font-weight: 700; color: #ffffff; }
+        .style-5 .round { font-family: 'Noto Sans SC'; font-size: 12px; color: #666666; }
+
+        .style-5 .enemy-zone { padding: 15px; }
+        .style-5 .zone-label { font-size: 9px; font-family: 'Noto Sans SC'; color: #555555; letter-spacing: 2px; margin-bottom: 10px; }
+
+        .style-5 .row { display: flex; gap: 8px; justify-content: center; }
+        .style-5 .card {
+            width: 80px;
+            background: #252525;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            padding: 8px 5px;
+            text-align: center;
+        }
+        .style-5 .avatar { width: 36px; height: 36px; background: #333333; border-radius: 4px; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .style-5 .name { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: #ffffff; }
+        .style-5 .hp-bar { height: 4px; background: #333333; border-radius: 2px; overflow: hidden; margin-bottom: 3px; }
+        .style-5 .hp-fill { height: 100%; background: #6b8e6b; border-radius: 2px; }
+        .style-5 .hp-text { font-family: 'Noto Sans SC'; font-size: 8px; color: #555555; }
+        .style-5 .stats { display: flex; justify-content: center; gap: 6px; font-size: 8px; color: #555555; margin-top: 4px; }
+
+        .style-5 .battle-center { padding: 15px; text-align: center; border-top: 1px solid #2a2a2a; border-bottom: 1px solid #2a2a2a; }
+        .style-5 .battle-title { font-family: 'Noto Sans SC'; font-size: 12px; font-weight: 700; color: #6b8e6b; margin-bottom: 6px; }
+        .style-5 .battle-log { font-size: 10px; color: #888888; }
+
+        .style-5 .team-zone { padding: 15px; }
+        .style-5 .team-zone .zone-label { color: #555555; }
+        .style-5 .card.active { border-color: #6b8e6b; }
+
+        /* 通用 */
+        .card { position: relative; }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">UI 风格对比预览</h1>
+    <p class="page-subtitle">融合纪元 - 战斗界面风格对比</p>
+
+    <div class="styles-container">
+        <!-- 风格1：赛博朋克 -->
+        <div class="style-wrapper style-1">
+            <div class="style-label">1. 赛博朋克</div>
+            <div class="game-container">
+                <div class="top-bar">
+                    <div class="floor">FLOOR 15</div>
+                    <div class="round">ROUND 3</div>
+                </div>
+                <div class="enemy-zone">
+                    <div class="zone-label">ENEMY ZONE</div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="avatar">🤖</div>
+                            <div class="name">巡逻机甲</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 65%;"></div></div>
+                            <div class="hp-text">6500/10000</div>
+                            <div class="stats"><span>⚔️ 280</span><span>🛡️ 120</span></div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">🦾</div>
+                            <div class="name">机械猎犬</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 30%;"></div></div>
+                            <div class="hp-text">600/2000</div>
+                            <div class="stats"><span>⚔️ 150</span><span>🛡️ 45</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-center">
+                    <div class="battle-title">⚡ BATTLE ⚡</div>
+                    <div class="battle-log">铁血狂卫 造成 864 伤害！</div>
+                </div>
+                <div class="team-zone">
+                    <div class="zone-label">YOUR TEAM</div>
+                    <div class="row">
+                        <div class="card active">
+                            <div class="avatar">🛡️</div>
+                            <div class="name">铁血狂卫</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 85%;"></div></div>
+                            <div class="hp-text">850/1000</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">⚔️</div>
+                            <div class="name">幻影战将</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 60%;"></div></div>
+                            <div class="hp-text">480/800</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">💚</div>
+                            <div class="name">急救先锋</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 95%;"></div></div>
+                            <div class="hp-text">950/1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风格2：废土写实 -->
+        <div class="style-wrapper style-2">
+            <div class="style-label">2. 废土写实</div>
+            <div class="game-container">
+                <div class="top-bar">
+                    <div class="floor">FLOOR 15</div>
+                    <div class="round">回合 3</div>
+                </div>
+                <div class="enemy-zone">
+                    <div class="zone-label">失心者</div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="avatar">🤖</div>
+                            <div class="name">堕落者</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 65%;"></div></div>
+                            <div class="hp-text">6500/10000</div>
+                            <div class="stats"><span>⚔️ 280</span><span>🛡️ 120</span></div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">🦾</div>
+                            <div class="name">狂乱兽</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 30%;"></div></div>
+                            <div class="hp-text">600/2000</div>
+                            <div class="stats"><span>⚔️ 150</span><span>🛡️ 45</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-center">
+                    <div class="battle-title">— 战 斗 —</div>
+                    <div class="battle-log">造成 864 点伤害</div>
+                </div>
+                <div class="team-zone">
+                    <div class="zone-label">融合者</div>
+                    <div class="row">
+                        <div class="card active">
+                            <div class="avatar">🛡️</div>
+                            <div class="name">铁卫</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 85%;"></div></div>
+                            <div class="hp-text">850/1000</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">⚔️</div>
+                            <div class="name">疾风</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 60%;"></div></div>
+                            <div class="hp-text">480/800</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">💚</div>
+                            <div class="name">医者</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 95%;"></div></div>
+                            <div class="hp-text">950/1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风格3：自然融合 -->
+        <div class="style-wrapper style-3">
+            <div class="style-label">3. 自然融合</div>
+            <div class="game-container">
+                <div class="top-bar">
+                    <div class="floor">FLOOR 15</div>
+                    <div class="round">回合 3</div>
+                </div>
+                <div class="enemy-zone">
+                    <div class="zone-label">▼ 失心者</div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="avatar">🤖</div>
+                            <div class="name">堕落者</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 65%;"></div></div>
+                            <div class="hp-text">6500/10000</div>
+                            <div class="stats"><span>⚔️ 280</span></div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">🦾</div>
+                            <div class="name">狂乱兽</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 30%;"></div></div>
+                            <div class="hp-text">600/2000</div>
+                            <div class="stats"><span>⚔️ 150</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-center">
+                    <div class="battle-title">战 斗</div>
+                    <div class="battle-log">造成 864 伤害</div>
+                </div>
+                <div class="team-zone">
+                    <div class="zone-label">▼ 融合者</div>
+                    <div class="row">
+                        <div class="card active">
+                            <div class="avatar">🛡️</div>
+                            <div class="name">铁血狂卫</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 85%;"></div></div>
+                            <div class="hp-text">850/1000</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">⚔️</div>
+                            <div class="name">幻影战将</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 60%;"></div></div>
+                            <div class="hp-text">480/800</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">💚</div>
+                            <div class="name">急救先锋</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 95%;"></div></div>
+                            <div class="hp-text">950/1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风格4：废土+神圣 -->
+        <div class="style-wrapper style-4">
+            <div class="style-label">4. 废土+神圣</div>
+            <div class="game-container">
+                <div class="top-bar">
+                    <div class="floor">FLOOR 15</div>
+                    <div class="round">回合 3</div>
+                </div>
+                <div class="enemy-zone">
+                    <div class="zone-label">敌人</div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="avatar">🤖</div>
+                            <div class="name">堕落者</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 65%;"></div></div>
+                            <div class="hp-text">6500/10000</div>
+                            <div class="stats"><span>⚔️ 280</span></div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">🦾</div>
+                            <div class="name">狂乱兽</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 30%;"></div></div>
+                            <div class="hp-text">600/2000</div>
+                            <div class="stats"><span>⚔️ 150</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-center">
+                    <div class="battle-title">BATTLE</div>
+                    <div class="battle-log">造成 864 伤害</div>
+                </div>
+                <div class="team-zone">
+                    <div class="zone-label">队伍</div>
+                    <div class="row">
+                        <div class="card active">
+                            <div class="avatar">🛡️</div>
+                            <div class="name">铁血狂卫</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 85%;"></div></div>
+                            <div class="hp-text">850/1000</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">⚔️</div>
+                            <div class="name">幻影战将</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 60%;"></div></div>
+                            <div class="hp-text">480/800</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">💚</div>
+                            <div class="name">急救先锋</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 95%;"></div></div>
+                            <div class="hp-text">950/1000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风格5：极简主义 -->
+        <div class="style-wrapper style-5">
+            <div class="style-label">5. 极简主义</div>
+            <div class="game-container">
+                <div class="top-bar">
+                    <div class="floor">FLOOR 15</div>
+                    <div class="round">3</div>
+                </div>
+                <div class="enemy-zone">
+                    <div class="zone-label">ENEMY</div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="avatar">🤖</div>
+                            <div class="name">Enemy</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 65%;"></div></div>
+                            <div class="hp-text">6500</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">🦾</div>
+                            <div class="name">Enemy</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 30%;"></div></div>
+                            <div class="hp-text">600</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-center">
+                    <div class="battle-title">BATTLE</div>
+                    <div class="battle-log">864 DMG</div>
+                </div>
+                <div class="team-zone">
+                    <div class="zone-label">TEAM</div>
+                    <div class="row">
+                        <div class="card active">
+                            <div class="avatar">🛡️</div>
+                            <div class="name">Tank</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 85%;"></div></div>
+                            <div class="hp-text">850</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">⚔️</div>
+                            <div class="name">DPS</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 60%;"></div></div>
+                            <div class="hp-text">480</div>
+                        </div>
+                        <div class="card">
+                            <div class="avatar">💚</div>
+                            <div class="name">Healer</div>
+                            <div class="hp-bar"><div class="hp-fill" style="width: 95%;"></div></div>
+                            <div class="hp-text">950</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>基地界面 - 苏打地牢</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1815;
+            --bg-mid: #252220;
+            --border: #4a4540;
+            --amber: #d4a574;
+            --sacred: #a8d8a8;
+            --corrupt: #d8a8a8;
+            --text-primary: #d4ccc0;
+            --text-secondary: #8a7a6a;
+            --quality-common: #d4ccc0;
+            --quality-rare: #6b9bd2;
+            --quality-epic: #9b6bd2;
+            --quality-legendary: #d4a574;
+            --quality-mythic: #d86a6a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                inset 0 0 80px rgba(0,0,0,0.5),
+                0 0 30px rgba(168,216,168,0.08);
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(74,69,64,0.3);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 8px;
+        }
+
+        .coins {
+            font-size: 14px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .coin-icon {
+            width: 14px;
+            height: 14px;
+            background: var(--amber);
+            border-radius: 50%;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-mid);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            color: var(--amber);
+            border-color: var(--amber);
+        }
+
+        .menu-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .menu-item {
+            background: var(--bg-mid);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            border-color: var(--amber);
+            transform: scale(1.02);
+        }
+
+        .menu-item:active {
+            transform: scale(0.98);
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            color: var(--amber);
+            width: 30px;
+            text-align: center;
+        }
+
+        .menu-text {
+            flex: 1;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .menu-arrow {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .version {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
+        .content-view {
+            display: none;
+            padding: 20px;
+        }
+
+        .content-view.active {
+            display: block;
+        }
+
+        .view-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--amber);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card {
+            background: var(--bg-mid);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .card.quality-common { border-left: 3px solid var(--quality-common); }
+        .card.quality-rare { border-left: 3px solid var(--quality-rare); }
+        .card.quality-epic { border-left: 3px solid var(--quality-epic); }
+        .card.quality-legendary { border-left: 3px solid var(--quality-legendary); }
+        .card.quality-mythic { border-left: 3px solid var(--quality-mythic); }
+
+        .quality-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .quality-common .quality-badge { color: var(--quality-common); }
+        .quality-rare .quality-badge { color: var(--quality-rare); }
+        .quality-epic .quality-badge { color: var(--quality-epic); }
+        .quality-legendary .quality-badge { color: var(--quality-legendary); }
+        .quality-mythic .quality-badge { color: var(--quality-mythic); }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .quality-common .card-name { color: var(--quality-common); }
+        .quality-rare .card-name { color: var(--quality-rare); }
+        .quality-epic .card-name { color: var(--quality-epic); }
+        .quality-legendary .card-name { color: var(--quality-legendary); }
+        .quality-mythic .card-name { color: var(--quality-mythic); }
+
+        .card-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .card-btn {
+            background: var(--amber);
+            color: var(--bg-dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .card-btn:active {
+            transform: scale(0.95);
+        }
+
+        .card-btn:disabled {
+            background: var(--border);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        .facility-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .facility-info {
+            flex: 1;
+        }
+
+        .facility-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .facility-level {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .facility-effect {
+            font-size: 11px;
+            color: var(--sacred);
+        }
+
+        .price-tag {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price-tag .coin-icon {
+            width: 10px;
+            height: 10px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .team-slot {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <button class="back-btn">←</button>
+        
+        <div class="header">
+            <h1 class="title">基地</h1>
+            <div class="coins">
+                <span class="coin-icon"></span>
+                <span id="coinDisplay">赛博币: 10,000</span>
+            </div>
+        </div>
+
+        <div class="menu-list" id="mainMenu">
+            <div class="menu-item" onclick="showView('dungeon')">
+                <span class="menu-icon">⚔</span>
+                <span class="menu-text">进入禁区</span>
+                <span class="menu-arrow">›</span>
+            </div>
+            <div class="menu-item" onclick="showView('team')">
+                <span class="menu-icon">👥</span>
+                <span class="menu-text">我的队伍</span>
+                <span class="menu-arrow">›</span>
+            </div>
+            <div class="menu-item" onclick="showView('recruit')">
+                <span class="menu-icon">✦</span>
+                <span class="menu-text">招募伙伴</span>
+                <span class="menu-arrow">›</span>
+            </div>
+            <div class="menu-item" onclick="showView('facility')">
+                <span class="menu-icon">⬆</span>
+                <span class="menu-text">升级设施</span>
+                <span class="menu-arrow">›</span>
+            </div>
+            <div class="menu-item" onclick="showView('shop')">
+                <span class="menu-icon">◆</span>
+                <span class="menu-text">能量饮料</span>
+                <span class="menu-arrow">›</span>
+            </div>
+        </div>
+
+        <div class="content-view" id="teamView">
+            <h2 class="view-title">我的队伍</h2>
+            <p style="text-align:center; color: var(--text-secondary); font-size: 11px; margin-bottom: 20px;">点击角色卡片可查看详情</p>
+            <div class="card-list">
+                <div class="card quality-rare">
+                    <div class="quality-badge">RARE</div>
+                    <div class="card-info">
+                        <div class="card-name">艾伦</div>
+                        <div class="card-desc">守护者 Lv.5</div>
+                    </div>
+                    <button class="card-btn" style="background: var(--corrupt);">移除</button>
+                </div>
+                <div class="card quality-epic">
+                    <div class="quality-badge">EPIC</div>
+                    <div class="card-info">
+                        <div class="card-name">莉莉</div>
+                        <div class="card-desc">毁灭者 Lv.3</div>
+                    </div>
+                    <button class="card-btn" style="background: var(--corrupt);">移除</button>
+                </div>
+            </div>
+            <div class="footer">剩余位置: 3/5</div>
+        </div>
+
+        <div class="content-view" id="recruitView">
+            <h2 class="view-title">招募伙伴</h2>
+            <div class="card-list">
+                <div class="card quality-legendary">
+                    <div class="quality-badge">LEGENDARY</div>
+                    <div class="card-info">
+                        <div class="card-name">杰克</div>
+                        <div class="card-desc">圣职者 Lv.1</div>
+                    </div>
+                    <button class="card-btn">招募</button>
+                </div>
+                <div class="card quality-rare">
+                    <div class="quality-badge">RARE</div>
+                    <div class="card-info">
+                        <div class="card-name">莎拉</div>
+                        <div class="card-desc">暗影 Lv.1</div>
+                    </div>
+                    <button class="card-btn">招募</button>
+                </div>
+                <div class="card quality-common">
+                    <div class="quality-badge">COMMON</div>
+                    <div class="card-info">
+                        <div class="card-name">汤姆</div>
+                        <div class="card-desc">守护者 Lv.1</div>
+                    </div>
+                    <button class="card-btn">招募</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-view" id="facilityView">
+            <h2 class="view-title">升级设施</h2>
+            <div class="card-list">
+                <div class="card facility-card">
+                    <div class="facility-info">
+                        <div class="facility-name">充电桩</div>
+                        <div class="facility-level">Lv.2</div>
+                        <div class="facility-effect">+1招募位/级</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>150</span>
+                    </button>
+                </div>
+                <div class="card facility-card">
+                    <div class="facility-info">
+                        <div class="facility-name">工作台</div>
+                        <div class="facility-level">Lv.1</div>
+                        <div class="facility-effect">+1招募位/级</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>100</span>
+                    </button>
+                </div>
+                <div class="card facility-card">
+                    <div class="facility-info">
+                        <div class="facility-name">休眠舱</div>
+                        <div class="facility-level">Lv.1</div>
+                        <div class="facility-effect">+10%恢复速度/级</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>150</span>
+                    </button>
+                </div>
+                <div class="card facility-card">
+                    <div class="facility-info">
+                        <div class="facility-name">黑客终端</div>
+                        <div class="facility-level">Lv.0/1</div>
+                        <div class="facility-effect">解锁传送功能</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>500</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-view" id="shopView">
+            <h2 class="view-title">能量饮料商店</h2>
+            <div class="card-list">
+                <div class="card quality-common">
+                    <div class="card-info">
+                        <div class="card-name">普通能量</div>
+                        <div class="card-desc">基础属性角色</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>50</span>
+                    </button>
+                </div>
+                <div class="card quality-rare">
+                    <div class="card-info">
+                        <div class="card-name">强力能量</div>
+                        <div class="card-desc">稀有角色</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>100</span>
+                    </button>
+                </div>
+                <div class="card quality-epic">
+                    <div class="card-info">
+                        <div class="card-name">超频能量</div>
+                        <div class="card-desc">史诗角色</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>150</span>
+                    </button>
+                </div>
+                <div class="card quality-legendary">
+                    <div class="card-info">
+                        <div class="card-name">传说能量</div>
+                        <div class="card-desc">传说角色</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>250</span>
+                    </button>
+                </div>
+                <div class="card quality-mythic">
+                    <div class="card-info">
+                        <div class="card-name">禁忌药剂</div>
+                        <div class="card-desc">隐藏角色概率</div>
+                    </div>
+                    <button class="card-btn">
+                        <span class="price-tag"><span class="coin-icon"></span>500</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-view" id="dungeonView">
+            <h2 class="view-title">禁区探索</h2>
+            <div style="text-align: center; padding: 40px 20px;">
+                <p style="color: var(--text-secondary); font-size: 14px;">正在进入禁区...</p>
+                <p style="color: var(--amber); font-size: 24px; margin-top: 20px;">第 1 层</p>
+            </div>
+        </div>
+
+        <div class="version">v1.0.0</div>
+    </div>
+
+    <script>
+        function showView(viewName) {
+            document.querySelectorAll('.content-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.getElementById('mainMenu').style.display = 'none';
+            
+            const view = document.getElementById(viewName + 'View');
+            if (view) {
+                view.classList.add('active');
+            }
+        }
+
+        document.querySelector('.back-btn').addEventListener('click', () => {
+            const activeView = document.querySelector('.content-view.active');
+            if (activeView) {
+                activeView.classList.remove('active');
+                document.getElementById('mainMenu').style.display = 'flex';
+            } else {
+                console.log('返回主菜单');
+            }
+        });
+    </script>
+</body>
+</html>

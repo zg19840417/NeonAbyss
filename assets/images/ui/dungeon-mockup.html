@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禁区探险界面 - 融合纪元</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1f1c1a;
+            --bg-panel: #2d2824;
+            --bg-card: #252220;
+            --border: #4a4540;
+            --holy-light: #f0e6d3;
+            --fusion-green: #a8d8a8;
+            --corrupt-red: #c89090;
+            --amber: #d4a574;
+            --text-primary: #ffffff;
+            --text-secondary: #8a7a6a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            width: 375px;
+            height: 812px;
+            background: linear-gradient(180deg, #1f1c1a 0%, #2d2824 50%, #1f1c1a 100%);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 80px rgba(0,0,0,0.5),
+                0 0 30px rgba(168,216,168,0.08);
+            position: relative;
+        }
+
+        .top-bar {
+            background: linear-gradient(180deg, rgba(168,216,168,0.06) 0%, transparent 100%);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(168,216,168,0.1);
+        }
+
+        .floor-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .floor-number {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--fusion-green);
+        }
+
+        .floor-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .resources {
+            display: flex;
+            gap: 12px;
+        }
+
+        .resource {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-card);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .resource-icon {
+            font-size: 16px;
+        }
+
+        .resource-value {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        .map-area {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .map-container {
+            width: 100%;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .map-title {
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            padding: 10px;
+        }
+
+        .map-cell {
+            aspect-ratio: 1;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border: 1px solid rgba(74,69,64,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .map-cell.explored {
+            background: rgba(168,216,168,0.08);
+            border-color: rgba(168,216,168,0.2);
+        }
+
+        .map-cell.current {
+            background: rgba(200,144,144,0.2);
+            border: 2px solid var(--corrupt-red);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .map-cell.stairs {
+            background: rgba(168,216,168,0.15);
+            border-color: var(--fusion-green);
+        }
+
+        .map-cell.boss {
+            background: rgba(212,165,116,0.15);
+            border-color: var(--amber);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(74,69,64,0.3);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .legend-icon {
+            font-size: 14px;
+        }
+
+        .team-status {
+            width: 100%;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .team-title {
+            font-size: 10px;
+            color: var(--fusion-green);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .team-members {
+            display: flex;
+            gap: 8px;
+        }
+
+        .team-member {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 4px;
+            text-align: center;
+        }
+
+        .team-member-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(180deg, #2d3028 0%, #1f2218 100%);
+            border-radius: 8px;
+            margin: 0 auto 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            border: 1px solid rgba(168,216,168,0.3);
+        }
+
+        .team-member-hp {
+            height: 4px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .team-member-hp-bar {
+            height: 100%;
+            background: var(--fusion-green);
+            border-radius: 2px;
+        }
+
+        .team-member-name {
+            font-size: 9px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-panel {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(168,216,168,0.02);
+        }
+
+        .event-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(200,144,144,0.3);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .event-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--corrupt-red);
+            margin-bottom: 6px;
+        }
+
+        .event-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .event-reward {
+            font-size: 12px;
+            color: var(--amber);
+        }
+
+        .bottom-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px 25px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--fusion-green);
+            box-shadow: 0 0 15px rgba(168,216,168,0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.forward {
+            border-color: rgba(168,216,168,0.4);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-card) 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn.primary {
+            border-color: var(--fusion-green);
+            box-shadow: 0 0 8px rgba(168,216,168,0.12);
+        }
+
+        .action-btn:hover {
+            border-color: var(--fusion-green);
+            box-shadow: 0 0 12px rgba(168,216,168,0.2);
+            transform: translateY(-2px);
+        }
+
+        .action-btn .icon {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="top-bar">
+            <div class="floor-info">
+                <div class="floor-label">当前楼层</div>
+                <div class="floor-number">FLOOR 15</div>
+            </div>
+            <div class="resources">
+                <div class="resource">
+                    <span class="resource-icon">💰</span>
+                    <span class="resource-value">12,580</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-area">
+            <div class="map-container">
+                <div class="map-title">禁区地图</div>
+                <div class="map-grid">
+                    <div class="map-cell explored">🚪</div>
+                    <div class="map-cell explored current">🤖</div>
+                    <div class="map-cell">❓</div>
+                    <div class="map-cell">❓</div>
+                    <div class="map-cell">❓</div>
+                    
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored">📦</div>
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored">❓</div>
+                    <div class="map-cell">❓</div>
+                    
+                    <div class="map-cell explored">🚪</div>
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored">📦</div>
+                    <div class="map-cell explored">🛒</div>
+                    <div class="map-cell explored">🔀</div>
+                    
+                    <div class="map-cell explored">🚪</div>
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored">📦</div>
+                    <div class="map-cell explored">🚪</div>
+                    <div class="map-cell explored stairs">🪜</div>
+                    
+                    <div class="map-cell explored">🚪</div>
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored boss">⚠️</div>
+                    <div class="map-cell explored">🤖</div>
+                    <div class="map-cell explored">📦</div>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-icon">🤖</span> 敌人</div>
+                    <div class="legend-item"><span class="legend-icon">📦</span> 宝箱</div>
+                    <div class="legend-item"><span class="legend-icon">🪜</span> 楼梯</div>
+                    <div class="legend-item"><span class="legend-icon">⚠️</span> BOSS</div>
+                </div>
+            </div>
+
+            <div class="team-status">
+                <div class="team-title">队伍状态</div>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="team-member-avatar">🛡️</div>
+                        <div class="team-member-hp">
+                            <div class="team-member-hp-bar" style="width: 85%;"></div>
+                        </div>
+                        <div class="team-member-name">铁血狂卫</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">⚔️</div>
+                        <div class="team-member-hp">
+                            <div class="team-member-hp-bar" style="width: 60%;"></div>
+                        </div>
+                        <div class="team-member-name">幻影战将</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">💚</div>
+                        <div class="team-member-hp">
+                            <div class="team-member-hp-bar" style="width: 95%;"></div>
+                        </div>
+                        <div class="team-member-name">急救先锋</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">🌿</div>
+                        <div class="team-member-hp">
+                            <div class="team-member-hp-bar" style="width: 45%;"></div>
+                        </div>
+                        <div class="team-member-name">量子壁垒</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">💚</div>
+                        <div class="team-member-hp">
+                            <div class="team-member-hp-bar" style="width: 70%;"></div>
+                        </div>
+                        <div class="team-member-name">纳米裁决</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-panel">
+                <div class="event-card">
+                    <div class="event-icon">🤖</div>
+                    <div class="event-title">遭遇失心者</div>
+                    <div class="event-desc">前方发现敌人，准备战斗</div>
+                    <div class="event-reward">击败奖励：💰 150 | 📦 20%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-controls">
+            <div class="nav-buttons">
+                <div class="nav-btn">⬅️</div>
+                <div class="nav-btn forward">➡️</div>
+            </div>
+            <div class="action-buttons">
+                <div class="action-btn primary">
+                    <span class="icon">🔄</span>
+                    <span>自动探索</span>
+                </div>
+                <div class="action-btn">
+                    <span class="icon">🏠</span>
+                    <span>返回方舟</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

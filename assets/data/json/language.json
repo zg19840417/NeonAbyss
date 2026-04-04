@@ -1,0 +1,237 @@
+[
+  {
+    "id": "game_title",
+    "zh_cn": "霓虹深渊",
+    "en_us": "Neon Abyss"
+  },
+  {
+    "id": "start_game",
+    "zh_cn": "开始游戏",
+    "en_us": "Start Game"
+  },
+  {
+    "id": "settings",
+    "zh_cn": "设置",
+    "en_us": "Settings"
+  },
+  {
+    "id": "achievements",
+    "zh_cn": "成就",
+    "en_us": "Achievements"
+  },
+  {
+    "id": "tavern",
+    "zh_cn": "酒馆",
+    "en_us": "Tavern"
+  },
+  {
+    "id": "team",
+    "zh_cn": "队伍",
+    "en_us": "Team"
+  },
+  {
+    "id": "dungeon",
+    "zh_cn": "禁区",
+    "en_us": "Dungeon"
+  },
+  {
+    "id": "shop",
+    "zh_cn": "商店",
+    "en_us": "Shop"
+  },
+  {
+    "id": "confirm",
+    "zh_cn": "确认",
+    "en_us": "Confirm"
+  },
+  {
+    "id": "cancel",
+    "zh_cn": "取消",
+    "en_us": "Cancel"
+  },
+  {
+    "id": "coin",
+    "zh_cn": "赛博币",
+    "en_us": "Cyber Coin"
+  },
+  {
+    "id": "level",
+    "zh_cn": "层",
+    "en_us": "Floor"
+  },
+  {
+    "id": "hp",
+    "zh_cn": "生命",
+    "en_us": "HP"
+  },
+  {
+    "id": "atk",
+    "zh_cn": "攻击",
+    "en_us": "ATK"
+  },
+  {
+    "id": "def",
+    "zh_cn": "防御",
+    "en_us": "DEF"
+  },
+  {
+    "id": "crit",
+    "zh_cn": "暴击",
+    "en_us": "Crit"
+  },
+  {
+    "id": "dodge",
+    "zh_cn": "闪避",
+    "en_us": "Dodge"
+  },
+  {
+    "id": "win",
+    "zh_cn": "胜利",
+    "en_us": "Victory"
+  },
+  {
+    "id": "defeat",
+    "zh_cn": "失败",
+    "en_us": "Defeat"
+  },
+  {
+    "id": "explore",
+    "zh_cn": "探索",
+    "en_us": "Explore"
+  },
+  {
+    "id": "recruit",
+    "zh_cn": "招募",
+    "en_us": "Recruit"
+  },
+  {
+    "id": "remove",
+    "zh_cn": "移除",
+    "en_us": "Remove"
+  },
+  {
+    "id": "equipped",
+    "zh_cn": "已装备",
+    "en_us": "Equipped"
+  },
+  {
+    "id": "unequipped",
+    "zh_cn": "未装备",
+    "en_us": "Unequipped"
+  },
+  {
+    "id": "team_empty",
+    "zh_cn": "队伍中没有成员",
+    "en_us": "Team is empty"
+  },
+  {
+    "id": "team_empty_desc",
+    "zh_cn": "请先招募角色并配置队伍",
+    "en_us": "Please recruit and configure team first"
+  },
+  {
+    "id": "go_to_shop",
+    "zh_cn": "去招募",
+    "en_us": "Go to Shop"
+  },
+  {
+    "id": "team_not_full",
+    "zh_cn": "队伍未配满",
+    "en_us": "Team not full"
+  },
+  {
+    "id": "team_not_full_desc",
+    "zh_cn": "当前队伍人数不足，是否继续进入？",
+    "en_us": "Team is not full. Continue?"
+  },
+  {
+    "id": "continue",
+    "zh_cn": "继续进入",
+    "en_us": "Continue"
+  },
+  {
+    "id": "go_to_team",
+    "zh_cn": "去配置",
+    "en_us": "Go to Team"
+  },
+  {
+    "id": "tavern_welcome",
+    "zh_cn": "欢迎来到霓虹酒馆",
+    "en_us": "Welcome to Neon Tavern"
+  },
+  {
+    "id": "bartender",
+    "zh_cn": "调酒师小明",
+    "en_us": "Bartender Ming"
+  },
+  {
+    "id": "ready_tip",
+    "zh_cn": "准备好进入禁区了吗？",
+    "en_us": "Ready to enter the dungeon?"
+  },
+  {
+    "id": "enter_dungeon",
+    "zh_cn": "进入禁区",
+    "en_us": "Enter Dungeon"
+  },
+  {
+    "id": "tavern_hint",
+    "zh_cn": "点击底部 [牢] 可快速进入禁区",
+    "en_us": "Click [Dungeon] tab to enter"
+  },
+  {
+    "id": "start_explore",
+    "zh_cn": "开始探索",
+    "en_us": "Start Explore"
+  },
+  {
+    "id": "current_floor",
+    "zh_cn": "第 {floor} 层",
+    "en_us": "Floor {floor}"
+  },
+  {
+    "id": "auto_battle",
+    "zh_cn": "自动战斗进行中...",
+    "en_us": "Auto battle in progress..."
+  },
+  {
+    "id": "team_count",
+    "zh_cn": "队伍: {count}/5 人",
+    "en_us": "Team: {count}/5"
+  },
+  {
+    "id": "se_volume",
+    "zh_cn": "音效音量",
+    "en_us": "SE Volume"
+  },
+  {
+    "id": "bgm_volume",
+    "zh_cn": "BGM音量",
+    "en_us": "BGM Volume"
+  },
+  {
+    "id": "danger_zone",
+    "zh_cn": "危险操作",
+    "en_us": "Danger Zone"
+  },
+  {
+    "id": "reset_progress",
+    "zh_cn": "重置进度",
+    "en_us": "Reset Progress"
+  },
+  {
+    "id": "confirm_reset",
+    "zh_cn": "确认重置？",
+    "en_us": "Confirm Reset?"
+  },
+  {
+    "id": "reset_desc",
+    "zh_cn": "所有进度将被清除\\n无法恢复！",
+    "en_us": "All progress will be lost!"
+  },
+  {
+    "id": "price",
+    "zh_cn": "{price} 币",
+    "en_us": "{price} Coins"
+  }
+]
