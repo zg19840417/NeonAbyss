@@ -1,296 +1,284 @@
 [
   {
-    "chipId": "CHIP_N001",
-    "name": "铁皮芯片",
-    "nameEn": "Iron Skin Chip",
+    "chipId": "CHIP_N_ATK_01",
+    "name": "锈蚀增幅芯片",
+    "nameEn": "Rust Amplifier Chip",
     "quality": "N",
-    "hpPercent": 5,
-    "atkPercent": 0,
+    "hpPercent": 0,
+    "atkPercent": 0.03,
     "targetProfession": "all",
     "targetElement": "all",
     "targetRace": "all",
     "skillIds": [
       "CSK001"
     ],
-    "description": "基础防御芯片，略微提升生命值"
+    "description": "基础攻击芯片，锈蚀电路微量提升攻击力3%"
   },
   {
-    "chipId": "CHIP_N002",
-    "name": "利刃芯片",
-    "nameEn": "Sharp Blade Chip",
+    "chipId": "CHIP_N_DEF_01",
+    "name": "废铁壁垒芯片",
+    "nameEn": "Scrap Barricade Chip",
+    "quality": "N",
+    "hpPercent": 0.05,
+    "atkPercent": 0,
+    "targetProfession": "all",
+    "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK012"
+    ],
+    "description": "基础防御芯片，废铁焊接提升生命值5%"
+  },
+  {
+    "chipId": "CHIP_N_FNC_01",
+    "name": "废料回收芯片",
+    "nameEn": "Scrap Recycler Chip",
     "quality": "N",
     "hpPercent": 0,
-    "atkPercent": 3,
-    "targetProfession": "damage",
+    "atkPercent": 0,
+    "targetProfession": "all",
+    "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK022"
+    ],
+    "description": "基础功能芯片，内置回收模块每回合恢复3%生命"
+  },
+  {
+    "chipId": "CHIP_R_ATK_01",
+    "name": "过载脉冲芯片",
+    "nameEn": "Overload Pulse Chip",
+    "quality": "R",
+    "hpPercent": 0,
+    "atkPercent": 0.06,
+    "targetProfession": "all",
     "targetElement": "all",
     "targetRace": "all",
     "skillIds": [
       "CSK002"
     ],
-    "description": "基础攻击芯片，略微提升攻击力"
+    "description": "改良攻击芯片，过载脉冲攻击时附带8%真实伤害"
   },
   {
-    "chipId": "CHIP_N003",
-    "name": "速动芯片",
-    "nameEn": "Quick Action Chip",
-    "quality": "N",
-    "hpPercent": 2,
-    "atkPercent": 1,
+    "chipId": "CHIP_R_DEF_01",
+    "name": "辐射硬化芯片",
+    "nameEn": "Radiation Hardening Chip",
+    "quality": "R",
+    "hpPercent": 0.1,
+    "atkPercent": 0,
     "targetProfession": "all",
+    "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK013"
+    ],
+    "description": "改良防御芯片，辐射硬化受击时获得5%最大生命护盾"
+  },
+  {
+    "chipId": "CHIP_R_FNC_01",
+    "name": "肾上腺素泵芯片",
+    "nameEn": "Adrenaline Pump Chip",
+    "quality": "R",
+    "hpPercent": 0,
+    "atkPercent": 0,
+    "targetProfession": "all",
+    "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK023"
+    ],
+    "description": "改良功能芯片，内置肾上腺素泵战斗开始提速10%"
+  },
+  {
+    "chipId": "CHIP_SR_ATK_01",
+    "name": "热能导引芯片",
+    "nameEn": "Thermal Guidance Chip",
+    "quality": "SR",
+    "hpPercent": 0,
+    "atkPercent": 0.1,
+    "targetProfession": "dps",
     "targetElement": "all",
     "targetRace": "all",
     "skillIds": [
       "CSK003"
     ],
-    "description": "基础均衡芯片，微量提升攻防"
+    "description": "精密攻击芯片，限定输出职业，永久提升暴击率5%"
   },
   {
-    "chipId": "CHIP_R001",
-    "name": "守护之心",
-    "nameEn": "Guardian Heart",
-    "quality": "R",
-    "hpPercent": 10,
+    "chipId": "CHIP_SR_DEF_01",
+    "name": "合金镀层芯片",
+    "nameEn": "Alloy Coating Chip",
+    "quality": "SR",
+    "hpPercent": 0.15,
     "atkPercent": 0,
-    "targetProfession": "tank,support",
+    "targetProfession": "tank",
     "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK014"
+    ],
+    "description": "精密防御芯片，限定坦克职业，减伤率提升5%"
+  },
+  {
+    "chipId": "CHIP_SR_FNC_01",
+    "name": "扫描模块芯片",
+    "nameEn": "Scan Module Chip",
+    "quality": "SR",
+    "hpPercent": 0,
+    "atkPercent": 0,
+    "targetProfession": "all",
+    "targetElement": "all",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK024"
+    ],
+    "description": "精密功能芯片，战术扫描模块提升暴击率3%和闪避率3%"
+  },
+  {
+    "chipId": "CHIP_SSR_ATK_01",
+    "name": "裂变弹头芯片",
+    "nameEn": "Fission Warhead Chip",
+    "quality": "SSR",
+    "hpPercent": 0.05,
+    "atkPercent": 0.15,
+    "targetProfession": "dps",
+    "targetElement": "fire",
     "targetRace": "all",
     "skillIds": [
       "CSK004",
       "CSK005"
     ],
-    "description": "防御型芯片，显著提升生命值，附带减伤光环"
+    "description": "高级攻击芯片，限定火系输出，攻击力提升8%并附带12%真实伤害"
   },
   {
-    "chipId": "CHIP_R002",
-    "name": "猎手之眼",
-    "nameEn": "Hunter's Eye",
-    "quality": "R",
-    "hpPercent": 0,
-    "atkPercent": 8,
-    "targetProfession": "damage,assassin",
-    "targetElement": "all",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK006"
-    ],
-    "description": "攻击型芯片，提升暴击率和攻击力"
-  },
-  {
-    "chipId": "CHIP_R003",
-    "name": "元素导体",
-    "nameEn": "Elemental Conduit",
-    "quality": "R",
-    "hpPercent": 5,
-    "atkPercent": 5,
-    "targetProfession": "all",
-    "targetElement": "fire,ice,thunder",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK007"
-    ],
-    "description": "元素型芯片，提升元素伤害输出"
-  },
-  {
-    "chipId": "CHIP_SR001",
-    "name": "不灭壁垒",
-    "nameEn": "Immortal Bastion",
-    "quality": "SR",
-    "hpPercent": 15,
+    "chipId": "CHIP_SSR_DEF_01",
+    "name": "纳米修复芯片",
+    "nameEn": "Nano Repair Chip",
+    "quality": "SSR",
+    "hpPercent": 0.2,
     "atkPercent": 0,
     "targetProfession": "tank",
-    "targetElement": "all",
-    "targetRace": "mech,plant",
-    "skillIds": [
-      "CSK008",
-      "CSK009"
-    ],
-    "description": "高级防御芯片，大幅提升生命值，受击时有概率获得护盾"
-  },
-  {
-    "chipId": "CHIP_SR002",
-    "name": "致命打击",
-    "nameEn": "Lethal Strike",
-    "quality": "SR",
-    "hpPercent": 0,
-    "atkPercent": 12,
-    "targetProfession": "damage,berserker",
-    "targetElement": "all",
-    "targetRace": "animal,energy",
-    "skillIds": [
-      "CSK010",
-      "CSK011"
-    ],
-    "description": "高级攻击芯片，大幅提升攻击力，暴击时附加额外伤害"
-  },
-  {
-    "chipId": "CHIP_SR003",
-    "name": "战术核心",
-    "nameEn": "Tactical Core",
-    "quality": "SR",
-    "hpPercent": 8,
-    "atkPercent": 8,
-    "targetProfession": "all",
-    "targetElement": "all",
+    "targetElement": "water",
     "targetRace": "all",
     "skillIds": [
-      "CSK012",
-      "CSK013"
-    ],
-    "description": "高级均衡芯片，全面提升属性，附带战术分析效果"
-  },
-  {
-    "chipId": "CHIP_SSR001",
-    "name": "方舟之盾",
-    "nameEn": "Ark Shield",
-    "quality": "SSR",
-    "hpPercent": 25,
-    "atkPercent": 5,
-    "targetProfession": "tank,support",
-    "targetElement": "light",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK014",
       "CSK015",
       "CSK016"
     ],
-    "description": "传说防御芯片，极大提升生命值，光属性角色额外获得圣光庇护"
+    "description": "高级防御芯片，限定水系坦克，生命值提升10%并每回合恢复6%生命"
   },
   {
-    "chipId": "CHIP_SSR002",
-    "name": "深渊之刃",
-    "nameEn": "Abyss Blade",
+    "chipId": "CHIP_SSR_FNC_01",
+    "name": "电磁加速芯片",
+    "nameEn": "EM Accelerator Chip",
     "quality": "SSR",
-    "hpPercent": 5,
-    "atkPercent": 20,
-    "targetProfession": "damage,assassin,berserker",
-    "targetElement": "dark",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK017",
-      "CSK018",
-      "CSK019"
-    ],
-    "description": "传说攻击芯片，极大提升攻击力，暗属性角色暴击伤害额外提升"
-  },
-  {
-    "chipId": "CHIP_SSR003",
-    "name": "混沌之心",
-    "nameEn": "Chaos Heart",
-    "quality": "SSR",
-    "hpPercent": 15,
-    "atkPercent": 15,
+    "hpPercent": 0,
+    "atkPercent": 0.05,
     "targetProfession": "all",
-    "targetElement": "all",
-    "targetRace": "hybrid",
-    "skillIds": [
-      "CSK020",
-      "CSK021"
-    ],
-    "description": "传说均衡芯片，混合系专属，全面提升并触发混沌共鸣"
-  },
-  {
-    "chipId": "CHIP_UR001",
-    "name": "永恒堡垒",
-    "nameEn": "Eternal Fortress",
-    "quality": "UR",
-    "hpPercent": 35,
-    "atkPercent": 10,
-    "targetProfession": "tank",
-    "targetElement": "all",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK022",
-      "CSK023",
-      "CSK024"
-    ],
-    "description": "史诗防御芯片，极限生命提升，战斗开始时获得巨额护盾"
-  },
-  {
-    "chipId": "CHIP_UR002",
-    "name": "末日审判",
-    "nameEn": "Doom Judgment",
-    "quality": "UR",
-    "hpPercent": 10,
-    "atkPercent": 30,
-    "targetProfession": "damage,berserker",
-    "targetElement": "all",
+    "targetElement": "wind",
     "targetRace": "all",
     "skillIds": [
       "CSK025",
-      "CSK026",
-      "CSK027"
+      "CSK026"
     ],
-    "description": "史诗攻击芯片，极限攻击提升，攻击附带无视防御的真实伤害"
+    "description": "高级功能芯片，限定风系，战斗开始攻击力与速度提升8%"
   },
   {
-    "chipId": "CHIP_UR003",
-    "name": "万象归一",
-    "nameEn": "Universal Unity",
+    "chipId": "CHIP_UR_ATK_01",
+    "name": "反物质裂解芯片",
+    "nameEn": "Antimatter Fission Chip",
     "quality": "UR",
-    "hpPercent": 20,
-    "atkPercent": 20,
-    "targetProfession": "all",
+    "hpPercent": 0.1,
+    "atkPercent": 0.22,
+    "targetProfession": "dps",
+    "targetElement": "dark",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK007",
+      "CSK008"
+    ],
+    "description": "超稀有攻击芯片，限定暗系输出，攻击力提升15%并附带18%真实伤害"
+  },
+  {
+    "chipId": "CHIP_UR_DEF_01",
+    "name": "超导磁力场芯片",
+    "nameEn": "Superconductor Field Chip",
+    "quality": "UR",
+    "hpPercent": 0.28,
+    "atkPercent": 0,
+    "targetProfession": "tank",
+    "targetElement": "light",
+    "targetRace": "all",
+    "skillIds": [
+      "CSK017",
+      "CSK018"
+    ],
+    "description": "超稀有防御芯片，限定光系坦克，受击获得10%护盾，减伤率提升12%"
+  },
+  {
+    "chipId": "CHIP_UR_FNC_01",
+    "name": "全息诱饵芯片",
+    "nameEn": "Holographic Decoy Chip",
+    "quality": "UR",
+    "hpPercent": 0.05,
+    "atkPercent": 0.08,
+    "targetProfession": "support",
     "targetElement": "all",
     "targetRace": "all",
     "skillIds": [
-      "CSK028",
+      "CSK027",
+      "CSK028"
+    ],
+    "description": "超稀有功能芯片，限定辅助职业，每回合恢复8%生命，受击闪避率提升15%"
+  },
+  {
+    "chipId": "CHIP_LE_ATK_01",
+    "name": "量子隧穿芯片",
+    "nameEn": "Quantum Tunneling Chip",
+    "quality": "LE",
+    "hpPercent": 0.15,
+    "atkPercent": 0.35,
+    "targetProfession": "dps",
+    "targetElement": "all",
+    "targetRace": "mech",
+    "skillIds": [
+      "CSK009",
+      "CSK010",
+      "CSK011"
+    ],
+    "description": "传说攻击芯片，限定机械系输出，无视防御25%真实伤害，击杀时全体30%真实伤害"
+  },
+  {
+    "chipId": "CHIP_LE_DEF_01",
+    "name": "维度折叠壁垒芯片",
+    "nameEn": "Dimensional Fold Barrier Chip",
+    "quality": "LE",
+    "hpPercent": 0.45,
+    "atkPercent": 0,
+    "targetProfession": "tank",
+    "targetElement": "all",
+    "targetRace": "energy",
+    "skillIds": [
+      "CSK019",
+      "CSK020",
+      "CSK021"
+    ],
+    "description": "传说防御芯片，限定能量系坦克，生命值提升20%，减伤15%，危急时25%护盾"
+  },
+  {
+    "chipId": "CHIP_LE_FNC_01",
+    "name": "奇点引擎芯片",
+    "nameEn": "Singularity Engine Chip",
+    "quality": "LE",
+    "hpPercent": 0.2,
+    "atkPercent": 0.15,
+    "targetProfession": "support",
+    "targetElement": "all",
+    "targetRace": "hybrid",
+    "skillIds": [
       "CSK029",
-      "CSK030"
+      "CSK030",
+      "CSK031"
     ],
-    "description": "史诗万能芯片，全属性大幅提升，每回合随机触发一种强化效果"
-  },
-  {
-    "chipId": "CHIP_LE001",
-    "name": "创世神盾",
-    "nameEn": "Genesis Aegis",
-    "quality": "LE",
-    "hpPercent": 50,
-    "atkPercent": 15,
-    "targetProfession": "tank,support",
-    "targetElement": "all",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK031",
-      "CSK032",
-      "CSK033",
-      "CSK034"
-    ],
-    "description": "神话防御芯片，生命值极限提升，濒死时自动触发无敌保护"
-  },
-  {
-    "chipId": "CHIP_LE002",
-    "name": "湮灭之矛",
-    "nameEn": "Annihilation Spear",
-    "quality": "LE",
-    "hpPercent": 15,
-    "atkPercent": 40,
-    "targetProfession": "damage,assassin,berserker",
-    "targetElement": "all",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK035",
-      "CSK036",
-      "CSK037",
-      "CSK038"
-    ],
-    "description": "神话攻击芯片，攻击力极限提升，击杀敌人后连续行动一次"
-  },
-  {
-    "chipId": "CHIP_LE003",
-    "name": "世界树之种",
-    "nameEn": "World Tree Seed",
-    "quality": "LE",
-    "hpPercent": 30,
-    "atkPercent": 30,
-    "targetProfession": "all",
-    "targetElement": "all",
-    "targetRace": "all",
-    "skillIds": [
-      "CSK039",
-      "CSK040",
-      "CSK041",
-      "CSK042"
-    ],
-    "description": "神话万能芯片，全属性极限提升，每回合为全体友军提供持续增益"
+    "description": "传说功能芯片，限定混合系辅助，全体增益10%攻速，危急时额外行动+20%攻击"
   }
 ]

@@ -1,154 +1,695 @@
 [
   {
-    "level": "2",
-    "name": "见习驾驶员",
-    "requiredPoints": "100",
-    "unlockFacility": "设施2级",
-    "unlockEnergy": "活力苏打",
-    "unlockCharacter": "⭐普通"
+    "level": 1,
+    "expRequired": 0,
+    "unlockMap": "庇护所外围",
+    "unlockZone": "ZONE_SANCTUARY",
+    "unlockContent": null
   },
   {
-    "level": "1",
-    "name": "新手拾荒者",
-    "requiredPoints": "0",
-    "unlockFacility": "基础",
-    "unlockEnergy": "普通能量",
-    "unlockCharacter": "⭐普通"
+    "level": 2,
+    "expRequired": 92,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "3",
-    "name": "正式队员",
-    "requiredPoints": "300",
-    "unlockFacility": "设施3级",
-    "unlockEnergy": "强力能量,精准燃料",
-    "unlockCharacter": "⭐⭐中级"
+    "level": 3,
+    "expRequired": 99,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "2",
-    "name": "见习驾驶员",
-    "requiredPoints": "100",
-    "unlockFacility": "设施2级",
-    "unlockEnergy": "活力苏打",
-    "unlockCharacter": "⭐普通"
+    "level": 4,
+    "expRequired": 105,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "4",
-    "name": "资深探险家",
-    "requiredPoints": "600",
-    "unlockFacility": "设施4级",
-    "unlockEnergy": "精准燃料",
-    "unlockCharacter": "⭐⭐中级"
+    "level": 5,
+    "expRequired": 112,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁每日辐射区探索"
   },
   {
-    "level": "3",
-    "name": "正式队员",
-    "requiredPoints": "300",
-    "unlockFacility": "设施3级",
-    "unlockEnergy": "强力能量,精准燃料",
-    "unlockCharacter": "⭐⭐中级"
+    "level": 6,
+    "expRequired": 118,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "5",
-    "name": "队长",
-    "requiredPoints": "1000",
-    "unlockFacility": "设施5级,黑客终端",
-    "unlockEnergy": "超频能量,战意激化剂,守护合剂",
-    "unlockCharacter": "⭐⭐⭐高级"
+    "level": 7,
+    "expRequired": 124,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "4",
-    "name": "资深探险家",
-    "requiredPoints": "600",
-    "unlockFacility": "设施4级",
-    "unlockEnergy": "精准燃料",
-    "unlockCharacter": "⭐⭐中级"
+    "level": 8,
+    "expRequired": 131,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "6",
-    "name": "英雄",
-    "requiredPoints": "1500",
-    "unlockFacility": "设施6级",
-    "unlockEnergy": "战意激化剂,守护合剂",
-    "unlockCharacter": "⭐⭐⭐高级"
+    "level": 9,
+    "expRequired": 137,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "5",
-    "name": "队长",
-    "requiredPoints": "1000",
-    "unlockFacility": "设施5级,黑客终端",
-    "unlockEnergy": "超频能量,战意激化剂,守护合剂",
-    "unlockCharacter": "⭐⭐⭐高级"
+    "level": 10,
+    "expRequired": 80,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁装备强化系统"
   },
   {
-    "level": "7",
-    "name": "传奇人物",
-    "requiredPoints": "2500",
-    "unlockFacility": "设施7级",
-    "unlockEnergy": "传说能量",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 11,
+    "expRequired": 151,
+    "unlockMap": "废弃矿区",
+    "unlockZone": "ZONE_MINE",
+    "unlockContent": null
   },
   {
-    "level": "6",
-    "name": "英雄",
-    "requiredPoints": "1500",
-    "unlockFacility": "设施6级",
-    "unlockEnergy": "战意激化剂,守护合剂",
-    "unlockCharacter": "⭐⭐⭐高级"
+    "level": 12,
+    "expRequired": 162,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "8",
-    "name": "废土领袖",
-    "requiredPoints": "4000",
-    "unlockFacility": "设施8级",
-    "unlockEnergy": "传说能量,源初精华",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 13,
+    "expRequired": 173,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "7",
-    "name": "传奇人物",
-    "requiredPoints": "2500",
-    "unlockFacility": "设施7级",
-    "unlockEnergy": "传说能量",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 14,
+    "expRequired": 184,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "9",
-    "name": "方舟使者",
-    "requiredPoints": "6000",
-    "unlockFacility": "设施9级",
-    "unlockEnergy": "源初精华,禁忌药剂",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 15,
+    "expRequired": 196,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁融合姬突破系统"
   },
   {
-    "level": "8",
-    "name": "废土领袖",
-    "requiredPoints": "4000",
-    "unlockFacility": "设施8级",
-    "unlockEnergy": "传说能量,源初精华",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 16,
+    "expRequired": 207,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "10",
-    "name": "传奇永恒",
-    "requiredPoints": "10000",
-    "unlockFacility": "设施满级",
-    "unlockEnergy": "禁忌药剂",
-    "unlockCharacter": "全部品质"
+    "level": 17,
+    "expRequired": 218,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "9",
-    "name": "方舟使者",
-    "requiredPoints": "6000",
-    "unlockFacility": "设施9级",
-    "unlockEnergy": "源初精华,禁忌药剂",
-    "unlockCharacter": "⭐⭐⭐⭐传说"
+    "level": 18,
+    "expRequired": 229,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
   },
   {
-    "level": "10",
-    "name": "传奇永恒",
-    "requiredPoints": "10000",
-    "unlockFacility": "设施满级",
-    "unlockEnergy": "禁忌药剂",
-    "unlockCharacter": "全部品质"
+    "level": 19,
+    "expRequired": 240,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 20,
+    "expRequired": 140,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁竞技场"
+  },
+  {
+    "level": 21,
+    "expRequired": 216,
+    "unlockMap": "沉没水城",
+    "unlockZone": "ZONE_AQUA",
+    "unlockContent": null
+  },
+  {
+    "level": 22,
+    "expRequired": 231,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 23,
+    "expRequired": 248,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 24,
+    "expRequired": 264,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 25,
+    "expRequired": 280,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁芯片镶嵌系统"
+  },
+  {
+    "level": 26,
+    "expRequired": 296,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 27,
+    "expRequired": 312,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 28,
+    "expRequired": 328,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 29,
+    "expRequired": 344,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 30,
+    "expRequired": 200,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁公会系统"
+  },
+  {
+    "level": 31,
+    "expRequired": 280,
+    "unlockMap": "腐化丛林",
+    "unlockZone": "ZONE_TREE",
+    "unlockContent": null
+  },
+  {
+    "level": 32,
+    "expRequired": 301,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 33,
+    "expRequired": 322,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 34,
+    "expRequired": 343,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 35,
+    "expRequired": 364,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁融合姬觉醒任务"
+  },
+  {
+    "level": 36,
+    "expRequired": 384,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 37,
+    "expRequired": 405,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 38,
+    "expRequired": 426,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 39,
+    "expRequired": 447,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 40,
+    "expRequired": 260,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁深渊副本"
+  },
+  {
+    "level": 41,
+    "expRequired": 345,
+    "unlockMap": "深海遗迹",
+    "unlockZone": "ZONE_DEEP",
+    "unlockContent": null
+  },
+  {
+    "level": 42,
+    "expRequired": 371,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 43,
+    "expRequired": 396,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 44,
+    "expRequired": 422,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 45,
+    "expRequired": 448,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁源核商店高级兑换"
+  },
+  {
+    "level": 46,
+    "expRequired": 473,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 47,
+    "expRequired": 499,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 48,
+    "expRequired": 524,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 49,
+    "expRequired": 550,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 50,
+    "expRequired": 320,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁跨服竞技"
+  },
+  {
+    "level": 51,
+    "expRequired": 410,
+    "unlockMap": "军事要塞",
+    "unlockZone": "ZONE_HQ",
+    "unlockContent": null
+  },
+  {
+    "level": 52,
+    "expRequired": 440,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 53,
+    "expRequired": 471,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 54,
+    "expRequired": 501,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 55,
+    "expRequired": 532,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁传说装备锻造"
+  },
+  {
+    "level": 56,
+    "expRequired": 562,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 57,
+    "expRequired": 592,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 58,
+    "expRequired": 623,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 59,
+    "expRequired": 653,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 60,
+    "expRequired": 380,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁赛季挑战"
+  },
+  {
+    "level": 61,
+    "expRequired": 475,
+    "unlockMap": "荧光温泉",
+    "unlockZone": "ZONE_SPRING",
+    "unlockContent": null
+  },
+  {
+    "level": 62,
+    "expRequired": 510,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 63,
+    "expRequired": 545,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 64,
+    "expRequired": 580,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 65,
+    "expRequired": 616,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁融合姬终极进化"
+  },
+  {
+    "level": 66,
+    "expRequired": 651,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 67,
+    "expRequired": 686,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 68,
+    "expRequired": 721,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 69,
+    "expRequired": 756,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 70,
+    "expRequired": 440,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁世界Boss"
+  },
+  {
+    "level": 71,
+    "expRequired": 540,
+    "unlockMap": "机械军火库",
+    "unlockZone": "ZONE_ARSENAL",
+    "unlockContent": null
+  },
+  {
+    "level": 72,
+    "expRequired": 580,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 73,
+    "expRequired": 620,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 74,
+    "expRequired": 660,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 75,
+    "expRequired": 700,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁传说级融合姬召唤"
+  },
+  {
+    "level": 76,
+    "expRequired": 740,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 77,
+    "expRequired": 780,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 78,
+    "expRequired": 820,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 79,
+    "expRequired": 860,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 80,
+    "expRequired": 500,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁终局副本"
+  },
+  {
+    "level": 81,
+    "expRequired": 604,
+    "unlockMap": "方舟核心",
+    "unlockZone": "ZONE_CORE",
+    "unlockContent": null
+  },
+  {
+    "level": 82,
+    "expRequired": 649,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 83,
+    "expRequired": 694,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 84,
+    "expRequired": 739,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 85,
+    "expRequired": 784,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁UR品质装备掉落"
+  },
+  {
+    "level": 86,
+    "expRequired": 828,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 87,
+    "expRequired": 873,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 88,
+    "expRequired": 918,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 89,
+    "expRequired": 963,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 90,
+    "expRequired": 560,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁辐射风暴"
+  },
+  {
+    "level": 91,
+    "expRequired": 669,
+    "unlockMap": "终焉之地",
+    "unlockZone": "ZONE_OMEGA",
+    "unlockContent": null
+  },
+  {
+    "level": 92,
+    "expRequired": 719,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 93,
+    "expRequired": 768,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 94,
+    "expRequired": 818,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 95,
+    "expRequired": 868,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "解锁LE品质融合姬碎片"
+  },
+  {
+    "level": 96,
+    "expRequired": 917,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 97,
+    "expRequired": 967,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 98,
+    "expRequired": 1016,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": null
+  },
+  {
+    "level": 99,
+    "expRequired": 1066,
+    "unlockMap": null,
+    "unlockZone": null,
+    "unlockContent": "达到满级，解锁全内容"
   }
 ]

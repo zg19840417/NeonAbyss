@@ -1,8 +1,8 @@
 [
   {
     "id": "game_title",
-    "zh_cn": "霓虹深渊",
-    "en_us": "Neon Abyss"
+    "zh_cn": "废土元年",
+    "en_us": "Wasteland Year One"
   },
   {
     "id": "start_game",
@@ -20,9 +20,14 @@
     "en_us": "Achievements"
   },
   {
-    "id": "tavern",
-    "zh_cn": "酒馆",
-    "en_us": "Tavern"
+    "id": "sanctuary",
+    "zh_cn": "庇护所",
+    "en_us": "Sanctuary"
+  },
+  {
+    "id": "admin_ada",
+    "zh_cn": "管理员·艾达",
+    "en_us": "Admin Ada"
   },
   {
     "id": "team",
@@ -50,9 +55,299 @@
     "en_us": "Cancel"
   },
   {
+    "id": "back",
+    "zh_cn": "返回",
+    "en_us": "Back"
+  },
+  {
+    "id": "close",
+    "zh_cn": "关闭",
+    "en_us": "Close"
+  },
+  {
+    "id": "ok",
+    "zh_cn": "确定",
+    "en_us": "OK"
+  },
+  {
+    "id": "yes",
+    "zh_cn": "是",
+    "en_us": "Yes"
+  },
+  {
+    "id": "no",
+    "zh_cn": "否",
+    "en_us": "No"
+  },
+  {
+    "id": "on",
+    "zh_cn": "开启",
+    "en_us": "On"
+  },
+  {
+    "id": "off",
+    "zh_cn": "关闭",
+    "en_us": "Off"
+  },
+  {
+    "id": "max",
+    "zh_cn": "最大",
+    "en_us": "Max"
+  },
+  {
+    "id": "min",
+    "zh_cn": "最小",
+    "en_us": "Min"
+  },
+  {
+    "id": "locked",
+    "zh_cn": "未解锁",
+    "en_us": "Locked"
+  },
+  {
+    "id": "unlocked",
+    "zh_cn": "已解锁",
+    "en_us": "Unlocked"
+  },
+  {
+    "id": "new",
+    "zh_cn": "新",
+    "en_us": "New"
+  },
+  {
+    "id": "hot",
+    "zh_cn": "热门",
+    "en_us": "Hot"
+  },
+  {
+    "id": "limited",
+    "zh_cn": "限时",
+    "en_us": "Limited"
+  },
+  {
+    "id": "free",
+    "zh_cn": "免费",
+    "en_us": "Free"
+  },
+  {
+    "id": "premium",
+    "zh_cn": "付费",
+    "en_us": "Premium"
+  },
+  {
+    "id": "daily_reset",
+    "zh_cn": "每日重置",
+    "en_us": "Daily Reset"
+  },
+  {
+    "id": "weekly_reset",
+    "zh_cn": "每周重置",
+    "en_us": "Weekly Reset"
+  },
+  {
+    "id": "countdown",
+    "zh_cn": "剩余时间: {time}",
+    "en_us": "Time Remaining: {time}"
+  },
+  {
+    "id": "not_enough",
+    "zh_cn": "数量不足",
+    "en_us": "Not Enough"
+  },
+  {
+    "id": "full",
+    "zh_cn": "已满",
+    "en_us": "Full"
+  },
+  {
+    "id": "empty",
+    "zh_cn": "空",
+    "en_us": "Empty"
+  },
+  {
+    "id": "receive_reward",
+    "zh_cn": "领取奖励",
+    "en_us": "Claim Reward"
+  },
+  {
+    "id": "detail",
+    "zh_cn": "详情",
+    "en_us": "Details"
+  },
+  {
+    "id": "filter",
+    "zh_cn": "筛选",
+    "en_us": "Filter"
+  },
+  {
+    "id": "sort",
+    "zh_cn": "排序",
+    "en_us": "Sort"
+  },
+  {
+    "id": "all",
+    "zh_cn": "全部",
+    "en_us": "All"
+  },
+  {
+    "id": "recommended",
+    "zh_cn": "推荐",
+    "en_us": "Recommended"
+  },
+  {
+    "id": "loading",
+    "zh_cn": "加载中...",
+    "en_us": "Loading..."
+  },
+  {
+    "id": "error_network",
+    "zh_cn": "网络错误",
+    "en_us": "Network Error"
+  },
+  {
+    "id": "error_data",
+    "zh_cn": "数据异常",
+    "en_us": "Data Error"
+  },
+  {
+    "id": "continue",
+    "zh_cn": "继续进入",
+    "en_us": "Continue"
+  },
+  {
+    "id": "price",
+    "zh_cn": "{price} 菌丝",
+    "en_us": "{price} Mycelium"
+  },
+  {
+    "id": "currency_mycelium",
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
+  },
+  {
+    "id": "currency_mycelium_desc",
+    "zh_cn": "从菌类生物身上采集的稀有资源，用于升级基地设施",
+    "en_us": "Rare resource harvested from fungal creatures, used for base upgrades"
+  },
+  {
+    "id": "currency_source_core",
+    "zh_cn": "源核",
+    "en_us": "Source Core"
+  },
+  {
+    "id": "currency_source_core_desc",
+    "zh_cn": "蕴含原始能量的核心，用于强化装备和芯片",
+    "en_us": "Core containing primal energy, used for equipment and chip enhancement"
+  },
+  {
+    "id": "currency_star_coin",
+    "zh_cn": "星币",
+    "en_us": "Star Coin"
+  },
+  {
+    "id": "currency_star_coin_desc",
+    "zh_cn": "禁区中流通的高级货币，可在特殊商店购买稀有物品",
+    "en_us": "Premium currency in the dungeon, used in special shops for rare items"
+  },
+  {
     "id": "coin",
     "zh_cn": "菌丝",
     "en_us": "Mycelium"
+  },
+  {
+    "id": "mycelium",
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
+  },
+  {
+    "id": "source_core",
+    "zh_cn": "源核",
+    "en_us": "Source Core"
+  },
+  {
+    "id": "star_coin",
+    "zh_cn": "星币",
+    "en_us": "Star Coin"
+  },
+  {
+    "id": "fusion_maiden",
+    "zh_cn": "融合姬",
+    "en_us": "Fusion Maiden"
+  },
+  {
+    "id": "fusion_maiden_desc",
+    "zh_cn": "通过生物融合技术诞生的战斗单位",
+    "en_us": "Combat units born through bio-fusion technology"
+  },
+  {
+    "id": "recruit",
+    "zh_cn": "招募",
+    "en_us": "Recruit"
+  },
+  {
+    "id": "remove",
+    "zh_cn": "移除",
+    "en_us": "Remove"
+  },
+  {
+    "id": "team_empty",
+    "zh_cn": "队伍中没有成员",
+    "en_us": "Team is empty"
+  },
+  {
+    "id": "team_empty_desc",
+    "zh_cn": "请先招募融合姬并配置队伍",
+    "en_us": "Please recruit Fusion Maidens and configure team first"
+  },
+  {
+    "id": "go_to_shop",
+    "zh_cn": "去招募",
+    "en_us": "Go to Shop"
+  },
+  {
+    "id": "team_not_full",
+    "zh_cn": "队伍未配满",
+    "en_us": "Team not full"
+  },
+  {
+    "id": "team_not_full_desc",
+    "zh_cn": "当前队伍人数不足，是否继续进入？",
+    "en_us": "Team is not full. Continue?"
+  },
+  {
+    "id": "go_to_team",
+    "zh_cn": "去配置",
+    "en_us": "Go to Team"
+  },
+  {
+    "id": "team_count",
+    "zh_cn": "队伍: {count}/4 人",
+    "en_us": "Team: {count}/4"
+  },
+  {
+    "id": "lost_one",
+    "zh_cn": "失心者",
+    "en_us": "Lost One"
+  },
+  {
+    "id": "lost_one_desc",
+    "zh_cn": "因辐射和变异而失去理智的生物",
+    "en_us": "Creatures driven mad by radiation and mutation"
+  },
+  {
+    "id": "enemy",
+    "zh_cn": "敌人",
+    "en_us": "Enemy"
+  },
+  {
+    "id": "elite_enemy",
+    "zh_cn": "精英敌人",
+    "en_us": "Elite Enemy"
+  },
+  {
+    "id": "boss",
+    "zh_cn": "Boss",
+    "en_us": "Boss"
   },
   {
     "id": "level",
@@ -100,16 +395,6 @@
     "en_us": "Explore"
   },
   {
-    "id": "recruit",
-    "zh_cn": "招募",
-    "en_us": "Recruit"
-  },
-  {
-    "id": "remove",
-    "zh_cn": "移除",
-    "en_us": "Remove"
-  },
-  {
     "id": "equipped",
     "zh_cn": "已装备",
     "en_us": "Equipped"
@@ -120,49 +405,14 @@
     "en_us": "Unequipped"
   },
   {
-    "id": "team_empty",
-    "zh_cn": "队伍中没有成员",
-    "en_us": "Team is empty"
+    "id": "sanctuary_welcome",
+    "zh_cn": "欢迎来到庇护所",
+    "en_us": "Welcome to Sanctuary"
   },
   {
-    "id": "team_empty_desc",
-    "zh_cn": "请先招募角色并配置队伍",
-    "en_us": "Please recruit and configure team first"
-  },
-  {
-    "id": "go_to_shop",
-    "zh_cn": "去招募",
-    "en_us": "Go to Shop"
-  },
-  {
-    "id": "team_not_full",
-    "zh_cn": "队伍未配满",
-    "en_us": "Team not full"
-  },
-  {
-    "id": "team_not_full_desc",
-    "zh_cn": "当前队伍人数不足，是否继续进入？",
-    "en_us": "Team is not full. Continue?"
-  },
-  {
-    "id": "continue",
-    "zh_cn": "继续进入",
-    "en_us": "Continue"
-  },
-  {
-    "id": "go_to_team",
-    "zh_cn": "去配置",
-    "en_us": "Go to Team"
-  },
-  {
-    "id": "tavern_welcome",
-    "zh_cn": "欢迎来到霓虹酒馆",
-    "en_us": "Welcome to Neon Tavern"
-  },
-  {
-    "id": "bartender",
-    "zh_cn": "调酒师小明",
-    "en_us": "Bartender Ming"
+    "id": "admin_hint",
+    "zh_cn": "管理员·艾达为你提供指引",
+    "en_us": "Admin Ada will guide you"
   },
   {
     "id": "ready_tip",
@@ -175,8 +425,8 @@
     "en_us": "Enter Dungeon"
   },
   {
-    "id": "tavern_hint",
-    "zh_cn": "点击底部 [牢] 可快速进入禁区",
+    "id": "sanctuary_hint",
+    "zh_cn": "点击底部 [禁区] 可快速进入",
     "en_us": "Click [Dungeon] tab to enter"
   },
   {
@@ -193,11 +443,6 @@
     "id": "auto_battle",
     "zh_cn": "自动战斗进行中...",
     "en_us": "Auto battle in progress..."
-  },
-  {
-    "id": "team_count",
-    "zh_cn": "队伍: {count}/5 人",
-    "en_us": "Team: {count}/5"
   },
   {
     "id": "se_volume",
@@ -230,49 +475,54 @@
     "en_us": "All progress will be lost!"
   },
   {
-    "id": "price",
-    "zh_cn": "{price} 币",
-    "en_us": "{price} Coins"
+    "id": "base_system",
+    "zh_cn": "基地",
+    "en_us": "Base"
   },
   {
-    "id": "currency_mycelium",
-    "zh_cn": "菌丝",
-    "en_us": "Mycelium"
+    "id": "base_upgrade",
+    "zh_cn": "升级",
+    "en_us": "Upgrade"
   },
   {
-    "id": "currency_mycelium_desc",
-    "zh_cn": "从菌类生物身上采集的稀有资源，用于升级基地设施",
-    "en_us": "Rare resource harvested from fungal creatures, used for base upgrades"
+    "id": "base_max_level",
+    "zh_cn": "已达最高等级",
+    "en_us": "Max Level Reached"
   },
   {
-    "id": "currency_source_core",
-    "zh_cn": "源核",
-    "en_us": "Source Core"
+    "id": "base_upgrade_cost",
+    "zh_cn": "升级费用: {cost}",
+    "en_us": "Upgrade Cost: {cost}"
   },
   {
-    "id": "currency_source_core_desc",
-    "zh_cn": "蕴含原始能量的核心，用于强化装备和芯片",
-    "en_us": "Core containing primal energy, used for equipment and chip enhancement"
+    "id": "base_facility_fusion_pod",
+    "zh_cn": "融合舱",
+    "en_us": "Fusion Pod"
   },
   {
-    "id": "currency_star_coin",
-    "zh_cn": "星币",
-    "en_us": "Star Coin"
+    "id": "base_facility_dorms",
+    "zh_cn": "休眠舱",
+    "en_us": "Dorms"
   },
   {
-    "id": "currency_star_coin_desc",
-    "zh_cn": "禁区中流通的高级货币，可在特殊商店购买稀有物品",
-    "en_us": "Premium currency in the dungeon, used in special shops for rare items"
+    "id": "base_facility_synthesizer",
+    "zh_cn": "合成台",
+    "en_us": "Synthesizer"
   },
   {
-    "id": "currency_cyber_coin",
-    "zh_cn": "菌丝",
-    "en_us": "Mycelium"
+    "id": "base_facility_training",
+    "zh_cn": "训练场",
+    "en_us": "Training Ground"
   },
   {
-    "id": "currency_cyber_coin_desc",
-    "zh_cn": "基础交易货币，通过探索和战斗获得",
-    "en_us": "Basic trading currency, earned through exploration and combat"
+    "id": "base_facility_hacker",
+    "zh_cn": "黑客终端",
+    "en_us": "Hacker Terminal"
+  },
+  {
+    "id": "base_facility_storage",
+    "zh_cn": "仓库",
+    "en_us": "Storage"
   },
   {
     "id": "element_water",
@@ -321,7 +571,7 @@
   },
   {
     "id": "element_light_desc",
-    "zh_cn": "圣光之力，与暗互克",
+    "zh_cn": "净化之光，与暗互克",
     "en_us": "Power of radiance, mutual counter with Dark"
   },
   {
@@ -550,6 +800,66 @@
     "en_us": "Chaos"
   },
   {
+    "id": "profession_tank",
+    "zh_cn": "坦克",
+    "en_us": "Tank"
+  },
+  {
+    "id": "profession_tank_desc",
+    "zh_cn": "高生命高防御，负责承受伤害保护队友",
+    "en_us": "High HP and DEF, protects teammates by absorbing damage"
+  },
+  {
+    "id": "profession_dps",
+    "zh_cn": "输出",
+    "en_us": "DPS"
+  },
+  {
+    "id": "profession_dps_desc",
+    "zh_cn": "高攻击高暴击，负责对敌人造成大量伤害",
+    "en_us": "High ATK and CRIT, deals massive damage to enemies"
+  },
+  {
+    "id": "profession_support",
+    "zh_cn": "辅助",
+    "en_us": "Support"
+  },
+  {
+    "id": "profession_support_desc",
+    "zh_cn": "提供治疗和增益效果，保障队伍续航",
+    "en_us": "Provides healing and buffs, ensures team sustainability"
+  },
+  {
+    "id": "quality_N",
+    "zh_cn": "N-普通",
+    "en_us": "N-Normal"
+  },
+  {
+    "id": "quality_R",
+    "zh_cn": "R-稀有",
+    "en_us": "R-Rare"
+  },
+  {
+    "id": "quality_SR",
+    "zh_cn": "SR-精英",
+    "en_us": "SR-Super Rare"
+  },
+  {
+    "id": "quality_SSR",
+    "zh_cn": "SSR-传说",
+    "en_us": "SSR-Super Super Rare"
+  },
+  {
+    "id": "quality_UR",
+    "zh_cn": "UR-史诗",
+    "en_us": "UR-Ultra Rare"
+  },
+  {
+    "id": "quality_LE",
+    "zh_cn": "LE-绝世",
+    "en_us": "LE-Legendary Exclusive"
+  },
+  {
     "id": "chip_system",
     "zh_cn": "强化芯片",
     "en_us": "Enhancement Chip"
@@ -581,8 +891,8 @@
   },
   {
     "id": "chip_quality_LE",
-    "zh_cn": "神话",
-    "en_us": "Legendary"
+    "zh_cn": "绝世",
+    "en_us": "Legendary Exclusive"
   },
   {
     "id": "chip_equip",
@@ -875,76 +1185,6 @@
     "en_us": "Cost: {cost} Energy"
   },
   {
-    "id": "base_system",
-    "zh_cn": "基地",
-    "en_us": "Base"
-  },
-  {
-    "id": "base_upgrade",
-    "zh_cn": "升级",
-    "en_us": "Upgrade"
-  },
-  {
-    "id": "base_max_level",
-    "zh_cn": "已达最高等级",
-    "en_us": "Max Level Reached"
-  },
-  {
-    "id": "base_upgrade_cost",
-    "zh_cn": "升级费用: {cost}",
-    "en_us": "Upgrade Cost: {cost}"
-  },
-  {
-    "id": "base_facility_workbench",
-    "zh_cn": "工作台",
-    "en_us": "Workbench"
-  },
-  {
-    "id": "base_facility_chargers",
-    "zh_cn": "充电桩",
-    "en_us": "Chargers"
-  },
-  {
-    "id": "base_facility_hacker_terminal",
-    "zh_cn": "黑客终端",
-    "en_us": "Hacker Terminal"
-  },
-  {
-    "id": "base_facility_lab",
-    "zh_cn": "研究所",
-    "en_us": "Research Lab"
-  },
-  {
-    "id": "base_facility_garden",
-    "zh_cn": "生态园",
-    "en_us": "Eco Garden"
-  },
-  {
-    "id": "base_facility_armory",
-    "zh_cn": "军械库",
-    "en_us": "Armory"
-  },
-  {
-    "id": "base_facility_energy_well",
-    "zh_cn": "能量井",
-    "en_us": "Energy Well"
-  },
-  {
-    "id": "base_facility_training",
-    "zh_cn": "训练场",
-    "en_us": "Training Ground"
-  },
-  {
-    "id": "base_facility_medbay",
-    "zh_cn": "医疗舱",
-    "en_us": "Medical Bay"
-  },
-  {
-    "id": "base_facility_storage",
-    "zh_cn": "仓库",
-    "en_us": "Storage"
-  },
-  {
     "id": "energy_vitality_soda",
     "zh_cn": "活力苏打",
     "en_us": "Vitality Soda"
@@ -1031,8 +1271,8 @@
   },
   {
     "id": "reputation_next",
-    "zh_cn": "下一级: {name}（需要{points}点）",
-    "en_us": "Next: {name} ({points} points required)"
+    "zh_cn": "下一级: 等级{level}（需要{points}经验）",
+    "en_us": "Next: Level {level} ({points} exp required)"
   },
   {
     "id": "equip_weapon",
@@ -1050,24 +1290,34 @@
     "en_us": "Accessory"
   },
   {
-    "id": "equip_quality_common",
-    "zh_cn": "普通",
-    "en_us": "Common"
+    "id": "equip_quality_N",
+    "zh_cn": "N-普通",
+    "en_us": "N-Normal"
   },
   {
-    "id": "equip_quality_rare",
-    "zh_cn": "稀有",
-    "en_us": "Rare"
+    "id": "equip_quality_R",
+    "zh_cn": "R-稀有",
+    "en_us": "R-Rare"
   },
   {
-    "id": "equip_quality_epic",
-    "zh_cn": "史诗",
-    "en_us": "Epic"
+    "id": "equip_quality_SR",
+    "zh_cn": "SR-精英",
+    "en_us": "SR-Super Rare"
   },
   {
-    "id": "equip_quality_legendary",
-    "zh_cn": "传说",
-    "en_us": "Legendary"
+    "id": "equip_quality_SSR",
+    "zh_cn": "SSR-传说",
+    "en_us": "SSR-Super Super Rare"
+  },
+  {
+    "id": "equip_quality_UR",
+    "zh_cn": "UR-史诗",
+    "en_us": "UR-Ultra Rare"
+  },
+  {
+    "id": "equip_quality_LE",
+    "zh_cn": "LE-绝世",
+    "en_us": "LE-Legendary Exclusive"
   },
   {
     "id": "equip_enhance",
@@ -1140,173 +1390,378 @@
     "en_us": "In Progress"
   },
   {
-    "id": "loading",
-    "zh_cn": "加载中...",
-    "en_us": "Loading..."
+    "id": "gacha_title",
+    "zh_cn": "融合召唤",
+    "en_us": "Fusion Summon"
   },
   {
-    "id": "error_network",
-    "zh_cn": "网络错误",
-    "en_us": "Network Error"
+    "id": "gacha_single",
+    "zh_cn": "单次召唤",
+    "en_us": "Summon x1"
   },
   {
-    "id": "error_data",
-    "zh_cn": "数据异常",
-    "en_us": "Data Error"
+    "id": "gacha_ten",
+    "zh_cn": "十连召唤",
+    "en_us": "Summon x10"
   },
   {
-    "id": "back",
-    "zh_cn": "返回",
-    "en_us": "Back"
+    "id": "gacha_result",
+    "zh_cn": "召唤结果",
+    "en_us": "Summon Result"
   },
   {
-    "id": "close",
-    "zh_cn": "关闭",
-    "en_us": "Close"
+    "id": "gacha_pity",
+    "zh_cn": "保底次数: {current}/{max}",
+    "en_us": "Pity: {current}/{max}"
   },
   {
-    "id": "ok",
-    "zh_cn": "确定",
-    "en_us": "OK"
+    "id": "gacha_new",
+    "zh_cn": "NEW",
+    "en_us": "NEW"
   },
   {
-    "id": "yes",
-    "zh_cn": "是",
-    "en_us": "Yes"
+    "id": "gacha_duplicate",
+    "zh_cn": "重复",
+    "en_us": "Duplicate"
   },
   {
-    "id": "no",
-    "zh_cn": "否",
-    "en_us": "No"
+    "id": "gacha_fragment",
+    "zh_cn": "碎片",
+    "en_us": "Fragment"
   },
   {
-    "id": "on",
-    "zh_cn": "开启",
-    "en_us": "On"
+    "id": "gacha_exchange",
+    "zh_cn": "碎片兑换",
+    "en_us": "Fragment Exchange"
   },
   {
-    "id": "off",
-    "zh_cn": "关闭",
-    "en_us": "Off"
+    "id": "gacha_pool_normal",
+    "zh_cn": "常驻池",
+    "en_us": "Standard Pool"
   },
   {
-    "id": "max",
-    "zh_cn": "最大",
-    "en_us": "Max"
+    "id": "gacha_pool_limited",
+    "zh_cn": "限定池",
+    "en_us": "Limited Pool"
   },
   {
-    "id": "min",
-    "zh_cn": "最小",
-    "en_us": "Min"
+    "id": "gacha_pool_banner",
+    "zh_cn": "UP池",
+    "en_us": "Rate-Up Pool"
   },
   {
-    "id": "locked",
-    "zh_cn": "未解锁",
-    "en_us": "Locked"
+    "id": "gacha_cost_single",
+    "zh_cn": "消耗: {cost}星币",
+    "en_us": "Cost: {cost} Star Coins"
   },
   {
-    "id": "unlocked",
-    "zh_cn": "已解锁",
-    "en_us": "Unlocked"
+    "id": "gacha_cost_ten",
+    "zh_cn": "消耗: {cost}星币",
+    "en_us": "Cost: {cost} Star Coins"
   },
   {
-    "id": "new",
-    "zh_cn": "新",
-    "en_us": "New"
+    "id": "gacha_animation_skip",
+    "zh_cn": "跳过动画",
+    "en_us": "Skip Animation"
   },
   {
-    "id": "hot",
-    "zh_cn": "热门",
-    "en_us": "Hot"
+    "id": "item_title",
+    "zh_cn": "背包",
+    "en_us": "Inventory"
   },
   {
-    "id": "limited",
-    "zh_cn": "限时",
-    "en_us": "Limited"
+    "id": "item_use",
+    "zh_cn": "使用",
+    "en_us": "Use"
   },
   {
-    "id": "free",
-    "zh_cn": "免费",
-    "en_us": "Free"
+    "id": "item_sell",
+    "zh_cn": "出售",
+    "en_us": "Sell"
   },
   {
-    "id": "premium",
-    "zh_cn": "付费",
-    "en_us": "Premium"
+    "id": "item_equip",
+    "zh_cn": "装备",
+    "en_us": "Equip"
   },
   {
-    "id": "daily_reset",
-    "zh_cn": "每日重置",
-    "en_us": "Daily Reset"
+    "id": "item_detail",
+    "zh_cn": "道具详情",
+    "en_us": "Item Details"
   },
   {
-    "id": "weekly_reset",
-    "zh_cn": "每周重置",
-    "en_us": "Weekly Reset"
+    "id": "item_quantity",
+    "zh_cn": "数量: {count}",
+    "en_us": "Quantity: {count}"
   },
   {
-    "id": "countdown",
-    "zh_cn": "剩余时间: {time}",
-    "en_us": "Time Remaining: {time}"
+    "id": "item_sort_by_quality",
+    "zh_cn": "按品质排序",
+    "en_us": "Sort by Quality"
   },
   {
-    "id": "not_enough",
-    "zh_cn": "数量不足",
-    "en_us": "Not Enough"
+    "id": "item_sort_by_type",
+    "zh_cn": "按类型排序",
+    "en_us": "Sort by Type"
   },
   {
-    "id": "full",
-    "zh_cn": "已满",
-    "en_us": "Full"
+    "id": "item_sort_by_level",
+    "zh_cn": "按等级排序",
+    "en_us": "Sort by Level"
   },
   {
-    "id": "empty",
-    "zh_cn": "空",
-    "en_us": "Empty"
+    "id": "item_no_item",
+    "zh_cn": "背包为空",
+    "en_us": "Inventory is empty"
   },
   {
-    "id": "receive_reward",
-    "zh_cn": "领取奖励",
-    "en_us": "Claim Reward"
+    "id": "item_rad_medicine",
+    "zh_cn": "抗辐射药剂",
+    "en_us": "Rad Medicine"
   },
   {
-    "id": "detail",
-    "zh_cn": "详情",
-    "en_us": "Details"
+    "id": "item_rad_medicine_desc",
+    "zh_cn": "降低辐射值，防止融合姬变异",
+    "en_us": "Reduces radiation level, prevents Fusion Maiden mutation"
   },
   {
-    "id": "filter",
-    "zh_cn": "筛选",
-    "en_us": "Filter"
+    "id": "item_antidote",
+    "zh_cn": "解毒剂",
+    "en_us": "Antidote"
   },
   {
-    "id": "sort",
-    "zh_cn": "排序",
-    "en_us": "Sort"
+    "id": "item_antidote_desc",
+    "zh_cn": "解除中毒状态",
+    "en_us": "Cures poison status"
   },
   {
-    "id": "all",
-    "zh_cn": "全部",
-    "en_us": "All"
+    "id": "item_repair_kit",
+    "zh_cn": "修复包",
+    "en_us": "Repair Kit"
   },
   {
-    "id": "recommended",
-    "zh_cn": "推荐",
-    "en_us": "Recommended"
+    "id": "item_repair_kit_desc",
+    "zh_cn": "修复装备耐久度",
+    "en_us": "Restores equipment durability"
   },
   {
-    "id": "source_core",
-    "zh_cn": "源核",
-    "en_us": "Source Core"
+    "id": "item_exp_book",
+    "zh_cn": "经验芯片",
+    "en_us": "EXP Chip"
   },
   {
-    "id": "star_coin",
-    "zh_cn": "星币",
-    "en_us": "Star Coin"
+    "id": "item_exp_book_desc",
+    "zh_cn": "为融合姬提供经验值",
+    "en_us": "Grants EXP to Fusion Maiden"
   },
   {
-    "id": "mycelium",
-    "zh_cn": "菌丝",
-    "en_us": "Mycelium"
+    "id": "item_golden_key",
+    "zh_cn": "黄金钥匙",
+    "en_us": "Golden Key"
+  },
+  {
+    "id": "item_golden_key_desc",
+    "zh_cn": "开启黄金宝箱",
+    "en_us": "Opens golden chest"
+  },
+  {
+    "id": "map_sanctuary",
+    "zh_cn": "庇护所外围",
+    "en_us": "Sanctuary Outskirts"
+  },
+  {
+    "id": "map_mine",
+    "zh_cn": "废弃矿区",
+    "en_us": "Abandoned Mine"
+  },
+  {
+    "id": "map_aqua",
+    "zh_cn": "沉没水城",
+    "en_us": "Sunken Aquapolis"
+  },
+  {
+    "id": "map_tree",
+    "zh_cn": "腐化丛林",
+    "en_us": "Corrupted Jungle"
+  },
+  {
+    "id": "map_deep",
+    "zh_cn": "深海遗迹",
+    "en_us": "Deep Sea Ruins"
+  },
+  {
+    "id": "map_hq",
+    "zh_cn": "军事要塞",
+    "en_us": "Military Fortress"
+  },
+  {
+    "id": "map_spring",
+    "zh_cn": "荧光温泉",
+    "en_us": "Luminous Hot Springs"
+  },
+  {
+    "id": "map_arsenal",
+    "zh_cn": "机械军火库",
+    "en_us": "Mech Arsenal"
+  },
+  {
+    "id": "map_core",
+    "zh_cn": "方舟核心",
+    "en_us": "Ark Core"
+  },
+  {
+    "id": "map_omega",
+    "zh_cn": "终焉之地",
+    "en_us": "Terminal Wasteland"
+  },
+  {
+    "id": "zone_fungal_cave",
+    "zh_cn": "菌丝洞穴",
+    "en_us": "Fungal Cavern"
+  },
+  {
+    "id": "zone_rust_factory",
+    "zh_cn": "锈蚀工厂",
+    "en_us": "Rust Factory"
+  },
+  {
+    "id": "zone_toxic_swamp",
+    "zh_cn": "剧毒沼泽",
+    "en_us": "Toxic Swamp"
+  },
+  {
+    "id": "zone_crystal_mine",
+    "zh_cn": "水晶矿洞",
+    "en_us": "Crystal Mine"
+  },
+  {
+    "id": "zone_abandoned_lab",
+    "zh_cn": "废弃实验室",
+    "en_us": "Abandoned Lab"
+  },
+  {
+    "id": "zone_radiation_desert",
+    "zh_cn": "辐射荒漠",
+    "en_us": "Radiation Desert"
+  },
+  {
+    "id": "zone_mutant_forest",
+    "zh_cn": "变异森林",
+    "en_us": "Mutant Forest"
+  },
+  {
+    "id": "zone_underground_city",
+    "zh_cn": "地下城市",
+    "en_us": "Underground City"
+  },
+  {
+    "id": "zone_frozen_bunker",
+    "zh_cn": "冰冻地堡",
+    "en_us": "Frozen Bunker"
+  },
+  {
+    "id": "zone_volcanic_rift",
+    "zh_cn": "熔岩裂谷",
+    "en_us": "Volcanic Rift"
+  },
+  {
+    "id": "zone_signal_tower",
+    "zh_cn": "信号塔",
+    "en_us": "Signal Tower"
+  },
+  {
+    "id": "zone_gene_vault",
+    "zh_cn": "基因库",
+    "en_us": "Gene Vault"
+  },
+  {
+    "id": "zone_dark_tunnel",
+    "zh_cn": "暗黑隧道",
+    "en_us": "Dark Tunnel"
+  },
+  {
+    "id": "zone_overgrown_ruins",
+    "zh_cn": "蔓生废墟",
+    "en_us": "Overgrown Ruins"
+  },
+  {
+    "id": "zone_storm_peak",
+    "zh_cn": "风暴之巅",
+    "en_us": "Storm Peak"
+  },
+  {
+    "id": "zone_quantum_lab",
+    "zh_cn": "量子实验室",
+    "en_us": "Quantum Lab"
+  },
+  {
+    "id": "zone_bone_yard",
+    "zh_cn": "白骨荒原",
+    "en_us": "Bone Yard"
+  },
+  {
+    "id": "zone_neon_graveyard",
+    "zh_cn": "霓虹墓地",
+    "en_us": "Neon Graveyard"
+  },
+  {
+    "id": "zone_silent_port",
+    "zh_cn": "寂静港口",
+    "en_us": "Silent Port"
+  },
+  {
+    "id": "zone_omega_gate",
+    "zh_cn": "终焉之门",
+    "en_us": "Omega Gate"
+  },
+  {
+    "id": "boss_fungal_overlord",
+    "zh_cn": "菌丝领主",
+    "en_us": "Fungal Overlord"
+  },
+  {
+    "id": "boss_rust_golem",
+    "zh_cn": "锈蚀巨像",
+    "en_us": "Rust Golem"
+  },
+  {
+    "id": "boss_toxic_queen",
+    "zh_cn": "剧毒蜂后",
+    "en_us": "Toxic Queen"
+  },
+  {
+    "id": "boss_crystal_titan",
+    "zh_cn": "水晶泰坦",
+    "en_us": "Crystal Titan"
+  },
+  {
+    "id": "boss_mutant_king",
+    "zh_cn": "变异之王",
+    "en_us": "Mutant King"
+  },
+  {
+    "id": "boss_cyber_dragon",
+    "zh_cn": "机械龙",
+    "en_us": "Cyber Dragon"
+  },
+  {
+    "id": "boss_radiation_giant",
+    "zh_cn": "辐射巨人",
+    "en_us": "Radiation Giant"
+  },
+  {
+    "id": "boss_quantum_wraith",
+    "zh_cn": "量子幻影",
+    "en_us": "Quantum Phantom"
+  },
+  {
+    "id": "boss_gene_colossus",
+    "zh_cn": "基因巨兽",
+    "en_us": "Gene Colossus"
+  },
+  {
+    "id": "boss_omega_sentinel",
+    "zh_cn": "终焉守卫",
+    "en_us": "Omega Sentinel"
   }
 ]

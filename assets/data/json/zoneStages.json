@@ -1,0 +1,5826 @@
+[
+  {
+    "stageId": "ZS_LAB_01",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 1,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 135
+      },
+      {
+        "type": "mycelium",
+        "amount": 85
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_LAB_02",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 2,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 95
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_LAB_03",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 3,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 165
+      },
+      {
+        "type": "mycelium",
+        "amount": 105
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_LAB_04",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 4,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 115
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_LAB_05",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 5,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 195
+      },
+      {
+        "type": "mycelium",
+        "amount": 125
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_LAB_06",
+    "zoneId": "ZONE_LAB",
+    "zoneName": "地下实验室",
+    "stageIndex": 6,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_LAB",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      },
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_01",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 1,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_MINE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 135
+      },
+      {
+        "type": "mycelium",
+        "amount": 85
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_02",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 2,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_MINE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 95
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_03",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 3,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_MINE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 165
+      },
+      {
+        "type": "mycelium",
+        "amount": 105
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_04",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 4,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_MINE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 115
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_05",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 5,
+    "totalLayers": 6,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_MINE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 195
+      },
+      {
+        "type": "mycelium",
+        "amount": 125
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_MINE_06",
+    "zoneId": "ZONE_MINE",
+    "zoneName": "废弃矿坑",
+    "stageIndex": 6,
+    "totalLayers": 6,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_001",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_001",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      },
+      {
+        "type": "sourceCore",
+        "amount": 70
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_01",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 1,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 175
+      },
+      {
+        "type": "mycelium",
+        "amount": 110
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_02",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 2,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 190
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_03",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 3,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 205
+      },
+      {
+        "type": "mycelium",
+        "amount": 130
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_04",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 4,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_05",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 5,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 235
+      },
+      {
+        "type": "mycelium",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_06",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 6,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 250
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_07",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 7,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 265
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_NEST_08",
+    "zoneId": "ZONE_NEST",
+    "zoneName": "变异巢穴",
+    "stageIndex": 8,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_NEST",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 280
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      },
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_01",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 1,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 175
+      },
+      {
+        "type": "mycelium",
+        "amount": 110
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_02",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 2,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 190
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_03",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 3,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 205
+      },
+      {
+        "type": "mycelium",
+        "amount": 130
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_04",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 4,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_05",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 5,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 235
+      },
+      {
+        "type": "mycelium",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_06",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 6,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 250
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_07",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 7,
+    "totalLayers": 8,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_AQUA",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 265
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_AQUA_08",
+    "zoneId": "ZONE_AQUA",
+    "zoneName": "地下水脉",
+    "stageIndex": 8,
+    "totalLayers": 8,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_002",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_002",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 280
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      },
+      {
+        "type": "sourceCore",
+        "amount": 90
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_01",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 1,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 215
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_02",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 2,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 230
+      },
+      {
+        "type": "mycelium",
+        "amount": 145
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_03",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 3,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 245
+      },
+      {
+        "type": "mycelium",
+        "amount": 155
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_04",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 4,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 165
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_05",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 5,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 275
+      },
+      {
+        "type": "mycelium",
+        "amount": 175
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_06",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 6,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 290
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_07",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 7,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 305
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_08",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 8,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 320
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_09",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 9,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 335
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPORE_10",
+    "zoneId": "ZONE_SPORE",
+    "zoneName": "菌丝地穴",
+    "stageIndex": 10,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPORE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      },
+      {
+        "type": "sourceCore",
+        "amount": 60
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_01",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 1,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 215
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_02",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 2,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 230
+      },
+      {
+        "type": "mycelium",
+        "amount": 145
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_03",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 3,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 245
+      },
+      {
+        "type": "mycelium",
+        "amount": 155
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_04",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 4,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 165
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_05",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 5,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 275
+      },
+      {
+        "type": "mycelium",
+        "amount": 175
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_06",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 6,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 290
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_07",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 7,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 305
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_08",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 8,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 320
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_09",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 9,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_TREE",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 335
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_TREE_10",
+    "zoneId": "ZONE_TREE",
+    "zoneName": "枯树之心",
+    "stageIndex": 10,
+    "totalLayers": 10,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_003",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_003",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      },
+      {
+        "type": "sourceCore",
+        "amount": 110
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_01",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 1,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 255
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_02",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 2,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_03",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 3,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 285
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_04",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 4,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 190
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_05",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 5,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 315
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_06",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 6,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_07",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 7,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 345
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_08",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 8,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 360
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_09",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 9,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 375
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_10",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 10,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_11",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 11,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 405
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SUNKEN_12",
+    "zoneId": "ZONE_SUNKEN",
+    "zoneName": "沉没都市",
+    "stageIndex": 12,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SUNKEN",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 420
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      },
+      {
+        "type": "sourceCore",
+        "amount": 70
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_01",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 1,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 255
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_02",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 2,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_03",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 3,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 285
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_04",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 4,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 190
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_05",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 5,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 315
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_06",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 6,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_07",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 7,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 345
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_08",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 8,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 360
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_09",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 9,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 375
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_10",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 10,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_11",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 11,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 405
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_12",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 12,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 420
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_13",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 13,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DEEP",
+    "branches": 2,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 435
+      },
+      {
+        "type": "mycelium",
+        "amount": 280
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DEEP_14",
+    "zoneId": "ZONE_DEEP",
+    "zoneName": "深层水道",
+    "stageIndex": 14,
+    "totalLayers": 14,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_004",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_004",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 450
+      },
+      {
+        "type": "mycelium",
+        "amount": 290
+      },
+      {
+        "type": "sourceCore",
+        "amount": 130
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_01",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 1,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 295
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_02",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 2,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 310
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_03",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 3,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 325
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_04",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 4,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 340
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_05",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 5,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 355
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_06",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 6,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 370
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_07",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 7,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 385
+      },
+      {
+        "type": "mycelium",
+        "amount": 245
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_08",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 8,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 400
+      },
+      {
+        "type": "mycelium",
+        "amount": 255
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_09",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 9,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 415
+      },
+      {
+        "type": "mycelium",
+        "amount": 265
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_10",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 10,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 430
+      },
+      {
+        "type": "mycelium",
+        "amount": 275
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_11",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 11,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 445
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_PROVING_12",
+    "zoneId": "ZONE_PROVING",
+    "zoneName": "武器试验场",
+    "stageIndex": 12,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_PROVING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 460
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      },
+      {
+        "type": "sourceCore",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_01",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 1,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 295
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_02",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 2,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 310
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_03",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 3,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 325
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_04",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 4,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 340
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_05",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 5,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 355
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_06",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 6,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 370
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_07",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 7,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 385
+      },
+      {
+        "type": "mycelium",
+        "amount": 245
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_08",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 8,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 400
+      },
+      {
+        "type": "mycelium",
+        "amount": 255
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_09",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 9,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 415
+      },
+      {
+        "type": "mycelium",
+        "amount": 265
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_10",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 10,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 430
+      },
+      {
+        "type": "mycelium",
+        "amount": 275
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_11",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 11,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 445
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_12",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 12,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 460
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_13",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 13,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_HQ",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 475
+      },
+      {
+        "type": "mycelium",
+        "amount": 305
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_HQ_14",
+    "zoneId": "ZONE_HQ",
+    "zoneName": "前哨指挥部",
+    "stageIndex": 14,
+    "totalLayers": 14,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_005",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_005",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 490
+      },
+      {
+        "type": "mycelium",
+        "amount": 315
+      },
+      {
+        "type": "sourceCore",
+        "amount": 150
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_01",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 1,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 335
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_02",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 2,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_03",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 3,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 365
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_04",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 4,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 380
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_05",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 5,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 395
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_06",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 6,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 410
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_07",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 7,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 425
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_08",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 8,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 440
+      },
+      {
+        "type": "mycelium",
+        "amount": 280
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_09",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 9,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 455
+      },
+      {
+        "type": "mycelium",
+        "amount": 290
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OASIS_10",
+    "zoneId": "ZONE_OASIS",
+    "zoneName": "绿洲深处",
+    "stageIndex": 10,
+    "totalLayers": 10,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OASIS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 470
+      },
+      {
+        "type": "mycelium",
+        "amount": 300
+      },
+      {
+        "type": "sourceCore",
+        "amount": 90
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_01",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 1,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 335
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_02",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 2,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_03",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 3,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 365
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_04",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 4,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 380
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_05",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 5,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 395
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_06",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 6,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 410
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_07",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 7,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 425
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_08",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 8,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 440
+      },
+      {
+        "type": "mycelium",
+        "amount": 280
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_09",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 9,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 455
+      },
+      {
+        "type": "mycelium",
+        "amount": 290
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_10",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 10,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 470
+      },
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_11",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 11,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_SPRING",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 485
+      },
+      {
+        "type": "mycelium",
+        "amount": 310
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_SPRING_12",
+    "zoneId": "ZONE_SPRING",
+    "zoneName": "生命之泉",
+    "stageIndex": 12,
+    "totalLayers": 12,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_006",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_006",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 500
+      },
+      {
+        "type": "mycelium",
+        "amount": 320
+      },
+      {
+        "type": "sourceCore",
+        "amount": 170
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_01",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 1,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 375
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_02",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 2,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 245
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_03",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 3,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 405
+      },
+      {
+        "type": "mycelium",
+        "amount": 255
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_04",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 4,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 420
+      },
+      {
+        "type": "mycelium",
+        "amount": 265
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_05",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 5,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 435
+      },
+      {
+        "type": "mycelium",
+        "amount": 275
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_06",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 6,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 450
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_07",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 7,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 465
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_08",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 8,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 480
+      },
+      {
+        "type": "mycelium",
+        "amount": 305
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_09",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 9,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 495
+      },
+      {
+        "type": "mycelium",
+        "amount": 315
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_10",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 10,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 510
+      },
+      {
+        "type": "mycelium",
+        "amount": 325
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_11",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 11,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 525
+      },
+      {
+        "type": "mycelium",
+        "amount": 335
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_FACTORY_12",
+    "zoneId": "ZONE_FACTORY",
+    "zoneName": "机甲工厂",
+    "stageIndex": 12,
+    "totalLayers": 12,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_FACTORY",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 540
+      },
+      {
+        "type": "mycelium",
+        "amount": 345
+      },
+      {
+        "type": "sourceCore",
+        "amount": 100
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_01",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 1,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 375
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_02",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 2,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 245
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_03",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 3,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 405
+      },
+      {
+        "type": "mycelium",
+        "amount": 255
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_04",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 4,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 420
+      },
+      {
+        "type": "mycelium",
+        "amount": 265
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_05",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 5,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 435
+      },
+      {
+        "type": "mycelium",
+        "amount": 275
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_06",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 6,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 450
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_07",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 7,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 465
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_08",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 8,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 480
+      },
+      {
+        "type": "mycelium",
+        "amount": 305
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_09",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 9,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 495
+      },
+      {
+        "type": "mycelium",
+        "amount": 315
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_10",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 10,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 510
+      },
+      {
+        "type": "mycelium",
+        "amount": 325
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_11",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 11,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 525
+      },
+      {
+        "type": "mycelium",
+        "amount": 335
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_12",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 12,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 540
+      },
+      {
+        "type": "mycelium",
+        "amount": 345
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_13",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 13,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_ARSENAL",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 555
+      },
+      {
+        "type": "mycelium",
+        "amount": 355
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_ARSENAL_14",
+    "zoneId": "ZONE_ARSENAL",
+    "zoneName": "核心军库",
+    "stageIndex": 14,
+    "totalLayers": 14,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_007",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_007",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 570
+      },
+      {
+        "type": "mycelium",
+        "amount": 365
+      },
+      {
+        "type": "sourceCore",
+        "amount": 190
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_01",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 1,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 415
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_02",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 2,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 430
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_03",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 3,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 445
+      },
+      {
+        "type": "mycelium",
+        "amount": 280
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_04",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 4,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 460
+      },
+      {
+        "type": "mycelium",
+        "amount": 290
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_05",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 5,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 475
+      },
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_06",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 6,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 490
+      },
+      {
+        "type": "mycelium",
+        "amount": 310
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_07",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 7,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 505
+      },
+      {
+        "type": "mycelium",
+        "amount": 320
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_08",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 8,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 520
+      },
+      {
+        "type": "mycelium",
+        "amount": 330
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_09",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 9,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 535
+      },
+      {
+        "type": "mycelium",
+        "amount": 340
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_10",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 10,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 550
+      },
+      {
+        "type": "mycelium",
+        "amount": 350
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_11",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 11,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 565
+      },
+      {
+        "type": "mycelium",
+        "amount": 360
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_12",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 12,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 580
+      },
+      {
+        "type": "mycelium",
+        "amount": 370
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_13",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 13,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 595
+      },
+      {
+        "type": "mycelium",
+        "amount": 380
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_DORM_14",
+    "zoneId": "ZONE_DORM",
+    "zoneName": "休眠舱区",
+    "stageIndex": 14,
+    "totalLayers": 14,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_DORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 610
+      },
+      {
+        "type": "mycelium",
+        "amount": 390
+      },
+      {
+        "type": "sourceCore",
+        "amount": 110
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_01",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 1,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 415
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_02",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 2,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 430
+      },
+      {
+        "type": "mycelium",
+        "amount": 270
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_03",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 3,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 445
+      },
+      {
+        "type": "mycelium",
+        "amount": 280
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_04",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 4,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 460
+      },
+      {
+        "type": "mycelium",
+        "amount": 290
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_05",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 5,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 475
+      },
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_06",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 6,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 490
+      },
+      {
+        "type": "mycelium",
+        "amount": 310
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_07",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 7,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 505
+      },
+      {
+        "type": "mycelium",
+        "amount": 320
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_08",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 8,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 520
+      },
+      {
+        "type": "mycelium",
+        "amount": 330
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_09",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 9,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 535
+      },
+      {
+        "type": "mycelium",
+        "amount": 340
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_10",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 10,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 550
+      },
+      {
+        "type": "mycelium",
+        "amount": 350
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_11",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 11,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 565
+      },
+      {
+        "type": "mycelium",
+        "amount": 360
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_12",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 12,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 580
+      },
+      {
+        "type": "mycelium",
+        "amount": 370
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_13",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 13,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 595
+      },
+      {
+        "type": "mycelium",
+        "amount": 380
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_14",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 14,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 610
+      },
+      {
+        "type": "mycelium",
+        "amount": 390
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_15",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 15,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_CORE",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 625
+      },
+      {
+        "type": "mycelium",
+        "amount": 400
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_CORE_16",
+    "zoneId": "ZONE_CORE",
+    "zoneName": "方舟核心",
+    "stageIndex": 16,
+    "totalLayers": 16,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_008",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_008",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 640
+      },
+      {
+        "type": "mycelium",
+        "amount": 410
+      },
+      {
+        "type": "sourceCore",
+        "amount": 210
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_01",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 1,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 455
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_02",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 2,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 470
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_03",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 3,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 485
+      },
+      {
+        "type": "mycelium",
+        "amount": 305
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_04",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 4,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 500
+      },
+      {
+        "type": "mycelium",
+        "amount": 315
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_05",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 5,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 515
+      },
+      {
+        "type": "mycelium",
+        "amount": 325
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_06",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 6,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 530
+      },
+      {
+        "type": "mycelium",
+        "amount": 335
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_07",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 7,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 545
+      },
+      {
+        "type": "mycelium",
+        "amount": 345
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_08",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 8,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 560
+      },
+      {
+        "type": "mycelium",
+        "amount": 355
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_09",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 9,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 575
+      },
+      {
+        "type": "mycelium",
+        "amount": 365
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_10",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 10,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 590
+      },
+      {
+        "type": "mycelium",
+        "amount": 375
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_11",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 11,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 605
+      },
+      {
+        "type": "mycelium",
+        "amount": 385
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_12",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 12,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 620
+      },
+      {
+        "type": "mycelium",
+        "amount": 395
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_13",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 13,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 635
+      },
+      {
+        "type": "mycelium",
+        "amount": 405
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_14",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 14,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 650
+      },
+      {
+        "type": "mycelium",
+        "amount": 415
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_15",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 15,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 665
+      },
+      {
+        "type": "mycelium",
+        "amount": 425
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RUINS_16",
+    "zoneId": "ZONE_RUINS",
+    "zoneName": "裂变废墟",
+    "stageIndex": 16,
+    "totalLayers": 16,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RUINS",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 680
+      },
+      {
+        "type": "mycelium",
+        "amount": 435
+      },
+      {
+        "type": "sourceCore",
+        "amount": 120
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_01",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 1,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 455
+      },
+      {
+        "type": "mycelium",
+        "amount": 285
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_02",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 2,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 470
+      },
+      {
+        "type": "mycelium",
+        "amount": 295
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_03",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 3,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 485
+      },
+      {
+        "type": "mycelium",
+        "amount": 305
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_04",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 4,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 500
+      },
+      {
+        "type": "mycelium",
+        "amount": 315
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_05",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 5,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 515
+      },
+      {
+        "type": "mycelium",
+        "amount": 325
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_06",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 6,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 530
+      },
+      {
+        "type": "mycelium",
+        "amount": 335
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_07",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 7,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 545
+      },
+      {
+        "type": "mycelium",
+        "amount": 345
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_08",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 8,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 560
+      },
+      {
+        "type": "mycelium",
+        "amount": 355
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_09",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 9,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 575
+      },
+      {
+        "type": "mycelium",
+        "amount": 365
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_10",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 10,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 590
+      },
+      {
+        "type": "mycelium",
+        "amount": 375
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_11",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 11,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 605
+      },
+      {
+        "type": "mycelium",
+        "amount": 385
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_12",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 12,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 620
+      },
+      {
+        "type": "mycelium",
+        "amount": 395
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_13",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 13,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 635
+      },
+      {
+        "type": "mycelium",
+        "amount": 405
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_14",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 14,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 650
+      },
+      {
+        "type": "mycelium",
+        "amount": 415
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_15",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 15,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 665
+      },
+      {
+        "type": "mycelium",
+        "amount": 425
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_16",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 16,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 680
+      },
+      {
+        "type": "mycelium",
+        "amount": 435
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_17",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 17,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_STORM",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 695
+      },
+      {
+        "type": "mycelium",
+        "amount": 445
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_STORM_18",
+    "zoneId": "ZONE_STORM",
+    "zoneName": "辐射风暴眼",
+    "stageIndex": 18,
+    "totalLayers": 18,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_009",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_009",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 710
+      },
+      {
+        "type": "mycelium",
+        "amount": 455
+      },
+      {
+        "type": "sourceCore",
+        "amount": 230
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_01",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 1,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 495
+      },
+      {
+        "type": "mycelium",
+        "amount": 310
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_02",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 2,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 510
+      },
+      {
+        "type": "mycelium",
+        "amount": 320
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_03",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 3,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 525
+      },
+      {
+        "type": "mycelium",
+        "amount": 330
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_04",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 4,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 540
+      },
+      {
+        "type": "mycelium",
+        "amount": 340
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_05",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 5,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 555
+      },
+      {
+        "type": "mycelium",
+        "amount": 350
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_06",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 6,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 570
+      },
+      {
+        "type": "mycelium",
+        "amount": 360
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_07",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 7,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 585
+      },
+      {
+        "type": "mycelium",
+        "amount": 370
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_08",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 8,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 600
+      },
+      {
+        "type": "mycelium",
+        "amount": 380
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_09",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 9,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 615
+      },
+      {
+        "type": "mycelium",
+        "amount": 390
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_10",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 10,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 630
+      },
+      {
+        "type": "mycelium",
+        "amount": 400
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_11",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 11,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 645
+      },
+      {
+        "type": "mycelium",
+        "amount": 410
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_12",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 12,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 660
+      },
+      {
+        "type": "mycelium",
+        "amount": 420
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_13",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 13,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 675
+      },
+      {
+        "type": "mycelium",
+        "amount": 430
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_14",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 14,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 690
+      },
+      {
+        "type": "mycelium",
+        "amount": 440
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_15",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 15,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 705
+      },
+      {
+        "type": "mycelium",
+        "amount": 450
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_16",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 16,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 720
+      },
+      {
+        "type": "mycelium",
+        "amount": 460
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_17",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 17,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 735
+      },
+      {
+        "type": "mycelium",
+        "amount": 470
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_RIFT_18",
+    "zoneId": "ZONE_RIFT",
+    "zoneName": "虚空裂隙",
+    "stageIndex": 18,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_RIFT",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 750
+      },
+      {
+        "type": "mycelium",
+        "amount": 480
+      },
+      {
+        "type": "sourceCore",
+        "amount": 130
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_01",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 1,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 495
+      },
+      {
+        "type": "mycelium",
+        "amount": 310
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_02",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 2,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 510
+      },
+      {
+        "type": "mycelium",
+        "amount": 320
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_03",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 3,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 525
+      },
+      {
+        "type": "mycelium",
+        "amount": 330
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_04",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 4,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 540
+      },
+      {
+        "type": "mycelium",
+        "amount": 340
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_05",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 5,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 555
+      },
+      {
+        "type": "mycelium",
+        "amount": 350
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_06",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 6,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 570
+      },
+      {
+        "type": "mycelium",
+        "amount": 360
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_07",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 7,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 585
+      },
+      {
+        "type": "mycelium",
+        "amount": 370
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_08",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 8,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 600
+      },
+      {
+        "type": "mycelium",
+        "amount": 380
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_09",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 9,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 615
+      },
+      {
+        "type": "mycelium",
+        "amount": 390
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_10",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 10,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 630
+      },
+      {
+        "type": "mycelium",
+        "amount": 400
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_11",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 11,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 645
+      },
+      {
+        "type": "mycelium",
+        "amount": 410
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_12",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 12,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 660
+      },
+      {
+        "type": "mycelium",
+        "amount": 420
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_13",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 13,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 675
+      },
+      {
+        "type": "mycelium",
+        "amount": 430
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_14",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 14,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 690
+      },
+      {
+        "type": "mycelium",
+        "amount": 440
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_15",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 15,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 705
+      },
+      {
+        "type": "mycelium",
+        "amount": 450
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_16",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 16,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 720
+      },
+      {
+        "type": "mycelium",
+        "amount": 460
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_17",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 17,
+    "totalLayers": 18,
+    "isBoss": false,
+    "eventType": "pool",
+    "eventId": null,
+    "eventPoolId": "POOL_ZONE_OMEGA",
+    "branches": 3,
+    "bossId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 735
+      },
+      {
+        "type": "mycelium",
+        "amount": 470
+      }
+    ]
+  },
+  {
+    "stageId": "ZS_OMEGA_18",
+    "zoneId": "ZONE_OMEGA",
+    "zoneName": "终焉之地",
+    "stageIndex": 18,
+    "totalLayers": 18,
+    "isBoss": true,
+    "eventType": "fixed",
+    "eventId": "BOSS_010",
+    "eventPoolId": null,
+    "branches": 1,
+    "bossId": "BOSS_010",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 750
+      },
+      {
+        "type": "mycelium",
+        "amount": 480
+      },
+      {
+        "type": "sourceCore",
+        "amount": 250
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ]
+  }
+]

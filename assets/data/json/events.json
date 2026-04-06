@@ -1,0 +1,797 @@
+[
+  {
+    "eventId": "EVT_BATTLE_001",
+    "eventName": "菌丝虫群突袭",
+    "eventType": "battle",
+    "description": "大量变异菌丝虫从地面裂缝中涌出，覆盖了整条通道。",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 5
+      },
+      {
+        "enemyId": "E002",
+        "level": 6
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 60
+      },
+      {
+        "type": "mycelium",
+        "amount": 40
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_002",
+    "eventName": "失心者伏击",
+    "eventType": "battle",
+    "description": "一群瞳孔涣散的失心者从废墟中冲出，发出刺耳的嘶吼。",
+    "enemies": [
+      {
+        "enemyId": "E011",
+        "level": 8
+      },
+      {
+        "enemyId": "E012",
+        "level": 8
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 80
+      },
+      {
+        "type": "mycelium",
+        "amount": 50
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_003",
+    "eventName": "变异巨蝎巢穴",
+    "eventType": "battle",
+    "description": "地面突然塌陷，你跌入了一个布满巨型蝎子的地下巢穴。",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 10
+      },
+      {
+        "enemyId": "E004",
+        "level": 11
+      },
+      {
+        "enemyId": "E005",
+        "level": 12
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 100
+      },
+      {
+        "type": "mycelium",
+        "amount": 60
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_004",
+    "eventName": "辐射兽群",
+    "eventType": "battle",
+    "description": "盖革计数器疯狂报警，一群被辐射扭曲的野兽正在逼近。",
+    "enemies": [
+      {
+        "enemyId": "E006",
+        "level": 15
+      },
+      {
+        "enemyId": "E007",
+        "level": 15
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 120
+      },
+      {
+        "type": "mycelium",
+        "amount": 70
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_005",
+    "eventName": "机械哨兵拦截",
+    "eventType": "battle",
+    "description": "锈蚀的自动哨兵突然启动，红色激光扫过通道。",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 20
+      },
+      {
+        "enemyId": "E009",
+        "level": 20
+      },
+      {
+        "enemyId": "E010",
+        "level": 21
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 90
+      },
+      {
+        "type": "chip",
+        "amount": 1
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_006",
+    "eventName": "菌丝寄生体",
+    "eventType": "battle",
+    "description": "墙壁上覆盖的菌丝突然蠕动，从中剥落出人形的寄生体。",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 25
+      },
+      {
+        "enemyId": "E013",
+        "level": 26
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 100
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_007",
+    "eventName": "失心者精英小队",
+    "eventType": "battle",
+    "description": "装备着残破外骨骼装甲的失心者列队冲来，战术配合令人不寒而栗。",
+    "enemies": [
+      {
+        "enemyId": "E014",
+        "level": 30
+      },
+      {
+        "enemyId": "E015",
+        "level": 30
+      },
+      {
+        "enemyId": "E016",
+        "level": 31
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      },
+      {
+        "type": "sourceCore",
+        "amount": 5
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_008",
+    "eventName": "变异植物围攻",
+    "eventType": "battle",
+    "description": "巨大的藤蔓从地面破土而出，带刺的枝条像鞭子一样抽来。",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 35
+      },
+      {
+        "enemyId": "E005",
+        "level": 36
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_009",
+    "eventName": "废弃机甲暴走",
+    "eventType": "battle",
+    "description": "一台锈迹斑斑的工程机甲突然启动，机械臂疯狂挥舞。",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 40
+      },
+      {
+        "enemyId": "E017",
+        "level": 41
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_010",
+    "eventName": "深层变异体",
+    "eventType": "battle",
+    "description": "从地下深处爬出的变异体体型巨大，甲壳上闪烁着诡异的荧光。",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 50
+      },
+      {
+        "enemyId": "E018",
+        "level": 50
+      },
+      {
+        "enemyId": "E019",
+        "level": 51
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      },
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_011",
+    "eventName": "辐射风暴中的猎食者",
+    "eventType": "battle",
+    "description": "辐射风暴中，几道黑影在闪电间穿梭——它们在狩猎。",
+    "enemies": [
+      {
+        "enemyId": "E006",
+        "level": 55
+      },
+      {
+        "enemyId": "E020",
+        "level": 56
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 400
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_012",
+    "eventName": "菌丝母体护卫",
+    "eventType": "battle",
+    "description": "接近菌丝母体时，数个高阶变异体从菌毯中站起，挡住去路。",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 60
+      },
+      {
+        "enemyId": "E007",
+        "level": 61
+      },
+      {
+        "enemyId": "E013",
+        "level": 62
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 450
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_013",
+    "eventName": "失控防御系统",
+    "eventType": "battle",
+    "description": "古老的防御系统被激活，激光栅栏和自动炮台封锁了整条走廊。",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 70
+      },
+      {
+        "enemyId": "E010",
+        "level": 70
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 500
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      },
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_014",
+    "eventName": "终焉守卫",
+    "eventType": "battle",
+    "description": "核心禁区外围的守卫——半机械半生物的恐怖存在，缓缓转身。",
+    "enemies": [
+      {
+        "enemyId": "E017",
+        "level": 80
+      },
+      {
+        "enemyId": "E018",
+        "level": 80
+      },
+      {
+        "enemyId": "E020",
+        "level": 81
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 600
+      },
+      {
+        "type": "mycelium",
+        "amount": 300
+      },
+      {
+        "type": "sourceCore",
+        "amount": 20
+      },
+      {
+        "type": "chip",
+        "amount": 3
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_BATTLE_015",
+    "eventName": "虚空裂隙涌出物",
+    "eventType": "battle",
+    "description": "虚空裂隙中涌出不可名状的物质，凝聚成攻击性的实体。",
+    "enemies": [
+      {
+        "enemyId": "E019",
+        "level": 90
+      },
+      {
+        "enemyId": "E020",
+        "level": 91
+      }
+    ],
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 700
+      },
+      {
+        "type": "mycelium",
+        "amount": 350
+      },
+      {
+        "type": "sourceCore",
+        "amount": 25
+      },
+      {
+        "type": "shipPart",
+        "amount": 1
+      }
+    ],
+    "weight": 100
+  },
+  {
+    "eventId": "EVT_STORY_001",
+    "eventName": "幸存者的日志",
+    "eventType": "story",
+    "description": "在废墟中找到一本泛黄的日志，记录着灾变前最后的日子。",
+    "enemies": null,
+    "storyContent": "日志的最后一页写着：'菌丝扩散速度超出预期，方舟计划必须提前启动。那些被感染的人……他们不再是人类了。我把钥匙藏在实验室第三层的安全柜里。如果你看到这段话，说明一切已经太迟了。'",
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 30
+      },
+      {
+        "type": "mycelium",
+        "amount": 20
+      }
+    ],
+    "weight": 30
+  },
+  {
+    "eventId": "EVT_STORY_002",
+    "eventName": "废弃通讯站",
+    "eventType": "story",
+    "description": "一座半毁的通讯塔还在发出微弱的信号，接收器里传来断断续续的声音。",
+    "enemies": null,
+    "storyContent": "信号经过无数次中继，终于拼凑出一段信息：'……方舟……仍在运行……核心温度稳定……等待……回收……坐标……北纬37度……'信号随即中断，只剩下电磁噪声。",
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 40
+      },
+      {
+        "type": "mycelium",
+        "amount": 25
+      }
+    ],
+    "weight": 30
+  },
+  {
+    "eventId": "EVT_STORY_003",
+    "eventName": "冻结的实验室",
+    "eventType": "story",
+    "description": "低温保存室里，数十个休眠舱整齐排列，大部分已经破裂。",
+    "enemies": null,
+    "storyContent": "唯一完好的休眠舱上刻着名字：'陈远征——方舟计划首席研究员'。舱内的人已经变成了一团菌丝和血肉的混合物，但他的手中紧握着一个数据芯片。芯片上的标签写着：'菌丝免疫血清——未完成'。",
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 50
+      },
+      {
+        "type": "mycelium",
+        "amount": 30
+      },
+      {
+        "type": "chip",
+        "amount": 1
+      }
+    ],
+    "weight": 30
+  },
+  {
+    "eventId": "EVT_STORY_004",
+    "eventName": "失心者的遗物",
+    "eventType": "story",
+    "description": "一个失心者的尸体旁散落着私人物品——照片、信件、一个孩子的玩具。",
+    "enemies": null,
+    "storyContent": "信件上写着：'小雨，爸爸要去军事基地执行任务，很快就回来。你在家乖乖听妈妈的话，不要出门。外面的空气不好，记得戴面罩。'照片上是一家三口的合影，背景是尚未被菌丝覆盖的城市。",
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 35
+      },
+      {
+        "type": "mycelium",
+        "amount": 20
+      }
+    ],
+    "weight": 30
+  },
+  {
+    "eventId": "EVT_STORY_005",
+    "eventName": "方舟的回响",
+    "eventType": "story",
+    "description": "深入地下设施后，墙壁上的管线突然震动，传来低沉的机械运转声。",
+    "enemies": null,
+    "storyContent": "一个合成语音从扬声器中传出：'方舟核心系统自检完成。当前状态：休眠模式。外部生态评估：不可生存。建议操作：维持休眠。注意：检测到未授权生物信号进入核心区域。安全协议已激活。'走廊尽头的灯依次亮起，通向更深处。",
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 60
+      },
+      {
+        "type": "mycelium",
+        "amount": 40
+      },
+      {
+        "type": "sourceCore",
+        "amount": 5
+      }
+    ],
+    "weight": 30
+  },
+  {
+    "eventId": "EVT_TRADE_001",
+    "eventName": "流浪商人",
+    "eventType": "trade",
+    "description": "一个背着巨大行囊的老人从废墟后走出，摊开一块布，上面摆满了零件和物资。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": "SHOP_WANDERER",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 20
+      }
+    ],
+    "weight": 20
+  },
+  {
+    "eventId": "EVT_TRADE_002",
+    "eventName": "黑市军火商",
+    "eventType": "trade",
+    "description": "昏暗的地下室里，一个戴着防毒面具的人敲了敲铁门：'要货？先看看你有多少菌丝。'",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": "SHOP_BLACKMARKET",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 30
+      }
+    ],
+    "weight": 20
+  },
+  {
+    "eventId": "EVT_TRADE_003",
+    "eventName": "拾荒者交易所",
+    "eventType": "trade",
+    "description": "一群拾荒者建立了一个简易交易点，用各种废品换取有用的物资。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": "SHOP_SCAVENGER",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 25
+      }
+    ],
+    "weight": 20
+  },
+  {
+    "eventId": "EVT_TRADE_004",
+    "eventName": "军方补给站",
+    "eventType": "trade",
+    "description": "一个仍在运作的自动补给终端，需要军官权限才能访问——或者绕过安全系统。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": "SHOP_MILITARY",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 40
+      }
+    ],
+    "weight": 20
+  },
+  {
+    "eventId": "EVT_TRADE_005",
+    "eventName": "菌丝商人",
+    "eventType": "trade",
+    "description": "一个全身包裹在菌丝织物中的神秘商人，用源核交换稀有材料。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": "SHOP_MYCELIUM",
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 35
+      },
+      {
+        "type": "mycelium",
+        "amount": 50
+      }
+    ],
+    "weight": 20
+  },
+  {
+    "eventId": "EVT_RANDOM_001",
+    "eventName": "神秘信号源",
+    "eventType": "random",
+    "description": "探测器捕捉到一个微弱的信号，来源不明，可能是求救，也可能是陷阱。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 45
+      },
+      {
+        "type": "mycelium",
+        "amount": 30
+      }
+    ],
+    "weight": 50
+  },
+  {
+    "eventId": "EVT_RANDOM_002",
+    "eventName": "时空异常",
+    "eventType": "random",
+    "description": "前方的空间似乎发生了扭曲，光线弯曲，方向感完全丧失。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 55
+      },
+      {
+        "type": "mycelium",
+        "amount": 35
+      }
+    ],
+    "weight": 50
+  },
+  {
+    "eventId": "EVT_RANDOM_003",
+    "eventName": "废弃补给箱",
+    "eventType": "random",
+    "description": "角落里有一个密封的补给箱，外壳上印着方舟计划的标志。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 40
+      },
+      {
+        "type": "sourceCore",
+        "amount": 5
+      }
+    ],
+    "weight": 50
+  },
+  {
+    "eventId": "EVT_RANDOM_004",
+    "eventName": "菌丝爆发",
+    "eventType": "random",
+    "description": "脚下的菌丝突然剧烈生长，将整条通道封锁，必须找到出路。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 50
+      },
+      {
+        "type": "mycelium",
+        "amount": 60
+      }
+    ],
+    "weight": 50
+  },
+  {
+    "eventId": "EVT_RANDOM_005",
+    "eventName": "未知频率",
+    "eventType": "random",
+    "description": "通讯器收到一段加密广播，解密后似乎是一组坐标和物资投放指令。",
+    "enemies": null,
+    "storyContent": null,
+    "tradeShopId": null,
+    "rewards": [
+      {
+        "type": "exp",
+        "amount": 60
+      },
+      {
+        "type": "mycelium",
+        "amount": 40
+      },
+      {
+        "type": "chip",
+        "amount": 1
+      }
+    ],
+    "weight": 50
+  }
+]

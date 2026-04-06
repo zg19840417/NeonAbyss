@@ -27,20 +27,20 @@
     "resistMultiplier": 0.8
   },
   {
-    "element": "dark",
-    "elementName": "暗",
-    "elementNameEn": "Dark",
-    "strongAgainst": "light",
-    "weakAgainst": "wind",
-    "bonusMultiplier": 1.2,
-    "resistMultiplier": 0.8
-  },
-  {
     "element": "light",
     "elementName": "光",
     "elementNameEn": "Light",
     "strongAgainst": "dark",
     "weakAgainst": "dark",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  },
+  {
+    "element": "dark",
+    "elementName": "暗",
+    "elementNameEn": "Dark",
+    "strongAgainst": "light",
+    "weakAgainst": "wind",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
   }

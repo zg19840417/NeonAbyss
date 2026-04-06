@@ -1,553 +1,482 @@
 [
   {
-    "enemyId": "E002",
-    "name": "巡逻机甲",
-    "englishName": "Patrol Mech",
-    "type": "mech",
-    "minFloor": "1",
-    "maxFloor": "30",
-    "position": "front",
-    "baseHp": 120,
-    "baseAtk": 12,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.09",
-    "speed": "8",
-    "expReward": 10,
-    "coinReward": 20,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E001",
-    "name": "机械猎犬",
-    "englishName": "Mechanical Hound",
-    "type": "mech",
-    "minFloor": "1",
-    "maxFloor": "20",
-    "position": "front",
-    "baseHp": 80,
-    "baseAtk": 15,
-    "baseCritRate": 0.15,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.1",
-    "speed": "12",
-    "expReward": 8,
-    "coinReward": 15,
-    "dropRate": 0.3
-  },
-  {
-    "enemyId": "E003",
-    "name": "变异蜘蛛",
-    "englishName": "Mutant Spider",
+    "enemyId": "E_M001",
+    "name": "锈甲蜥",
+    "nameEn": "Rustscale Lizard",
     "type": "mutant",
-    "minFloor": "5",
-    "maxFloor": "35",
-    "position": "back",
-    "baseHp": 60,
-    "baseAtk": 14,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.3,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.1",
-    "speed": "14",
-    "expReward": 12,
-    "coinReward": 18,
-    "dropRate": 0.2
+    "element": "fire",
+    "baseHp": 320,
+    "baseAtk": 45,
+    "baseDef": 30,
+    "baseSpd": 28,
+    "skills": [],
+    "description": "废弃矿区内常见的变异蜥蜴，体表覆盖铁锈色鳞甲，尾部可喷射高温蒸汽。行动迟缓但咬合力惊人，被咬中的猎物伤口会因高温而难以愈合。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 5,
+        "max": 15
+      }
+    ]
   },
   {
-    "enemyId": "E002",
-    "name": "巡逻机甲",
-    "englishName": "Patrol Mech",
-    "type": "mech",
-    "minFloor": "1",
-    "maxFloor": "30",
-    "position": "front",
-    "baseHp": 120,
-    "baseAtk": 12,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.09",
-    "speed": "8",
-    "expReward": 10,
-    "coinReward": 20,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E004",
-    "name": "炮台",
-    "englishName": "Turret",
-    "type": "mech",
-    "minFloor": "10",
-    "maxFloor": "40",
-    "position": "back",
-    "baseHp": 50,
-    "baseAtk": 20,
-    "baseCritRate": 0.05,
-    "baseDodgeRate": 0,
-    "hpGrowth": "1.1",
-    "atkGrowth": "1.12",
-    "speed": "6",
-    "expReward": 15,
-    "coinReward": 25,
-    "dropRate": 0.15
-  },
-  {
-    "enemyId": "E003",
-    "name": "变异蜘蛛",
-    "englishName": "Mutant Spider",
+    "enemyId": "E_M002",
+    "name": "孢子蛾",
+    "nameEn": "Spore Moth",
     "type": "mutant",
-    "minFloor": "5",
-    "maxFloor": "35",
-    "position": "back",
-    "baseHp": 60,
-    "baseAtk": 14,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.3,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.1",
-    "speed": "14",
-    "expReward": 12,
-    "coinReward": 18,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E005",
-    "name": "腐化者",
-    "englishName": "Corruptor",
-    "type": "spirit",
-    "minFloor": "15",
-    "maxFloor": "45",
-    "position": "middle",
-    "baseHp": 100,
-    "baseAtk": 10,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.15,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.08",
-    "speed": "10",
-    "expReward": 18,
-    "coinReward": 30,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E004",
-    "name": "炮台",
-    "englishName": "Turret",
-    "type": "mech",
-    "minFloor": "10",
-    "maxFloor": "40",
-    "position": "back",
-    "baseHp": 50,
-    "baseAtk": 20,
-    "baseCritRate": 0.05,
-    "baseDodgeRate": 0,
-    "hpGrowth": "1.1",
-    "atkGrowth": "1.12",
-    "speed": "6",
-    "expReward": 15,
-    "coinReward": 25,
-    "dropRate": 0.15
-  },
-  {
-    "enemyId": "E006",
-    "name": "暴走者",
-    "englishName": "Berserker",
-    "type": "beast",
-    "minFloor": "20",
-    "maxFloor": "50",
-    "position": "front",
-    "baseHp": 70,
-    "baseAtk": 22,
-    "baseCritRate": 0.25,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.13",
-    "speed": "10",
-    "expReward": 20,
-    "coinReward": 35,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E005",
-    "name": "腐化者",
-    "englishName": "Corruptor",
-    "type": "spirit",
-    "minFloor": "15",
-    "maxFloor": "45",
-    "position": "middle",
-    "baseHp": 100,
-    "baseAtk": 10,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.15,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.08",
-    "speed": "10",
-    "expReward": 18,
-    "coinReward": 30,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E007",
-    "name": "影子刺客",
-    "englishName": "Shadow Assassin",
-    "type": "spirit",
-    "minFloor": "25",
-    "maxFloor": "55",
-    "position": "back",
-    "baseHp": 65,
-    "baseAtk": 18,
-    "baseCritRate": 0.35,
-    "baseDodgeRate": 0.25,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.11",
-    "speed": "15",
-    "expReward": 22,
-    "coinReward": 40,
-    "dropRate": 0.18
-  },
-  {
-    "enemyId": "E006",
-    "name": "暴走者",
-    "englishName": "Berserker",
-    "type": "beast",
-    "minFloor": "20",
-    "maxFloor": "50",
-    "position": "front",
-    "baseHp": 70,
-    "baseAtk": 22,
-    "baseCritRate": 0.25,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.13",
-    "speed": "10",
-    "expReward": 20,
-    "coinReward": 35,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E008",
-    "name": "重装卫士",
-    "englishName": "Heavy Guardian",
-    "type": "mech",
-    "minFloor": "30",
-    "maxFloor": "60",
-    "position": "front",
-    "baseHp": 200,
-    "baseAtk": 8,
-    "baseCritRate": 0.05,
-    "baseDodgeRate": 0,
-    "hpGrowth": "1.15",
-    "atkGrowth": "1.07",
-    "speed": "5",
-    "expReward": 25,
-    "coinReward": 45,
-    "dropRate": 0.22
-  },
-  {
-    "enemyId": "E007",
-    "name": "影子刺客",
-    "englishName": "Shadow Assassin",
-    "type": "spirit",
-    "minFloor": "25",
-    "maxFloor": "55",
-    "position": "back",
-    "baseHp": 65,
-    "baseAtk": 18,
-    "baseCritRate": 0.35,
-    "baseDodgeRate": 0.25,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.11",
-    "speed": "15",
-    "expReward": 22,
-    "coinReward": 40,
-    "dropRate": 0.18
-  },
-  {
-    "enemyId": "E009",
-    "name": "毒液喷射者",
-    "englishName": "Toxic Spitter",
-    "type": "mutant",
-    "minFloor": "35",
-    "maxFloor": "65",
-    "position": "middle",
-    "baseHp": 90,
-    "baseAtk": 12,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.09",
-    "speed": "9",
-    "expReward": 20,
-    "coinReward": 38,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E008",
-    "name": "重装卫士",
-    "englishName": "Heavy Guardian",
-    "type": "mech",
-    "minFloor": "30",
-    "maxFloor": "60",
-    "position": "front",
-    "baseHp": 200,
-    "baseAtk": 8,
-    "baseCritRate": 0.05,
-    "baseDodgeRate": 0,
-    "hpGrowth": "1.15",
-    "atkGrowth": "1.07",
-    "speed": "5",
-    "expReward": 25,
-    "coinReward": 45,
-    "dropRate": 0.22
-  },
-  {
-    "enemyId": "E010",
-    "name": "灵魂收割者",
-    "englishName": "Soul Reaper",
-    "type": "undead",
-    "minFloor": "40",
-    "maxFloor": "70",
-    "position": "middle",
-    "baseHp": 110,
-    "baseAtk": 16,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.15,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.1",
-    "speed": "11",
-    "expReward": 28,
-    "coinReward": 50,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E009",
-    "name": "毒液喷射者",
-    "englishName": "Toxic Spitter",
-    "type": "mutant",
-    "minFloor": "35",
-    "maxFloor": "65",
-    "position": "middle",
-    "baseHp": 90,
-    "baseAtk": 12,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.09",
-    "speed": "9",
-    "expReward": 20,
-    "coinReward": 38,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E010",
-    "name": "灵魂收割者",
-    "englishName": "Soul Reaper",
-    "type": "undead",
-    "minFloor": "40",
-    "maxFloor": "70",
-    "position": "middle",
-    "baseHp": 110,
-    "baseAtk": 16,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.15,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.1",
-    "speed": "11",
-    "expReward": 28,
-    "coinReward": 50,
-    "dropRate": 0.25
-  },
-  {
-    "enemyId": "E011",
-    "name": "辐射巨蝎",
-    "englishName": "Radiation Scorpion",
-    "type": "beast",
-    "minFloor": "30",
-    "maxFloor": "55",
-    "position": "front",
-    "baseHp": 150,
-    "baseAtk": 18,
-    "baseCritRate": 0.15,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.09",
-    "speed": "8",
-    "expReward": 25,
-    "coinReward": 50,
-    "dropRate": 0.22
-  },
-  {
-    "enemyId": "E012",
-    "name": "幽灵战舰",
-    "englishName": "Ghost Warship",
-    "type": "spirit",
-    "minFloor": "30",
-    "maxFloor": "60",
-    "position": "back",
-    "baseHp": 130,
-    "baseAtk": 20,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.2,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.1",
-    "speed": "10",
-    "expReward": 28,
-    "coinReward": 52,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E013",
-    "name": "钢铁巨像",
-    "englishName": "Steel Colossus",
-    "type": "mech",
-    "minFloor": "35",
-    "maxFloor": "65",
-    "position": "front",
-    "baseHp": 220,
-    "baseAtk": 15,
-    "baseCritRate": 0.05,
-    "baseDodgeRate": 0,
-    "hpGrowth": "1.14",
-    "atkGrowth": "1.08",
-    "speed": "5",
-    "expReward": 30,
-    "coinReward": 55,
-    "dropRate": 0.18
-  },
-  {
-    "enemyId": "E014",
-    "name": "深渊蠕虫",
-    "englishName": "Abyss Worm",
-    "type": "mutant",
-    "minFloor": "35",
-    "maxFloor": "60",
-    "position": "middle",
-    "baseHp": 160,
-    "baseAtk": 22,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.11",
-    "speed": "9",
-    "expReward": 32,
-    "coinReward": 58,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E015",
-    "name": "亡灵将军",
-    "englishName": "Undead General",
-    "type": "undead",
-    "minFloor": "40",
-    "maxFloor": "70",
-    "position": "front",
-    "baseHp": 200,
-    "baseAtk": 20,
-    "baseCritRate": 0.15,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.1",
-    "speed": "7",
-    "expReward": 35,
-    "coinReward": 60,
-    "dropRate": 0.22
-  },
-  {
-    "enemyId": "E016",
-    "name": "量子幽灵",
-    "englishName": "Quantum Phantom",
-    "type": "spirit",
-    "minFloor": "40",
-    "maxFloor": "65",
-    "position": "back",
-    "baseHp": 120,
-    "baseAtk": 25,
-    "baseCritRate": 0.25,
-    "baseDodgeRate": 0.25,
-    "hpGrowth": "1.11",
-    "atkGrowth": "1.12",
-    "speed": "13",
-    "expReward": 33,
-    "coinReward": 62,
-    "dropRate": 0.18
-  },
-  {
-    "enemyId": "E017",
-    "name": "变异泰坦",
-    "englishName": "Mutant Titan",
-    "type": "beast",
-    "minFloor": "45",
-    "maxFloor": "70",
-    "position": "front",
-    "baseHp": 280,
-    "baseAtk": 22,
-    "baseCritRate": 0.1,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.15",
-    "atkGrowth": "1.1",
-    "speed": "6",
-    "expReward": 38,
-    "coinReward": 65,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E018",
-    "name": "机械死神",
-    "englishName": "Mech Reaper",
-    "type": "mech",
-    "minFloor": "45",
-    "maxFloor": "70",
-    "position": "middle",
+    "element": "wind",
     "baseHp": 180,
-    "baseAtk": 28,
-    "baseCritRate": 0.2,
-    "baseDodgeRate": 0.1,
-    "hpGrowth": "1.13",
-    "atkGrowth": "1.12",
-    "speed": "9",
-    "expReward": 40,
-    "coinReward": 68,
-    "dropRate": 0.22
-  },
-  {
-    "enemyId": "E019",
-    "name": "虚空行者",
-    "englishName": "Void Walker",
-    "type": "spirit",
-    "minFloor": "50",
-    "maxFloor": "70",
-    "position": "back",
-    "baseHp": 140,
-    "baseAtk": 30,
-    "baseCritRate": 0.3,
-    "baseDodgeRate": 0.2,
-    "hpGrowth": "1.12",
-    "atkGrowth": "1.13",
-    "speed": "12",
-    "expReward": 42,
-    "coinReward": 72,
-    "dropRate": 0.2
-  },
-  {
-    "enemyId": "E020",
-    "name": "末日守卫",
-    "englishName": "Doom Guardian",
-    "type": "undead",
-    "minFloor": "50",
-    "maxFloor": "70",
-    "position": "front",
-    "baseHp": 350,
     "baseAtk": 35,
-    "baseCritRate": 0.15,
-    "baseDodgeRate": 0.05,
-    "hpGrowth": "1.15",
-    "atkGrowth": "1.13",
-    "speed": "7",
-    "expReward": 50,
-    "coinReward": 80,
-    "dropRate": 0.25
+    "baseDef": 15,
+    "baseSpd": 42,
+    "skills": [],
+    "description": "吸收了辐射粉尘后体型膨胀至掌心大小的飞蛾，翅膀振动时会散播有毒孢子。群聚时形成的孢子云可覆盖整个矿区通道。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 3,
+        "max": 10
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M003",
+    "name": "腐蚀水母",
+    "nameEn": "Corrosive Jellyfish",
+    "type": "mutant",
+    "element": "water",
+    "baseHp": 250,
+    "baseAtk": 40,
+    "baseDef": 20,
+    "baseSpd": 18,
+    "skills": [],
+    "description": "沉没水城中漂浮的变异水母，触须分泌的酸性液体可在30秒内腐蚀标准防护服。通常成群结队出没于废弃蓄水池中。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 8,
+        "max": 18
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M004",
+    "name": "铁线藤",
+    "nameEn": "Wire Vine",
+    "type": "mutant",
+    "element": "wind",
+    "baseHp": 400,
+    "baseAtk": 30,
+    "baseDef": 50,
+    "baseSpd": 10,
+    "skills": [],
+    "description": "融合了废弃电缆基因的变异藤蔓，以金属离子为养分生长。根系可延伸至地下50米，感应到震动后会缠绞经过的生物。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 6,
+        "max": 14
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M005",
+    "name": "荧光苔鼠",
+    "nameEn": "Glowmoss Rat",
+    "type": "mutant",
+    "element": "light",
+    "baseHp": 150,
+    "baseAtk": 25,
+    "baseDef": 12,
+    "baseSpd": 50,
+    "skills": [],
+    "description": "体表附着生物荧光苔藓的变异鼠类，在黑暗中发出幽蓝光芒。虽个体弱小但繁殖力极强，常以百为单位成群出没。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 2,
+        "max": 8
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M006",
+    "name": "酸液蟾",
+    "nameEn": "Acid Toad",
+    "type": "mutant",
+    "element": "water",
+    "baseHp": 350,
+    "baseAtk": 50,
+    "baseDef": 35,
+    "baseSpd": 15,
+    "skills": [],
+    "description": "栖息于污染水域的巨型蟾蜍，皮肤持续分泌pH值低于1的强酸。跳跃攻击可将酸液溅射至5米范围内，腐蚀一切有机与无机物质。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 8,
+        "max": 20
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M007",
+    "name": "废铁蟹",
+    "nameEn": "Scrap Crab",
+    "type": "mutant",
+    "element": "fire",
+    "baseHp": 500,
+    "baseAtk": 55,
+    "baseDef": 60,
+    "baseSpd": 12,
+    "skills": [],
+    "description": "以废弃金属为甲壳的变异螃蟹，钳臂可夹断直径10厘米的钢管。移动缓慢但防御极高，常堵塞通道形成天然路障。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 10,
+        "max": 22
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M008",
+    "name": "裂变蜂",
+    "nameEn": "Fission Wasp",
+    "type": "mutant",
+    "element": "dark",
+    "baseHp": 120,
+    "baseAtk": 60,
+    "baseDef": 8,
+    "baseSpd": 55,
+    "skills": [],
+    "description": "受到辐射后基因链断裂又重组的变异蜂类，尾针注入的毒素可导致神经系统短暂紊乱。攻击时发出高频嗡鸣，令人头晕目眩。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 4,
+        "max": 12
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M009",
+    "name": "岩壳龟",
+    "nameEn": "Rockshell Turtle",
+    "type": "mutant",
+    "element": "wind",
+    "baseHp": 600,
+    "baseAtk": 35,
+    "baseDef": 70,
+    "baseSpd": 8,
+    "skills": [],
+    "description": "背甲与矿岩完全融合的巨型陆龟，移动时地面产生细微震动。缩入壳中时防御力提升200%，是废土上最难击杀的低级变异生物之一。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 10,
+        "max": 25
+      }
+    ]
+  },
+  {
+    "enemyId": "E_M010",
+    "name": "毒雾蝇",
+    "nameEn": "Toxmist Fly",
+    "type": "mutant",
+    "element": "dark",
+    "baseHp": 100,
+    "baseAtk": 30,
+    "baseDef": 10,
+    "baseSpd": 60,
+    "skills": [],
+    "description": "携带高浓度毒素微粒的变异苍蝇，飞行轨迹留下持续30秒的有毒尾迹。虽攻击力微弱，但其毒素可导致持续性的呼吸系统损伤。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 2,
+        "max": 8
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L001",
+    "name": "失心猎手·阿凯",
+    "nameEn": "Lost Hunter Kai",
+    "type": "lost",
+    "element": "fire",
+    "baseHp": 1200,
+    "baseAtk": 130,
+    "baseDef": 65,
+    "baseSpd": 85,
+    "skills": [
+      "SK_E_L001",
+      "SK_E_L002"
+    ],
+    "description": "曾是矿区精英侦察兵，辐射暴露后意识逐渐消散，仅保留猎杀本能。手持改装过的等离子猎弓，射程可达800米，箭矢附带高温燃烧效果。行动模式仍残留战术素养，会利用地形进行伏击。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 20,
+        "max": 40
+      },
+      {
+        "type": "sourceCore",
+        "min": 1,
+        "max": 3
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L002",
+    "name": "失心守卫·老赵",
+    "nameEn": "Lost Guard Zhao",
+    "type": "lost",
+    "element": "water",
+    "baseHp": 2500,
+    "baseAtk": 90,
+    "baseDef": 140,
+    "baseSpd": 45,
+    "skills": [
+      "SK_E_L003",
+      "SK_E_L004"
+    ],
+    "description": "沉没水城前守备队队长，身穿重型潜水作战服，意识丧失后仍执行巡逻指令。右臂已与水下切割工具融合，单次挥击可切开15厘米厚的合金钢板。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 25,
+        "max": 50
+      },
+      {
+        "type": "sourceCore",
+        "min": 2,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L003",
+    "name": "失心学者·方晴",
+    "nameEn": "Lost Scholar Fang",
+    "type": "lost",
+    "element": "wind",
+    "baseHp": 900,
+    "baseAtk": 160,
+    "baseDef": 50,
+    "baseSpd": 95,
+    "skills": [
+      "SK_E_L005",
+      "SK_E_L006"
+    ],
+    "description": "腐化丛林研究站首席生物学家，过度接触变异孢子后精神崩溃。脑部与便携式生物分析仪融合，可释放定向超声波攻击，频率足以震碎普通防护面罩。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 18,
+        "max": 35
+      },
+      {
+        "type": "sourceCore",
+        "min": 1,
+        "max": 4
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L004",
+    "name": "失心工程师·陈磊",
+    "nameEn": "Lost Engineer Chen",
+    "type": "lost",
+    "element": "light",
+    "baseHp": 1800,
+    "baseAtk": 120,
+    "baseDef": 110,
+    "baseSpd": 60,
+    "skills": [
+      "SK_E_L007",
+      "SK_E_L008"
+    ],
+    "description": "深海遗迹维护工程师，被暗能侵蚀后与水下维修机甲融为一体。胸口的源核反应堆提供源源不断的能量，双臂可发射高能焊接光束。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 22,
+        "max": 45
+      },
+      {
+        "type": "sourceCore",
+        "min": 2,
+        "max": 4
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L005",
+    "name": "失心指挥·吴刚",
+    "nameEn": "Lost Commander Wu",
+    "type": "lost",
+    "element": "fire",
+    "baseHp": 3000,
+    "baseAtk": 180,
+    "baseDef": 130,
+    "baseSpd": 70,
+    "skills": [
+      "SK_E_L009",
+      "SK_E_L010"
+    ],
+    "description": "军事要塞前战术指挥官，大脑被军用神经芯片接管后成为最危险的失心者之一。全身植入战斗强化外骨骼，可同时操控3台无人战斗单位。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 30,
+        "max": 60
+      },
+      {
+        "type": "sourceCore",
+        "min": 3,
+        "max": 6
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L006",
+    "name": "失心医官·林小溪",
+    "nameEn": "Lost Medic Lin",
+    "type": "lost",
+    "element": "light",
+    "baseHp": 1500,
+    "baseAtk": 100,
+    "baseDef": 80,
+    "baseSpd": 75,
+    "skills": [
+      "SK_E_L011",
+      "SK_E_L012"
+    ],
+    "description": "荧光温泉医疗站主治医官，过量接触源核辐射后精神异变。手中的纳米修复枪被改造成生物武器，原本治愈的纳米机器人变为侵蚀性纳米虫群。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 20,
+        "max": 40
+      },
+      {
+        "type": "sourceCore",
+        "min": 2,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L007",
+    "name": "失心技师·张薇",
+    "nameEn": "Lost Tech Zhang",
+    "type": "lost",
+    "element": "wind",
+    "baseHp": 2000,
+    "baseAtk": 150,
+    "baseDef": 100,
+    "baseSpd": 80,
+    "skills": [
+      "SK_E_L013",
+      "SK_E_L014"
+    ],
+    "description": "机械军火库高级武器技师，意识被武器系统AI同化后成为人形战斗终端。背部安装了4联装微型导弹发射器，可在3秒内完成装填与发射。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 25,
+        "max": 50
+      },
+      {
+        "type": "sourceCore",
+        "min": 2,
+        "max": 5
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L008",
+    "name": "失心领航·苏然",
+    "nameEn": "Lost Navigator Su",
+    "type": "lost",
+    "element": "light",
+    "baseHp": 2200,
+    "baseAtk": 140,
+    "baseDef": 120,
+    "baseSpd": 90,
+    "skills": [
+      "SK_E_L015",
+      "SK_E_L016"
+    ],
+    "description": "方舟核心区首席领航员，脑机接口被异常信号劫持后丧失自我意识。双眼被全息导航界面取代，可释放干扰波使方舟系统产生错误指令。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 28,
+        "max": 55
+      },
+      {
+        "type": "sourceCore",
+        "min": 3,
+        "max": 6
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L009",
+    "name": "失心哨兵·韩冰",
+    "nameEn": "Lost Sentinel Han",
+    "type": "lost",
+    "element": "dark",
+    "baseHp": 2800,
+    "baseAtk": 170,
+    "baseDef": 115,
+    "baseSpd": 85,
+    "skills": [
+      "SK_E_L017",
+      "SK_E_L018"
+    ],
+    "description": "辐射风暴外围哨兵，长期暴露于极端辐射后身体产生不可逆变异。左半身已结晶化为暗色辐射晶体，可释放致命的辐射脉冲波。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 30,
+        "max": 60
+      },
+      {
+        "type": "sourceCore",
+        "min": 3,
+        "max": 7
+      }
+    ]
+  },
+  {
+    "enemyId": "E_L010",
+    "name": "失心先驱·奥莉",
+    "nameEn": "Lost Pioneer Ori",
+    "type": "lost",
+    "element": "dark",
+    "baseHp": 3500,
+    "baseAtk": 200,
+    "baseDef": 150,
+    "baseSpd": 95,
+    "skills": [
+      "SK_E_L019",
+      "SK_E_L020"
+    ],
+    "description": "终焉之地最早的探索者之一，被未知暗能完全吞噬后成为最强大的失心者。全身被暗物质包裹，可操控空间扭曲产生引力塌缩，是接近Boss级别的存在。",
+    "dropTable": [
+      {
+        "type": "mycelium",
+        "min": 40,
+        "max": 80
+      },
+      {
+        "type": "sourceCore",
+        "min": 5,
+        "max": 10
+      }
+    ]
   }
 ]

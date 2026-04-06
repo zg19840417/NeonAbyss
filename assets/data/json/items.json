@@ -1,0 +1,439 @@
+[
+  {
+    "itemId": "ITEM_RAD_MEDICINE",
+    "name": "抗辐射药剂",
+    "nameEn": "Anti-Radiation Medicine",
+    "type": "consumable",
+    "subType": "radiationMedicine",
+    "description": "禁区入场必备道具，中和体内积累的辐射粒子。每小时可免费领取1个。",
+    "effect": {
+      "type": "radiationCleanse",
+      "value": 100
+    },
+    "buyPrice": 50,
+    "sellPrice": 10,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "freeHourly",
+      "sourceCoreShop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_PROF_TANK",
+    "name": "坦克职业插件",
+    "nameEn": "Tank Profession Plugin",
+    "type": "plugin",
+    "subType": "professionPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为坦克职业芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "profession",
+      "value": "tank"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_PROF_DPS",
+    "name": "输出职业插件",
+    "nameEn": "DPS Profession Plugin",
+    "type": "plugin",
+    "subType": "professionPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为输出职业芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "profession",
+      "value": "dps"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_PROF_SUPPORT",
+    "name": "辅助职业插件",
+    "nameEn": "Support Profession Plugin",
+    "type": "plugin",
+    "subType": "professionPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为辅助职业芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "profession",
+      "value": "support"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEM_WATER",
+    "name": "水元素插件",
+    "nameEn": "Water Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为水元素芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "element",
+      "value": "water"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEM_FIRE",
+    "name": "火元素插件",
+    "nameEn": "Fire Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为火元素芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "element",
+      "value": "fire"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEM_WIND",
+    "name": "风元素插件",
+    "nameEn": "Wind Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为风元素芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "element",
+      "value": "wind"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEM_LIGHT",
+    "name": "光元素插件",
+    "nameEn": "Light Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为光元素芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "element",
+      "value": "light"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEM_DARK",
+    "name": "暗元素插件",
+    "nameEn": "Dark Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为暗元素芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "element",
+      "value": "dark"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_PLANT",
+    "name": "植物系插件",
+    "nameEn": "Plant Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为植物系芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "race",
+      "value": "plant"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_ANIMAL",
+    "name": "动物系插件",
+    "nameEn": "Animal Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为动物系芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "race",
+      "value": "animal"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_MECH",
+    "name": "机械系插件",
+    "nameEn": "Mech Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为机械系芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "race",
+      "value": "mech"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_ENERGY",
+    "name": "能量系插件",
+    "nameEn": "Energy Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为能量系芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "race",
+      "value": "energy"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_HYBRID",
+    "name": "混合系插件",
+    "nameEn": "Hybrid Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成定向插件，植入后合成结果限定为混合系芯片。",
+    "effect": {
+      "type": "craftFilter",
+      "filter": "race",
+      "value": "hybrid"
+    },
+    "buyPrice": 200,
+    "sellPrice": 40,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "questReward",
+      "dungeonDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_NANO_REPAIR_KIT",
+    "name": "纳米修复剂",
+    "nameEn": "Nano Repair Agent",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "注射型纳米机器人，战斗中恢复全体友方15%最大生命值。",
+    "effect": {
+      "type": "healAll",
+      "value": 0.15
+    },
+    "buyPrice": 80,
+    "sellPrice": 15,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "dungeonDrop",
+      "questReward"
+    ]
+  },
+  {
+    "itemId": "ITEM_ADRENALINE_SHOT",
+    "name": "肾上腺素注射液",
+    "nameEn": "Adrenaline Injector",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "军用级肾上腺素浓缩液，战斗中全体友方攻击力提升20%，持续3回合。",
+    "effect": {
+      "type": "buffAtkAll",
+      "value": 0.2,
+      "duration": 3
+    },
+    "buyPrice": 100,
+    "sellPrice": 20,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "dungeonDrop",
+      "bossDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_RAD_SHIELD_PATCH",
+    "name": "辐射屏蔽贴片",
+    "nameEn": "Radiation Shield Patch",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "含铅聚合物贴片，战斗中全体友方减伤率提升15%，持续3回合。",
+    "effect": {
+      "type": "buffDefAll",
+      "value": 0.15,
+      "duration": 3
+    },
+    "buyPrice": 100,
+    "sellPrice": 20,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "dungeonDrop",
+      "bossDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_STIM_PACK",
+    "name": "神经刺激剂",
+    "nameEn": "Neural Stim Pack",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "突触传导加速剂，战斗中全体友方速度提升25%，持续2回合。",
+    "effect": {
+      "type": "buffSpdAll",
+      "value": 0.25,
+      "duration": 2
+    },
+    "buyPrice": 120,
+    "sellPrice": 25,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "bossDrop",
+      "pvpReward"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLASMA_GRENADE",
+    "name": "等离子手雷",
+    "nameEn": "Plasma Grenade",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "高能等离子爆炸装置，战斗开始时对敌方全体造成攻击力30%的真实伤害。",
+    "effect": {
+      "type": "trueDamageAll",
+      "value": 0.3
+    },
+    "buyPrice": 150,
+    "sellPrice": 30,
+    "stackLimit": 10,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "bossDrop",
+      "pvpReward"
+    ]
+  },
+  {
+    "itemId": "ITEM_EMP_DECOY",
+    "name": "电磁脉冲诱饵",
+    "nameEn": "EMP Decoy Device",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "释放EMP干扰波，战斗中敌方全体速度降低20%，持续2回合。",
+    "effect": {
+      "type": "debuffSpdEnemy",
+      "value": 0.2,
+      "duration": 2
+    },
+    "buyPrice": 120,
+    "sellPrice": 25,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "dungeonDrop",
+      "pvpReward"
+    ]
+  },
+  {
+    "itemId": "ITEM_BIO_BOOSTER",
+    "name": "生物增幅针剂",
+    "nameEn": "Bio Booster Shot",
+    "type": "consumable",
+    "subType": "battleBuff",
+    "description": "基因编辑增幅剂，战斗中全体友方暴击率提升15%，持续3回合。",
+    "effect": {
+      "type": "buffCritAll",
+      "value": 0.15,
+      "duration": 3
+    },
+    "buyPrice": 130,
+    "sellPrice": 25,
+    "stackLimit": 20,
+    "obtainMethods": [
+      "sourceCoreShop",
+      "bossDrop",
+      "questReward"
+    ]
+  }
+]

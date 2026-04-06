@@ -1,0 +1,13 @@
+[
+  {
+    "poolId": "POOL_NORMAL",
+    "poolName": "废墟探索卡池",
+    "poolType": "normal",
+    "singleCost": 100,
+    "tenCost": 900,
+    "pityLimit": 90,
+    "pityGuarantee": "UR",
+    "softPityStart": 75,
+    "description": "废土幸存者们在辐射废墟中搜寻融合姬信号的核心渠道。90次探索内必定发现UR级融合姬，从第75次起信号强度逐渐增强。"
+  }
+]

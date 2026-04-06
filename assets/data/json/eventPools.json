@@ -1,0 +1,830 @@
+[
+  {
+    "poolId": "POOL_ZONE_LAB",
+    "poolName": "地下实验室事件池",
+    "description": "废弃实验室中的随机事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_001",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_002",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_MINE",
+    "poolName": "废弃矿坑事件池",
+    "description": "矿坑深处的危险事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_001",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_002",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_003",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_NEST",
+    "poolName": "变异巢穴事件池",
+    "description": "巢穴中密集的变异生物事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_001",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_002",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_003",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_004",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_AQUA",
+    "poolName": "地下水脉事件池",
+    "description": "地下水道中的探索事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_004",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_BATTLE_005",
+        "weight": 70
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_SPORE",
+    "poolName": "菌丝地穴事件池",
+    "description": "菌丝蔓延的地下空间事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_004",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_005",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_006",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_TREE",
+    "poolName": "枯树之心事件池",
+    "description": "巨树内部的事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_005",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_006",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_007",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_001",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_SUNKEN",
+    "poolName": "沉没都市事件池",
+    "description": "水下废墟中的探索事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_006",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_007",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_008",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_BATTLE_009",
+        "weight": 65
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 0
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 0
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_DEEP",
+    "poolName": "深层水道事件池",
+    "description": "深层水道的危险事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_009",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_010",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 20
+      },
+      {
+        "eventId": "EVT_TRADE_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 5
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 5
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_PROVING",
+    "poolName": "武器试验场事件池",
+    "description": "军事试验场中的战斗事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_009",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_010",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_011",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_HQ",
+    "poolName": "前哨指挥部事件池",
+    "description": "指挥部中的机密事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_010",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_011",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_012",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_OASIS",
+    "poolName": "绿洲深处事件池",
+    "description": "绿洲中的生态事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_011",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_012",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_001",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_SPRING",
+    "poolName": "生命之泉事件池",
+    "description": "生命之泉的神秘事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_FACTORY",
+    "poolName": "机甲工厂事件池",
+    "description": "工厂中的机械事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_012",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_ARSENAL",
+    "poolName": "核心军库事件池",
+    "description": "军库中的高危事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 60
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 10
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 10
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_DORM",
+    "poolName": "休眠舱区事件池",
+    "description": "休眠舱区的诡异事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_STORY_001",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_002",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 15
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_CORE",
+    "poolName": "方舟核心事件池",
+    "description": "方舟核心的关键事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_STORY_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_003",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 15
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_RUINS",
+    "poolName": "裂变废墟事件池",
+    "description": "辐射废墟中的致命事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 15
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_STORM",
+    "poolName": "辐射风暴眼事件池",
+    "description": "风暴眼中的极端事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 55
+      },
+      {
+        "eventId": "EVT_STORY_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_004",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 15
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_RIFT",
+    "poolName": "虚空裂隙事件池",
+    "description": "裂隙中的异常事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 20
+      }
+    ]
+  },
+  {
+    "poolId": "POOL_ZONE_OMEGA",
+    "poolName": "终焉之地事件池",
+    "description": "最终区域的极限事件",
+    "events": [
+      {
+        "eventId": "EVT_BATTLE_013",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_BATTLE_014",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_BATTLE_015",
+        "weight": 50
+      },
+      {
+        "eventId": "EVT_STORY_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_TRADE_005",
+        "weight": 15
+      },
+      {
+        "eventId": "EVT_RANDOM_005",
+        "weight": 20
+      }
+    ]
+  }
+]

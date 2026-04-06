@@ -1,0 +1,4062 @@
+[
+  {
+    "stageId": "WS_01_01",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 1,
+    "requiredLevel": 1,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E010",
+        "level": 2
+      },
+      {
+        "enemyId": "E004",
+        "level": 2
+      },
+      {
+        "enemyId": "E006",
+        "level": 3
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 60
+      },
+      {
+        "type": "mycelium",
+        "amount": 35
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_02",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 2,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_01",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 3
+      },
+      {
+        "enemyId": "E006",
+        "level": 3
+      },
+      {
+        "enemyId": "E010",
+        "level": 4
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 70
+      },
+      {
+        "type": "mycelium",
+        "amount": 40
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_03",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 3,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_02",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 4
+      },
+      {
+        "enemyId": "E004",
+        "level": 4
+      },
+      {
+        "enemyId": "E002",
+        "level": 5
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 80
+      },
+      {
+        "type": "mycelium",
+        "amount": 45
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_04",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 4,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_03",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 5
+      },
+      {
+        "enemyId": "E004",
+        "level": 5
+      },
+      {
+        "enemyId": "E009",
+        "level": 6
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 90
+      },
+      {
+        "type": "mycelium",
+        "amount": 50
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_05",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 5,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_04",
+    "enemies": [
+      {
+        "enemyId": "E010",
+        "level": 6
+      },
+      {
+        "enemyId": "E006",
+        "level": 6
+      },
+      {
+        "enemyId": "E002",
+        "level": 7
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 100
+      },
+      {
+        "type": "mycelium",
+        "amount": 55
+      }
+    ],
+    "unlockZoneId": "ZONE_LAB"
+  },
+  {
+    "stageId": "WS_01_06",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 6,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_05",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 7
+      },
+      {
+        "enemyId": "E001",
+        "level": 7
+      },
+      {
+        "enemyId": "E010",
+        "level": 8
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 110
+      },
+      {
+        "type": "mycelium",
+        "amount": 60
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_07",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 7,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_06",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 8
+      },
+      {
+        "enemyId": "E007",
+        "level": 8
+      },
+      {
+        "enemyId": "E008",
+        "level": 9
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 120
+      },
+      {
+        "type": "mycelium",
+        "amount": 65
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_08",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 8,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_07",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 9
+      },
+      {
+        "enemyId": "E002",
+        "level": 9
+      },
+      {
+        "enemyId": "E007",
+        "level": 10
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 130
+      },
+      {
+        "type": "mycelium",
+        "amount": 70
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_09",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 9,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_08",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 10
+      },
+      {
+        "enemyId": "E004",
+        "level": 10
+      },
+      {
+        "enemyId": "E008",
+        "level": 11
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 140
+      },
+      {
+        "type": "mycelium",
+        "amount": 75
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_01_10",
+    "mapId": 1,
+    "mapName": "废弃城区",
+    "stageIndex": 10,
+    "requiredLevel": 1,
+    "requiredStageId": "WS_01_09",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 11
+      },
+      {
+        "enemyId": "E004",
+        "level": 11
+      },
+      {
+        "enemyId": "E010",
+        "level": 12
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 80
+      }
+    ],
+    "unlockZoneId": "ZONE_MINE"
+  },
+  {
+    "stageId": "WS_02_01",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 1,
+    "requiredLevel": 11,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 12
+      },
+      {
+        "enemyId": "E006",
+        "level": 12
+      },
+      {
+        "enemyId": "E007",
+        "level": 13
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 90
+      },
+      {
+        "type": "mycelium",
+        "amount": 55
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_02",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 2,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_01",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 13
+      },
+      {
+        "enemyId": "E008",
+        "level": 13
+      },
+      {
+        "enemyId": "E010",
+        "level": 14
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 100
+      },
+      {
+        "type": "mycelium",
+        "amount": 60
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_03",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 3,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_02",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 14
+      },
+      {
+        "enemyId": "E001",
+        "level": 14
+      },
+      {
+        "enemyId": "E008",
+        "level": 15
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 110
+      },
+      {
+        "type": "mycelium",
+        "amount": 65
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_04",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 4,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_03",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 15
+      },
+      {
+        "enemyId": "E002",
+        "level": 15
+      },
+      {
+        "enemyId": "E004",
+        "level": 16
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 120
+      },
+      {
+        "type": "mycelium",
+        "amount": 70
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_05",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 5,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_04",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 16
+      },
+      {
+        "enemyId": "E008",
+        "level": 16
+      },
+      {
+        "enemyId": "E002",
+        "level": 17
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 130
+      },
+      {
+        "type": "mycelium",
+        "amount": 75
+      }
+    ],
+    "unlockZoneId": "ZONE_NEST"
+  },
+  {
+    "stageId": "WS_02_06",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 6,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_05",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 17
+      },
+      {
+        "enemyId": "E002",
+        "level": 17
+      },
+      {
+        "enemyId": "E005",
+        "level": 18
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 140
+      },
+      {
+        "type": "mycelium",
+        "amount": 80
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_07",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 7,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_06",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 18
+      },
+      {
+        "enemyId": "E004",
+        "level": 18
+      },
+      {
+        "enemyId": "E003",
+        "level": 19
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 85
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_08",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 8,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_07",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 19
+      },
+      {
+        "enemyId": "E009",
+        "level": 19
+      },
+      {
+        "enemyId": "E004",
+        "level": 20
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 160
+      },
+      {
+        "type": "mycelium",
+        "amount": 90
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_09",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 9,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_08",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 20
+      },
+      {
+        "enemyId": "E001",
+        "level": 20
+      },
+      {
+        "enemyId": "E003",
+        "level": 21
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 15
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 170
+      },
+      {
+        "type": "mycelium",
+        "amount": 95
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_02_10",
+    "mapId": 2,
+    "mapName": "荒野公路",
+    "stageIndex": 10,
+    "requiredLevel": 11,
+    "requiredStageId": "WS_02_09",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 21
+      },
+      {
+        "enemyId": "E001",
+        "level": 21
+      },
+      {
+        "enemyId": "E010",
+        "level": 22
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 100
+      }
+    ],
+    "unlockZoneId": "ZONE_AQUA"
+  },
+  {
+    "stageId": "WS_03_01",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 1,
+    "requiredLevel": 21,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 22
+      },
+      {
+        "enemyId": "E008",
+        "level": 22
+      },
+      {
+        "enemyId": "E009",
+        "level": 23
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 120
+      },
+      {
+        "type": "mycelium",
+        "amount": 75
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_02",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 2,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_01",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 23
+      },
+      {
+        "enemyId": "E010",
+        "level": 23
+      },
+      {
+        "enemyId": "E007",
+        "level": 24
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 130
+      },
+      {
+        "type": "mycelium",
+        "amount": 80
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_03",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 3,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_02",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 24
+      },
+      {
+        "enemyId": "E004",
+        "level": 24
+      },
+      {
+        "enemyId": "E009",
+        "level": 25
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 140
+      },
+      {
+        "type": "mycelium",
+        "amount": 85
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_04",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 4,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_03",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 25
+      },
+      {
+        "enemyId": "E004",
+        "level": 25
+      },
+      {
+        "enemyId": "E007",
+        "level": 26
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 90
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_05",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 5,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_04",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 26
+      },
+      {
+        "enemyId": "E007",
+        "level": 26
+      },
+      {
+        "enemyId": "E005",
+        "level": 27
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 60
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 160
+      },
+      {
+        "type": "mycelium",
+        "amount": 95
+      }
+    ],
+    "unlockZoneId": "ZONE_SPORE"
+  },
+  {
+    "stageId": "WS_03_06",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 6,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_05",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 27
+      },
+      {
+        "enemyId": "E009",
+        "level": 27
+      },
+      {
+        "enemyId": "E004",
+        "level": 28
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 170
+      },
+      {
+        "type": "mycelium",
+        "amount": 100
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_07",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 7,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_06",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 28
+      },
+      {
+        "enemyId": "E005",
+        "level": 28
+      },
+      {
+        "enemyId": "E010",
+        "level": 29
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 105
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_08",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 8,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_07",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 29
+      },
+      {
+        "enemyId": "E010",
+        "level": 29
+      },
+      {
+        "enemyId": "E007",
+        "level": 30
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 190
+      },
+      {
+        "type": "mycelium",
+        "amount": 110
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_09",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 9,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_08",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 30
+      },
+      {
+        "enemyId": "E005",
+        "level": 30
+      },
+      {
+        "enemyId": "E001",
+        "level": 31
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 20
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 200
+      },
+      {
+        "type": "mycelium",
+        "amount": 115
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_03_10",
+    "mapId": 3,
+    "mapName": "污染森林",
+    "stageIndex": 10,
+    "requiredLevel": 21,
+    "requiredStageId": "WS_03_09",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 31
+      },
+      {
+        "enemyId": "E002",
+        "level": 31
+      },
+      {
+        "enemyId": "E004",
+        "level": 32
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 60
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      }
+    ],
+    "unlockZoneId": "ZONE_TREE"
+  },
+  {
+    "stageId": "WS_04_01",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 1,
+    "requiredLevel": 31,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 32
+      },
+      {
+        "enemyId": "E002",
+        "level": 32
+      },
+      {
+        "enemyId": "E007",
+        "level": 33
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 150
+      },
+      {
+        "type": "mycelium",
+        "amount": 95
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_02",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 2,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_01",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 33
+      },
+      {
+        "enemyId": "E002",
+        "level": 33
+      },
+      {
+        "enemyId": "E007",
+        "level": 34
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 160
+      },
+      {
+        "type": "mycelium",
+        "amount": 100
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_03",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 3,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_02",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 34
+      },
+      {
+        "enemyId": "E006",
+        "level": 34
+      },
+      {
+        "enemyId": "E001",
+        "level": 35
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 170
+      },
+      {
+        "type": "mycelium",
+        "amount": 105
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_04",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 4,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_03",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 35
+      },
+      {
+        "enemyId": "E007",
+        "level": 35
+      },
+      {
+        "enemyId": "E001",
+        "level": 36
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 110
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_05",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 5,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_04",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 36
+      },
+      {
+        "enemyId": "E003",
+        "level": 36
+      },
+      {
+        "enemyId": "E008",
+        "level": 37
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 75
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 190
+      },
+      {
+        "type": "mycelium",
+        "amount": 115
+      }
+    ],
+    "unlockZoneId": "ZONE_SUNKEN"
+  },
+  {
+    "stageId": "WS_04_06",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 6,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_05",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 37
+      },
+      {
+        "enemyId": "E010",
+        "level": 37
+      },
+      {
+        "enemyId": "E009",
+        "level": 38
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 200
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_07",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 7,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_06",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 38
+      },
+      {
+        "enemyId": "E005",
+        "level": 38
+      },
+      {
+        "enemyId": "E007",
+        "level": 39
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 125
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_08",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 8,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_07",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 39
+      },
+      {
+        "enemyId": "E005",
+        "level": 39
+      },
+      {
+        "enemyId": "E004",
+        "level": 40
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 130
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_09",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 9,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_08",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 40
+      },
+      {
+        "enemyId": "E010",
+        "level": 40
+      },
+      {
+        "enemyId": "E008",
+        "level": 41
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 25
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 230
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_04_10",
+    "mapId": 4,
+    "mapName": "干涸河床",
+    "stageIndex": 10,
+    "requiredLevel": 31,
+    "requiredStageId": "WS_04_09",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 41
+      },
+      {
+        "enemyId": "E005",
+        "level": 41
+      },
+      {
+        "enemyId": "E001",
+        "level": 42
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 75
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 240
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ],
+    "unlockZoneId": "ZONE_DEEP"
+  },
+  {
+    "stageId": "WS_05_01",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 1,
+    "requiredLevel": 41,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 42
+      },
+      {
+        "enemyId": "E006",
+        "level": 42
+      },
+      {
+        "enemyId": "E004",
+        "level": 43
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 180
+      },
+      {
+        "type": "mycelium",
+        "amount": 115
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_02",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 2,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_01",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 43
+      },
+      {
+        "enemyId": "E006",
+        "level": 43
+      },
+      {
+        "enemyId": "E003",
+        "level": 44
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 190
+      },
+      {
+        "type": "mycelium",
+        "amount": 120
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_03",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 3,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_02",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 44
+      },
+      {
+        "enemyId": "E010",
+        "level": 44
+      },
+      {
+        "enemyId": "E006",
+        "level": 45
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 200
+      },
+      {
+        "type": "mycelium",
+        "amount": 125
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_04",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 4,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_03",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 45
+      },
+      {
+        "enemyId": "E006",
+        "level": 45
+      },
+      {
+        "enemyId": "E001",
+        "level": 46
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 130
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_05",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 5,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_04",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 46
+      },
+      {
+        "enemyId": "E005",
+        "level": 46
+      },
+      {
+        "enemyId": "E009",
+        "level": 47
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 90
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      }
+    ],
+    "unlockZoneId": "ZONE_PROVING"
+  },
+  {
+    "stageId": "WS_05_06",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 6,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_05",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 47
+      },
+      {
+        "enemyId": "E005",
+        "level": 47
+      },
+      {
+        "enemyId": "E007",
+        "level": 48
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 230
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_07",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 7,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_06",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 48
+      },
+      {
+        "enemyId": "E003",
+        "level": 48
+      },
+      {
+        "enemyId": "E010",
+        "level": 49
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 240
+      },
+      {
+        "type": "mycelium",
+        "amount": 145
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_08",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 8,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_07",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 49
+      },
+      {
+        "enemyId": "E007",
+        "level": 49
+      },
+      {
+        "enemyId": "E008",
+        "level": 50
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 250
+      },
+      {
+        "type": "mycelium",
+        "amount": 150
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_09",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 9,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_08",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 50
+      },
+      {
+        "enemyId": "E004",
+        "level": 50
+      },
+      {
+        "enemyId": "E003",
+        "level": 51
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 30
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 155
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_05_10",
+    "mapId": 5,
+    "mapName": "军事前哨",
+    "stageIndex": 10,
+    "requiredLevel": 41,
+    "requiredStageId": "WS_05_09",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 51
+      },
+      {
+        "enemyId": "E005",
+        "level": 51
+      },
+      {
+        "enemyId": "E007",
+        "level": 52
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 90
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ],
+    "unlockZoneId": "ZONE_HQ"
+  },
+  {
+    "stageId": "WS_06_01",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 1,
+    "requiredLevel": 51,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 52
+      },
+      {
+        "enemyId": "E008",
+        "level": 53
+      },
+      {
+        "enemyId": "E015",
+        "level": 53
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 210
+      },
+      {
+        "type": "mycelium",
+        "amount": 135
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_02",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 2,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_01",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 53
+      },
+      {
+        "enemyId": "E010",
+        "level": 54
+      },
+      {
+        "enemyId": "E018",
+        "level": 54
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 220
+      },
+      {
+        "type": "mycelium",
+        "amount": 140
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_03",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 3,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_02",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 54
+      },
+      {
+        "enemyId": "E001",
+        "level": 55
+      },
+      {
+        "enemyId": "E017",
+        "level": 55
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 230
+      },
+      {
+        "type": "mycelium",
+        "amount": 145
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_04",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 4,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_03",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 55
+      },
+      {
+        "enemyId": "E005",
+        "level": 56
+      },
+      {
+        "enemyId": "E018",
+        "level": 56
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 240
+      },
+      {
+        "type": "mycelium",
+        "amount": 150
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_05",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 5,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_04",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 56
+      },
+      {
+        "enemyId": "E002",
+        "level": 57
+      },
+      {
+        "enemyId": "E017",
+        "level": 57
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 105
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 250
+      },
+      {
+        "type": "mycelium",
+        "amount": 155
+      }
+    ],
+    "unlockZoneId": "ZONE_OASIS"
+  },
+  {
+    "stageId": "WS_06_06",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 6,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_05",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 57
+      },
+      {
+        "enemyId": "E010",
+        "level": 58
+      },
+      {
+        "enemyId": "E018",
+        "level": 58
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_07",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 7,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_06",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 58
+      },
+      {
+        "enemyId": "E009",
+        "level": 59
+      },
+      {
+        "enemyId": "E015",
+        "level": 59
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 165
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_08",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 8,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_07",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 59
+      },
+      {
+        "enemyId": "E006",
+        "level": 60
+      },
+      {
+        "enemyId": "E019",
+        "level": 60
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 280
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_09",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 9,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_08",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 60
+      },
+      {
+        "enemyId": "E004",
+        "level": 61
+      },
+      {
+        "enemyId": "E012",
+        "level": 61
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 35
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 290
+      },
+      {
+        "type": "mycelium",
+        "amount": 175
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_06_10",
+    "mapId": 6,
+    "mapName": "沙漠绿洲",
+    "stageIndex": 10,
+    "requiredLevel": 51,
+    "requiredStageId": "WS_06_09",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 61
+      },
+      {
+        "enemyId": "E007",
+        "level": 62
+      },
+      {
+        "enemyId": "E013",
+        "level": 62
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 105
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      }
+    ],
+    "unlockZoneId": "ZONE_SPRING"
+  },
+  {
+    "stageId": "WS_07_01",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 1,
+    "requiredLevel": 61,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 62
+      },
+      {
+        "enemyId": "E007",
+        "level": 63
+      },
+      {
+        "enemyId": "E018",
+        "level": 63
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 240
+      },
+      {
+        "type": "mycelium",
+        "amount": 155
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_02",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 2,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_01",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 63
+      },
+      {
+        "enemyId": "E004",
+        "level": 64
+      },
+      {
+        "enemyId": "E015",
+        "level": 64
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 250
+      },
+      {
+        "type": "mycelium",
+        "amount": 160
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_03",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 3,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_02",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 64
+      },
+      {
+        "enemyId": "E007",
+        "level": 65
+      },
+      {
+        "enemyId": "E017",
+        "level": 65
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 260
+      },
+      {
+        "type": "mycelium",
+        "amount": 165
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_04",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 4,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_03",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 65
+      },
+      {
+        "enemyId": "E004",
+        "level": 66
+      },
+      {
+        "enemyId": "E020",
+        "level": 66
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 170
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_05",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 5,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_04",
+    "enemies": [
+      {
+        "enemyId": "E010",
+        "level": 66
+      },
+      {
+        "enemyId": "E002",
+        "level": 67
+      },
+      {
+        "enemyId": "E011",
+        "level": 67
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 120
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 280
+      },
+      {
+        "type": "mycelium",
+        "amount": 175
+      }
+    ],
+    "unlockZoneId": "ZONE_FACTORY"
+  },
+  {
+    "stageId": "WS_07_06",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 6,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_05",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 67
+      },
+      {
+        "enemyId": "E010",
+        "level": 68
+      },
+      {
+        "enemyId": "E011",
+        "level": 68
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 290
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_07",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 7,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_06",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 68
+      },
+      {
+        "enemyId": "E002",
+        "level": 69
+      },
+      {
+        "enemyId": "E011",
+        "level": 69
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_08",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 8,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_07",
+    "enemies": [
+      {
+        "enemyId": "E006",
+        "level": 69
+      },
+      {
+        "enemyId": "E002",
+        "level": 70
+      },
+      {
+        "enemyId": "E018",
+        "level": 70
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 310
+      },
+      {
+        "type": "mycelium",
+        "amount": 190
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_09",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 9,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_08",
+    "enemies": [
+      {
+        "enemyId": "E010",
+        "level": 70
+      },
+      {
+        "enemyId": "E001",
+        "level": 71
+      },
+      {
+        "enemyId": "E020",
+        "level": 71
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 40
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 320
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_07_10",
+    "mapId": 7,
+    "mapName": "军事基地",
+    "stageIndex": 10,
+    "requiredLevel": 61,
+    "requiredStageId": "WS_07_09",
+    "enemies": [
+      {
+        "enemyId": "E007",
+        "level": 71
+      },
+      {
+        "enemyId": "E001",
+        "level": 72
+      },
+      {
+        "enemyId": "E019",
+        "level": 72
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 120
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "unlockZoneId": "ZONE_ARSENAL"
+  },
+  {
+    "stageId": "WS_08_01",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 1,
+    "requiredLevel": 71,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 72
+      },
+      {
+        "enemyId": "E005",
+        "level": 73
+      },
+      {
+        "enemyId": "E011",
+        "level": 73
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 270
+      },
+      {
+        "type": "mycelium",
+        "amount": 175
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_02",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 2,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_01",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 73
+      },
+      {
+        "enemyId": "E007",
+        "level": 74
+      },
+      {
+        "enemyId": "E017",
+        "level": 74
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 280
+      },
+      {
+        "type": "mycelium",
+        "amount": 180
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_03",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 3,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_02",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 74
+      },
+      {
+        "enemyId": "E005",
+        "level": 75
+      },
+      {
+        "enemyId": "E019",
+        "level": 75
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 290
+      },
+      {
+        "type": "mycelium",
+        "amount": 185
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_04",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 4,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_03",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 75
+      },
+      {
+        "enemyId": "E006",
+        "level": 76
+      },
+      {
+        "enemyId": "E013",
+        "level": 76
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 190
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_05",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 5,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_04",
+    "enemies": [
+      {
+        "enemyId": "E006",
+        "level": 76
+      },
+      {
+        "enemyId": "E004",
+        "level": 77
+      },
+      {
+        "enemyId": "E020",
+        "level": 77
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 135
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 310
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ],
+    "unlockZoneId": "ZONE_DORM"
+  },
+  {
+    "stageId": "WS_08_06",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 6,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_05",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 77
+      },
+      {
+        "enemyId": "E009",
+        "level": 78
+      },
+      {
+        "enemyId": "E015",
+        "level": 78
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 320
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_07",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 7,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_06",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 78
+      },
+      {
+        "enemyId": "E003",
+        "level": 79
+      },
+      {
+        "enemyId": "E013",
+        "level": 79
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_08",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 8,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_07",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 79
+      },
+      {
+        "enemyId": "E010",
+        "level": 80
+      },
+      {
+        "enemyId": "E013",
+        "level": 80
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 340
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_09",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 9,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_08",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 80
+      },
+      {
+        "enemyId": "E009",
+        "level": 81
+      },
+      {
+        "enemyId": "E020",
+        "level": 81
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 45
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_08_10",
+    "mapId": 8,
+    "mapName": "地下设施",
+    "stageIndex": 10,
+    "requiredLevel": 71,
+    "requiredStageId": "WS_08_09",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 81
+      },
+      {
+        "enemyId": "E001",
+        "level": 82
+      },
+      {
+        "enemyId": "E013",
+        "level": 82
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 135
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 360
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ],
+    "unlockZoneId": "ZONE_CORE"
+  },
+  {
+    "stageId": "WS_09_01",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 1,
+    "requiredLevel": 81,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 82
+      },
+      {
+        "enemyId": "E002",
+        "level": 83
+      },
+      {
+        "enemyId": "E016",
+        "level": 83
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 300
+      },
+      {
+        "type": "mycelium",
+        "amount": 195
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_02",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 2,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_01",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 83
+      },
+      {
+        "enemyId": "E010",
+        "level": 84
+      },
+      {
+        "enemyId": "E018",
+        "level": 84
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 310
+      },
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_03",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 3,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_02",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 84
+      },
+      {
+        "enemyId": "E005",
+        "level": 85
+      },
+      {
+        "enemyId": "E013",
+        "level": 85
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 320
+      },
+      {
+        "type": "mycelium",
+        "amount": 205
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_04",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 4,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_03",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 85
+      },
+      {
+        "enemyId": "E007",
+        "level": 86
+      },
+      {
+        "enemyId": "E013",
+        "level": 86
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 210
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_05",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 5,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_04",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 86
+      },
+      {
+        "enemyId": "E001",
+        "level": 87
+      },
+      {
+        "enemyId": "E011",
+        "level": 87
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 150
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 340
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ],
+    "unlockZoneId": "ZONE_RUINS"
+  },
+  {
+    "stageId": "WS_09_06",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 6,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_05",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 87
+      },
+      {
+        "enemyId": "E007",
+        "level": 88
+      },
+      {
+        "enemyId": "E014",
+        "level": 88
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_07",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 7,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_06",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 88
+      },
+      {
+        "enemyId": "E003",
+        "level": 89
+      },
+      {
+        "enemyId": "E020",
+        "level": 89
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 360
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_08",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 8,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_07",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 89
+      },
+      {
+        "enemyId": "E008",
+        "level": 90
+      },
+      {
+        "enemyId": "E019",
+        "level": 90
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 370
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_09",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 9,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_08",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 90
+      },
+      {
+        "enemyId": "E003",
+        "level": 91
+      },
+      {
+        "enemyId": "E014",
+        "level": 91
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 380
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_09_10",
+    "mapId": 9,
+    "mapName": "辐射荒原",
+    "stageIndex": 10,
+    "requiredLevel": 81,
+    "requiredStageId": "WS_09_09",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 91
+      },
+      {
+        "enemyId": "E008",
+        "level": 92
+      },
+      {
+        "enemyId": "E014",
+        "level": 92
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 150
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ],
+    "unlockZoneId": "ZONE_STORM"
+  },
+  {
+    "stageId": "WS_10_01",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 1,
+    "requiredLevel": 91,
+    "requiredStageId": null,
+    "enemies": [
+      {
+        "enemyId": "E010",
+        "level": 92
+      },
+      {
+        "enemyId": "E001",
+        "level": 93
+      },
+      {
+        "enemyId": "E016",
+        "level": 93
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 330
+      },
+      {
+        "type": "mycelium",
+        "amount": 215
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_02",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 2,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_01",
+    "enemies": [
+      {
+        "enemyId": "E001",
+        "level": 93
+      },
+      {
+        "enemyId": "E009",
+        "level": 94
+      },
+      {
+        "enemyId": "E016",
+        "level": 94
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 340
+      },
+      {
+        "type": "mycelium",
+        "amount": 220
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_03",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 3,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_02",
+    "enemies": [
+      {
+        "enemyId": "E002",
+        "level": 94
+      },
+      {
+        "enemyId": "E009",
+        "level": 95
+      },
+      {
+        "enemyId": "E014",
+        "level": 95
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 350
+      },
+      {
+        "type": "mycelium",
+        "amount": 225
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_04",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 4,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_03",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 95
+      },
+      {
+        "enemyId": "E001",
+        "level": 96
+      },
+      {
+        "enemyId": "E020",
+        "level": 96
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 360
+      },
+      {
+        "type": "mycelium",
+        "amount": 230
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_05",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 5,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_04",
+    "enemies": [
+      {
+        "enemyId": "E008",
+        "level": 96
+      },
+      {
+        "enemyId": "E001",
+        "level": 97
+      },
+      {
+        "enemyId": "E012",
+        "level": 97
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 165
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 370
+      },
+      {
+        "type": "mycelium",
+        "amount": 235
+      }
+    ],
+    "unlockZoneId": "ZONE_RIFT"
+  },
+  {
+    "stageId": "WS_10_06",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 6,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_05",
+    "enemies": [
+      {
+        "enemyId": "E009",
+        "level": 97
+      },
+      {
+        "enemyId": "E007",
+        "level": 98
+      },
+      {
+        "enemyId": "E012",
+        "level": 98
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 380
+      },
+      {
+        "type": "mycelium",
+        "amount": 240
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_07",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 7,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_06",
+    "enemies": [
+      {
+        "enemyId": "E004",
+        "level": 98
+      },
+      {
+        "enemyId": "E002",
+        "level": 99
+      },
+      {
+        "enemyId": "E017",
+        "level": 99
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 390
+      },
+      {
+        "type": "mycelium",
+        "amount": 245
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_08",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 8,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_07",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 99
+      },
+      {
+        "enemyId": "E009",
+        "level": 100
+      },
+      {
+        "enemyId": "E017",
+        "level": 100
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 400
+      },
+      {
+        "type": "mycelium",
+        "amount": 250
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_09",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 9,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_08",
+    "enemies": [
+      {
+        "enemyId": "E005",
+        "level": 100
+      },
+      {
+        "enemyId": "E003",
+        "level": 101
+      },
+      {
+        "enemyId": "E017",
+        "level": 101
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 55
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 410
+      },
+      {
+        "type": "mycelium",
+        "amount": 255
+      }
+    ],
+    "unlockZoneId": null
+  },
+  {
+    "stageId": "WS_10_10",
+    "mapId": 10,
+    "mapName": "核心禁区",
+    "stageIndex": 10,
+    "requiredLevel": 91,
+    "requiredStageId": "WS_10_09",
+    "enemies": [
+      {
+        "enemyId": "E003",
+        "level": 101
+      },
+      {
+        "enemyId": "E008",
+        "level": 102
+      },
+      {
+        "enemyId": "E018",
+        "level": 102
+      }
+    ],
+    "firstClearRewards": [
+      {
+        "type": "sourceCore",
+        "amount": 165
+      },
+      {
+        "type": "minionCard",
+        "amount": 1
+      },
+      {
+        "type": "chip",
+        "amount": 2
+      }
+    ],
+    "normalRewards": [
+      {
+        "type": "exp",
+        "amount": 420
+      },
+      {
+        "type": "mycelium",
+        "amount": 260
+      }
+    ],
+    "unlockZoneId": "ZONE_OMEGA"
+  }
+]
