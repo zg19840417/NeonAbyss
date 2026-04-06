@@ -3,594 +3,624 @@
     "level": 1,
     "expToNext": 0,
     "totalExp": 0,
-    "unlockContent": "初始觉醒，获得基础融合姬"
+    "unlockContent": "初始觉醒，获得基础融合姬",
+    "upgradeCostBase": 100
   },
   {
     "level": 2,
     "expToNext": 92,
     "totalExp": 92,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 3,
     "expToNext": 99,
     "totalExp": 191,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 4,
     "expToNext": 105,
     "totalExp": 296,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 5,
     "expToNext": 112,
     "totalExp": 408,
-    "unlockContent": "解锁每日辐射区探索"
+    "unlockContent": "解锁每日辐射区探索",
+    "upgradeCostBase": 100
   },
   {
     "level": 6,
     "expToNext": 118,
     "totalExp": 526,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 7,
     "expToNext": 124,
     "totalExp": 650,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 8,
     "expToNext": 131,
     "totalExp": 781,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 9,
     "expToNext": 137,
     "totalExp": 918,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 10,
     "expToNext": 80,
     "totalExp": 998,
-    "unlockContent": "解锁装备强化系统"
+    "unlockContent": "解锁装备强化系统",
+    "upgradeCostBase": 100
   },
   {
     "level": 11,
     "expToNext": 151,
     "totalExp": 1149,
-    "unlockContent": "新地图解锁：废弃矿区(ZONE_MINE)"
+    "unlockContent": "新地图解锁：废弃矿区(ZONE_MINE)",
+    "upgradeCostBase": 100
   },
   {
     "level": 12,
     "expToNext": 162,
     "totalExp": 1311,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 13,
     "expToNext": 173,
     "totalExp": 1484,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 14,
     "expToNext": 184,
     "totalExp": 1668,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 15,
     "expToNext": 196,
     "totalExp": 1864,
-    "unlockContent": "解锁融合姬突破系统"
+    "unlockContent": "解锁融合姬突破系统",
+    "upgradeCostBase": 100
   },
   {
     "level": 16,
     "expToNext": 207,
     "totalExp": 2071,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 17,
     "expToNext": 218,
     "totalExp": 2289,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 18,
     "expToNext": 229,
     "totalExp": 2518,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 19,
     "expToNext": 240,
     "totalExp": 2758,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 20,
     "expToNext": 140,
     "totalExp": 2898,
-    "unlockContent": "解锁竞技场"
+    "unlockContent": "解锁竞技场",
+    "upgradeCostBase": 100
   },
   {
     "level": 21,
     "expToNext": 216,
     "totalExp": 3114,
-    "unlockContent": "新地图解锁：沉没水城(ZONE_AQUA)"
+    "unlockContent": "新地图解锁：沉没水城(ZONE_AQUA)",
+    "upgradeCostBase": 100
   },
   {
     "level": 22,
     "expToNext": 231,
     "totalExp": 3345,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 23,
     "expToNext": 248,
     "totalExp": 3593,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 24,
     "expToNext": 264,
     "totalExp": 3857,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 25,
     "expToNext": 280,
     "totalExp": 4137,
-    "unlockContent": "解锁芯片镶嵌系统"
+    "unlockContent": "解锁芯片镶嵌系统",
+    "upgradeCostBase": 100
   },
   {
     "level": 26,
     "expToNext": 296,
     "totalExp": 4433,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 27,
     "expToNext": 312,
     "totalExp": 4745,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 28,
     "expToNext": 328,
     "totalExp": 5073,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 29,
     "expToNext": 344,
     "totalExp": 5417,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 30,
     "expToNext": 200,
     "totalExp": 5617,
-    "unlockContent": "解锁公会系统"
+    "unlockContent": "解锁公会系统",
+    "upgradeCostBase": 100
   },
   {
     "level": 31,
     "expToNext": 280,
     "totalExp": 5897,
-    "unlockContent": "新地图解锁：腐化丛林(ZONE_TREE)"
+    "unlockContent": "新地图解锁：腐化丛林(ZONE_TREE)",
+    "upgradeCostBase": 100
   },
   {
     "level": 32,
     "expToNext": 301,
     "totalExp": 6198,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 33,
     "expToNext": 322,
     "totalExp": 6520,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 34,
     "expToNext": 343,
     "totalExp": 6863,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 35,
     "expToNext": 364,
     "totalExp": 7227,
-    "unlockContent": "解锁融合姬觉醒任务"
+    "unlockContent": "解锁融合姬觉醒任务",
+    "upgradeCostBase": 100
   },
   {
     "level": 36,
     "expToNext": 384,
     "totalExp": 7611,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 37,
     "expToNext": 405,
     "totalExp": 8016,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 38,
     "expToNext": 426,
     "totalExp": 8442,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 39,
     "expToNext": 447,
     "totalExp": 8889,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 40,
     "expToNext": 260,
     "totalExp": 9149,
-    "unlockContent": "解锁深渊副本"
+    "unlockContent": "解锁深渊副本",
+    "upgradeCostBase": 100
   },
   {
     "level": 41,
     "expToNext": 345,
     "totalExp": 9494,
-    "unlockContent": "新地图解锁：深海遗迹(ZONE_DEEP)"
+    "unlockContent": "新地图解锁：深海遗迹(ZONE_DEEP)",
+    "upgradeCostBase": 100
   },
   {
     "level": 42,
     "expToNext": 371,
     "totalExp": 9865,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 43,
     "expToNext": 396,
     "totalExp": 10261,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 44,
     "expToNext": 422,
     "totalExp": 10683,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 45,
     "expToNext": 448,
     "totalExp": 11131,
-    "unlockContent": "解锁源核商店高级兑换"
+    "unlockContent": "解锁源核商店高级兑换",
+    "upgradeCostBase": 100
   },
   {
     "level": 46,
     "expToNext": 473,
     "totalExp": 11604,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 47,
     "expToNext": 499,
     "totalExp": 12103,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 48,
     "expToNext": 524,
     "totalExp": 12627,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 49,
     "expToNext": 550,
     "totalExp": 13177,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 50,
     "expToNext": 320,
     "totalExp": 13497,
-    "unlockContent": "解锁跨服竞技"
+    "unlockContent": "解锁跨服竞技",
+    "upgradeCostBase": 100
   },
   {
     "level": 51,
     "expToNext": 410,
     "totalExp": 13907,
-    "unlockContent": "新地图解锁：军事要塞(ZONE_HQ)"
+    "unlockContent": "新地图解锁：军事要塞(ZONE_HQ)",
+    "upgradeCostBase": 100
   },
   {
     "level": 52,
     "expToNext": 440,
     "totalExp": 14347,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 53,
     "expToNext": 471,
     "totalExp": 14818,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 54,
     "expToNext": 501,
     "totalExp": 15319,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 55,
     "expToNext": 532,
     "totalExp": 15851,
-    "unlockContent": "解锁传说装备锻造"
+    "unlockContent": "解锁传说装备锻造",
+    "upgradeCostBase": 100
   },
   {
     "level": 56,
     "expToNext": 562,
     "totalExp": 16413,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 57,
     "expToNext": 592,
     "totalExp": 17005,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 58,
     "expToNext": 623,
     "totalExp": 17628,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 59,
     "expToNext": 653,
     "totalExp": 18281,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 60,
     "expToNext": 380,
     "totalExp": 18661,
-    "unlockContent": "解锁赛季挑战"
+    "unlockContent": "解锁赛季挑战",
+    "upgradeCostBase": 100
   },
   {
     "level": 61,
     "expToNext": 475,
     "totalExp": 19136,
-    "unlockContent": "新地图解锁：荧光温泉(ZONE_SPRING)"
+    "unlockContent": "新地图解锁：荧光温泉(ZONE_SPRING)",
+    "upgradeCostBase": 100
   },
   {
     "level": 62,
     "expToNext": 510,
     "totalExp": 19646,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 63,
     "expToNext": 545,
     "totalExp": 20191,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 64,
     "expToNext": 580,
     "totalExp": 20771,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 65,
     "expToNext": 616,
     "totalExp": 21387,
-    "unlockContent": "解锁融合姬终极进化"
+    "unlockContent": "解锁融合姬终极进化",
+    "upgradeCostBase": 100
   },
   {
     "level": 66,
     "expToNext": 651,
     "totalExp": 22038,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 67,
     "expToNext": 686,
     "totalExp": 22724,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 68,
     "expToNext": 721,
     "totalExp": 23445,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 69,
     "expToNext": 756,
     "totalExp": 24201,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 70,
     "expToNext": 440,
     "totalExp": 24641,
-    "unlockContent": "解锁世界Boss"
+    "unlockContent": "解锁世界Boss",
+    "upgradeCostBase": 100
   },
   {
     "level": 71,
     "expToNext": 540,
     "totalExp": 25181,
-    "unlockContent": "新地图解锁：机械军火库(ZONE_ARSENAL)"
+    "unlockContent": "新地图解锁：机械军火库(ZONE_ARSENAL)",
+    "upgradeCostBase": 100
   },
   {
     "level": 72,
     "expToNext": 580,
     "totalExp": 25761,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 73,
     "expToNext": 620,
     "totalExp": 26381,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 74,
     "expToNext": 660,
     "totalExp": 27041,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 75,
     "expToNext": 700,
     "totalExp": 27741,
-    "unlockContent": "解锁传说级融合姬召唤"
+    "unlockContent": "解锁传说级融合姬召唤",
+    "upgradeCostBase": 100
   },
   {
     "level": 76,
     "expToNext": 740,
     "totalExp": 28481,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 77,
     "expToNext": 780,
     "totalExp": 29261,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 78,
     "expToNext": 820,
     "totalExp": 30081,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 79,
     "expToNext": 860,
     "totalExp": 30941,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 80,
     "expToNext": 500,
     "totalExp": 31441,
-    "unlockContent": "解锁终局副本"
+    "unlockContent": "解锁终局副本",
+    "upgradeCostBase": 100
   },
   {
     "level": 81,
     "expToNext": 604,
     "totalExp": 32045,
-    "unlockContent": "新地图解锁：方舟核心(ZONE_CORE)"
+    "unlockContent": "新地图解锁：方舟核心(ZONE_CORE)",
+    "upgradeCostBase": 100
   },
   {
     "level": 82,
     "expToNext": 649,
     "totalExp": 32694,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 83,
     "expToNext": 694,
     "totalExp": 33388,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 84,
     "expToNext": 739,
     "totalExp": 34127,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 85,
     "expToNext": 784,
     "totalExp": 34911,
-    "unlockContent": "解锁UR品质装备掉落"
+    "unlockContent": "解锁UR品质装备掉落",
+    "upgradeCostBase": 100
   },
   {
     "level": 86,
     "expToNext": 828,
     "totalExp": 35739,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 87,
     "expToNext": 873,
     "totalExp": 36612,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 88,
     "expToNext": 918,
     "totalExp": 37530,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 89,
     "expToNext": 963,
     "totalExp": 38493,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 90,
     "expToNext": 560,
     "totalExp": 39053,
-    "unlockContent": "解锁辐射风暴(ZONE_STORM)"
+    "unlockContent": "解锁辐射风暴(ZONE_STORM)",
+    "upgradeCostBase": 100
   },
   {
     "level": 91,
     "expToNext": 669,
     "totalExp": 39722,
-    "unlockContent": "新地图解锁：终焉之地(ZONE_OMEGA)"
+    "unlockContent": "新地图解锁：终焉之地(ZONE_OMEGA)",
+    "upgradeCostBase": 100
   },
   {
     "level": 92,
     "expToNext": 719,
     "totalExp": 40441,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 93,
     "expToNext": 768,
     "totalExp": 41209,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 94,
     "expToNext": 818,
     "totalExp": 42027,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 95,
     "expToNext": 868,
     "totalExp": 42895,
-    "unlockContent": "解锁LE品质融合姬碎片"
+    "unlockContent": "解锁LE品质融合姬碎片",
+    "upgradeCostBase": 100
   },
   {
     "level": 96,
     "expToNext": 917,
     "totalExp": 43812,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 97,
     "expToNext": 967,
     "totalExp": 44779,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 98,
     "expToNext": 1016,
     "totalExp": 45795,
-    "unlockContent": null
+    "upgradeCostBase": 100
   },
   {
     "level": 99,
     "expToNext": 1066,
     "totalExp": 46861,
-    "unlockContent": "达到满级，解锁全内容"
+    "unlockContent": "达到满级，解锁全内容",
+    "upgradeCostBase": 100
   }
 ]

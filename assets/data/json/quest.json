@@ -8,7 +8,7 @@
     "targetParam": "login",
     "targetValue": 1,
     "rewardReputation": 10,
-    "rewardCoins": 100,
+    "rewardMycelium": 100,
     "isFixed": true,
     "weight": 0
   },
@@ -21,7 +21,7 @@
     "targetParam": "complete_floor",
     "targetValue": 1,
     "rewardReputation": 15,
-    "rewardCoins": 200,
+    "rewardMycelium": 200,
     "isFixed": true,
     "weight": 0
   },
@@ -34,7 +34,7 @@
     "targetParam": "battle_win",
     "targetValue": 3,
     "rewardReputation": 20,
-    "rewardCoins": 300,
+    "rewardMycelium": 300,
     "isFixed": true,
     "weight": 0
   },
@@ -47,7 +47,7 @@
     "targetParam": "recruit",
     "targetValue": 1,
     "rewardReputation": 10,
-    "rewardCoins": 150,
+    "rewardMycelium": 150,
     "isFixed": true,
     "weight": 0
   },
@@ -60,7 +60,7 @@
     "targetParam": "complete_explore",
     "targetValue": 1,
     "rewardReputation": 10,
-    "rewardCoins": 100,
+    "rewardMycelium": 100,
     "isFixed": true,
     "weight": 0
   },
@@ -73,7 +73,7 @@
     "targetParam": "upgrade_facility",
     "targetValue": 1,
     "rewardReputation": 15,
-    "rewardCoins": 250,
+    "rewardMycelium": 250,
     "isFixed": true,
     "weight": 0
   }

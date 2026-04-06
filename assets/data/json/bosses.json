@@ -11,7 +11,6 @@
     "shipPartName": "动力核心",
     "baseHp": 8000,
     "baseAtk": 280,
-    "baseDef": 160,
     "baseSpd": 65,
     "skills": [
       "SK_B001",
@@ -35,7 +34,6 @@
     "shipPartName": "导航模块",
     "baseHp": 12000,
     "baseAtk": 320,
-    "baseDef": 140,
     "baseSpd": 90,
     "skills": [
       "SK_B004",
@@ -59,7 +57,6 @@
     "shipPartName": "生命维持装置",
     "baseHp": 16000,
     "baseAtk": 260,
-    "baseDef": 200,
     "baseSpd": 55,
     "skills": [
       "SK_B007",
@@ -83,7 +80,6 @@
     "shipPartName": "护盾发生器",
     "baseHp": 22000,
     "baseAtk": 350,
-    "baseDef": 180,
     "baseSpd": 80,
     "skills": [
       "SK_B010",
@@ -107,7 +103,6 @@
     "shipPartName": "武器系统",
     "baseHp": 28000,
     "baseAtk": 400,
-    "baseDef": 220,
     "baseSpd": 75,
     "skills": [
       "SK_B013",
@@ -131,7 +126,6 @@
     "shipPartName": "通讯阵列",
     "baseHp": 34000,
     "baseAtk": 380,
-    "baseDef": 200,
     "baseSpd": 100,
     "skills": [
       "SK_B016",
@@ -155,7 +149,6 @@
     "shipPartName": "推进引擎",
     "baseHp": 42000,
     "baseAtk": 450,
-    "baseDef": 250,
     "baseSpd": 85,
     "skills": [
       "SK_B019",
@@ -179,7 +172,6 @@
     "shipPartName": "休眠舱控制台",
     "baseHp": 50000,
     "baseAtk": 420,
-    "baseDef": 280,
     "baseSpd": 95,
     "skills": [
       "SK_B022",
@@ -203,7 +195,6 @@
     "shipPartName": "反重力装置",
     "baseHp": 60000,
     "baseAtk": 500,
-    "baseDef": 260,
     "baseSpd": 110,
     "skills": [
       "SK_B025",
@@ -227,7 +218,6 @@
     "shipPartName": "启动密钥",
     "baseHp": 100000,
     "baseAtk": 600,
-    "baseDef": 350,
     "baseSpd": 120,
     "skills": [
       "SK_B028",

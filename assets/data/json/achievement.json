@@ -5,7 +5,7 @@
     "description": "首次进入禁区",
     "category": "explore",
     "difficulty": 1,
-    "rewardReputation": 10,
+    "rewardReputation": 50,
     "targetType": "enter_dungeon",
     "targetValue": 1,
     "isHidden": false
@@ -16,7 +16,7 @@
     "description": "到达第5层",
     "category": "explore",
     "difficulty": 2,
-    "rewardReputation": 20,
+    "rewardReputation": 120,
     "targetType": "reach_floor",
     "targetValue": 5,
     "isHidden": false
@@ -27,7 +27,7 @@
     "description": "到达第10层",
     "category": "explore",
     "difficulty": 2,
-    "rewardReputation": 50,
+    "rewardReputation": 300,
     "targetType": "reach_floor",
     "targetValue": 10,
     "isHidden": false
@@ -38,7 +38,7 @@
     "description": "到达第25层",
     "category": "explore",
     "difficulty": 3,
-    "rewardReputation": 100,
+    "rewardReputation": 700,
     "targetType": "reach_floor",
     "targetValue": 25,
     "isHidden": false
@@ -49,7 +49,7 @@
     "description": "到达第40层",
     "category": "explore",
     "difficulty": 4,
-    "rewardReputation": 200,
+    "rewardReputation": 1600,
     "targetType": "reach_floor",
     "targetValue": 40,
     "isHidden": false
@@ -60,7 +60,7 @@
     "description": "到达第50层并通关",
     "category": "explore",
     "difficulty": 5,
-    "rewardReputation": 500,
+    "rewardReputation": 5000,
     "targetType": "reach_floor",
     "targetValue": 50,
     "isHidden": false
@@ -71,7 +71,7 @@
     "description": "累计开启100个宝箱",
     "category": "explore",
     "difficulty": 2,
-    "rewardReputation": 30,
+    "rewardReputation": 180,
     "targetType": "open_chest",
     "targetValue": 100,
     "isHidden": false
@@ -82,7 +82,7 @@
     "description": "累计开启1000个宝箱",
     "category": "explore",
     "difficulty": 4,
-    "rewardReputation": 150,
+    "rewardReputation": 1200,
     "targetType": "open_chest",
     "targetValue": 1000,
     "isHidden": false
@@ -93,7 +93,7 @@
     "description": "单次探索连续通过20层",
     "category": "explore",
     "difficulty": 3,
-    "rewardReputation": 80,
+    "rewardReputation": 560,
     "targetType": "consecutive_floors",
     "targetValue": 20,
     "isHidden": false
@@ -104,7 +104,7 @@
     "description": "1小时内到达第30层",
     "category": "explore",
     "difficulty": 5,
-    "rewardReputation": 300,
+    "rewardReputation": 3000,
     "targetType": "speed_clear",
     "targetValue": 30,
     "isHidden": true
@@ -115,7 +115,7 @@
     "description": "赢得第一场战斗",
     "category": "battle",
     "difficulty": 1,
-    "rewardReputation": 10,
+    "rewardReputation": 50,
     "targetType": "battle_win",
     "targetValue": 1,
     "isHidden": false
@@ -126,7 +126,7 @@
     "description": "获得5连胜",
     "category": "battle",
     "difficulty": 2,
-    "rewardReputation": 30,
+    "rewardReputation": 180,
     "targetType": "win_streak",
     "targetValue": 5,
     "isHidden": false
@@ -137,7 +137,7 @@
     "description": "获得20连胜",
     "category": "battle",
     "difficulty": 4,
-    "rewardReputation": 150,
+    "rewardReputation": 1200,
     "targetType": "win_streak",
     "targetValue": 20,
     "isHidden": false
@@ -148,7 +148,7 @@
     "description": "单次战斗造成10次暴击",
     "category": "battle",
     "difficulty": 2,
-    "rewardReputation": 40,
+    "rewardReputation": 240,
     "targetType": "critical_hit",
     "targetValue": 10,
     "isHidden": false
@@ -159,7 +159,7 @@
     "description": "单次攻击造成超过1000伤害",
     "category": "battle",
     "difficulty": 3,
-    "rewardReputation": 60,
+    "rewardReputation": 420,
     "targetType": "single_damage",
     "targetValue": 1000,
     "isHidden": false
@@ -170,7 +170,7 @@
     "description": "单次战斗闪避5次攻击",
     "category": "battle",
     "difficulty": 3,
-    "rewardReputation": 50,
+    "rewardReputation": 350,
     "targetType": "dodge",
     "targetValue": 5,
     "isHidden": false
@@ -181,7 +181,7 @@
     "description": "全员存活通关一层",
     "category": "battle",
     "difficulty": 2,
-    "rewardReputation": 40,
+    "rewardReputation": 240,
     "targetType": "perfect_clear",
     "targetValue": 1,
     "isHidden": false
@@ -192,7 +192,7 @@
     "description": "以1人队伍击败3个敌人",
     "category": "battle",
     "difficulty": 4,
-    "rewardReputation": 100,
+    "rewardReputation": 800,
     "targetType": "outnumbered_victory",
     "targetValue": 3,
     "isHidden": false
@@ -203,7 +203,7 @@
     "description": "击败第一个BOSS",
     "category": "battle",
     "difficulty": 2,
-    "rewardReputation": 50,
+    "rewardReputation": 300,
     "targetType": "defeat_boss",
     "targetValue": 1,
     "isHidden": false
@@ -214,7 +214,7 @@
     "description": "击败所有5个BOSS",
     "category": "battle",
     "difficulty": 5,
-    "rewardReputation": 400,
+    "rewardReputation": 4000,
     "targetType": "defeat_all_boss",
     "targetValue": 5,
     "isHidden": false
@@ -225,7 +225,7 @@
     "description": "单层无任何融合姬受伤通关",
     "category": "battle",
     "difficulty": 5,
-    "rewardReputation": 200,
+    "rewardReputation": 2000,
     "targetType": "no_damage_clear",
     "targetValue": 1,
     "isHidden": true
@@ -236,7 +236,7 @@
     "description": "10秒内结束一场战斗",
     "category": "battle",
     "difficulty": 3,
-    "rewardReputation": 80,
+    "rewardReputation": 560,
     "targetType": "speed_battle",
     "targetValue": 10,
     "isHidden": true
@@ -247,7 +247,7 @@
     "description": "招募第一个融合姬",
     "category": "character",
     "difficulty": 1,
-    "rewardReputation": 10,
+    "rewardReputation": 50,
     "targetType": "recruit",
     "targetValue": 1,
     "isHidden": false
@@ -258,7 +258,7 @@
     "description": "组建完整的3融合姬+1芯片队伍",
     "category": "character",
     "difficulty": 2,
-    "rewardReputation": 30,
+    "rewardReputation": 180,
     "targetType": "team_full",
     "targetValue": 4,
     "isHidden": false
@@ -269,7 +269,7 @@
     "description": "收集所有12种职业各1个",
     "category": "character",
     "difficulty": 4,
-    "rewardReputation": 200,
+    "rewardReputation": 1600,
     "targetType": "collect_class",
     "targetValue": 12,
     "isHidden": false
@@ -280,7 +280,7 @@
     "description": "收集所有SSR级融合姬",
     "category": "character",
     "difficulty": 5,
-    "rewardReputation": 250,
+    "rewardReputation": 2500,
     "targetType": "collect_legendary",
     "targetValue": 4,
     "isHidden": true
@@ -291,7 +291,7 @@
     "description": "首次强化装备成功",
     "category": "character",
     "difficulty": 1,
-    "rewardReputation": 15,
+    "rewardReputation": 75,
     "targetType": "enhance_equip",
     "targetValue": 1,
     "isHidden": false
@@ -302,7 +302,7 @@
     "description": "拥有10件+10强化装备",
     "category": "character",
     "difficulty": 4,
-    "rewardReputation": 180,
+    "rewardReputation": 1440,
     "targetType": "enhanced_equip",
     "targetValue": 10,
     "isHidden": false
@@ -313,7 +313,7 @@
     "description": "将任意融合姬升到满级",
     "category": "character",
     "difficulty": 3,
-    "rewardReputation": 120,
+    "rewardReputation": 840,
     "targetType": "max_level_char",
     "targetValue": 1,
     "isHidden": false
@@ -324,7 +324,7 @@
     "description": "单个融合姬生命值达到100000",
     "category": "character",
     "difficulty": 4,
-    "rewardReputation": 150,
+    "rewardReputation": 1200,
     "targetType": "hp_milestone",
     "targetValue": 100000,
     "isHidden": true
@@ -335,7 +335,7 @@
     "description": "累计获得10000菌丝",
     "category": "manage",
     "difficulty": 1,
-    "rewardReputation": 15,
+    "rewardReputation": 75,
     "targetType": "earn_coins",
     "targetValue": 10000,
     "isHidden": false
@@ -346,7 +346,7 @@
     "description": "累计获得1000000菌丝",
     "category": "manage",
     "difficulty": 3,
-    "rewardReputation": 100,
+    "rewardReputation": 700,
     "targetType": "earn_coins",
     "targetValue": 1000000,
     "isHidden": false
@@ -357,7 +357,7 @@
     "description": "累计获得100000000菌丝",
     "category": "manage",
     "difficulty": 5,
-    "rewardReputation": 350,
+    "rewardReputation": 3500,
     "targetType": "earn_coins",
     "targetValue": 100000000,
     "isHidden": true
@@ -368,7 +368,7 @@
     "description": "升级任意设施到5级",
     "category": "manage",
     "difficulty": 2,
-    "rewardReputation": 40,
+    "rewardReputation": 240,
     "targetType": "facility_level",
     "targetValue": 5,
     "isHidden": false
@@ -379,7 +379,7 @@
     "description": "所有设施达到满级",
     "category": "manage",
     "difficulty": 5,
-    "rewardReputation": 250,
+    "rewardReputation": 2500,
     "targetType": "max_all_facility",
     "targetValue": 5,
     "isHidden": false
@@ -390,7 +390,7 @@
     "description": "首次完成抽卡",
     "category": "manage",
     "difficulty": 1,
-    "rewardReputation": 20,
+    "rewardReputation": 100,
     "targetType": "first_gacha",
     "targetValue": 1,
     "isHidden": false
@@ -401,7 +401,7 @@
     "description": "累计抽卡100次",
     "category": "manage",
     "difficulty": 2,
-    "rewardReputation": 50,
+    "rewardReputation": 300,
     "targetType": "gacha_count",
     "targetValue": 100,
     "isHidden": false
@@ -412,7 +412,7 @@
     "description": "达到声望等级30",
     "category": "manage",
     "difficulty": 2,
-    "rewardReputation": 60,
+    "rewardReputation": 360,
     "targetType": "reputation_level",
     "targetValue": 30,
     "isHidden": false
@@ -423,7 +423,7 @@
     "description": "达到声望等级60",
     "category": "manage",
     "difficulty": 5,
-    "rewardReputation": 500,
+    "rewardReputation": 5000,
     "targetType": "reputation_level",
     "targetValue": 60,
     "isHidden": false
@@ -434,7 +434,7 @@
     "description": "游戏时长超过100小时",
     "category": "special",
     "difficulty": 2,
-    "rewardReputation": 100,
+    "rewardReputation": 600,
     "targetType": "play_time",
     "targetValue": 360000,
     "isHidden": false
@@ -445,7 +445,7 @@
     "description": "连续7天登录",
     "category": "special",
     "difficulty": 1,
-    "rewardReputation": 50,
+    "rewardReputation": 250,
     "targetType": "login_streak",
     "targetValue": 7,
     "isHidden": false
@@ -456,7 +456,7 @@
     "description": "连续30天登录",
     "category": "special",
     "difficulty": 3,
-    "rewardReputation": 200,
+    "rewardReputation": 1400,
     "targetType": "login_streak",
     "targetValue": 30,
     "isHidden": false
@@ -467,7 +467,7 @@
     "description": "使用禁忌药剂并获得隐藏融合姬",
     "category": "special",
     "difficulty": 5,
-    "rewardReputation": 500,
+    "rewardReputation": 5000,
     "targetType": "forbidden_success",
     "targetValue": 1,
     "isHidden": true
@@ -478,7 +478,7 @@
     "description": "完成95%以上的成就",
     "category": "special",
     "difficulty": 5,
-    "rewardReputation": 800,
+    "rewardReputation": 8000,
     "targetType": "achievement_rate",
     "targetValue": 95,
     "isHidden": true
@@ -489,7 +489,7 @@
     "description": "从零开始24小时内通关第50层",
     "category": "special",
     "difficulty": 5,
-    "rewardReputation": 1000,
+    "rewardReputation": 10000,
     "targetType": "speed_complete",
     "targetValue": 1,
     "isHidden": true
@@ -500,7 +500,7 @@
     "description": "全员SSR品质通关第50层",
     "category": "special",
     "difficulty": 5,
-    "rewardReputation": 600,
+    "rewardReputation": 6000,
     "targetType": "legendary_team_clear",
     "targetValue": 1,
     "isHidden": true
@@ -511,7 +511,7 @@
     "description": "发现游戏中所有隐藏彩蛋",
     "category": "special",
     "difficulty": 4,
-    "rewardReputation": 300,
+    "rewardReputation": 2400,
     "targetType": "find_easter_egg",
     "targetValue": 10,
     "isHidden": true
