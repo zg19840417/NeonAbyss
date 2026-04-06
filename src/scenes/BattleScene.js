@@ -1,5 +1,6 @@
 import BattleSystem, { BattlePhase, Enemy } from '../game/systems/BattleSystem.js';
 import EventBus from '../game/EventBus.js';
+import MinionCard from '../game/entities/MinionCard.js';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -38,7 +39,7 @@ export default class BattleScene extends Phaser.Scene {
     this.currentFloor = data.floor || 1;
     this.currentDimension = data.dimension || 1;
     this.enemies = data.enemies || [];
-    this.players = data.players || [];
+    this.minions = data.minions || [];
     this.equipmentCard = data.equipmentCard || null;
   }
 
@@ -53,7 +54,7 @@ export default class BattleScene extends Phaser.Scene {
     this.createPlayerArea(width, height);
     this.createBattleLog(width, height);
     this.createBottomPanel(width, height);
-    
+
     this.setupBattleSystem();
     this.startBattle();
   }
@@ -64,15 +65,26 @@ export default class BattleScene extends Phaser.Scene {
         { id: 1, name: '机械猎犬', hp: 80, maxHp: 80, atk: 15, level: 1, isBoss: false }
       ];
     }
-    
-    if (this.players.length === 0) {
-      this.players = [
-        { id: 1, name: '艾伦', hp: 100, maxHp: 100, atk: 20, level: 1 },
-        { id: 2, name: '莉莉', hp: 80, maxHp: 80, atk: 25, level: 1 },
-        { id: 3, name: '杰克', hp: 120, maxHp: 120, atk: 18, level: 1 }
-      ];
+
+    if (this.minions.length === 0) {
+      const minionManager = window.gameData?.minionCardManager;
+      if (minionManager?.deployedCards) {
+        minionManager.deployedCards.forEach(id => {
+          const cardData = minionManager.ownedCards?.find(c => c.id === id);
+          if (cardData) {
+            this.minions.push(MinionCard.fromJSON(cardData));
+          }
+        });
+      }
     }
-    
+
+    if (this.minions.length === 0) {
+      this.minions = [
+        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, isMinionCard: true, rarity: 'common', race: 'human', passiveSkill: null },
+        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, isMinionCard: true, rarity: 'rare', race: 'human', passiveSkill: null }
+      ].map(m => MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m));
+    }
+
     if (!window.gameData.equipmentCardManager && this.equipmentCard) {
       window.gameData.equipmentCardManager = {
         ownedCards: [this.equipmentCard],
@@ -253,17 +265,17 @@ export default class BattleScene extends Phaser.Scene {
 
     this.playerCards = [];
     const cardWidth = this.config.layout.cardWidth;
-    const totalWidth = this.players.length * cardWidth + (this.players.length - 1) * 15;
+    const totalWidth = this.minions.length * cardWidth + (this.minions.length - 1) * 15;
     const startX = (width - totalWidth) / 2 + cardWidth / 2;
 
-    this.players.forEach((player, index) => {
+    this.minions.forEach((minion, index) => {
       const x = startX + index * (cardWidth + 15);
-      const card = this.createPlayerCard(x, areaY + 50, player);
-      this.playerCards.push({ container: card, player });
+      const card = this.createPlayerCard(x, areaY + 50, minion);
+      this.playerCards.push({ container: card, minion });
     });
   }
 
-  createPlayerCard(x, y, player) {
+  createPlayerCard(x, y, minion) {
     const container = this.add.container(x, y);
     const { colors, layout } = this.config;
     const cardWidth = layout.cardWidth;
@@ -411,15 +423,20 @@ export default class BattleScene extends Phaser.Scene {
 
   setupBattleSystem() {
     this.battleSystem = new BattleSystem(this, { battleSpeed: 1 });
-    
-    this.battleSystem.setPlayerTeam(this.players.map(p => ({
-      id: p.id,
-      name: p.name,
-      hp: p.hp,
-      maxHp: p.maxHp,
-      atk: p.atk || 20,
-      critRate: 0.15,
-      def: 5
+
+    this.battleSystem.setPlayerTeam(this.minions.map(m => ({
+      id: m.id,
+      name: m.name,
+      hp: m.hp,
+      maxHp: m.maxHp,
+      atk: m.atk || 20,
+      critRate: m.critRate || 0.15,
+      def: m.def || 5,
+      isMinionCard: m.isMinionCard || true,
+      rarity: m.rarity,
+      race: m.race,
+      passiveSkill: m.passiveSkill,
+      element: m.element
     })));
     
     this.battleSystem.setEnemyTeam(this.enemies.map(e => new Enemy({
@@ -452,7 +469,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   onAttackAnimation(attacker, target, isCrit, onComplete) {
-    const isPlayer = this.players.some(p => p.name === attacker.name);
+    const isPlayer = this.minions.some(m => m.name === attacker.name);
     const targetCards = isPlayer ? this.enemyCards : this.playerCards;
     
     const targetCard = targetCards.find(card => {
@@ -501,7 +518,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   onSkillAnimation(character, targets, skill, onComplete) {
-    const isPlayer = this.players.some(p => p.name === character.name);
+    const isPlayer = this.minions.some(m => m.name === character.name);
     const skillText = this.add.text(this.cameras.main.width / 2, 120, `${character.name} 使用技能`, {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
@@ -554,7 +571,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   showDamageNumber(target, damage, isCrit) {
-    const isPlayer = this.players.some(p => p.name === target.name);
+    const isPlayer = this.minions.some(m => m.name === target.name);
     const targetCards = isPlayer ? this.playerCards : this.enemyCards;
     
     const targetCard = targetCards.find(card => {
@@ -582,13 +599,13 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   updateHPDisplay(entity) {
-    const isPlayer = this.players.some(p => p.name === entity.name);
-    
+    const isPlayer = this.minions.some(m => m.name === entity.name);
+
     if (isPlayer) {
-      const player = this.players.find(p => p.name === entity.name);
-      if (player) {
-        player.hp = entity.currentHp;
-        const card = this.playerCards.find(c => c.player.name === entity.name);
+      const minion = this.minions.find(m => m.name === entity.name);
+      if (minion) {
+        minion.currentHp = entity.currentHp;
+        const card = this.playerCards.find(c => c.minion?.name === entity.name);
         if (card) {
           this.redrawHPBar(card.container, entity.currentHp, entity.maxHp, true);
         }

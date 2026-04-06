@@ -1,10 +1,12 @@
 ---
-alwaysApply: true
+alwaysApply: false
+description: 
 ---
 # 霓虹深渊 - 项目规则
 
 ## 项目信息
 - **引擎**：Phaser 3 | **分辨率**：375×812 | **服务器**：`npm start`
+- **技术栈**：JavaScript + Vite | **图片目录**：`assets/images/`
 
 ## 战斗流程
 ```
@@ -46,22 +48,54 @@ export default class SystemName {
 }
 ```
 
+### 5. 多语言翻译调用
+```javascript
+// View类中，从Lang.js导入
+import { t } from '../../game/data/Lang.js';
+// 添加本地方法
+t(key, params = {}) { return t(key, params); }
+// UI中使用
+this.t('key_name')
+```
+
 ## 文件结构
 ```
 src/
 ├── scenes/
-│   ├── views/          # TavernView, TeamView, DungeonView, ShopView, SettingsView
+│   ├── views/          # TavernView, TeamView, DungeonView, ShopView, SettingsView, EquipmentView
 │   ├── BootScene.js, PreloadScene.js, MainMenuScene.js
 │   ├── BaseScene.js    # 底部导航 + 5个Tab
 │   ├── DungeonScene.js # 禁区过渡
 │   └── BattleScene.js  # 战斗场景
 ├── game/
 │   ├── EventBus.js     # 场景通信
-│   ├── data/           # Const.js, Lang.js, CharacterClass.js
-│   ├── entities/       # Character.js
-│   └── systems/        # Battle, Dungeon, Base, Save, Sound, Equipment, Skill, Buff, Achievement
+│   ├── data/           # Const.js, Lang.js, CharacterClass.js, MinionConfig.js, minions.json
+│   ├── entities/       # Character.js, MinionCard.js, EquipmentCard.js
+│   └── systems/        # Battle, Dungeon, Base, Save, Sound, Equipment, Skill, Buff, Achievement, PassiveSkill, EquipmentCardManager
 └── utils/              # ResponsiveUtils.js
 ```
+
+## 随从卡系统规范
+
+### MinionCard 实体类
+- 继承 Character 类
+- 品质：common | rare | epic | legendary
+- 种族：human | mech | mutant | energy | beast
+- 元素：fire | ice | thunder | dark | light
+- 被动技能通过 `isMinionCard` 标记区分
+
+### 被动技能类型
+- 光环类(Aura)：AURA_ATK_UP, AURA_DEF_UP, AURA_HEAL
+- 触发类(Trigger)：ON_ATTACK, ON_DAMAGE_TAKEN, ON_ALLY_DEATH, ON_KILL, ON_HP_BELOW_THRESHOLD, ON_TURN_START, ON_SUMMON
+- 状态类(Status)：DIVINE_SHIELD, TAUNT, WINDFURY, REBIRTH, POISON_TOUCH, LIFESTEAL_AURA
+
+### 种族天赋
+| 种族 | 天赋效果 |
+|------|----------|
+| MECH | 免疫中毒和眩晕 |
+| MUTANT | 每回合恢复5%最大生命 |
+| ENERGY | 闪避+15%，生命上限-20% |
+| BEAST | 攻击+15%，暴击+10% |
 
 ## 性能规则
 | 优化项 | 规则 |
@@ -93,30 +127,21 @@ npm run build  # 构建生产
 npm run preview # 预览
 ```
 
+## 已完成功能清单
+
+| 功能 | 状态 | 文件 |
+|------|------|------|
+| 基础角色系统 | ✅ | Character.js |
+| 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js |
+| 随从卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js |
+| 战斗系统 | ✅ | BattleSystem.js |
+| 存档系统 | ✅ | SaveSystem.js |
+| UI视图 | ✅ | views/*.js |
+
 ## 问题追踪
 
 | 问题 | 状态 |
 |------|------|
 | 事件监听器泄漏 | ✅ 已修复 |
-| 硬编码颜色/文本 | ✅ 已修复 |
-| Character类缺少MP属性 | ✅ 已修复 |
-| 闪避机制未实现 | ✅ 已修复 |
-| hp/currentHp属性名不一致 | ✅ 已修复 |
-| BaseScene 拆分 | ⚠️ 可选 |
-| Excel表规范化 | ❌ 待处理 |
-| 装备生成逻辑 | ❌ 待实现 |
-| 套装效果激活 | ❌ 待实现 |
-| 角色死亡复活 | ❌ 待实现 |
-
-## 数值平衡建议
-
-### 角色职业调整
-| 职业 | 问题 | 建议 |
-|------|------|------|
-| 钢铁壁垒 | ATK过低 | 提升至35，增加嘲讽机制 |
-| 影子刺客 | 过强 | HP降至320，暴击降至30% |
-| 毁灭术士 | 吸血过高 | 吸血降至10% |
-
-### 敌人成长曲线
-当前公式：`Math.pow(growth, floorNumber - 1)` 导致后期难度断层
-建议改为：`Math.pow(growth, Math.log2(floorNumber + 1))`
+| 装备卡t()函数调用 | ✅ 已修复 |
+| 随从卡被动触发逻辑 | ✅ 已修复 |

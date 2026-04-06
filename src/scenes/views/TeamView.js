@@ -1,3 +1,6 @@
+import { t } from '../../game/data/Lang.js';
+import Const from '../../game/data/Const.js';
+
 export default class TeamView {
   constructor(scene) {
     this.scene = scene;
@@ -7,154 +10,375 @@ export default class TeamView {
   show() {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
-    const { t } = this.scene;
-    const { Const } = this.scene;
 
-    this.addText(width / 2, 100, '管理你的队伍', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    });
-
-    const teamMembers = this.scene.baseSystem.getTeamMembers();
-    const teamCount = this.scene.baseSystem.getTeamMemberCount();
-    const maxTeamSize = Const.GAME.MAX_TEAM_SIZE;
-
-    this.addText(width / 2, 125, `队伍: ${teamCount}/${maxTeamSize}`, {
-      fontSize: Const.FONT.SIZE_SMALL,
+    this.addText(width / 2, 90, '卡组管理', {
+      fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PINK
+    });
+
+    this.renderDeployedSection(width);
+    this.renderOwnedSection(width);
+
+    this.addText(width / 2, height - 100, '点击卡片进入培养模式', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.INACTIVE
+    });
+  }
+
+  renderDeployedSection(width) {
+    this.addText(width / 2, 130, '─ 已上阵 ─', {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
     });
 
-    if (teamMembers.length === 0) {
-      this.addCard(width/2 - Const.LAYOUT.CARD_WIDTH/2, 150, Const.LAYOUT.CARD_WIDTH, 100, Const.COLORS.PURPLE);
-      
-      this.addText(width / 2, 190, '👥', { fontSize: Const.FONT.SIZE_ICON_MEDIUM });
-      
-      this.addText(width / 2, 230, '队伍为空', {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.PINK
-      });
-    } else {
-      const startY = 155;
-      teamMembers.forEach((member, index) => {
-        const y = startY + index * 60;
-        this.createTeamMemberCard(width / 2, y, member, true);
-      });
+    const deployedMinions = this.scene.minionCardManager.getDeployedCards?.() || [];
+    const equippedCard = this.scene.equipmentCardManager?.equippedCard;
+    const deployedCards = [];
+
+    if (equippedCard) {
+      deployedCards.push({ ...equippedCard, cardType: 'equipment' });
     }
+    deployedCards.push(...deployedMinions.map(m => ({ ...m, cardType: 'minion' })));
 
-    const allCharacters = this.scene.baseSystem.characters || [];
-    const nonTeamCharacters = allCharacters.filter(c => !this.scene.baseSystem.team.includes(c.id));
-
-    this.addText(width / 2, 360, '─ 已招募角色 ─', {
+    this.addText(width / 2, 155, `(${deployedCards.length}/4) 随从3+装备1`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
     });
 
-    if (nonTeamCharacters.length === 0) {
-      this.addText(width / 2, 400, '暂无其他角色', {
-        fontSize: Const.FONT.SIZE_TINY,
+    if (deployedCards.length === 0) {
+      this.addText(width / 2, 195, '暂无上阵卡牌', {
+        fontSize: Const.FONT.SIZE_SMALL,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
       });
     } else {
-      const startY = 395;
-      const maxDisplay = Math.min(nonTeamCharacters.length, 4);
+      deployedCards.forEach((card, index) => {
+        this.createCard(width / 2, 185 + index * 75, card, true);
+      });
+    }
+  }
+
+  renderOwnedSection(width) {
+    this.addText(width / 2, 400, '─ 我的卡牌 ─', {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.CYAN
+    });
+
+    const ownedMinions = this.scene.minionCardManager.getAvailableCards?.() || [];
+    const allEquipments = this.scene.equipmentCardManager?.getAllCards?.() || [];
+    const equippedId = this.scene.equipmentCardManager?.equippedCard?.id;
+    const availableEquipments = allEquipments.filter(e => e.id !== equippedId);
+    const allOwned = [
+      ...ownedMinions.map(m => ({ ...m, cardType: 'minion' })),
+      ...availableEquipments.map(e => ({ ...e, cardType: 'equipment' }))
+    ];
+
+    if (allOwned.length === 0) {
+      this.addText(width / 2, 440, '暂无卡牌', {
+        fontSize: Const.FONT.SIZE_SMALL,
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.INACTIVE
+      });
+    } else {
+      const maxDisplay = Math.min(allOwned.length, 4);
       for (let i = 0; i < maxDisplay; i++) {
-        const y = startY + i * 55;
-        this.createTeamMemberCard(width / 2, y, nonTeamCharacters[i], false);
+        this.createCard(width / 2, 425 + i * 75, allOwned[i], false);
       }
-      
-      if (nonTeamCharacters.length > 4) {
-        this.addText(width / 2, startY + 4 * 55 + 10, `还有 ${nonTeamCharacters.length - 4} 名角色...`, {
+      if (allOwned.length > 4) {
+        this.addText(width / 2, 425 + 4 * 75 + 5, `还有 ${allOwned.length - 4} 张...`, {
           fontSize: Const.FONT.SIZE_TINY,
           fontFamily: Const.FONT.FAMILY_CN,
           color: Const.TEXT_COLORS.INACTIVE
         });
       }
     }
-
-    this.addText(width / 2, height - 130, '点击 [+] 添加到队伍，[-] 移出队伍', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    });
   }
 
-  createTeamMemberCard(x, y, character, inTeam) {
-    const { Const } = this.scene;
+  createCard(x, y, card, isDeployed) {
     const container = this.scene.add.container(x, y);
+    const cardWidth = 300;
+    const cardHeight = 65;
+
+    const isMinion = card.cardType === 'minion';
+    const qualityConfig = isMinion
+      ? this.getMinionQualityConfig(card.rarity)
+      : this.getEquipmentQualityConfig(card.quality);
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bg.fillRoundedRect(-150, -24, 300, 48, Const.UI.CARD_RADIUS_SMALL);
-    
-    const borderColor = inTeam ? Const.COLORS.CYAN : Const.COLORS.PURPLE;
-    bg.lineStyle(2, borderColor, 0.5);
-    bg.strokeRoundedRect(-150, -24, 300, 48, Const.UI.CARD_RADIUS_SMALL);
+    bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
+    bg.lineStyle(2, parseInt(qualityConfig.color.replace('#', '0x')), 0.7);
+    bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
     container.add(bg);
 
-    const qualityColors = {
-      common: Const.TEXT_COLORS.PRIMARY,
-      rare: Const.TEXT_COLORS.CYAN,
-      epic: Const.TEXT_COLORS.PINK,
-      legendary: Const.TEXT_COLORS.YELLOW,
-      mythic: Const.TEXT_COLORS.MAGENTA
-    };
-    const qualityColor = qualityColors[character.quality] || Const.TEXT_COLORS.PRIMARY;
+    const icon = isMinion
+      ? this.scene.add.text(-cardWidth/2 + 30, 0, card.getElementConfig?.()?.icon || '🐺', { fontSize: '28px' }).setOrigin(0.5)
+      : this.scene.add.text(-cardWidth/2 + 30, 0, qualityConfig.icon, { fontSize: '28px' }).setOrigin(0.5);
+    container.add(icon);
 
-    const nameLabel = this.scene.add.text(-130, -6, character.name, {
-      fontSize: Const.FONT.SIZE_NORMAL,
+    const nameText = this.scene.add.text(-cardWidth/2 + 60, -10, card.name, {
+      fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: qualityColor
+      color: qualityConfig.textColor
     }).setOrigin(0, 0.5);
-    container.add(nameLabel);
+    container.add(nameText);
 
-    const classInfo = character.charClass?.name || '未知';
-    const levelInfo = 'Lv.' + (character.level || 1);
-    const classLabel = this.scene.add.text(-130, 10, `${classInfo} ${levelInfo}`, {
+    const starText = this.scene.add.text(-cardWidth/2 + 60, 10, '★'.repeat(card.star || 1), {
       fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.YELLOW
     }).setOrigin(0, 0.5);
-    container.add(classLabel);
+    container.add(starText);
 
-    const statusLabel = this.scene.add.text(60, 0, inTeam ? '队伍中' : '待命', {
-      fontSize: Const.FONT.SIZE_TINY,
+    const typeBadge = this.scene.add.text(-cardWidth/2 + 115, 10, isMinion ? '随从' : '装备', {
+      fontSize: '10px',
       fontFamily: Const.FONT.FAMILY_CN,
-      color: inTeam ? Const.TEXT_COLORS.CYAN : Const.TEXT_COLORS.INACTIVE
-    }).setOrigin(0.5);
-    container.add(statusLabel);
+      color: isMinion ? '#ff6b6b' : '#4dabf7'
+    }).setOrigin(0, 0.5);
+    container.add(typeBadge);
 
-    const actionBtn = this.scene.add.text(120, 0, inTeam ? '[-]' : '[+]', {
+    const statsText = isMinion
+      ? `HP:${card.maxHp} ATK:${card.atk}`
+      : this.getEquipmentStats(card);
+    const statsDisplay = this.scene.add.text(-cardWidth/2 + 60, 24, statsText, {
+      fontSize: '10px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.INACTIVE
+    }).setOrigin(0, 0.5);
+    container.add(statsDisplay);
+
+    const deployBtn = this.scene.add.text(cardWidth/2 - 40, 0, isDeployed ? '[-]' : '[+]', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_EN,
-      color: inTeam ? Const.TEXT_COLORS.DANGER : Const.TEXT_COLORS.CYAN
+      color: isDeployed ? Const.TEXT_COLORS.DANGER : Const.TEXT_COLORS.CYAN
     }).setOrigin(0.5).setInteractive();
-    
-    actionBtn.on('pointerdown', () => {
-      if (inTeam) {
-        this.scene.baseSystem.removeFromTeam(character.id);
-      } else {
-        const result = this.scene.baseSystem.addToTeam(character.id);
-        if (!result.success) {
-          console.log('添加失败:', result.reason);
-        }
-      }
-      this.scene.saveGameData();
-      this.scene.showView('team');
+    deployBtn.on('pointerdown', (e) => {
+      e.stopPropagation();
+      this.toggleDeploy(card, isMinion);
     });
-    container.add(actionBtn);
+    container.add(deployBtn);
 
-    container.setSize(300, 48);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 300, 48), Phaser.Geom.Rectangle.Contains);
-
+    container.setSize(cardWidth, cardHeight);
+    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
+    container.on('pointerdown', () => this.showCardDetail(card, isMinion));
     this.elements.push(container);
     return container;
+  }
+
+  toggleDeploy(card, isMinion) {
+    if (isMinion) {
+      if (this.scene.minionCardManager.deployedCards.includes(card.id)) {
+        this.scene.minionCardManager.undeployCard(card.id);
+      } else {
+        const result = this.scene.minionCardManager.deployCard(card.id);
+        if (!result.success && result.reason === 'max_deploy_reached') {
+          this.scene.showToast?.('随从上阵位置已满！');
+        }
+      }
+    } else {
+      if (this.scene.equipmentCardManager.equippedCard?.id === card.id) {
+        this.scene.equipmentCardManager.unequipCard();
+      } else {
+        this.scene.equipmentCardManager.equipCard(card.id);
+      }
+    }
+    this.scene.saveGameData();
+    this.refresh();
+  }
+
+  showCardDetail(card, isMinion) {
+    const width = this.scene.cameras.main.width;
+    const height = this.scene.cameras.main.height;
+    this.destroy();
+
+    const overlay = this.scene.add.graphics();
+    overlay.fillStyle(Const.COLORS.BG_DARK, Const.ALPHA.OVERLAY);
+    overlay.fillRect(0, 0, width, height);
+    overlay.setDepth(999);
+    overlay.setInteractive();
+    overlay.on('pointerdown', () => this.refresh());
+    this.elements.push(overlay);
+
+    const modal = this.scene.add.container(width / 2, height / 2);
+    const qualityConfig = isMinion
+      ? this.getMinionQualityConfig(card.rarity)
+      : this.getEquipmentQualityConfig(card.quality);
+
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 1);
+    bg.fillRoundedRect(-140, -200, 280, 400, Const.UI.CARD_RADIUS);
+    modal.add(bg);
+
+    const closeBtn = this.scene.add.text(125, -185, '✕', {
+      fontSize: '20px',
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0.5).setInteractive().setDepth(1002);
+    closeBtn.on('pointerdown', () => this.refresh());
+    modal.add(closeBtn);
+    this.elements.push(closeBtn);
+
+    const icon = isMinion
+      ? this.scene.add.text(0, -160, card.getElementConfig?.()?.icon || '🐺', { fontSize: '48px' }).setOrigin(0.5)
+      : this.scene.add.text(0, -160, qualityConfig.icon, { fontSize: '48px' }).setOrigin(0.5);
+    modal.add(icon);
+
+    const typeLabel = this.scene.add.text(0, -115, isMinion ? '🐺 随从卡' : '⚔️ 装备卡', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: isMinion ? '#ff6b6b' : '#4dabf7'
+    }).setOrigin(0.5);
+    modal.add(typeLabel);
+
+    this.scene.add.text(0, -85, card.name, {
+      fontSize: Const.FONT.SIZE_TITLE,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: qualityConfig.textColor
+    }).setOrigin(0.5).addToDisplayList(modal);
+
+    this.scene.add.text(0, -55, '★'.repeat(card.star || 1), {
+      fontSize: Const.FONT.SIZE_NORMAL,
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.YELLOW
+    }).setOrigin(0.5).addToDisplayList(modal);
+
+    let y = -20;
+
+    if (isMinion) {
+      const stats = [
+        `生命: ${card.maxHp}`,
+        `攻击: ${card.atk}`,
+        `暴击: ${((card.critRate || 0.1) * 100).toFixed(0)}%`,
+        `闪避: ${((card.dodgeRate || 0.05) * 100).toFixed(0)}%`
+      ];
+      stats.forEach(stat => {
+        this.scene.add.text(-100, y, stat, {
+          fontSize: Const.FONT.SIZE_TINY,
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.SECONDARY
+        }).setOrigin(0, 0.5).addToDisplayList(modal);
+        y += 22;
+      });
+
+      if (card.passiveSkill) {
+        this.scene.add.text(-100, y + 5, `被动: ${card.passiveSkill.icon} ${card.passiveSkill.name}`, {
+          fontSize: Const.FONT.SIZE_TINY,
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: '#27ae60'
+        }).setOrigin(0, 0.5).addToDisplayList(modal);
+        y += 25;
+      }
+    } else {
+      this.scene.add.text(-100, y, this.getEquipmentStats(card), {
+        fontSize: Const.FONT.SIZE_TINY,
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.CYAN
+      }).setOrigin(0, 0.5).addToDisplayList(modal);
+      y += 25;
+
+      if (card.skills && card.skills.length > 0) {
+        card.skills.forEach(skill => {
+          this.scene.add.text(-100, y, `技能: ${skill.name}`, {
+            fontSize: Const.FONT.SIZE_TINY,
+            fontFamily: Const.FONT.FAMILY_CN,
+            color: '#9b59b6'
+          }).setOrigin(0, 0.5).addToDisplayList(modal);
+          y += 20;
+        });
+      }
+    }
+
+    const btnY = 150;
+
+    if (card.star < 5) {
+      const upgradeBtn = this.scene.add.container(0, btnY).setDepth(1002);
+      const btnBg = this.scene.add.graphics();
+      btnBg.fillStyle(Const.COLORS.PURPLE, 1);
+      btnBg.fillRoundedRect(-50, -14, 100, 28, Const.UI.BUTTON_RADIUS);
+      upgradeBtn.add(btnBg);
+      this.scene.add.text(0, 0, '升星', {
+        fontSize: Const.FONT.SIZE_SMALL,
+        fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
+        color: Const.TEXT_COLORS.PRIMARY
+      }).setOrigin(0.5).addToDisplayList(upgradeBtn);
+      upgradeBtn.setSize(100, 28);
+      upgradeBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 100, 28), Phaser.Geom.Rectangle.Contains);
+      upgradeBtn.on('pointerdown', () => this.upgradeCard(card, isMinion));
+      modal.add(upgradeBtn);
+      this.elements.push(upgradeBtn);
+    }
+
+    modal.setDepth(1000);
+    this.elements.push(modal);
+  }
+
+  upgradeCard(card, isMinion) {
+    let result;
+    if (isMinion) {
+      result = this.scene.minionCardManager.starUpgrade(card.id);
+    } else {
+      result = this.scene.equipmentCardManager.upgradeStar(card.id);
+    }
+
+    if (result.success) {
+      this.scene.showToast?.(`升星成功！现在是${result.newStar}★`);
+      this.scene.saveGameData();
+      this.refresh();
+    } else {
+      if (result.reason === 'not_enough_stones') {
+        this.scene.showToast?.('升星石不足！');
+      } else {
+        this.scene.showToast?.('升星失败！');
+      }
+    }
+  }
+
+  getMinionQualityConfig(quality) {
+    return this.getQualityConfig(quality);
+  }
+
+  getEquipmentQualityConfig(quality) {
+    const configs = {
+      N: { name: '普通', color: '#8a7a6a', textColor: '#8a7a6a', icon: '🔧' },
+      R: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7', icon: '⚔️' },
+      SR: { name: '精良', color: '#51cf66', textColor: '#51cf66', icon: '🗡️' },
+      SSR: { name: '史诗', color: '#9775fa', textColor: '#9775fa', icon: '🔥' },
+      'SSR+': { name: '传说', color: '#ffd700', textColor: '#ffd700', icon: '💎' }
+    };
+    return configs[quality] || configs.N;
+  }
+
+  getQualityConfig(quality) {
+    const configs = {
+      common: { name: '普通', color: '#8a7a6a', textColor: '#8a7a6a' },
+      rare: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7' },
+      epic: { name: '史诗', color: '#9775fa', textColor: '#9775fa' },
+      legendary: { name: '传说', color: '#ffd700', textColor: '#ffd700' },
+      mythic: { name: '神话', color: '#ff00ff', textColor: '#ff00ff' }
+    };
+    return configs[quality] || configs.common;
+  }
+
+  getEquipmentStats(card) {
+    const stats = [];
+    const effective = card.getEffectiveStats?.() || {};
+    if (effective.atk > 0) stats.push(`ATK+${effective.atk}`);
+    if (effective.hp > 0) stats.push(`HP+${effective.hp}`);
+    if (effective.critRate > 0) stats.push(`CRIT+${(effective.critRate * 100).toFixed(0)}%`);
+    return stats.join(' | ') || '无加成';
+  }
+
+  refresh() {
+    this.destroy();
+    this.show();
   }
 
   addText(x, y, text, options = {}) {
@@ -163,18 +387,10 @@ export default class TeamView {
     return textObj;
   }
 
-  addCard(x, y, width, height, borderColor) {
-    const card = this.scene.add.graphics();
-    card.fillStyle(Const.COLORS.BG_MID, 0.9);
-    card.fillRoundedRect(x, y, width, height, Const.UI.CARD_RADIUS);
-    card.lineStyle(2, borderColor, 0.5);
-    card.strokeRoundedRect(x, y, width, height, Const.UI.CARD_RADIUS);
-    this.elements.push(card);
-    return card;
-  }
-
   destroy() {
-    this.elements.forEach(el => el.destroy());
+    this.elements.forEach(el => {
+      if (el && el.destroy) el.destroy();
+    });
     this.elements = [];
   }
 }

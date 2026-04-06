@@ -12,10 +12,46 @@ export default class EquipmentCardManager {
 
     this.equippedCardId = gameData.equippedCardId || null;
     this.equippedCard = null;
+    this.shopCards = gameData.shopCards || [];
 
     if (this.equippedCardId) {
       this.equippedCard = this.ownedCards.find(c => c.id === this.equippedCardId) || null;
     }
+  }
+
+  addCard(card) {
+    if (!(card instanceof EquipmentCard)) {
+      card = new EquipmentCard(card);
+    }
+    if (!card.id) {
+      card.id = 'equip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+    }
+    this.ownedCards.push(card);
+    return card;
+  }
+
+  generateRandomCard() {
+    const qualities = ['N', 'N', 'N', 'R', 'R', 'SR', 'SSR', 'SSR+'];
+    const quality = qualities[Math.floor(Math.random() * qualities.length)];
+    const names = {
+      N: ['铁剑', '木盾', '皮甲'],
+      R: ['精钢剑', '铁甲', '魔法杖'],
+      SR: ['烈焰之刃', '冰霜护甲', '雷霆法杖'],
+      SSR: ['龙鳞剑', '凤凰羽衣', '陨星法杖'],
+      'SSR+': ['神圣之光剑', '永恒守护甲', '混沌之源杖']
+    };
+    const name = names[quality][Math.floor(Math.random() * 3)];
+    const newCard = new EquipmentCard({
+      id: 'equip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+      name: name,
+      quality: quality,
+      star: 1,
+      atk: Math.floor(Math.random() * 20) + 10,
+      hp: Math.floor(Math.random() * 100) + 50,
+      critRate: 0.1
+    });
+    this.addCard(newCard);
+    return newCard;
   }
 
   getAllCards() {

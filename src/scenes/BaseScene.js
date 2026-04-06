@@ -4,6 +4,7 @@ import Const from '../game/data/Const.js';
 import EquipmentView from './views/EquipmentView.js';
 import EquipmentCard from '../game/entities/EquipmentCard.js';
 import EquipmentCardManager from '../game/systems/EquipmentCardManager.js';
+import MinionCardManager from '../game/systems/MinionCardManager.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
@@ -52,17 +53,20 @@ export default class BaseScene extends Phaser.Scene {
     if (!window.gameData.equipmentCardManager) {
       window.gameData.equipmentCardManager = {
         ownedCards: [],
-        equippedCardId: null
+        equippedCardId: null,
+        shopCards: []
       };
     }
-    this.equipmentCardManager = new EquipmentCardManager();
-    this.equipmentCardManager.ownedCards = (window.gameData.equipmentCardManager.ownedCards || []).map(c => {
-      if (c instanceof EquipmentCard) return c;
-      return EquipmentCard.fromJSON(c);
-    });
-    if (window.gameData.equipmentCardManager.equippedCardId) {
-      this.equipmentCardManager.equipCard(window.gameData.equipmentCardManager.equippedCardId);
+    this.equipmentCardManager = new EquipmentCardManager(window.gameData.equipmentCardManager);
+
+    if (!window.gameData.minionCardManager) {
+      window.gameData.minionCardManager = {
+        ownedCards: [],
+        deployedCards: [],
+        maxDeploy: 3
+      };
     }
+    this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
   }
 
   cleanCharacterData() {
@@ -189,7 +193,6 @@ export default class BaseScene extends Phaser.Scene {
     const tabs = [
       { key: 'tavern', icon: '酒', label: t('tavern') },
       { key: 'team', icon: '队', label: t('team') },
-      { key: 'equipment', icon: '装', label: t('equipment') },
       { key: 'dungeon', icon: '牢', label: t('dungeon') },
       { key: 'shop', icon: '店', label: t('shop') },
       { key: 'settings', icon: '设', label: t('settings') }
@@ -269,7 +272,6 @@ export default class BaseScene extends Phaser.Scene {
     const titles = {
       tavern: t('tavern'),
       team: t('team'),
-      equipment: t('equipment'),
       dungeon: t('dungeon'),
       shop: t('shop'),
       settings: t('settings')
@@ -285,9 +287,6 @@ export default class BaseScene extends Phaser.Scene {
         break;
       case 'team':
         this.showTeamContent();
-        break;
-      case 'equipment':
-        this.showEquipmentContent();
         break;
       case 'dungeon':
         this.showDungeonContent();
@@ -987,8 +986,12 @@ export default class BaseScene extends Phaser.Scene {
     window.gameData.base = this.baseSystem.toJSON();
     window.gameData.equipmentCardManager = {
       ownedCards: this.equipmentCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
-      equippedCardId: this.equipmentCardManager.equippedCard?.id || null
+      equippedCardId: this.equipmentCardManager.equippedCard?.id || null,
+      shopCards: (this.equipmentCardManager.shopCards || []).map(c => c.toJSON ? c.toJSON() : c)
     };
+    if (this.minionCardManager) {
+      window.gameData.minionCardManager = this.minionCardManager.toJSON();
+    }
     localStorage.setItem('sodaDungeonSave', JSON.stringify(window.gameData));
   }
 

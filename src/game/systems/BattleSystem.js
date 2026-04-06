@@ -77,11 +77,27 @@ export default class BattleSystem {
       char.isDead = false;
       char.currentHp = char.maxHp;
       char.equipmentEffects = [];
+      if (char.isMinionCard) {
+        char._hasRebirthed = false;
+        char._windfuryUsed = false;
+        if (char.passiveSkill) {
+          char.passiveSkill.triggered = false;
+          char.passiveSkill.isActive = true;
+        }
+      }
     });
     
     this.enemyTeam.forEach(enemy => {
       enemy.isDead = false;
       enemy.currentHp = enemy.maxHp;
+      if (enemy.isMinionCard) {
+        enemy._hasRebirthed = false;
+        enemy._windfuryUsed = false;
+        if (enemy.passiveSkill) {
+          enemy.passiveSkill.triggered = false;
+          enemy.passiveSkill.isActive = true;
+        }
+      }
     });
     
     this.applyEquipmentCardBonuses();
@@ -399,6 +415,8 @@ export default class BattleSystem {
     }
     
     this.checkEquipmentTriggers('turn_start');
+    this.processPassiveSkills(this.playerTeam, 'turn_start', this.playerTeam, this.enemyTeam);
+    this.processPassiveSkills(this.enemyTeam, 'turn_start', this.enemyTeam, this.playerTeam);
     this.processBuffs(this.playerTeam);
     this.processBuffs(this.enemyTeam);
     
@@ -444,6 +462,64 @@ export default class BattleSystem {
     return entity.buffs?.some(b => b.type === buffType) || false;
   }
   
+  processPassiveSkills(team, eventType, allies, enemies) {
+    for (const entity of team) {
+      if (entity.isDead || !entity.isMinionCard || !entity.passiveSkill) continue;
+
+      const context = {
+        eventType,
+        source: entity,
+        target: null,
+        damage: 0
+      };
+
+      if (entity.passiveSkill.canTrigger(context)) {
+        const result = entity.passiveSkill.execute(context, allies, enemies);
+
+        if (result.damage > 0) {
+          this.addBattleLog(`[被动] ${entity.passiveSkill.name}`, `造成 ${result.damage} 伤害`);
+        }
+        if (result.healing > 0) {
+          this.addBattleLog(`[被动] ${entity.passiveSkill.name}`, `恢复 ${result.healing} 生命`);
+        }
+
+        for (const msg of result.messages) {
+          this.addBattleLog(`[被动]`, msg);
+        }
+
+        this.emit('onPassiveTrigger', { entity, passive: entity.passiveSkill, result });
+      }
+
+      if (entity.getMutantRegen() > 0) {
+        const regenAmount = Math.floor(entity.maxHp * entity.getMutantRegen());
+        entity.currentHp = Math.min(entity.maxHp, entity.currentHp + regenAmount);
+        this.addBattleLog(`[种族天赋]`, `${entity.name} 恢复了 ${regenAmount} 点生命`);
+      }
+    }
+  }
+
+  processAllyDeathPassiveSkills(deadCharacter, allies, enemies) {
+    for (const entity of allies) {
+      if (entity.isDead || !entity.isMinionCard || !entity.passiveSkill) continue;
+      if (entity.passiveSkill.type !== 'on_ally_death') continue;
+
+      const context = {
+        eventType: 'ally_death',
+        source: entity,
+        target: deadCharacter,
+        damage: 0
+      };
+
+      if (entity.passiveSkill.canTrigger(context)) {
+        const result = entity.passiveSkill.execute(context, allies, enemies);
+        for (const msg of result.messages) {
+          this.addBattleLog(`[被动]`, msg);
+        }
+        this.emit('onPassiveTrigger', { entity, passive: entity.passiveSkill, result });
+      }
+    }
+  }
+  
   processBuffs(team) {
     for (const entity of team) {
       if (!entity.buffs) entity.buffs = [];
@@ -452,6 +528,7 @@ export default class BattleSystem {
         const buff = entity.buffs[i];
         
         if (buff.type === BuffType.POISON) {
+          if (entity.isMinionCard && entity.isMechImmune?.()) continue;
           const poisonDamage = Math.floor(buff.value * entity.maxHp);
           entity.currentHp = Math.max(0, entity.currentHp - poisonDamage);
           this.addBattleLog(`${entity.name} 受到中毒伤害`, `-${poisonDamage}`);
@@ -460,6 +537,19 @@ export default class BattleSystem {
           if (entity.currentHp <= 0) {
             entity.isDead = true;
             this.emit('onCharacterDeath', { character: entity, isPlayer: this.playerTeam.includes(entity) });
+            if (this.playerTeam.includes(entity)) {
+              this.processAllyDeathPassiveSkills(entity, this.playerTeam, this.enemyTeam);
+            } else {
+              this.processAllyDeathPassiveSkills(entity, this.enemyTeam, this.playerTeam);
+            }
+          }
+        }
+        
+        if (buff.type === BuffType.STUN) {
+          if (entity.isMinionCard && entity.isMechImmune?.()) {
+            entity.buffs.splice(i, 1);
+            this.addBattleLog(`[免疫]`, `${entity.name} 机械种族免疫眩晕`);
+            continue;
           }
         }
         
@@ -670,6 +760,7 @@ export default class BattleSystem {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: !this.playerTeam.includes(target) });
       this.checkEquipmentTriggers('enemy_death', { target, targets: [target] });
+      this.processAllyDeathPassiveSkills(target, this.playerTeam, this.enemyTeam);
     }
     
     const hpPercentBefore = target.currentHp / target.maxHp;
@@ -749,6 +840,7 @@ export default class BattleSystem {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: true });
       this.checkEquipmentTriggers('ally_death', { target, targets: [target] });
+      this.processAllyDeathPassiveSkills(target, this.enemyTeam, this.playerTeam);
     }
     
     this.emit('onAttack', { attacker, target, damage: finalDamage, isCrit });
@@ -807,6 +899,11 @@ export default class BattleSystem {
   selectTarget(targets) {
     if (targets.length === 0) return null;
     if (targets.length === 1) return targets[0];
+    
+    const tauntTargets = targets.filter(t => t.isMinionCard && t.hasTaunt?.());
+    if (tauntTargets.length > 0) {
+      return tauntTargets[Math.floor(Math.random() * tauntTargets.length)];
+    }
     
     const weights = targets.map(t => {
       let weight = 1;

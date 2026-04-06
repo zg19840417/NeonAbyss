@@ -65,10 +65,20 @@ export default class BaseSystem {
   }
   
   refreshRecruits() {
+    if (this.availableRecruits.length === 0) {
+      this.availableRecruits = this.generateRecruits();
+      this.lastRefreshTime = Date.now();
+      return {
+        success: true,
+        recruits: this.availableRecruits,
+        isFirstGenerate: true
+      };
+    }
+
     const timeSinceRefresh = Date.now() - this.lastRefreshTime;
     const dormBonus = 1 + (this.facilities.dorm.level - 1) * 0.1;
     const refreshInterval = 8 * 60 * 60 * 1000 / dormBonus;
-    
+
     if (timeSinceRefresh < refreshInterval) {
       return {
         success: false,
@@ -77,10 +87,10 @@ export default class BaseSystem {
         nextRefresh: new Date(this.lastRefreshTime + refreshInterval)
       };
     }
-    
+
     this.availableRecruits = this.generateRecruits();
     this.lastRefreshTime = Date.now();
-    
+
     return {
       success: true,
       recruits: this.availableRecruits
