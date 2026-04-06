@@ -51,8 +51,8 @@
   },
   {
     "id": "coin",
-    "zh_cn": "赛博币",
-    "en_us": "Cyber Coin"
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
   },
   {
     "id": "level",
@@ -235,148 +235,1078 @@
     "en_us": "{price} Coins"
   },
   {
-    "id": "equipment",
-    "zh_cn": "装备",
-    "en_us": "Equipment"
+    "id": "currency_mycelium",
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
   },
   {
-    "id": "equipment_card",
-    "zh_cn": "装备卡",
-    "en_us": "Equip Card"
+    "id": "currency_mycelium_desc",
+    "zh_cn": "从菌类生物身上采集的稀有资源，用于升级基地设施",
+    "en_us": "Rare resource harvested from fungal creatures, used for base upgrades"
   },
   {
-    "id": "equip_card",
-    "zh_cn": "装备卡",
-    "en_us": "Equip"
+    "id": "currency_source_core",
+    "zh_cn": "源核",
+    "en_us": "Source Core"
   },
   {
-    "id": "star_upgrade",
-    "zh_cn": "升星",
-    "en_us": "Star Upgrade"
+    "id": "currency_source_core_desc",
+    "zh_cn": "蕴含原始能量的核心，用于强化装备和芯片",
+    "en_us": "Core containing primal energy, used for equipment and chip enhancement"
   },
   {
-    "id": "merge",
-    "zh_cn": "合成",
-    "en_us": "Merge"
+    "id": "currency_star_coin",
+    "zh_cn": "星币",
+    "en_us": "Star Coin"
   },
   {
-    "id": "equip",
-    "zh_cn": "装备",
-    "en_us": "Equip"
+    "id": "currency_star_coin_desc",
+    "zh_cn": "禁区中流通的高级货币，可在特殊商店购买稀有物品",
+    "en_us": "Premium currency in the dungeon, used in special shops for rare items"
   },
   {
-    "id": "unequip",
-    "zh_cn": "卸下",
-    "en_us": "Unequip"
+    "id": "currency_cyber_coin",
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
   },
   {
-    "id": "current_equipped",
-    "zh_cn": "当前装备",
-    "en_us": "Currently Equipped"
+    "id": "currency_cyber_coin_desc",
+    "zh_cn": "基础交易货币，通过探索和战斗获得",
+    "en_us": "Basic trading currency, earned through exploration and combat"
   },
   {
-    "id": "my_cards",
-    "zh_cn": "我的装备卡",
-    "en_us": "My Cards"
+    "id": "element_water",
+    "zh_cn": "水",
+    "en_us": "Water"
   },
   {
-    "id": "stat_bonus",
-    "zh_cn": "属性加成",
-    "en_us": "Stat Bonus"
+    "id": "element_water_desc",
+    "zh_cn": "流动之力，克制火焰，被风克制",
+    "en_us": "Power of flow, strong against Fire, weak to Wind"
   },
   {
-    "id": "skills",
-    "zh_cn": "技能",
-    "en_us": "Skills"
+    "id": "element_fire",
+    "zh_cn": "火",
+    "en_us": "Fire"
   },
   {
-    "id": "skill_type_aura",
-    "zh_cn": "光环",
-    "en_us": "Aura"
+    "id": "element_fire_desc",
+    "zh_cn": "燃烧之力，克制风，被水克制",
+    "en_us": "Power of combustion, strong against Wind, weak to Water"
   },
   {
-    "id": "skill_type_trigger",
-    "zh_cn": "触发",
-    "en_us": "Trigger"
+    "id": "element_wind",
+    "zh_cn": "风",
+    "en_us": "Wind"
   },
   {
-    "id": "skill_type_modify",
-    "zh_cn": "改造",
-    "en_us": "Modify"
+    "id": "element_wind_desc",
+    "zh_cn": "疾风之力，克制暗，被火克制",
+    "en_us": "Power of swiftness, strong against Dark, weak to Fire"
   },
   {
-    "id": "no_card_equipped",
-    "zh_cn": "未装备卡牌",
-    "en_us": "No Card Equipped"
+    "id": "element_dark",
+    "zh_cn": "暗",
+    "en_us": "Dark"
   },
   {
-    "id": "tap_to_equip",
-    "zh_cn": "点击选择装备",
-    "en_us": "Tap to Select"
+    "id": "element_dark_desc",
+    "zh_cn": "暗影之力，与光互克",
+    "en_us": "Power of shadow, mutual counter with Light"
   },
   {
-    "id": "upgrade_preview",
-    "zh_cn": "升星预览",
-    "en_us": "Upgrade Preview"
+    "id": "element_light",
+    "zh_cn": "光",
+    "en_us": "Light"
   },
   {
-    "id": "material_upgrade",
-    "zh_cn": "材料升星",
-    "en_us": "Material Upgrade"
+    "id": "element_light_desc",
+    "zh_cn": "圣光之力，与暗互克",
+    "en_us": "Power of radiance, mutual counter with Dark"
   },
   {
-    "id": "merge_upgrade",
-    "zh_cn": "合成升星",
-    "en_us": "Merge Upgrade"
+    "id": "element_advantage",
+    "zh_cn": "克制",
+    "en_us": "Advantage"
   },
   {
-    "id": "star_stone",
-    "zh_cn": "星辉石",
-    "en_us": "Star Stone"
+    "id": "element_disadvantage",
+    "zh_cn": "被克制",
+    "en_us": "Disadvantage"
   },
   {
-    "id": "required",
-    "zh_cn": "需要",
-    "en_us": "Required"
+    "id": "element_neutral",
+    "zh_cn": "无克制",
+    "en_us": "Neutral"
   },
   {
-    "id": "owned",
-    "zh_cn": "拥有",
-    "en_us": "Owned"
+    "id": "element_bonus_damage",
+    "zh_cn": "克制伤害+{percent}%",
+    "en_us": "Advantage Damage +{percent}%"
   },
   {
-    "id": "insufficient_material",
-    "zh_cn": "材料不足",
-    "en_us": "Insufficient Material"
+    "id": "element_resist_damage",
+    "zh_cn": "被克制伤害-{percent}%",
+    "en_us": "Disadvantage Damage -{percent}%"
   },
   {
-    "id": "upgrade_success",
-    "zh_cn": "升星成功！",
-    "en_us": "Upgrade Success!"
+    "id": "race_plant",
+    "zh_cn": "植物系",
+    "en_us": "Plant"
   },
   {
-    "id": "upgrade_failed",
-    "zh_cn": "升星失败",
-    "en_us": "Upgrade Failed"
+    "id": "race_plant_desc",
+    "zh_cn": "与自然共生的生命体，擅长治愈和持续作战",
+    "en_us": "Nature-bound lifeforms, excel in healing and sustained combat"
   },
   {
-    "id": "max_star",
-    "zh_cn": "已满星",
-    "en_us": "Max Star"
+    "id": "race_animal",
+    "zh_cn": "动物系",
+    "en_us": "Animal"
   },
   {
-    "id": "trigger_condition",
-    "zh_cn": "触发条件",
-    "en_us": "Trigger"
+    "id": "race_animal_desc",
+    "zh_cn": "原始野性的化身，拥有出色的物理战斗能力",
+    "en_us": "Incarnation of primal wildness, outstanding physical combat ability"
   },
   {
-    "id": "effect",
-    "zh_cn": "效果",
-    "en_us": "Effect"
+    "id": "race_mech",
+    "zh_cn": "机械系",
+    "en_us": "Mech"
   },
   {
-    "id": "unlocked_at_star",
-    "zh_cn": "{star}星解锁",
-    "en_us": "Unlock at {star}★"
+    "id": "race_mech_desc",
+    "zh_cn": "高度发达的科技产物，攻防均衡且可升级",
+    "en_us": "Advanced technological creations, balanced offense and defense"
+  },
+  {
+    "id": "race_energy",
+    "zh_cn": "能量系",
+    "en_us": "Energy"
+  },
+  {
+    "id": "race_energy_desc",
+    "zh_cn": "纯粹的能量生命体，掌控强大的元素之力",
+    "en_us": "Pure energy lifeforms, wielding powerful elemental forces"
+  },
+  {
+    "id": "race_hybrid",
+    "zh_cn": "混合系",
+    "en_us": "Hybrid"
+  },
+  {
+    "id": "race_hybrid_desc",
+    "zh_cn": "多系融合的变异体，拥有不稳定的强大力量",
+    "en_us": "Multi-line fused mutants with unstable but powerful abilities"
+  },
+  {
+    "id": "subrace_fungus",
+    "zh_cn": "菌类",
+    "en_us": "Fungus"
+  },
+  {
+    "id": "subrace_flower",
+    "zh_cn": "花类",
+    "en_us": "Flower"
+  },
+  {
+    "id": "subrace_vine",
+    "zh_cn": "藤蔓",
+    "en_us": "Vine"
+  },
+  {
+    "id": "subrace_tree",
+    "zh_cn": "树木",
+    "en_us": "Tree"
+  },
+  {
+    "id": "subrace_cactus",
+    "zh_cn": "仙人掌",
+    "en_us": "Cactus"
+  },
+  {
+    "id": "subrace_seaweed",
+    "zh_cn": "水草",
+    "en_us": "Seaweed"
+  },
+  {
+    "id": "subrace_feline",
+    "zh_cn": "猫科",
+    "en_us": "Feline"
+  },
+  {
+    "id": "subrace_canine",
+    "zh_cn": "犬科",
+    "en_us": "Canine"
+  },
+  {
+    "id": "subrace_avian",
+    "zh_cn": "鸟类",
+    "en_us": "Avian"
+  },
+  {
+    "id": "subrace_aquatic",
+    "zh_cn": "鱼类",
+    "en_us": "Aquatic"
+  },
+  {
+    "id": "subrace_reptile",
+    "zh_cn": "爬行",
+    "en_us": "Reptile"
+  },
+  {
+    "id": "subrace_insect",
+    "zh_cn": "昆虫",
+    "en_us": "Insect"
+  },
+  {
+    "id": "subrace_warchariot",
+    "zh_cn": "战车",
+    "en_us": "War Chariot"
+  },
+  {
+    "id": "subrace_drone",
+    "zh_cn": "无人机",
+    "en_us": "Drone"
+  },
+  {
+    "id": "subrace_medical_mech",
+    "zh_cn": "医疗机械",
+    "en_us": "Medical Mech"
+  },
+  {
+    "id": "subrace_industrial",
+    "zh_cn": "工业",
+    "en_us": "Industrial"
+  },
+  {
+    "id": "subrace_military",
+    "zh_cn": "军用",
+    "en_us": "Military"
+  },
+  {
+    "id": "subrace_civilian",
+    "zh_cn": "民用",
+    "en_us": "Civilian"
+  },
+  {
+    "id": "subrace_fire_elem",
+    "zh_cn": "火焰",
+    "en_us": "Fire Elemental"
+  },
+  {
+    "id": "subrace_ice_elem",
+    "zh_cn": "寒冰",
+    "en_us": "Ice Elemental"
+  },
+  {
+    "id": "subrace_thunder_elem",
+    "zh_cn": "雷电",
+    "en_us": "Thunder Elemental"
+  },
+  {
+    "id": "subrace_light_elem",
+    "zh_cn": "光能",
+    "en_us": "Light Elemental"
+  },
+  {
+    "id": "subrace_dark_elem",
+    "zh_cn": "暗能",
+    "en_us": "Dark Elemental"
+  },
+  {
+    "id": "subrace_radiation",
+    "zh_cn": "辐射",
+    "en_us": "Radiation"
+  },
+  {
+    "id": "subrace_bio_mech",
+    "zh_cn": "动植混合",
+    "en_us": "Bio-Mech"
+  },
+  {
+    "id": "subrace_mech_plant",
+    "zh_cn": "机植混合",
+    "en_us": "Mech-Plant"
+  },
+  {
+    "id": "subrace_mech_animal",
+    "zh_cn": "机动混合",
+    "en_us": "Mech-Animal"
+  },
+  {
+    "id": "subrace_energy_mix",
+    "zh_cn": "能量混合",
+    "en_us": "Energy Mix"
+  },
+  {
+    "id": "subrace_triple_mix",
+    "zh_cn": "三系混合",
+    "en_us": "Triple Mix"
+  },
+  {
+    "id": "subrace_chaos",
+    "zh_cn": "混沌",
+    "en_us": "Chaos"
+  },
+  {
+    "id": "chip_system",
+    "zh_cn": "强化芯片",
+    "en_us": "Enhancement Chip"
+  },
+  {
+    "id": "chip_quality_N",
+    "zh_cn": "普通",
+    "en_us": "Normal"
+  },
+  {
+    "id": "chip_quality_R",
+    "zh_cn": "稀有",
+    "en_us": "Rare"
+  },
+  {
+    "id": "chip_quality_SR",
+    "zh_cn": "精英",
+    "en_us": "Super Rare"
+  },
+  {
+    "id": "chip_quality_SSR",
+    "zh_cn": "传说",
+    "en_us": "Super Super Rare"
+  },
+  {
+    "id": "chip_quality_UR",
+    "zh_cn": "史诗",
+    "en_us": "Ultra Rare"
+  },
+  {
+    "id": "chip_quality_LE",
+    "zh_cn": "神话",
+    "en_us": "Legendary"
+  },
+  {
+    "id": "chip_equip",
+    "zh_cn": "装备芯片",
+    "en_us": "Equip Chip"
+  },
+  {
+    "id": "chip_unequip",
+    "zh_cn": "卸下芯片",
+    "en_us": "Unequip Chip"
+  },
+  {
+    "id": "chip_synthesize",
+    "zh_cn": "芯片合成",
+    "en_us": "Chip Synthesis"
+  },
+  {
+    "id": "chip_enhance",
+    "zh_cn": "芯片强化",
+    "en_us": "Chip Enhance"
+  },
+  {
+    "id": "chip_enhance_success",
+    "zh_cn": "强化成功！",
+    "en_us": "Enhancement Success!"
+  },
+  {
+    "id": "chip_enhance_fail",
+    "zh_cn": "强化失败",
+    "en_us": "Enhancement Failed"
+  },
+  {
+    "id": "chip_slot_empty",
+    "zh_cn": "芯片槽位空",
+    "en_us": "Chip Slot Empty"
+  },
+  {
+    "id": "chip_skill",
+    "zh_cn": "芯片技能",
+    "en_us": "Chip Skill"
+  },
+  {
+    "id": "chip_target_profession",
+    "zh_cn": "适用职业",
+    "en_us": "Target Profession"
+  },
+  {
+    "id": "chip_target_element",
+    "zh_cn": "适用元素",
+    "en_us": "Target Element"
+  },
+  {
+    "id": "chip_target_race",
+    "zh_cn": "适用种族",
+    "en_us": "Target Race"
+  },
+  {
+    "id": "chip_all",
+    "zh_cn": "全部",
+    "en_us": "All"
+  },
+  {
+    "id": "minion_system",
+    "zh_cn": "随从卡",
+    "en_us": "Minion Card"
+  },
+  {
+    "id": "minion_summon",
+    "zh_cn": "召唤随从",
+    "en_us": "Summon Minion"
+  },
+  {
+    "id": "minion_dismiss",
+    "zh_cn": "解散随从",
+    "en_us": "Dismiss Minion"
+  },
+  {
+    "id": "minion_rarity_common",
+    "zh_cn": "普通",
+    "en_us": "Common"
+  },
+  {
+    "id": "minion_rarity_rare",
+    "zh_cn": "稀有",
+    "en_us": "Rare"
+  },
+  {
+    "id": "minion_rarity_epic",
+    "zh_cn": "史诗",
+    "en_us": "Epic"
+  },
+  {
+    "id": "minion_rarity_legendary",
+    "zh_cn": "传说",
+    "en_us": "Legendary"
+  },
+  {
+    "id": "minion_active_skill",
+    "zh_cn": "主动技能",
+    "en_us": "Active Skill"
+  },
+  {
+    "id": "minion_passive_skill",
+    "zh_cn": "被动技能",
+    "en_us": "Passive Skill"
+  },
+  {
+    "id": "minion_level",
+    "zh_cn": "随从等级",
+    "en_us": "Minion Level"
+  },
+  {
+    "id": "minion_exp",
+    "zh_cn": "随从经验",
+    "en_us": "Minion EXP"
+  },
+  {
+    "id": "minion_evolve",
+    "zh_cn": "随从进化",
+    "en_us": "Minion Evolve"
+  },
+  {
+    "id": "status_burn",
+    "zh_cn": "灼烧",
+    "en_us": "Burn"
+  },
+  {
+    "id": "status_burn_desc",
+    "zh_cn": "每回合受到攻击力{percent}%的火焰伤害",
+    "en_us": "Takes {percent}% ATK as fire damage per turn"
+  },
+  {
+    "id": "status_freeze",
+    "zh_cn": "冻结",
+    "en_us": "Freeze"
+  },
+  {
+    "id": "status_freeze_desc",
+    "zh_cn": "无法行动，持续{turns}回合",
+    "en_us": "Unable to act for {turns} turns"
+  },
+  {
+    "id": "status_poison",
+    "zh_cn": "中毒",
+    "en_us": "Poison"
+  },
+  {
+    "id": "status_poison_desc",
+    "zh_cn": "每回合受到固定毒素伤害",
+    "en_us": "Takes fixed poison damage per turn"
+  },
+  {
+    "id": "status_bleed",
+    "zh_cn": "流血",
+    "en_us": "Bleed"
+  },
+  {
+    "id": "status_bleed_desc",
+    "zh_cn": "每回合受到攻击力{percent}%的物理伤害",
+    "en_us": "Takes {percent}% ATK as physical damage per turn"
+  },
+  {
+    "id": "status_stun",
+    "zh_cn": "眩晕",
+    "en_us": "Stun"
+  },
+  {
+    "id": "status_stun_desc",
+    "zh_cn": "无法行动1回合",
+    "en_us": "Unable to act for 1 turn"
+  },
+  {
+    "id": "status_shield",
+    "zh_cn": "护盾",
+    "en_us": "Shield"
+  },
+  {
+    "id": "status_shield_desc",
+    "zh_cn": "吸收{amount}点伤害",
+    "en_us": "Absorbs {amount} damage"
+  },
+  {
+    "id": "status_atk_up",
+    "zh_cn": "攻击提升",
+    "en_us": "ATK Up"
+  },
+  {
+    "id": "status_atk_down",
+    "zh_cn": "攻击降低",
+    "en_us": "ATK Down"
+  },
+  {
+    "id": "status_def_up",
+    "zh_cn": "防御提升",
+    "en_us": "DEF Up"
+  },
+  {
+    "id": "status_def_down",
+    "zh_cn": "防御降低",
+    "en_us": "DEF Down"
+  },
+  {
+    "id": "status_speed_up",
+    "zh_cn": "速度提升",
+    "en_us": "SPD Up"
+  },
+  {
+    "id": "status_speed_down",
+    "zh_cn": "速度降低",
+    "en_us": "SPD Down"
+  },
+  {
+    "id": "status_crit_up",
+    "zh_cn": "暴击率提升",
+    "en_us": "CRIT Up"
+  },
+  {
+    "id": "status_dodge_up",
+    "zh_cn": "闪避率提升",
+    "en_us": "Dodge Up"
+  },
+  {
+    "id": "status_damage_reduction",
+    "zh_cn": "减伤",
+    "en_us": "Damage Reduction"
+  },
+  {
+    "id": "status_death_mark",
+    "zh_cn": "死亡标记",
+    "en_us": "Death Mark"
+  },
+  {
+    "id": "status_death_mark_desc",
+    "zh_cn": "{turns}回合后受到巨额真实伤害",
+    "en_us": "Takes massive true damage after {turns} turns"
+  },
+  {
+    "id": "skill_type_damage",
+    "zh_cn": "伤害",
+    "en_us": "Damage"
+  },
+  {
+    "id": "skill_type_heal",
+    "zh_cn": "治疗",
+    "en_us": "Heal"
+  },
+  {
+    "id": "skill_type_buff",
+    "zh_cn": "增益",
+    "en_us": "Buff"
+  },
+  {
+    "id": "skill_type_debuff",
+    "zh_cn": "减益",
+    "en_us": "Debuff"
+  },
+  {
+    "id": "skill_type_summon",
+    "zh_cn": "召唤",
+    "en_us": "Summon"
+  },
+  {
+    "id": "skill_type_aoe",
+    "zh_cn": "群体",
+    "en_us": "AOE"
+  },
+  {
+    "id": "skill_type_single",
+    "zh_cn": "单体",
+    "en_us": "Single"
+  },
+  {
+    "id": "skill_type_passive",
+    "zh_cn": "被动",
+    "en_us": "Passive"
+  },
+  {
+    "id": "skill_cooldown",
+    "zh_cn": "冷却: {turns}回合",
+    "en_us": "Cooldown: {turns} turns"
+  },
+  {
+    "id": "skill_no_cooldown",
+    "zh_cn": "无冷却",
+    "en_us": "No Cooldown"
+  },
+  {
+    "id": "skill_mp_cost",
+    "zh_cn": "消耗: {cost}能量",
+    "en_us": "Cost: {cost} Energy"
+  },
+  {
+    "id": "base_system",
+    "zh_cn": "基地",
+    "en_us": "Base"
+  },
+  {
+    "id": "base_upgrade",
+    "zh_cn": "升级",
+    "en_us": "Upgrade"
+  },
+  {
+    "id": "base_max_level",
+    "zh_cn": "已达最高等级",
+    "en_us": "Max Level Reached"
+  },
+  {
+    "id": "base_upgrade_cost",
+    "zh_cn": "升级费用: {cost}",
+    "en_us": "Upgrade Cost: {cost}"
+  },
+  {
+    "id": "base_facility_workbench",
+    "zh_cn": "工作台",
+    "en_us": "Workbench"
+  },
+  {
+    "id": "base_facility_chargers",
+    "zh_cn": "充电桩",
+    "en_us": "Chargers"
+  },
+  {
+    "id": "base_facility_hacker_terminal",
+    "zh_cn": "黑客终端",
+    "en_us": "Hacker Terminal"
+  },
+  {
+    "id": "base_facility_lab",
+    "zh_cn": "研究所",
+    "en_us": "Research Lab"
+  },
+  {
+    "id": "base_facility_garden",
+    "zh_cn": "生态园",
+    "en_us": "Eco Garden"
+  },
+  {
+    "id": "base_facility_armory",
+    "zh_cn": "军械库",
+    "en_us": "Armory"
+  },
+  {
+    "id": "base_facility_energy_well",
+    "zh_cn": "能量井",
+    "en_us": "Energy Well"
+  },
+  {
+    "id": "base_facility_training",
+    "zh_cn": "训练场",
+    "en_us": "Training Ground"
+  },
+  {
+    "id": "base_facility_medbay",
+    "zh_cn": "医疗舱",
+    "en_us": "Medical Bay"
+  },
+  {
+    "id": "base_facility_storage",
+    "zh_cn": "仓库",
+    "en_us": "Storage"
+  },
+  {
+    "id": "energy_vitality_soda",
+    "zh_cn": "活力苏打",
+    "en_us": "Vitality Soda"
+  },
+  {
+    "id": "energy_vitality_soda_desc",
+    "zh_cn": "恢复队伍全体10%最大生命值，提升探索效率",
+    "en_us": "Restores 10% max HP for entire team, boosts exploration efficiency"
+  },
+  {
+    "id": "energy_precision_fuel",
+    "zh_cn": "精准燃料",
+    "en_us": "Precision Fuel"
+  },
+  {
+    "id": "energy_precision_fuel_desc",
+    "zh_cn": "提升队伍暴击率15%，持续本次探索",
+    "en_us": "Boosts team crit rate by 15% for current exploration"
+  },
+  {
+    "id": "energy_battle_stimulant",
+    "zh_cn": "战意激化剂",
+    "en_us": "Battle Stimulant"
+  },
+  {
+    "id": "energy_battle_stimulant_desc",
+    "zh_cn": "提升队伍攻击力20%，持续本次探索",
+    "en_us": "Boosts team ATK by 20% for current exploration"
+  },
+  {
+    "id": "energy_guardian_elixir",
+    "zh_cn": "守护合剂",
+    "en_us": "Guardian Elixir"
+  },
+  {
+    "id": "energy_guardian_elixir_desc",
+    "zh_cn": "提升队伍减伤率15%，持续本次探索",
+    "en_us": "Boosts team damage reduction by 15% for current exploration"
+  },
+  {
+    "id": "energy_primal_essence",
+    "zh_cn": "源初精华",
+    "en_us": "Primal Essence"
+  },
+  {
+    "id": "energy_primal_essence_desc",
+    "zh_cn": "提升队伍全属性10%，持续本次探索",
+    "en_us": "Boosts all team stats by 10% for current exploration"
+  },
+  {
+    "id": "energy_forbidden_potion",
+    "zh_cn": "禁忌药剂",
+    "en_us": "Forbidden Potion"
+  },
+  {
+    "id": "energy_forbidden_potion_desc",
+    "zh_cn": "大幅提升攻击力35%但降低防御10%，高风险高回报",
+    "en_us": "Greatly boosts ATK by 35% but reduces DEF by 10%, high risk high reward"
+  },
+  {
+    "id": "reputation_system",
+    "zh_cn": "声望",
+    "en_us": "Reputation"
+  },
+  {
+    "id": "reputation_level",
+    "zh_cn": "声望等级",
+    "en_us": "Reputation Level"
+  },
+  {
+    "id": "reputation_points",
+    "zh_cn": "声望点数",
+    "en_us": "Reputation Points"
+  },
+  {
+    "id": "reputation_unlock",
+    "zh_cn": "声望解锁",
+    "en_us": "Reputation Unlock"
+  },
+  {
+    "id": "reputation_reward",
+    "zh_cn": "声望奖励",
+    "en_us": "Reputation Reward"
+  },
+  {
+    "id": "reputation_next",
+    "zh_cn": "下一级: {name}（需要{points}点）",
+    "en_us": "Next: {name} ({points} points required)"
+  },
+  {
+    "id": "equip_weapon",
+    "zh_cn": "武器",
+    "en_us": "Weapon"
+  },
+  {
+    "id": "equip_armor",
+    "zh_cn": "护甲",
+    "en_us": "Armor"
+  },
+  {
+    "id": "equip_accessory",
+    "zh_cn": "饰品",
+    "en_us": "Accessory"
+  },
+  {
+    "id": "equip_quality_common",
+    "zh_cn": "普通",
+    "en_us": "Common"
+  },
+  {
+    "id": "equip_quality_rare",
+    "zh_cn": "稀有",
+    "en_us": "Rare"
+  },
+  {
+    "id": "equip_quality_epic",
+    "zh_cn": "史诗",
+    "en_us": "Epic"
+  },
+  {
+    "id": "equip_quality_legendary",
+    "zh_cn": "传说",
+    "en_us": "Legendary"
+  },
+  {
+    "id": "equip_enhance",
+    "zh_cn": "强化",
+    "en_us": "Enhance"
+  },
+  {
+    "id": "equip_set_bonus",
+    "zh_cn": "套装效果",
+    "en_us": "Set Bonus"
+  },
+  {
+    "id": "equip_set_active",
+    "zh_cn": "套装已激活",
+    "en_us": "Set Active"
+  },
+  {
+    "id": "boss_warning",
+    "zh_cn": "Boss警告",
+    "en_us": "Boss Warning"
+  },
+  {
+    "id": "boss_appear",
+    "zh_cn": "Boss出现！",
+    "en_us": "Boss Appears!"
+  },
+  {
+    "id": "boss_phase_2",
+    "zh_cn": "Boss进入第二阶段！",
+    "en_us": "Boss enters Phase 2!"
+  },
+  {
+    "id": "boss_defeated",
+    "zh_cn": "Boss已被击败！",
+    "en_us": "Boss Defeated!"
+  },
+  {
+    "id": "boss_reward",
+    "zh_cn": "Boss掉落奖励",
+    "en_us": "Boss Drop Rewards"
+  },
+  {
+    "id": "quest_daily",
+    "zh_cn": "每日任务",
+    "en_us": "Daily Quest"
+  },
+  {
+    "id": "quest_weekly",
+    "zh_cn": "每周任务",
+    "en_us": "Weekly Quest"
+  },
+  {
+    "id": "quest_reward_claimed",
+    "zh_cn": "奖励已领取",
+    "en_us": "Reward Claimed"
+  },
+  {
+    "id": "quest_progress",
+    "zh_cn": "进度: {current}/{target}",
+    "en_us": "Progress: {current}/{target}"
+  },
+  {
+    "id": "quest_completed",
+    "zh_cn": "已完成",
+    "en_us": "Completed"
+  },
+  {
+    "id": "quest_in_progress",
+    "zh_cn": "进行中",
+    "en_us": "In Progress"
+  },
+  {
+    "id": "loading",
+    "zh_cn": "加载中...",
+    "en_us": "Loading..."
+  },
+  {
+    "id": "error_network",
+    "zh_cn": "网络错误",
+    "en_us": "Network Error"
+  },
+  {
+    "id": "error_data",
+    "zh_cn": "数据异常",
+    "en_us": "Data Error"
+  },
+  {
+    "id": "back",
+    "zh_cn": "返回",
+    "en_us": "Back"
+  },
+  {
+    "id": "close",
+    "zh_cn": "关闭",
+    "en_us": "Close"
+  },
+  {
+    "id": "ok",
+    "zh_cn": "确定",
+    "en_us": "OK"
+  },
+  {
+    "id": "yes",
+    "zh_cn": "是",
+    "en_us": "Yes"
+  },
+  {
+    "id": "no",
+    "zh_cn": "否",
+    "en_us": "No"
+  },
+  {
+    "id": "on",
+    "zh_cn": "开启",
+    "en_us": "On"
+  },
+  {
+    "id": "off",
+    "zh_cn": "关闭",
+    "en_us": "Off"
+  },
+  {
+    "id": "max",
+    "zh_cn": "最大",
+    "en_us": "Max"
+  },
+  {
+    "id": "min",
+    "zh_cn": "最小",
+    "en_us": "Min"
+  },
+  {
+    "id": "locked",
+    "zh_cn": "未解锁",
+    "en_us": "Locked"
+  },
+  {
+    "id": "unlocked",
+    "zh_cn": "已解锁",
+    "en_us": "Unlocked"
+  },
+  {
+    "id": "new",
+    "zh_cn": "新",
+    "en_us": "New"
+  },
+  {
+    "id": "hot",
+    "zh_cn": "热门",
+    "en_us": "Hot"
+  },
+  {
+    "id": "limited",
+    "zh_cn": "限时",
+    "en_us": "Limited"
+  },
+  {
+    "id": "free",
+    "zh_cn": "免费",
+    "en_us": "Free"
+  },
+  {
+    "id": "premium",
+    "zh_cn": "付费",
+    "en_us": "Premium"
+  },
+  {
+    "id": "daily_reset",
+    "zh_cn": "每日重置",
+    "en_us": "Daily Reset"
+  },
+  {
+    "id": "weekly_reset",
+    "zh_cn": "每周重置",
+    "en_us": "Weekly Reset"
+  },
+  {
+    "id": "countdown",
+    "zh_cn": "剩余时间: {time}",
+    "en_us": "Time Remaining: {time}"
+  },
+  {
+    "id": "not_enough",
+    "zh_cn": "数量不足",
+    "en_us": "Not Enough"
+  },
+  {
+    "id": "full",
+    "zh_cn": "已满",
+    "en_us": "Full"
+  },
+  {
+    "id": "empty",
+    "zh_cn": "空",
+    "en_us": "Empty"
+  },
+  {
+    "id": "receive_reward",
+    "zh_cn": "领取奖励",
+    "en_us": "Claim Reward"
+  },
+  {
+    "id": "detail",
+    "zh_cn": "详情",
+    "en_us": "Details"
+  },
+  {
+    "id": "filter",
+    "zh_cn": "筛选",
+    "en_us": "Filter"
+  },
+  {
+    "id": "sort",
+    "zh_cn": "排序",
+    "en_us": "Sort"
+  },
+  {
+    "id": "all",
+    "zh_cn": "全部",
+    "en_us": "All"
+  },
+  {
+    "id": "recommended",
+    "zh_cn": "推荐",
+    "en_us": "Recommended"
+  },
+  {
+    "id": "source_core",
+    "zh_cn": "源核",
+    "en_us": "Source Core"
+  },
+  {
+    "id": "star_coin",
+    "zh_cn": "星币",
+    "en_us": "Star Coin"
+  },
+  {
+    "id": "mycelium",
+    "zh_cn": "菌丝",
+    "en_us": "Mycelium"
   }
 ]

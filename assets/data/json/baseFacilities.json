@@ -33,6 +33,17 @@
     "effectValue": "0.1"
   },
   {
+    "id": "workbench",
+    "name": "Workbench",
+    "nameZh": "工作台",
+    "description": "增加可同时招募的驾驶员数量，每级+1",
+    "baseCost": 100,
+    "costMultiplier": "1.5",
+    "maxLevel": "10",
+    "effectType": "recruit_slots",
+    "effectValue": "1"
+  },
+  {
     "id": "synthesizer",
     "name": "Synthesizer",
     "nameZh": "合成台",
@@ -42,6 +53,50 @@
     "maxLevel": "10",
     "effectType": "energy_effect",
     "effectValue": "0.05"
+  },
+  {
+    "id": "dorms",
+    "name": "Dorms",
+    "nameZh": "休眠舱",
+    "description": "增加驾驶员的恢复速度",
+    "baseCost": 150,
+    "costMultiplier": "1.5",
+    "maxLevel": "10",
+    "effectType": "refresh_speed",
+    "effectValue": "0.1"
+  },
+  {
+    "id": "training",
+    "name": "Training",
+    "nameZh": "训练场",
+    "description": "增加驾驶员的经验获取，每级+5%",
+    "baseCost": 250,
+    "costMultiplier": "1.5",
+    "maxLevel": "10",
+    "effectType": "exp_rate",
+    "effectValue": "0.05"
+  },
+  {
+    "id": "synthesizer",
+    "name": "Synthesizer",
+    "nameZh": "合成台",
+    "description": "增加能量饮料的效果，每级+5%",
+    "baseCost": 200,
+    "costMultiplier": "1.5",
+    "maxLevel": "10",
+    "effectType": "energy_effect",
+    "effectValue": "0.05"
+  },
+  {
+    "id": "hacker",
+    "name": "Hacker",
+    "nameZh": "黑客终端",
+    "description": "解锁传送功能",
+    "baseCost": 500,
+    "costMultiplier": "1",
+    "maxLevel": "1",
+    "effectType": "unlock_teleport",
+    "effectValue": "1"
   },
   {
     "id": "training",

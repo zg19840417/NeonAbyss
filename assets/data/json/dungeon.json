@@ -1,43 +1,452 @@
 [
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {}
+  {
+    "floor": 1,
+    "enemyDensity": 0.5,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "1-2",
+    "goldMultiplier": 1,
+    "expMultiplier": 1
+  },
+  {
+    "floor": 2,
+    "enemyDensity": 0.55,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "1-2",
+    "goldMultiplier": 1.1,
+    "expMultiplier": 1.1
+  },
+  {
+    "floor": 3,
+    "enemyDensity": 0.6,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "2-3",
+    "goldMultiplier": 1.2,
+    "expMultiplier": 1.2
+  },
+  {
+    "floor": 4,
+    "enemyDensity": 0.65,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "2-3",
+    "goldMultiplier": 1.3,
+    "expMultiplier": 1.3
+  },
+  {
+    "floor": 5,
+    "enemyDensity": 0.7,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "3-4",
+    "goldMultiplier": 1.4,
+    "expMultiplier": 1.4
+  },
+  {
+    "floor": 6,
+    "enemyDensity": 0.75,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "3-4",
+    "goldMultiplier": 1.5,
+    "expMultiplier": 1.5
+  },
+  {
+    "floor": 7,
+    "enemyDensity": 0.8,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "4-5",
+    "goldMultiplier": 1.6,
+    "expMultiplier": 1.6
+  },
+  {
+    "floor": 8,
+    "enemyDensity": 0.85,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "4-5",
+    "goldMultiplier": 1.7,
+    "expMultiplier": 1.7
+  },
+  {
+    "floor": 9,
+    "enemyDensity": 0.9,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "5-6",
+    "goldMultiplier": 1.8,
+    "expMultiplier": 1.8
+  },
+  {
+    "floor": 10,
+    "enemyDensity": 1,
+    "chestProbability": 0.3,
+    "shopProbability": 0.2,
+    "enemyLevels": "6-7",
+    "goldMultiplier": 2,
+    "expMultiplier": 2
+  },
+  {
+    "floor": 11,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "7-8",
+    "goldMultiplier": 2.1,
+    "expMultiplier": 2.1
+  },
+  {
+    "floor": 12,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "7-8",
+    "goldMultiplier": 2.2,
+    "expMultiplier": 2.2
+  },
+  {
+    "floor": 13,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "8-9",
+    "goldMultiplier": 2.3,
+    "expMultiplier": 2.3
+  },
+  {
+    "floor": 14,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "8-9",
+    "goldMultiplier": 2.4,
+    "expMultiplier": 2.4
+  },
+  {
+    "floor": 15,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "9-10",
+    "goldMultiplier": 2.5,
+    "expMultiplier": 2.5
+  },
+  {
+    "floor": 16,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "9-10",
+    "goldMultiplier": 2.6,
+    "expMultiplier": 2.6
+  },
+  {
+    "floor": 17,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "10-11",
+    "goldMultiplier": 2.7,
+    "expMultiplier": 2.7
+  },
+  {
+    "floor": 18,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "10-11",
+    "goldMultiplier": 2.8,
+    "expMultiplier": 2.8
+  },
+  {
+    "floor": 19,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "11-12",
+    "goldMultiplier": 2.9,
+    "expMultiplier": 2.9
+  },
+  {
+    "floor": 20,
+    "enemyDensity": 1,
+    "chestProbability": 0.3,
+    "shopProbability": 0.2,
+    "enemyLevels": "12-13",
+    "goldMultiplier": 3,
+    "expMultiplier": 3
+  },
+  {
+    "floor": 21,
+    "enemyDensity": 1,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "12-13",
+    "goldMultiplier": 3.1,
+    "expMultiplier": 3.1
+  },
+  {
+    "floor": 22,
+    "enemyDensity": 1.02,
+    "chestProbability": 0.2,
+    "shopProbability": 0.15,
+    "enemyLevels": "12-14",
+    "goldMultiplier": 3.2,
+    "expMultiplier": 3.2
+  },
+  {
+    "floor": 23,
+    "enemyDensity": 1.04,
+    "chestProbability": 0.21,
+    "shopProbability": 0.16,
+    "enemyLevels": "13-14",
+    "goldMultiplier": 3.3,
+    "expMultiplier": 3.3
+  },
+  {
+    "floor": 24,
+    "enemyDensity": 1.06,
+    "chestProbability": 0.21,
+    "shopProbability": 0.16,
+    "enemyLevels": "13-15",
+    "goldMultiplier": 3.4,
+    "expMultiplier": 3.4
+  },
+  {
+    "floor": 25,
+    "enemyDensity": 1.08,
+    "chestProbability": 0.22,
+    "shopProbability": 0.17,
+    "enemyLevels": "14-15",
+    "goldMultiplier": 3.5,
+    "expMultiplier": 3.5
+  },
+  {
+    "floor": 26,
+    "enemyDensity": 1.1,
+    "chestProbability": 0.22,
+    "shopProbability": 0.17,
+    "enemyLevels": "14-16",
+    "goldMultiplier": 3.6,
+    "expMultiplier": 3.6
+  },
+  {
+    "floor": 27,
+    "enemyDensity": 1.12,
+    "chestProbability": 0.23,
+    "shopProbability": 0.18,
+    "enemyLevels": "15-16",
+    "goldMultiplier": 3.7,
+    "expMultiplier": 3.7
+  },
+  {
+    "floor": 28,
+    "enemyDensity": 1.14,
+    "chestProbability": 0.23,
+    "shopProbability": 0.18,
+    "enemyLevels": "15-17",
+    "goldMultiplier": 3.8,
+    "expMultiplier": 3.8
+  },
+  {
+    "floor": 29,
+    "enemyDensity": 1.16,
+    "chestProbability": 0.24,
+    "shopProbability": 0.19,
+    "enemyLevels": "16-17",
+    "goldMultiplier": 3.9,
+    "expMultiplier": 3.9
+  },
+  {
+    "floor": 30,
+    "enemyDensity": 1.2,
+    "chestProbability": 0.35,
+    "shopProbability": 0.25,
+    "enemyLevels": "17-18",
+    "goldMultiplier": 4.2,
+    "expMultiplier": 4.2
+  },
+  {
+    "floor": 31,
+    "enemyDensity": 1.2,
+    "chestProbability": 0.25,
+    "shopProbability": 0.2,
+    "enemyLevels": "17-18",
+    "goldMultiplier": 4.3,
+    "expMultiplier": 4.3
+  },
+  {
+    "floor": 32,
+    "enemyDensity": 1.24,
+    "chestProbability": 0.25,
+    "shopProbability": 0.2,
+    "enemyLevels": "18-19",
+    "goldMultiplier": 4.4,
+    "expMultiplier": 4.4
+  },
+  {
+    "floor": 33,
+    "enemyDensity": 1.28,
+    "chestProbability": 0.26,
+    "shopProbability": 0.21,
+    "enemyLevels": "18-19",
+    "goldMultiplier": 4.5,
+    "expMultiplier": 4.5
+  },
+  {
+    "floor": 34,
+    "enemyDensity": 1.32,
+    "chestProbability": 0.26,
+    "shopProbability": 0.21,
+    "enemyLevels": "19-20",
+    "goldMultiplier": 4.6,
+    "expMultiplier": 4.6
+  },
+  {
+    "floor": 35,
+    "enemyDensity": 1.36,
+    "chestProbability": 0.27,
+    "shopProbability": 0.22,
+    "enemyLevels": "19-20",
+    "goldMultiplier": 4.7,
+    "expMultiplier": 4.7
+  },
+  {
+    "floor": 36,
+    "enemyDensity": 1.4,
+    "chestProbability": 0.27,
+    "shopProbability": 0.22,
+    "enemyLevels": "20-21",
+    "goldMultiplier": 4.8,
+    "expMultiplier": 4.8
+  },
+  {
+    "floor": 37,
+    "enemyDensity": 1.44,
+    "chestProbability": 0.28,
+    "shopProbability": 0.23,
+    "enemyLevels": "20-22",
+    "goldMultiplier": 4.9,
+    "expMultiplier": 4.9
+  },
+  {
+    "floor": 38,
+    "enemyDensity": 1.48,
+    "chestProbability": 0.28,
+    "shopProbability": 0.23,
+    "enemyLevels": "21-22",
+    "goldMultiplier": 5,
+    "expMultiplier": 5
+  },
+  {
+    "floor": 39,
+    "enemyDensity": 1.5,
+    "chestProbability": 0.29,
+    "shopProbability": 0.24,
+    "enemyLevels": "22-23",
+    "goldMultiplier": 5.1,
+    "expMultiplier": 5.1
+  },
+  {
+    "floor": 40,
+    "enemyDensity": 1.5,
+    "chestProbability": 0.4,
+    "shopProbability": 0.3,
+    "enemyLevels": "23-24",
+    "goldMultiplier": 5.5,
+    "expMultiplier": 5.5
+  },
+  {
+    "floor": 41,
+    "enemyDensity": 1.5,
+    "chestProbability": 0.3,
+    "shopProbability": 0.25,
+    "enemyLevels": "23-24",
+    "goldMultiplier": 5.6,
+    "expMultiplier": 5.6
+  },
+  {
+    "floor": 42,
+    "enemyDensity": 1.56,
+    "chestProbability": 0.3,
+    "shopProbability": 0.25,
+    "enemyLevels": "24-25",
+    "goldMultiplier": 5.7,
+    "expMultiplier": 5.7
+  },
+  {
+    "floor": 43,
+    "enemyDensity": 1.62,
+    "chestProbability": 0.31,
+    "shopProbability": 0.26,
+    "enemyLevels": "24-26",
+    "goldMultiplier": 5.8,
+    "expMultiplier": 5.8
+  },
+  {
+    "floor": 44,
+    "enemyDensity": 1.68,
+    "chestProbability": 0.31,
+    "shopProbability": 0.26,
+    "enemyLevels": "25-26",
+    "goldMultiplier": 5.9,
+    "expMultiplier": 5.9
+  },
+  {
+    "floor": 45,
+    "enemyDensity": 1.74,
+    "chestProbability": 0.32,
+    "shopProbability": 0.27,
+    "enemyLevels": "25-27",
+    "goldMultiplier": 6,
+    "expMultiplier": 6
+  },
+  {
+    "floor": 46,
+    "enemyDensity": 1.8,
+    "chestProbability": 0.32,
+    "shopProbability": 0.27,
+    "enemyLevels": "26-28",
+    "goldMultiplier": 6.1,
+    "expMultiplier": 6.1
+  },
+  {
+    "floor": 47,
+    "enemyDensity": 1.86,
+    "chestProbability": 0.33,
+    "shopProbability": 0.28,
+    "enemyLevels": "27-28",
+    "goldMultiplier": 6.2,
+    "expMultiplier": 6.2
+  },
+  {
+    "floor": 48,
+    "enemyDensity": 1.92,
+    "chestProbability": 0.33,
+    "shopProbability": 0.28,
+    "enemyLevels": "28-29",
+    "goldMultiplier": 6.3,
+    "expMultiplier": 6.3
+  },
+  {
+    "floor": 49,
+    "enemyDensity": 1.96,
+    "chestProbability": 0.34,
+    "shopProbability": 0.29,
+    "enemyLevels": "28-30",
+    "goldMultiplier": 6.4,
+    "expMultiplier": 6.4
+  },
+  {
+    "floor": 50,
+    "enemyDensity": 2,
+    "chestProbability": 0.45,
+    "shopProbability": 0.35,
+    "enemyLevels": "29-30",
+    "goldMultiplier": 7,
+    "expMultiplier": 7
+  }
 ]

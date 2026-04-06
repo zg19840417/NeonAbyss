@@ -1,0 +1,47 @@
+[
+  {
+    "element": "water",
+    "elementName": "水",
+    "elementNameEn": "Water",
+    "strongAgainst": "fire",
+    "weakAgainst": "wind",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  },
+  {
+    "element": "fire",
+    "elementName": "火",
+    "elementNameEn": "Fire",
+    "strongAgainst": "wind",
+    "weakAgainst": "water",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  },
+  {
+    "element": "wind",
+    "elementName": "风",
+    "elementNameEn": "Wind",
+    "strongAgainst": "dark",
+    "weakAgainst": "fire",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  },
+  {
+    "element": "dark",
+    "elementName": "暗",
+    "elementNameEn": "Dark",
+    "strongAgainst": "light",
+    "weakAgainst": "wind",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  },
+  {
+    "element": "light",
+    "elementName": "光",
+    "elementNameEn": "Light",
+    "strongAgainst": "dark",
+    "weakAgainst": "dark",
+    "bonusMultiplier": 1.2,
+    "resistMultiplier": 0.8
+  }
+]

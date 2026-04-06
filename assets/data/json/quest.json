@@ -39,6 +39,19 @@
     "weight": 0
   },
   {
+    "questId": "D02",
+    "name": "探索禁区",
+    "description": "进入禁区并完成1层探索",
+    "type": "daily",
+    "category": "explore",
+    "targetParam": "complete_floor",
+    "targetValue": "1",
+    "rewardReputation": "15",
+    "rewardCoins": 200,
+    "isFixed": true,
+    "weight": 0
+  },
+  {
     "questId": "D04",
     "name": "招募伙伴",
     "description": "在基地招募新角色",
@@ -48,6 +61,58 @@
     "targetValue": "1",
     "rewardReputation": "10",
     "rewardCoins": 150,
+    "isFixed": true,
+    "weight": 0
+  },
+  {
+    "questId": "D03",
+    "name": "战斗胜利",
+    "description": "赢得战斗胜利",
+    "type": "daily",
+    "category": "battle",
+    "targetParam": "battle_win",
+    "targetValue": "3",
+    "rewardReputation": "20",
+    "rewardCoins": 300,
+    "isFixed": true,
+    "weight": 0
+  },
+  {
+    "questId": "D05",
+    "name": "使用能量饮料",
+    "description": "购买并使用能量饮料",
+    "type": "daily",
+    "category": "manage",
+    "targetParam": "use_energy_drink",
+    "targetValue": "1",
+    "rewardReputation": "10",
+    "rewardCoins": 100,
+    "isFixed": true,
+    "weight": 0
+  },
+  {
+    "questId": "D04",
+    "name": "招募伙伴",
+    "description": "在基地招募新角色",
+    "type": "daily",
+    "category": "manage",
+    "targetParam": "recruit",
+    "targetValue": "1",
+    "rewardReputation": "10",
+    "rewardCoins": 150,
+    "isFixed": true,
+    "weight": 0
+  },
+  {
+    "questId": "D06",
+    "name": "升级设施",
+    "description": "升级任意基地设施",
+    "type": "daily",
+    "category": "manage",
+    "targetParam": "upgrade_facility",
+    "targetValue": "1",
+    "rewardReputation": "15",
+    "rewardCoins": 250,
     "isFixed": true,
     "weight": 0
   },
