@@ -153,25 +153,66 @@ src/
 - 触发类(Trigger)：ON_ATTACK, ON_DAMAGE_TAKEN, ON_ALLY_DEATH, ON_KILL, ON_HP_BELOW_THRESHOLD, ON_TURN_START, ON_SUMMON
 - 状态类(Status)：DIVINE_SHIELD, TAUNT, WINDFURY, REBIRTH, POISON_TOUCH, LIFESTEAL_AURA
 
-## 装备卡系统规范
+## 强化芯片系统规范
+
+### 世界观设定
+- 基地拥有战术强化系统，强化芯片是可插入该系统的科技产物
+- 芯片通过纳米技术和基因改造手段，同时强化队伍中所有融合者的能力
+- 不同芯片提供不同的强化方向（攻击/防御/功能）和特殊效果
 
 ### 卡组结构
-- 每支队伍：3张随从卡 + 1张装备卡
-- 装备卡效果作用于全队3个随从，每人获得全额加成
-- 装备卡仅可升星（1-5星），不可升级
+- 每支队伍：3张随从卡 + 1张强化芯片
+- 芯片效果作用于全队3个随从，每人获得全额加成
 
-### 装备卡模块
-- 模块A：基础属性加成（攻击/生命/暴击/闪避/减伤/吸血）
-- 模块B：赋予/改变技能（光环被动 / 触发型被动 / 改变现有技能）
+### 品质体系（品质=星级，合二为一）
+| 品质 | 名称 | 基础属性 | 全局技能数 |
+|------|------|---------|-----------|
+| N | 普通 | 生命%+攻击%（独立配置） | 1个 |
+| R | 稀有 | 生命%+攻击%（独立配置） | 1个 |
+| SR | 精良 | 生命%+攻击%（独立配置） | 1个 |
+| SSR | 史诗 | 生命%+攻击%（独立配置） | 2个 |
+| UR | 传说 | 生命%+攻击%（独立配置） | 2个 |
+| LE | 神话 | 生命%+攻击%（独立配置） | 3个 |
 
-### 装备卡品质
-| 品质 | 属性数量 | 技能类型 | 最大星级 |
-|------|---------|---------|---------|
-| N | 1个 | 1个光环被动 | 3星 |
-| R | 2个 | 1个光环被动 | 4星 |
-| SR | 2个 | 1个光环+1个触发 | 4星 |
-| SSR | 3个 | 1个光环+1个改变技能 | 5星 |
-| SSR+ | 3个 | 1个光环+1个触发+1个改变 | 5星 |
+### 芯片模块
+- **基础属性**：生命百分比 + 攻击百分比（每个芯片独立配置数值，在Excel表中定义，不写死在代码中）
+- **全局技能**：光环被动 / 触发型被动 / 改变现有技能
+
+### 合成升级系统
+- **基础合成**：3张同品质任意芯片 → 1张高一品质随机芯片
+- **定向插件**（可选消耗品，合成时使用）：
+  - 职业插件：结果限定为指定职业方向（坦克向/输出向/辅助向/治疗向）
+  - 元素插件：结果限定为指定元素属性（水/火/风/光/暗）
+  - 种族插件：结果限定为指定种族方向（植物系/动物系/机械系/能量系/混合系）
+- 插件通过商店购买或特定副本掉落获得
+
+### 芯片数据结构
+```javascript
+{
+  chipId: "chip_atk_fire_01",
+  name: "烈焰攻击芯片",
+  quality: "SSR",
+  hpPercent: 15,           // 生命+15%（独立配置）
+  atkPercent: 20,          // 攻击+20%（独立配置）
+  targetProfession: null,  // null=通用, 或 tank/dps/support/healer
+  targetElement: "fire",   // null=通用, 或 water/fire/wind/light/dark
+  targetRace: null,        // null=通用, 或 plant/animal/mech/energy/hybrid
+  skills: [...]            // 全局技能列表
+}
+```
+
+### 芯片技能类型
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| 光环被动(aura) | 战斗开始自动生效 | 灼烧纳米、寒冰护盾、吸血菌丝 |
+| 触发型被动(trigger) | 满足条件自动触发 | 过载模式、紧急修复、连击协议 |
+| 改变现有技能(modify) | 修改随从已有技能 | 攻力增幅、扩散协议、生命汲取 |
+
+### 相关文件
+- 数据配置：`assets/data/excel/chips.xlsx`（待创建）
+- 实体类：`src/game/entities/EquipmentCard.js`（待重命名为ChipCard.js）
+- 管理器：`src/game/systems/EquipmentCardManager.js`（待重命名）
+- 旧CSV文件：`data/equipment_cards.csv`、`data/equipment_skills.csv`、`data/equipment_stats.csv`、`data/star_upgrade_costs.csv`（待删除）
 
 ## 性能规则
 | 优化项 | 规则 |
@@ -208,7 +249,7 @@ npm run preview # 预览
 | 功能 | 状态 | 文件 |
 |------|------|------|
 | 基础角色系统 | ✅ | Character.js |
-| 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js |
+| 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js（待重命名为ChipCard） |
 | 随从卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js |
 | 战斗系统 | ✅ | BattleSystem.js |
 | 存档系统 | ✅ | SaveSystem.js |
