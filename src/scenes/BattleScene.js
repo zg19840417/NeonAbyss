@@ -287,14 +287,14 @@ export default class BattleScene extends Phaser.Scene {
     bg.lineStyle(2, colors.sacred, 0.5);
     bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 6);
 
-    const nameText = this.add.text(0, -cardHeight / 2 + 15, player.name, {
+    const nameText = this.add.text(0, -cardHeight / 2 + 15, minion.name, {
       fontSize: '11px',
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: colors.textPrimary
     }).setOrigin(0.5);
 
-    const levelText = this.add.text(0, -cardHeight / 2 + 30, `Lv.${player.level || 1}`, {
+    const levelText = this.add.text(0, -cardHeight / 2 + 30, `Lv.${minion.level || 1}`, {
       fontSize: '9px',
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
@@ -315,24 +315,24 @@ export default class BattleScene extends Phaser.Scene {
     hpBarBg.fillRect(-cardWidth / 2 + 8, cardHeight / 2 - 30, cardWidth - 16, 12);
 
     const hpBar = this.add.graphics();
-    const hpPercent = player.hp / player.maxHp;
+    const hpPercent = minion.hp / minion.maxHp;
     hpBar.fillStyle(colors.hpGreen, 1);
     hpBar.fillRect(-cardWidth / 2 + 9, cardHeight / 2 - 29, (cardWidth - 18) * hpPercent, 10);
 
-    const hpText = this.add.text(0, cardHeight / 2 - 23, `${player.hp}/${player.maxHp}`, {
+    const hpText = this.add.text(0, cardHeight / 2 - 23, `${minion.hp}/${minion.maxHp}`, {
       fontSize: '8px',
       fontFamily: 'Noto Sans SC',
       color: '#ffffff'
     }).setOrigin(0.5);
 
-    const atkText = this.add.text(0, cardHeight / 2 - 10, `⚔️${player.atk || 20}`, {
+    const atkText = this.add.text(0, cardHeight / 2 - 10, `⚔️${minion.atk || 20}`, {
       fontSize: '10px',
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
     }).setOrigin(0.5);
 
     container.add([bg, nameText, levelText, portraitBg, portraitPlaceholder, hpBarBg, hpBar, hpText, atkText]);
-    container.setData('player', player);
+    container.setData('player', minion);
     container.setData('hpBar', hpBar);
     container.setData('hpText', hpText);
     container.setData('hpBarBg', hpBarBg);

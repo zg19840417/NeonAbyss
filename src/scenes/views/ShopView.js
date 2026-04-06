@@ -1,3 +1,6 @@
+import Const from '../../game/data/Const.js';
+import AnimationHelper from '../../game/utils/AnimationHelper.js';
+
 export default class ShopView {
   constructor(scene) {
     this.scene = scene;
@@ -8,7 +11,6 @@ export default class ShopView {
   show() {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
-    const { Const } = this.scene;
 
     this.addText(width / 2, 90, '商店', {
       fontSize: Const.FONT.SIZE_TITLE,
@@ -64,9 +66,19 @@ export default class ShopView {
 
       container.setSize(tabWidth - 10, 30);
       container.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth - 10, 30), Phaser.Geom.Rectangle.Contains);
+
+      container.on('pointerover', () => {
+        if (this.currentTab !== tab.key) {
+          AnimationHelper.tweenPulse(this.scene, container, 1.05);
+        }
+      });
+
       container.on('pointerdown', () => {
-        this.currentTab = tab.key;
-        this.refresh();
+        if (this.currentTab !== tab.key) {
+          AnimationHelper.tweenPulse(this.scene, container, 0.9);
+          this.currentTab = tab.key;
+          this.refresh();
+        }
       });
 
       this.elements.push(container);
@@ -83,8 +95,17 @@ export default class ShopView {
 
   renderMinionShop() {
     const width = this.scene.cameras.main.width;
-    this.scene.minionCardManager.initManager?.();
-    const shopMinions = this.scene.minionCardManager.shopMinions || [];
+
+    if (!this.scene.minionCardManager.shopMinions || this.scene.minionCardManager.shopMinions.length === 0) {
+      this.scene.minionCardManager.shopMinions = [];
+      for (let i = 0; i < 3; i++) {
+        this.scene.minionCardManager.shopMinions.push(
+          this.scene.minionCardManager.generateShopCard()
+        );
+      }
+    }
+
+    const shopMinions = this.scene.minionCardManager.shopMinions;
 
     if (shopMinions.length === 0) {
       this.addText(width / 2, 200, '暂无随从卡', {
@@ -103,7 +124,17 @@ export default class ShopView {
 
   renderEquipmentShop() {
     const width = this.scene.cameras.main.width;
-    const shopEquipments = this.scene.equipmentCardManager?.shopCards || [];
+
+    if (!this.scene.equipmentCardManager.shopCards || this.scene.equipmentCardManager.shopCards.length === 0) {
+      this.scene.equipmentCardManager.shopCards = [];
+      for (let i = 0; i < 2; i++) {
+        this.scene.equipmentCardManager.shopCards.push(
+          this.scene.equipmentCardManager.generateShopCard()
+        );
+      }
+    }
+
+    const shopEquipments = this.scene.equipmentCardManager.shopCards;
 
     if (shopEquipments.length === 0) {
       this.addText(width / 2, 200, '暂无装备卡', {
@@ -174,15 +205,33 @@ export default class ShopView {
     buyBtn.add([btnBg, btnText]);
     buyBtn.setSize(60, 28);
     buyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 28), Phaser.Geom.Rectangle.Contains);
-    buyBtn.on('pointerdown', (e) => {
-      e.stopPropagation();
-      this.buyMinionCard(index);
-    });
+    buyBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, buyBtn, 1.1));
+    buyBtn.on('pointerout', () => buyBtn.setScale(1));
     container.add(buyBtn);
 
     container.setSize(cardWidth, cardHeight);
     container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-    this.elements.push(container);
+
+    container.on('pointerover', () => {
+      AnimationHelper.tweenCardHover(this.scene, container, true);
+    });
+
+    container.on('pointerout', () => {
+      AnimationHelper.tweenCardHover(this.scene, container, false);
+    });
+
+    container.on('pointerdown', (pointer, localX, localY) => {
+      if (localX > cardWidth/2 - 70) {
+        AnimationHelper.tweenPulse(this.scene, container, 0.9);
+        this.scene.time.delayedCall(150, () => {
+          this.buyMinionCard(index);
+        });
+      } else {
+        AnimationHelper.tweenPulse(this.scene, container, 0.95);
+        this.showCardDetail(card, 'minion');
+      }
+    });
+
     return container;
   }
 
@@ -239,14 +288,33 @@ export default class ShopView {
     buyBtn.add([btnBg, btnText]);
     buyBtn.setSize(60, 28);
     buyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 28), Phaser.Geom.Rectangle.Contains);
-    buyBtn.on('pointerdown', (e) => {
-      e.stopPropagation();
-      this.buyEquipmentCard(index);
-    });
+    buyBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, buyBtn, 1.1));
+    buyBtn.on('pointerout', () => buyBtn.setScale(1));
     container.add(buyBtn);
 
     container.setSize(cardWidth, cardHeight);
     container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
+
+    container.on('pointerover', () => {
+      AnimationHelper.tweenCardHover(this.scene, container, true);
+    });
+
+    container.on('pointerout', () => {
+      AnimationHelper.tweenCardHover(this.scene, container, false);
+    });
+
+    container.on('pointerdown', (pointer, localX, localY) => {
+      if (localX > cardWidth/2 - 70) {
+        AnimationHelper.tweenPulse(this.scene, container, 0.9);
+        this.scene.time.delayedCall(150, () => {
+          this.buyEquipmentCard(index);
+        });
+      } else {
+        AnimationHelper.tweenPulse(this.scene, container, 0.95);
+        this.showCardDetail(card, 'equipment');
+      }
+    });
+
     this.elements.push(container);
     return container;
   }
@@ -326,17 +394,15 @@ export default class ShopView {
       this.scene.minionCardManager.shopMinions = [];
       for (let i = 0; i < 3; i++) {
         this.scene.minionCardManager.shopMinions.push(
-          this.scene.minionCardManager.generateRandomCard()
+          this.scene.minionCardManager.generateShopCard()
         );
       }
-      this.scene.minionCardManager.ownedCards.splice(-3, 3);
     } else {
       this.scene.equipmentCardManager.shopCards = [];
       for (let i = 0; i < 2; i++) {
-        const newCard = this.scene.equipmentCardManager.generateRandomCard?.();
+        const newCard = this.scene.equipmentCardManager.generateShopCard?.();
         if (newCard) {
           this.scene.equipmentCardManager.shopCards.push(newCard);
-          this.scene.equipmentCardManager.ownedCards.pop();
         }
       }
     }
@@ -389,6 +455,177 @@ export default class ShopView {
     if (effective.hp > 0) stats.push(`HP+${effective.hp}`);
     if (effective.critRate > 0) stats.push(`CRIT+${(effective.critRate * 100).toFixed(0)}%`);
     return stats.join(' | ') || '无加成';
+  }
+
+  showCardDetail(card, cardType) {
+    const isMinion = cardType === 'minion';
+    const width = this.scene.cameras.main.width;
+    const height = this.scene.cameras.main.height;
+
+    const overlay = this.scene.add.graphics();
+    overlay.fillStyle(Const.COLORS.BG_DARK, Const.ALPHA.OVERLAY);
+    overlay.fillRect(0, 0, width, height);
+    overlay.setDepth(999);
+    overlay.setAlpha(0);
+    overlay.setInteractive();
+    overlay.on('pointerdown', () => this.closeCardDetail());
+    this.elements.push(overlay);
+    this.scene.tweens.add({
+      targets: overlay,
+      alpha: 1,
+      duration: 200,
+      ease: 'Power2'
+    });
+
+    const modal = this.scene.add.container(width / 2, height / 2);
+    modal.setDepth(1000);
+    modal.setScale(0.5);
+    modal.setAlpha(0);
+
+    const qualityConfig = isMinion
+      ? this.getMinionQualityConfig(card.rarity)
+      : this.getEquipmentQualityConfig(card.quality);
+
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 1);
+    bg.fillRoundedRect(-140, -200, 280, 400, Const.UI.CARD_RADIUS);
+    modal.add(bg);
+
+    const closeBtn = this.scene.add.text(125, -185, '✕', {
+      fontSize: '20px',
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0.5);
+    closeBtn.setDepth(1002);
+    closeBtn.setInteractive({ useHandCursor: true });
+    closeBtn.on('pointerdown', () => this.closeCardDetail());
+    closeBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, closeBtn, 1.2));
+    closeBtn.on('pointerout', () => closeBtn.setScale(1));
+    modal.add(closeBtn);
+
+    const icon = isMinion
+      ? this.scene.add.text(0, -160, card.getElementConfig?.()?.icon || '🐺', { fontSize: '48px' }).setOrigin(0.5)
+      : this.scene.add.text(0, -160, qualityConfig.icon, { fontSize: '48px' }).setOrigin(0.5);
+    modal.add(icon);
+
+    const typeLabel = this.scene.add.text(0, -115, isMinion ? '🐺 随从卡' : '⚔️ 装备卡', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: isMinion ? '#ff6b6b' : '#4dabf7'
+    }).setOrigin(0.5);
+    modal.add(typeLabel);
+
+    const nameText = this.scene.add.text(0, -85, card.name, {
+      fontSize: Const.FONT.SIZE_TITLE,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: qualityConfig.textColor
+    }).setOrigin(0.5);
+    modal.add(nameText);
+
+    const starText = this.scene.add.text(0, -55, '★'.repeat(card.star || 1), {
+      fontSize: Const.FONT.SIZE_NORMAL,
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.YELLOW
+    }).setOrigin(0.5);
+    modal.add(starText);
+
+    let y = -20;
+
+    if (isMinion) {
+      const stats = [
+        `生命: ${card.maxHp}`,
+        `攻击: ${card.atk}`,
+        `暴击: ${((card.critRate || 0.1) * 100).toFixed(0)}%`,
+        `闪避: ${((card.dodgeRate || 0.05) * 100).toFixed(0)}%`
+      ];
+      stats.forEach(stat => {
+        const statText = this.scene.add.text(-100, y, stat, {
+          fontSize: Const.FONT.SIZE_TINY,
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.SECONDARY
+        }).setOrigin(0, 0.5);
+        modal.add(statText);
+        y += 22;
+      });
+
+      if (card.passiveSkill) {
+        const passiveText = this.scene.add.text(-100, y + 5, `被动: ${card.passiveSkill.icon} ${card.passiveSkill.name}`, {
+          fontSize: Const.FONT.SIZE_TINY,
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: '#27ae60'
+        }).setOrigin(0, 0.5);
+        modal.add(passiveText);
+        y += 25;
+      }
+    } else {
+      const equipStats = this.scene.add.text(-100, y, this.getEquipmentStats(card), {
+        fontSize: Const.FONT.SIZE_TINY,
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.CYAN
+      }).setOrigin(0, 0.5);
+      modal.add(equipStats);
+      y += 25;
+
+      if (card.skills && card.skills.length > 0) {
+        card.skills.forEach(skill => {
+          const skillText = this.scene.add.text(-100, y, `技能: ${skill.name}`, {
+            fontSize: Const.FONT.SIZE_TINY,
+            fontFamily: Const.FONT.FAMILY_CN,
+            color: '#9b59b6'
+          }).setOrigin(0, 0.5);
+          modal.add(skillText);
+          y += 20;
+        });
+      }
+    }
+
+    const price = isMinion ? this.getMinionPrice(card) : this.getEquipmentPrice(card);
+    const priceText = this.scene.add.text(0, 150, `💰 ${price}`, {
+      fontSize: Const.FONT.SIZE_NORMAL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.YELLOW
+    }).setOrigin(0.5);
+    modal.add(priceText);
+
+    this.elements.push(modal);
+
+    this.scene.tweens.add({
+      targets: modal,
+      scaleX: 1,
+      scaleY: 1,
+      alpha: 1,
+      duration: 300,
+      ease: 'Back.easeOut'
+    });
+  }
+
+  closeCardDetail() {
+    const modal = this.elements.find(el => el.type === 'Container' && el.scaleX !== 1);
+    const overlay = this.elements.find(el => el.type === 'Graphics' && el.depth === 999);
+
+    if (overlay) {
+      this.scene.tweens.add({
+        targets: overlay,
+        alpha: 0,
+        duration: 150,
+        ease: 'Power2'
+      });
+    }
+
+    if (modal) {
+      this.scene.tweens.add({
+        targets: modal,
+        scaleX: 0.5,
+        scaleY: 0.5,
+        alpha: 0,
+        duration: 200,
+        ease: 'Back.easeIn',
+        onComplete: () => this.refresh()
+      });
+    } else {
+      this.refresh();
+    }
   }
 
   refresh() {

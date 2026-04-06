@@ -2,6 +2,8 @@ import BaseSystem from '../game/systems/BaseSystem.js';
 import Lang, { t } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
 import EquipmentView from './views/EquipmentView.js';
+import ShopView from './views/ShopView.js';
+import TeamView from './views/TeamView.js';
 import EquipmentCard from '../game/entities/EquipmentCard.js';
 import EquipmentCardManager from '../game/systems/EquipmentCardManager.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
@@ -11,6 +13,8 @@ export default class BaseScene extends Phaser.Scene {
     super({ key: 'BaseScene' });
     this.baseSystem = null;
     this.equipmentView = null;
+    this.shopView = null;
+    this.teamView = null;
     this.currentTab = 'tavern';
     this.tabButtons = {};
     this.modalOpen = false;
@@ -346,53 +350,11 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showTeamContent() {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    const subtitle = this.add.text(width / 2, 110, '管理你的队伍', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-
-    const teamMembers = this.baseSystem.getTeamMembers();
-
-    if (teamMembers.length === 0) {
-      const emptyBox = this.add.graphics();
-      emptyBox.fillStyle(Const.COLORS.BG_MID, 0.9);
-      emptyBox.fillRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 160, Const.LAYOUT.CARD_WIDTH, 140, Const.UI.CARD_RADIUS);
-      emptyBox.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-      emptyBox.strokeRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 160, Const.LAYOUT.CARD_WIDTH, 140, Const.UI.CARD_RADIUS);
-
-      this.add.text(width / 2, 210, '👥', {
-        fontSize: Const.FONT.SIZE_ICON_MEDIUM
-      }).setOrigin(0.5);
-
-      this.add.text(width / 2, 260, '还没有队员', {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: Const.TEXT_COLORS.PINK
-      }).setOrigin(0.5);
-
-      this.add.text(width / 2, 280, '去商店招募新伙伴', {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.SECONDARY
-      }).setOrigin(0.5);
-    } else {
-      const startY = 130;
-      teamMembers.forEach((member, index) => {
-        const y = startY + index * Const.LAYOUT.CARD_SPACING;
-        this.createTeamMemberCard(width / 2, y, member);
-      });
+    if (this.teamView) {
+      this.teamView.destroy();
     }
-
-    this.add.text(width / 2, height - 130, t('team_count', { count: this.baseSystem.getTeamMemberCount() }), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
+    this.teamView = new TeamView(this);
+    this.teamView.show();
   }
 
   createTeamMemberCard(x, y, character) {
@@ -516,54 +478,11 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showShopContent() {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    const subtitle = this.add.text(width / 2, 110, '招募伙伴或购买道具', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-
-    const recruits = this.baseSystem.availableRecruits || [];
-
-    if (recruits.length === 0) {
-      const emptyBox = this.add.graphics();
-      emptyBox.fillStyle(Const.COLORS.BG_MID, 0.9);
-      emptyBox.fillRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 160, Const.LAYOUT.CARD_WIDTH, 140, Const.UI.CARD_RADIUS);
-      emptyBox.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-      emptyBox.strokeRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 160, Const.LAYOUT.CARD_WIDTH, 140, Const.UI.CARD_RADIUS);
-
-      this.add.text(width / 2, 210, '✦', {
-        fontSize: Const.FONT.SIZE_ICON_MEDIUM,
-        color: Const.TEXT_COLORS.PURPLE
-      }).setOrigin(0.5);
-
-      this.add.text(width / 2, 260, '暂无可招募角色', {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: Const.TEXT_COLORS.PINK
-      }).setOrigin(0.5);
-
-      this.add.text(width / 2, 280, '请稍后再来', {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.SECONDARY
-      }).setOrigin(0.5);
-    } else {
-      const startY = 140;
-      recruits.forEach((recruit, index) => {
-        const y = startY + index * Const.LAYOUT.CARD_SPACING;
-        this.createRecruitCard(width / 2, y, recruit, index);
-      });
+    if (this.shopView) {
+      this.shopView.destroy();
     }
-
-    this.add.text(width / 2, height - 130, '点击角色可招募', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
+    this.shopView = new ShopView(this);
+    this.shopView.show();
   }
 
   createRecruitCard(x, y, character, index) {
@@ -963,6 +882,14 @@ export default class BaseScene extends Phaser.Scene {
     if (this.equipmentView) {
       this.equipmentView.destroy();
       this.equipmentView = null;
+    }
+    if (this.shopView) {
+      this.shopView.destroy();
+      this.shopView = null;
+    }
+    if (this.teamView) {
+      this.teamView.destroy();
+      this.teamView = null;
     }
 
     const childrenToDestroy = this.children.list.filter(child => {

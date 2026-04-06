@@ -116,6 +116,16 @@ export default class MinionCardManager {
     return newCard;
   }
 
+  generateShopCard() {
+    const randomIndex = Math.floor(Math.random() * minionsData.length);
+    const template = minionsData[randomIndex];
+    const newCard = new MinionCard({
+      ...template,
+      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6)
+    });
+    return newCard;
+  }
+
   generateCardByRarity(rarity) {
     const templates = minionsData.filter(m => {
       const rarityOrder = ['common', 'rare', 'epic', 'legendary'];
