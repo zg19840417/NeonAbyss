@@ -206,9 +206,6 @@ export default class ShopView {
     }).setOrigin(0.5);
     buyBtn.add([btnBg, btnText]);
     buyBtn.setSize(60, 28);
-    buyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 28), Phaser.Geom.Rectangle.Contains);
-    buyBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, buyBtn, 1.1));
-    buyBtn.on('pointerout', () => buyBtn.setScale(1));
     container.add(buyBtn);
 
     container.setSize(cardWidth, cardHeight);
@@ -230,7 +227,7 @@ export default class ShopView {
         });
       } else {
         AnimationHelper.tweenPulse(this.scene, container, 0.95);
-        this.showCardDetail(card, 'minion');
+        this.showCardDetail(card, 'minion', index);
       }
     });
 
@@ -289,9 +286,6 @@ export default class ShopView {
     }).setOrigin(0.5);
     buyBtn.add([btnBg, btnText]);
     buyBtn.setSize(60, 28);
-    buyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 28), Phaser.Geom.Rectangle.Contains);
-    buyBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, buyBtn, 1.1));
-    buyBtn.on('pointerout', () => buyBtn.setScale(1));
     container.add(buyBtn);
 
     container.setSize(cardWidth, cardHeight);
@@ -313,7 +307,7 @@ export default class ShopView {
         });
       } else {
         AnimationHelper.tweenPulse(this.scene, container, 0.95);
-        this.showCardDetail(card, 'equipment');
+        this.showCardDetail(card, 'equipment', index);
       }
     });
 
@@ -459,7 +453,7 @@ export default class ShopView {
     return stats.join(' | ') || '无加成';
   }
 
-  showCardDetail(card, cardType) {
+  showCardDetail(card, cardType, index) {
     // 如果已有弹窗打开，先关闭
     if (this._detailModal) {
       this.closeCardDetail();
@@ -589,13 +583,44 @@ export default class ShopView {
     }
 
     const price = isMinion ? this.getMinionPrice(card) : this.getEquipmentPrice(card);
-    const priceText = this.scene.add.text(0, 150, `💰 ${price}`, {
-      fontSize: Const.FONT.SIZE_NORMAL,
+
+    // 购买按钮
+    const buyBtnContainer = this.scene.add.container(0, 150);
+    const buyBtnBg = this.scene.add.graphics();
+    buyBtnBg.fillStyle(Const.COLORS.BUTTON_PRIMARY, 1);
+    buyBtnBg.fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
+    buyBtnContainer.add(buyBtnBg);
+
+    const buyBtnText = this.scene.add.text(0, 0, `💰 购买 ${price}`, {
+      fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: Const.TEXT_COLORS.YELLOW
+      color: Const.TEXT_COLORS.DARK
     }).setOrigin(0.5);
-    modal.add(priceText);
+    buyBtnContainer.add(buyBtnText);
+
+    buyBtnContainer.setSize(140, 36);
+    buyBtnContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 140, 36), Phaser.Geom.Rectangle.Contains);
+    buyBtnContainer.on('pointerover', () => {
+      AnimationHelper.tweenPulse(this.scene, buyBtnContainer, 1.05);
+      buyBtnBg.clear().fillStyle(Const.COLORS.BUTTON_HOVER, 1).fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
+    });
+    buyBtnContainer.on('pointerout', () => {
+      buyBtnContainer.setScale(1);
+      buyBtnBg.clear().fillStyle(Const.COLORS.BUTTON_PRIMARY, 1).fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
+    });
+    buyBtnContainer.on('pointerdown', () => {
+      AnimationHelper.tweenPulse(this.scene, buyBtnContainer, 0.9);
+      this.scene.time.delayedCall(150, () => {
+        this.closeCardDetail(true);
+        if (isMinion) {
+          this.buyMinionCard(index);
+        } else {
+          this.buyEquipmentCard(index);
+        }
+      });
+    });
+    modal.add(buyBtnContainer);
 
     this._detailModal = modal;
     this.elements.push(modal);
@@ -610,7 +635,7 @@ export default class ShopView {
     });
   }
 
-  closeCardDetail() {
+  closeCardDetail(skipRefresh = false) {
     const overlay = this._detailOverlay;
     const modal = this._detailModal;
 
@@ -640,10 +665,12 @@ export default class ShopView {
         ease: 'Back.easeIn',
         onComplete: () => {
           if (modal.destroy) modal.destroy();
-          this.refresh();
+          if (!skipRefresh) {
+            this.refresh();
+          }
         }
       });
-    } else {
+    } else if (!skipRefresh) {
       this.refresh();
     }
   }
