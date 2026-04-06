@@ -6,6 +6,8 @@ export default class ShopView {
     this.scene = scene;
     this.elements = [];
     this.currentTab = 'minion';
+    this._detailOverlay = null;
+    this._detailModal = null;
   }
 
   show() {
@@ -458,6 +460,12 @@ export default class ShopView {
   }
 
   showCardDetail(card, cardType) {
+    // 如果已有弹窗打开，先关闭
+    if (this._detailModal) {
+      this.closeCardDetail();
+      return;
+    }
+
     const isMinion = cardType === 'minion';
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
@@ -469,6 +477,7 @@ export default class ShopView {
     overlay.setAlpha(0);
     overlay.setInteractive();
     overlay.on('pointerdown', () => this.closeCardDetail());
+    this._detailOverlay = overlay;
     this.elements.push(overlay);
     this.scene.tweens.add({
       targets: overlay,
@@ -588,6 +597,7 @@ export default class ShopView {
     }).setOrigin(0.5);
     modal.add(priceText);
 
+    this._detailModal = modal;
     this.elements.push(modal);
 
     this.scene.tweens.add({
@@ -601,15 +611,22 @@ export default class ShopView {
   }
 
   closeCardDetail() {
-    const modal = this.elements.find(el => el.type === 'Container' && el.scaleX !== 1);
-    const overlay = this.elements.find(el => el.type === 'Graphics' && el.depth === 999);
+    const overlay = this._detailOverlay;
+    const modal = this._detailModal;
+
+    // 立即清除引用，防止重复关闭
+    this._detailOverlay = null;
+    this._detailModal = null;
 
     if (overlay) {
       this.scene.tweens.add({
         targets: overlay,
         alpha: 0,
         duration: 150,
-        ease: 'Power2'
+        ease: 'Power2',
+        onComplete: () => {
+          if (overlay.destroy) overlay.destroy();
+        }
       });
     }
 
@@ -621,7 +638,10 @@ export default class ShopView {
         alpha: 0,
         duration: 200,
         ease: 'Back.easeIn',
-        onComplete: () => this.refresh()
+        onComplete: () => {
+          if (modal.destroy) modal.destroy();
+          this.refresh();
+        }
       });
     } else {
       this.refresh();
@@ -640,6 +660,9 @@ export default class ShopView {
   }
 
   destroy() {
+    // 清理弹窗引用
+    this._detailOverlay = null;
+    this._detailModal = null;
     this.elements.forEach(el => {
       if (el && el.destroy) el.destroy();
     });
