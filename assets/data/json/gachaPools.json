@@ -1,13 +1,16 @@
 [
   {
     "poolId": "POOL_NORMAL",
-    "poolName": "常驻融合姬池",
+    "poolName": "融合召唤",
     "poolType": "normal",
     "singleCost": 200,
-    "tenCost": 1800,
-    "pityLimit": 90,
-    "pityGuarantee": "SSR",
-    "softPityStart": 75,
-    "description": "常驻融合姬卡池，包含R~LE品质融合姬，90抽保底SSR品质"
+    "tenCost": 2000,
+    "pitySR": 10,
+    "pitySSR": 40,
+    "pityUR": 200,
+    "softPityStart": 7,
+    "softPityStartSSR": 28,
+    "softPityStartUR": 140,
+    "description": "废土幸存者们在辐射废墟中搜寻融合姬信号的核心渠道。90次探索内必定发现UR级融合姬，从第75次起信号强度逐渐增强。"
   }
 ]

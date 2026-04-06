@@ -1,87 +1,117 @@
 export const Rarity = {
-  COMMON: 'common',
-  RARE: 'rare',
-  EPIC: 'epic',
-  LEGENDARY: 'legendary'
+  N: 'N',
+  R: 'R',
+  SR: 'SR',
+  SSR: 'SSR',
+  UR: 'UR',
+  LE: 'LE'
 };
 
 export const RarityConfig = {
-  [Rarity.COMMON]: {
+  [Rarity.N]: {
     name: '普通',
-    nameEn: 'Common',
+    nameEn: 'N',
     statMultiplier: 1.0,
     borderColor: 0x8a7a6a,
     glowColor: null,
     particleColor: null,
     textColor: '#8a7a6a'
   },
-  [Rarity.RARE]: {
+  [Rarity.R]: {
     name: '稀有',
-    nameEn: 'Rare',
+    nameEn: 'R',
     statMultiplier: 1.2,
     borderColor: 0x4dabf7,
     glowColor: 0x4dabf7,
     particleColor: 0x4dabf7,
     textColor: '#4dabf7'
   },
-  [Rarity.EPIC]: {
-    name: '史诗',
-    nameEn: 'Epic',
+  [Rarity.SR]: {
+    name: '精良',
+    nameEn: 'SR',
     statMultiplier: 1.5,
     borderColor: 0x9775fa,
     glowColor: 0x9775fa,
     particleColor: 0x9775fa,
     textColor: '#9775fa'
   },
-  [Rarity.LEGENDARY]: {
-    name: '传说',
-    nameEn: 'Legendary',
+  [Rarity.SSR]: {
+    name: '史诗',
+    nameEn: 'SSR',
     statMultiplier: 2.0,
     borderColor: 0xffd700,
     glowColor: 0xffd700,
     particleColor: 0xffd700,
     textColor: '#ffd700'
+  },
+  [Rarity.UR]: {
+    name: '传说',
+    nameEn: 'UR',
+    statMultiplier: 2.5,
+    borderColor: 0xff6b35,
+    glowColor: 0xff6b35,
+    particleColor: 0xff6b35,
+    textColor: '#ff6b35'
+  },
+  [Rarity.LE]: {
+    name: '神话',
+    nameEn: 'LE',
+    statMultiplier: 3.0,
+    borderColor: 0xff00ff,
+    glowColor: 0xff00ff,
+    particleColor: 0xff00ff,
+    textColor: '#ff00ff'
   }
 };
 
 export const Element = {
+  WATER: 'water',
   FIRE: 'fire',
-  ICE: 'ice',
-  THUNDER: 'thunder',
-  DARK: 'dark',
-  LIGHT: 'light'
+  WIND: 'wind',
+  LIGHT: 'light',
+  DARK: 'dark'
 };
 
 export const ElementConfig = {
+  [Element.WATER]: {
+    name: '水',
+    nameEn: 'Water',
+    icon: '💧',
+    color: 0x4dabf7,
+    strongAgainst: Element.FIRE,
+    weakAgainst: Element.WIND,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 1.0
+  },
   [Element.FIRE]: {
     name: '火',
     nameEn: 'Fire',
     icon: '🔥',
     color: 0xff6b35,
-    strongAgainst: Element.ICE,
-    weakAgainst: Element.LIGHT,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    strongAgainst: Element.WIND,
+    weakAgainst: Element.WATER,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 1.0
   },
-  [Element.ICE]: {
-    name: '冰',
-    nameEn: 'Ice',
-    icon: '❄️',
+  [Element.WIND]: {
+    name: '风',
+    nameEn: 'Wind',
+    icon: '🌪️',
     color: 0x74c0fc,
-    strongAgainst: Element.THUNDER,
-    weakAgainst: Element.FIRE,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
-  },
-  [Element.THUNDER]: {
-    name: '雷',
-    nameEn: 'Thunder',
-    icon: '⚡',
-    color: 0xffd43b,
     strongAgainst: Element.DARK,
-    weakAgainst: Element.ICE,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    weakAgainst: Element.FIRE,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 1.0
+  },
+  [Element.LIGHT]: {
+    name: '光',
+    nameEn: 'Light',
+    icon: '✨',
+    color: 0xffee58,
+    strongAgainst: Element.DARK,
+    weakAgainst: Element.DARK,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 1.0
   },
   [Element.DARK]: {
     name: '暗',
@@ -89,19 +119,9 @@ export const ElementConfig = {
     icon: '🌑',
     color: 0x9775fa,
     strongAgainst: Element.LIGHT,
-    weakAgainst: Element.THUNDER,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
-  },
-  [Element.LIGHT]: {
-    name: '光',
-    nameEn: 'Light',
-    icon: '✨',
-    color: 0xffee58,
-    strongAgainst: Element.FIRE,
-    weakAgainst: Element.DARK,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    weakAgainst: Element.LIGHT,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 1.0
   }
 };
 
@@ -115,19 +135,25 @@ export function getElementMultiplier(attackerElement, defenderElement) {
 }
 
 export const Race = {
-  HUMAN: 'human',
+  PLANT: 'plant',
+  ANIMAL: 'animal',
   MECH: 'mech',
-  MUTANT: 'mutant',
   ENERGY: 'energy',
-  BEAST: 'beast'
+  HYBRID: 'hybrid'
 };
 
 export const RaceConfig = {
-  [Race.HUMAN]: {
-    name: '人类',
-    nameEn: 'Human',
-    icon: '🧑',
-    description: '均衡型种族，无特殊加成'
+  [Race.PLANT]: {
+    name: '植物',
+    nameEn: 'Plant',
+    icon: '🌿',
+    description: '植物种族，每回合恢复最大生命值5%'
+  },
+  [Race.ANIMAL]: {
+    name: '动物',
+    nameEn: 'Animal',
+    icon: '🐺',
+    description: '动物种族，攻击力+15%，暴击率+10%'
   },
   [Race.MECH]: {
     name: '机械',
@@ -135,23 +161,17 @@ export const RaceConfig = {
     icon: '🤖',
     description: '机械种族，受到治疗效果降低30%，但免疫中毒和眩晕'
   },
-  [Race.MUTANT]: {
-    name: '变异体',
-    nameEn: 'Mutant',
-    icon: '🧬',
-    description: '变异种族，每回合恢复最大生命值5%'
-  },
   [Race.ENERGY]: {
     name: '能量体',
     nameEn: 'Energy',
     icon: '💎',
     description: '能量种族，闪避率额外+15%，但生命值上限-20%'
   },
-  [Race.BEAST]: {
-    name: '野兽',
-    nameEn: 'Beast',
-    icon: '🐺',
-    description: '野兽种族，攻击力+15%，暴击率+10%'
+  [Race.HYBRID]: {
+    name: '混合体',
+    nameEn: 'Hybrid',
+    icon: '🧬',
+    description: '混合种族，均衡型种族，无特殊加成'
   }
 };
 

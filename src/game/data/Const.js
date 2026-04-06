@@ -102,39 +102,14 @@ export const Const = {
     MODAL_UI: 1002
   },
 
-  // 装备卡品质体系 (equipment.json 的 quality 字段使用此套命名)
-  // 随从卡品质体系见 MinionConfig.js 的 Rarity: common / rare / epic / legendary
-  // 品质对照映射:
-  //   装备 (EQUIPMENT_QUALITY)  |  随从 (MinionConfig.Rarity)  |  等级
-  //   --------------------------|------------------------------|------
-  //   N                         |  common                      |  1星
-  //   R                         |  rare                        |  2星
-  //   SR                        |  epic                        |  3星
-  //   SSR                       |  legendary                   |  4星
-  //   SSR+                      |  (无对应)                    |  5星
-  EQUIPMENT_QUALITY: {
-    N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通' },
-    R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有' },
-    SR: { color: '#9b59b6', textColor: '#9b59b6', glow: 0.5, name: '史诗' },
-    SSR: { color: '#f39c12', textColor: '#f39c12', glow: 0.7, name: '传说' },
-    'SSR+': { color: '#e74c3c', textColor: '#e74c3c', glow: 1.0, name: '神话' }
-  },
-
   QUALITY_CONFIG: {
-    common: { name: '普通', nameEn: 'Common', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
-    rare: { name: '稀有', nameEn: 'Rare', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
-    epic: { name: '精良', nameEn: 'Epic', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
-    legendary: { name: '史诗', nameEn: 'Legendary', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
     N: { name: '普通', nameEn: 'N', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
     R: { name: '稀有', nameEn: 'R', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
     SR: { name: '精良', nameEn: 'SR', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
     SSR: { name: '史诗', nameEn: 'SSR', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
-    'SSR+': { name: '传说', nameEn: 'SSR+', color: '#ff2222', textColor: '#ff4444', glowColor: 0xdd0000 }
+    UR: { name: '传说', nameEn: 'UR', color: '#ff6b35', textColor: '#ff8c5a', glowColor: 0xdd4f1a },
+    LE: { name: '神话', nameEn: 'LE', color: '#ff00ff', textColor: '#ff44ff', glowColor: 0xdd00dd }
   },
-
-  EQUIPMENT_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
-  EQUIPMENT_SKILL_MULTIPLIER: { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.7, 5: 2.0 },
-  STAR_UPGRADE_COST: { 1: 10, 2: 30, 3: 80, 4: 200 },
 
   // ===== 战斗场景专用 (BattleScene) =====
   // 暖色调风格，与全局霓虹风格区分

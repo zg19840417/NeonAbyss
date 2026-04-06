@@ -2,7 +2,6 @@ import Character from '../entities/Character.js';
 import MinionCard from '../entities/MinionCard.js';
 import Skill from './Skill.js';
 import { BuffType } from './BuffSystem.js';
-import EquipmentCardManager from './EquipmentCardManager.js';
 
 export const BattlePhase = {
   IDLE: 'idle',
@@ -24,9 +23,6 @@ export default class BattleSystem {
     
     this.currentPhase = BattlePhase.IDLE;
     this.battleSpeed = config.battleSpeed || 1;
-    
-    this.equipmentSkills = [];
-    this.equipmentCardManager = null;
     
     this.listeners = {
       onAttack: [],
@@ -56,7 +52,6 @@ export default class BattleSystem {
       }
       char.isDead = false;
       char.currentHp = char.maxHp;
-      char.equipmentEffects = [];
       return char;
     });
   }
@@ -67,7 +62,6 @@ export default class BattleSystem {
         enemy = new Enemy(enemy);
       }
       enemy.isDead = false;
-      enemy.equipmentEffects = [];
       return enemy;
     });
   }
@@ -76,12 +70,10 @@ export default class BattleSystem {
     this.currentPhase = BattlePhase.IDLE;
     this.battleLog = [];
     this.turnCount = 0;
-    this.equipmentSkills = [];
     
     this.playerTeam.forEach(char => {
       char.isDead = false;
       char.currentHp = char.maxHp;
-      char.equipmentEffects = [];
       if (char.isMinionCard) {
         char._hasRebirthed = false;
         char._windfuryUsed = false;
@@ -104,287 +96,10 @@ export default class BattleSystem {
         }
       }
     });
-    
-    this.applyEquipmentCardBonuses();
-    this.applyEquipmentSkills();
-  }
-  
-  applyEquipmentCardBonuses() {
-    try {
-      const equipData = window.gameData?.equipmentCardManager;
-      if (!equipData?.equippedCardId) return;
-      
-      const manager = EquipmentCardManager.fromJSON(equipData);
-      const equippedCard = manager.equippedCard;
-      
-      if (!equippedCard) return;
-      
-      const bonuses = equippedCard.getEffectiveStats();
-      
-      this.playerTeam.forEach(follower => {
-        follower.atk += bonuses.atk || 0;
-        follower.maxHp += bonuses.hp || 0;
-        follower.currentHp += bonuses.hp || 0;
-        follower.critRate = Math.min((follower.critRate || 0) + (bonuses.critRate || 0), 0.9);
-        follower.dodgeRate = Math.min((follower.dodgeRate || 0) + (bonuses.dodgeRate || 0), 0.9);
-        follower.damageReduction = Math.min((follower.damageReduction || 0) + (bonuses.damageReduction || 0), 0.9);
-        follower.lifeSteal = (follower.lifeSteal || 0) + (bonuses.lifeSteal || 0);
-      });
-      
-      this.equipmentSkills = equippedCard.skills
-        .filter(skill => skill.isUnlocked(equippedCard.star))
-        .map(skill => {
-          const skillCopy = { ...skill };
-          skillCopy.currentCooldown = 0;
-          return skillCopy;
-        });
-      
-      this.addBattleLog('装备卡', `【${equippedCard.name}】已生效`);
-    } catch (e) {
-      console.warn('Failed to apply equipment card bonuses:', e);
-    }
-  }
-  
-  applyEquipmentSkills() {
-    if (!this.equipmentSkills || this.equipmentSkills.length === 0) return;
-    
-    this.equipmentSkills.forEach(skill => {
-      if (skill.type === 'aura') {
-        this.applyEquipmentAura(skill);
-      } else if (skill.type === 'modify') {
-        this.applyEquipmentModify(skill);
-      }
-    });
-    
-    const auraCount = this.equipmentSkills.filter(s => s.type === 'aura').length;
-    const modifyCount = this.equipmentSkills.filter(s => s.type === 'modify').length;
-    
-    if (auraCount > 0 || modifyCount > 0) {
-      this.addBattleLog('装备技能', `光环${auraCount}个 + 改造${modifyCount}个已激活`);
-    }
-  }
-  
-  applyEquipmentAura(skill) {
-    if (skill.type !== 'aura') return;
-    
-    const effectiveValue = Math.floor(skill.effectValue * (skill.skillMultiplier || 1));
-    
-    this.playerTeam.forEach(follower => {
-      if (follower.isDead) return;
-      
-      switch (skill.effectType) {
-        case 'atk_boost':
-          follower.atk = Math.floor(follower.atk * (1 + effectiveValue / 100));
-          break;
-        case 'def_boost':
-          follower.damageReduction = Math.min((follower.damageReduction || 0) + effectiveValue / 100, 0.9);
-          break;
-        case 'crit_boost':
-          follower.critRate = Math.min((follower.critRate || 0) + effectiveValue / 100, 0.9);
-          break;
-        case 'dodge_boost':
-          follower.dodgeRate = Math.min((follower.dodgeRate || 0) + effectiveValue / 100, 0.9);
-          break;
-        case 'heal':
-          const healAmount = Math.floor(follower.maxHp * effectiveValue / 100);
-          follower.currentHp = Math.min(follower.maxHp, follower.currentHp + healAmount);
-          break;
-        case 'shield':
-          follower.shieldValue = (follower.shieldValue || 0) + effectiveValue;
-          follower.addBuff?.({
-            id: 'equip_shield_' + skill.id,
-            type: 'shield',
-            value: effectiveValue,
-            duration: skill.effectDuration || 999
-          });
-          break;
-        case 'burn':
-        case 'poison':
-          follower.equipmentEffects = follower.equipmentEffects || [];
-          follower.equipmentEffects.push({
-            type: skill.effectType,
-            value: effectiveValue / 100,
-            duration: skill.effectDuration || 3,
-            chance: skill.effectChance || 1.0
-          });
-          break;
-        case 'cooldown_reduce':
-          follower.cooldownReduce = (follower.cooldownReduce || 0) + effectiveValue;
-          break;
-      }
-    });
-  }
-  
-  applyEquipmentModify(skill) {
-    if (skill.type !== 'modify') return;
-    
-    const effectiveValue = skill.modifyValue || skill.effectValue;
-    
-    this.playerTeam.forEach(follower => {
-      if (!follower.skills || follower.isDead) return;
-      
-      follower.skills.forEach(followerSkill => {
-        if (skill.modifyTarget !== 'all' && followerSkill.id !== skill.modifyTarget) return;
-        
-        switch (skill.modifyType) {
-          case 'damage_x':
-            followerSkill.multiplier = (followerSkill.multiplier || 1) * (1 + effectiveValue / 100);
-            break;
-          case 'cooldown_reduce':
-            followerSkill.cooldown = Math.max(1, (followerSkill.cooldown || 0) - effectiveValue);
-            break;
-          case 'aoe_expand':
-            followerSkill.targetCount = (followerSkill.targetCount || 1) + Math.floor(effectiveValue);
-            break;
-          case 'add_effect':
-            followerSkill.additionalEffects = followerSkill.additionalEffects || [];
-            followerSkill.additionalEffects.push({
-              type: skill.effectType,
-              value: effectiveValue,
-              chance: skill.effectChance || 1.0,
-              duration: skill.effectDuration || 3
-            });
-            break;
-          case 'heal_convert':
-            followerSkill.healPercent = (followerSkill.healPercent || 0) + effectiveValue / 100;
-            break;
-        }
-      });
-    });
-  }
-  
-  checkEquipmentTriggers(triggerType, context = {}) {
-    if (!this.equipmentSkills || this.equipmentSkills.length === 0) return;
-    
-    const triggerConditions = {
-      'on_crit': context.isCrit === true,
-      'on_dodge': context.isDodged === true,
-      'on_attack': context.isAttacking === true,
-      'on_death': context.targetDied === true,
-      'on_low_hp': (context.targetHpPercent || 1) < 0.3,
-      'on_low_hp_50': (context.targetHpPercent || 1) < 0.5,
-      'turn_start': triggerType === 'turn_start',
-      'battle_start': triggerType === 'battle_start'
-    };
-    
-    this.equipmentSkills.forEach(skill => {
-      if (skill.type !== 'trigger') return;
-      if (skill.currentCooldown > 0) return;
-      if (skill.unlockStar > (context.equipStar || 5)) return;
-      
-      const shouldTrigger = triggerConditions[skill.triggerCondition];
-      if (shouldTrigger) {
-        const chance = skill.effectChance || 1.0;
-        if (Math.random() <= chance) {
-          this.executeEquipmentTrigger(skill, context);
-          skill.currentCooldown = skill.triggerCooldown || 0;
-        }
-      }
-    });
-  }
-  
-  executeEquipmentTrigger(skill, context = {}) {
-    const effectiveValue = Math.floor(skill.effectValue * (skill.skillMultiplier || 1));
-    
-    switch (skill.effectType) {
-      case 'heal':
-        this.playerTeam.forEach(follower => {
-          if (!follower.isDead) {
-            const healAmount = Math.floor(follower.maxHp * effectiveValue / 100);
-            follower.currentHp = Math.min(follower.maxHp, follower.currentHp + healAmount);
-          }
-        });
-        this.addBattleLog('装备触发', `【${skill.name}】全队恢复${effectiveValue}%生命`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】全队恢复${effectiveValue}%生命` });
-        break;
-        
-      case 'atk_boost':
-        this.playerTeam.forEach(follower => {
-          if (!follower.isDead) {
-            follower.addBuff?.({
-              id: 'equip_atk_' + skill.id,
-              type: 'atk_up',
-              value: effectiveValue / 100,
-              duration: skill.effectDuration || 2
-            });
-          }
-        });
-        this.addBattleLog('装备触发', `【${skill.name}】全队攻击+${effectiveValue}%`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】攻击提升` });
-        break;
-        
-      case 'shield':
-        this.playerTeam.forEach(follower => {
-          if (!follower.isDead) {
-            follower.shieldValue = (follower.shieldValue || 0) + effectiveValue;
-            follower.addBuff?.({
-              id: 'equip_shield_trig_' + skill.id,
-              type: 'shield',
-              value: effectiveValue,
-              duration: skill.effectDuration || 2
-            });
-          }
-        });
-        this.addBattleLog('装备触发', `【${skill.name}】全队获得护盾`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】护盾生成` });
-        break;
-        
-      case 'burn':
-      case 'poison':
-        if (context.targets && context.targets.length > 0) {
-          context.targets.forEach(target => {
-            if (!target.isDead) {
-              target.addDebuff?.({
-                id: skill.effectType + '_equip_' + Date.now(),
-                type: skill.effectType,
-                value: effectiveValue / 100,
-                duration: skill.effectDuration || 3
-              });
-            }
-          });
-          this.addBattleLog('装备触发', `【${skill.name}】使敌人${skill.effectType === 'burn' ? '灼烧' : '中毒'}`);
-        }
-        break;
-        
-      case 'freeze':
-        if (context.targets && context.targets.length > 0) {
-          context.targets.forEach(target => {
-            if (!target.isDead) {
-              target.addDebuff?.({
-                id: 'stun_equip_' + Date.now(),
-                type: 'stun',
-                value: 0,
-                duration: skill.effectDuration || 1
-              });
-            }
-          });
-          this.addBattleLog('装备触发', `【${skill.name}】使敌人眩晕`);
-        }
-        break;
-    }
-  }
-  
-  applyOnHitEquipmentEffects(attacker, target) {
-    if (!attacker.equipmentEffects || attacker.equipmentEffects.length === 0) return;
-    
-    attacker.equipmentEffects.forEach(effect => {
-      if (Math.random() > (effect.chance || 1)) return;
-      
-      if (effect.type === 'burn' || effect.type === 'poison') {
-        target.addDebuff?.({
-          id: effect.type + '_' + Date.now(),
-          type: effect.type,
-          value: effect.value,
-          duration: effect.duration || 3
-        });
-        this.addBattleLog('装备效果', `${target.name} 受到${effect.type === 'burn' ? '灼烧' : '中毒'}`);
-      }
-    });
   }
   
   startBattle() {
     this.initialize();
-    this.checkEquipmentTriggers('battle_start');
     this.executeAutoBattle();
   }
   
@@ -419,7 +134,6 @@ export default class BattleSystem {
       return;
     }
     
-    this.checkEquipmentTriggers('turn_start');
     this.processPassiveSkills(this.playerTeam, 'turn_start', this.playerTeam, this.enemyTeam);
     this.processPassiveSkills(this.enemyTeam, 'turn_start', this.enemyTeam, this.playerTeam);
     this.processBuffs(this.playerTeam);
@@ -431,7 +145,6 @@ export default class BattleSystem {
       if (availableSkill) {
         this.currentPhase = BattlePhase.SKILL;
         this.executeSkillAction(playerToAct, availableSkill, () => {
-          this.decrementEquipmentSkillCooldowns();
           setTimeout(() => {
             this.executeEnemyTurn();
           }, 200 / this.battleSpeed);
@@ -443,7 +156,6 @@ export default class BattleSystem {
     if (playerToAct) {
       this.currentPhase = BattlePhase.PLAYER_ATTACK;
       this.executeCharacterAction(playerToAct, () => {
-        this.decrementEquipmentSkillCooldowns();
 
         // Windfury: second attack if available
         if (playerToAct.hasWindfury && playerToAct.hasWindfury() && !playerToAct._windfuryUsed && !playerToAct.isDead) {
@@ -462,18 +174,8 @@ export default class BattleSystem {
         }
       });
     } else {
-      this.decrementEquipmentSkillCooldowns();
       this.executeEnemyTurn();
     }
-  }
-  
-  decrementEquipmentSkillCooldowns() {
-    if (!this.equipmentSkills) return;
-    this.equipmentSkills.forEach(skill => {
-      if (skill.currentCooldown > 0) {
-        skill.currentCooldown--;
-      }
-    });
   }
   
   hasBuff(entity, buffType) {
@@ -673,7 +375,7 @@ export default class BattleSystem {
           target.currentHp = Math.max(0, target.currentHp - dmg);
 
           if (isPlayer) {
-            this.applyOnHitEquipmentEffects(character, target);
+            // Player attack skill effects
           }
 
           this.emit('onDamage', { target, damage: dmg, isCrit: effect.isCrit || false, isPlayer });
@@ -823,7 +525,6 @@ export default class BattleSystem {
     if (isDodged) {
       this.addBattleLog(`${target.name} 闪避了攻击`, 'MISS');
       this.emit('onAttack', { attacker, target, damage: 0, isCrit: false, isDodged: true });
-      this.checkEquipmentTriggers('on_dodge', { attacker, target, isDodged: true });
       this.scene.onAttackAnimation(attacker, target, false, () => {
         onComplete();
       });
@@ -855,14 +556,9 @@ export default class BattleSystem {
       this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
     }
 
-    this.applyOnHitEquipmentEffects(attacker, target);
-
     if (target.currentHp <= 0) {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
-
-      const deathTriggerType = isPlayer ? 'enemy_death' : 'ally_death';
-      this.checkEquipmentTriggers(deathTriggerType, { target, targets: [target] });
 
       const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
       const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
@@ -874,15 +570,8 @@ export default class BattleSystem {
       }
     }
 
-    const hpPercentBefore = target.currentHp / target.maxHp;
-    if (hpPercentBefore < 0.3) {
-      this.checkEquipmentTriggers('on_low_hp', { target, targetHpPercent: hpPercentBefore });
-    } else if (hpPercentBefore < 0.5) {
-      this.checkEquipmentTriggers('on_low_hp_50', { target, targetHpPercent: hpPercentBefore });
-    }
-
     if (isCrit) {
-      this.checkEquipmentTriggers('on_crit', { attacker, target, isCrit: true, targets: [target] });
+      // Crit occurred
     }
 
     if (attacker.lifeSteal > 0 && finalDamage > 0) {
@@ -1058,7 +747,6 @@ export class Enemy {
     this.isBoss = data.isBoss || false;
     this.isDead = false;
     this.buffs = [];
-    this.equipmentEffects = [];
     this.shieldValue = 0;
   }
   
