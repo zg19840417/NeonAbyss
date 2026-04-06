@@ -85,7 +85,7 @@ src/
 
 | 术语 | 说明 | 禁止使用 |
 |------|------|---------|
-| 融合姬 | 己方随从卡，全女性 | "随从""角色""伙伴""驾驶员" |
+| 融合姬 | 己方融合姬卡，全女性 | "融合姬""角色""伙伴""驾驶员" |
 | 失心者 | 敌方怪物 | "怪物""敌人"（代码外） |
 | 变异生物 | 低级敌人（无融合能力） | |
 | 庇护所 | 主界面/基地 | "酒馆""霓虹酒馆" |
@@ -203,7 +203,7 @@ src/
   targetProfession: null,
   targetElement: "fire",
   targetRace: null,
-  skills: [...]
+  skillIds: [...]
 }
 ```
 
@@ -267,7 +267,7 @@ npm run preview # 预览
 |------|------|------|
 | 基础角色系统 | ✅ | Character.js |
 | 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js（待重命名为ChipCard） |
-| 随从卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js |
+| 融合姬卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js |
 | 战斗系统 | ✅ | BattleSystem.js |
 | 存档系统 | ✅ | SaveSystem.js |
 | UI视图 | ✅ | views/*.js |
@@ -278,4 +278,4 @@ npm run preview # 预览
 |------|------|
 | 事件监听器泄漏 | ✅ 已修复 |
 | 装备卡t()函数调用 | ✅ 已修复 |
-| 随从卡被动触发逻辑 | ✅ 已修复 |
+| 融合姬卡被动触发逻辑 | ✅ 已修复 |
