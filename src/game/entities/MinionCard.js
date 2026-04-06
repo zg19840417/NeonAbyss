@@ -121,7 +121,7 @@ export default class MinionCard extends Character {
 
     if (this.passiveSkill && this.passiveSkill.type === 'divine_shield' && !this.passiveSkill.triggered) {
       this.passiveSkill.triggered = true;
-      this.emit?.('onDivineShield', { entity: this });
+      console.log(`[被动] ${this.name} 的圣盾触发，免疫本次伤害`);
       return 0;
     }
 
@@ -135,7 +135,7 @@ export default class MinionCard extends Character {
         this.currentHp = Math.floor(this.maxHp * 0.3);
         this.isDead = false;
         this.status = 'idle';
-        this.emit?.('onRebirth', { entity: this });
+        console.log(`[被动] ${this.name} 的重生触发，恢复30%生命`);
         return actualDamage;
       }
 

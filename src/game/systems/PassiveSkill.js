@@ -57,8 +57,8 @@ export default class PassiveSkill {
     }
 
     if (this.type === PassiveType.ON_DAMAGE_TAKEN) {
-      const rand = Math.random();
-      if (rand > (this.value || 1)) return false;
+      // Probability check moved to individual execute() per passive type
+      // canTrigger only checks event type match
     }
 
     return true;
@@ -123,7 +123,7 @@ export default class PassiveSkill {
         if (context.source && !context.source.isDead) {
           context.source.atk = Math.floor(context.source.atk * (1 + this.value));
           context.source.maxHp = Math.floor(context.source.maxHp * (1 + this.value));
-          context.source.hp = Math.min(context.source.hp + Math.floor(context.source.maxHp * this.value), context.source.maxHp);
+          context.source.currentHp = Math.min(context.source.currentHp + Math.floor(context.source.maxHp * this.value), context.source.maxHp);
           result.effects.push({ type: 'stat_boost', target: context.source });
           result.messages.push(`${context.source.name} 的 ${this.name} 触发，属性永久提升`);
         }
@@ -154,14 +154,28 @@ export default class PassiveSkill {
 
       case PassiveType.ON_TURN_START:
         if (context.source && !context.source.isDead) {
-          context.source.addBuff({
-            id: 'passive_shield_' + this.id,
-            type: 'shield',
-            value: this.value,
-            duration: 1
-          });
-          result.buffs.push({ target: context.source, type: 'shield', value: this.value });
-          result.messages.push(`${context.source.name} 的 ${this.name} 触发，获得护盾`);
+          if (this.targetType === 'all_enemies') {
+            // Damage all enemies (e.g. 炎魔卫士)
+            for (const enemy of allEnemies) {
+              if (!enemy.isDead) {
+                const damage = Math.floor(context.source.atk * this.value);
+                const actual = enemy.takeDamage(damage);
+                result.damage += actual;
+                result.effects.push({ type: 'damage', target: enemy, damage: actual });
+              }
+            }
+            result.messages.push(`${context.source.name} 的 ${this.name} 触发，对所有敌人造成 ${result.damage} 点伤害`);
+          } else {
+            // Default: add shield to self
+            context.source.addBuff({
+              id: 'passive_shield_' + this.id,
+              type: 'shield',
+              value: this.value,
+              duration: 1
+            });
+            result.buffs.push({ target: context.source, type: 'shield', value: this.value });
+            result.messages.push(`${context.source.name} 的 ${this.name} 触发，获得护盾`);
+          }
         }
         break;
 

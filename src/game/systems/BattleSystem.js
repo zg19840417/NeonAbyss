@@ -1,4 +1,5 @@
 import Character from '../entities/Character.js';
+import MinionCard from '../entities/MinionCard.js';
 import Skill from './Skill.js';
 import { BuffType } from './BuffSystem.js';
 import EquipmentCardManager from './EquipmentCardManager.js';
@@ -46,7 +47,11 @@ export default class BattleSystem {
   
   setPlayerTeam(characters) {
     this.playerTeam = characters.map(char => {
-      if (!(char instanceof Character)) {
+      if (char instanceof Character) {
+        // Already a proper instance
+      } else if (char.isMinionCard || char.rarity || char.passiveSkill) {
+        char = new MinionCard(char);
+      } else {
         char = new Character(char);
       }
       char.isDead = false;
@@ -232,8 +237,8 @@ export default class BattleSystem {
             followerSkill.targetCount = (followerSkill.targetCount || 1) + Math.floor(effectiveValue);
             break;
           case 'add_effect':
-            followerSkill附加效果 = followerSkill附加效果 || [];
-            followerSkill附加效果.push({
+            followerSkill.additionalEffects = followerSkill.additionalEffects || [];
+            followerSkill.additionalEffects.push({
               type: skill.effectType,
               value: effectiveValue,
               chance: skill.effectChance || 1.0,
@@ -439,9 +444,22 @@ export default class BattleSystem {
       this.currentPhase = BattlePhase.PLAYER_ATTACK;
       this.executeCharacterAction(playerToAct, () => {
         this.decrementEquipmentSkillCooldowns();
-        setTimeout(() => {
-          this.executeEnemyTurn();
-        }, 300 / this.battleSpeed);
+
+        // Windfury: second attack if available
+        if (playerToAct.hasWindfury && playerToAct.hasWindfury() && !playerToAct._windfuryUsed && !playerToAct.isDead) {
+          playerToAct._windfuryUsed = true;
+          setTimeout(() => {
+            this.executeCharacterAction(playerToAct, () => {
+              setTimeout(() => {
+                this.executeEnemyTurn();
+              }, 300 / this.battleSpeed);
+            });
+          }, 200 / this.battleSpeed);
+        } else {
+          setTimeout(() => {
+            this.executeEnemyTurn();
+          }, 300 / this.battleSpeed);
+        }
       });
     } else {
       this.decrementEquipmentSkillCooldowns();
@@ -753,14 +771,31 @@ export default class BattleSystem {
     }
     
     target.currentHp = Math.max(0, target.currentHp - finalDamage);
-    
+
+    // Trigger on_attack passives for attacker
+    if (attacker.isMinionCard && attacker.passiveSkill) {
+      this.processPassiveSkills([attacker], 'attack', this.playerTeam, this.enemyTeam);
+    }
+
+    // Trigger on_damage_taken passives for target
+    if (target.isMinionCard && target.passiveSkill) {
+      const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
+      const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
+      this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
+    }
+
     this.applyOnHitEquipmentEffects(attacker, target);
-    
+
     if (target.currentHp <= 0) {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: !this.playerTeam.includes(target) });
       this.checkEquipmentTriggers('enemy_death', { target, targets: [target] });
       this.processAllyDeathPassiveSkills(target, this.playerTeam, this.enemyTeam);
+
+      // Trigger on_kill passives for attacker
+      if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
+        this.processPassiveSkills([attacker], 'kill', this.playerTeam, this.enemyTeam);
+      }
     }
     
     const hpPercentBefore = target.currentHp / target.maxHp;
@@ -835,12 +870,29 @@ export default class BattleSystem {
     }
     
     target.currentHp = Math.max(0, target.currentHp - finalDamage);
-    
+
+    // Trigger on_attack passives for enemy attacker
+    if (attacker.isMinionCard && attacker.passiveSkill) {
+      this.processPassiveSkills([attacker], 'attack', this.enemyTeam, this.playerTeam);
+    }
+
+    // Trigger on_damage_taken passives for target
+    if (target.isMinionCard && target.passiveSkill) {
+      const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
+      const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
+      this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
+    }
+
     if (target.currentHp <= 0) {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: true });
       this.checkEquipmentTriggers('ally_death', { target, targets: [target] });
       this.processAllyDeathPassiveSkills(target, this.enemyTeam, this.playerTeam);
+
+      // Trigger on_kill passives for enemy attacker
+      if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
+        this.processPassiveSkills([attacker], 'kill', this.enemyTeam, this.playerTeam);
+      }
     }
     
     this.emit('onAttack', { attacker, target, damage: finalDamage, isCrit });

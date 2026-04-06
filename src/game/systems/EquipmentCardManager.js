@@ -19,17 +19,6 @@ export default class EquipmentCardManager {
     }
   }
 
-  addCard(card) {
-    if (!(card instanceof EquipmentCard)) {
-      card = new EquipmentCard(card);
-    }
-    if (!card.id) {
-      card.id = 'equip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-    }
-    this.ownedCards.push(card);
-    return card;
-  }
-
   generateRandomCard() {
     const qualities = ['N', 'N', 'N', 'R', 'R', 'SR', 'SSR', 'SSR+'];
     const quality = qualities[Math.floor(Math.random() * qualities.length)];
