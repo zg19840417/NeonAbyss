@@ -69,12 +69,6 @@ export default class ShopView {
       container.setSize(tabWidth - 10, 30);
       container.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth - 10, 30), Phaser.Geom.Rectangle.Contains);
 
-      container.on('pointerover', () => {
-        if (this.currentTab !== tab.key) {
-          AnimationHelper.tweenPulse(this.scene, container, 1.05);
-        }
-      });
-
       container.on('pointerdown', () => {
         if (this.currentTab !== tab.key) {
           AnimationHelper.tweenPulse(this.scene, container, 0.9);
@@ -208,19 +202,14 @@ export default class ShopView {
     buyBtn.setSize(60, 28);
     container.add(buyBtn);
 
+    // 交互区域居中对齐子元素
     container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-
-    container.on('pointerover', () => {
-      AnimationHelper.tweenCardHover(this.scene, container, true);
-    });
-
-    container.on('pointerout', () => {
-      AnimationHelper.tweenCardHover(this.scene, container, false);
-    });
+    container.setInteractive(new Phaser.Geom.Rectangle(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
 
     container.on('pointerdown', (pointer, localX, localY) => {
-      if (localX > cardWidth/2 - 70) {
+      // localX 范围: -cardWidth/2 ~ +cardWidth/2
+      // 按钮区域: 右侧 80px (localX > cardWidth/2 - 80)
+      if (localX > cardWidth/2 - 80) {
         AnimationHelper.tweenPulse(this.scene, container, 0.9);
         this.scene.time.delayedCall(150, () => {
           this.buyMinionCard(index);
@@ -231,6 +220,7 @@ export default class ShopView {
       }
     });
 
+    this.elements.push(container);
     return container;
   }
 
@@ -288,19 +278,14 @@ export default class ShopView {
     buyBtn.setSize(60, 28);
     container.add(buyBtn);
 
+    // 交互区域居中对齐子元素
     container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-
-    container.on('pointerover', () => {
-      AnimationHelper.tweenCardHover(this.scene, container, true);
-    });
-
-    container.on('pointerout', () => {
-      AnimationHelper.tweenCardHover(this.scene, container, false);
-    });
+    container.setInteractive(new Phaser.Geom.Rectangle(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
 
     container.on('pointerdown', (pointer, localX, localY) => {
-      if (localX > cardWidth/2 - 70) {
+      // localX 范围: -cardWidth/2 ~ +cardWidth/2
+      // 按钮区域: 右侧 80px (localX > cardWidth/2 - 80)
+      if (localX > cardWidth/2 - 80) {
         AnimationHelper.tweenPulse(this.scene, container, 0.9);
         this.scene.time.delayedCall(150, () => {
           this.buyEquipmentCard(index);
@@ -379,8 +364,6 @@ export default class ShopView {
       this.scene.saveGameData();
       this.refresh();
     });
-    container.on('pointerover', () => bg.clear().fillStyle(Const.COLORS.BUTTON_HOVER, 0.8).fillRoundedRect(-60, -16, 120, 32, Const.UI.BUTTON_RADIUS));
-    container.on('pointerout', () => bg.clear().fillStyle(Const.COLORS.BUTTON_SECONDARY, 0.8).fillRoundedRect(-60, -16, 120, 32, Const.UI.BUTTON_RADIUS));
 
     this.elements.push(container);
   }
@@ -501,8 +484,6 @@ export default class ShopView {
     closeBtn.setDepth(1002);
     closeBtn.setInteractive({ useHandCursor: true });
     closeBtn.on('pointerdown', () => this.closeCardDetail());
-    closeBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, closeBtn, 1.2));
-    closeBtn.on('pointerout', () => closeBtn.setScale(1));
     modal.add(closeBtn);
 
     const icon = isMinion
@@ -600,24 +581,17 @@ export default class ShopView {
     buyBtnContainer.add(buyBtnText);
 
     buyBtnContainer.setSize(140, 36);
-    buyBtnContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, 140, 36), Phaser.Geom.Rectangle.Contains);
-    buyBtnContainer.on('pointerover', () => {
-      AnimationHelper.tweenPulse(this.scene, buyBtnContainer, 1.05);
-      buyBtnBg.clear().fillStyle(Const.COLORS.BUTTON_HOVER, 1).fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
-    });
-    buyBtnContainer.on('pointerout', () => {
-      buyBtnContainer.setScale(1);
-      buyBtnBg.clear().fillStyle(Const.COLORS.BUTTON_PRIMARY, 1).fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
-    });
+    buyBtnContainer.setInteractive(new Phaser.Geom.Rectangle(-70, -18, 140, 36), Phaser.Geom.Rectangle.Contains);
     buyBtnContainer.on('pointerdown', () => {
       AnimationHelper.tweenPulse(this.scene, buyBtnContainer, 0.9);
       this.scene.time.delayedCall(150, () => {
-        this.closeCardDetail(true);
+        // 先执行购买（数据变更），再关闭弹窗刷新界面
         if (isMinion) {
           this.buyMinionCard(index);
         } else {
           this.buyEquipmentCard(index);
         }
+        // buyXxxCard 内部会调用 refresh()，无需单独 closeCardDetail
       });
     });
     modal.add(buyBtnContainer);

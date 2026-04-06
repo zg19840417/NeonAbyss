@@ -12,6 +12,7 @@ export const Const = {
     YELLOW: 0xffff00,
     RED: 0xff6666,
     BUTTON_PRIMARY: 0x00ccff,
+    BUTTON_HOVER: 0x33ddff,
     BUTTON_SECONDARY: 0x2a2a4a,
     BUTTON_DANGER_BORDER: 0xff3333,
     OVERLAY: 0x000000
