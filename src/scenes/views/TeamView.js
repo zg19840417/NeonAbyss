@@ -39,7 +39,7 @@ export default class TeamView {
     });
 
     const deployedMinions = this.scene.minionCardManager.getDeployedCards?.() || [];
-    const equippedCard = this.scene.equipmentCardManager?.equippedCard;
+    const equippedCard = this.scene.chipCardManager?.equippedCard;
     const deployedCards = [];
 
     if (equippedCard) {
@@ -74,8 +74,8 @@ export default class TeamView {
     });
 
     const ownedMinions = this.scene.minionCardManager.getAvailableCards?.() || [];
-    const allEquipments = this.scene.equipmentCardManager?.getAllCards?.() || [];
-    const equippedId = this.scene.equipmentCardManager?.equippedCard?.id;
+    const allEquipments = this.scene.chipCardManager?.getAllCards?.() || [];
+    const equippedId = this.scene.chipCardManager?.equippedCard?.id;
     const availableEquipments = allEquipments.filter(e => e.id !== equippedId);
     const allOwned = [
       ...ownedMinions.map(m => ({ ...m, cardType: 'minion' })),
@@ -203,10 +203,10 @@ export default class TeamView {
         }
       }
     } else {
-      if (this.scene.equipmentCardManager.equippedCard?.id === card.id) {
-        this.scene.equipmentCardManager.unequipCard();
+      if (this.scene.chipCardManager.equippedCard?.id === card.id) {
+        this.scene.chipCardManager.unequipCard();
       } else {
-        this.scene.equipmentCardManager.equipCard(card.id);
+        this.scene.chipCardManager.equipCard(card.id);
       }
     }
     this.scene.saveGameData();
@@ -405,7 +405,7 @@ export default class TeamView {
     if (isMinion) {
       result = this.scene.minionCardManager.starUpgrade(card.id);
     } else {
-      result = this.scene.equipmentCardManager.upgradeStar(card.id);
+      result = this.scene.chipCardManager.upgradeStar(card.id);
     }
 
     if (result.success) {

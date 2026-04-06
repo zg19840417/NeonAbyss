@@ -123,8 +123,8 @@ export const Const = {
   QUALITY_CONFIG: {
     common: { name: '普通', nameEn: 'Common', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
     rare: { name: '稀有', nameEn: 'Rare', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
-    epic: { name: '精良', nameEn: 'Epic', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
-    legendary: { name: '史诗', nameEn: 'Legendary', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
+    epic: { name: '史诗', nameEn: 'Epic', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
+    legendary: { name: '传说', nameEn: 'Legendary', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
     N: { name: '普通', nameEn: 'N', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
     R: { name: '稀有', nameEn: 'R', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
     SR: { name: '精良', nameEn: 'SR', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
@@ -190,6 +190,58 @@ export const Const = {
       ATTACK_DURATION: 400,
       RETURN_DURATION: 300
     }
+  },
+
+  // ===== 三级货币体系 =====
+  CURRENCY: {
+    MYCELIUM: 'mycelium',      // 菌丝 - 基础货币
+    SOURCE_CORE: 'sourceCore', // 源核 - 稀有代币
+    STAR_COIN: 'starCoin'      // 星币 - 付费代币
+  },
+
+  // 初始货币
+  INITIAL_CURRENCY: {
+    mycelium: 5000,
+    sourceCore: 100,
+    starCoin: 0
+  },
+
+  // 声望系统
+  REPUTATION: {
+    MAX_LEVEL: 99,
+    EXP_PER_BATTLE: 10,
+    EXP_PER_STAGE_CLEAR: 20
+  },
+
+  // 芯片品质体系（替代 EQUIPMENT_QUALITY）
+  CHIP_QUALITY: {
+    N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通', maxStar: 3, skillCount: 1 },
+    R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有', maxStar: 4, skillCount: 1 },
+    SR: { color: '#9b59b6', textColor: '#9b59b6', glow: 0.5, name: '精良', maxStar: 4, skillCount: 1 },
+    SSR: { color: '#f39c12', textColor: '#f39c12', glow: 0.7, name: '史诗', maxStar: 5, skillCount: 2 },
+    UR: { color: '#ff4444', textColor: '#ff4444', glow: 0.85, name: '传说', maxStar: 5, skillCount: 2 },
+    LE: { color: '#ff00ff', textColor: '#ff00ff', glow: 1.0, name: '神话', maxStar: 5, skillCount: 3 }
+  },
+
+  // 随从卡UI常量
+  MINION: {
+    CARD_WIDTH: 160,
+    CARD_HEIGHT: 240,
+    PORTRAIT_WIDTH: 140,
+    PORTRAIT_HEIGHT: 90,
+    PORTRAIT_RADIUS: 4,
+    HP_BAR_HEIGHT: 10,
+    HP_BAR_OFFSET_X: 15,
+    HP_BAR_OFFSET_Y: 0,
+    SKILL_TEXT_SIZE: '10px',
+    NAME_TEXT_SIZE: '13px',
+    RACE_TEXT_SIZE: '10px'
+  },
+
+  // 敌人类型
+  ENEMY_TYPE: {
+    MUTANT: 'mutant',    // 变异生物
+    LOST: 'lost'         // 失心者
   }
 };
 

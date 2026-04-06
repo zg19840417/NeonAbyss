@@ -21,6 +21,7 @@ export default class ShopView {
       color: Const.TEXT_COLORS.PINK
     });
 
+    this.renderCurrencyDisplay(width);
     this.renderTabButtons(width);
     this.renderContent();
 
@@ -31,15 +32,32 @@ export default class ShopView {
     });
   }
 
+  renderCurrencyDisplay(width) {
+    const mycelium = window.gameData?.base?.mycelium || 0;
+    const sourceCore = window.gameData?.base?.sourceCore || 0;
+
+    this.addText(width / 2 - 80, 115, `🍄 菌丝: ${mycelium.toLocaleString()}`, {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#51cf66'
+    });
+
+    this.addText(width / 2 + 80, 115, `💎 源核: ${sourceCore.toLocaleString()}`, {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#4dabf7'
+    });
+  }
+
   renderTabButtons(width) {
     const tabs = [
       { key: 'minion', icon: '🐺', label: '随从卡' },
-      { key: 'equipment', icon: '⚔️', label: '装备卡' }
+      { key: 'chip', icon: '🔧', label: '芯片卡' }
     ];
 
     const startX = 100;
     const tabWidth = 80;
-    const startY = 125;
+    const startY = 145;
 
     tabs.forEach((tab, index) => {
       const x = startX + index * tabWidth;
@@ -85,7 +103,7 @@ export default class ShopView {
     if (this.currentTab === 'minion') {
       this.renderMinionShop();
     } else {
-      this.renderEquipmentShop();
+      this.renderChipShop();
     }
   }
 
@@ -111,7 +129,7 @@ export default class ShopView {
       });
     } else {
       shopMinions.forEach((card, index) => {
-        const cardContainer = this.createMinionShopCard(width / 2, 170 + index * 80, card, index);
+        const cardContainer = this.createMinionShopCard(width / 2, 190 + index * 80, card, index);
         cardContainer.setAlpha(0);
         this.scene.tweens.add({
           targets: cardContainer,
@@ -126,29 +144,29 @@ export default class ShopView {
     this.renderRefreshButton(width, 'minion');
   }
 
-  renderEquipmentShop() {
+  renderChipShop() {
     const width = this.scene.cameras.main.width;
 
-    if (!this.scene.equipmentCardManager.shopCards || this.scene.equipmentCardManager.shopCards.length === 0) {
-      this.scene.equipmentCardManager.shopCards = [];
+    if (!this.scene.chipCardManager.shopCards || this.scene.chipCardManager.shopCards.length === 0) {
+      this.scene.chipCardManager.shopCards = [];
       for (let i = 0; i < 2; i++) {
-        this.scene.equipmentCardManager.shopCards.push(
-          this.scene.equipmentCardManager.generateShopCard()
+        this.scene.chipCardManager.shopCards.push(
+          this.scene.chipCardManager.generateShopCard()
         );
       }
     }
 
-    const shopEquipments = this.scene.equipmentCardManager.shopCards;
+    const shopChips = this.scene.chipCardManager.shopCards;
 
-    if (shopEquipments.length === 0) {
-      this.addText(width / 2, 200, '暂无装备卡', {
+    if (shopChips.length === 0) {
+      this.addText(width / 2, 200, '暂无芯片卡', {
         fontSize: Const.FONT.SIZE_SMALL,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
       });
     } else {
-      shopEquipments.forEach((card, index) => {
-        const cardContainer = this.createEquipmentShopCard(width / 2, 170 + index * 80, card, index);
+      shopChips.forEach((card, index) => {
+        const cardContainer = this.createChipShopCard(width / 2, 190 + index * 80, card, index);
         cardContainer.setAlpha(0);
         this.scene.tweens.add({
           targets: cardContainer,
@@ -160,7 +178,7 @@ export default class ShopView {
       });
     }
 
-    this.renderRefreshButton(width, 'equipment');
+    this.renderRefreshButton(width, 'chip');
   }
 
   createMinionShopCard(x, y, card, index) {
@@ -209,7 +227,7 @@ export default class ShopView {
     const btnBg = this.scene.add.graphics();
     btnBg.fillStyle(Const.COLORS.BUTTON_PRIMARY, 1);
     btnBg.fillRoundedRect(-30, -14, 60, 28, Const.UI.BUTTON_RADIUS);
-    const btnText = this.scene.add.text(0, 0, `💰${price}`, {
+    const btnText = this.scene.add.text(0, 0, `💎${price}`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.DARK
@@ -240,11 +258,11 @@ export default class ShopView {
     return container;
   }
 
-  createEquipmentShopCard(x, y, card, index) {
+  createChipShopCard(x, y, card, index) {
     const container = this.scene.add.container(x, y);
     const cardWidth = 300;
     const cardHeight = 70;
-    const qualityConfig = this.getEquipmentQualityConfig(card.quality);
+    const qualityConfig = this.getChipQualityConfig(card.quality);
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.95);
@@ -273,19 +291,19 @@ export default class ShopView {
     }).setOrigin(0, 0.5);
     container.add(qualityBadge);
 
-    const statsText = this.scene.add.text(-cardWidth/2 + 60, 25, this.getEquipmentStats(card), {
+    const statsText = this.scene.add.text(-cardWidth/2 + 60, 25, this.getChipStats(card), {
       fontSize: '10px',
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE
     }).setOrigin(0, 0.5);
     container.add(statsText);
 
-    const price = this.getEquipmentPrice(card);
+    const price = this.getChipPrice(card);
     const buyBtn = this.scene.add.container(cardWidth/2 - 50, 0);
     const btnBg = this.scene.add.graphics();
     btnBg.fillStyle(Const.COLORS.BUTTON_PRIMARY, 1);
     btnBg.fillRoundedRect(-30, -14, 60, 28, Const.UI.BUTTON_RADIUS);
-    const btnText = this.scene.add.text(0, 0, `💰${price}`, {
+    const btnText = this.scene.add.text(0, 0, `🍄${price}`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.DARK
@@ -304,11 +322,11 @@ export default class ShopView {
       if (localX > cardWidth/2 - 80) {
         AnimationHelper.tweenPulse(this.scene, container, 0.9);
         this.scene.time.delayedCall(150, () => {
-          this.buyEquipmentCard(index);
+          this.buyChipCard(index);
         });
       } else {
         AnimationHelper.tweenPulse(this.scene, container, 0.95);
-        this.showCardDetail(card, 'equipment', index);
+        this.showCardDetail(card, 'chip', index);
       }
     });
 
@@ -321,14 +339,14 @@ export default class ShopView {
     if (!card) return;
 
     const price = this.getMinionPrice(card);
-    const gold = this.scene.baseSystem.coins || 0;
+    const sourceCore = window.gameData?.base?.sourceCore || 0;
 
-    if (gold < price) {
-      this.scene.showToast?.('金币不足！');
+    if (sourceCore < price) {
+      this.scene.showToast?.('源核不足！');
       return;
     }
 
-    this.scene.baseSystem.coins -= price;
+    window.gameData.base.sourceCore -= price;
     this.scene.minionCardManager.addCard(card);
     this.scene.minionCardManager.shopMinions.splice(index, 1);
     this.scene.saveGameData();
@@ -336,21 +354,21 @@ export default class ShopView {
     this.refresh();
   }
 
-  buyEquipmentCard(index) {
-    const card = this.scene.equipmentCardManager.shopCards?.[index];
+  buyChipCard(index) {
+    const card = this.scene.chipCardManager.shopCards?.[index];
     if (!card) return;
 
-    const price = this.getEquipmentPrice(card);
-    const gold = this.scene.baseSystem.coins || 0;
+    const price = this.getChipPrice(card);
+    const mycelium = window.gameData?.base?.mycelium || 0;
 
-    if (gold < price) {
-      this.scene.showToast?.('金币不足！');
+    if (mycelium < price) {
+      this.scene.showToast?.('菌丝不足！');
       return;
     }
 
-    this.scene.baseSystem.coins -= price;
-    this.scene.equipmentCardManager.addCard(card);
-    this.scene.equipmentCardManager.shopCards.splice(index, 1);
+    window.gameData.base.mycelium -= price;
+    this.scene.chipCardManager.addCard(card);
+    this.scene.chipCardManager.shopCards.splice(index, 1);
     this.scene.saveGameData();
     this.scene.showToast?.('购买成功！');
     this.refresh();
@@ -393,11 +411,11 @@ export default class ShopView {
         );
       }
     } else {
-      this.scene.equipmentCardManager.shopCards = [];
+      this.scene.chipCardManager.shopCards = [];
       for (let i = 0; i < 2; i++) {
-        const newCard = this.scene.equipmentCardManager.generateShopCard?.();
+        const newCard = this.scene.chipCardManager.generateShopCard?.();
         if (newCard) {
-          this.scene.equipmentCardManager.shopCards.push(newCard);
+          this.scene.chipCardManager.shopCards.push(newCard);
         }
       }
     }
@@ -410,8 +428,8 @@ export default class ShopView {
     return Math.floor(base * starMult);
   }
 
-  getEquipmentPrice(card) {
-    const basePrices = { N: 50, R: 150, SR: 400, SSR: 1000, 'SSR+': 2500 };
+  getChipPrice(card) {
+    const basePrices = { N: 50, R: 150, SR: 400, SSR: 1000, UR: 2500, LE: 5000 };
     const base = basePrices[card.quality] || 50;
     const starMult = 1 + (card.star - 1) * 0.5;
     return Math.floor(base * starMult);
@@ -421,13 +439,14 @@ export default class ShopView {
     return this.getQualityConfig(quality);
   }
 
-  getEquipmentQualityConfig(quality) {
+  getChipQualityConfig(quality) {
     const configs = {
       N: { name: '普通', color: '#8a7a6a', textColor: '#8a7a6a', icon: '🔧' },
-      R: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7', icon: '⚔️' },
-      SR: { name: '精良', color: '#51cf66', textColor: '#51cf66', icon: '🗡️' },
+      R: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7', icon: '⚙️' },
+      SR: { name: '精良', color: '#51cf66', textColor: '#51cf66', icon: '🔧' },
       SSR: { name: '史诗', color: '#9775fa', textColor: '#9775fa', icon: '🔥' },
-      'SSR+': { name: '传说', color: '#ffd700', textColor: '#ffd700', icon: '💎' }
+      UR: { name: '传说', color: '#ffd700', textColor: '#ffd700', icon: '💎' },
+      LE: { name: '神话', color: '#ff00ff', textColor: '#ff00ff', icon: '🌟' }
     };
     return configs[quality] || configs.N;
   }
@@ -443,12 +462,11 @@ export default class ShopView {
     return configs[quality] || configs.common;
   }
 
-  getEquipmentStats(card) {
+  getChipStats(card) {
     const stats = [];
     const effective = card.getEffectiveStats?.() || {};
-    if (effective.atk > 0) stats.push(`ATK+${effective.atk}`);
-    if (effective.hp > 0) stats.push(`HP+${effective.hp}`);
-    if (effective.critRate > 0) stats.push(`CRIT+${(effective.critRate * 100).toFixed(0)}%`);
+    if (effective.hpPercent > 0) stats.push(`HP+${effective.hpPercent.toFixed(1)}%`);
+    if (effective.atkPercent > 0) stats.push(`ATK+${effective.atkPercent.toFixed(1)}%`);
     return stats.join(' | ') || '无加成';
   }
 
@@ -486,7 +504,7 @@ export default class ShopView {
 
     const qualityConfig = isMinion
       ? this.getMinionQualityConfig(card.rarity)
-      : this.getEquipmentQualityConfig(card.quality);
+      : this.getChipQualityConfig(card.quality);
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 1);
@@ -507,7 +525,7 @@ export default class ShopView {
       : this.scene.add.text(0, -160, qualityConfig.icon, { fontSize: '48px' }).setOrigin(0.5);
     modal.add(icon);
 
-    const typeLabel = this.scene.add.text(0, -115, isMinion ? '🐺 随从卡' : '⚔️ 装备卡', {
+    const typeLabel = this.scene.add.text(0, -115, isMinion ? '🐺 随从卡' : '🔧 芯片卡', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isMinion ? '#ff6b6b' : '#4dabf7'
@@ -558,12 +576,12 @@ export default class ShopView {
         y += 25;
       }
     } else {
-      const equipStats = this.scene.add.text(-100, y, this.getEquipmentStats(card), {
+      const chipStats = this.scene.add.text(-100, y, this.getChipStats(card), {
         fontSize: Const.FONT.SIZE_TINY,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.CYAN
       }).setOrigin(0, 0.5);
-      modal.add(equipStats);
+      modal.add(chipStats);
       y += 25;
 
       if (card.skills && card.skills.length > 0) {
@@ -577,9 +595,25 @@ export default class ShopView {
           y += 20;
         });
       }
+
+      // 显示目标限制
+      if (card.targetProfession || card.targetElement || card.targetRace) {
+        const restrictions = [];
+        if (card.targetProfession) restrictions.push(`职业: ${card.targetProfession}`);
+        if (card.targetElement) restrictions.push(`元素: ${card.targetElement}`);
+        if (card.targetRace) restrictions.push(`种族: ${card.targetRace}`);
+        const restrictText = this.scene.add.text(-100, y, `适用: ${restrictions.join(', ')}`, {
+          fontSize: Const.FONT.SIZE_TINY,
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: '#e67e22'
+        }).setOrigin(0, 0.5);
+        modal.add(restrictText);
+        y += 20;
+      }
     }
 
-    const price = isMinion ? this.getMinionPrice(card) : this.getEquipmentPrice(card);
+    const price = isMinion ? this.getMinionPrice(card) : this.getChipPrice(card);
+    const currencyIcon = isMinion ? '💎' : '🍄';
 
     // 购买按钮
     const buyBtnContainer = this.scene.add.container(0, 150);
@@ -588,7 +622,7 @@ export default class ShopView {
     buyBtnBg.fillRoundedRect(-70, -18, 140, 36, Const.UI.BUTTON_RADIUS);
     buyBtnContainer.add(buyBtnBg);
 
-    const buyBtnText = this.scene.add.text(0, 0, `💰 购买 ${price}`, {
+    const buyBtnText = this.scene.add.text(0, 0, `${currencyIcon} 购买 ${price}`, {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -605,7 +639,7 @@ export default class ShopView {
         if (isMinion) {
           this.buyMinionCard(index);
         } else {
-          this.buyEquipmentCard(index);
+          this.buyChipCard(index);
         }
         // buyXxxCard 内部会调用 refresh()，无需单独 closeCardDetail
       });

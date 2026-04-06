@@ -1,7 +1,7 @@
 import { t } from '../../game/data/Lang.js';
 import Const from '../../game/data/Const.js';
-import EquipmentCard from '../../game/entities/EquipmentCard.js';
-import EquipmentCardManager from '../../game/systems/EquipmentCardManager.js';
+import ChipCard from '../../game/entities/ChipCard.js';
+import ChipCardManager from '../../game/systems/ChipCardManager.js';
 
 export default class EquipmentView {
   constructor(scene) {
@@ -21,13 +21,13 @@ export default class EquipmentView {
   }
 
   initCardManager() {
-    if (!window.gameData.equipmentCardManager) {
-      window.gameData.equipmentCardManager = {
+    if (!window.gameData.chipCardManager) {
+      window.gameData.chipCardManager = {
         ownedCards: [],
         equippedCardId: null
       };
     }
-    this.cardManager = this.scene.equipmentCardManager;
+    this.cardManager = this.scene.chipCardManager;
   }
 
   render() {
@@ -535,7 +535,7 @@ export default class EquipmentView {
   }
 
   saveAndRefresh() {
-    window.gameData.equipmentCardManager = this.cardManager.toJSON();
+    window.gameData.chipCardManager = this.cardManager.toJSON();
     this.destroy();
     this.show();
   }

@@ -5,24 +5,26 @@ import { CharacterClass } from '../data/CharacterClass.js';
 
 export default class SaveSystem {
   constructor() {
-    this.SAVE_KEY = 'soda_dungeon_save';
+    this.SAVE_KEY = 'wasteland_year_save';
     this.AUTO_SAVE_INTERVAL = 30000;
     this.autoSaveTimer = null;
   }
   
   createNewGame() {
     const saveData = {
-      version: '1.0.0',
+      version: '2.0.0',
       timestamp: Date.now(),
       player: {
         name: '拾荒者',
         level: 1,
-        exp: 0
+        exp: 0,
+        reputation: { level: 1, exp: 0 }
       },
       base: new BaseSystem().toJSON(),
       dungeon: new DungeonSystem().toJSON(),
       team: [],
       inventory: [],
+      chipCardManager: null,
       settings: {
         musicVolume: 0.7,
         sfxVolume: 0.8,
@@ -36,7 +38,7 @@ export default class SaveSystem {
         totalVictories: 0,
         totalDefeats: 0,
         maxFloorReached: 0,
-        totalCoinsEarned: 0,
+        totalMyceliumEarned: 0,
         totalCharactersRecruited: 0
       },
       achievements: {
@@ -49,13 +51,7 @@ export default class SaveSystem {
         completed: []
       }
     };
-    
-    const teamSystem = new BaseSystem();
-    for (let i = 0; i < 3; i++) {
-      const char = teamSystem.createCharacter(Object.values(CharacterClass)[i % 4]);
-      saveData.team.push(char.toJSON());
-    }
-    
+
     return saveData;
   }
   
@@ -118,6 +114,7 @@ export default class SaveSystem {
   validateSaveData(saveData) {
     if (!saveData) return false;
     if (!saveData.version) return false;
+    if (saveData.version !== '2.0.0') return false;
     if (!saveData.base) return false;
     if (!saveData.dungeon) return false;
     return true;
@@ -162,7 +159,7 @@ export default class SaveSystem {
       
       const link = document.createElement('a');
       link.href = url;
-      link.download = `soda_dungeon_save_${Date.now()}.json`;
+      link.download = `wasteland_year_save_${Date.now()}.json`;
       link.click();
       
       URL.revokeObjectURL(url);
@@ -208,7 +205,7 @@ export default class SaveSystem {
         timestamp: saveData.timestamp,
         floor: saveData.dungeon?.currentFloor || 1,
         maxFloor: saveData.dungeon?.maxReachedFloor || 1,
-        coins: saveData.base?.coins || 0,
+        mycelium: saveData.base?.mycelium || 0,
         teamSize: saveData.team?.length || 0,
         playTime: saveData.statistics?.totalPlayTime || 0
       };

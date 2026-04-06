@@ -5,7 +5,9 @@ import Const from '../data/Const.js';
 
 export default class BaseSystem {
   constructor(gameData = {}) {
-    this.coins = gameData.coins || 10000;
+    this.mycelium = gameData.mycelium || 5000;     // 菌丝
+    this.sourceCore = gameData.sourceCore || 100;  // 源核
+    this.starCoin = gameData.starCoin || 0;        // 星币
     this.facilities = gameData.facilities || this.initFacilities();
     this.energyDrinks = gameData.energyDrinks || [];
     this.characters = (gameData.characters || []).map(c => Character.fromJSON(c));
@@ -49,11 +51,11 @@ export default class BaseSystem {
       return { success: false, reason: 'max_level' };
     }
     
-    if (this.coins < cost) {
-      return { success: false, reason: 'not_enough_coins', required: cost, current: this.coins };
+    if (this.mycelium < cost) {
+      return { success: false, reason: 'not_enough_coins', required: cost, current: this.mycelium };
     }
-    
-    this.coins -= cost;
+
+    this.mycelium -= cost;
     this.facilities[facilityKey].level++;
     
     return {
@@ -159,15 +161,15 @@ export default class BaseSystem {
     const character = this.availableRecruits[characterIndex];
     const recruitCost = 200;
     
-    if (this.coins < recruitCost) {
+    if (this.sourceCore < recruitCost) {
       return { success: false, reason: 'not_enough_coins', required: recruitCost };
     }
-    
+
     if (this.characters.length >= 20) {
       return { success: false, reason: 'character_full' };
     }
-    
-    this.coins -= recruitCost;
+
+    this.sourceCore -= recruitCost;
     this.characters.push(character);
     this.availableRecruits.splice(characterIndex, 1);
     
@@ -237,22 +239,44 @@ export default class BaseSystem {
     return this.team.length;
   }
   
-  addCoins(amount) {
-    this.coins += amount;
-    return this.coins;
+  // ===== 三级货币系统 =====
+  addCurrency(type, amount) {
+    if (type === 'mycelium') this.mycelium += amount;
+    else if (type === 'sourceCore') this.sourceCore += amount;
+    else if (type === 'starCoin') this.starCoin += amount;
+    else return { success: false, reason: 'invalid_currency_type' };
+    return { success: true, balance: this.getCurrency(type) };
   }
-  
-  spendCoins(amount) {
-    if (this.coins < amount) {
-      return { success: false, reason: 'not_enough_coins', current: this.coins };
+
+  spendCurrency(type, amount) {
+    if (!this.canAfford(type, amount)) {
+      return { success: false, reason: 'not_enough_currency', required: amount, current: this.getCurrency(type) };
     }
-    
-    this.coins -= amount;
-    return { success: true, remaining: this.coins };
+    if (type === 'mycelium') this.mycelium -= amount;
+    else if (type === 'sourceCore') this.sourceCore -= amount;
+    else if (type === 'starCoin') this.starCoin -= amount;
+    else return { success: false, reason: 'invalid_currency_type' };
+    return { success: true, remaining: this.getCurrency(type) };
   }
-  
-  canAfford(amount) {
-    return this.coins >= amount;
+
+  canAfford(type, amount) {
+    return this.getCurrency(type) >= amount;
+  }
+
+  getCurrency(type) {
+    if (type === 'mycelium') return this.mycelium;
+    if (type === 'sourceCore') return this.sourceCore;
+    if (type === 'starCoin') return this.starCoin;
+    return 0;
+  }
+
+  // 兼容旧接口
+  addCoins(amount) {
+    return this.addCurrency('mycelium', amount);
+  }
+
+  spendCoins(amount) {
+    return this.spendCurrency('mycelium', amount);
   }
   
   getTrainingBonus() {
@@ -269,7 +293,9 @@ export default class BaseSystem {
   
   getInfo() {
     return {
-      coins: this.coins,
+      mycelium: this.mycelium,
+      sourceCore: this.sourceCore,
+      starCoin: this.starCoin,
       facilities: this.facilities,
       teamSize: this.team.length,
       maxTeamSize: 5,
@@ -284,7 +310,9 @@ export default class BaseSystem {
   
   toJSON() {
     return {
-      coins: this.coins,
+      mycelium: this.mycelium,
+      sourceCore: this.sourceCore,
+      starCoin: this.starCoin,
       facilities: this.facilities,
       characters: this.characters.map(c => c.toJSON()),
       team: this.team,
@@ -295,18 +323,20 @@ export default class BaseSystem {
   
   save() {
     try {
-      localStorage.setItem('baseSystem', JSON.stringify(this.toJSON()));
+      localStorage.setItem('baseSystem_v2', JSON.stringify(this.toJSON()));
     } catch (e) {
       console.warn('Failed to save base system:', e);
     }
   }
-  
+
   load() {
     try {
-      const saved = localStorage.getItem('baseSystem');
+      const saved = localStorage.getItem('baseSystem_v2');
       if (saved) {
         const data = JSON.parse(saved);
-        this.coins = data.coins || 10000;
+        this.mycelium = data.mycelium || 5000;
+        this.sourceCore = data.sourceCore || 100;
+        this.starCoin = data.starCoin || 0;
         this.facilities = data.facilities || this.initFacilities();
         this.characters = (data.characters || []).map(c => Character.fromJSON(c));
         this.team = data.team || [];

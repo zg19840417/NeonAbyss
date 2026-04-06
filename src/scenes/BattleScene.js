@@ -86,8 +86,8 @@ export default class BattleScene extends Phaser.Scene {
       ].map(m => MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m));
     }
 
-    if (!window.gameData.equipmentCardManager && this.equipmentCard) {
-      window.gameData.equipmentCardManager = {
+    if (!window.gameData.chipCardManager && this.equipmentCard) {
+      window.gameData.chipCardManager = {
         ownedCards: [this.equipmentCard],
         equippedCardId: this.equipmentCard.id
       };
@@ -734,7 +734,9 @@ export default class BattleScene extends Phaser.Scene {
       color: this.config.colors.sacred
     }).setOrigin(0.5);
 
-    const rewardText = this.add.text(0, -10, `获得金币: ${data.rewards?.coins || 0}`, {
+    const myceliumReward = data.rewards?.mycelium || 0;
+    const sourceCoreReward = data.rewards?.sourceCore || 0;
+    const rewardText = this.add.text(0, -10, `获得菌丝: ${myceliumReward}` + (sourceCoreReward > 0 ? `  源核: ${sourceCoreReward}` : ''), {
       fontSize: Const.BATTLE.FONT.SIZE_REWARD,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.amber

@@ -2,7 +2,8 @@ import Character from '../entities/Character.js';
 import MinionCard from '../entities/MinionCard.js';
 import Skill from './Skill.js';
 import { BuffType } from './BuffSystem.js';
-import EquipmentCardManager from './EquipmentCardManager.js';
+import ChipCardManager from './ChipCardManager.js';
+import { getElementMultiplier } from '../data/MinionConfig.js';
 
 export const BattlePhase = {
   IDLE: 'idle',
@@ -26,7 +27,7 @@ export default class BattleSystem {
     this.battleSpeed = config.battleSpeed || 1;
     
     this.equipmentSkills = [];
-    this.equipmentCardManager = null;
+    this.chipCardManager = null;
     
     this.listeners = {
       onAttack: [],
@@ -111,10 +112,10 @@ export default class BattleSystem {
   
   applyEquipmentCardBonuses() {
     try {
-      const equipData = window.gameData?.equipmentCardManager;
-      if (!equipData?.equippedCardId) return;
+      const chipData = window.gameData?.chipCardManager;
+      if (!chipData?.equippedCardId) return;
       
-      const manager = EquipmentCardManager.fromJSON(equipData);
+      const manager = ChipCardManager.fromJSON(chipData);
       const equippedCard = manager.equippedCard;
       
       if (!equippedCard) return;
@@ -122,13 +123,10 @@ export default class BattleSystem {
       const bonuses = equippedCard.getEffectiveStats();
       
       this.playerTeam.forEach(follower => {
-        follower.atk += bonuses.atk || 0;
-        follower.maxHp += bonuses.hp || 0;
-        follower.currentHp += bonuses.hp || 0;
-        follower.critRate = Math.min((follower.critRate || 0) + (bonuses.critRate || 0), 0.9);
-        follower.dodgeRate = Math.min((follower.dodgeRate || 0) + (bonuses.dodgeRate || 0), 0.9);
-        follower.damageReduction = Math.min((follower.damageReduction || 0) + (bonuses.damageReduction || 0), 0.9);
-        follower.lifeSteal = (follower.lifeSteal || 0) + (bonuses.lifeSteal || 0);
+        // 芯片属性为百分比加成
+        follower.maxHp += Math.floor(follower.maxHp * (bonuses.hpPercent || 0) / 100);
+        follower.currentHp += Math.floor(follower.maxHp * (bonuses.hpPercent || 0) / 100);
+        follower.atk += Math.floor(follower.atk * (bonuses.atkPercent || 0) / 100);
       });
       
       this.equipmentSkills = equippedCard.skills
@@ -764,9 +762,21 @@ export default class BattleSystem {
     
     if (enemyToAct) {
       this.executeCharacterAction(enemyToAct, () => {
-        setTimeout(() => {
-          this.executeAutoBattle();
-        }, 300 / this.battleSpeed);
+        // 敌人风怒检查（与玩家风怒逻辑对称）
+        if (enemyToAct.hasWindfury && enemyToAct.hasWindfury() && !enemyToAct._windfuryUsed && !enemyToAct.isDead) {
+          enemyToAct._windfuryUsed = true;
+          setTimeout(() => {
+            this.executeCharacterAction(enemyToAct, () => {
+              setTimeout(() => {
+                this.executeAutoBattle();
+              }, 300 / this.battleSpeed);
+            });
+          }, 200 / this.battleSpeed);
+        } else {
+          setTimeout(() => {
+            this.executeAutoBattle();
+          }, 300 / this.battleSpeed);
+        }
       });
     } else {
       this.executeAutoBattle();
@@ -832,13 +842,29 @@ export default class BattleSystem {
 
     let damage = this.calculateDamage(attacker, target);
     const isCrit = Math.random() < critRate;
-    let finalDamage = isCrit ? Math.floor(damage * 2) : damage;
-
+    let finalDamage = damage;
     if (isCrit) {
-      finalDamage = Math.floor(finalDamage * (attacker.critDamage || 2));
+      finalDamage = Math.floor(damage * (attacker.critDamage || 2));
     }
 
-    target.currentHp = Math.max(0, target.currentHp - finalDamage);
+    // 元素克制：最终伤害 +20%/-20%
+    if (attacker.element && target.element) {
+      const elemMult = getElementMultiplier(attacker.element, target.element);
+      if (elemMult > 1) {
+        finalDamage = Math.floor(finalDamage * elemMult);
+      } else if (elemMult < 1) {
+        finalDamage = Math.floor(finalDamage * elemMult);
+      }
+    }
+
+    // 使用 takeDamage 让圣盾和重生逻辑生效
+    let actualDamage;
+    if (typeof target.takeDamage === 'function') {
+      actualDamage = target.takeDamage(finalDamage);
+    } else {
+      actualDamage = Math.max(1, Math.floor(finalDamage * (1 - (target.getBaseDamageReduction ? target.getBaseDamageReduction() : 0))));
+      target.currentHp = Math.max(0, target.currentHp - actualDamage);
+    }
 
     const attackerAllies = isPlayer ? this.playerTeam : this.enemyTeam;
     const attackerEnemies = isPlayer ? this.enemyTeam : this.playerTeam;
@@ -857,8 +883,7 @@ export default class BattleSystem {
 
     this.applyOnHitEquipmentEffects(attacker, target);
 
-    if (target.currentHp <= 0) {
-      target.isDead = true;
+    if (target.isDead) {
       this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
 
       const deathTriggerType = isPlayer ? 'enemy_death' : 'ally_death';

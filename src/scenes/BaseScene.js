@@ -4,8 +4,8 @@ import Const from '../game/data/Const.js';
 import EquipmentView from './views/EquipmentView.js';
 import ShopView from './views/ShopView.js';
 import TeamView from './views/TeamView.js';
-import EquipmentCard from '../game/entities/EquipmentCard.js';
-import EquipmentCardManager from '../game/systems/EquipmentCardManager.js';
+import ChipCardManager from '../game/systems/ChipCardManager.js';
+import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
 
 export default class BaseScene extends Phaser.Scene {
@@ -45,6 +45,8 @@ export default class BaseScene extends Phaser.Scene {
     if (!window.gameData.base) {
       window.gameData.base = {
         coins: Const.GAME.INITIAL_COINS,
+        mycelium: 0,
+        sourceCore: 0,
         facilities: null,
         characters: [],
         team: [],
@@ -52,18 +54,34 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
 
+    // 确保新货币字段存在（兼容旧存档）
+    if (window.gameData.base.mycelium === undefined) {
+      window.gameData.base.mycelium = 0;
+    }
+    if (window.gameData.base.sourceCore === undefined) {
+      window.gameData.base.sourceCore = 0;
+    }
+
     this.baseSystem = new BaseSystem(window.gameData.base);
     this.cleanCharacterData();
 
-    if (!window.gameData.equipmentCardManager) {
-      window.gameData.equipmentCardManager = {
+    // 初始化 ChipCardManager（替代 EquipmentCardManager）
+    if (!window.gameData.chipCardManager) {
+      window.gameData.chipCardManager = {
         ownedCards: [],
         equippedCardId: null,
         shopCards: []
       };
     }
-    this.equipmentCardManager = new EquipmentCardManager(window.gameData.equipmentCardManager);
+    this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
 
+    // 初始化 ReputationSystem
+    if (!window.gameData.reputation) {
+      window.gameData.reputation = {};
+    }
+    this.reputationSystem = new ReputationSystem(window.gameData.reputation);
+
+    // 初始化 MinionCardManager
     if (!window.gameData.minionCardManager) {
       window.gameData.minionCardManager = {
         ownedCards: [],
@@ -72,20 +90,48 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
     this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
+
+    // 清理旧版本存档中的 equipmentCardManager
+    this.cleanLegacySaveData();
   }
 
   cleanCharacterData() {
     const validClasses = ['Warrior', 'Mage', 'Rogue', 'Priest', 'Tank', 'Archer', 'Paladin', 'Berserker', 'Hunter', 'Cleric'];
     const originalCount = this.baseSystem.characters.length;
-    
+
     this.baseSystem.characters = this.baseSystem.characters.filter(c => {
       if (!c || !c.charClass) return false;
       const className = c.charClass.name || '';
       return validClasses.some(vc => className.includes(vc) || vc.includes(className));
     });
-    
+
     const removedCount = originalCount - this.baseSystem.characters.length;
     if (removedCount > 0) {
+      this.saveGameData();
+    }
+  }
+
+  /**
+   * 清理旧版本存档数据
+   * 移除已废弃的 equipmentCardManager 相关数据
+   */
+  cleanLegacySaveData() {
+    let needsSave = false;
+
+    // 移除旧的 equipmentCardManager
+    if (window.gameData.equipmentCardManager) {
+      delete window.gameData.equipmentCardManager;
+      needsSave = true;
+    }
+
+    // 移除旧的 localStorage 键
+    try {
+      localStorage.removeItem('equipmentCardManager');
+    } catch (e) {
+      // 忽略
+    }
+
+    if (needsSave) {
       this.saveGameData();
     }
   }
@@ -107,7 +153,7 @@ export default class BaseScene extends Phaser.Scene {
 
     const centerGlow = this.add.graphics();
     centerGlow.setBlendMode(Phaser.BlendModes.ADD);
-    
+
     const glowColors = {
       tavern: { color: Const.COLORS.PURPLE, alpha: 0.08 },
       team: { color: Const.COLORS.CYAN, alpha: 0.06 },
@@ -116,9 +162,9 @@ export default class BaseScene extends Phaser.Scene {
       shop: { color: Const.COLORS.PINK, alpha: 0.06 },
       settings: { color: Const.COLORS.CYAN, alpha: 0.05 }
     };
-    
+
     const glow = glowColors[viewKey] || glowColors.tavern;
-    
+
     for (let i = 0; i < 3; i++) {
       centerGlow.fillStyle(glow.color, glow.alpha / (i + 1));
       centerGlow.fillCircle(width / 2, height / 2 - 50, 150 + i * 80);
@@ -138,23 +184,23 @@ export default class BaseScene extends Phaser.Scene {
 
     const decor = this.add.graphics();
     decor.setAlpha(Const.ALPHA.DECOR);
-    
+
     decor.lineStyle(2, Const.COLORS.PURPLE, 0.5);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_SMALL, 110);
-    
+
     decor.lineStyle(2, Const.COLORS.MAGENTA, 0.5);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_SMALL, 110);
-    
+
     decor.lineStyle(2, Const.COLORS.CYAN, 0.3);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_MEDIUM, height - 130);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_SMALL, height - 100);
-    
+
     decor.lineStyle(2, Const.COLORS.PINK, 0.3);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_MEDIUM, height - 130);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_SMALL, height - 100);
-    
+
     this.bgElements.push(decor);
 
     const particles = this.add.graphics();
@@ -178,8 +224,21 @@ export default class BaseScene extends Phaser.Scene {
       color: Const.TEXT_COLORS.PINK
     }).setOrigin(0.5);
 
-    this.coinDisplay = this.add.text(width / 2, Const.UI.COIN_Y, `${t('coin')}: 0`, {
-      fontSize: Const.FONT.SIZE_SMALL,
+    // 三种货币显示：菌丝 / 源核 / 星币
+    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#51cf66'
+    }).setOrigin(0.5);
+
+    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#4dabf7'
+    }).setOrigin(0.5);
+
+    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `⭐ 星币: 0`, {
+      fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
     }).setOrigin(0.5);
@@ -275,7 +334,7 @@ export default class BaseScene extends Phaser.Scene {
     if (this._transitioning) return;
 
     // 获取需要保留的元素
-    const preserved = [this.coinDisplay, this.titleText];
+    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
     });
@@ -722,8 +781,11 @@ export default class BaseScene extends Phaser.Scene {
     confirmBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 90, 28), Phaser.Geom.Rectangle.Contains);
     confirmBtn.on('pointerdown', () => {
       localStorage.removeItem('sodaDungeonSave');
+      localStorage.removeItem('equipmentCardManager');
+      localStorage.removeItem('chipCardManager');
+      localStorage.removeItem('reputationSystem');
       window.gameData = {
-        base: { coins: Const.GAME.INITIAL_COINS, characters: [] },
+        base: { coins: Const.GAME.INITIAL_COINS, mycelium: 0, sourceCore: 0, characters: [] },
         dungeon: { currentFloor: 1, highestFloor: 1 },
         achievements: [],
         settings: { seVolume: 0.8, bgmVolume: 0.7 }
@@ -742,7 +804,7 @@ export default class BaseScene extends Phaser.Scene {
 
   tryEnterDungeon() {
     const teamCount = this.baseSystem.getTeamMemberCount();
-    
+
     if (teamCount === 0) {
       this.showTeamEmptyAlert();
     } else if (teamCount < Const.GAME.MAX_TEAM_SIZE) {
@@ -906,7 +968,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   clearContent() {
-    const preserved = [this.coinDisplay, this.titleText];
+    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
     });
@@ -936,18 +998,29 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   updateUI() {
+    const mycelium = window.gameData?.base?.mycelium || 0;
+    const sourceCore = window.gameData?.base?.sourceCore || 0;
+    const coins = this.baseSystem.starCoin || 0;
+
+    if (this.myceliumDisplay) {
+      this.myceliumDisplay.setText(`🍄 菌丝: ${mycelium.toLocaleString()}`);
+    }
+    if (this.sourceCoreDisplay) {
+      this.sourceCoreDisplay.setText(`💎 源核: ${sourceCore.toLocaleString()}`);
+    }
     if (this.coinDisplay) {
-      this.coinDisplay.setText(`${t('coin')}: ${this.baseSystem.coins.toLocaleString()}`);
+      this.coinDisplay.setText(`⭐ 星币: ${coins.toLocaleString()}`);
     }
   }
 
   saveGameData() {
     window.gameData.base = this.baseSystem.toJSON();
-    window.gameData.equipmentCardManager = {
-      ownedCards: this.equipmentCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
-      equippedCardId: this.equipmentCardManager.equippedCard?.id || null,
-      shopCards: (this.equipmentCardManager.shopCards || []).map(c => c.toJSON ? c.toJSON() : c)
+    window.gameData.chipCardManager = {
+      ownedCards: this.chipCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
+      equippedCardId: this.chipCardManager.equippedCard?.id || null,
+      shopCards: (this.chipCardManager.shopCards || []).map(c => c.toJSON ? c.toJSON() : c)
     };
+    window.gameData.reputation = this.reputationSystem.toJSON();
     if (this.minionCardManager) {
       window.gameData.minionCardManager = this.minionCardManager.toJSON();
     }

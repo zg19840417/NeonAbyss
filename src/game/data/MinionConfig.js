@@ -1,3 +1,4 @@
+// ===== 稀有度体系 =====
 export const Rarity = {
   COMMON: 'common',
   RARE: 'rare',
@@ -44,44 +45,97 @@ export const RarityConfig = {
   }
 };
 
+// ===== 种族体系（5大种族，按融合对象分类） =====
+export const Race = {
+  PLANT: 'plant',
+  ANIMAL: 'animal',
+  MECH: 'mech',
+  ENERGY: 'energy',
+  HYBRID: 'hybrid'
+};
+
+export const RaceConfig = {
+  [Race.PLANT]: {
+    name: '植物系',
+    nameEn: 'Plant',
+    icon: '🌿',
+    description: '与变异植物融合的融合者'
+  },
+  [Race.ANIMAL]: {
+    name: '动物系',
+    nameEn: 'Animal',
+    icon: '🐾',
+    description: '与变异动物融合的融合者'
+  },
+  [Race.MECH]: {
+    name: '机械系',
+    nameEn: 'Mech',
+    icon: '⚙️',
+    description: '与残存机械融合的融合者'
+  },
+  [Race.ENERGY]: {
+    name: '能量系',
+    nameEn: 'Energy',
+    icon: '💎',
+    description: '与辐射能量体融合的融合者'
+  },
+  [Race.HYBRID]: {
+    name: '混合系',
+    nameEn: 'Hybrid',
+    icon: '🔮',
+    description: '多种融合的融合者'
+  }
+};
+
+// ===== 元素体系（5种元素） =====
 export const Element = {
+  WATER: 'water',
   FIRE: 'fire',
-  ICE: 'ice',
-  THUNDER: 'thunder',
-  DARK: 'dark',
-  LIGHT: 'light'
+  WIND: 'wind',
+  LIGHT: 'light',
+  DARK: 'dark'
 };
 
 export const ElementConfig = {
+  [Element.WATER]: {
+    name: '水',
+    nameEn: 'Water',
+    icon: '💧',
+    color: 0x4dabf7,
+    strongAgainst: Element.FIRE,
+    weakAgainst: Element.WIND,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 0.8
+  },
   [Element.FIRE]: {
     name: '火',
     nameEn: 'Fire',
     icon: '🔥',
     color: 0xff6b35,
-    strongAgainst: Element.ICE,
-    weakAgainst: Element.LIGHT,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    strongAgainst: Element.WIND,
+    weakAgainst: Element.WATER,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 0.8
   },
-  [Element.ICE]: {
-    name: '冰',
-    nameEn: 'Ice',
-    icon: '❄️',
+  [Element.WIND]: {
+    name: '风',
+    nameEn: 'Wind',
+    icon: '🌪️',
     color: 0x74c0fc,
-    strongAgainst: Element.THUNDER,
-    weakAgainst: Element.FIRE,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
-  },
-  [Element.THUNDER]: {
-    name: '雷',
-    nameEn: 'Thunder',
-    icon: '⚡',
-    color: 0xffd43b,
     strongAgainst: Element.DARK,
-    weakAgainst: Element.ICE,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    weakAgainst: Element.FIRE,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 0.8
+  },
+  [Element.LIGHT]: {
+    name: '光',
+    nameEn: 'Light',
+    icon: '✨',
+    color: 0xffee58,
+    strongAgainst: Element.DARK,
+    weakAgainst: Element.DARK,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 0.8
   },
   [Element.DARK]: {
     name: '暗',
@@ -89,19 +143,9 @@ export const ElementConfig = {
     icon: '🌑',
     color: 0x9775fa,
     strongAgainst: Element.LIGHT,
-    weakAgainst: Element.THUNDER,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
-  },
-  [Element.LIGHT]: {
-    name: '光',
-    nameEn: 'Light',
-    icon: '✨',
-    color: 0xffee58,
-    strongAgainst: Element.FIRE,
-    weakAgainst: Element.DARK,
-    bonusMultiplier: 1.3,
-    resistMultiplier: 0.7
+    weakAgainst: Element.LIGHT,
+    bonusMultiplier: 1.2,
+    resistMultiplier: 0.8
   }
 };
 
@@ -114,53 +158,12 @@ export function getElementMultiplier(attackerElement, defenderElement) {
   return 1.0;
 }
 
-export const Race = {
-  HUMAN: 'human',
-  MECH: 'mech',
-  MUTANT: 'mutant',
-  ENERGY: 'energy',
-  BEAST: 'beast'
-};
-
-export const RaceConfig = {
-  [Race.HUMAN]: {
-    name: '人类',
-    nameEn: 'Human',
-    icon: '🧑',
-    description: '均衡型种族，无特殊加成'
-  },
-  [Race.MECH]: {
-    name: '机械',
-    nameEn: 'Mech',
-    icon: '🤖',
-    description: '机械种族，受到治疗效果降低30%，但免疫中毒和眩晕'
-  },
-  [Race.MUTANT]: {
-    name: '变异体',
-    nameEn: 'Mutant',
-    icon: '🧬',
-    description: '变异种族，每回合恢复最大生命值5%'
-  },
-  [Race.ENERGY]: {
-    name: '能量体',
-    nameEn: 'Energy',
-    icon: '💎',
-    description: '能量种族，闪避率额外+15%，但生命值上限-20%'
-  },
-  [Race.BEAST]: {
-    name: '野兽',
-    nameEn: 'Beast',
-    icon: '🐺',
-    description: '野兽种族，攻击力+15%，暴击率+10%'
-  }
-};
-
 export default {
   Rarity,
   RarityConfig,
-  Element,
-  ElementConfig,
   Race,
   RaceConfig,
+  Element,
+  ElementConfig,
   getElementMultiplier
 };
