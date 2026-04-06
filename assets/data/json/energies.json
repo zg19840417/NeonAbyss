@@ -27,33 +27,6 @@
     "availableProfessions": "tank_advanced,damage_advanced"
   },
   {
-    "id": "strong_energy",
-    "name": "强力能量",
-    "description": "吸引中级职业",
-    "cost": "100",
-    "effectType": "attract_mid",
-    "effectValue": "1",
-    "availableProfessions": "support,heal"
-  },
-  {
-    "id": "legendary_energy",
-    "name": "传说能量",
-    "description": "吸引传说职业",
-    "cost": "250",
-    "effectType": "attract_legendary",
-    "effectValue": "1",
-    "availableProfessions": "iron_berserker,phantom_striker"
-  },
-  {
-    "id": "magic_energy",
-    "name": "超频能量",
-    "description": "吸引高级职业",
-    "cost": "150",
-    "effectType": "attract_advanced",
-    "effectValue": "1",
-    "availableProfessions": "tank_advanced,damage_advanced"
-  },
-  {
     "id": "legendary_energy",
     "name": "传说能量",
     "description": "吸引传说职业",

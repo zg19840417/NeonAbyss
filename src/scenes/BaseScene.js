@@ -18,6 +18,7 @@ export default class BaseScene extends Phaser.Scene {
     this.currentTab = 'tavern';
     this.tabButtons = {};
     this.modalOpen = false;
+    this._transitioning = false;
   }
 
   create() {
@@ -270,6 +271,37 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showView(key) {
+    // 如果正在过渡中，跳过
+    if (this._transitioning) return;
+
+    // 获取需要保留的元素
+    const preserved = [this.coinDisplay, this.titleText];
+    Object.values(this.tabButtons).forEach(tab => {
+      if (tab.container) preserved.push(tab.container);
+    });
+
+    // 收集需要淡出的内容元素
+    const contentElements = this.children.list.filter(child => {
+      return !preserved.includes(child);
+    });
+
+    // 如果有内容元素，先淡出再切换
+    if (contentElements.length > 0) {
+      this._transitioning = true;
+      this.tweens.add({
+        targets: contentElements,
+        alpha: 0,
+        duration: 150,
+        ease: 'Power2',
+        onComplete: () => {
+          this.clearContent();
+          this._transitioning = false;
+          this.showView(key);
+        }
+      });
+      return;
+    }
+
     this.clearContent();
     this.createAtmosphereBg(key);
 

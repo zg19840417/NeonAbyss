@@ -102,6 +102,16 @@ export const Const = {
     MODAL_UI: 1002
   },
 
+  // 装备卡品质体系 (equipment.json 的 quality 字段使用此套命名)
+  // 随从卡品质体系见 MinionConfig.js 的 Rarity: common / rare / epic / legendary
+  // 品质对照映射:
+  //   装备 (EQUIPMENT_QUALITY)  |  随从 (MinionConfig.Rarity)  |  等级
+  //   --------------------------|------------------------------|------
+  //   N                         |  common                      |  1星
+  //   R                         |  rare                        |  2星
+  //   SR                        |  epic                        |  3星
+  //   SSR                       |  legendary                   |  4星
+  //   SSR+                      |  (无对应)                    |  5星
   EQUIPMENT_QUALITY: {
     N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通' },
     R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有' },
@@ -110,9 +120,77 @@ export const Const = {
     'SSR+': { color: '#e74c3c', textColor: '#e74c3c', glow: 1.0, name: '神话' }
   },
 
+  QUALITY_CONFIG: {
+    common: { name: '普通', nameEn: 'Common', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
+    rare: { name: '稀有', nameEn: 'Rare', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
+    epic: { name: '精良', nameEn: 'Epic', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
+    legendary: { name: '史诗', nameEn: 'Legendary', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
+    N: { name: '普通', nameEn: 'N', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
+    R: { name: '稀有', nameEn: 'R', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
+    SR: { name: '精良', nameEn: 'SR', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
+    SSR: { name: '史诗', nameEn: 'SSR', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
+    'SSR+': { name: '传说', nameEn: 'SSR+', color: '#ff2222', textColor: '#ff4444', glowColor: 0xdd0000 }
+  },
+
   EQUIPMENT_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
   EQUIPMENT_SKILL_MULTIPLIER: { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.7, 5: 2.0 },
-  STAR_UPGRADE_COST: { 1: 10, 2: 30, 3: 80, 4: 200 }
+  STAR_UPGRADE_COST: { 1: 10, 2: 30, 3: 80, 4: 200 },
+
+  // ===== 战斗场景专用 (BattleScene) =====
+  // 暖色调风格，与全局霓虹风格区分
+  BATTLE: {
+    COLORS: {
+      BG_DARK: 0x1a1815,
+      BG_MID: 0x252220,
+      BORDER: 0x4a4540,
+      AMBER: 0xd4a574,
+      SACRED: 0xa8d8a8,
+      CORRUPT: 0xd8a8a8,
+      TEXT_PRIMARY: '#d4ccc0',
+      TEXT_SECONDARY: '#8a7a6a',
+      HP_GREEN: 0x6abd6a,
+      HP_RED: 0xd86a6a,
+      CRIT_GOLD: '#ffd700',
+      HEAL_GREEN: '#44ff88',
+      SKILL_PURPLE: '#9b59b6'
+    },
+    FONT: {
+      SIZE_FLOOR_TITLE: '20px',
+      SIZE_DIMENSION: '12px',
+      SIZE_ENEMY_NAME: '14px',
+      SIZE_ENEMY_LEVEL: '10px',
+      SIZE_ENEMY_ATK: '12px',
+      SIZE_ENEMY_HP: '10px',
+      SIZE_PLAYER_NAME: '11px',
+      SIZE_PLAYER_LEVEL: '9px',
+      SIZE_PLAYER_ATK: '10px',
+      SIZE_PLAYER_HP: '8px',
+      SIZE_AREA_LABEL: '12px',
+      SIZE_LOG: '12px',
+      SIZE_BUTTON: '12px',
+      SIZE_CIRCLE_BTN: '16px',
+      SIZE_CRIT_LABEL: '16px',
+      SIZE_DAMAGE_NORMAL: '14px',
+      SIZE_DAMAGE_CRIT: '22px',
+      SIZE_DAMAGE_HEAL: '16px',
+      SIZE_SKILL_NAME: '20px',
+      SIZE_SKILL_DESC: '14px',
+      SIZE_VICTORY: '28px',
+      SIZE_DEFEAT: '24px',
+      SIZE_REWARD: '14px',
+      SIZE_HINT: '12px',
+      SIZE_ENEMY_PORTRAIT: '40px',
+      SIZE_PLAYER_PORTRAIT: '24px'
+    },
+    LAYOUT: {
+      CARD_WIDTH: 80,
+      CARD_HEIGHT: 120,
+      ENEMY_CARD_WIDTH: 140,
+      ENEMY_CARD_HEIGHT: 180,
+      ATTACK_DURATION: 400,
+      RETURN_DURATION: 300
+    }
+  }
 };
 
 export default Const;

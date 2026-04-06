@@ -71,7 +71,15 @@ export default class MinionCardView {
       });
     } else {
       deployedCards.forEach((card, index) => {
-        this.createDeployedCard(width / 2, 170 + index * 85, card);
+        const cardContainer = this.createDeployedCard(width / 2, 170 + index * 85, card);
+        cardContainer.setAlpha(0);
+        this.scene.tweens.add({
+          targets: cardContainer,
+          alpha: 1,
+          duration: 300,
+          delay: index * 80,
+          ease: 'Power2'
+        });
       });
     }
 
@@ -102,7 +110,15 @@ export default class MinionCardView {
       const maxDisplay = Math.min(ownedCards.length, 4);
       for (let i = 0; i < maxDisplay; i++) {
         const card = ownedCards[i];
-        this.createOwnedCard(width / 2, startY + i * 80, card, i);
+        const cardContainer = this.createOwnedCard(width / 2, startY + i * 80, card, i);
+        cardContainer.setAlpha(0);
+        this.scene.tweens.add({
+          targets: cardContainer,
+          alpha: 1,
+          duration: 300,
+          delay: i * 80,
+          ease: 'Power2'
+        });
       }
       if (ownedCards.length > 4) {
         this.addText(width / 2, startY + 4 * 80 + 10, `还有 ${ownedCards.length - 4} 张...`, {

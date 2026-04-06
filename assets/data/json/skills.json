@@ -43,21 +43,6 @@
     "debuffDuration": 2
   },
   {
-    "skillId": "SK002",
-    "name": "铁壁防御",
-    "description": "进入防御姿态，受到伤害减少30%",
-    "type": "buff",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.3",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "iron_wall",
-    "buffType": "damage_reduction",
-    "buffDuration": 2
-  },
-  {
     "skillId": "SK004",
     "name": "生命汲取",
     "description": "治疗自己",
@@ -69,21 +54,6 @@
     "cooldown": "3",
     "mpCost": 0,
     "classRequired": "life_guardian"
-  },
-  {
-    "skillId": "SK003",
-    "name": "嘲讽",
-    "description": "强制敌人攻击自己",
-    "type": "debuff",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "0",
-    "baseValue": "0",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "iron_wall",
-    "debuffType": "taunt",
-    "debuffDuration": 2
   },
   {
     "skillId": "SK005",
@@ -98,19 +68,6 @@
     "mpCost": 0,
     "classRequired": "life_guardian",
     "shieldDuration": 3
-  },
-  {
-    "skillId": "SK004",
-    "name": "生命汲取",
-    "description": "治疗自己",
-    "type": "heal",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "80",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "life_guardian"
   },
   {
     "skillId": "SK006",
@@ -126,20 +83,6 @@
     "classRequired": "life_guardian",
     "buffType": "damage_reduction",
     "buffDuration": 2
-  },
-  {
-    "skillId": "SK005",
-    "name": "守护之盾",
-    "description": "为一名队友添加护盾",
-    "type": "shield",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "150",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "life_guardian",
-    "shieldDuration": 3
   },
   {
     "skillId": "SK007",
@@ -153,21 +96,6 @@
     "cooldown": "2",
     "mpCost": 0,
     "classRequired": "steel_bastion"
-  },
-  {
-    "skillId": "SK006",
-    "name": "团队守护",
-    "description": "全体队友伤害减少20%",
-    "type": "buff",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0.2",
-    "cooldown": "5",
-    "mpCost": 0,
-    "classRequired": "life_guardian",
-    "buffType": "damage_reduction",
-    "buffDuration": 2
   },
   {
     "skillId": "SK008",
@@ -183,19 +111,6 @@
     "classRequired": "steel_bastion",
     "buffType": "damage_reduction",
     "buffDuration": 2
-  },
-  {
-    "skillId": "SK007",
-    "name": "重装碾压",
-    "description": "重型攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.5",
-    "baseValue": "0",
-    "cooldown": "2",
-    "mpCost": 0,
-    "classRequired": "steel_bastion"
   },
   {
     "skillId": "SK009",
@@ -209,21 +124,6 @@
     "cooldown": "3",
     "mpCost": 0,
     "classRequired": "unyielding_will"
-  },
-  {
-    "skillId": "SK008",
-    "name": "能量护盾",
-    "description": "减少即将受到的首次伤害",
-    "type": "buff",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.5",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "steel_bastion",
-    "buffType": "damage_reduction",
-    "buffDuration": 2
   },
   {
     "skillId": "SK010",
@@ -239,19 +139,6 @@
     "classRequired": "unyielding_will",
     "buffType": "damage_reduction",
     "buffDuration": 3
-  },
-  {
-    "skillId": "SK009",
-    "name": "反击风暴",
-    "description": "受到攻击时反击",
-    "type": "counter",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.5",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "unyielding_will"
   },
   {
     "skillId": "SK011",
@@ -265,21 +152,6 @@
     "cooldown": "1",
     "mpCost": 0,
     "classRequired": "berserker"
-  },
-  {
-    "skillId": "SK010",
-    "name": "岩石护甲",
-    "description": "增加防御",
-    "type": "buff",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.15",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "unyielding_will",
-    "buffType": "damage_reduction",
-    "buffDuration": 3
   },
   {
     "skillId": "SK012",
@@ -294,19 +166,6 @@
     "mpCost": 0,
     "classRequired": "berserker",
     "passiveEffect": "hp_low_atk_up"
-  },
-  {
-    "skillId": "SK011",
-    "name": "狂暴打击",
-    "description": "高伤害攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.8",
-    "baseValue": "0",
-    "cooldown": "1",
-    "mpCost": 0,
-    "classRequired": "berserker"
   },
   {
     "skillId": "SK013",
@@ -320,20 +179,6 @@
     "cooldown": "3",
     "mpCost": 0,
     "classRequired": "berserker"
-  },
-  {
-    "skillId": "SK012",
-    "name": "血怒",
-    "description": "生命越低攻击越高",
-    "type": "passive",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0",
-    "cooldown": "0",
-    "mpCost": 0,
-    "classRequired": "berserker",
-    "passiveEffect": "hp_low_atk_up"
   },
   {
     "skillId": "SK014",
@@ -347,19 +192,6 @@
     "cooldown": "2",
     "mpCost": 15,
     "classRequired": "element_mage"
-  },
-  {
-    "skillId": "SK013",
-    "name": "旋风斩",
-    "description": "对所有敌人造成伤害",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "0.8",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "berserker"
   },
   {
     "skillId": "SK015",
@@ -375,19 +207,6 @@
     "classRequired": "element_mage",
     "debuffType": "speed_down",
     "debuffDuration": 2
-  },
-  {
-    "skillId": "SK014",
-    "name": "火焰冲击",
-    "description": "火系魔法攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2",
-    "baseValue": "0",
-    "cooldown": "2",
-    "mpCost": 15,
-    "classRequired": "element_mage"
   },
   {
     "skillId": "SK016",
@@ -401,21 +220,6 @@
     "cooldown": "5",
     "mpCost": 35,
     "classRequired": "element_mage"
-  },
-  {
-    "skillId": "SK015",
-    "name": "冰霜新星",
-    "description": "对所有敌人造成伤害并减速",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "0.7",
-    "baseValue": "0",
-    "cooldown": "4",
-    "mpCost": 25,
-    "classRequired": "element_mage",
-    "debuffType": "speed_down",
-    "debuffDuration": 2
   },
   {
     "skillId": "SK017",
@@ -430,19 +234,6 @@
     "mpCost": 10,
     "classRequired": "shadow_assassin",
     "critBonus": 0.3
-  },
-  {
-    "skillId": "SK016",
-    "name": "元素爆发",
-    "description": "根据敌人属性造成额外伤害",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2.5",
-    "baseValue": "0",
-    "cooldown": "5",
-    "mpCost": 35,
-    "classRequired": "element_mage"
   },
   {
     "skillId": "SK018",
@@ -458,20 +249,6 @@
     "classRequired": "shadow_assassin",
     "debuffType": "poison",
     "debuffDuration": 3
-  },
-  {
-    "skillId": "SK017",
-    "name": "暗影突袭",
-    "description": "高暴击率攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2.2",
-    "baseValue": "0",
-    "cooldown": "2",
-    "mpCost": 10,
-    "classRequired": "shadow_assassin",
-    "critBonus": 0.3
   },
   {
     "skillId": "SK019",
@@ -487,21 +264,6 @@
     "classRequired": "shadow_assassin",
     "buffType": "dodge_up",
     "buffDuration": 2
-  },
-  {
-    "skillId": "SK018",
-    "name": "致命毒刃",
-    "description": "造成持续伤害",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 8,
-    "classRequired": "shadow_assassin",
-    "debuffType": "poison",
-    "debuffDuration": 3
   },
   {
     "skillId": "SK020",
@@ -515,21 +277,6 @@
     "cooldown": "2",
     "mpCost": 0,
     "classRequired": "mech_engineer"
-  },
-  {
-    "skillId": "SK019",
-    "name": "隐匿",
-    "description": "大幅提升闪避率",
-    "type": "buff",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.4",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "shadow_assassin",
-    "buffType": "dodge_up",
-    "buffDuration": 2
   },
   {
     "skillId": "SK021",
@@ -541,19 +288,6 @@
     "multiplier": "0.6",
     "baseValue": "0",
     "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "mech_engineer"
-  },
-  {
-    "skillId": "SK020",
-    "name": "机械炮击",
-    "description": "发射导弹攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.6",
-    "baseValue": "0",
-    "cooldown": "2",
     "mpCost": 0,
     "classRequired": "mech_engineer"
   },
@@ -566,19 +300,6 @@
     "targetTeam": "self",
     "multiplier": "0",
     "baseValue": "100",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "mech_engineer"
-  },
-  {
-    "skillId": "SK021",
-    "name": "榴弹轰炸",
-    "description": "对区域敌人造成伤害",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "0.6",
-    "baseValue": "0",
     "cooldown": "4",
     "mpCost": 0,
     "classRequired": "mech_engineer"
@@ -595,19 +316,6 @@
     "cooldown": "2",
     "mpCost": 20,
     "classRequired": "destruction_warlock"
-  },
-  {
-    "skillId": "SK022",
-    "name": "能量修复",
-    "description": "治疗自己",
-    "type": "heal",
-    "targetType": "single",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "100",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "mech_engineer"
   },
   {
     "skillId": "SK024",
@@ -622,19 +330,6 @@
     "mpCost": 15,
     "classRequired": "destruction_warlock",
     "healPercent": 0.5
-  },
-  {
-    "skillId": "SK023",
-    "name": "虚空之箭",
-    "description": "暗属性魔法攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2.3",
-    "baseValue": "0",
-    "cooldown": "2",
-    "mpCost": 20,
-    "classRequired": "destruction_warlock"
   },
   {
     "skillId": "SK025",
@@ -648,20 +343,6 @@
     "cooldown": "5",
     "mpCost": 30,
     "classRequired": "destruction_warlock"
-  },
-  {
-    "skillId": "SK024",
-    "name": "生命虹吸",
-    "description": "造成伤害并治疗自己",
-    "type": "damage_heal",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.5",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 15,
-    "classRequired": "destruction_warlock",
-    "healPercent": 0.5
   },
   {
     "skillId": "SK026",
@@ -677,19 +358,6 @@
     "classRequired": "mecha_war_god",
     "buffType": "atk_up",
     "buffDuration": 3
-  },
-  {
-    "skillId": "SK025",
-    "name": "暗影领域",
-    "description": "对所有敌人造成伤害",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "1",
-    "baseValue": "0",
-    "cooldown": "5",
-    "mpCost": 30,
-    "classRequired": "destruction_warlock"
   },
   {
     "skillId": "SK027",
@@ -703,21 +371,6 @@
     "cooldown": "3",
     "mpCost": 0,
     "classRequired": "mecha_war_god"
-  },
-  {
-    "skillId": "SK026",
-    "name": "战神之力",
-    "description": "大幅提升攻击力",
-    "type": "buff",
-    "targetType": "self",
-    "targetTeam": "self",
-    "multiplier": "0",
-    "baseValue": "0.4",
-    "cooldown": "5",
-    "mpCost": 0,
-    "classRequired": "mecha_war_god",
-    "buffType": "atk_up",
-    "buffDuration": 3
   },
   {
     "skillId": "SK028",
@@ -729,19 +382,6 @@
     "multiplier": "0.9",
     "baseValue": "0",
     "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "mecha_war_god"
-  },
-  {
-    "skillId": "SK027",
-    "name": "战神斩",
-    "description": "战神专属高伤害技能",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2.8",
-    "baseValue": "0",
-    "cooldown": "3",
     "mpCost": 0,
     "classRequired": "mecha_war_god"
   },
@@ -761,19 +401,6 @@
     "buffDuration": 3
   },
   {
-    "skillId": "SK028",
-    "name": "光翼冲击",
-    "description": "飞行道具攻击所有敌人",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "0.9",
-    "baseValue": "0",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "mecha_war_god"
-  },
-  {
     "skillId": "SK030",
     "name": "战阵布置",
     "description": "提升全体防御",
@@ -786,21 +413,6 @@
     "mpCost": 0,
     "classRequired": "tactical_commander",
     "buffType": "damage_reduction",
-    "buffDuration": 3
-  },
-  {
-    "skillId": "SK029",
-    "name": "战术指挥",
-    "description": "提升全体攻击力",
-    "type": "buff",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0.2",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "tactical_commander",
-    "buffType": "atk_up",
     "buffDuration": 3
   },
   {
@@ -819,21 +431,6 @@
     "debuffDuration": 2
   },
   {
-    "skillId": "SK030",
-    "name": "战阵布置",
-    "description": "提升全体防御",
-    "type": "buff",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0.15",
-    "cooldown": "4",
-    "mpCost": 0,
-    "classRequired": "tactical_commander",
-    "buffType": "damage_reduction",
-    "buffDuration": 3
-  },
-  {
     "skillId": "SK032",
     "name": "疾风剑舞",
     "description": "快速连续攻击",
@@ -846,21 +443,6 @@
     "mpCost": 0,
     "classRequired": "wind_swordsman",
     "hitCount": 3
-  },
-  {
-    "skillId": "SK031",
-    "name": "精准打击",
-    "description": "对单体敌人造成高伤害并降低其防御",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.5",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "tactical_commander",
-    "debuffType": "def_down",
-    "debuffDuration": 2
   },
   {
     "skillId": "SK033",
@@ -878,20 +460,6 @@
     "buffDuration": 3
   },
   {
-    "skillId": "SK032",
-    "name": "疾风剑舞",
-    "description": "快速连续攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.2",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 0,
-    "classRequired": "wind_swordsman",
-    "hitCount": 3
-  },
-  {
     "skillId": "SK034",
     "name": "风刃",
     "description": "远程风系攻击",
@@ -903,21 +471,6 @@
     "cooldown": "2",
     "mpCost": 5,
     "classRequired": "wind_swordsman"
-  },
-  {
-    "skillId": "SK033",
-    "name": "风之壁障",
-    "description": "提升全体闪避率",
-    "type": "buff",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0.25",
-    "cooldown": "5",
-    "mpCost": 0,
-    "classRequired": "wind_swordsman",
-    "buffType": "dodge_up",
-    "buffDuration": 3
   },
   {
     "skillId": "SK035",
@@ -935,19 +488,6 @@
     "debuffDuration": 2
   },
   {
-    "skillId": "SK034",
-    "name": "风刃",
-    "description": "远程风系攻击",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "1.4",
-    "baseValue": "0",
-    "cooldown": "2",
-    "mpCost": 5,
-    "classRequired": "wind_swordsman"
-  },
-  {
     "skillId": "SK036",
     "name": "时间跳跃",
     "description": "使一名队友立即行动",
@@ -959,21 +499,6 @@
     "cooldown": "5",
     "mpCost": 20,
     "classRequired": "time_walker"
-  },
-  {
-    "skillId": "SK035",
-    "name": "时间减速",
-    "description": "降低敌人行动速度",
-    "type": "debuff",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "0",
-    "baseValue": "0",
-    "cooldown": "4",
-    "mpCost": 15,
-    "classRequired": "time_walker",
-    "debuffType": "speed_down",
-    "debuffDuration": 2
   },
   {
     "skillId": "SK037",
@@ -986,19 +511,6 @@
     "baseValue": "0",
     "cooldown": "4",
     "mpCost": 25,
-    "classRequired": "time_walker"
-  },
-  {
-    "skillId": "SK036",
-    "name": "时间跳跃",
-    "description": "使一名队友立即行动",
-    "type": "support",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0",
-    "cooldown": "5",
-    "mpCost": 20,
     "classRequired": "time_walker"
   },
   {
@@ -1013,19 +525,6 @@
     "cooldown": "3",
     "mpCost": 10,
     "classRequired": "natural_healer"
-  },
-  {
-    "skillId": "SK037",
-    "name": "时空扭曲",
-    "description": "对所有敌人造成伤害",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "0.8",
-    "baseValue": "0",
-    "cooldown": "4",
-    "mpCost": 25,
-    "classRequired": "time_walker"
   },
   {
     "skillId": "SK039",
@@ -1038,19 +537,6 @@
     "baseValue": "80",
     "cooldown": "5",
     "mpCost": 20,
-    "classRequired": "natural_healer"
-  },
-  {
-    "skillId": "SK038",
-    "name": "自然治愈",
-    "description": "治疗一名队友",
-    "type": "heal",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "150",
-    "cooldown": "3",
-    "mpCost": 10,
     "classRequired": "natural_healer"
   },
   {
@@ -1068,19 +554,6 @@
     "shieldDuration": 3
   },
   {
-    "skillId": "SK039",
-    "name": "生命绽放",
-    "description": "治疗全体队友",
-    "type": "heal",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "80",
-    "cooldown": "5",
-    "mpCost": 20,
-    "classRequired": "natural_healer"
-  },
-  {
     "skillId": "SK041",
     "name": "神圣治疗",
     "description": "大量治疗一名队友",
@@ -1091,60 +564,6 @@
     "baseValue": "250",
     "cooldown": "4",
     "mpCost": 15,
-    "classRequired": "holy_priest"
-  },
-  {
-    "skillId": "SK040",
-    "name": "荆棘之护",
-    "description": "为队友添加反伤护盾",
-    "type": "shield",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "100",
-    "cooldown": "4",
-    "mpCost": 15,
-    "classRequired": "natural_healer",
-    "shieldDuration": 3
-  },
-  {
-    "skillId": "SK042",
-    "name": "神圣庇护",
-    "description": "为全体添加护盾",
-    "type": "shield",
-    "targetType": "all_allies",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "120",
-    "cooldown": "6",
-    "mpCost": 25,
-    "classRequired": "holy_priest",
-    "shieldDuration": 2
-  },
-  {
-    "skillId": "SK041",
-    "name": "神圣治疗",
-    "description": "大量治疗一名队友",
-    "type": "heal",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "250",
-    "cooldown": "4",
-    "mpCost": 15,
-    "classRequired": "holy_priest"
-  },
-  {
-    "skillId": "SK043",
-    "name": "神圣净化",
-    "description": "驱散一个debuff",
-    "type": "cleanse",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 10,
     "classRequired": "holy_priest"
   },
   {
@@ -1162,19 +581,6 @@
     "shieldDuration": 2
   },
   {
-    "skillId": "SK044",
-    "name": "元素审判",
-    "description": "根据敌人弱点造成伤害",
-    "type": "damage",
-    "targetType": "single",
-    "targetTeam": "enemy",
-    "multiplier": "2",
-    "baseValue": "0",
-    "cooldown": "3",
-    "mpCost": 20,
-    "classRequired": "elemental_lord"
-  },
-  {
     "skillId": "SK043",
     "name": "神圣净化",
     "description": "驱散一个debuff",
@@ -1188,22 +594,6 @@
     "classRequired": "holy_priest"
   },
   {
-    "skillId": "SK045",
-    "name": "元素链接",
-    "description": "治疗并提升攻击",
-    "type": "heal",
-    "targetType": "single",
-    "targetTeam": "ally",
-    "multiplier": "0",
-    "baseValue": "100",
-    "cooldown": "4",
-    "mpCost": 15,
-    "classRequired": "elemental_lord",
-    "buffType": "atk_up",
-    "buffDuration": 2,
-    "buffValue": "0.15"
-  },
-  {
     "skillId": "SK044",
     "name": "元素审判",
     "description": "根据敌人弱点造成伤害",
@@ -1214,19 +604,6 @@
     "baseValue": "0",
     "cooldown": "3",
     "mpCost": 20,
-    "classRequired": "elemental_lord"
-  },
-  {
-    "skillId": "SK046",
-    "name": "元素风暴",
-    "description": "对所有敌人造成伤害",
-    "type": "damage",
-    "targetType": "all_enemies",
-    "targetTeam": "enemy",
-    "multiplier": "1.2",
-    "baseValue": "0",
-    "cooldown": "5",
-    "mpCost": 30,
     "classRequired": "elemental_lord"
   },
   {

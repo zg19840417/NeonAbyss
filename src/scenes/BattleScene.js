@@ -1,6 +1,7 @@
 import BattleSystem, { BattlePhase, Enemy } from '../game/systems/BattleSystem.js';
 import EventBus from '../game/EventBus.js';
 import MinionCard from '../game/entities/MinionCard.js';
+import Const from '../game/data/Const.js';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -11,26 +12,26 @@ export default class BattleScene extends Phaser.Scene {
   initConfig() {
     return {
       colors: {
-        bgDark: 0x1a1815,
-        bgMid: 0x252220,
-        border: 0x4a4540,
-        amber: 0xd4a574,
-        sacred: 0xa8d8a8,
-        corrupt: 0xd8a8a8,
-        textPrimary: '#d4ccc0',
-        textSecondary: '#8a7a6a',
-        hpGreen: 0x6abd6a,
-        hpRed: 0xd86a6a
+        bgDark: Const.BATTLE.COLORS.BG_DARK,
+        bgMid: Const.BATTLE.COLORS.BG_MID,
+        border: Const.BATTLE.COLORS.BORDER,
+        amber: Const.BATTLE.COLORS.AMBER,
+        sacred: Const.BATTLE.COLORS.SACRED,
+        corrupt: Const.BATTLE.COLORS.CORRUPT,
+        textPrimary: Const.BATTLE.COLORS.TEXT_PRIMARY,
+        textSecondary: Const.BATTLE.COLORS.TEXT_SECONDARY,
+        hpGreen: Const.BATTLE.COLORS.HP_GREEN,
+        hpRed: Const.BATTLE.COLORS.HP_RED
       },
       layout: {
-        cardWidth: 80,
-        cardHeight: 120,
-        enemyCardWidth: 140,
-        enemyCardHeight: 180
+        cardWidth: Const.BATTLE.LAYOUT.CARD_WIDTH,
+        cardHeight: Const.BATTLE.LAYOUT.CARD_HEIGHT,
+        enemyCardWidth: Const.BATTLE.LAYOUT.ENEMY_CARD_WIDTH,
+        enemyCardHeight: Const.BATTLE.LAYOUT.ENEMY_CARD_HEIGHT
       },
       animation: {
-        attackDuration: 400,
-        returnDuration: 300
+        attackDuration: Const.BATTLE.LAYOUT.ATTACK_DURATION,
+        returnDuration: Const.BATTLE.LAYOUT.RETURN_DURATION
       }
     };
   }
@@ -111,14 +112,14 @@ export default class BattleScene extends Phaser.Scene {
 
     const bossLabel = this.currentFloor % 10 === 0 ? ' BOSS' : '';
     this.floorText = this.add.text(width / 2, headerY - 10, `第 ${this.currentFloor} 层${bossLabel}`, {
-      fontSize: '20px',
+      fontSize: Const.BATTLE.FONT.SIZE_FLOOR_TITLE,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: this.config.colors.amber
     }).setOrigin(0.5);
 
     this.dimensionText = this.add.text(width / 2, headerY + 15, `次元 ${this.currentDimension}`, {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_DIMENSION,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.textSecondary
     }).setOrigin(0.5);
@@ -137,7 +138,7 @@ export default class BattleScene extends Phaser.Scene {
     bg.strokeCircle(0, 0, 18);
 
     const label = this.add.text(0, 0, text, {
-      fontSize: '16px',
+      fontSize: Const.BATTLE.FONT.SIZE_CIRCLE_BTN,
       fontFamily: 'Arial',
       color: this.config.colors.textSecondary
     }).setOrigin(0.5);
@@ -172,7 +173,7 @@ export default class BattleScene extends Phaser.Scene {
     const areaY = 160;
 
     this.add.text(width / 2, areaY - 30, '敌方', {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_AREA_LABEL,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.textSecondary
     }).setOrigin(0.5);
@@ -202,14 +203,14 @@ export default class BattleScene extends Phaser.Scene {
     bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
 
     const nameText = this.add.text(0, -cardHeight / 2 + 20, enemy.name, {
-      fontSize: '14px',
+      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_NAME,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: colors.textPrimary
     }).setOrigin(0.5);
 
     const levelText = this.add.text(0, -cardHeight / 2 + 40, `Lv.${enemy.level || 1}`, {
-      fontSize: '10px',
+      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_LEVEL,
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
     }).setOrigin(0.5);
@@ -221,7 +222,7 @@ export default class BattleScene extends Phaser.Scene {
     portraitBg.strokeRect(-cardWidth / 2 + 10, -cardHeight / 2 + 55, cardWidth - 20, 80);
 
     const portraitPlaceholder = this.add.text(0, -cardHeight / 2 + 95, enemy.isBoss ? '👹' : '🤖', {
-      fontSize: '40px'
+      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_PORTRAIT
     }).setOrigin(0.5);
 
     const hpBarBg = this.add.graphics();
@@ -234,13 +235,13 @@ export default class BattleScene extends Phaser.Scene {
     hpBar.fillRect(-cardWidth / 2 + 11, cardHeight / 2 - 44, (cardWidth - 22) * hpPercent, 14);
 
     const hpText = this.add.text(0, cardHeight / 2 - 37, `${enemy.hp}/${enemy.maxHp}`, {
-      fontSize: '10px',
+      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_HP,
       fontFamily: 'Noto Sans SC',
       color: '#ffffff'
     }).setOrigin(0.5);
 
     const atkText = this.add.text(0, cardHeight / 2 - 20, `⚔️ ${enemy.atk || 15}`, {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_ATK,
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
     }).setOrigin(0.5);
@@ -258,7 +259,7 @@ export default class BattleScene extends Phaser.Scene {
     const areaY = 420;
 
     this.add.text(width / 2, areaY - 20, '我方', {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_AREA_LABEL,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.textSecondary
     }).setOrigin(0.5);
@@ -288,14 +289,14 @@ export default class BattleScene extends Phaser.Scene {
     bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 6);
 
     const nameText = this.add.text(0, -cardHeight / 2 + 15, minion.name, {
-      fontSize: '11px',
+      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_NAME,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: colors.textPrimary
     }).setOrigin(0.5);
 
     const levelText = this.add.text(0, -cardHeight / 2 + 30, `Lv.${minion.level || 1}`, {
-      fontSize: '9px',
+      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_LEVEL,
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
     }).setOrigin(0.5);
@@ -307,7 +308,7 @@ export default class BattleScene extends Phaser.Scene {
     portraitBg.strokeRect(-cardWidth / 2 + 8, -cardHeight / 2 + 40, cardWidth - 16, 45);
 
     const portraitPlaceholder = this.add.text(0, -cardHeight / 2 + 62, '🧑', {
-      fontSize: '24px'
+      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_PORTRAIT
     }).setOrigin(0.5);
 
     const hpBarBg = this.add.graphics();
@@ -320,13 +321,13 @@ export default class BattleScene extends Phaser.Scene {
     hpBar.fillRect(-cardWidth / 2 + 9, cardHeight / 2 - 29, (cardWidth - 18) * hpPercent, 10);
 
     const hpText = this.add.text(0, cardHeight / 2 - 23, `${minion.hp}/${minion.maxHp}`, {
-      fontSize: '8px',
+      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_HP,
       fontFamily: 'Noto Sans SC',
       color: '#ffffff'
     }).setOrigin(0.5);
 
     const atkText = this.add.text(0, cardHeight / 2 - 10, `⚔️${minion.atk || 20}`, {
-      fontSize: '10px',
+      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_ATK,
       fontFamily: 'Noto Sans SC',
       color: colors.textSecondary
     }).setOrigin(0.5);
@@ -353,7 +354,7 @@ export default class BattleScene extends Phaser.Scene {
     this.battleLogTexts = [];
     for (let i = 0; i < 3; i++) {
       const text = this.add.text(30, logY + 12 + i * 28, '', {
-        fontSize: '12px',
+        fontSize: Const.BATTLE.FONT.SIZE_LOG,
         fontFamily: 'Noto Sans SC',
         color: this.config.colors.textSecondary,
         wordWrap: { width: width - 60 }
@@ -390,7 +391,7 @@ export default class BattleScene extends Phaser.Scene {
     bg.strokeRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6);
 
     const label = this.add.text(0, 0, text, {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_BUTTON,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.textPrimary
     }).setOrigin(0.5);
@@ -456,7 +457,8 @@ export default class BattleScene extends Phaser.Scene {
       onDamage: (data) => { if (data.isCrit) this.showDamageNumber(data.target, data.damage, true); },
       onBattleLog: (data) => this.addLogEntry(data.action, data.result),
       onVictory: (data) => this.onBattleVictory(data),
-      onDefeat: (data) => this.onBattleDefeat(data)
+      onDefeat: (data) => this.onBattleDefeat(data),
+      onCharacterDeath: (data) => this.playDeathAnimation(data.character)
     };
 
     Object.entries(this._battleListeners).forEach(([event, callback]) => {
@@ -501,10 +503,10 @@ export default class BattleScene extends Phaser.Scene {
 
   showCritEffect(container) {
     const critText = this.add.text(container.x, container.y - 60, '暴击!', {
-      fontSize: '16px',
+      fontSize: Const.BATTLE.FONT.SIZE_CRIT_LABEL,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#ffd700'
+      color: Const.BATTLE.COLORS.CRIT_GOLD
     }).setOrigin(0.5);
 
     this.tweens.add({
@@ -520,17 +522,17 @@ export default class BattleScene extends Phaser.Scene {
   onSkillAnimation(character, targets, skill, onComplete) {
     const isPlayer = this.minions.some(m => m.name === character.name);
     const skillText = this.add.text(this.cameras.main.width / 2, 120, `${character.name} 使用技能`, {
-      fontSize: '14px',
+      fontSize: Const.BATTLE.FONT.SIZE_SKILL_DESC,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#9b59b6'
+      color: Const.BATTLE.COLORS.SKILL_PURPLE
     }).setOrigin(0.5);
 
     const skillLabel = this.add.text(this.cameras.main.width / 2, 150, skill.name, {
-      fontSize: '20px',
+      fontSize: Const.BATTLE.FONT.SIZE_SKILL_NAME,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#9b59b6'
+      color: Const.BATTLE.COLORS.SKILL_PURPLE
     }).setOrigin(0.5);
 
     this.tweens.add({
@@ -570,30 +572,76 @@ export default class BattleScene extends Phaser.Scene {
     onComplete();
   }
 
-  showDamageNumber(target, damage, isCrit) {
+  showDamageNumber(target, damage, isCrit, isHeal) {
     const isPlayer = this.minions.some(m => m.name === target.name);
     const targetCards = isPlayer ? this.playerCards : this.enemyCards;
-    
+
     const targetCard = targetCards.find(card => {
       const entity = card.container.getData(isPlayer ? 'player' : 'enemy');
       return entity && entity.name === target.name;
     });
 
     if (targetCard) {
-      const damageText = this.add.text(targetCard.container.x, targetCard.container.y - 40, `-${damage}`, {
-        fontSize: isCrit ? '18px' : '14px',
+      const prefix = isHeal ? '+' : '-';
+      const color = isHeal ? '#44ff44' : (isCrit ? '#ff4444' : '#ffffff');
+      const fontSize = isHeal ? Const.BATTLE.FONT.SIZE_DAMAGE_HEAL
+        : (isCrit ? Const.BATTLE.FONT.SIZE_DAMAGE_CRIT : Const.BATTLE.FONT.SIZE_DAMAGE_NORMAL);
+
+      const damageText = this.add.text(targetCard.container.x, targetCard.container.y - 40, `${prefix}${damage}`, {
+        fontSize: fontSize,
         fontFamily: 'Noto Sans SC',
         fontStyle: 'bold',
-        color: isCrit ? '#ffd700' : '#ffffff'
-      }).setOrigin(0.5);
+        color: color
+      }).setOrigin(0.5).setScale(0.5).setAlpha(0);
 
+      // 弹跳动画：放大到1.3再缩回1.0，同时alpha→1
       this.tweens.add({
         targets: damageText,
-        y: damageText.y - 20,
-        alpha: 0,
-        duration: 500,
+        scaleX: 1.3,
+        scaleY: 1.3,
+        alpha: 1,
+        duration: 100,
         ease: 'Power2',
-        onComplete: () => damageText.destroy()
+        onComplete: () => {
+          this.tweens.add({
+            targets: damageText,
+            scaleX: 1.0,
+            scaleY: 1.0,
+            duration: 100,
+            ease: 'Power2',
+            onComplete: () => {
+              // 上浮+淡出
+              this.tweens.add({
+                targets: damageText,
+                y: damageText.y - 30,
+                alpha: 0,
+                duration: 500,
+                ease: 'Power2',
+                onComplete: () => damageText.destroy()
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+
+  playDeathAnimation(character) {
+    const isPlayer = this.playerTeam?.includes(character);
+    const cards = isPlayer ? this.playerCards : this.enemyCards;
+    const card = cards?.find(c => {
+      const entity = c.container?.getData(isPlayer ? 'player' : 'enemy');
+      return entity === character;
+    });
+    if (card?.container) {
+      this.tweens.add({
+        targets: card.container,
+        alpha: 0,
+        scaleX: 0.3,
+        scaleY: 0.3,
+        angle: 15,
+        duration: 600,
+        ease: 'Power2'
       });
     }
   }
@@ -680,14 +728,14 @@ export default class BattleScene extends Phaser.Scene {
     panelBg.strokeRoundedRect(-120, -80, 240, 160, 12);
 
     const victoryText = this.add.text(0, -50, '胜利!', {
-      fontSize: '28px',
+      fontSize: Const.BATTLE.FONT.SIZE_VICTORY,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: this.config.colors.sacred
     }).setOrigin(0.5);
 
     const rewardText = this.add.text(0, -10, `获得金币: ${data.rewards?.coins || 0}`, {
-      fontSize: '14px',
+      fontSize: Const.BATTLE.FONT.SIZE_REWARD,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.amber
     }).setOrigin(0.5);
@@ -735,14 +783,14 @@ export default class BattleScene extends Phaser.Scene {
     panelBg.strokeRoundedRect(-120, -80, 240, 160, 12);
 
     const defeatText = this.add.text(0, -50, '任务失败', {
-      fontSize: '24px',
+      fontSize: Const.BATTLE.FONT.SIZE_DEFEAT,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
       color: this.config.colors.corrupt
     }).setOrigin(0.5);
 
     const hintText = this.add.text(0, -10, '角色将安全返回基地', {
-      fontSize: '12px',
+      fontSize: Const.BATTLE.FONT.SIZE_HINT,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.textSecondary
     }).setOrigin(0.5);
@@ -812,11 +860,17 @@ export default class BattleScene extends Phaser.Scene {
 
   togglePause() {
     this.isPaused = !this.isPaused;
-    
+
     if (this.isPaused) {
       this.battleSystem.pause();
+      if (this.pauseButton) {
+        this.pauseButton.list[1].setText('▶');
+      }
     } else {
       this.battleSystem.resume();
+      if (this.pauseButton) {
+        this.pauseButton.list[1].setText('⏸');
+      }
     }
   }
 

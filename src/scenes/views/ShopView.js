@@ -111,7 +111,15 @@ export default class ShopView {
       });
     } else {
       shopMinions.forEach((card, index) => {
-        this.createMinionShopCard(width / 2, 170 + index * 80, card, index);
+        const cardContainer = this.createMinionShopCard(width / 2, 170 + index * 80, card, index);
+        cardContainer.setAlpha(0);
+        this.scene.tweens.add({
+          targets: cardContainer,
+          alpha: 1,
+          duration: 300,
+          delay: index * 80,
+          ease: 'Power2'
+        });
       });
     }
 
@@ -140,7 +148,15 @@ export default class ShopView {
       });
     } else {
       shopEquipments.forEach((card, index) => {
-        this.createEquipmentShopCard(width / 2, 170 + index * 80, card, index);
+        const cardContainer = this.createEquipmentShopCard(width / 2, 170 + index * 80, card, index);
+        cardContainer.setAlpha(0);
+        this.scene.tweens.add({
+          targets: cardContainer,
+          alpha: 1,
+          duration: 300,
+          delay: index * 80,
+          ease: 'Power2'
+        });
       });
     }
 

@@ -227,7 +227,8 @@ export default class MinionCardManager {
     return {
       ownedCards: this.ownedCards.map(c => c instanceof MinionCard ? c.toJSON() : c),
       deployedCards: [...this.deployedCards],
-      maxDeploy: this.maxDeploy
+      maxDeploy: this.maxDeploy,
+      shopMinions: this.shopMinions.map(c => c instanceof MinionCard ? c.toJSON() : c)
     };
   }
 

@@ -294,19 +294,27 @@ export default class BaseSystem {
   }
   
   save() {
-    localStorage.setItem('baseSystem', JSON.stringify(this.toJSON()));
+    try {
+      localStorage.setItem('baseSystem', JSON.stringify(this.toJSON()));
+    } catch (e) {
+      console.warn('Failed to save base system:', e);
+    }
   }
   
   load() {
-    const saved = localStorage.getItem('baseSystem');
-    if (saved) {
-      const data = JSON.parse(saved);
-      this.coins = data.coins || 10000;
-      this.facilities = data.facilities || this.initFacilities();
-      this.characters = (data.characters || []).map(c => Character.fromJSON(c));
-      this.team = data.team || [];
-      this.availableRecruits = (data.availableRecruits || []).map(c => Character.fromJSON(c));
-      this.lastRefreshTime = data.lastRefreshTime || Date.now();
+    try {
+      const saved = localStorage.getItem('baseSystem');
+      if (saved) {
+        const data = JSON.parse(saved);
+        this.coins = data.coins || 10000;
+        this.facilities = data.facilities || this.initFacilities();
+        this.characters = (data.characters || []).map(c => Character.fromJSON(c));
+        this.team = data.team || [];
+        this.availableRecruits = (data.availableRecruits || []).map(c => Character.fromJSON(c));
+        this.lastRefreshTime = data.lastRefreshTime || Date.now();
+      }
+    } catch (e) {
+      console.warn('Failed to load base system:', e);
     }
   }
 }

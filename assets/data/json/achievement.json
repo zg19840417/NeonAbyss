@@ -33,17 +33,6 @@
     "isHidden": "false"
   },
   {
-    "id": "E02",
-    "name": "登楼者",
-    "description": "到达第5层",
-    "category": "explore",
-    "difficulty": "2",
-    "rewardReputation": "20",
-    "targetType": "reach_floor",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "E04",
     "name": "废土征服者",
     "description": "到达第25层",
@@ -52,17 +41,6 @@
     "rewardReputation": "100",
     "targetType": "reach_floor",
     "targetValue": "25",
-    "isHidden": "false"
-  },
-  {
-    "id": "E03",
-    "name": "深渊行者",
-    "description": "到达第10层",
-    "category": "explore",
-    "difficulty": "2",
-    "rewardReputation": "50",
-    "targetType": "reach_floor",
-    "targetValue": "10",
     "isHidden": "false"
   },
   {
@@ -77,17 +55,6 @@
     "isHidden": "false"
   },
   {
-    "id": "E04",
-    "name": "废土征服者",
-    "description": "到达第25层",
-    "category": "explore",
-    "difficulty": "3",
-    "rewardReputation": "100",
-    "targetType": "reach_floor",
-    "targetValue": "25",
-    "isHidden": "false"
-  },
-  {
     "id": "E06",
     "name": "传奇归来",
     "description": "到达第50层并通关",
@@ -96,17 +63,6 @@
     "rewardReputation": "500",
     "targetType": "reach_floor",
     "targetValue": "50",
-    "isHidden": "false"
-  },
-  {
-    "id": "E05",
-    "name": "方舟候选人",
-    "description": "到达第40层",
-    "category": "explore",
-    "difficulty": "4",
-    "rewardReputation": "200",
-    "targetType": "reach_floor",
-    "targetValue": "40",
     "isHidden": "false"
   },
   {
@@ -121,17 +77,6 @@
     "isHidden": "false"
   },
   {
-    "id": "E06",
-    "name": "传奇归来",
-    "description": "到达第50层并通关",
-    "category": "explore",
-    "difficulty": "5",
-    "rewardReputation": "500",
-    "targetType": "reach_floor",
-    "targetValue": "50",
-    "isHidden": "false"
-  },
-  {
     "id": "E08",
     "name": "寻宝大师",
     "description": "累计开启1000个宝箱",
@@ -140,17 +85,6 @@
     "rewardReputation": "150",
     "targetType": "open_chest",
     "targetValue": "1000",
-    "isHidden": "false"
-  },
-  {
-    "id": "E07",
-    "name": "宝箱猎人",
-    "description": "累计开启100个宝箱",
-    "category": "explore",
-    "difficulty": "2",
-    "rewardReputation": "30",
-    "targetType": "open_chest",
-    "targetValue": "100",
     "isHidden": "false"
   },
   {
@@ -165,17 +99,6 @@
     "isHidden": "false"
   },
   {
-    "id": "E08",
-    "name": "寻宝大师",
-    "description": "累计开启1000个宝箱",
-    "category": "explore",
-    "difficulty": "4",
-    "rewardReputation": "150",
-    "targetType": "open_chest",
-    "targetValue": "1000",
-    "isHidden": "false"
-  },
-  {
     "id": "E10",
     "name": "速通专家",
     "description": "1小时内到达第30层",
@@ -187,17 +110,6 @@
     "isHidden": "true"
   },
   {
-    "id": "E09",
-    "name": "无尽探索",
-    "description": "单次探索连续通过20层",
-    "category": "explore",
-    "difficulty": "3",
-    "rewardReputation": "80",
-    "targetType": "consecutive_floors",
-    "targetValue": "20",
-    "isHidden": "false"
-  },
-  {
     "id": "B01",
     "name": "初次胜利",
     "description": "赢得第一场战斗",
@@ -206,50 +118,6 @@
     "rewardReputation": "10",
     "targetType": "battle_win",
     "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
-    "id": "E10",
-    "name": "速通专家",
-    "description": "1小时内到达第30层",
-    "category": "explore",
-    "difficulty": "5",
-    "rewardReputation": "300",
-    "targetType": "speed_clear",
-    "targetValue": "30",
-    "isHidden": "true"
-  },
-  {
-    "id": "B02",
-    "name": "连胜新星",
-    "description": "获得5连胜",
-    "category": "battle",
-    "difficulty": "2",
-    "rewardReputation": "30",
-    "targetType": "win_streak",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
-    "id": "B01",
-    "name": "初次胜利",
-    "description": "赢得第一场战斗",
-    "category": "battle",
-    "difficulty": "1",
-    "rewardReputation": "10",
-    "targetType": "battle_win",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
-    "id": "B03",
-    "name": "不败传说",
-    "description": "获得20连胜",
-    "category": "battle",
-    "difficulty": "4",
-    "rewardReputation": "150",
-    "targetType": "win_streak",
-    "targetValue": "20",
     "isHidden": "false"
   },
   {
@@ -264,17 +132,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B04",
-    "name": "暴击达人",
-    "description": "单次战斗造成10次暴击",
-    "category": "battle",
-    "difficulty": "2",
-    "rewardReputation": "40",
-    "targetType": "critical_hit",
-    "targetValue": "10",
-    "isHidden": "false"
-  },
-  {
     "id": "B03",
     "name": "不败传说",
     "description": "获得20连胜",
@@ -286,17 +143,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B05",
-    "name": "一击必杀",
-    "description": "单次攻击造成超过1000伤害",
-    "category": "battle",
-    "difficulty": "3",
-    "rewardReputation": "60",
-    "targetType": "single_damage",
-    "targetValue": "1000",
-    "isHidden": "false"
-  },
-  {
     "id": "B04",
     "name": "暴击达人",
     "description": "单次战斗造成10次暴击",
@@ -308,17 +154,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B06",
-    "name": "完美闪避",
-    "description": "单次战斗闪避5次攻击",
-    "category": "battle",
-    "difficulty": "3",
-    "rewardReputation": "50",
-    "targetType": "dodge",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "B05",
     "name": "一击必杀",
     "description": "单次攻击造成超过1000伤害",
@@ -330,17 +165,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B07",
-    "name": "团队协作",
-    "description": "全员存活通关一层",
-    "category": "battle",
-    "difficulty": "2",
-    "rewardReputation": "40",
-    "targetType": "perfect_clear",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
     "id": "B06",
     "name": "完美闪避",
     "description": "单次战斗闪避5次攻击",
@@ -352,17 +176,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B08",
-    "name": "以少胜多",
-    "description": "以1人队伍击败3个敌人",
-    "category": "battle",
-    "difficulty": "4",
-    "rewardReputation": "100",
-    "targetType": "outnumbered_victory",
-    "targetValue": "3",
-    "isHidden": "false"
-  },
-  {
     "id": "B07",
     "name": "团队协作",
     "description": "全员存活通关一层",
@@ -370,17 +183,6 @@
     "difficulty": "2",
     "rewardReputation": "40",
     "targetType": "perfect_clear",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
-    "id": "B09",
-    "name": "BOSS猎手",
-    "description": "击败第一个BOSS",
-    "category": "battle",
-    "difficulty": "2",
-    "rewardReputation": "50",
-    "targetType": "defeat_boss",
     "targetValue": "1",
     "isHidden": "false"
   },
@@ -396,17 +198,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B10",
-    "name": "灭霸之路",
-    "description": "击败所有5个BOSS",
-    "category": "battle",
-    "difficulty": "5",
-    "rewardReputation": "400",
-    "targetType": "defeat_all_boss",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "B09",
     "name": "BOSS猎手",
     "description": "击败第一个BOSS",
@@ -418,17 +209,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B11",
-    "name": "无伤通关",
-    "description": "单层无任何角色受伤通关",
-    "category": "battle",
-    "difficulty": "5",
-    "rewardReputation": "200",
-    "targetType": "no_damage_clear",
-    "targetValue": "1",
-    "isHidden": "true"
-  },
-  {
     "id": "B10",
     "name": "灭霸之路",
     "description": "击败所有5个BOSS",
@@ -440,17 +220,6 @@
     "isHidden": "false"
   },
   {
-    "id": "B12",
-    "name": "极速战斗",
-    "description": "10秒内结束一场战斗",
-    "category": "battle",
-    "difficulty": "3",
-    "rewardReputation": "80",
-    "targetType": "speed_battle",
-    "targetValue": "10",
-    "isHidden": "true"
-  },
-  {
     "id": "B11",
     "name": "无伤通关",
     "description": "单层无任何角色受伤通关",
@@ -462,17 +231,6 @@
     "isHidden": "true"
   },
   {
-    "id": "C01",
-    "name": "新兵入伍",
-    "description": "招募第一个角色",
-    "category": "character",
-    "difficulty": "1",
-    "rewardReputation": "10",
-    "targetType": "recruit",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
     "id": "B12",
     "name": "极速战斗",
     "description": "10秒内结束一场战斗",
@@ -484,17 +242,6 @@
     "isHidden": "true"
   },
   {
-    "id": "C02",
-    "name": "五人小队",
-    "description": "组建完整的5人队伍",
-    "category": "character",
-    "difficulty": "2",
-    "rewardReputation": "30",
-    "targetType": "team_full",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "C01",
     "name": "新兵入伍",
     "description": "招募第一个角色",
@@ -506,17 +253,6 @@
     "isHidden": "false"
   },
   {
-    "id": "C03",
-    "name": "职业收藏家",
-    "description": "收集所有12种职业各1个",
-    "category": "character",
-    "difficulty": "4",
-    "rewardReputation": "200",
-    "targetType": "collect_class",
-    "targetValue": "12",
-    "isHidden": "false"
-  },
-  {
     "id": "C02",
     "name": "五人小队",
     "description": "组建完整的5人队伍",
@@ -528,17 +264,6 @@
     "isHidden": "false"
   },
   {
-    "id": "C04",
-    "name": "传说收集者",
-    "description": "收集所有⭐⭐⭐⭐级职业",
-    "category": "character",
-    "difficulty": "5",
-    "rewardReputation": "250",
-    "targetType": "collect_legendary",
-    "targetValue": "4",
-    "isHidden": "true"
-  },
-  {
     "id": "C03",
     "name": "职业收藏家",
     "description": "收集所有12种职业各1个",
@@ -550,17 +275,6 @@
     "isHidden": "false"
   },
   {
-    "id": "C05",
-    "name": "强化新手",
-    "description": "首次强化装备成功",
-    "category": "character",
-    "difficulty": "1",
-    "rewardReputation": "15",
-    "targetType": "enhance_equip",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
     "id": "C04",
     "name": "传说收集者",
     "description": "收集所有⭐⭐⭐⭐级职业",
@@ -572,17 +286,6 @@
     "isHidden": "true"
   },
   {
-    "id": "C06",
-    "name": "装备大师",
-    "description": "拥有10件+10强化装备",
-    "category": "character",
-    "difficulty": "4",
-    "rewardReputation": "180",
-    "targetType": "enhanced_equip",
-    "targetValue": "10",
-    "isHidden": "false"
-  },
-  {
     "id": "C05",
     "name": "强化新手",
     "description": "首次强化装备成功",
@@ -594,17 +297,6 @@
     "isHidden": "false"
   },
   {
-    "id": "C07",
-    "name": "满级英雄",
-    "description": "将任意角色升到满级",
-    "category": "character",
-    "difficulty": "3",
-    "rewardReputation": "120",
-    "targetType": "max_level_char",
-    "targetValue": "1",
-    "isHidden": "false"
-  },
-  {
     "id": "C06",
     "name": "装备大师",
     "description": "拥有10件+10强化装备",
@@ -616,17 +308,6 @@
     "isHidden": "false"
   },
   {
-    "id": "C08",
-    "name": "百万血量",
-    "description": "单个角色生命值达到100000",
-    "category": "character",
-    "difficulty": "4",
-    "rewardReputation": "150",
-    "targetType": "hp_milestone",
-    "targetValue": "100000",
-    "isHidden": "true"
-  },
-  {
     "id": "C07",
     "name": "满级英雄",
     "description": "将任意角色升到满级",
@@ -638,17 +319,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M01",
-    "name": "小本经营",
-    "description": "累计获得10000赛博币",
-    "category": "manage",
-    "difficulty": "1",
-    "rewardReputation": "15",
-    "targetType": "earn_coins",
-    "targetValue": "10000",
-    "isHidden": "false"
-  },
-  {
     "id": "C08",
     "name": "百万血量",
     "description": "单个角色生命值达到100000",
@@ -660,17 +330,6 @@
     "isHidden": "true"
   },
   {
-    "id": "M02",
-    "name": "富甲一方",
-    "description": "累计获得1000000赛博币",
-    "category": "manage",
-    "difficulty": "3",
-    "rewardReputation": "100",
-    "targetType": "earn_coins",
-    "targetValue": "1000000",
-    "isHidden": "false"
-  },
-  {
     "id": "M01",
     "name": "小本经营",
     "description": "累计获得10000赛博币",
@@ -682,17 +341,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M03",
-    "name": "亿万富翁",
-    "description": "累计获得100000000赛博币",
-    "category": "manage",
-    "difficulty": "5",
-    "rewardReputation": "350",
-    "targetType": "earn_coins",
-    "targetValue": "100000000",
-    "isHidden": "true"
-  },
-  {
     "id": "M02",
     "name": "富甲一方",
     "description": "累计获得1000000赛博币",
@@ -704,17 +352,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M04",
-    "name": "设施建设者",
-    "description": "升级任意设施到5级",
-    "category": "manage",
-    "difficulty": "2",
-    "rewardReputation": "40",
-    "targetType": "facility_level",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "M03",
     "name": "亿万富翁",
     "description": "累计获得100000000赛博币",
@@ -726,17 +363,6 @@
     "isHidden": "true"
   },
   {
-    "id": "M05",
-    "name": "完美基地",
-    "description": "所有设施达到满级",
-    "category": "manage",
-    "difficulty": "5",
-    "rewardReputation": "250",
-    "targetType": "max_all_facility",
-    "targetValue": "6",
-    "isHidden": "false"
-  },
-  {
     "id": "M04",
     "name": "设施建设者",
     "description": "升级任意设施到5级",
@@ -748,17 +374,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M06",
-    "name": "能量饮料爱好者",
-    "description": "使用过全部10种能量饮料",
-    "category": "manage",
-    "difficulty": "3",
-    "rewardReputation": "80",
-    "targetType": "use_all_energy",
-    "targetValue": "10",
-    "isHidden": "false"
-  },
-  {
     "id": "M05",
     "name": "完美基地",
     "description": "所有设施达到满级",
@@ -770,17 +385,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M07",
-    "name": "刷新大师",
-    "description": "累计刷新伙伴100次",
-    "category": "manage",
-    "difficulty": "2",
-    "rewardReputation": "50",
-    "targetType": "refresh_partner",
-    "targetValue": "100",
-    "isHidden": "false"
-  },
-  {
     "id": "M06",
     "name": "能量饮料爱好者",
     "description": "使用过全部10种能量饮料",
@@ -792,17 +396,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M08",
-    "name": "声誉先锋",
-    "description": "达到声誉等级5",
-    "category": "manage",
-    "difficulty": "2",
-    "rewardReputation": "60",
-    "targetType": "reputation_level",
-    "targetValue": "5",
-    "isHidden": "false"
-  },
-  {
     "id": "M07",
     "name": "刷新大师",
     "description": "累计刷新伙伴100次",
@@ -814,17 +407,6 @@
     "isHidden": "false"
   },
   {
-    "id": "M09",
-    "name": "废土传奇",
-    "description": "达到声誉等级10（满级）",
-    "category": "manage",
-    "difficulty": "5",
-    "rewardReputation": "500",
-    "targetType": "reputation_level",
-    "targetValue": "10",
-    "isHidden": "false"
-  },
-  {
     "id": "M08",
     "name": "声誉先锋",
     "description": "达到声誉等级5",
@@ -836,17 +418,6 @@
     "isHidden": "false"
   },
   {
-    "id": "S01",
-    "name": "幸存者",
-    "description": "游戏时长超过100小时",
-    "category": "special",
-    "difficulty": "2",
-    "rewardReputation": "100",
-    "targetType": "play_time",
-    "targetValue": "360000",
-    "isHidden": "false"
-  },
-  {
     "id": "M09",
     "name": "废土传奇",
     "description": "达到声誉等级10（满级）",
@@ -858,17 +429,6 @@
     "isHidden": "false"
   },
   {
-    "id": "S02",
-    "name": "忠诚玩家",
-    "description": "连续7天登录",
-    "category": "special",
-    "difficulty": "1",
-    "rewardReputation": "50",
-    "targetType": "login_streak",
-    "targetValue": "7",
-    "isHidden": "false"
-  },
-  {
     "id": "S01",
     "name": "幸存者",
     "description": "游戏时长超过100小时",
@@ -880,17 +440,6 @@
     "isHidden": "false"
   },
   {
-    "id": "S03",
-    "name": "月度之星",
-    "description": "连续30天登录",
-    "category": "special",
-    "difficulty": "3",
-    "rewardReputation": "200",
-    "targetType": "login_streak",
-    "targetValue": "30",
-    "isHidden": "false"
-  },
-  {
     "id": "S02",
     "name": "忠诚玩家",
     "description": "连续7天登录",
@@ -902,17 +451,6 @@
     "isHidden": "false"
   },
   {
-    "id": "S04",
-    "name": "禁忌触碰",
-    "description": "使用禁忌药剂并获得隐藏角色",
-    "category": "special",
-    "difficulty": "5",
-    "rewardReputation": "500",
-    "targetType": "forbidden_success",
-    "targetValue": "1",
-    "isHidden": "true"
-  },
-  {
     "id": "S03",
     "name": "月度之星",
     "description": "连续30天登录",
@@ -924,17 +462,6 @@
     "isHidden": "false"
   },
   {
-    "id": "S05",
-    "name": "完美主义者",
-    "description": "完成95%以上的成就",
-    "category": "special",
-    "difficulty": "5",
-    "rewardReputation": "800",
-    "targetType": "achievement_rate",
-    "targetValue": "95",
-    "isHidden": "true"
-  },
-  {
     "id": "S04",
     "name": "禁忌触碰",
     "description": "使用禁忌药剂并获得隐藏角色",
@@ -946,17 +473,6 @@
     "isHidden": "true"
   },
   {
-    "id": "S06",
-    "name": "速通之神",
-    "description": "从零开始24小时内通关第50层",
-    "category": "special",
-    "difficulty": "5",
-    "rewardReputation": "1000",
-    "targetType": "speed_complete",
-    "targetValue": "1",
-    "isHidden": "true"
-  },
-  {
     "id": "S05",
     "name": "完美主义者",
     "description": "完成95%以上的成就",
@@ -968,17 +484,6 @@
     "isHidden": "true"
   },
   {
-    "id": "S07",
-    "name": "无敌之师",
-    "description": "全员传说品质通关第50层",
-    "category": "special",
-    "difficulty": "5",
-    "rewardReputation": "600",
-    "targetType": "legendary_team_clear",
-    "targetValue": "1",
-    "isHidden": "true"
-  },
-  {
     "id": "S06",
     "name": "速通之神",
     "description": "从零开始24小时内通关第50层",
@@ -987,17 +492,6 @@
     "rewardReputation": "1000",
     "targetType": "speed_complete",
     "targetValue": "1",
-    "isHidden": "true"
-  },
-  {
-    "id": "S08",
-    "name": "彩蛋发现者",
-    "description": "发现游戏中所有隐藏彩蛋",
-    "category": "special",
-    "difficulty": "4",
-    "rewardReputation": "300",
-    "targetType": "find_easter_egg",
-    "targetValue": "10",
     "isHidden": "true"
   },
   {
