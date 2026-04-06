@@ -302,21 +302,31 @@ export default class Character {
     if (index !== -1) {
       let buff = this.buffs[index];
       this.buffs.splice(index, 1);
-      
-      switch (buff.type) {
-        case 'atk_up':
-          this.atk = this.getAtk();
-          break;
-        case 'hp_up':
-          this.maxHp = this.getMaxHp();
-          this.currentHp = Math.min(this.currentHp, this.maxHp);
-          break;
-        case 'crit_up':
-          this.critRate = this.getCritRate();
-          break;
-        case 'dodge_up':
-          this.dodgeRate = this.getDodgeRate();
-          break;
+
+      // Reset to base stats then reapply all remaining buffs
+      this.atk = this.getAtk();
+      this.maxHp = this.getMaxHp();
+      this.critRate = this.getCritRate();
+      this.dodgeRate = this.getDodgeRate();
+      this.currentHp = Math.min(this.currentHp, this.maxHp);
+
+      // Reapply remaining buffs
+      for (const remainingBuff of this.buffs) {
+        switch (remainingBuff.type) {
+          case 'atk_up':
+            this.atk = Math.floor(this.atk * (1 + remainingBuff.value));
+            break;
+          case 'hp_up':
+            this.maxHp = Math.floor(this.maxHp * (1 + remainingBuff.value));
+            this.currentHp = Math.floor(this.currentHp * (1 + remainingBuff.value));
+            break;
+          case 'crit_up':
+            this.critRate = Math.min(this.critRate + remainingBuff.value, 0.90);
+            break;
+          case 'dodge_up':
+            this.dodgeRate = Math.min(this.dodgeRate + remainingBuff.value, 0.90);
+            break;
+        }
       }
     }
   }

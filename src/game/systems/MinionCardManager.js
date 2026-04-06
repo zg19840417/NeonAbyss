@@ -108,9 +108,11 @@ export default class MinionCardManager {
   generateRandomCard() {
     const randomIndex = Math.floor(Math.random() * minionsData.length);
     const template = minionsData[randomIndex];
+    const originalId = template.id;
     const newCard = new MinionCard({
       ...template,
-      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6)
+      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+      minionId: originalId
     });
     this.addCard(newCard);
     return newCard;
@@ -119,9 +121,11 @@ export default class MinionCardManager {
   generateShopCard() {
     const randomIndex = Math.floor(Math.random() * minionsData.length);
     const template = minionsData[randomIndex];
+    const originalId = template.id;
     const newCard = new MinionCard({
       ...template,
-      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6)
+      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+      minionId: originalId
     });
     return newCard;
   }
@@ -134,9 +138,11 @@ export default class MinionCardManager {
     if (templates.length === 0) return this.generateRandomCard();
 
     const template = templates[Math.floor(Math.random() * templates.length)];
+    const originalId = template.id;
     const newCard = new MinionCard({
       ...template,
-      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6)
+      id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+      minionId: originalId
     });
     this.addCard(newCard);
     return newCard;

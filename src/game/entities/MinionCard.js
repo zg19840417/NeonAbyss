@@ -21,7 +21,7 @@ export default class MinionCard extends Character {
     this.portrait = data.portrait || null;
     this.description = data.description || '';
     this.star = data.star || 1;
-    this.minionId = data.id;
+    this.minionId = data.minionId || data.id;
 
     this.passiveSkill = data.passiveSkill
       ? (data.passiveSkill instanceof PassiveSkill ? data.passiveSkill : new PassiveSkill(data.passiveSkill))

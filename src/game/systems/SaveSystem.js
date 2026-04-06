@@ -1,7 +1,7 @@
-import BaseSystem from './systems/BaseSystem.js';
-import DungeonSystem from './systems/DungeonSystem.js';
-import Character from './entities/Character.js';
-import { CharacterClass } from './data/CharacterClass.js';
+import BaseSystem from './BaseSystem.js';
+import DungeonSystem from './DungeonSystem.js';
+import Character from '../entities/Character.js';
+import { CharacterClass } from '../data/CharacterClass.js';
 
 export default class SaveSystem {
   constructor() {

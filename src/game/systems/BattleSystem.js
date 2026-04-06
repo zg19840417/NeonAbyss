@@ -480,14 +480,15 @@ export default class BattleSystem {
     return entity.buffs?.some(b => b.type === buffType) || false;
   }
   
-  processPassiveSkills(team, eventType, allies, enemies) {
+  // BUG6 FIX: 添加可选的target参数
+  processPassiveSkills(team, eventType, allies, enemies, target = null) {
     for (const entity of team) {
       if (entity.isDead || !entity.isMinionCard || !entity.passiveSkill) continue;
 
       const context = {
         eventType,
         source: entity,
-        target: null,
+        target: target,
         damage: 0
       };
 
@@ -584,18 +585,61 @@ export default class BattleSystem {
           this.emit('onBuffRemove', { entity, buff });
         }
       }
+
+      // BUG4 FIX: Process debuffs (poison, stun, etc.)
+      if (entity.debuffs && entity.debuffs.length > 0) {
+        for (let i = entity.debuffs.length - 1; i >= 0; i--) {
+          const debuff = entity.debuffs[i];
+
+          if (debuff.type === BuffType.POISON) {
+            if (entity.isMinionCard && entity.isMechImmune?.()) continue;
+            const poisonDamage = Math.floor(debuff.value * entity.maxHp);
+            entity.currentHp = Math.max(0, entity.currentHp - poisonDamage);
+            this.addBattleLog(`${entity.name} 受到中毒伤害`, `-${poisonDamage}`);
+            this.emit('onDamage', { target: entity, damage: poisonDamage, isCrit: false, isPlayer: this.playerTeam.includes(entity) });
+
+            if (entity.currentHp <= 0) {
+              entity.isDead = true;
+              this.emit('onCharacterDeath', { character: entity, isPlayer: this.playerTeam.includes(entity) });
+              if (this.playerTeam.includes(entity)) {
+                this.processAllyDeathPassiveSkills(entity, this.playerTeam, this.enemyTeam);
+              } else {
+                this.processAllyDeathPassiveSkills(entity, this.enemyTeam, this.playerTeam);
+              }
+            }
+          }
+
+          if (debuff.type === BuffType.STUN) {
+            if (entity.isMinionCard && entity.isMechImmune?.()) {
+              entity.debuffs.splice(i, 1);
+              this.addBattleLog(`[免疫]`, `${entity.name} 机械种族免疫眩晕`);
+              continue;
+            }
+          }
+
+          debuff.remainingDuration--;
+          if (debuff.remainingDuration <= 0) {
+            entity.debuffs.splice(i, 1);
+          }
+        }
+      }
     }
   }
   
+  // BUG8 FIX: 将新创建的Skill实例保存回character.skills数组以保持冷却状态
   tryUseSkill(character) {
     if (!character.skills || character.skills.length === 0) return null;
-    
-    for (const skillData of character.skills) {
-      const skill = skillData instanceof Skill ? skillData : new Skill(skillData);
-      
+
+    for (let i = 0; i < character.skills.length; i++) {
+      let skill = character.skills[i];
+      if (!(skill instanceof Skill)) {
+        skill = new Skill(skill);
+        character.skills[i] = skill; // 保存实例以保持冷却状态
+      }
+
       const aliveEnemies = this.enemyTeam.filter(e => !e.isDead);
       const targets = skill.targetTeam === 'enemy' ? aliveEnemies : this.playerTeam.filter(p => !p.isDead);
-      
+
       const canUse = skill.canUse(character, targets);
       if (canUse.canUse) {
         return skill;
@@ -620,19 +664,24 @@ export default class BattleSystem {
     this.addBattleLog(`${character.name} 使用 ${skill.name}`, skill.description);
     this.emit('onSkillUse', { character, skill, result });
     
+    // BUG3 FIX: Skill.executeDamage已计算伤害但未扣血，这里统一扣血
     if (result.damage > 0) {
-      for (const target of targets) {
-        target.currentHp = Math.max(0, target.currentHp - result.damage);
-        
-        if (isPlayer) {
-          this.applyOnHitEquipmentEffects(character, target);
-        }
-        
-        this.emit('onDamage', { target, damage: result.damage, isCrit: false, isPlayer });
-        
-        if (target.currentHp <= 0) {
-          target.isDead = true;
-          this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
+      for (const effect of result.effects) {
+        if (effect.type === 'damage' && effect.target) {
+          const target = effect.target;
+          const dmg = effect.damage;
+          target.currentHp = Math.max(0, target.currentHp - dmg);
+
+          if (isPlayer) {
+            this.applyOnHitEquipmentEffects(character, target);
+          }
+
+          this.emit('onDamage', { target, damage: dmg, isCrit: effect.isCrit || false, isPlayer });
+
+          if (target.currentHp <= 0) {
+            target.isDead = true;
+            this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
+          }
         }
       }
     }
@@ -643,21 +692,37 @@ export default class BattleSystem {
       this.emit('onHeal', { target, amount: result.healing });
     }
     
+    // BUG5 FIX: 从buffData构建正确的buff对象
     if (result.buffs?.length > 0) {
       for (const buffData of result.buffs) {
         const target = buffData.target || character;
         if (!target.buffs) target.buffs = [];
-        target.buffs.push(buffData.buff);
-        this.emit('onBuffApply', { target, buff: buffData.buff });
+        const buffObj = {
+          id: (buffData.buffType || 'buff') + '_' + Date.now(),
+          type: buffData.buffType,
+          value: buffData.value || 0,
+          duration: buffData.duration,
+          remainingDuration: buffData.duration
+        };
+        target.buffs.push(buffObj);
+        this.emit('onBuffApply', { target, buff: buffObj });
       }
     }
-    
+
+    // BUG5 FIX: 从debuffData构建正确的buff对象
     if (result.debuffs?.length > 0) {
       for (const debuffData of result.debuffs) {
         const target = debuffData.target;
         if (!target.buffs) target.buffs = [];
-        target.buffs.push(debuffData.buff);
-        this.emit('onBuffApply', { target, buff: debuffData.buff });
+        const buffObj = {
+          id: (debuffData.debuffType || 'debuff') + '_' + Date.now(),
+          type: debuffData.debuffType,
+          value: debuffData.value || 0.1,
+          duration: debuffData.duration,
+          remainingDuration: debuffData.duration
+        };
+        target.buffs.push(buffObj);
+        this.emit('onBuffApply', { target, buff: buffObj });
       }
     }
     
@@ -774,7 +839,7 @@ export default class BattleSystem {
 
     // Trigger on_attack passives for attacker
     if (attacker.isMinionCard && attacker.passiveSkill) {
-      this.processPassiveSkills([attacker], 'attack', this.playerTeam, this.enemyTeam);
+      this.processPassiveSkills([attacker], 'attack', this.playerTeam, this.enemyTeam, target);
     }
 
     // Trigger on_damage_taken passives for target
@@ -788,9 +853,9 @@ export default class BattleSystem {
 
     if (target.currentHp <= 0) {
       target.isDead = true;
-      this.emit('onCharacterDeath', { character: target, isPlayer: !this.playerTeam.includes(target) });
+      this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
       this.checkEquipmentTriggers('enemy_death', { target, targets: [target] });
-      this.processAllyDeathPassiveSkills(target, this.playerTeam, this.enemyTeam);
+      this.processAllyDeathPassiveSkills(target, this.enemyTeam, this.playerTeam);
 
       // Trigger on_kill passives for attacker
       if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
@@ -873,7 +938,7 @@ export default class BattleSystem {
 
     // Trigger on_attack passives for enemy attacker
     if (attacker.isMinionCard && attacker.passiveSkill) {
-      this.processPassiveSkills([attacker], 'attack', this.enemyTeam, this.playerTeam);
+      this.processPassiveSkills([attacker], 'attack', this.enemyTeam, this.playerTeam, target);
     }
 
     // Trigger on_damage_taken passives for target
@@ -885,9 +950,9 @@ export default class BattleSystem {
 
     if (target.currentHp <= 0) {
       target.isDead = true;
-      this.emit('onCharacterDeath', { character: target, isPlayer: true });
+      this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
       this.checkEquipmentTriggers('ally_death', { target, targets: [target] });
-      this.processAllyDeathPassiveSkills(target, this.enemyTeam, this.playerTeam);
+      this.processAllyDeathPassiveSkills(target, this.playerTeam, this.enemyTeam);
 
       // Trigger on_kill passives for enemy attacker
       if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {

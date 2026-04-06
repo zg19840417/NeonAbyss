@@ -305,14 +305,14 @@ export default class ShopView {
     if (!card) return;
 
     const price = this.getMinionPrice(card);
-    const gold = this.scene.baseSystem.gold || 0;
+    const gold = this.scene.baseSystem.coins || 0;
 
     if (gold < price) {
       this.scene.showToast?.('金币不足！');
       return;
     }
 
-    this.scene.baseSystem.gold -= price;
+    this.scene.baseSystem.coins -= price;
     this.scene.minionCardManager.addCard(card);
     this.scene.minionCardManager.shopMinions.splice(index, 1);
     this.scene.saveGameData();
@@ -325,14 +325,14 @@ export default class ShopView {
     if (!card) return;
 
     const price = this.getEquipmentPrice(card);
-    const gold = this.scene.baseSystem.gold || 0;
+    const gold = this.scene.baseSystem.coins || 0;
 
     if (gold < price) {
       this.scene.showToast?.('金币不足！');
       return;
     }
 
-    this.scene.baseSystem.gold -= price;
+    this.scene.baseSystem.coins -= price;
     this.scene.equipmentCardManager.addCard(card);
     this.scene.equipmentCardManager.shopCards.splice(index, 1);
     this.scene.saveGameData();

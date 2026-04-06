@@ -142,10 +142,10 @@ export default class EquipmentCardManager {
       return { success: false, reason: 'card_not_found' };
     }
 
-    if (card1.equipCardId !== card2.equipCardId) {
+    if (card1.name !== card2.name || card1.quality !== card2.quality) {
       return { success: false, reason: 'different_card_types' };
     }
-    if (card3 && card1.equipCardId !== card3.equipCardId) {
+    if (card3 && (card1.name !== card3.name || card1.quality !== card3.quality)) {
       return { success: false, reason: 'different_card_types' };
     }
 
