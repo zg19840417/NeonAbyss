@@ -145,9 +145,34 @@ export default class DungeonScene extends Phaser.Scene {
 
   onBattleVictory(data) {
     const currentFloor = data.floor || this.currentFloor;
-    this.dungeonSystem.onBattleVictory(currentFloor);
+    const isBossFloor = currentFloor % 10 === 0;
+
+    // 断裂2修复: 计算奖励并入账金币
+    const enemies = this.dungeonSystem.generateEnemiesForFloor(currentFloor);
+    const rewards = this.dungeonSystem.calculateRewards(enemies);
+    if (window.gameData.base) {
+      window.gameData.base.coins = (window.gameData.base.coins || 0) + rewards.gold;
+    }
+
+    // 断裂1修复: 如果有装备掉落，添加到背包
+    if (rewards.equipment && window.gameData.equipmentCardManager) {
+      window.gameData.equipmentCardManager.addCard({
+        id: 'equip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+        name: rewards.equipment.type === 'weapon' ? '掉落武器' :
+              rewards.equipment.type === 'armor' ? '掉落护甲' : '掉落饰品',
+        quality: rewards.equipment.quality === 'epic' ? 'SR' :
+                 rewards.equipment.quality === 'rare' ? 'R' :
+                 rewards.equipment.quality === 'uncommon' ? 'R' : 'N',
+        star: 1,
+        atk: Math.floor(Math.random() * 20) + 10,
+        hp: Math.floor(Math.random() * 100) + 50,
+        critRate: 0.1
+      });
+    }
+
+    this.dungeonSystem.onBattleVictory(currentFloor, isBossFloor);
     this.currentFloor++;
-    
+
     if (this.currentFloor > this.dungeonSystem.maxReachedFloor) {
       this.dungeonSystem.maxReachedFloor = this.currentFloor;
     }
@@ -160,13 +185,13 @@ export default class DungeonScene extends Phaser.Scene {
     this.dungeonSystem.save();
 
     const players = this.getPlayerTeam();
-    const enemies = this.dungeonSystem.generateEnemiesForFloor(this.currentFloor);
+    const nextEnemies = this.dungeonSystem.generateEnemiesForFloor(this.currentFloor);
     const equipmentCard = this.getEquipmentCard();
 
     this.scene.start('BattleScene', {
       floor: this.currentFloor,
       dimension: this.currentDimension,
-      enemies: enemies.map(e => ({
+      enemies: nextEnemies.map(e => ({
         id: e.id,
         name: e.name,
         hp: e.currentHp || e.maxHp,
@@ -188,6 +213,22 @@ export default class DungeonScene extends Phaser.Scene {
 
     if (window.gameData.base) {
       window.gameData.base.coins = (window.gameData.base.coins || 0) + rewards.gold;
+    }
+
+    // 断裂1修复: 如果有装备掉落，添加到背包
+    if (rewards.equipment && window.gameData.equipmentCardManager) {
+      window.gameData.equipmentCardManager.addCard({
+        id: 'equip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+        name: rewards.equipment.type === 'weapon' ? '掉落武器' :
+              rewards.equipment.type === 'armor' ? '掉落护甲' : '掉落饰品',
+        quality: rewards.equipment.quality === 'epic' ? 'SR' :
+                 rewards.equipment.quality === 'rare' ? 'R' :
+                 rewards.equipment.quality === 'uncommon' ? 'R' : 'N',
+        star: 1,
+        atk: Math.floor(Math.random() * 20) + 10,
+        hp: Math.floor(Math.random() * 100) + 50,
+        critRate: 0.1
+      });
     }
 
     this.dungeonSystem.returnToBase();

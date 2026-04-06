@@ -171,6 +171,14 @@ export default class MinionCardManager {
     }
     window.gameData.minionStones = (window.gameData.minionStones || 0) - cost;
     card.star = (card.star || 0) + 1;
+
+    // 断裂3修复: 升星后立即按比例提升属性
+    const oldMaxHp = card.maxHp;
+    const oldAtk = card.atk;
+    card.maxHp = Math.floor(card.maxHp * 1.1); // 每星+10%
+    card.atk = Math.floor(card.atk * 1.1);
+    card.currentHp = Math.min(Math.floor(card.currentHp * (card.maxHp / oldMaxHp)), card.maxHp);
+
     return { success: true, card, newStar: card.star };
   }
 
@@ -219,6 +227,13 @@ export default class MinionCardManager {
     this.removeCard(source1.id);
     this.removeCard(source2.id);
     target.star = (target.star || 0) + 1;
+
+    // 断裂3修复: 合并升星后立即按比例提升属性
+    const oldMaxHp = target.maxHp;
+    const oldAtk = target.atk;
+    target.maxHp = Math.floor(target.maxHp * 1.1); // 每星+10%
+    target.atk = Math.floor(target.atk * 1.1);
+    target.currentHp = Math.min(Math.floor(target.currentHp * (target.maxHp / oldMaxHp)), target.maxHp);
 
     return { success: true, card: target, newStar: target.star };
   }

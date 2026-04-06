@@ -793,8 +793,11 @@ export default class BattleSystem {
     }
   }
   
-  executePlayerAttack(attacker, target, onComplete) {
-    let critRate = attacker.critRate || 0.15;
+  executeAttack(attacker, target, onComplete) {
+    const isPlayer = this.playerTeam.includes(attacker);
+    const defaultCritRate = isPlayer ? 0.15 : 0.1;
+
+    let critRate = attacker.critRate || defaultCritRate;
     if (attacker.buffs) {
       for (const buff of attacker.buffs) {
         if (buff.type === BuffType.CRIT_UP) {
@@ -804,7 +807,7 @@ export default class BattleSystem {
         }
       }
     }
-    
+
     let dodgeRate = target.dodgeRate || 0.05;
     if (target.buffs) {
       for (const buff of target.buffs) {
@@ -815,7 +818,7 @@ export default class BattleSystem {
         }
       }
     }
-    
+
     const isDodged = Math.random() < dodgeRate;
     if (isDodged) {
       this.addBattleLog(`${target.name} 闪避了攻击`, 'MISS');
@@ -826,20 +829,23 @@ export default class BattleSystem {
       });
       return;
     }
-    
+
     let damage = this.calculateDamage(attacker, target);
     const isCrit = Math.random() < critRate;
     let finalDamage = isCrit ? Math.floor(damage * 2) : damage;
-    
+
     if (isCrit) {
       finalDamage = Math.floor(finalDamage * (attacker.critDamage || 2));
     }
-    
+
     target.currentHp = Math.max(0, target.currentHp - finalDamage);
+
+    const attackerAllies = isPlayer ? this.playerTeam : this.enemyTeam;
+    const attackerEnemies = isPlayer ? this.enemyTeam : this.playerTeam;
 
     // Trigger on_attack passives for attacker
     if (attacker.isMinionCard && attacker.passiveSkill) {
-      this.processPassiveSkills([attacker], 'attack', this.playerTeam, this.enemyTeam, target);
+      this.processPassiveSkills([attacker], 'attack', attackerAllies, attackerEnemies, target);
     }
 
     // Trigger on_damage_taken passives for target
@@ -854,122 +860,56 @@ export default class BattleSystem {
     if (target.currentHp <= 0) {
       target.isDead = true;
       this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
-      this.checkEquipmentTriggers('enemy_death', { target, targets: [target] });
-      this.processAllyDeathPassiveSkills(target, this.enemyTeam, this.playerTeam);
+
+      const deathTriggerType = isPlayer ? 'enemy_death' : 'ally_death';
+      this.checkEquipmentTriggers(deathTriggerType, { target, targets: [target] });
+
+      const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
+      const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
+      this.processAllyDeathPassiveSkills(target, targetAllies, targetEnemies);
 
       // Trigger on_kill passives for attacker
       if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
-        this.processPassiveSkills([attacker], 'kill', this.playerTeam, this.enemyTeam);
+        this.processPassiveSkills([attacker], 'kill', attackerAllies, attackerEnemies);
       }
     }
-    
+
     const hpPercentBefore = target.currentHp / target.maxHp;
     if (hpPercentBefore < 0.3) {
       this.checkEquipmentTriggers('on_low_hp', { target, targetHpPercent: hpPercentBefore });
     } else if (hpPercentBefore < 0.5) {
       this.checkEquipmentTriggers('on_low_hp_50', { target, targetHpPercent: hpPercentBefore });
     }
-    
+
     if (isCrit) {
       this.checkEquipmentTriggers('on_crit', { attacker, target, isCrit: true, targets: [target] });
     }
-    
+
     if (attacker.lifeSteal > 0 && finalDamage > 0) {
       const healAmount = Math.floor(finalDamage * attacker.lifeSteal);
       attacker.currentHp = Math.min(attacker.maxHp, attacker.currentHp + healAmount);
       this.addBattleLog(`${attacker.name} 吸血`, `+${healAmount}`);
       this.emit('onHeal', { target: attacker, amount: healAmount });
     }
-    
+
     this.emit('onAttack', { attacker, target, damage: finalDamage, isCrit });
-    this.emit('onDamage', { target, damage: finalDamage, isCrit, isPlayer: false });
-    
+    this.emit('onDamage', { target, damage: finalDamage, isCrit, isPlayer: !isPlayer });
+
     let logMsg = `${attacker.name} 攻击 ${target.name}`;
     let resultMsg = isCrit ? `暴击! ${finalDamage}` : `-${finalDamage}`;
     this.addBattleLog(logMsg, resultMsg);
-    
+
     this.scene.onAttackAnimation(attacker, target, isCrit, () => {
       onComplete();
     });
   }
-  
+
+  executePlayerAttack(attacker, target, onComplete) {
+    this.executeAttack(attacker, target, onComplete);
+  }
+
   executeEnemyAttack(attacker, target, onComplete) {
-    let critRate = attacker.critRate || 0.1;
-    if (attacker.buffs) {
-      for (const buff of attacker.buffs) {
-        if (buff.type === BuffType.CRIT_UP) {
-          critRate += buff.value;
-        } else if (buff.type === BuffType.CRIT_DOWN) {
-          critRate -= buff.value;
-        }
-      }
-    }
-    
-    let dodgeRate = target.dodgeRate || 0.05;
-    if (target.buffs) {
-      for (const buff of target.buffs) {
-        if (buff.type === BuffType.DODGE_UP) {
-          dodgeRate += buff.value;
-        } else if (buff.type === BuffType.DODGE_DOWN) {
-          dodgeRate -= buff.value;
-        }
-      }
-    }
-    
-    const isDodged = Math.random() < dodgeRate;
-    if (isDodged) {
-      this.addBattleLog(`${target.name} 闪避了攻击`, 'MISS');
-      this.emit('onAttack', { attacker, target, damage: 0, isCrit: false, isDodged: true });
-      this.scene.onAttackAnimation(attacker, target, false, () => {
-        onComplete();
-      });
-      return;
-    }
-    
-    let damage = this.calculateDamage(attacker, target);
-    const isCrit = Math.random() < critRate;
-    let finalDamage = isCrit ? Math.floor(damage * 2) : damage;
-    
-    if (isCrit) {
-      finalDamage = Math.floor(finalDamage * (attacker.critDamage || 2));
-    }
-    
-    target.currentHp = Math.max(0, target.currentHp - finalDamage);
-
-    // Trigger on_attack passives for enemy attacker
-    if (attacker.isMinionCard && attacker.passiveSkill) {
-      this.processPassiveSkills([attacker], 'attack', this.enemyTeam, this.playerTeam, target);
-    }
-
-    // Trigger on_damage_taken passives for target
-    if (target.isMinionCard && target.passiveSkill) {
-      const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
-      const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
-      this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
-    }
-
-    if (target.currentHp <= 0) {
-      target.isDead = true;
-      this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
-      this.checkEquipmentTriggers('ally_death', { target, targets: [target] });
-      this.processAllyDeathPassiveSkills(target, this.playerTeam, this.enemyTeam);
-
-      // Trigger on_kill passives for enemy attacker
-      if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
-        this.processPassiveSkills([attacker], 'kill', this.enemyTeam, this.playerTeam);
-      }
-    }
-    
-    this.emit('onAttack', { attacker, target, damage: finalDamage, isCrit });
-    this.emit('onDamage', { target, damage: finalDamage, isCrit, isPlayer: true });
-    
-    let logMsg = `${attacker.name} 攻击 ${target.name}`;
-    let resultMsg = isCrit ? `暴击! ${finalDamage}` : `-${finalDamage}`;
-    this.addBattleLog(logMsg, resultMsg);
-    
-    this.scene.onAttackAnimation(attacker, target, isCrit, () => {
-      onComplete();
-    });
+    this.executeAttack(attacker, target, onComplete);
   }
   
   calculateDamage(attacker, target) {
