@@ -1,0 +1,120 @@
+[
+  {
+    "chestId": "DAILY_CHEST_1",
+    "chestType": "daily",
+    "chestName": "铜宝箱",
+    "requiredPoints": 50,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 1000
+      },
+      {
+        "type": "ITEM_UPGRADE_MATERIAL_LOW",
+        "amount": 5
+      }
+    ],
+    "description": "每日活跃度达到50点可领取"
+  },
+  {
+    "chestId": "DAILY_CHEST_2",
+    "chestType": "daily",
+    "chestName": "银宝箱",
+    "requiredPoints": 100,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 2000
+      },
+      {
+        "type": "ITEM_SOURCE_CORE",
+        "amount": 100
+      },
+      {
+        "type": "ITEM_UPGRADE_MATERIAL_LOW",
+        "amount": 10
+      }
+    ],
+    "description": "每日活跃度达到100点可领取"
+  },
+  {
+    "chestId": "DAILY_CHEST_3",
+    "chestType": "daily",
+    "chestName": "金宝箱",
+    "requiredPoints": 150,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 3000
+      },
+      {
+        "type": "ITEM_SOURCE_CORE",
+        "amount": 200
+      },
+      {
+        "type": "ITEM_RAD_MEDICINE",
+        "amount": 1
+      }
+    ],
+    "description": "每日活跃度达到150点可领取"
+  },
+  {
+    "chestId": "DAILY_CHEST_4",
+    "chestType": "daily",
+    "chestName": "钻石宝箱",
+    "requiredPoints": 200,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 5000
+      },
+      {
+        "type": "ITEM_SOURCE_CORE",
+        "amount": 300
+      },
+      {
+        "type": "ITEM_PLUGIN_PROF_RANDOM",
+        "amount": 1
+      }
+    ],
+    "description": "每日活跃度达到200点可领取"
+  },
+  {
+    "chestId": "WEEKLY_CHEST_1",
+    "chestType": "weekly",
+    "chestName": "周常铜宝箱",
+    "requiredPoints": 3,
+    "rewards": [
+      {
+        "type": "ITEM_SOURCE_CORE",
+        "amount": 500
+      },
+      {
+        "type": "ITEM_CHIP_EXP_MEDIUM",
+        "amount": 1
+      }
+    ],
+    "description": "每周完成3个每周任务可领取"
+  },
+  {
+    "chestId": "WEEKLY_CHEST_2",
+    "chestType": "weekly",
+    "chestName": "周常金宝箱",
+    "requiredPoints": 6,
+    "rewards": [
+      {
+        "type": "ITEM_SOURCE_CORE",
+        "amount": 1000
+      },
+      {
+        "type": "ITEM_CHIP_EXP_MEDIUM",
+        "amount": 2
+      },
+      {
+        "type": "FRAME_WEEKLY_ALL",
+        "amount": 1
+      }
+    ],
+    "description": "每周完成全部6个每周任务可领取"
+  }
+]

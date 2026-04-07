@@ -19,9 +19,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_001",
+    "forcedAbilities": [
+      "SUP_ULT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_ULT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 4,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -45,9 +66,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_002",
+    "forcedAbilities": [
+      "DPS_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -71,9 +113,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_003",
+    "forcedAbilities": [
+      "DPS_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -97,9 +160,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_004",
+    "forcedAbilities": [
+      "TANK_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -123,9 +207,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_005",
+    "forcedAbilities": [
+      "SUP_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -149,9 +254,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_006",
+    "forcedAbilities": [
+      "SUP_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -175,9 +301,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_007",
+    "forcedAbilities": [
+      "DPS_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -201,9 +348,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_008",
+    "forcedAbilities": [
+      "TANK_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -227,9 +395,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_support_009",
+    "forcedAbilities": [
+      "SUP_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -253,9 +442,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_010",
+    "forcedAbilities": [
+      "TANK_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -279,9 +489,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_011",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -305,9 +536,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_012",
+    "forcedAbilities": [
+      "TANK_DEF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_DEF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -331,9 +583,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_support_013",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -357,9 +630,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_tank_014",
+    "forcedAbilities": [
+      "TANK_HP_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_HP_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -383,9 +677,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_015",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -409,9 +724,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_016",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -435,9 +771,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_017",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -461,9 +818,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_018",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -487,9 +865,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_019",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -513,9 +912,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_020",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_PLANT",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -539,9 +959,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_021",
+    "forcedAbilities": [
+      "DPS_ULT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ULT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 4,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -565,9 +1006,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_022",
+    "forcedAbilities": [
+      "TANK_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -591,9 +1053,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_023",
+    "forcedAbilities": [
+      "DPS_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -617,9 +1100,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_024",
+    "forcedAbilities": [
+      "SUP_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -643,9 +1147,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_025",
+    "forcedAbilities": [
+      "TANK_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -669,9 +1194,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_026",
+    "forcedAbilities": [
+      "DPS_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -695,9 +1241,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_027",
+    "forcedAbilities": [
+      "DPS_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -721,9 +1288,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_dps_028",
+    "forcedAbilities": [
+      "DPS_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -747,9 +1335,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_029",
+    "forcedAbilities": [
+      "TANK_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -773,9 +1382,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_030",
+    "forcedAbilities": [
+      "SUP_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -799,9 +1429,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_tank_031",
+    "forcedAbilities": [
+      "TANK_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -825,9 +1476,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_032",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -851,9 +1523,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_033",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -877,9 +1570,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_034",
+    "forcedAbilities": [
+      "DPS_CRIT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CRIT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -903,9 +1617,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_035",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -929,9 +1664,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_036",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -955,9 +1711,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_037",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -981,9 +1758,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_038",
+    "forcedAbilities": [
+      "TANK_DEF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_DEF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1007,9 +1805,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_039",
+    "forcedAbilities": [
+      "SUP_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1033,9 +1852,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_tank_040",
+    "forcedAbilities": [
+      "TANK_DEF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_DEF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ANIMAL",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1059,9 +1899,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_041",
+    "forcedAbilities": [
+      "SUP_ULT_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_ULT_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 4,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1085,9 +1946,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_042",
+    "forcedAbilities": [
+      "TANK_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1111,9 +1993,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_043",
+    "forcedAbilities": [
+      "SUP_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1137,9 +2040,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_044",
+    "forcedAbilities": [
+      "SUP_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1163,9 +2087,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_045",
+    "forcedAbilities": [
+      "DPS_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1189,9 +2134,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_046",
+    "forcedAbilities": [
+      "SUP_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1215,9 +2181,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_047",
+    "forcedAbilities": [
+      "DPS_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1241,9 +2228,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_048",
+    "forcedAbilities": [
+      "DPS_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1267,9 +2275,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_049",
+    "forcedAbilities": [
+      "SUP_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1293,9 +2322,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_tank_050",
+    "forcedAbilities": [
+      "TANK_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1319,9 +2369,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_051",
+    "forcedAbilities": [
+      "DPS_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1345,9 +2416,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_tank_052",
+    "forcedAbilities": [
+      "TANK_AGGRO_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_AGGRO_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1371,9 +2463,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_053",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1397,9 +2510,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_054",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1423,9 +2557,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_055",
+    "forcedAbilities": [
+      "TANK_DEF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_DEF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1449,9 +2604,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_056",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1475,9 +2651,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_057",
+    "forcedAbilities": [
+      "DPS_CRIT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CRIT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1501,9 +2698,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_058",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1527,9 +2745,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_059",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1553,9 +2792,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_060",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_MECH",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1579,9 +2839,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_061",
+    "forcedAbilities": [
+      "DPS_ULT_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ULT_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 4,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1605,9 +2886,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_062",
+    "forcedAbilities": [
+      "DPS_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1631,9 +2933,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_063",
+    "forcedAbilities": [
+      "SUP_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1657,9 +2980,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_064",
+    "forcedAbilities": [
+      "SUP_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1683,9 +3027,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_065",
+    "forcedAbilities": [
+      "DPS_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1709,9 +3074,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_066",
+    "forcedAbilities": [
+      "TANK_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1735,9 +3121,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_067",
+    "forcedAbilities": [
+      "TANK_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1761,9 +3168,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_068",
+    "forcedAbilities": [
+      "DPS_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1787,9 +3215,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_069",
+    "forcedAbilities": [
+      "SUP_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1813,9 +3262,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_support_070",
+    "forcedAbilities": [
+      "SUP_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1839,9 +3309,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_071",
+    "forcedAbilities": [
+      "SUP_CORE_04"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_04"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1865,9 +3356,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_072",
+    "forcedAbilities": [
+      "DPS_CRIT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CRIT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1891,9 +3403,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_073",
+    "forcedAbilities": [
+      "TANK_HP_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_HP_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1917,9 +3450,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_074",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1943,9 +3497,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_dps_075",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1969,9 +3544,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_tank_076",
+    "forcedAbilities": [
+      "TANK_HP_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_HP_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -1995,9 +3591,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_077",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2021,9 +3638,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_078",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2047,9 +3685,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_support_079",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2073,9 +3732,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_080",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_ENERGY",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2099,9 +3779,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_support_081",
+    "forcedAbilities": [
+      "SUP_ULT_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_ULT_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 4,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2125,9 +3826,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_tank_082",
+    "forcedAbilities": [
+      "TANK_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2151,9 +3873,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_083",
+    "forcedAbilities": [
+      "DPS_CORE_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 3,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2177,9 +3920,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_tank_084",
+    "forcedAbilities": [
+      "TANK_CORE_02"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_02"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2203,9 +3967,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_085",
+    "forcedAbilities": [
+      "SUP_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2229,9 +4014,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_086",
+    "forcedAbilities": [
+      "TANK_CORE_03"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_CORE_03"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2255,9 +4061,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_087",
+    "forcedAbilities": [
+      "DPS_CORE_05"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CORE_05"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2281,9 +4108,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_support_088",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2307,9 +4155,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_089",
+    "forcedAbilities": [
+      "TANK_AGGRO_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_AGGRO_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2333,9 +4202,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_dps_090",
+    "forcedAbilities": [
+      "DPS_CRIT_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_CRIT_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2359,9 +4249,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_dps_091",
+    "forcedAbilities": [
+      "DPS_ATK_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_ATK_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2385,9 +4296,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_dps_092",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2411,9 +4343,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_dark_tank_093",
+    "forcedAbilities": [
+      "TANK_DEF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_DEF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_DARK",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 2,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2437,9 +4390,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_light_support_094",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_LIGHT",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2463,9 +4437,30 @@
       "SK_tank_Active02",
       "SK_tank_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_tank_095",
+    "forcedAbilities": [
+      "TANK_AGGRO_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "TANK_AGGRO_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "TANK_A+TANK_B+TANK_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2489,9 +4484,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_096",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 1,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2515,9 +4531,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_water_support_097",
+    "forcedAbilities": [
+      "SUP_HEAL_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_HEAL_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WATER",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2541,9 +4578,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_support_098",
+    "forcedAbilities": [
+      "SUP_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2567,9 +4625,30 @@
       "SK_dps_Active02",
       "SK_dps_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_wind_dps_099",
+    "forcedAbilities": [
+      "DPS_SPD_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "DPS_SPD_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_WIND",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "DPS_A+DPS_B+DPS_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   },
@@ -2593,9 +4672,30 @@
       "SK_support_Active02",
       "SK_support_Active03"
     ],
-    "abilityPoolId": null,
-    "forcedAbilities": [],
-    "abilityWeights": {},
+    "abilityPoolId": "POOL_MC_fire_support_100",
+    "forcedAbilities": [
+      "SUP_BUFF_01"
+    ],
+    "abilityWeights": {
+      "class": {
+        "count": 1,
+        "forced": [
+          "SUP_BUFF_01"
+        ]
+      },
+      "race": {
+        "pool": "RACE_HYBRID",
+        "weight": 0.5
+      },
+      "element": {
+        "pool": "ELEM_FIRE",
+        "weight": 0.5
+      },
+      "random": {
+        "count": 0,
+        "pool": "SUP_A+SUP_B+SUP_C"
+      }
+    },
     "hasQualityUpgraded": false,
     "fusionCount": 0
   }

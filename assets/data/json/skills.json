@@ -14,6 +14,29 @@
     "duration": 3,
     "additionalEffects": [
       "damageReduction:0.10"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.1
+      }
     ]
   },
   {
@@ -31,6 +54,38 @@
     "duration": 2,
     "additionalEffects": [
       "atkDebuff:0.08:allEnemy"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.1,
+        "unlockEffect": {
+          "type": "bleed",
+          "value": 0.05,
+          "duration": 2
+        }
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1,
+        "effectBoost": {
+          "type": "bleed",
+          "valueBonus": 0.05
+        }
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -49,6 +104,32 @@
     "additionalEffects": [
       "stun:1",
       "splashDamage:0.50"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.25,
+        "targetBoost": "allEnemies"
+      }
     ]
   },
   {
@@ -68,6 +149,29 @@
       "defBoost:0.40",
       "taunt:allEnemy",
       "counter:0.15:0.60"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -86,6 +190,29 @@
     "additionalEffects": [
       "spdDebuff:0.20:allEnemy",
       "groundBonus:0.15"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -104,6 +231,29 @@
     "additionalEffects": [
       "lifesteal:0.30",
       "bonusDamageVsLost:0.20"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -122,6 +272,29 @@
     "additionalEffects": [
       "hpBoost:0.20",
       "lowHpDR:0.15:0.30"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -139,6 +312,29 @@
     "duration": 0,
     "additionalEffects": [
       "counterChance:0.20"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -157,6 +353,29 @@
     "additionalEffects": [
       "teamHeal:0.05",
       "teamDefBoost:0.05"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -174,6 +393,29 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.25"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.1
+      }
     ]
   },
   {
@@ -191,6 +433,38 @@
     "duration": 3,
     "additionalEffects": [
       "poison:3:0.15"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.1,
+        "unlockEffect": {
+          "type": "weakness",
+          "value": 0.1,
+          "duration": 2
+        }
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1,
+        "effectBoost": {
+          "type": "weakness",
+          "valueBonus": 0.05
+        }
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -209,6 +483,32 @@
     "additionalEffects": [
       "critBoost:0.50",
       "critDmgBoost:0.30"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.25,
+        "targetBoost": "allEnemies"
+      }
     ]
   },
   {
@@ -226,6 +526,29 @@
     "duration": 2,
     "additionalEffects": [
       "burnChance:0.30:2:0.10"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -244,6 +567,29 @@
     "additionalEffects": [
       "executeBonus:0.40:0.40",
       "executeCrit"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -262,6 +608,29 @@
     "additionalEffects": [
       "chainCount:4",
       "chainDecay:0.10"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -281,6 +650,29 @@
       "critBoost:0.15",
       "critDmgBoost:0.25",
       "lowHpCritBoost:0.10:0.50"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -300,6 +692,29 @@
       "killAtkBoost:0.08:5",
       "killSpdBoost:0.05:5",
       "maxStackExtraTurn"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -317,6 +732,29 @@
     "duration": 0,
     "additionalEffects": [
       "trueDmgChance:0.10:0.05:2.0"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -336,6 +774,29 @@
       "healPercent:0.25",
       "hot:2:0.08",
       "cleanse:1"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.1
+      }
     ]
   },
   {
@@ -355,6 +816,38 @@
       "atkBoost:0.25",
       "critBoost:0.15",
       "damageReduction:0.10"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.1,
+        "unlockEffect": {
+          "type": "blind",
+          "value": 0.1,
+          "duration": 1
+        }
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1,
+        "effectBoost": {
+          "type": "blind",
+          "valueBonus": 0.05
+        }
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -374,6 +867,32 @@
       "teamHeal:0.12",
       "teamHot:3:0.05",
       "teamSpdBoost:0.10"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.15
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.15,
+        "cooldownReduce": 1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.25,
+        "targetBoost": "allEnemies"
+      }
     ]
   },
   {
@@ -393,6 +912,29 @@
       "atkDebuff:0.15:allEnemy",
       "spdDebuff:0.12:allEnemy",
       "failChance:0.20"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -411,6 +953,29 @@
     "additionalEffects": [
       "emergencyHeal:0.40:0.30",
       "undying:2"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -428,6 +993,29 @@
     "duration": 0,
     "additionalEffects": [
       "damageToHeal:0.50"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -446,6 +1034,29 @@
     "additionalEffects": [
       "healBoost:0.20",
       "healToAtk:0.15"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -464,6 +1075,29 @@
     "additionalEffects": [
       "teamDodgeBoost:0.08",
       "lethalShield:0.25:0.20:1"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -482,6 +1116,29 @@
     "additionalEffects": [
       "autoCleanse:1",
       "debuffReduce:1"
+    ],
+    "maxLevel": 6,
+    "levelUpBonus": [
+      {
+        "level": 2,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 3,
+        "multiplierBonus": 0.05
+      },
+      {
+        "level": 4,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 5,
+        "multiplierBonus": 0.1
+      },
+      {
+        "level": 6,
+        "multiplierBonus": 0.15
+      }
     ]
   },
   {
@@ -499,7 +1156,9 @@
     "duration": 0,
     "additionalEffects": [
       "splashDamage:0.80"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B002",
@@ -517,7 +1176,9 @@
     "additionalEffects": [
       "atkBoost:0.30",
       "maxHpDmg:0.05"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B003",
@@ -534,7 +1195,9 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.25:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B004",
@@ -551,7 +1214,9 @@
     "duration": 2,
     "additionalEffects": [
       "atkDebuff:0.20:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B005",
@@ -568,7 +1233,9 @@
     "duration": 0,
     "additionalEffects": [
       "multiHit:3:0.80"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B006",
@@ -585,7 +1252,9 @@
     "duration": 1,
     "additionalEffects": [
       "bind:allEnemy:1"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B007",
@@ -602,7 +1271,9 @@
     "duration": 0,
     "additionalEffects": [
       "hpDrain:0.10"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B008",
@@ -619,7 +1290,9 @@
     "duration": 3,
     "additionalEffects": [
       "poison:3:0.04:maxHp"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B009",
@@ -636,7 +1309,9 @@
     "duration": 0,
     "additionalEffects": [
       "teamLifesteal:0.40"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B010",
@@ -653,7 +1328,9 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.30"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B011",
@@ -671,7 +1348,9 @@
     "additionalEffects": [
       "shieldPercent:0.25",
       "shieldBreakDmg:1.0"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B012",
@@ -688,7 +1367,9 @@
     "duration": 2,
     "additionalEffects": [
       "defDebuff:0.20:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B013",
@@ -706,7 +1387,9 @@
     "additionalEffects": [
       "armorPen:0.40",
       "sureHit"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B014",
@@ -724,7 +1407,9 @@
     "additionalEffects": [
       "teamAtkBoost:0.25",
       "teamCritBoost:0.20"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B015",
@@ -741,7 +1426,9 @@
     "duration": 2,
     "additionalEffects": [
       "burnChance:0.25:2"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B016",
@@ -758,7 +1445,9 @@
     "duration": 0,
     "additionalEffects": [
       "illusionBonus:0.50"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B017",
@@ -775,7 +1464,9 @@
     "duration": 2,
     "additionalEffects": [
       "hitDebuff:0.30:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B018",
@@ -794,7 +1485,9 @@
       "healPercent:0.20",
       "cleanseAll",
       "damageReduction:0.10"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B019",
@@ -812,7 +1505,9 @@
     "additionalEffects": [
       "multiHit:4:0.375",
       "stunChance:0.15:1"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B020",
@@ -829,7 +1524,9 @@
     "duration": 0,
     "additionalEffects": [
       "stunBonus:0.60"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B021",
@@ -847,7 +1544,9 @@
     "additionalEffects": [
       "selfStun:1",
       "selfDefBoost:0.50"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B022",
@@ -864,7 +1563,9 @@
     "duration": 0,
     "additionalEffects": [
       "teamCleanseAll"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B023",
@@ -882,7 +1583,9 @@
     "additionalEffects": [
       "teamShield:0.20",
       "ccImmune:3"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B024",
@@ -899,7 +1602,9 @@
     "duration": 0,
     "additionalEffects": [
       "buffBonus:0.15"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B025",
@@ -916,7 +1621,9 @@
     "duration": 3,
     "additionalEffects": [
       "radiationDot:3:0.03:maxHp"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B026",
@@ -933,7 +1640,9 @@
     "duration": 0,
     "additionalEffects": [
       "stealBuff:1:0.10"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B027",
@@ -951,7 +1660,9 @@
     "additionalEffects": [
       "randomTeleport:2",
       "spdDebuff:0.30:2"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B028",
@@ -968,7 +1679,9 @@
     "duration": 0,
     "additionalEffects": [
       "pierceSplash:1.5"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B029",
@@ -985,7 +1698,9 @@
     "duration": 3,
     "additionalEffects": [
       "defDebuff:0.30:allEnemy:3"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_B030",
@@ -1004,7 +1719,9 @@
       "healPercent:0.15",
       "cooldownReset",
       "omegaStack:0.10:3"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L001",
@@ -1021,7 +1738,9 @@
     "duration": 2,
     "additionalEffects": [
       "burn:2:0.05"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L002",
@@ -1039,7 +1758,9 @@
     "additionalEffects": [
       "sureHit",
       "targetLowestHp"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L003",
@@ -1056,7 +1777,9 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.20"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L004",
@@ -1074,7 +1797,9 @@
     "additionalEffects": [
       "defBoost:0.50",
       "taunt:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L005",
@@ -1091,7 +1816,9 @@
     "duration": 2,
     "additionalEffects": [
       "hitDebuff:0.20:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L006",
@@ -1108,7 +1835,9 @@
     "duration": 3,
     "additionalEffects": [
       "defDebuff:0.25:3"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L007",
@@ -1125,7 +1854,9 @@
     "duration": 2,
     "additionalEffects": [
       "defDebuffChance:0.30:0.15:2"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L008",
@@ -1142,7 +1873,9 @@
     "duration": 2,
     "additionalEffects": [
       "vulnUp:0.15:allEnemy:2"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L009",
@@ -1159,7 +1892,9 @@
     "duration": 0,
     "additionalEffects": [
       "ccBonus:0.40"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L010",
@@ -1176,7 +1911,9 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.20:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L011",
@@ -1193,7 +1930,9 @@
     "duration": 3,
     "additionalEffects": [
       "erosion:3:0.08"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L012",
@@ -1211,7 +1950,9 @@
     "additionalEffects": [
       "healPercent:0.20",
       "aoeOnHeal:0.80"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L013",
@@ -1228,7 +1969,9 @@
     "duration": 0,
     "additionalEffects": [
       "stunChance:0.20:1"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L014",
@@ -1247,7 +1990,9 @@
       "atkBoost:0.30",
       "spdBoost:0.20",
       "bonusAttack:1.0"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L015",
@@ -1264,7 +2009,9 @@
     "duration": 2,
     "additionalEffects": [
       "critDebuff:0.25:allEnemy"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L016",
@@ -1281,7 +2028,9 @@
     "duration": 1,
     "additionalEffects": [
       "dodgeReset:1"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L017",
@@ -1298,7 +2047,9 @@
     "duration": 3,
     "additionalEffects": [
       "radiationDot:3:0.02:maxHp"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L018",
@@ -1316,7 +2067,9 @@
     "additionalEffects": [
       "shieldPercent:0.30",
       "defBoost:0.30"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L019",
@@ -1333,7 +2086,9 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.40:2"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   },
   {
     "skillId": "SK_E_L020",
@@ -1350,6 +2105,8 @@
     "duration": 1,
     "additionalEffects": [
       "selfDebuff:def:0.30:1"
-    ]
+    ],
+    "maxLevel": 1,
+    "levelUpBonus": []
   }
 ]

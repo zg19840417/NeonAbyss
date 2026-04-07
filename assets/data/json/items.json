@@ -907,5 +907,976 @@
     "obtainMethods": [
       "shop"
     ]
+  },
+  {
+    "itemId": "TITLE_EXP_002",
+    "name": "废弃城区探索者",
+    "nameEn": "Wasteland Explorer-R",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索废弃城区全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_002"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_003",
+    "name": "荒野公路探索者",
+    "nameEn": "Wasteland Explorer-R2",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索荒野公路全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_004",
+    "name": "污染森林探索者",
+    "nameEn": "Forest Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索污染森林全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_004"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_005",
+    "name": "干涸河床探索者",
+    "nameEn": "Riverbed Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索干涸河床全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_005"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_006",
+    "name": "军事前哨探索者",
+    "nameEn": "Outpost Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索军事前哨全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_006"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_007",
+    "name": "沙漠绿洲探索者",
+    "nameEn": "Oasis Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索沙漠绿洲全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_007"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_008",
+    "name": "军事基地探索者",
+    "nameEn": "Base Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索军事基地全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_008"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_009",
+    "name": "地下设施探索者",
+    "nameEn": "Underground Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索地下设施全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_009"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_010",
+    "name": "辐射荒原探索者",
+    "nameEn": "Radiation Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索辐射荒原全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_010"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_011",
+    "name": "核心禁区探索者",
+    "nameEn": "Core Explorer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索核心禁区全部关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_011"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_012",
+    "name": "废土开拓者",
+    "nameEn": "Wasteland Pioneer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "探索全部10张地图的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_012"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_014",
+    "name": "禁区征服者",
+    "nameEn": "Zone Conqueror",
+    "type": "consumable",
+    "subType": "title",
+    "description": "通关全部10个Boss的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_014"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_EXP_015_LE",
+    "name": "星舰继承者",
+    "nameEn": "Starship Heir",
+    "type": "consumable",
+    "subType": "title",
+    "description": "收集全部10个星舰零件的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_EXP_015_LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_CMB_002",
+    "name": "百战勇士",
+    "nameEn": "Centurion",
+    "type": "consumable",
+    "subType": "title",
+    "description": "累计战斗胜利100场的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_CMB_002"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_CMB_003",
+    "name": "千胜将军",
+    "nameEn": "Millennium Commander",
+    "type": "consumable",
+    "subType": "title",
+    "description": "累计战斗胜利1000场的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_CMB_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_CMB_005",
+    "name": "以弱胜强",
+    "nameEn": "Underdog Victor",
+    "type": "consumable",
+    "subType": "title",
+    "description": "以低于推荐战力通关关卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_CMB_005"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_CMB_008",
+    "name": "Boss猎人",
+    "nameEn": "Boss Hunter",
+    "type": "consumable",
+    "subType": "title",
+    "description": "击败10个不同Boss的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_CMB_008"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_CMB_010",
+    "name": "闪电战",
+    "nameEn": "Lightning War",
+    "type": "consumable",
+    "subType": "title",
+    "description": "3回合内结束战斗的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_CMB_010"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_COL_003",
+    "name": "收藏家",
+    "nameEn": "Collector",
+    "type": "consumable",
+    "subType": "title",
+    "description": "收集50张不同融合姬卡的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_COL_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_COL_004_LE",
+    "name": "全图鉴收集者",
+    "nameEn": "Complete Collector",
+    "type": "consumable",
+    "subType": "title",
+    "description": "收集全部100张融合姬卡的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_COL_004_LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_COL_006",
+    "name": "五系齐聚",
+    "nameEn": "Five Races United",
+    "type": "consumable",
+    "subType": "title",
+    "description": "同时拥有5种种族融合姬的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_COL_006"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_COL_007",
+    "name": "五素齐聚",
+    "nameEn": "Five Elements United",
+    "type": "consumable",
+    "subType": "title",
+    "description": "同时拥有5种元素融合姬的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_COL_007"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_GRW_003",
+    "name": "精英培养师",
+    "nameEn": "Elite Trainer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "将任意融合姬培养至满级的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_GRW_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_GRW_004",
+    "name": "满级导师",
+    "nameEn": "Max Level Mentor",
+    "type": "consumable",
+    "subType": "title",
+    "description": "拥有5张满级融合姬的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_GRW_004"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_GRW_009_LE",
+    "name": "造物主",
+    "nameEn": "Creator",
+    "type": "consumable",
+    "subType": "title",
+    "description": "完成一次主副卡融合品质提升的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_GRW_009_LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SOC_001",
+    "name": "废土幸存者",
+    "nameEn": "Wasteland Survivor",
+    "type": "consumable",
+    "subType": "title",
+    "description": "声望达到10级的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SOC_001"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SOC_002",
+    "name": "废土探索者",
+    "nameEn": "Wasteland Pathfinder",
+    "type": "consumable",
+    "subType": "title",
+    "description": "声望达到30级的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SOC_002"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SOC_003",
+    "name": "废土先锋",
+    "nameEn": "Wasteland Vanguard",
+    "type": "consumable",
+    "subType": "title",
+    "description": "声望达到50级的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SOC_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SOC_004",
+    "name": "废土传奇",
+    "nameEn": "Wasteland Legend",
+    "type": "consumable",
+    "subType": "title",
+    "description": "声望达到75级的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SOC_004"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SOC_005_LE",
+    "name": "废土至高者",
+    "nameEn": "Wasteland Supreme",
+    "type": "consumable",
+    "subType": "title",
+    "description": "声望达到99级的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SOC_005_LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_001",
+    "name": "觉醒之人",
+    "nameEn": "The Awakened",
+    "type": "consumable",
+    "subType": "title",
+    "description": "完成新手引导的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_001"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_002",
+    "name": "真相追寻者",
+    "nameEn": "Truth Seeker",
+    "type": "consumable",
+    "subType": "title",
+    "description": "触发10个隐藏剧情事件的证明",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_002"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_003",
+    "name": "方舟发现者",
+    "nameEn": "Ark Discoverer",
+    "type": "consumable",
+    "subType": "title",
+    "description": "发现方舟核心的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_003"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_004_LE",
+    "name": "终焉终结者",
+    "nameEn": "Omega Terminator",
+    "type": "consumable",
+    "subType": "title",
+    "description": "通关终焉之地的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_004_LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_005",
+    "name": "星舰继承者",
+    "nameEn": "Starship Inheritor",
+    "type": "consumable",
+    "subType": "title",
+    "description": "收集全部星舰零件的证明，SSR级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_005"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "TITLE_SPC_006",
+    "name": "废土传说",
+    "nameEn": "Wasteland Myth",
+    "type": "consumable",
+    "subType": "title",
+    "description": "完成全部成就的证明，LE级称号",
+    "effect": {
+      "type": "title",
+      "titleId": "TITLE_SPC_006"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_EXP_012",
+    "name": "废土开拓者框",
+    "nameEn": "Pioneer Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "探索全部地图获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_EXP_012",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_EXP_014",
+    "name": "禁区征服者框",
+    "nameEn": "Conqueror Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "通关全部Boss获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_EXP_014",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_CMB_003",
+    "name": "千胜将军框",
+    "nameEn": "Commander Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "千胜成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_CMB_003",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_CMB_008",
+    "name": "Boss猎人框",
+    "nameEn": "Hunter Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "Boss猎人成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_CMB_008",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_COL_004",
+    "name": "全图鉴收集者框",
+    "nameEn": "Collector Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "全图鉴成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_COL_004",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_COL_009",
+    "name": "SSR品质收集框",
+    "nameEn": "SSR Collection Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "收集全部SSR卡获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_COL_009",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_COL_010",
+    "name": "UR品质收集框",
+    "nameEn": "UR Collection Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "收集全部UR卡获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_COL_010",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_GRW_004",
+    "name": "满级导师框",
+    "nameEn": "Mentor Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "满级导师成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_GRW_004",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_GRW_007",
+    "name": "异化诞生框",
+    "nameEn": "Mutation Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "异化诞生成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_GRW_007",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SOC_003",
+    "name": "废土先锋框",
+    "nameEn": "Vanguard Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "声望50级获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SOC_003",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SOC_004",
+    "name": "废土传奇框",
+    "nameEn": "Legend Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "声望75级获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SOC_004",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SOC_005",
+    "name": "废土至高者框",
+    "nameEn": "Supreme Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "声望99级获得的LE级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SOC_005",
+      "quality": "LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SPC_003",
+    "name": "方舟发现者框",
+    "nameEn": "Ark Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "方舟发现成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SPC_003",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SPC_004",
+    "name": "终焉终结者框",
+    "nameEn": "Omega Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "终焉通关获得的LE级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SPC_004",
+      "quality": "LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SPC_005",
+    "name": "星舰启航框",
+    "nameEn": "Starship Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "星舰启航成就获得的SSR级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SPC_005",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_SPC_006",
+    "name": "废土传说框",
+    "nameEn": "Myth Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "全成就完成获得的LE级头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_SPC_006",
+      "quality": "LE"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "FRAME_WEEKLY_ALL",
+    "name": "周常全勤框",
+    "nameEn": "Weekly Perfect Frame",
+    "type": "consumable",
+    "subType": "avatarFrame",
+    "description": "完成全部每周任务获得的专属头像框",
+    "effect": {
+      "type": "avatarFrame",
+      "frameId": "FRAME_WEEKLY_ALL",
+      "quality": "SR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "weeklyQuest"
+    ]
   }
 ]

@@ -1,0 +1,82 @@
+[
+  {
+    "fusionId": "FUSION_001",
+    "abilityA": "TANK_A_01",
+    "abilityB": "TANK_C_01",
+    "resultAbility": "TANK_HIDDEN_01",
+    "probability": 0.3,
+    "description": "厚甲与再生融合，产生不灭甲：永久减少8%伤害并每回合回复3%最大生命值"
+  },
+  {
+    "fusionId": "FUSION_002",
+    "abilityA": "DPS_A_01",
+    "abilityB": "DPS_B_01",
+    "resultAbility": "DPS_HIDDEN_01",
+    "probability": 0.3,
+    "description": "暴击强化与穿甲融合，产生暴击穿透：暴击时无视目标20%减伤"
+  },
+  {
+    "fusionId": "FUSION_003",
+    "abilityA": "SUP_A_01",
+    "abilityB": "SUP_B_01",
+    "resultAbility": "SUP_HIDDEN_01",
+    "probability": 0.3,
+    "description": "持续恢复与攻击鼓舞融合，产生战歌：治疗队友时为其提升8%攻击力持续3回合"
+  },
+  {
+    "fusionId": "FUSION_004",
+    "abilityA": "TANK_B_01",
+    "abilityB": "TANK_CORE_01",
+    "resultAbility": "TANK_HIDDEN_02",
+    "probability": 0.2,
+    "description": "挑衅与守护之盾融合，产生钢铁意志：嘲讽状态下替队友承伤时30%概率反弹伤害"
+  },
+  {
+    "fusionId": "FUSION_005",
+    "abilityA": "DPS_A_03",
+    "abilityB": "DPS_C_01",
+    "resultAbility": "DPS_HIDDEN_02",
+    "probability": 0.2,
+    "description": "暴击伤害与快速打击融合，产生暴风连击：暴击时50%概率追加一次普攻"
+  },
+  {
+    "fusionId": "FUSION_006",
+    "abilityA": "SUP_C_01",
+    "abilityB": "SUP_C_02",
+    "resultAbility": "SUP_HIDDEN_02",
+    "probability": 0.25,
+    "description": "弱化与虚弱融合，产生压制：攻击时同时降低目标10%攻击力和10%速度持续2回合"
+  },
+  {
+    "fusionId": "FUSION_007",
+    "abilityA": "RACE_PLANT_02",
+    "abilityB": "TANK_A_03",
+    "resultAbility": "TANK_HIDDEN_03",
+    "probability": 0.2,
+    "description": "扎根与钢铁意志融合，产生铁根之体：每损失10%生命值获得3%减伤"
+  },
+  {
+    "fusionId": "FUSION_008",
+    "abilityA": "RACE_ANIMAL_02",
+    "abilityB": "DPS_CORE_03",
+    "resultAbility": "DPS_HIDDEN_03",
+    "probability": 0.2,
+    "description": "狩猎本能与处决融合，产生猎杀本能：对生命低于50%的敌人伤害提升30%且暴击率提升15%"
+  },
+  {
+    "fusionId": "FUSION_009",
+    "abilityA": "ELEM_FIRE_01",
+    "abilityB": "DPS_ATK_01",
+    "resultAbility": "DPS_HIDDEN_04",
+    "probability": 0.25,
+    "description": "燃烧意志与攻击强化融合，产生烈焰之心：永久提升10%攻击力"
+  },
+  {
+    "fusionId": "FUSION_010",
+    "abilityA": "ELEM_WATER_02",
+    "abilityB": "SUP_HEAL_01",
+    "resultAbility": "SUP_HIDDEN_03",
+    "probability": 0.25,
+    "description": "净化之水与治愈之心融合，产生净化治愈：每回合为生命最低队友回复15%攻击力生命并清除1个debuff"
+  }
+]
