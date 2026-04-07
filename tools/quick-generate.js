@@ -117,7 +117,7 @@ function buildTurboWorkflow(config, options) {
   const workflow = {
     "1": {
       "inputs": {
-        "ckpt_name": "sd_xl_turbo_1.0_fp8_fix.safetensors"
+        "ckpt_name": options.model || "Qwen-Rapid-AIO-NSFW-v18.safetensors"
       },
       "class_type": "CheckpointLoaderSimple"
     },
@@ -145,15 +145,16 @@ function buildTurboWorkflow(config, options) {
     },
     "5": {
       "inputs": {
-        "add_noise": "fixed",
-        "noise_seed": Math.floor(Math.random() * 9999999999),
+        "model": ["1", 0],
+        "seed": Math.floor(Math.random() * 9999999999),
         "steps": options.steps || defaults.steps,
         "cfg": options.cfg || defaults.cfg,
         "sampler_name": options.sampler || defaults.sampler_name,
         "scheduler": defaults.scheduler,
         "positive": ["3", 0],
         "negative": ["4", 0],
-        "latent_image": ["2", 0]
+        "latent_image": ["2", 0],
+        "denoise": 1.0
       },
       "class_type": "KSampler"
     },
