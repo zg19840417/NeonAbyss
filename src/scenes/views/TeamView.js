@@ -1,17 +1,32 @@
-import { t } from '../../game/data/Lang.js';
-import Const from '../../game/data/Const.js';
+﻿import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
-import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+import CardRenderer from '../../game/utils/CardRenderer.js';
+import { getMainRole, RoleType } from '../../game/data/CharacterClass.js';
 
-// [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
-const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
+const RARITY_TO_QUALITY = {
+  common: 'N',
+  rare: 'R',
+  epic: 'SR',
+  legendary: 'SSR'
+};
 
-// [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
 const PORTRAIT_KEY_MAP = {};
 
-/**
- * [PORTRAIT FIX] 从 card.portrait 路径中提取 Phaser 纹理 key
- */
+const ROLE_STYLE = {
+  [RoleType.TANK]: { label: 'T', color: 0x4dabf7 },
+  [RoleType.DPS]: { label: 'D', color: 0xff922b },
+  [RoleType.SUPPORT]: { label: 'S', color: 0x20c997 },
+  [RoleType.HEALER]: { label: 'H', color: 0xff6bcb }
+};
+
+const ELEMENT_STYLE = {
+  water: { label: 'W', color: 0x3d8bfd, emoji: '💧' },
+  fire: { label: 'F', color: 0xff6b6b, emoji: '🔥' },
+  wind: { label: 'A', color: 0x51cf66, emoji: '🍃' },
+  light: { label: 'L', color: 0xf7b801, emoji: '✨' },
+  dark: { label: 'D', color: 0x845ef7, emoji: '🌑' }
+};
+
 function extractPortraitKey(portraitPath) {
   if (!portraitPath) return null;
   const fileName = portraitPath.split('/').pop().replace('.png', '');
@@ -22,154 +37,615 @@ export default class TeamView {
   constructor(scene) {
     this.scene = scene;
     this.elements = [];
+    this.overlayElements = [];
+    this.scrollHandlers = null;
+    this.scrollState = null;
+    this.contentContainer = null;
+    this.maskGraphics = null;
+    this.collectionTop = 0;
+    this.collectionBottom = 0;
+    this.collectionViewportHeight = 0;
   }
 
   show() {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
+    const contentTop = 100;
+    const contentBottom = height - Const.UI.NAV_HEIGHT - 8;
 
-    const title = this.addText(width / 2, 90, '卡组管理', {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    });
-    title.setDepth(100);
-
-    this.renderDeployedSection(width);
-    this.renderOwnedSection(width);
-
-    const hint = this.addText(width / 2, height - 100, '点击卡片进入培养模式', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.INACTIVE
-    });
-    hint.setDepth(100);
+    this.renderFormation(width, contentTop);
+    this.renderCollectionChrome(width, contentBottom);
+    this.renderCollectionList(width);
   }
 
-  renderDeployedSection(width) {
-    this.addText(width / 2, 130, '─ 已上阵 ─', {
+  renderFormation(width, contentTop) {
+    this.addText(width / 2, contentTop + 10, '上阵阵容', {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.CYAN
+      color: Const.TEXT_COLORS.CYAN,
+      fontStyle: 'bold'
     });
 
     const deployedMinions = this.scene.minionCardManager.getDeployedCards?.() || [];
-    const equippedCard = this.scene.chipCardManager?.equippedCard;
-    const deployedCards = [];
+    const cardY = contentTop + 115;
+    const spacing = 92;
+    const cardXs = [width / 2 - spacing, width / 2, width / 2 + spacing];
 
-    if (equippedCard) {
-      deployedCards.push({ ...equippedCard, cardType: 'chip' });
+    for (let index = 0; index < 3; index++) {
+      const card = deployedMinions[index];
+      if (card) {
+        this.renderDeployedMinionCard(cardXs[index], cardY, card);
+      } else {
+        this.renderEmptySlot(cardXs[index], cardY, `空位 ${index + 1}`);
+      }
     }
-    deployedCards.push(...deployedMinions.map(m => ({ ...m, cardType: 'minion' })));
 
-    this.addText(width / 2, 155, `(${deployedCards.length}/4) 随从3+芯片1`, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
+    this.renderChipAura(width / 2, contentTop + 250, width - 30);
+  }
+
+  renderDeployedMinionCard(x, y, card) {
+    const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
+    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+      x,
+      y,
+      quality,
+      name: card.name,
+      star: card.star,
+      hp: card.maxHp,
+      atk: card.atk,
+      element: card.element || 'water',
+      portraitKey: extractPortraitKey(card.portrait),
+      scale: 0.5,
+      interactive: false
     });
+    cardContainer.setDepth(Const.DEPTH.CONTENT + 1);
+    this.elements.push(cardContainer);
+    CardRenderer.addInteraction(this.scene, cardContainer, () => this.showCardDetail(card, true));
 
-    if (deployedCards.length === 0) {
-      this.addText(width / 2, 195, '暂无上阵卡牌', {
-        fontSize: Const.FONT.SIZE_SMALL,
+    const action = this.createActionButton(x, y + 74, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
+      this.toggleDeploy(card, true);
+    }, 50, 22);
+    action.setDepth(Const.DEPTH.CONTENT + 2);
+  }
+
+  renderEmptySlot(x, y, label) {
+    const width = 82;
+    const height = 126;
+    const container = this.scene.add.container(x, y);
+
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 0.45);
+    bg.lineStyle(1.5, Const.COLORS.BUTTON_SECONDARY, 0.7);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 14);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 14);
+    bg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.25);
+    bg.strokeRoundedRect(-width / 2 + 5, -height / 2 + 5, width - 10, height - 10, 10);
+    container.add(bg);
+
+    container.add(this.scene.add.text(0, -10, '+', {
+      fontSize: '28px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.INACTIVE
+    }).setOrigin(0.5));
+
+    container.add(this.scene.add.text(0, 20, label, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.INACTIVE
+    }).setOrigin(0.5));
+
+    container.setDepth(Const.DEPTH.CONTENT + 1);
+    this.elements.push(container);
+  }
+
+  renderChipAura(x, y, width) {
+    const chip = this.scene.chipCardManager?.equippedCard;
+
+    const frame = this.scene.add.container(x, y);
+    frame.setDepth(Const.DEPTH.CONTENT + 1);
+
+    if (chip) {
+      const aura = this.createChipAuraBanner(x, y, width, chip, true);
+      CardRenderer.animateEntry(this.scene, aura, 120);
+    } else {
+      const bg = this.scene.add.graphics();
+      bg.fillStyle(Const.COLORS.BG_MID, 0.7);
+      bg.lineStyle(1.5, Const.COLORS.BUTTON_SECONDARY, 0.7);
+      bg.fillRoundedRect(-width / 2, -36, width, 72, 18);
+      bg.strokeRoundedRect(-width / 2, -36, width, 72, 18);
+      bg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.25);
+      bg.strokeRoundedRect(-width / 2 + 8, -28, width - 16, 56, 14);
+      frame.add(bg);
+
+      frame.add(this.scene.add.text(0, -6, '未装配芯片核心', {
+        fontSize: '14px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
+        color: Const.TEXT_COLORS.SECONDARY
+      }).setOrigin(0.5));
+
+      frame.add(this.scene.add.text(0, 16, '装备后可为整队提供光环加成', {
+        fontSize: '11px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
-      });
-    } else {
-      deployedCards.forEach((card, index) => {
-        this.createCard(width / 2, 185 + index * 75, card, true);
-      });
+      }).setOrigin(0.5));
+
+      this.elements.push(frame);
     }
   }
 
-  renderOwnedSection(width) {
-    this.addText(width / 2, 400, '─ 我的卡牌 ─', {
+  renderCollectionChrome(width, contentBottom) {
+    const headerY = 352;
+    const left = 16;
+    const right = width - 16;
+
+    const title = this.scene.add.text(left, headerY, '未上阵卡库', {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
       color: Const.TEXT_COLORS.CYAN
-    });
+    }).setOrigin(0, 0.5);
+    title.setDepth(Const.DEPTH.CONTENT + 2);
+    this.elements.push(title);
 
-    const ownedMinions = this.scene.minionCardManager.getAvailableCards?.() || [];
+    const tag = this.scene.add.graphics();
+    tag.fillStyle(Const.COLORS.BG_MID, 0.92);
+    tag.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.7);
+    tag.fillRoundedRect(right - 82, headerY - 12, 82, 24, 12);
+    tag.strokeRoundedRect(right - 82, headerY - 12, 82, 24, 12);
+    tag.setDepth(Const.DEPTH.CONTENT + 2);
+    this.elements.push(tag);
+
+    const count = (this.scene.minionCardManager.getAvailableCards?.() || []).length;
+    const countText = this.scene.add.text(right - 41, headerY, `${count} 张待命`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0.5);
+    countText.setDepth(Const.DEPTH.CONTENT + 3);
+    this.elements.push(countText);
+
+    this.collectionTop = 376;
+    this.collectionBottom = contentBottom;
+    this.collectionViewportHeight = this.collectionBottom - this.collectionTop;
+
+    this.maskGraphics = this.scene.add.graphics();
+    this.maskGraphics.fillStyle(0xffffff, 1);
+    this.maskGraphics.fillRect(0, this.collectionTop, width, this.collectionViewportHeight);
+    this.maskGraphics.setVisible(false);
+    this.elements.push(this.maskGraphics);
+
+    this.contentContainer = this.scene.add.container(0, this.collectionTop);
+    this.contentContainer.setDepth(Const.DEPTH.CONTENT + 1);
+    this.contentContainer.setMask(this.maskGraphics.createGeometryMask());
+    this.elements.push(this.contentContainer);
+  }
+
+  renderCollectionList(width) {
+    const availableMinions = this.scene.minionCardManager.getAvailableCards?.() || [];
     const allChips = this.scene.chipCardManager?.getAllCards?.() || [];
     const equippedId = this.scene.chipCardManager?.equippedCard?.id;
-    const availableChips = allChips.filter(e => e.id !== equippedId);
-    const allOwned = [
-      ...ownedMinions.map(m => ({ ...m, cardType: 'minion' })),
-      ...availableChips.map(e => ({ ...e, cardType: 'chip' }))
-    ];
+    const reserveChips = allChips.filter(card => card.id !== equippedId);
+    let y = 0;
 
-    if (allOwned.length === 0) {
-      this.addText(width / 2, 440, '暂无卡牌', {
+    if (availableMinions.length === 0) {
+      this.contentContainer.add(this.scene.add.text(width / 2, 24, '暂无待命随从', {
         fontSize: Const.FONT.SIZE_SMALL,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
-      });
+      }).setOrigin(0.5));
+      y += 52;
     } else {
-      const maxDisplay = Math.min(allOwned.length, 4);
-      for (let i = 0; i < maxDisplay; i++) {
-        this.createCard(width / 2, 425 + i * 75, allOwned[i], false);
-      }
-      if (allOwned.length > 4) {
-        this.addText(width / 2, 425 + 4 * 75 + 5, `还有 ${allOwned.length - 4} 张...`, {
-          fontSize: Const.FONT.SIZE_TINY,
-          fontFamily: Const.FONT.FAMILY_CN,
-          color: Const.TEXT_COLORS.INACTIVE
-        });
-      }
+      availableMinions.forEach((card) => {
+        const row = this.createCompactMinionRow(width / 2, y + 38, width - 30, card);
+        CardRenderer.animateEntry(this.scene, row, 0);
+        y += 86;
+      });
     }
+
+    if (reserveChips.length > 0) {
+      const sectionTitle = this.scene.add.text(16, y + 10, '备用芯片', {
+        fontSize: '13px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
+        color: Const.TEXT_COLORS.PINK
+      }).setOrigin(0, 0.5);
+      this.contentContainer.add(sectionTitle);
+      y += 40;
+
+      reserveChips.forEach((chip) => {
+        const row = this.createCompactChipRow(width / 2, y + 30, width - 30, chip);
+        CardRenderer.animateEntry(this.scene, row, 60);
+        y += 68;
+      });
+    }
+
+    this.setupScroll(Math.max(y + 20, this.collectionViewportHeight));
   }
 
-  createCard(x, y, card, isDeployed) {
-    // [CardRenderer UPGRADE] 区分随从卡和芯片卡，使用不同的 CardRenderer 方法
-    const isMinion = card.cardType === 'minion';
-    let cardContainer;
+  createCompactMinionRow(x, y, width, card) {
+    const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
+    const color = this.getQualityColorInt(quality);
+    const role = getMainRole(card.charClass) || RoleType.DPS;
+    const roleStyle = ROLE_STYLE[role] || ROLE_STYLE[RoleType.DPS];
+    const elementStyle = ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water;
+    const row = this.scene.add.container(x, y);
+    const rowWidth = width;
+    const rowHeight = 76;
 
-    if (isMinion) {
-      const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
-      cardContainer = CardRenderer.createMinionCard(this.scene, {
-        x, y, quality,
-        name: card.name,
-        star: card.star,
-        hp: card.maxHp,
-        atk: card.atk,
-        element: card.element || 'water',
-        scale: 0.55,
-        interactive: false,
-        portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
-      });
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 0.92);
+    bg.lineStyle(1.5, color, 0.75);
+    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    bg.lineStyle(1, color, 0.18);
+    bg.strokeRoundedRect(-rowWidth / 2 + 6, -rowHeight / 2 + 6, rowWidth - 12, rowHeight - 12, 10);
+    row.add(bg);
+
+    const portraitFrame = this.scene.add.graphics();
+    portraitFrame.fillStyle(0x111122, 1);
+    portraitFrame.lineStyle(1.5, color, 0.85);
+    portraitFrame.fillRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
+    portraitFrame.strokeRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
+    row.add(portraitFrame);
+
+    const portraitKey = extractPortraitKey(card.portrait);
+    if (portraitKey && this.scene.textures.exists(portraitKey)) {
+      const portrait = this.scene.add.image(-rowWidth / 2 + 38, 0, portraitKey);
+      portrait.setDisplaySize(48, 48);
+      row.add(portrait);
     } else {
-      cardContainer = CardRenderer.createChipCard(this.scene, {
-        x, y,
-        quality: card.quality || 'N',
-        name: card.name,
-        star: card.star,
-        description: this.getChipStats(card),
-        scale: 0.7,
-        interactive: false
-      });
+      row.add(this.scene.add.text(-rowWidth / 2 + 38, 0, elementStyle.emoji || '•', {
+        fontSize: '26px'
+      }).setOrigin(0.5));
     }
 
-    // [CardRenderer UPGRADE] 出场动画
-    CardRenderer.animateEntry(this.scene, cardContainer, 0);
+    const nameText = this.scene.add.text(-rowWidth / 2 + 78, -18, card.name, {
+      fontSize: '14px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5);
+    nameText.setWordWrapWidth(rowWidth - 180);
+    row.add(nameText);
 
-    // [CardRenderer UPGRADE] 使用 CardRenderer.addInteraction 替换原来的手动交互
-    CardRenderer.addInteraction(this.scene, cardContainer, (clickedCard) => {
-      this.showCardDetail(card, isMinion);
-    });
-
-    // [CardRenderer UPGRADE] 部署/卸下按钮（覆盖在卡片右侧）
-    const deployBtn = this.scene.add.text(x + 75, y, isDeployed ? '[-]' : '[+]', {
-      fontSize: Const.FONT.SIZE_NORMAL,
+    row.add(this.scene.add.text(rowWidth / 2 - 84, -18, `${quality}  Lv${card.level || 1}`, {
+      fontSize: '11px',
       fontFamily: Const.FONT.FAMILY_EN,
-      color: isDeployed ? Const.TEXT_COLORS.DANGER : Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5).setInteractive().setDepth(10);
-    deployBtn.on('pointerdown', (e) => {
-      e.stopPropagation();
-      this.toggleDeploy(card, isMinion);
-    });
-    this.elements.push(deployBtn);
+      fontStyle: 'bold',
+      color: this.getQualityColorText(quality)
+    }).setOrigin(0, 0.5));
 
-    this.elements.push(cardContainer);
+    row.add(this.createMiniBadge(-rowWidth / 2 + 88, 6, 20, 18, elementStyle.color, elementStyle.label));
+    row.add(this.createMiniBadge(-rowWidth / 2 + 114, 6, 20, 18, roleStyle.color, roleStyle.label));
+
+    row.add(this.scene.add.text(-rowWidth / 2 + 140, 6, `能力x${this.getAbilityCount(card)}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0, 0.5));
+
+    row.add(this.scene.add.text(-rowWidth / 2 + 78, 28, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5));
+
+    const button = this.createInlineButton(rowWidth / 2 - 42, 0, '上阵', () => {
+      this.toggleDeploy(card, true);
+    });
+    row.add(button);
+
+    row.setSize(rowWidth, rowHeight);
+    row.setInteractive(new Phaser.Geom.Rectangle(-rowWidth / 2, -rowHeight / 2, rowWidth - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
+    row.on('pointerdown', () => this.showCardDetail(card, true));
+    row.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, row, true));
+    row.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, row, false));
+
+    this.contentContainer.add(row);
+    return row;
+  }
+
+  createCompactChipRow(x, y, width, chip) {
+    const color = this.getQualityColorInt(chip.quality || 'N');
+    const row = this.scene.add.container(x, y);
+    const rowWidth = width;
+    const rowHeight = 60;
+
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 0.92);
+    bg.lineStyle(1.5, color, 0.75);
+    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    row.add(bg);
+
+    const coreBg = this.scene.add.graphics();
+    coreBg.fillStyle(color, 0.18);
+    coreBg.lineStyle(1, color, 0.9);
+    coreBg.fillRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 10);
+    coreBg.strokeRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 10);
+    row.add(coreBg);
+
+    row.add(this.scene.add.text(-rowWidth / 2 + 34, 0, 'CORE', {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(chip.quality || 'N')
+    }).setOrigin(0.5));
+
+    const title = this.scene.add.text(-rowWidth / 2 + 70, -10, chip.name, {
+      fontSize: '14px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5);
+    title.setWordWrapWidth(rowWidth - 180);
+    row.add(title);
+
+    row.add(this.scene.add.text(-rowWidth / 2 + 70, 12, this.getChipAuraText(chip), {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0, 0.5));
+
+    row.add(this.scene.add.text(rowWidth / 2 - 84, -10, `${chip.quality || 'N'} ${'★'.repeat(Math.min(chip.star || 1, 5))}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(chip.quality || 'N')
+    }).setOrigin(0, 0.5));
+
+    this.getChipSkillIcons(chip).forEach((icon, index) => {
+      row.add(this.createMiniBadge(rowWidth / 2 - 76 + index * 24, 12, 20, 18, color, icon));
+    });
+
+    const button = this.createInlineButton(rowWidth / 2 - 42, 0, '装备', () => {
+      this.toggleDeploy(chip, false);
+    });
+    row.add(button);
+
+    row.setSize(rowWidth, rowHeight);
+    row.setInteractive(new Phaser.Geom.Rectangle(-rowWidth / 2, -rowHeight / 2, rowWidth - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
+    row.on('pointerdown', () => this.showCardDetail(chip, false));
+    row.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, row, true));
+    row.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, row, false));
+
+    this.contentContainer.add(row);
+    return row;
+  }
+
+  createChipAuraBanner(x, y, width, chip, interactive = false) {
+    const quality = chip.quality || 'N';
+    const color = this.getQualityColorInt(quality);
+    const container = this.scene.add.container(x, y);
+    const height = 72;
+
+    const glow = this.scene.add.graphics();
+    glow.fillStyle(color, 0.18);
+    glow.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
+    glow.fillRoundedRect(-width / 2 + 14, -height / 2 - 10, 72, 20, 12);
+    glow.fillRoundedRect(width / 2 - 86, -height / 2 - 10, 72, 20, 12);
+    container.add(glow);
+
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 0.96);
+    bg.lineStyle(2, color, 0.85);
+    bg.fillRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 16);
+    bg.strokeRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 16);
+    bg.lineStyle(1, color, 0.25);
+    bg.strokeRoundedRect(-width / 2 + 10, -height / 2 + 10, width - 20, height - 20, 12);
+    container.add(bg);
+
+    const iconBg = this.scene.add.graphics();
+    iconBg.fillStyle(color, 0.18);
+    iconBg.lineStyle(1, color, 0.9);
+    iconBg.fillRoundedRect(-width / 2 + 14, -20, 54, 40, 12);
+    iconBg.strokeRoundedRect(-width / 2 + 14, -20, 54, 40, 12);
+    container.add(iconBg);
+
+    container.add(this.scene.add.text(-width / 2 + 41, 0, 'CORE', {
+      fontSize: '12px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(quality)
+    }).setOrigin(0.5));
+
+    const title = this.scene.add.text(-width / 2 + 80, -16, chip.name, {
+      fontSize: '14px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5);
+    title.setWordWrapWidth(width - 210);
+    container.add(title);
+
+    container.add(this.scene.add.text(width / 2 - 78, -16, `${quality} ${'★'.repeat(Math.min(chip.star || 1, 5))}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(quality)
+    }).setOrigin(0, 0.5));
+
+    const auraText = this.scene.add.text(-width / 2 + 80, 12, this.getChipAuraText(chip), {
+      fontSize: '13px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(quality)
+    }).setOrigin(0, 0.5);
+    auraText.setWordWrapWidth(width - 190);
+    container.add(auraText);
+
+    this.getChipSkillIcons(chip).forEach((icon, index) => {
+      container.add(this.createMiniBadge(width / 2 - 76 + index * 24, 18, 20, 18, color, icon));
+    });
+
+    const actionLabel = this.scene.chipCardManager?.equippedCard?.id === chip.id ? '卸下' : '装备';
+    const action = this.createInlineButton(width / 2 - 46, 0, actionLabel, () => {
+      this.toggleDeploy(chip, false);
+    }, 50, 24);
+    container.add(action);
+
+    if (interactive) {
+      container.setSize(width, height);
+      container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width - 70, height), Phaser.Geom.Rectangle.Contains);
+      container.on('pointerdown', () => this.showCardDetail(chip, false));
+      container.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, container, true));
+      container.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, container, false));
+    }
+
+    container.setDepth(Const.DEPTH.CONTENT + 1);
+    this.elements.push(container);
+    return container;
+  }
+
+  createMiniBadge(x, y, width, height, color, label) {
+    const container = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(color, 0.18);
+    bg.lineStyle(1, color, 0.9);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 6);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 6);
+    container.add(bg);
+
+    container.add(this.scene.add.text(0, 0, label, {
+      fontSize: '10px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5));
+
+    return container;
+  }
+
+  createInlineButton(x, y, label, callback, width = 48, height = 22) {
+    const button = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
+    bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    button.add(bg);
+
+    button.add(this.scene.add.text(0, 0, label, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0.5));
+
+    button.setSize(width, height);
+    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+    button.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+      callback();
+    });
+    button.on('pointerover', () => {
+      bg.clear();
+      bg.fillStyle(Const.COLORS.BUTTON_CYAN, 1);
+      bg.lineStyle(1, Const.COLORS.BUTTON_HOVER, 1);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    });
+    button.on('pointerout', () => {
+      bg.clear();
+      bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
+      bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    });
+
+    return button;
+  }
+
+  createActionButton(x, y, label, color, callback, width = 52, height = 24) {
+    const button = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(color, 1);
+    bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.65);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    button.add(bg);
+
+    button.add(this.scene.add.text(0, 0, label, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.PRIMARY,
+      fontStyle: 'bold'
+    }).setOrigin(0.5));
+
+    button.setSize(width, height);
+    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+    button.on('pointerdown', () => callback());
+    button.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
+    button.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
+    this.elements.push(button);
+    return button;
+  }
+
+  setupScroll(contentHeight) {
+    this.clearScroll();
+
+    const maxScroll = Math.max(0, contentHeight - this.collectionViewportHeight);
+    this.scrollState = {
+      currentY: 0,
+      maxScroll,
+      isDragging: false,
+      lastPointerY: 0
+    };
+
+    if (maxScroll <= 0) {
+      return;
+    }
+
+    this.scrollHandlers = {
+      onPointerDown: (pointer) => {
+        if (pointer.y >= this.collectionTop && pointer.y <= this.collectionBottom) {
+          this.scrollState.isDragging = true;
+          this.scrollState.lastPointerY = pointer.y;
+        }
+      },
+      onPointerMove: (pointer) => {
+        if (!this.scrollState?.isDragging) return;
+        const deltaY = pointer.y - this.scrollState.lastPointerY;
+        this.scrollState.lastPointerY = pointer.y;
+        this.scrollState.currentY = Phaser.Math.Clamp(
+          this.scrollState.currentY + deltaY,
+          -this.scrollState.maxScroll,
+          0
+        );
+        this.contentContainer.y = this.collectionTop + this.scrollState.currentY;
+      },
+      onPointerUp: () => {
+        if (this.scrollState) {
+          this.scrollState.isDragging = false;
+        }
+      },
+      onWheel: (pointer, gameObjects, deltaX, deltaY) => {
+        if (!this.scrollState) return;
+        if (pointer.y < this.collectionTop || pointer.y > this.collectionBottom) return;
+        this.scrollState.currentY = Phaser.Math.Clamp(
+          this.scrollState.currentY - deltaY * 0.35,
+          -this.scrollState.maxScroll,
+          0
+        );
+        this.contentContainer.y = this.collectionTop + this.scrollState.currentY;
+      }
+    };
+
+    this.scene.input.on('pointerdown', this.scrollHandlers.onPointerDown);
+    this.scene.input.on('pointermove', this.scrollHandlers.onPointerMove);
+    this.scene.input.on('pointerup', this.scrollHandlers.onPointerUp);
+    this.scene.input.on('wheel', this.scrollHandlers.onWheel);
+  }
+
+  clearScroll() {
+    if (!this.scrollHandlers) return;
+    this.scene.input.off('pointerdown', this.scrollHandlers.onPointerDown);
+    this.scene.input.off('pointermove', this.scrollHandlers.onPointerMove);
+    this.scene.input.off('pointerup', this.scrollHandlers.onPointerUp);
+    this.scene.input.off('wheel', this.scrollHandlers.onWheel);
+    this.scrollHandlers = null;
+    this.scrollState = null;
   }
 
   toggleDeploy(card, isMinion) {
@@ -179,16 +655,16 @@ export default class TeamView {
       } else {
         const result = this.scene.minionCardManager.deployCard(card.id);
         if (!result.success && result.reason === 'max_deploy_reached') {
-          this.scene.showToast?.('随从上阵位置已满！');
+          this.scene.showToast?.('随从上阵位已满');
+          return;
         }
       }
+    } else if (this.scene.chipCardManager.equippedCard?.id === card.id) {
+      this.scene.chipCardManager.unequipCard();
     } else {
-      if (this.scene.chipCardManager.equippedCard?.id === card.id) {
-        this.scene.chipCardManager.unequipCard();
-      } else {
-        this.scene.chipCardManager.equipCard(card.id);
-      }
+      this.scene.chipCardManager.equipCard(card.id);
     }
+
     this.scene.saveGameData();
     this.refresh();
   }
@@ -196,16 +672,16 @@ export default class TeamView {
   showCardDetail(card, isMinion) {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
-    this.destroy();
 
     const overlay = this.scene.add.graphics();
     overlay.fillStyle(Const.COLORS.BG_DARK, Const.ALPHA.OVERLAY);
     overlay.fillRect(0, 0, width, height);
-    overlay.setDepth(999);
+    overlay.setDepth(Const.DEPTH.MODAL_OVERLAY);
     overlay.setAlpha(0);
     overlay.setInteractive();
     overlay.on('pointerdown', () => this.closeCardDetail());
-    this.elements.push(overlay);
+    this.overlayElements.push(overlay);
+
     this.scene.tweens.add({
       targets: overlay,
       alpha: 1,
@@ -214,180 +690,174 @@ export default class TeamView {
     });
 
     const modal = this.scene.add.container(width / 2, height / 2);
-    modal.setDepth(1000);
+    modal.setDepth(Const.DEPTH.MODAL_CONTENT);
     modal.setScale(0.5);
     modal.setAlpha(0);
-    const qualityConfig = isMinion
-      ? this.getMinionQualityConfig(card.rarity)
-      : this.getChipQualityConfig(card.quality);
 
     const bg = this.scene.add.graphics();
+    const accentColor = isMinion ? this.getQualityColorInt(RARITY_TO_QUALITY[card.rarity] || 'N') : this.getQualityColorInt(card.quality || 'N');
     bg.fillStyle(Const.COLORS.BG_MID, 1);
-    bg.fillRoundedRect(-140, -200, 280, 400, Const.UI.CARD_RADIUS);
+    bg.lineStyle(2, accentColor, 0.8);
+    bg.fillRoundedRect(-148, -220, 296, 440, Const.UI.CARD_RADIUS);
+    bg.strokeRoundedRect(-148, -220, 296, 440, Const.UI.CARD_RADIUS);
     modal.add(bg);
 
-    const closeBtn = this.scene.add.text(125, -185, '✕', {
-      fontSize: '20px',
+    const closeBtn = this.scene.add.text(128, -198, 'X', {
+      fontSize: '18px',
+      fontFamily: Const.FONT.FAMILY_EN,
       color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-    closeBtn.setDepth(1002);
-    closeBtn.setInteractive({ useHandCursor: true });
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
     closeBtn.on('pointerdown', () => this.closeCardDetail());
-    closeBtn.on('pointerover', () => AnimationHelper.tweenPulse(this.scene, closeBtn, 1.2));
-    closeBtn.on('pointerout', () => closeBtn.setScale(1));
     modal.add(closeBtn);
 
-    // [CardRenderer UPGRADE] 详情弹窗中使用 CardRenderer 渲染卡片
     if (isMinion) {
-      const detailQuality = RARITY_TO_QUALITY[card.rarity] || 'N';
-      const detailCard = CardRenderer.createMinionCard(this.scene, {
-        x: 0, y: -120,
-        quality: detailQuality,
-        name: card.name,
-        star: card.star,
-        hp: card.maxHp,
-        atk: card.atk,
-        element: card.element || 'water',
-        scale: 0.8,
-        interactive: false,
-        portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
-      });
-      modal.add(detailCard);
+      const portraitFrameY = -40;
+      const portraitWidth = 244;
+      const portraitHeight = 276;
+      const portraitBg = this.scene.add.graphics();
+      portraitBg.fillStyle(0xe9edf6, 0.98);
+      portraitBg.lineStyle(1.5, accentColor, 0.5);
+      portraitBg.fillRoundedRect(-122, portraitFrameY - portraitHeight / 2, portraitWidth, portraitHeight, 18);
+      portraitBg.strokeRoundedRect(-122, portraitFrameY - portraitHeight / 2, portraitWidth, portraitHeight, 18);
+      modal.add(portraitBg);
+
+      const portraitKey = extractPortraitKey(card.portrait);
+      if (portraitKey && this.scene.textures.exists(portraitKey)) {
+        const frame = this.scene.textures.getFrame(portraitKey, '__BASE');
+        const image = this.scene.add.image(0, portraitFrameY, portraitKey);
+        const fitScale = Math.min(
+          portraitWidth / (frame?.width || portraitWidth),
+          portraitHeight / (frame?.height || portraitHeight)
+        );
+        image.setScale(fitScale);
+        modal.add(image);
+      } else {
+        modal.add(this.scene.add.text(0, portraitFrameY, (ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji, {
+          fontSize: '72px'
+        }).setOrigin(0.5));
+      }
+
+      const infoPanel = this.scene.add.graphics();
+      infoPanel.fillStyle(0x0b0f18, 0.96);
+      infoPanel.lineStyle(1.5, accentColor, 0.65);
+      infoPanel.fillRoundedRect(-122, 108, 244, 88, 16);
+      infoPanel.strokeRoundedRect(-122, 108, 244, 88, 16);
+      modal.add(infoPanel);
+
+      modal.add(this.scene.add.text(-108, 128, card.name, {
+        fontSize: '16px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
+        color: this.getQualityColorText(RARITY_TO_QUALITY[card.rarity] || 'N')
+      }).setOrigin(0, 0.5));
+
+      modal.add(this.scene.add.text(108, 128, '★'.repeat(Math.min(card.star || 1, 5)), {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_EN,
+        fontStyle: 'bold',
+        color: '#ffd166'
+      }).setOrigin(1, 0.5));
+
+      modal.add(this.scene.add.text(-108, 154, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_EN,
+        color: Const.TEXT_COLORS.PRIMARY
+      }).setOrigin(0, 0.5));
+
+      modal.add(this.scene.add.text(-108, 178, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji} ${card.element || 'water'}   Lv${card.level || 1}   能力x${this.getAbilityCount(card)}`, {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.SECONDARY
+      }).setOrigin(0, 0.5));
     } else {
       const detailCard = CardRenderer.createChipCard(this.scene, {
-        x: 0, y: -120,
+        x: 0,
+        y: -108,
         quality: card.quality || 'N',
         name: card.name,
         star: card.star,
-        description: this.getChipStats(card),
-        scale: 1.0,
+        description: this.getChipAuraText(card),
+        scale: 1,
         interactive: false
       });
       modal.add(detailCard);
     }
 
-    const typeLabel = this.scene.add.text(0, -35, isMinion ? '随从卡' : '芯片卡', {
+    modal.add(this.scene.add.text(0, isMinion ? 80 : 34, isMinion ? '立绘详情' : '芯片详情', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isMinion ? '#ff6b6b' : '#4dabf7'
-    }).setOrigin(0.5);
-    modal.add(typeLabel);
+    }).setOrigin(0.5));
 
-    // [CardRenderer UPGRADE] 名称和星级已由 CardRenderer 在卡片中渲染，此处不再重复显示
-    let y = -15;
-
+    let cursorY = isMinion ? 226 : 62;
     if (isMinion) {
-      const stats = [
-        `生命: ${card.maxHp}`,
-        `攻击: ${card.atk}`,
-        `暴击: ${((card.critRate || 0.1) * 100).toFixed(0)}%`,
-        `闪避: ${((card.dodgeRate || 0.05) * 100).toFixed(0)}%`
+      const rows = [
+        `等级: ${card.level || 1}`,
+        `生命: ${card.maxHp || 0}`,
+        `攻击: ${card.atk || 0}`,
+        `速度: ${this.getSpeedValue(card)}`,
+        `能力数: ${this.getAbilityCount(card)}`
       ];
-      stats.forEach(stat => {
-        const statText = this.scene.add.text(-100, y, stat, {
-          fontSize: Const.FONT.SIZE_TINY,
+      rows.forEach((text) => {
+        modal.add(this.scene.add.text(-108, cursorY, text, {
+          fontSize: '11px',
           fontFamily: Const.FONT.FAMILY_CN,
           color: Const.TEXT_COLORS.SECONDARY
-        }).setOrigin(0, 0.5);
-        modal.add(statText);
-        y += 22;
+        }).setOrigin(0, 0.5));
+        cursorY += 18;
       });
-
       if (card.passiveSkill) {
-        const passiveText = this.scene.add.text(-100, y + 5, `被动: ${card.passiveSkill.icon} ${card.passiveSkill.name}`, {
-          fontSize: Const.FONT.SIZE_TINY,
+        modal.add(this.scene.add.text(-108, cursorY + 4, `被动: ${card.passiveSkill.icon || ''} ${card.passiveSkill.name || ''}`, {
+          fontSize: '11px',
           fontFamily: Const.FONT.FAMILY_CN,
-          color: '#27ae60'
-        }).setOrigin(0, 0.5);
-        modal.add(passiveText);
-        y += 25;
+          color: Const.TEXT_COLORS.SUCCESS
+        }).setOrigin(0, 0.5));
       }
     } else {
-      const equipStats = this.scene.add.text(-100, y, this.getChipStats(card), {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.CYAN
-      }).setOrigin(0, 0.5);
-      modal.add(equipStats);
-      y += 25;
+      modal.add(this.scene.add.text(-108, cursorY, this.getChipAuraText(card), {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_EN,
+        color: this.getQualityColorText(card.quality || 'N')
+      }).setOrigin(0, 0.5));
+      cursorY += 28;
 
-      if (card.skills && card.skills.length > 0) {
-        card.skills.forEach(skill => {
-          const skillText = this.scene.add.text(-100, y, `技能: ${skill.name}`, {
-            fontSize: Const.FONT.SIZE_TINY,
-            fontFamily: Const.FONT.FAMILY_CN,
-            color: '#9b59b6'
-          }).setOrigin(0, 0.5);
-          modal.add(skillText);
-          y += 20;
-        });
-      }
+      this.getChipSkillList(card).forEach((skill) => {
+        modal.add(this.scene.add.text(-108, cursorY, `${skill.icon || '•'} ${skill.name || '技能'}`, {
+          fontSize: '12px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.SECONDARY
+        }).setOrigin(0, 0.5));
+        cursorY += 22;
+      });
     }
 
-    const btnY = 150;
-
-    if (card.star < 5) {
-      const upgradeBtn = this.scene.add.container(0, btnY);
-      upgradeBtn.setDepth(1002);
-      const btnBg = this.scene.add.graphics();
-      btnBg.fillStyle(Const.COLORS.PURPLE, 1);
-      btnBg.fillRoundedRect(-50, -14, 100, 28, Const.UI.BUTTON_RADIUS);
-      upgradeBtn.add(btnBg);
-      const upgradeText = this.scene.add.text(0, 0, '升星', {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: Const.TEXT_COLORS.PRIMARY
-      }).setOrigin(0.5);
-      upgradeBtn.add(upgradeText);
-      upgradeBtn.setSize(100, 28);
-      upgradeBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 100, 28), Phaser.Geom.Rectangle.Contains);
-      upgradeBtn.on('pointerdown', () => this.upgradeCard(card, isMinion));
+    if ((isMinion && (card.star || 1) < 5) || (!isMinion && card.canUpgradeStar?.())) {
+      const upgradeBtn = this.createActionButton(0, isMinion ? 198 : 176, '升星', Const.COLORS.PURPLE, () => {
+        this.upgradeCard(card, isMinion);
+      }, 88, 28);
+      upgradeBtn.setDepth(Const.DEPTH.MODAL_UI);
       modal.add(upgradeBtn);
-      this.elements.push(upgradeBtn);
-
-      upgradeBtn.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, upgradeBtn, true));
-      upgradeBtn.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, upgradeBtn, false));
     }
 
-    this.elements.push(modal);
+    this.overlayElements.push(modal);
 
     this.scene.tweens.add({
       targets: modal,
       scaleX: 1,
       scaleY: 1,
       alpha: 1,
-      duration: 300,
+      duration: 260,
       ease: 'Back.easeOut'
     });
   }
 
   closeCardDetail() {
-    const modal = this.elements.find(el => el.type === 'Container' && el.scaleX !== 1);
-    const overlay = this.elements.find(el => el.type === 'Graphics' && el.depth === 999);
-
-    if (overlay) {
-      this.scene.tweens.add({
-        targets: overlay,
-        alpha: 0,
-        duration: 150,
-        ease: 'Power2'
-      });
-    }
-
-    if (modal) {
-      this.scene.tweens.add({
-        targets: modal,
-        scaleX: 0.5,
-        scaleY: 0.5,
-        alpha: 0,
-        duration: 200,
-        ease: 'Back.easeIn',
-        onComplete: () => this.refresh()
-      });
-    } else {
-      this.refresh();
-    }
+    this.overlayElements.forEach((el) => {
+      if (el && el.destroy) {
+        el.destroy();
+      }
+    });
+    this.overlayElements = [];
   }
 
   upgradeCard(card, isMinion) {
@@ -395,57 +865,70 @@ export default class TeamView {
     if (isMinion) {
       result = this.scene.minionCardManager.starUpgrade(card.id);
     } else {
-      result = this.scene.chipCardManager.upgradeStar(card.id);
+      result = this.scene.chipCardManager.upgradeStar(card.id, window.gameData?.starStones || Number.MAX_SAFE_INTEGER);
     }
 
     if (result.success) {
-      this.scene.showToast?.(`升星成功！现在是${result.newStar}★`);
+      this.scene.showToast?.(`升星成功，当前 ${result.newStar} 星`);
       this.scene.saveGameData();
+      this.closeCardDetail();
       this.refresh();
+    } else if (result.reason === 'not_enough_stones' || result.reason === 'insufficient_star_stones') {
+      this.scene.showToast?.('升星材料不足');
     } else {
-      if (result.reason === 'not_enough_stones') {
-        this.scene.showToast?.('升星石不足！');
-      } else {
-        this.scene.showToast?.('升星失败！');
-      }
+      this.scene.showToast?.('升星失败');
     }
   }
 
-  getMinionQualityConfig(quality) {
-    return this.getQualityConfig(quality);
-  }
-
-  getChipQualityConfig(quality) {
-    // [U05 FIX] 对齐 CHIP_QUALITY 6级品质体系，补充 UR 和 LE
-    const configs = {
-      N: { name: '普通', color: '#888888', textColor: '#888888', icon: '🔧' },
-      R: { name: '稀有', color: '#4a90d9', textColor: '#4a90d9', icon: '⚔️' },
-      SR: { name: '精良', color: '#9b59b6', textColor: '#9b59b6', icon: '🗡️' },
-      SSR: { name: '史诗', color: '#f39c12', textColor: '#f39c12', icon: '🔥' },
-      UR: { name: '传说', color: '#e74c3c', textColor: '#e74c3c', icon: '💎' },
-      LE: { name: '神话', color: '#ff4444', textColor: '#ff4444', icon: '👑' }
-    };
-    return configs[quality] || configs.N;
-  }
-
-  getQualityConfig(quality) {
-    const configs = {
-      common: { name: '普通', color: '#8a7a6a', textColor: '#8a7a6a' },
-      rare: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7' },
-      epic: { name: '史诗', color: '#9775fa', textColor: '#9775fa' },
-      legendary: { name: '传说', color: '#ffd700', textColor: '#ffd700' },
-      mythic: { name: '神话', color: '#ff00ff', textColor: '#ff00ff' }
-    };
-    return configs[quality] || configs.common;
-  }
-
-  getChipStats(card) {
-    const stats = [];
+  getChipAuraText(card) {
     const effective = card.getEffectiveStats?.() || {};
-    if (effective.atk > 0) stats.push(`ATK+${effective.atk}`);
-    if (effective.hp > 0) stats.push(`HP+${effective.hp}`);
-    if (effective.critRate > 0) stats.push(`CRIT+${(effective.critRate * 100).toFixed(0)}%`);
-    return stats.join(' | ') || '无加成';
+    if (effective.atkPercent > 0) return `ATK +${effective.atkPercent}%`;
+    if (effective.hpPercent > 0) return `HP +${effective.hpPercent}%`;
+    return 'Aura +0%';
+  }
+
+  getChipSkillList(card) {
+    if (typeof card.getUnlockedSkills === 'function') {
+      return card.getUnlockedSkills() || [];
+    }
+    return card.skills || [];
+  }
+
+  getChipSkillIcons(card) {
+    return this.getChipSkillList(card).slice(0, 3).map((skill, index) => {
+      if (skill.icon) return skill.icon;
+      return `S${index + 1}`;
+    });
+  }
+
+  getSpeedValue(card) {
+    if (card.spd != null) return card.spd;
+    if (card.baseSpd != null) return card.baseSpd;
+    if (card.speed != null) return card.speed;
+    return '--';
+  }
+
+  getAbilityCount(card) {
+    if (Array.isArray(card.abilities)) return card.abilities.length;
+    if (Array.isArray(card.forcedAbilities)) return card.forcedAbilities.length;
+    if (Array.isArray(card.skillIds)) return card.skillIds.length;
+    if (card.passiveSkill) return 1;
+    return 0;
+  }
+
+  getQualityColorInt(quality) {
+    return {
+      N: 0x888888,
+      R: 0x4a90d9,
+      SR: 0x9b59b6,
+      SSR: 0xf39c12,
+      UR: 0xff4444,
+      LE: 0xff00ff
+    }[quality] || 0x888888;
+  }
+
+  getQualityColorText(quality) {
+    return (Const.CHIP_QUALITY[quality] || Const.CHIP_QUALITY.N).textColor;
   }
 
   refresh() {
@@ -455,14 +938,19 @@ export default class TeamView {
 
   addText(x, y, text, options = {}) {
     const textObj = this.scene.add.text(x, y, text, options).setOrigin(0.5);
+    textObj.setDepth(Const.DEPTH.CONTENT + 2);
     this.elements.push(textObj);
     return textObj;
   }
 
   destroy() {
-    this.elements.forEach(el => {
+    this.clearScroll();
+    this.closeCardDetail();
+    this.elements.forEach((el) => {
       if (el && el.destroy) el.destroy();
     });
     this.elements = [];
+    this.contentContainer = null;
+    this.maskGraphics = null;
   }
 }

@@ -1,4 +1,4 @@
-import Const from '../game/data/Const.js';
+﻿import Const from '../game/data/Const.js';
 import initConfigData from '../../assets/data/json/initConfig.json';
 
 export default class PreloadScene extends Phaser.Scene {
@@ -73,7 +73,7 @@ export default class PreloadScene extends Phaser.Scene {
       fontFamily: 'Noto Sans SC'
     }).setOrigin(0.5);
 
-    // 加载卡框图片资源
+    // 加载卡框资源
     const qualities = ['N', 'R', 'SR', 'SSR', 'UR', 'LE'];
     qualities.forEach(q => {
       this.load.image(`card-frame-${q}`, `assets/images/ui/card-frame-${q}.jpg`);
@@ -127,7 +127,7 @@ export default class PreloadScene extends Phaser.Scene {
       this.load.image(name, `assets/images/characters/fusion/${name}.png`);
     });
 
-    // 加载Boss立绘（boss 目录）
+    // 加载 Boss 立绘（boss 目录）
     const bossPortraits = [
       { key: 'B001', path: 'assets/images/characters/boss/B001.png' },
       { key: 'B002', path: 'assets/images/characters/boss/B002.png' },
@@ -158,7 +158,7 @@ export default class PreloadScene extends Phaser.Scene {
 
     this.load.on('loaderror', (file) => {
       console.warn('Load error (non-fatal):', file.key);
-      tipText.setText('部分资源加载失败，继续中...');
+      tipText.setText('閮ㄥ垎璧勬簮鍔犺浇澶辫触锛岀户缁腑...');
     });
 
     this.initializeGameData();
@@ -180,9 +180,9 @@ export default class PreloadScene extends Phaser.Scene {
         facilities: null,
         characters: [],
         team: [
-          { id: 1, name: '艾伦', maxHp: 100, hp: 100, atk: 20, level: 1 },
-          { id: 2, name: '莉莉', maxHp: 80, hp: 80, atk: 25, level: 1 },
-          { id: 3, name: '杰克', maxHp: 120, hp: 120, atk: 18, level: 1 }
+          { id: 1, name: '鑹句鸡', maxHp: 100, hp: 100, atk: 20, level: 1 },
+          { id: 2, name: '鑾夎帀', maxHp: 80, hp: 80, atk: 25, level: 1 },
+          { id: 3, name: '鏉板厠', maxHp: 120, hp: 120, atk: 18, level: 1 }
         ],
         availableRecruits: []
       };
@@ -231,7 +231,12 @@ export default class PreloadScene extends Phaser.Scene {
       const saved = localStorage.getItem('wasteland_year_save');
       if (saved) {
         const parsed = JSON.parse(saved);
-        
+
+        window.gameData = {
+          ...window.gameData,
+          ...parsed
+        };
+
         if (parsed.base) {
           window.gameData.base = parsed.base;
         }
@@ -244,11 +249,20 @@ export default class PreloadScene extends Phaser.Scene {
         if (parsed.achievements) {
           window.gameData.achievements = parsed.achievements;
         }
-        
+        if (parsed.minionCardManager) {
+          window.gameData.minionCardManager = parsed.minionCardManager;
+        }
+        if (parsed.chipCardManager) {
+          window.gameData.chipCardManager = parsed.chipCardManager;
+        }
+        if (parsed.reputation) {
+          window.gameData.reputation = parsed.reputation;
+        }
+
         console.log('存档已恢复');
       }
     } catch (e) {
-      console.warn('存档加载失败，使用默认数据:', e);
+      console.warn('存档加载失败，使用默认数据', e);
     }
   }
 

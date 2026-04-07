@@ -1,4 +1,4 @@
-import BaseSystem from '../game/systems/BaseSystem.js';
+﻿import BaseSystem from '../game/systems/BaseSystem.js';
 import Lang, { t, getLanguage, setLanguage } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
 import ChipView from './views/ChipView.js';
@@ -54,6 +54,8 @@ export default class BaseScene extends Phaser.Scene {
     this.tabButtons = {};
     this.modalOpen = false;
     this._transitioning = false;
+    this._persistGameData = null;
+    this._persistOnVisibilityChange = null;
   }
 
   createCenteredHitArea(width, height) {
@@ -86,6 +88,7 @@ export default class BaseScene extends Phaser.Scene {
     this.setLanguage = setLanguage;
 
     this.initializeBaseSystem();
+    this.setupPersistenceGuards();
     this.createBackground(width, height);
     this.createHeader(width);
     this.createBottomNav(width, height);
@@ -116,7 +119,7 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
 
-    // 确保新货币字段存在（兼容旧存档）
+    // 纭繚鏂拌揣甯佸瓧娈靛瓨鍦紙鍏煎鏃у瓨妗ｏ級
     if (window.gameData.base.mycelium === undefined) {
       window.gameData.base.mycelium = initConfig.currencies.mycelium;
     }
@@ -130,7 +133,7 @@ export default class BaseScene extends Phaser.Scene {
     this.baseSystem = new BaseSystem(window.gameData.base);
     this.cleanCharacterData();
 
-    // 初始化 ChipCardManager（替代 EquipmentCardManager）
+    // 鍒濆鍖?ChipCardManager锛堟浛浠?EquipmentCardManager锛?
     if (!window.gameData.chipCardManager) {
       window.gameData.chipCardManager = {
         ownedCards: [],
@@ -141,13 +144,13 @@ export default class BaseScene extends Phaser.Scene {
     this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
     this.stageManager = new StageManager();
 
-    // 初始化 ReputationSystem
+    // 鍒濆鍖?ReputationSystem
     if (!window.gameData.reputation) {
       window.gameData.reputation = {};
     }
     this.reputationSystem = new ReputationSystem(window.gameData.reputation);
 
-    // 初始化 MinionCardManager
+    // 鍒濆鍖?MinionCardManager
     if (!window.gameData.minionCardManager) {
       window.gameData.minionCardManager = {
         ownedCards: [],
@@ -157,7 +160,7 @@ export default class BaseScene extends Phaser.Scene {
     }
     this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
 
-    // 清理旧版本存档中的 equipmentCardManager
+    // 娓呯悊鏃х増鏈瓨妗ｄ腑鐨?equipmentCardManager
     this.cleanLegacySaveData();
   }
 
@@ -178,23 +181,23 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   /**
-   * 清理旧版本存档数据
-   * 移除已废弃的 equipmentCardManager 相关数据
+   * 娓呯悊鏃х増鏈瓨妗ｆ暟鎹?
+   * 绉婚櫎宸插簾寮冪殑 equipmentCardManager 鐩稿叧鏁版嵁
    */
   cleanLegacySaveData() {
     let needsSave = false;
 
-    // 移除旧的 equipmentCardManager
+    // 绉婚櫎鏃х殑 equipmentCardManager
     if (window.gameData.equipmentCardManager) {
       delete window.gameData.equipmentCardManager;
       needsSave = true;
     }
 
-    // 移除旧的 localStorage 键
+    // 绉婚櫎鏃х殑 localStorage 閿?
     try {
       localStorage.removeItem('equipmentCardManager');
     } catch (e) {
-      // 忽略
+      // 蹇界暐
     }
 
     if (needsSave) {
@@ -291,24 +294,48 @@ export default class BaseScene extends Phaser.Scene {
       color: Const.TEXT_COLORS.PINK
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    // 三种货币显示：菌丝 / 源核 / 星币
-    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
+    // 涓夌璐у竵鏄剧ず锛氳弻涓?/ 婧愭牳 / 鏄熷竵
+    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '馃崉 鑿屼笣: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#51cf66'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
+    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '馃拵 婧愭牳: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#4dabf7'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `⭐ 星币: 0`, {
+    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `猸?鏄熷竵: 0`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
+  }
+
+  setupPersistenceGuards() {
+    if (!this._persistGameData) {
+      this._persistGameData = () => {
+        try {
+          this.saveGameData();
+        } catch (error) {
+          console.warn('Failed to persist save data before page exit:', error);
+        }
+      };
+    }
+
+    if (!this._persistOnVisibilityChange) {
+      this._persistOnVisibilityChange = () => {
+        if (document.visibilityState === 'hidden') {
+          this._persistGameData();
+        }
+      };
+    }
+
+    window.addEventListener('beforeunload', this._persistGameData);
+    window.addEventListener('pagehide', this._persistGameData);
+    document.addEventListener('visibilitychange', this._persistOnVisibilityChange);
   }
 
   createBottomNav(width, height) {
@@ -412,22 +439,22 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showView(key) {
-    // 如果正在过渡中，跳过
+    // 濡傛灉姝ｅ湪杩囨浮涓紝璺宠繃
     if (this._transitioning) return;
 
-    // 获取需要保留的元素
+    // 鑾峰彇闇€瑕佷繚鐣欑殑鍏冪礌
     const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
       if (tab.hitZone) preserved.push(tab.hitZone);
     });
 
-    // 收集需要淡出的内容元素
+    // 鏀堕泦闇€瑕佹贰鍑虹殑鍐呭鍏冪礌
     const contentElements = this.children.list.filter(child => {
       return !preserved.includes(child);
     });
 
-    // 如果有内容元素，先淡出再切换
+    // 濡傛灉鏈夊唴瀹瑰厓绱狅紝鍏堟贰鍑哄啀鍒囨崲
     if (contentElements.length > 0) {
       this._transitioning = true;
       this.tweens.add({
@@ -498,7 +525,7 @@ export default class BaseScene extends Phaser.Scene {
     card.lineStyle(2, Const.COLORS.PURPLE, 0.5);
     card.strokeRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 140, Const.LAYOUT.CARD_WIDTH, Const.LAYOUT.CARD_HEIGHT, Const.UI.CARD_RADIUS);
 
-    const bartenderIcon = this.add.text(width / 2, 190, '🍺', {
+    const bartenderIcon = this.add.text(width / 2, 190, '馃嵑', {
       fontSize: Const.FONT.SIZE_ICON_LARGE
     }).setOrigin(0.5);
 
@@ -569,7 +596,7 @@ export default class BaseScene extends Phaser.Scene {
       color: qualityColor
     }).setOrigin(0, 0.5);
 
-    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '未知') + ' Lv.' + character.level, {
+    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '鏈煡') + ' Lv.' + character.level, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
@@ -612,7 +639,7 @@ export default class BaseScene extends Phaser.Scene {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    const dungeonBanner = this.add.text(width / 2, 110, '禁区入口', {
+    const dungeonBanner = this.add.text(width / 2, 110, '绂佸尯鍏ュ彛', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -697,7 +724,7 @@ export default class BaseScene extends Phaser.Scene {
       color: qualityColor
     }).setOrigin(0, 0.5);
 
-    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '未知') + ' Lv.' + character.level, {
+    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '鏈煡') + ' Lv.' + character.level, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
@@ -732,42 +759,60 @@ export default class BaseScene extends Phaser.Scene {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    const settings = [
-      { label: t('se_volume'), value: Math.floor((window.gameData?.settings?.seVolume || 0.8) * 100) + '%' },
-      { label: t('bgm_volume'), value: Math.floor((window.gameData?.settings?.bgmVolume || 0.7) * 100) + '%' }
-    ];
+    this.add.text(width / 2, 138, '账号', {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.CYAN
+    }).setOrigin(0.5);
 
-    const startY = 130;
-    settings.forEach((setting, index) => {
-      const y = startY + index * 60;
+    const bindCard = this.add.container(width / 2, 210);
+    const bindBg = this.add.graphics();
+    bindBg.fillStyle(Const.COLORS.BG_MID, 0.95);
+    bindBg.fillRoundedRect(-140, -38, 280, 76, Const.UI.CARD_RADIUS);
+    bindBg.lineStyle(1.5, Const.COLORS.BUTTON_CYAN, 0.65);
+    bindBg.strokeRoundedRect(-140, -38, 280, 76, Const.UI.CARD_RADIUS);
+    bindCard.add(bindBg);
 
-      const card = this.add.graphics();
-      card.fillStyle(Const.COLORS.BG_MID, 0.9);
-      card.fillRoundedRect(width/2 - 120, y - 22, 240, 44, Const.UI.CARD_RADIUS_SMALL);
-      card.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.5);
-      card.strokeRoundedRect(width/2 - 120, y - 22, 240, 44, Const.UI.CARD_RADIUS_SMALL);
+    bindCard.add(this.add.text(-116, -10, '绑定账号', {
+      fontSize: Const.FONT.SIZE_NORMAL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5));
 
-      this.add.text(width/2 - 100, y, setting.label, {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.PRIMARY
-      }).setOrigin(0, 0.5);
+    bindCard.add(this.add.text(-116, 16, '功能预留，后续接入账号 SDK', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0, 0.5));
 
-      this.add.text(width/2 + 80, y, setting.value, {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_EN,
-        color: Const.TEXT_COLORS.CYAN
-      }).setOrigin(1, 0.5);
+    const bindBtn = this.add.container(92, 0);
+    const bindBtnBg = this.add.graphics();
+    bindBtnBg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
+    bindBtnBg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.9);
+    bindBtnBg.fillRoundedRect(-42, -16, 84, 32, Const.UI.BUTTON_RADIUS);
+    bindBtnBg.strokeRoundedRect(-42, -16, 84, 32, Const.UI.BUTTON_RADIUS);
+    bindBtn.add(bindBtnBg);
+    bindBtn.add(this.add.text(0, 0, '敬请期待', {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.CYAN
+    }).setOrigin(0.5));
+    bindBtn.setSize(84, 32);
+    bindBtn.setInteractive(this.createCenteredHitArea(84, 32), Phaser.Geom.Rectangle.Contains);
+    bindBtn.on('pointerdown', () => {
+      this.showToast('账号绑定功能暂未接入 SDK');
     });
+    bindCard.add(bindBtn);
 
-    this.add.text(width / 2, 280, t('danger_zone'), {
+    this.add.text(width / 2, 300, '危险操作', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.DANGER
     }).setOrigin(0.5);
 
-    const resetBtn = this.add.container(width / 2, 320);
-
+    const resetBtn = this.add.container(width / 2, 352);
     const resetGlow = this.add.graphics();
     resetGlow.fillStyle(Const.COLORS.MAGENTA, 0.15);
     resetGlow.fillRoundedRect(-75, -20, 150, 40, Const.UI.CARD_RADIUS_SMALL);
@@ -780,7 +825,7 @@ export default class BaseScene extends Phaser.Scene {
     resetBg.lineStyle(1, Const.COLORS.BUTTON_DANGER_BORDER, 0.8);
     resetBg.strokeRoundedRect(-70, -16, 140, 32, Const.UI.BUTTON_RADIUS);
 
-    const resetLabel = this.add.text(0, 0, t('reset_progress'), {
+    const resetLabel = this.add.text(0, 0, '重置账号', {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -790,54 +835,16 @@ export default class BaseScene extends Phaser.Scene {
     resetBtn.add([resetGlow, resetBg, resetLabel]);
     resetBtn.setSize(140, 32);
     resetBtn.setInteractive(this.createCenteredHitArea(140, 32), Phaser.Geom.Rectangle.Contains);
-
     resetBtn.on('pointerover', () => {
       this.tweens.add({ targets: resetGlow, alpha: 0.8, duration: 150 });
       resetLabel.setColor(Const.TEXT_COLORS.PRIMARY);
     });
-
     resetBtn.on('pointerout', () => {
       this.tweens.add({ targets: resetGlow, alpha: 0.5, duration: 150 });
       resetLabel.setColor(Const.TEXT_COLORS.DANGER);
     });
-
     resetBtn.on('pointerdown', () => {
-      this.showResetConfirm();
-    });
-
-    const langBtn = this.add.container(width / 2, 380);
-    const langBg = this.add.graphics();
-    const currentLang = getLanguage();
-    const langText = currentLang === 'zh_cn' ? '中文' : 'English';
-    langBg.fillStyle(Const.COLORS.BG_MID, 1);
-    langBg.fillRoundedRect(-60, -18, 120, 36, Const.UI.BUTTON_RADIUS);
-    langBg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.5);
-    langBg.strokeRoundedRect(-60, -18, 120, 36, Const.UI.BUTTON_RADIUS);
-    langBtn.add(langBg);
-    
-    const langLabel = this.add.text(0, 0, t('language') + ': ' + langText, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5);
-    langBtn.add(langLabel);
-    
-    langBtn.setSize(120, 36);
-    langBtn.setInteractive(this.createCenteredHitArea(120, 36), Phaser.Geom.Rectangle.Contains);
-    
-    langBtn.on('pointerover', () => {
-      this.tweens.add({ targets: langBg, alpha: 0.8, duration: 100 });
-    });
-    
-    langBtn.on('pointerout', () => {
-      this.tweens.add({ targets: langBg, alpha: 1, duration: 100 });
-    });
-    
-    langBtn.on('pointerdown', () => {
-      const newLang = getLanguage() === 'zh_cn' ? 'en_us' : 'zh_cn';
-      setLanguage(newLang);
-      this.saveGameData();
-      this.scene.restart();
+      this.showResetConfirm(1);
     });
 
     this.add.text(width / 2, height - 130, t('game_title_zh') + ' v1.0.0', {
@@ -847,7 +854,7 @@ export default class BaseScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  showResetConfirm() {
+  showResetConfirm(step = 1) {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
@@ -859,25 +866,37 @@ export default class BaseScene extends Phaser.Scene {
     const modal = this.add.graphics();
     modal.setDepth(1001);
     modal.fillStyle(Const.COLORS.BG_MID, 1);
-    modal.fillRoundedRect(width/2 - 130, height/2 - 80, 260, 160, Const.UI.CARD_RADIUS);
+    modal.fillRoundedRect(width / 2 - 130, height / 2 - 80, 260, 160, Const.UI.CARD_RADIUS);
     modal.lineStyle(2, Const.COLORS.BUTTON_DANGER_BORDER, 0.8);
-    modal.strokeRoundedRect(width/2 - 130, height/2 - 80, 260, 160, Const.UI.CARD_RADIUS);
+    modal.strokeRoundedRect(width / 2 - 130, height / 2 - 80, 260, 160, Const.UI.CARD_RADIUS);
 
-    const title = this.add.text(width/2, height/2 - 50, t('confirm_reset'), {
+    const title = this.add.text(width / 2, height / 2 - 50, step === 1 ? '确认重置账号' : '二次确认', {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
       color: Const.TEXT_COLORS.DANGER
     }).setOrigin(0.5).setDepth(1002);
 
-    const desc = this.add.text(width/2, height/2 - 15, t('reset_desc'), {
+    const desc = this.add.text(width / 2, height / 2 - 10, step === 1
+      ? '将清空当前账号的全部游戏内进度，操作后需要重新开始。'
+      : '此操作不可恢复。确认继续后，将立即清空本地游戏数据。', {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY,
-      align: 'center'
+      align: 'center',
+      wordWrap: { width: 220 }
     }).setOrigin(0.5).setDepth(1002);
 
-    const cancelBtn = this.add.container(width/2 - 60, height/2 + 40).setDepth(1002);
+    const cleanup = () => {
+      overlay.destroy();
+      modal.destroy();
+      title.destroy();
+      desc.destroy();
+      cancelBtn.destroy();
+      confirmBtn.destroy();
+    };
+
+    const cancelBtn = this.add.container(width / 2 - 60, height / 2 + 40).setDepth(1002);
     const cancelBg = this.add.graphics();
     cancelBg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
     cancelBg.fillRoundedRect(-45, -14, 90, 28, Const.UI.BUTTON_RADIUS);
@@ -889,20 +908,13 @@ export default class BaseScene extends Phaser.Scene {
     cancelBtn.add([cancelBg, cancelLabel]);
     cancelBtn.setSize(90, 28);
     cancelBtn.setInteractive(this.createCenteredHitArea(90, 28), Phaser.Geom.Rectangle.Contains);
-    cancelBtn.on('pointerdown', () => {
-      overlay.destroy();
-      modal.destroy();
-      title.destroy();
-      desc.destroy();
-      cancelBtn.destroy();
-      confirmBtn.destroy();
-    });
+    cancelBtn.on('pointerdown', cleanup);
 
-    const confirmBtn = this.add.container(width/2 + 60, height/2 + 40).setDepth(1002);
+    const confirmBtn = this.add.container(width / 2 + 60, height / 2 + 40).setDepth(1002);
     const confirmBg = this.add.graphics();
     confirmBg.fillStyle(Const.COLORS.BG_DANGER, 1);
     confirmBg.fillRoundedRect(-45, -14, 90, 28, Const.UI.BUTTON_RADIUS);
-    const confirmLabel = this.add.text(0, 0, t('confirm'), {
+    const confirmLabel = this.add.text(0, 0, step === 1 ? '继续' : t('confirm'), {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.DANGER
@@ -911,6 +923,13 @@ export default class BaseScene extends Phaser.Scene {
     confirmBtn.setSize(90, 28);
     confirmBtn.setInteractive(this.createCenteredHitArea(90, 28), Phaser.Geom.Rectangle.Contains);
     confirmBtn.on('pointerdown', () => {
+      cleanup();
+
+      if (step === 1) {
+        this.showResetConfirm(2);
+        return;
+      }
+
       localStorage.removeItem('wasteland_year_save');
       localStorage.removeItem('equipmentCardManager');
       localStorage.removeItem('chipCardManager');
@@ -927,14 +946,48 @@ export default class BaseScene extends Phaser.Scene {
           availableRecruits: [],
           energyDrinks: Array(initConfig.other.energyDrinks).fill(null)
         },
-        dungeon: { currentFloor: 1, highestFloor: 1 },
-        achievements: [],
-        settings: { seVolume: 0.8, bgmVolume: 0.7 }
+        dungeon: {
+          currentFloor: 1,
+          maxReachedFloor: 1,
+          currentDimension: 1,
+          totalBattlesWon: 0,
+          totalGoldEarned: 0,
+          offlineProgress: {
+            enabled: false,
+            lastBattleTime: Date.now(),
+            battlesWon: 0,
+            goldEarned: 0
+          }
+        },
+        chipCardManager: {
+          ownedCards: [],
+          equippedCardId: null,
+          shopCards: []
+        },
+        minionCardManager: {
+          ownedCards: [],
+          deployedCards: [],
+          maxDeploy: 3
+        },
+        reputation: {},
+        achievements: {
+          progress: {},
+          unlocked: [],
+          claimedRewards: []
+        },
+        settings: {
+          masterVolume: 0.8,
+          bgmVolume: 0.7,
+          seVolume: 0.8,
+          autoBattle: true,
+          autoChip: true,
+          battleSpeed: 1
+        }
       };
+      this.showToast('账号进度已重置');
       this.scene.restart();
     });
   }
-
   showChipContent() {
     if (this.chipView) {
       this.chipView.destroy();
@@ -1149,13 +1202,13 @@ export default class BaseScene extends Phaser.Scene {
     const coins = this.baseSystem.starCoin || 0;
 
     if (this.myceliumDisplay) {
-      this.myceliumDisplay.setText(`🍄 菌丝: ${mycelium.toLocaleString()}`);
+      this.myceliumDisplay.setText(`馃崉 鑿屼笣: ${mycelium.toLocaleString()}`);
     }
     if (this.sourceCoreDisplay) {
-      this.sourceCoreDisplay.setText(`💎 源核: ${sourceCore.toLocaleString()}`);
+      this.sourceCoreDisplay.setText(`馃拵 婧愭牳: ${sourceCore.toLocaleString()}`);
     }
     if (this.coinDisplay) {
-      this.coinDisplay.setText(`⭐ 星币: ${coins.toLocaleString()}`);
+      this.coinDisplay.setText(`猸?鏄熷竵: ${coins.toLocaleString()}`);
     }
   }
 
@@ -1173,7 +1226,7 @@ export default class BaseScene extends Phaser.Scene {
     localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
   }
 
-  // [U03 FIX] 实现 showToast 方法，多个 View 通过 scene.showToast?.() 调用
+  // [U03 FIX] 瀹炵幇 showToast 鏂规硶锛屽涓?View 閫氳繃 scene.showToast?.() 璋冪敤
   showToast(message, duration = 2000) {
     if (this._toastText) this._toastText.destroy();
     const width = this.cameras.main.width;
@@ -1190,7 +1243,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   shutdown() {
+    if (this._persistGameData) {
+      window.removeEventListener('beforeunload', this._persistGameData);
+      window.removeEventListener('pagehide', this._persistGameData);
+    }
+    if (this._persistOnVisibilityChange) {
+      document.removeEventListener('visibilitychange', this._persistOnVisibilityChange);
+    }
     this.saveGameData();
     this.tweens.killAll();
   }
 }
+

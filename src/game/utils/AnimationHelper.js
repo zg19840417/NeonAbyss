@@ -117,16 +117,18 @@ export default class AnimationHelper {
 
   static tweenPulse(scene, target, scale = 1.1, duration = 150, onComplete = null) {
     if (!target) return;
+    const originalScaleX = target.scaleX || target.__baseScaleX || 1;
+    const originalScaleY = target.scaleY || target.__baseScaleY || 1;
     scene.tweens.add({
       targets: target,
-      scaleX: scale,
-      scaleY: scale,
+      scaleX: originalScaleX * scale,
+      scaleY: originalScaleY * scale,
       duration: duration,
       yoyo: true,
       repeat: 0,
       ease: 'Power2',
       onComplete: () => {
-        target.setScale(1);
+        target.setScale(originalScaleX, originalScaleY);
         if (onComplete) onComplete();
       }
     });
@@ -166,11 +168,14 @@ export default class AnimationHelper {
 
   static tweenCardHover(scene, target, isHovering) {
     if (!target) return;
-    const targetScale = isHovering ? 1.05 : 1;
+    const baseScaleX = target.__baseScaleX ?? target.scaleX ?? 1;
+    const baseScaleY = target.__baseScaleY ?? target.scaleY ?? 1;
+    const targetScaleX = isHovering ? baseScaleX * 1.04 : baseScaleX;
+    const targetScaleY = isHovering ? baseScaleY * 1.04 : baseScaleY;
     scene.tweens.add({
       targets: target,
-      scaleX: targetScale,
-      scaleY: targetScale,
+      scaleX: targetScaleX,
+      scaleY: targetScaleY,
       duration: 150,
       ease: 'Power2'
     });
