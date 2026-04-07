@@ -1,0 +1,23 @@
+{
+  "comfyui": {
+    "host": "127.0.0.1",
+    "port": 8188,
+    "workflow_path": "workflows/default_workflow.json"
+  },
+  "output": {
+    "default_folder": "assets/images/generated",
+    "filename_template": "{prompt_keyword}_{timestamp}"
+  },
+  "defaults": {
+    "width": 1024,
+    "height": 1024,
+    "steps": 20,
+    "cfg": 7,
+    "sampler_name": "euler_ancestral",
+    "scheduler": "normal",
+    "batch_size": 1
+  },
+  "common": {
+    "negative_prompt": "low quality, blurry, deformed, bad anatomy, watermark, text, signature"
+  }
+}

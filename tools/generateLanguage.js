@@ -55,7 +55,8 @@ const additionalTranslations = [
   { id: "normal_stage", zh_cn: "普通关卡", en_us: "Normal Stage" },
   { id: "stage_progress", zh_cn: "进度: {cleared}/{total}", en_us: "Progress: {cleared}/{total}" },
   { id: "stage_locked", zh_cn: "关卡已锁定", en_en: "Stage Locked" },
-  { id: "clear_to_unlock", zh_cn: "完成前置关卡后解锁", en_us: "Unlock after clearing previous stages" }
+  { id: "clear_to_unlock", zh_cn: "完成前置关卡后解锁", en_us: "Unlock after clearing previous stages" },
+  { id: "adventure", zh_cn: "冒险", en_us: "Adventure" }
 ];
 
 let addedCount = 0;

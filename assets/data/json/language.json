@@ -1998,5 +1998,10 @@
     "id": "clear_to_unlock",
     "zh_cn": "完成前置关卡后解锁",
     "en_us": "Unlock after clearing previous stages"
+  },
+  {
+    "id": "adventure",
+    "zh_cn": "冒险",
+    "en_us": "Adventure"
   }
 ]

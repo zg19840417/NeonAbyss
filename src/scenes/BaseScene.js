@@ -268,7 +268,7 @@ export default class BaseScene extends Phaser.Scene {
     const tabs = [
       { key: 'sanctuary', icon: '所', label: t('sanctuary') },
       { key: 'team', icon: '队', label: t('team') },
-      { key: 'dungeon', icon: '牢', label: t('dungeon') },
+      { key: 'wild', icon: '冒', label: t('adventure') },
       { key: 'shop', icon: '店', label: t('shop') },
       { key: 'task', icon: '务', label: t('task') },
       { key: 'settings', icon: '设', label: t('settings') }
@@ -395,7 +395,7 @@ export default class BaseScene extends Phaser.Scene {
       case 'team':
         this.showTeamContent();
         break;
-      case 'dungeon':
+      case 'wild':
         this.scene.start('WildStageScene');
         break;
       case 'shop':

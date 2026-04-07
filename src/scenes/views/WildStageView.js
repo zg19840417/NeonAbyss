@@ -10,7 +10,12 @@ export default class WildStageView {
     this.elements = [];
     this.viewLevel = 0;
     this.currentRegion = null;
-    this.container = scene.add.container(0, 70);
+    
+    const contentTop = 50;
+    const contentBottom = height - 70;
+    const contentHeight = contentBottom - contentTop;
+    
+    this.container = scene.add.container(0, contentTop);
     scene.add.existing(this.container);
     
     this.showWorldMap();
@@ -25,18 +30,6 @@ export default class WildStageView {
     this.destroy();
     this.viewLevel = 0;
     this.currentRegion = null;
-
-    const titleBg = this.scene.add.graphics();
-    titleBg.fillStyle(Const.COLORS.BG_DARK, 0.9);
-    titleBg.fillRect(0, -70, this.width, 50);
-    this.elements.push(titleBg);
-
-    const title = this.scene.add.text(this.width / 2, -50, t('explore'), {
-      fontSize: '18px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0.5);
-    this.elements.push(title);
 
     const regions = WorldMapData.getAllRegions();
     let y = 10;
@@ -138,13 +131,8 @@ export default class WildStageView {
     this.viewLevel = 1;
     this.currentRegion = region;
 
-    const titleBg = this.scene.add.graphics();
-    titleBg.fillStyle(Const.COLORS.BG_DARK, 0.9);
-    titleBg.fillRect(0, -70, this.width, 50);
-    this.elements.push(titleBg);
-
-    const backBtn = this.scene.add.text(20, -50, '← ' + t('back'), {
-      fontSize: '14px',
+    const backBtn = this.scene.add.text(20, 0, '← ' + t('back'), {
+      fontSize: '12px',
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
     }).setOrigin(0, 0.5).setInteractive({ useHandCursor: true });
@@ -154,22 +142,22 @@ export default class WildStageView {
       this.showWorldMap();
     });
 
-    const title = this.scene.add.text(this.width / 2, -50, WorldMapData.getRegionName(region.regionId), {
-      fontSize: '18px',
+    const regionTitle = this.scene.add.text(this.width / 2, 0, WorldMapData.getRegionName(region.regionId), {
+      fontSize: '14px',
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
       color: Const.TEXT_COLORS.PRIMARY
     }).setOrigin(0.5);
-    this.elements.push(title);
+    this.elements.push(regionTitle);
 
-    const descText = this.scene.add.text(this.width / 2, -15, WorldMapData.getRegionDescription(region.regionId), {
+    const descText = this.scene.add.text(this.width / 2, 25, WorldMapData.getRegionDescription(region.regionId), {
       fontSize: '11px',
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
     this.elements.push(descText);
 
-    let y = 20;
+    let y = 45;
 
     const sectionTitle = this.scene.add.text(25, y, '主线关卡', {
       fontSize: '14px',
