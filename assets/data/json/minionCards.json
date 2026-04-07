@@ -813,7 +813,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM017.png"
   },
   {
     "cardId": "MC_light_support_018",
@@ -861,7 +861,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM018.png"
   },
   {
     "cardId": "MC_dark_dps_019",
@@ -909,7 +909,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM019.png"
   },
   {
     "cardId": "MC_water_support_020",
@@ -1005,7 +1005,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM021.png"
   },
   {
     "cardId": "MC_fire_tank_022",
@@ -1053,7 +1053,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM022.png"
   },
   {
     "cardId": "MC_wind_dps_023",
@@ -1101,7 +1101,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM023.png"
   },
   {
     "cardId": "MC_water_support_024",
@@ -1149,7 +1149,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM024.png"
   },
   {
     "cardId": "MC_fire_tank_025",
@@ -1197,7 +1197,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM025.png"
   },
   {
     "cardId": "MC_dark_dps_026",
@@ -1245,7 +1245,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM026.png"
   },
   {
     "cardId": "MC_fire_dps_027",
@@ -1293,7 +1293,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM027.png"
   },
   {
     "cardId": "MC_water_dps_028",
@@ -1341,7 +1341,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM028.png"
   },
   {
     "cardId": "MC_fire_tank_029",
@@ -1389,7 +1389,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM029.png"
   },
   {
     "cardId": "MC_wind_support_030",
@@ -1437,7 +1437,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM030.png"
   },
   {
     "cardId": "MC_dark_tank_031",
@@ -1485,7 +1485,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM031.png"
   },
   {
     "cardId": "MC_dark_dps_032",
@@ -1629,7 +1629,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM034.png"
   },
   {
     "cardId": "MC_dark_dps_035",
@@ -1821,7 +1821,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM038.png"
   },
   {
     "cardId": "MC_wind_support_039",
@@ -1917,7 +1917,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM040.png"
   },
   {
     "cardId": "MC_light_support_041",
@@ -1965,7 +1965,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM041.png"
   },
   {
     "cardId": "MC_fire_tank_042",
@@ -2013,7 +2013,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM042.png"
   },
   {
     "cardId": "MC_wind_support_043",
@@ -2157,7 +2157,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM045.png"
   },
   {
     "cardId": "MC_wind_support_046",
@@ -2253,7 +2253,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM047.png"
   },
   {
     "cardId": "MC_fire_dps_048",
@@ -2397,7 +2397,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM050.png"
   },
   {
     "cardId": "MC_fire_dps_051",
@@ -2445,7 +2445,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM051.png"
   },
   {
     "cardId": "MC_light_tank_052",
@@ -2493,7 +2493,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM052.png"
   },
   {
     "cardId": "MC_wind_dps_053",
@@ -2589,7 +2589,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM054.png"
   },
   {
     "cardId": "MC_fire_tank_055",
@@ -2637,7 +2637,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM055.png"
   },
   {
     "cardId": "MC_light_support_056",
@@ -2685,7 +2685,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM056.png"
   },
   {
     "cardId": "MC_wind_dps_057",
@@ -2829,7 +2829,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM059.png"
   },
   {
     "cardId": "MC_wind_support_060",
@@ -2877,7 +2877,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM060.png"
   },
   {
     "cardId": "MC_fire_dps_061",
@@ -2925,7 +2925,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM061.png"
   },
   {
     "cardId": "MC_wind_dps_062",
@@ -2973,7 +2973,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM062.png"
   },
   {
     "cardId": "MC_water_support_063",
@@ -3021,7 +3021,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM063.png"
   },
   {
     "cardId": "MC_light_support_064",
@@ -3069,7 +3069,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM064.png"
   },
   {
     "cardId": "MC_dark_dps_065",
@@ -3117,7 +3117,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM065.png"
   },
   {
     "cardId": "MC_fire_tank_066",
@@ -3165,7 +3165,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM066.png"
   },
   {
     "cardId": "MC_water_tank_067",
@@ -3213,7 +3213,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM067.png"
   },
   {
     "cardId": "MC_wind_dps_068",
@@ -3261,7 +3261,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM068.png"
   },
   {
     "cardId": "MC_light_support_069",
@@ -3309,7 +3309,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM069.png"
   },
   {
     "cardId": "MC_dark_support_070",
@@ -3357,7 +3357,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM070.png"
   },
   {
     "cardId": "MC_wind_support_071",
@@ -3405,7 +3405,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM071.png"
   },
   {
     "cardId": "MC_fire_dps_072",
@@ -3453,7 +3453,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM072.png"
   },
   {
     "cardId": "MC_water_tank_073",
@@ -3501,7 +3501,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM073.png"
   },
   {
     "cardId": "MC_wind_dps_074",
@@ -3549,7 +3549,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM074.png"
   },
   {
     "cardId": "MC_light_dps_075",
@@ -3597,7 +3597,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM075.png"
   },
   {
     "cardId": "MC_wind_tank_076",
@@ -3645,7 +3645,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM076.png"
   },
   {
     "cardId": "MC_light_support_077",
@@ -3693,7 +3693,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM077.png"
   },
   {
     "cardId": "MC_dark_dps_078",
@@ -3741,7 +3741,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM078.png"
   },
   {
     "cardId": "MC_fire_support_079",
@@ -3789,7 +3789,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM079.png"
   },
   {
     "cardId": "MC_water_support_080",
@@ -3837,7 +3837,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM080.png"
   },
   {
     "cardId": "MC_dark_support_081",
@@ -3885,7 +3885,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM081.png"
   },
   {
     "cardId": "MC_wind_tank_082",
@@ -3933,7 +3933,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM082.png"
   },
   {
     "cardId": "MC_fire_dps_083",
@@ -3981,7 +3981,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM083.png"
   },
   {
     "cardId": "MC_water_tank_084",
@@ -4029,7 +4029,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM084.png"
   },
   {
     "cardId": "MC_light_support_085",
@@ -4077,7 +4077,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM085.png"
   },
   {
     "cardId": "MC_fire_tank_086",
@@ -4125,7 +4125,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM086.png"
   },
   {
     "cardId": "MC_wind_dps_087",
@@ -4173,7 +4173,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM087.png"
   },
   {
     "cardId": "MC_dark_support_088",
@@ -4221,7 +4221,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM088.png"
   },
   {
     "cardId": "MC_fire_tank_089",
@@ -4269,7 +4269,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM089.png"
   },
   {
     "cardId": "MC_dark_dps_090",
@@ -4317,7 +4317,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM090.png"
   },
   {
     "cardId": "MC_fire_dps_091",
@@ -4365,7 +4365,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM091.png"
   },
   {
     "cardId": "MC_light_dps_092",
@@ -4413,7 +4413,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM092.png"
   },
   {
     "cardId": "MC_dark_tank_093",
@@ -4461,7 +4461,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM093.png"
   },
   {
     "cardId": "MC_light_support_094",
@@ -4509,7 +4509,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM094.png"
   },
   {
     "cardId": "MC_fire_tank_095",
@@ -4605,7 +4605,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM096.png"
   },
   {
     "cardId": "MC_water_support_097",
@@ -4653,7 +4653,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM097.png"
   },
   {
     "cardId": "MC_wind_support_098",
@@ -4701,7 +4701,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM098.png"
   },
   {
     "cardId": "MC_wind_dps_099",
@@ -4749,7 +4749,7 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM099.png"
   },
   {
     "cardId": "MC_fire_support_100",
@@ -4797,6 +4797,6 @@
     },
     "hasQualityUpgraded": false,
     "fusionCount": 0,
-    "portrait": null
+    "portrait": "characters/fusion/FM100.png"
   }
 ]

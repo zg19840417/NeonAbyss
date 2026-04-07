@@ -1,7 +1,38 @@
 import Character from '../entities/Character.js';
 import { CharacterClass } from '../data/CharacterClass.js';
 import Const from '../data/Const.js';
-import initConfig from '../../../assets/data/json/initConfig.json';
+import initConfigData from '../../../assets/data/json/initConfig.json';
+
+function normalizeInitConfig(rawConfig) {
+  const fallback = {
+    currencies: {
+      mycelium: 60000,
+      sourceCore: 60000,
+      starCoin: 60000
+    },
+    other: {
+      energyDrinks: 0
+    }
+  };
+
+  if (!Array.isArray(rawConfig)) {
+    return fallback;
+  }
+
+  const currencies = { ...fallback.currencies };
+  rawConfig.forEach(entry => {
+    if (!entry?.key) return;
+    const value = Number(entry.initialValue);
+    currencies[entry.key] = Number.isFinite(value) ? value : 0;
+  });
+
+  return {
+    currencies,
+    other: { ...fallback.other }
+  };
+}
+
+const initConfig = normalizeInitConfig(initConfigData);
 
 export const CurrencyType = {
   SOURCE_CORE: 'sourceCore',
@@ -19,7 +50,9 @@ export default class BaseSystem {
     this.sourceCore = gameData.sourceCore ?? initConfig.currencies.sourceCore;
     this.starCoin = gameData.starCoin ?? initConfig.currencies.starCoin;
     this.facilities = gameData.facilities || this.initFacilities();
-    this.energyDrinks = gameData.energyDrinks ?? [].length > 0 ? gameData.energyDrinks : Array(initConfig.other.energyDrinks).fill(null);
+    this.energyDrinks = Array.isArray(gameData.energyDrinks)
+      ? gameData.energyDrinks
+      : Array(initConfig.other.energyDrinks).fill(null);
     this.characters = (gameData.characters || []).map(c => Character.fromJSON(c));
     this.team = gameData.team || [];
     this.availableRecruits = (gameData.availableRecruits || []).map(c => Character.fromJSON(c));

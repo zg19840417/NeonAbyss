@@ -162,8 +162,8 @@ export default class DungeonScene extends Phaser.Scene {
           dropTable: e.dropTable || [],
           skills: e.skills || []
         })),
-        players: players,
-        chipCard: chipCard
+        minions: players,
+        equipmentCard: chipCard
       });
     });
   }
@@ -331,8 +331,8 @@ export default class DungeonScene extends Phaser.Scene {
         dropTable: e.dropTable || [],
         skills: e.skills || []
       })),
-      players: players,
-      chipCard: chipCard
+      minions: players,
+      equipmentCard: chipCard
     });
   }
 

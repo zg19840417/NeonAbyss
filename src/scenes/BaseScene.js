@@ -7,7 +7,38 @@ import TeamView from './views/TeamView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
-import initConfig from '../../assets/data/json/initConfig.json';
+import initConfigData from '../../assets/data/json/initConfig.json';
+
+function normalizeInitConfig(rawConfig) {
+  const fallback = {
+    currencies: {
+      mycelium: 60000,
+      sourceCore: 60000,
+      starCoin: 60000
+    },
+    other: {
+      energyDrinks: 0
+    }
+  };
+
+  if (!Array.isArray(rawConfig)) {
+    return fallback;
+  }
+
+  const currencies = { ...fallback.currencies };
+  rawConfig.forEach(entry => {
+    if (!entry?.key) return;
+    const value = Number(entry.initialValue);
+    currencies[entry.key] = Number.isFinite(value) ? value : 0;
+  });
+
+  return {
+    currencies,
+    other: { ...fallback.other }
+  };
+}
+
+const initConfig = normalizeInitConfig(initConfigData);
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {

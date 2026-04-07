@@ -56,8 +56,8 @@ export default class BattleScene extends Phaser.Scene {
     this.currentFloor = data.floor || 1;
     this.currentDimension = data.dimension || 1;
     this.enemies = data.enemies || [];
-    this.minions = data.minions || [];
-    this.equipmentCard = data.equipmentCard || null;
+    this.minions = data.minions || data.players || [];
+    this.equipmentCard = data.equipmentCard || data.chipCard || null;
   }
 
   create() {
