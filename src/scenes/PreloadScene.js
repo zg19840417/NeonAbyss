@@ -56,6 +56,27 @@ export default class PreloadScene extends Phaser.Scene {
     // 加载芯片图标集
     this.load.image('chip-icon-set', 'assets/images/ui/chip-icon-set.jpg');
 
+    // 加载随从立绘（fusion 目录）
+    const fusionPortraits = [
+      'ComfyUI_temp_axxiq_00077_', 'ComfyUI_temp_axxiq_00081_',
+      'ComfyUI_temp_axxiq_00087_', 'ComfyUI_temp_axxiq_00097_',
+      'ComfyUI_temp_axxiq_00099_'
+    ];
+    fusionPortraits.forEach(name => {
+      this.load.image(name, `assets/images/characters/fusion/${name}.png`);
+    });
+
+    // 加载Boss立绘（boss 目录）
+    const bossPortraits = [
+      { key: 'ComfyUI_temp_jchdm_00010_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00010_.png' },
+      { key: 'ComfyUI_temp_jchdm_00013_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00013_.png' },
+      { key: 'ComfyUI_temp_jchdm_00021_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00021_.png' },
+      { key: 'boss_radiant_saint', path: 'assets/images/characters/boss/辐射圣女残影.png' }
+    ];
+    bossPortraits.forEach(({ key, path }) => {
+      this.load.image(key, path);
+    });
+
     this.load.on('progress', (value) => {
       progressBar.clear();
       progressBar.fillStyle(this.config.colors.amber, 1);

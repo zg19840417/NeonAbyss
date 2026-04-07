@@ -6,6 +6,18 @@ import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UP
 // [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
 const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
+// [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
+const PORTRAIT_KEY_MAP = { '辐射圣女残影': 'boss_radiant_saint' };
+
+/**
+ * [PORTRAIT FIX] 从 card.portrait 路径中提取 Phaser 纹理 key
+ */
+function extractPortraitKey(portraitPath) {
+  if (!portraitPath) return null;
+  const fileName = portraitPath.split('/').pop().replace('.png', '');
+  return PORTRAIT_KEY_MAP[fileName] || fileName;
+}
+
 export default class TeamView {
   constructor(scene) {
     this.scene = scene;
@@ -122,7 +134,8 @@ export default class TeamView {
         atk: card.atk,
         element: card.element || 'water',
         scale: 0.55,
-        interactive: false
+        interactive: false,
+        portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
       });
     } else {
       cardContainer = CardRenderer.createChipCard(this.scene, {
@@ -236,7 +249,8 @@ export default class TeamView {
         atk: card.atk,
         element: card.element || 'water',
         scale: 0.8,
-        interactive: false
+        interactive: false,
+        portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
       });
       modal.add(detailCard);
     } else {
