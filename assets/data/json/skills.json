@@ -14,39 +14,7 @@
     "duration": 3,
     "additionalEffects": [
       "damageReduction:0.10"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "damageReduction",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "unlockEffect": {
-          "type": "shieldHeal",
-          "value": 0.05,
-          "duration": 3
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "shieldPercent",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "shieldPercent",
-          "valueBonus": 0.1
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Active02",
@@ -63,39 +31,7 @@
     "duration": 2,
     "additionalEffects": [
       "atkDebuff:0.08:allEnemy"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "teamShield",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "unlockEffect": {
-          "type": "teamDefBoost",
-          "value": 0.1,
-          "duration": 2
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "atkDebuff",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "teamShield",
-          "valueBonus": 0.15
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Active03",
@@ -113,33 +49,7 @@
     "additionalEffects": [
       "stun:1",
       "splashDamage:0.50"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "splashDamage",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.1
-      },
-      {
-        "unlockEffect": {
-          "type": "knockback",
-          "value": 0.3,
-          "duration": 1
-        }
-      },
-      {
-        "multiplierBonus": 0.2,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Active04",
@@ -158,43 +68,7 @@
       "defBoost:0.40",
       "taunt:allEnemy",
       "counter:0.15:0.60"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "defBoost",
-          "valueBonus": 0.08
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "counter",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "counterDmg",
-          "valueBonus": 0.15
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "defBoost",
-          "valueBonus": 0.15
-        },
-        "unlockEffect": {
-          "type": "damageReflect",
-          "value": 0.1,
-          "duration": 2
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Active05",
@@ -212,32 +86,7 @@
     "additionalEffects": [
       "spdDebuff:0.20:allEnemy",
       "groundBonus:0.15"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.06
-      },
-      {
-        "effectBoost": {
-          "type": "spdDebuff",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "groundBonus",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "multiplierBonus": 0.15,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Active06",
@@ -248,39 +97,14 @@
     "skillType": "active",
     "targetType": "single",
     "effectType": "dark",
-    "element": "dark",
-    "baseMultiplier": 4,
-    "cooldown": 0,
+    "element": "0.9",
+    "baseMultiplier": 0.9,
+    "cooldown": 4,
     "duration": 0,
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "lifesteal",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "multiplierBonus": 0.1
-      },
-      {
-        "unlockEffect": {
-          "type": "selfHot",
-          "value": 0.05,
-          "duration": 2
-        }
-      },
-      {
-        "multiplierBonus": 0.2,
-        "effectBoost": {
-          "type": "lifesteal",
-          "valueBonus": 0.1
-        }
-      }
-    ],
-    "maxLevel": 6
+    "additionalEffects": [
+      "lifesteal:0.30",
+      "bonusDamageVsLost:0.20"
+    ]
   },
   {
     "skillId": "SK_T_Passive01",
@@ -298,8 +122,7 @@
     "additionalEffects": [
       "hpBoost:0.20",
       "lowHpDR:0.15:0.30"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Passive02",
@@ -316,8 +139,7 @@
     "duration": 0,
     "additionalEffects": [
       "counterChance:0.20"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_T_Passive03",
@@ -335,8 +157,7 @@
     "additionalEffects": [
       "teamHeal:0.05",
       "teamDefBoost:0.05"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active01",
@@ -353,29 +174,7 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.25"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.1
-      },
-      {
-        "effectBoost": {
-          "type": "armorPen",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "multiplierBonus": 0.12
-      },
-      {
-        "multiplierBonus": 0.12
-      },
-      {
-        "multiplierBonus": 0.25,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active02",
@@ -392,40 +191,7 @@
     "duration": 3,
     "additionalEffects": [
       "poison:3:0.15"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "poison",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "poison",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "unlockEffect": {
-          "type": "poisonSpread",
-          "value": 0.5,
-          "duration": 2
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "poison",
-          "valueBonus": 0.05
-        },
-        "durationBonus": 1,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active03",
@@ -443,32 +209,7 @@
     "additionalEffects": [
       "critBoost:0.50",
       "critDmgBoost:0.30"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.1
-      },
-      {
-        "effectBoost": {
-          "type": "critBoost",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.12
-      },
-      {
-        "effectBoost": {
-          "type": "critDmgBoost",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.25,
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active04",
@@ -485,32 +226,7 @@
     "duration": 2,
     "additionalEffects": [
       "burnChance:0.30:2:0.10"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.06
-      },
-      {
-        "effectBoost": {
-          "type": "burnChance",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "burnDamage",
-          "valueBonus": 0.04
-        }
-      },
-      {
-        "multiplierBonus": 0.15,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active05",
@@ -528,32 +244,7 @@
     "additionalEffects": [
       "executeBonus:0.40:0.40",
       "executeCrit"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "effectBoost": {
-          "type": "executeBonus",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.1
-      },
-      {
-        "effectBoost": {
-          "type": "executeThreshold",
-          "valueBonus": 0.1
-        }
-      },
-      {
-        "multiplierBonus": 0.2,
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Active06",
@@ -571,36 +262,7 @@
     "additionalEffects": [
       "chainCount:4",
       "chainDecay:0.10"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.06
-      },
-      {
-        "effectBoost": {
-          "type": "chainCount",
-          "valueBonus": 1
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "chainDecay",
-          "valueBonus": -0.03
-        }
-      },
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "multiplierBonus": 0.15,
-        "effectBoost": {
-          "type": "chainDecay",
-          "valueBonus": -0.05
-        },
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Passive01",
@@ -619,8 +281,7 @@
       "critBoost:0.15",
       "critDmgBoost:0.25",
       "lowHpCritBoost:0.10:0.50"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Passive02",
@@ -639,8 +300,7 @@
       "killAtkBoost:0.08:5",
       "killSpdBoost:0.05:5",
       "maxStackExtraTurn"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_D_Passive03",
@@ -657,8 +317,7 @@
     "duration": 0,
     "additionalEffects": [
       "trueDmgChance:0.10:0.05:2.0"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active01",
@@ -677,38 +336,7 @@
       "healPercent:0.25",
       "hot:2:0.08",
       "cleanse:1"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "healPercent",
-          "valueBonus": 0.04
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "hot",
-          "valueBonus": 0.02
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "cleanse",
-          "valueBonus": 1
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "healPercent",
-          "valueBonus": 0.08
-        },
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active02",
@@ -727,38 +355,7 @@
       "atkBoost:0.25",
       "critBoost:0.15",
       "damageReduction:0.10"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "atkBoost",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "critBoost",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "damageReduction",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "atkBoost",
-          "valueBonus": 0.1
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active03",
@@ -777,38 +374,7 @@
       "teamHeal:0.12",
       "teamHot:3:0.05",
       "teamSpdBoost:0.10"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "teamHeal",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "teamHot",
-          "valueBonus": 0.02
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "teamSpdBoost",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "teamHeal",
-          "valueBonus": 0.05
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active04",
@@ -827,42 +393,7 @@
       "atkDebuff:0.15:allEnemy",
       "spdDebuff:0.12:allEnemy",
       "failChance:0.20"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "atkDebuff",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "spdDebuff",
-          "valueBonus": 0.03
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "failChance",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "effectBoost": {
-          "type": "atkDebuff",
-          "valueBonus": 0.05
-        },
-        "effectBoost2": {
-          "type": "failChance",
-          "valueBonus": 0.05
-        },
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active05",
@@ -880,39 +411,7 @@
     "additionalEffects": [
       "emergencyHeal:0.40:0.30",
       "undying:2"
-    ],
-    "levelUpBonus": [
-      {
-        "effectBoost": {
-          "type": "emergencyHeal",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "emergencyThreshold",
-          "valueBonus": 0.05
-        }
-      },
-      {
-        "durationBonus": 1
-      },
-      {
-        "unlockEffect": {
-          "type": "teamShield",
-          "value": 0.1,
-          "duration": 2
-        }
-      },
-      {
-        "effectBoost": {
-          "type": "emergencyHeal",
-          "valueBonus": 0.1
-        },
-        "cooldownReduce": 1
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Active06",
@@ -929,37 +428,7 @@
     "duration": 0,
     "additionalEffects": [
       "damageToHeal:0.50"
-    ],
-    "levelUpBonus": [
-      {
-        "multiplierBonus": 0.06
-      },
-      {
-        "effectBoost": {
-          "type": "damageToHeal",
-          "valueBonus": 0.08
-        }
-      },
-      {
-        "multiplierBonus": 0.08
-      },
-      {
-        "unlockEffect": {
-          "type": "selfHealPercent",
-          "value": 0.1,
-          "duration": 0
-        }
-      },
-      {
-        "multiplierBonus": 0.15,
-        "effectBoost": {
-          "type": "damageToHeal",
-          "valueBonus": 0.12
-        },
-        "cooldownReduce": 0.5
-      }
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Passive01",
@@ -977,8 +446,7 @@
     "additionalEffects": [
       "healBoost:0.20",
       "healToAtk:0.15"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Passive02",
@@ -996,8 +464,7 @@
     "additionalEffects": [
       "teamDodgeBoost:0.08",
       "lethalShield:0.25:0.20:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_S_Passive03",
@@ -1015,8 +482,7 @@
     "additionalEffects": [
       "autoCleanse:1",
       "debuffReduce:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B001",
@@ -1033,8 +499,7 @@
     "duration": 0,
     "additionalEffects": [
       "splashDamage:0.80"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B002",
@@ -1052,8 +517,7 @@
     "additionalEffects": [
       "atkBoost:0.30",
       "maxHpDmg:0.05"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B003",
@@ -1070,8 +534,7 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.25:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B004",
@@ -1088,8 +551,7 @@
     "duration": 2,
     "additionalEffects": [
       "atkDebuff:0.20:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B005",
@@ -1106,8 +568,7 @@
     "duration": 0,
     "additionalEffects": [
       "multiHit:3:0.80"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B006",
@@ -1124,8 +585,7 @@
     "duration": 1,
     "additionalEffects": [
       "bind:allEnemy:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B007",
@@ -1142,8 +602,7 @@
     "duration": 0,
     "additionalEffects": [
       "hpDrain:0.10"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B008",
@@ -1160,8 +619,7 @@
     "duration": 3,
     "additionalEffects": [
       "poison:3:0.04:maxHp"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B009",
@@ -1178,8 +636,7 @@
     "duration": 0,
     "additionalEffects": [
       "teamLifesteal:0.40"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B010",
@@ -1196,8 +653,7 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.30"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B011",
@@ -1215,8 +671,7 @@
     "additionalEffects": [
       "shieldPercent:0.25",
       "shieldBreakDmg:1.0"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B012",
@@ -1233,8 +688,7 @@
     "duration": 2,
     "additionalEffects": [
       "defDebuff:0.20:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B013",
@@ -1252,8 +706,7 @@
     "additionalEffects": [
       "armorPen:0.40",
       "sureHit"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B014",
@@ -1271,8 +724,7 @@
     "additionalEffects": [
       "teamAtkBoost:0.25",
       "teamCritBoost:0.20"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B015",
@@ -1289,8 +741,7 @@
     "duration": 2,
     "additionalEffects": [
       "burnChance:0.25:2"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B016",
@@ -1307,8 +758,7 @@
     "duration": 0,
     "additionalEffects": [
       "illusionBonus:0.50"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B017",
@@ -1325,8 +775,7 @@
     "duration": 2,
     "additionalEffects": [
       "hitDebuff:0.30:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B018",
@@ -1345,8 +794,7 @@
       "healPercent:0.20",
       "cleanseAll",
       "damageReduction:0.10"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B019",
@@ -1364,8 +812,7 @@
     "additionalEffects": [
       "multiHit:4:0.375",
       "stunChance:0.15:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B020",
@@ -1382,8 +829,7 @@
     "duration": 0,
     "additionalEffects": [
       "stunBonus:0.60"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B021",
@@ -1401,8 +847,7 @@
     "additionalEffects": [
       "selfStun:1",
       "selfDefBoost:0.50"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B022",
@@ -1419,8 +864,7 @@
     "duration": 0,
     "additionalEffects": [
       "teamCleanseAll"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B023",
@@ -1438,8 +882,7 @@
     "additionalEffects": [
       "teamShield:0.20",
       "ccImmune:3"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B024",
@@ -1456,8 +899,7 @@
     "duration": 0,
     "additionalEffects": [
       "buffBonus:0.15"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B025",
@@ -1474,8 +916,7 @@
     "duration": 3,
     "additionalEffects": [
       "radiationDot:3:0.03:maxHp"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B026",
@@ -1492,8 +933,7 @@
     "duration": 0,
     "additionalEffects": [
       "stealBuff:1:0.10"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B027",
@@ -1511,8 +951,7 @@
     "additionalEffects": [
       "randomTeleport:2",
       "spdDebuff:0.30:2"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B028",
@@ -1529,8 +968,7 @@
     "duration": 0,
     "additionalEffects": [
       "pierceSplash:1.5"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B029",
@@ -1547,8 +985,7 @@
     "duration": 3,
     "additionalEffects": [
       "defDebuff:0.30:allEnemy:3"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_B030",
@@ -1567,8 +1004,7 @@
       "healPercent:0.15",
       "cooldownReset",
       "omegaStack:0.10:3"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L001",
@@ -1585,8 +1021,7 @@
     "duration": 2,
     "additionalEffects": [
       "burn:2:0.05"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L002",
@@ -1604,8 +1039,7 @@
     "additionalEffects": [
       "sureHit",
       "targetLowestHp"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L003",
@@ -1622,8 +1056,7 @@
     "duration": 0,
     "additionalEffects": [
       "armorPen:0.20"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L004",
@@ -1641,8 +1074,7 @@
     "additionalEffects": [
       "defBoost:0.50",
       "taunt:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L005",
@@ -1659,8 +1091,7 @@
     "duration": 2,
     "additionalEffects": [
       "hitDebuff:0.20:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L006",
@@ -1677,8 +1108,7 @@
     "duration": 3,
     "additionalEffects": [
       "defDebuff:0.25:3"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L007",
@@ -1695,8 +1125,7 @@
     "duration": 2,
     "additionalEffects": [
       "defDebuffChance:0.30:0.15:2"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L008",
@@ -1713,8 +1142,7 @@
     "duration": 2,
     "additionalEffects": [
       "vulnUp:0.15:allEnemy:2"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L009",
@@ -1731,8 +1159,7 @@
     "duration": 0,
     "additionalEffects": [
       "ccBonus:0.40"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L010",
@@ -1749,8 +1176,7 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.20:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L011",
@@ -1767,8 +1193,7 @@
     "duration": 3,
     "additionalEffects": [
       "erosion:3:0.08"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L012",
@@ -1786,8 +1211,7 @@
     "additionalEffects": [
       "healPercent:0.20",
       "aoeOnHeal:0.80"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L013",
@@ -1804,8 +1228,7 @@
     "duration": 0,
     "additionalEffects": [
       "stunChance:0.20:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L014",
@@ -1824,8 +1247,7 @@
       "atkBoost:0.30",
       "spdBoost:0.20",
       "bonusAttack:1.0"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L015",
@@ -1842,8 +1264,7 @@
     "duration": 2,
     "additionalEffects": [
       "critDebuff:0.25:allEnemy"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L016",
@@ -1860,8 +1281,7 @@
     "duration": 1,
     "additionalEffects": [
       "dodgeReset:1"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L017",
@@ -1878,8 +1298,7 @@
     "duration": 3,
     "additionalEffects": [
       "radiationDot:3:0.02:maxHp"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L018",
@@ -1897,8 +1316,7 @@
     "additionalEffects": [
       "shieldPercent:0.30",
       "defBoost:0.30"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L019",
@@ -1915,8 +1333,7 @@
     "duration": 2,
     "additionalEffects": [
       "spdDebuff:0.40:2"
-    ],
-    "maxLevel": 6
+    ]
   },
   {
     "skillId": "SK_E_L020",
@@ -1933,7 +1350,6 @@
     "duration": 1,
     "additionalEffects": [
       "selfDebuff:def:0.30:1"
-    ],
-    "maxLevel": 6
+    ]
   }
 ]
