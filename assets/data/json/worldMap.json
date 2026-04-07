@@ -1,0 +1,262 @@
+[
+  {
+    "regionId": "REGION_01",
+    "regionName": "辐射废墟",
+    "regionNameEn": "Radiation Ruins",
+    "order": 1,
+    "description": "末日后的第一片幸存区域，到处是变异生物的巢穴",
+    "descriptionEn": "The first surviving area after the apocalypse, filled with mutant creature nests",
+    "isUnlocked": true,
+    "requiredPlayerLevel": 1,
+    "mainStages": [
+      { "stageId": "WS_01_01", "stageIndex": 1, "name": "废墟入口", "nameEn": "Ruins Entrance" },
+      { "stageId": "WS_01_02", "stageIndex": 2, "name": "倒塌商场", "nameEn": "Collapsed Mall" },
+      { "stageId": "WS_01_03", "stageIndex": 3, "name": "废弃医院", "nameEn": "Abandoned Hospital" },
+      { "stageId": "WS_01_04", "stageIndex": 4, "name": "破败街区", "nameEn": "Dilapidated Street" },
+      { "stageId": "WS_01_05", "stageIndex": 5, "name": "坍塌天桥", "nameEn": "Collapsed Overpass" },
+      { "stageId": "WS_01_06", "stageIndex": 6, "name": "废弃警局", "nameEn": "Abandoned Police Station" },
+      { "stageId": "WS_01_07", "stageIndex": 7, "name": "沦陷超市", "nameEn": "Fallen Supermarket" },
+      { "stageId": "WS_01_08", "stageIndex": 8, "name": "辐射核心", "nameEn": "Radiation Core" },
+      { "stageId": "WS_01_09", "stageIndex": 9, "name": "病毒扩散区", "nameEn": "Virus Spread Zone" },
+      { "stageId": "WS_01_10", "stageIndex": 10, "name": "废墟深处", "nameEn": "Deep Ruins", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_01", "name": "地下实验室", "nameEn": "Underground Lab", "icon": "🧪" }
+    ]
+  },
+  {
+    "regionId": "REGION_02",
+    "regionName": "有毒沼泽",
+    "regionNameEn": "Toxic Swamp",
+    "order": 2,
+    "description": "充满毒气的湿地，栖息着各种腐蚀生物",
+    "descriptionEn": "Wetlands filled with toxic gas, inhabited by various corrosive creatures",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_01" },
+    "requiredPlayerLevel": 5,
+    "mainStages": [
+      { "stageId": "WS_02_01", "stageIndex": 1, "name": "沼泽边缘", "nameEn": "Swamp Edge" },
+      { "stageId": "WS_02_02", "stageIndex": 2, "name": "毒雾林", "nameEn": "Toxic Mist Forest" },
+      { "stageId": "WS_02_03", "stageIndex": 3, "name": "腐蚀池塘", "nameEn": "Corrosion Pond" },
+      { "stageId": "WS_02_04", "stageIndex": 4, "name": "黏液洞窟", "nameEn": "Slime Cave" },
+      { "stageId": "WS_02_05", "stageIndex": 5, "name": "毒气喷口", "nameEn": "Gas Vent" },
+      { "stageId": "WS_02_06", "stageIndex": 6, "name": "腐败湿地", "nameEn": "Rotting Wetland" },
+      { "stageId": "WS_02_07", "stageIndex": 7, "name": "变异芦苇丛", "nameEn": "Mutant Reed Bed" },
+      { "stageId": "WS_02_08", "stageIndex": 8, "name": "毒素之源", "nameEn": "Toxin Source" },
+      { "stageId": "WS_02_09", "stageIndex": 9, "name": "沼泽深处", "nameEn": "Deep Swamp" },
+      { "stageId": "WS_02_10", "stageIndex": 10, "name": "剧毒巢穴", "nameEn": "Venomous Nest", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_02", "name": "污染工厂", "nameEn": "Contaminated Factory", "icon": "🏭" }
+    ]
+  },
+  {
+    "regionId": "REGION_03",
+    "regionName": "钢铁要塞",
+    "regionNameEn": "Steel Fortress",
+    "order": 3,
+    "description": "战前军事基地改造的巨型堡垒",
+    "descriptionEn": "A giant fortress converted from a pre-war military base",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_02" },
+    "requiredPlayerLevel": 10,
+    "mainStages": [
+      { "stageId": "WS_03_01", "stageIndex": 1, "name": "外围防线", "nameEn": "Outer Defense" },
+      { "stageId": "WS_03_02", "stageIndex": 2, "name": "铁网地带", "nameEn": "Iron Net Zone" },
+      { "stageId": "WS_03_03", "stageIndex": 3, "name": "碉堡群", "nameEn": "Bunker Group" },
+      { "stageId": "WS_03_04", "stageIndex": 4, "name": "武器库", "nameEn": "Armory" },
+      { "stageId": "WS_03_05", "stageIndex": 5, "name": "训练场", "nameEn": "Training Ground" },
+      { "stageId": "WS_03_06", "stageIndex": 6, "name": "指挥中心", "nameEn": "Command Center" },
+      { "stageId": "WS_03_07", "stageIndex": 7, "name": "装甲车库", "nameEn": "Armor Garage" },
+      { "stageId": "WS_03_08", "stageIndex": 8, "name": "电网走廊", "nameEn": "Power Grid Corridor" },
+      { "stageId": "WS_03_09", "stageIndex": 9, "name": "要塞核心", "nameEn": "Fortress Core" },
+      { "stageId": "WS_03_10", "stageIndex": 10, "name": "将军驻地", "nameEn": "General's Quarters", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_03", "name": "武器研究所", "nameEn": "Weapon Research Lab", "icon": "🔫" }
+    ]
+  },
+  {
+    "regionId": "REGION_04",
+    "regionName": "冰封高原",
+    "regionNameEn": "Frozen Plateau",
+    "order": 4,
+    "description": "常年被冰雪覆盖的高海拔地区",
+    "descriptionEn": "High altitude area covered in ice and snow year-round",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_03" },
+    "requiredPlayerLevel": 15,
+    "mainStages": [
+      { "stageId": "WS_04_01", "stageIndex": 1, "name": "山脚营地", "nameEn": "Mountain Camp" },
+      { "stageId": "WS_04_02", "stageIndex": 2, "name": "冰封桥梁", "nameEn": "Frozen Bridge" },
+      { "stageId": "WS_04_03", "stageIndex": 3, "name": "冰川裂缝", "nameEn": "Glacier Crevice" },
+      { "stageId": "WS_04_04", "stageIndex": 4, "name": "冻土隧道", "nameEn": "Frozen Tunnel" },
+      { "stageId": "WS_04_05", "stageIndex": 5, "name": "冰晶洞穴", "nameEn": "Ice Crystal Cave" },
+      { "stageId": "WS_04_06", "stageIndex": 6, "name": "暴风山口", "nameEn": "Blizzard Pass" },
+      { "stageId": "WS_04_07", "stageIndex": 7, "name": "永冻冰层", "nameEn": "Permafrost Layer" },
+      { "stageId": "WS_04_08", "stageIndex": 8, "name": "寒霜之巅", "nameEn": "Frost Peak" },
+      { "stageId": "WS_04_09", "stageIndex": 9, "name": "冰龙巢穴入口", "nameEn": "Ice Dragon Lair" },
+      { "stageId": "WS_04_10", "stageIndex": 10, "name": "极寒核心", "nameEn": "Extreme Cold Core", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_04", "name": "远古冰墓", "nameEn": "Ancient Ice Tomb", "icon": "❄️" }
+    ]
+  },
+  {
+    "regionId": "REGION_05",
+    "regionName": "炽热火山",
+    "regionNameEn": "Blazing Volcano",
+    "order": 5,
+    "description": "活跃的火山地带，熔岩与火焰生物的家园",
+    "descriptionEn": "Active volcanic area, home to lava and fire creatures",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_04" },
+    "requiredPlayerLevel": 20,
+    "mainStages": [
+      { "stageId": "WS_05_01", "stageIndex": 1, "name": "火山脚下", "nameEn": "Volcano Foot" },
+      { "stageId": "WS_05_02", "stageIndex": 2, "name": "熔岩河流", "nameEn": "Lava River" },
+      { "stageId": "WS_05_03", "stageIndex": 3, "name": "灰烬平原", "nameEn": "Ash Plain" },
+      { "stageId": "WS_05_04", "stageIndex": 4, "name": "硫磺峡谷", "nameEn": "Sulfur Canyon" },
+      { "stageId": "WS_05_05", "stageIndex": 5, "name": "火焰森林", "nameEn": "Flame Forest" },
+      { "stageId": "WS_05_06", "stageIndex": 6, "name": "岩浆池", "nameEn": "Magma Pool" },
+      { "stageId": "WS_05_07", "stageIndex": 7, "name": "火山弹区域", "nameEn": "Volcanic Bomb Zone" },
+      { "stageId": "WS_05_08", "stageIndex": 8, "name": "熔岩瀑布", "nameEn": "Lava Waterfall" },
+      { "stageId": "WS_05_09", "stageIndex": 9, "name": "火山口缘", "nameEn": "Crater Rim" },
+      { "stageId": "WS_05_10", "stageIndex": 10, "name": "火焰核心", "nameEn": "Fire Core", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_05", "name": "熔岩地牢", "nameEn": "Lava Dungeon", "icon": "🌋" }
+    ]
+  },
+  {
+    "regionId": "REGION_06",
+    "regionName": "幽暗森林",
+    "regionNameEn": "Dark Forest",
+    "order": 6,
+    "description": "不见天日的古老森林，神秘的黑暗生物栖息其中",
+    "descriptionEn": "Ancient forest with no sunlight, mysterious dark creatures inhabit it",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_05" },
+    "requiredPlayerLevel": 25,
+    "mainStages": [
+      { "stageId": "WS_06_01", "stageIndex": 1, "name": "森林入口", "nameEn": "Forest Entrance" },
+      { "stageId": "WS_06_02", "stageIndex": 2, "name": "迷雾小径", "nameEn": "Misty Path" },
+      { "stageId": "WS_06_03", "stageIndex": 3, "name": "巨木之根", "nameEn": "Giant Tree Roots" },
+      { "stageId": "WS_06_04", "stageIndex": 4, "name": "暗影池塘", "nameEn": "Shadow Pond" },
+      { "stageId": "WS_06_05", "stageIndex": 5, "name": "腐朽古树", "nameEn": "Decayed Ancient Tree" },
+      { "stageId": "WS_06_06", "stageIndex": 6, "name": "毒藤迷宫", "nameEn": "Poison Vine Maze" },
+      { "stageId": "WS_06_07", "stageIndex": 7, "name": "精灵废墟", "nameEn": "Elven Ruins" },
+      { "stageId": "WS_06_08", "stageIndex": 8, "name": "夜行生物区", "nameEn": "Nocturnal Creature Zone" },
+      { "stageId": "WS_06_09", "stageIndex": 9, "name": "树冠之下", "nameEn": "Under Canopy" },
+      { "stageId": "WS_06_10", "stageIndex": 10, "name": "森林之心", "nameEn": "Heart of Forest", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_06", "name": "精灵圣所", "nameEn": "Elven Sanctuary", "icon": "🌲" }
+    ]
+  },
+  {
+    "regionId": "REGION_07",
+    "regionName": "沙漠荒原",
+    "regionNameEn": "Desert Wasteland",
+    "order": 7,
+    "description": "无边无际的黄沙与古老遗迹",
+    "descriptionEn": "Endless yellow sand and ancient ruins",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_06" },
+    "requiredPlayerLevel": 30,
+    "mainStages": [
+      { "stageId": "WS_07_01", "stageIndex": 1, "name": "沙丘起点", "nameEn": "Dune Start" },
+      { "stageId": "WS_07_02", "stageIndex": 2, "name": "烈日荒漠", "nameEn": "Scorching Desert" },
+      { "stageId": "WS_07_03", "stageIndex": 3, "name": "古代绿洲", "nameEn": "Ancient Oasis" },
+      { "stageId": "WS_07_04", "stageIndex": 4, "name": "沙虫领域", "nameEn": "Sandworm Territory" },
+      { "stageId": "WS_07_05", "stageIndex": 5, "name": "遗迹外围", "nameEn": "Ruin Perimeter" },
+      { "stageId": "WS_07_06", "stageIndex": 6, "name": "流沙陷阱", "nameEn": "Quicksand Trap" },
+      { "stageId": "WS_07_07", "stageIndex": 7, "name": "蝎群巢穴", "nameEn": "Scorpion Nest" },
+      { "stageId": "WS_07_08", "stageIndex": 8, "name": "神殿残骸", "nameEn": "Temple Remains" },
+      { "stageId": "WS_07_09", "stageIndex": 9, "name": "沙漠风暴区", "nameEn": "Sandstorm Zone" },
+      { "stageId": "WS_07_10", "stageIndex": 10, "name": "沙海深处", "nameEn": "Deep Sand Sea", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_07", "name": "沙漠神殿", "nameEn": "Desert Temple", "icon": "🏛️" }
+    ]
+  },
+  {
+    "regionId": "REGION_08",
+    "regionName": "深海沉城",
+    "regionNameEn": "Sunken City",
+    "order": 8,
+    "description": "被海水淹没的战前都市，水生变异生物的领域",
+    "descriptionEn": "Pre-war city flooded by seawater, domain of aquatic mutant creatures",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_07" },
+    "requiredPlayerLevel": 35,
+    "mainStages": [
+      { "stageId": "WS_08_01", "stageIndex": 1, "name": "海岸废墟", "nameEn": "Coastal Ruins" },
+      { "stageId": "WS_08_02", "stageIndex": 2, "name": "水下隧道", "nameEn": "Underwater Tunnel" },
+      { "stageId": "WS_08_03", "stageIndex": 3, "name": "沉没街道", "nameEn": "Sunken Street" },
+      { "stageId": "WS_08_04", "stageIndex": 4, "name": "水族馆残骸", "nameEn": "Aquarium Remains" },
+      { "stageId": "WS_08_05", "stageIndex": 5, "name": "水下商场", "nameEn": "Underwater Mall" },
+      { "stageId": "WS_08_06", "stageIndex": 6, "name": "海藻森林", "nameEn": "Kelp Forest" },
+      { "stageId": "WS_08_07", "stageIndex": 7, "name": "沉船残骸", "nameEn": "Shipwreck" },
+      { "stageId": "WS_08_08", "stageIndex": 8, "name": "海底神殿", "nameEn": "Undersea Temple" },
+      { "stageId": "WS_08_09", "stageIndex": 9, "name": "深渊入口", "nameEn": "Abyss Entrance" },
+      { "stageId": "WS_08_10", "stageIndex": 10, "name": "海皇领域", "nameEn": "Sea Emperor's Domain", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_08", "name": "深海遗迹", "nameEn": "Deep Sea Ruins", "icon": "🌊" }
+    ]
+  },
+  {
+    "regionId": "REGION_09",
+    "regionName": "机械迷宫",
+    "regionNameEn": "Mechanical Maze",
+    "order": 9,
+    "description": "战前AI控制的自助运转工厂城市",
+    "descriptionEn": "Pre-war AI-controlled self-operating factory city",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_08" },
+    "requiredPlayerLevel": 40,
+    "mainStages": [
+      { "stageId": "WS_09_01", "stageIndex": 1, "name": "外围工厂", "nameEn": "Outer Factory" },
+      { "stageId": "WS_09_02", "stageIndex": 2, "name": "流水线区", "nameEn": "Assembly Line Zone" },
+      { "stageId": "WS_09_03", "stageIndex": 3, "name": "机械臂大厅", "nameEn": "Robot Arm Hall" },
+      { "stageId": "WS_09_04", "stageIndex": 4, "name": "能源中心", "nameEn": "Power Center" },
+      { "stageId": "WS_09_05", "stageIndex": 5, "name": "AI核心室", "nameEn": "AI Core Room" },
+      { "stageId": "WS_09_06", "stageIndex": 6, "name": "维护通道", "nameEn": "Maintenance Passage" },
+      { "stageId": "WS_09_07", "stageIndex": 7, "name": "废弃仓库", "nameEn": "Abandoned Warehouse" },
+      { "stageId": "WS_09_08", "stageIndex": 8, "name": "控制塔", "nameEn": "Control Tower" },
+      { "stageId": "WS_09_09", "stageIndex": 9, "name": "机器人兵团", "nameEn": "Robot Legion" },
+      { "stageId": "WS_09_10", "stageIndex": 10, "name": "超级计算机", "nameEn": "Super Computer", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_09", "name": "AI核心", "nameEn": "AI Core", "icon": "🤖" }
+    ]
+  },
+  {
+    "regionId": "REGION_10",
+    "regionName": "虚空裂隙",
+    "regionNameEn": "Void Rift",
+    "order": 10,
+    "description": "连接异次元的空间裂缝，最终决战之地",
+    "descriptionEn": "Spatial rift connecting to alternate dimensions, the final battleground",
+    "isUnlocked": false,
+    "unlockCondition": { "type": "clearRegion", "regionId": "REGION_09" },
+    "requiredPlayerLevel": 45,
+    "mainStages": [
+      { "stageId": "WS_10_01", "stageIndex": 1, "name": "裂隙入口", "nameEn": "Rift Entrance" },
+      { "stageId": "WS_10_02", "stageIndex": 2, "name": "扭曲空间", "nameEn": "Distorted Space" },
+      { "stageId": "WS_10_03", "stageIndex": 3, "name": "维度碎片", "nameEn": "Dimension Fragments" },
+      { "stageId": "WS_10_04", "stageIndex": 4, "name": "虚空生物区", "nameEn": "Void Creature Zone" },
+      { "stageId": "WS_10_05", "stageIndex": 5, "name": "时间乱流", "nameEn": "Time Turbulence" },
+      { "stageId": "WS_10_06", "stageIndex": 6, "name": "空间折叠", "nameEn": "Space Folding" },
+      { "stageId": "WS_10_07", "stageIndex": 7, "name": "异次元回廊", "nameEn": "Interdimensional Corridor" },
+      { "stageId": "WS_10_08", "stageIndex": 8, "name": "虚空风暴", "nameEn": "Void Storm" },
+      { "stageId": "WS_10_09", "stageIndex": 9, "name": "维度核心", "nameEn": "Dimension Core" },
+      { "stageId": "WS_10_10", "stageIndex": 10, "name": "虚空之主", "nameEn": "Lord of Void", "isBoss": true }
+    ],
+    "dungeonEntries": [
+      { "dungeonId": "DUNGEON_10", "name": "最终禁区", "nameEn": "Final Forbidden Zone", "icon": "🌀" },
+      { "dungeonId": "DUNGEON_BOSS", "name": "Boss挑战", "nameEn": "Boss Challenge", "icon": "💀" }
+    ]
+  }
+]

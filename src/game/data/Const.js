@@ -11,10 +11,13 @@ export const Const = {
     MAGENTA: 0xff00ff,
     YELLOW: 0xffff00,
     RED: 0xff6666,
+    GREEN: 0x66bb6a,
     BUTTON_PRIMARY: 0x00ccff,
     BUTTON_HOVER: 0x33ddff,
     BUTTON_SECONDARY: 0x2a2a4a,
+    BUTTON_CYAN: 0x00ccff,
     BUTTON_DANGER_BORDER: 0xff3333,
+    BUTTON_INACTIVE: 0x444466,
     OVERLAY: 0x000000
   },
 
@@ -29,6 +32,7 @@ export const Const = {
     YELLOW: '#ffff00',
     RED: '#ff6666',
     DANGER: '#ff6666',
+    SUCCESS: '#66bb6a',
     INACTIVE: '#6666aa'
   },
 

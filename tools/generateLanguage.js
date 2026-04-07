@@ -47,7 +47,15 @@ const additionalTranslations = [
   { id: "quality_mythic", zh_cn: "神话", en_us: "Mythic" },
   { id: "gacha", zh_cn: "抽卡", en_us: "Gacha" },
   { id: "single_draw", zh_cn: "单抽×1", en_us: "Single ×1" },
-  { id: "ten_draw", zh_cn: "十连×10", en_us: "Ten Pull ×10" }
+  { id: "ten_draw", zh_cn: "十连×10", en_us: "Ten Pull ×10" },
+  { id: "explore", zh_cn: "探索", en_us: "Explore" },
+  { id: "main_stages", zh_cn: "主线关卡", en_us: "Main Stages" },
+  { id: "dungeon_entrance", zh_cn: "禁区入口", en_us: "Dungeon Entrance" },
+  { id: "boss_stage", zh_cn: "Boss关卡", en_us: "Boss Stage" },
+  { id: "normal_stage", zh_cn: "普通关卡", en_us: "Normal Stage" },
+  { id: "stage_progress", zh_cn: "进度: {cleared}/{total}", en_us: "Progress: {cleared}/{total}" },
+  { id: "stage_locked", zh_cn: "关卡已锁定", en_en: "Stage Locked" },
+  { id: "clear_to_unlock", zh_cn: "完成前置关卡后解锁", en_us: "Unlock after clearing previous stages" }
 ];
 
 let addedCount = 0;
