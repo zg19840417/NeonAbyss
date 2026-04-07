@@ -8,12 +8,16 @@ import BattleScene from './scenes/BattleScene.js'
 import WildStageScene from './scenes/WildStageScene.js'
 import ZoneExploreScene from './scenes/ZoneExploreScene.js'
 
+const renderResolution = Math.min(window.devicePixelRatio || 1, 2)
+
 const config = {
   type: Phaser.AUTO,
   parent: 'game-container',
   width: 375,
   height: 812,
   backgroundColor: '#1a1815',
+  resolution: renderResolution,
+  autoRound: true,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -30,4 +34,5 @@ const config = {
 
 window.addEventListener('load', () => {
   const game = new Phaser.Game(config)
+  window.__game = game
 })

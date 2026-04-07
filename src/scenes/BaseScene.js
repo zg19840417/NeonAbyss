@@ -53,6 +53,23 @@ export default class BaseScene extends Phaser.Scene {
     this._transitioning = false;
   }
 
+  createCenteredHitArea(width, height) {
+    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
+
+  ensureChromeOnTop() {
+    this.titleText?.setDepth(Const.DEPTH.NAV);
+    this.myceliumDisplay?.setDepth(Const.DEPTH.NAV);
+    this.sourceCoreDisplay?.setDepth(Const.DEPTH.NAV);
+    this.coinDisplay?.setDepth(Const.DEPTH.NAV);
+    this.navBg?.setDepth(Const.DEPTH.NAV);
+
+    Object.values(this.tabButtons).forEach(tab => {
+      tab.container?.setDepth(Const.DEPTH.NAV + 1);
+      tab.hitZone?.setDepth(Const.DEPTH.NAV + 2);
+    });
+  }
+
   create() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
@@ -264,26 +281,26 @@ export default class BaseScene extends Phaser.Scene {
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
       color: Const.TEXT_COLORS.PINK
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
     // 三种货币显示：菌丝 / 源核 / 星币
     this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#51cf66'
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
     this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#4dabf7'
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
     this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `⭐ 星币: 0`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
   }
 
   createBottomNav(width, height) {
@@ -295,6 +312,8 @@ export default class BaseScene extends Phaser.Scene {
     navBg.fillRect(0, navY, width, navHeight);
     navBg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.5);
     navBg.lineBetween(0, navY, width, navY);
+    navBg.setDepth(Const.DEPTH.NAV);
+    this.navBg = navBg;
 
     const tabs = [
       { key: 'sanctuary', icon: '所', label: t('sanctuary') },
@@ -335,14 +354,26 @@ export default class BaseScene extends Phaser.Scene {
       tabContainer.add(labelText);
 
       tabContainer.setSize(tabWidth, navHeight);
-      tabContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth, navHeight), Phaser.Geom.Rectangle.Contains);
-
-      tabContainer.on('pointerdown', () => {
+      const hitZone = this.add.rectangle(x, navY + navHeight / 2, tabWidth, navHeight, 0x000000, 0.001);
+      hitZone.setVisible(true);
+      hitZone.setAlpha(0.001);
+      hitZone.setDepth(Const.DEPTH.NAV + 2);
+      hitZone.setInteractive();
+      hitZone.on('pointerdown', () => {
         this.switchTab(tab.key);
       });
 
-      this.tabButtons[tab.key] = { container: tabContainer, bg: tabBg, icon: iconText, label: labelText, isActive };
+      this.tabButtons[tab.key] = {
+        container: tabContainer,
+        bg: tabBg,
+        icon: iconText,
+        label: labelText,
+        hitZone,
+        isActive
+      };
     });
+
+    this.ensureChromeOnTop();
   }
 
   switchTab(key) {
@@ -380,6 +411,7 @@ export default class BaseScene extends Phaser.Scene {
     const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
+      if (tab.hitZone) preserved.push(tab.hitZone);
     });
 
     // 收集需要淡出的内容元素
@@ -436,6 +468,8 @@ export default class BaseScene extends Phaser.Scene {
         this.showSettingsContent();
         break;
     }
+
+    this.ensureChromeOnTop();
   }
 
   showTavernContent() {
@@ -536,7 +570,7 @@ export default class BaseScene extends Phaser.Scene {
 
     container.add([bg, nameLabel, classLabel, removeBtn]);
     container.setSize(280, 56);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 280, 56), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(280, 56), Phaser.Geom.Rectangle.Contains);
 
     container.on('pointerover', () => {
       bg.clear();
@@ -662,7 +696,7 @@ export default class BaseScene extends Phaser.Scene {
     }).setOrigin(0.5);
     recruitBtn.add([btnBg, btnText]);
     recruitBtn.setSize(60, 28);
-    recruitBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 28), Phaser.Geom.Rectangle.Contains);
+    recruitBtn.setInteractive(this.createCenteredHitArea(60, 28), Phaser.Geom.Rectangle.Contains);
 
     recruitBtn.on('pointerdown', () => {
       const result = this.baseSystem.recruitCharacter(index);
@@ -736,7 +770,7 @@ export default class BaseScene extends Phaser.Scene {
 
     resetBtn.add([resetGlow, resetBg, resetLabel]);
     resetBtn.setSize(140, 32);
-    resetBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 140, 32), Phaser.Geom.Rectangle.Contains);
+    resetBtn.setInteractive(this.createCenteredHitArea(140, 32), Phaser.Geom.Rectangle.Contains);
 
     resetBtn.on('pointerover', () => {
       this.tweens.add({ targets: resetGlow, alpha: 0.8, duration: 150 });
@@ -770,7 +804,7 @@ export default class BaseScene extends Phaser.Scene {
     langBtn.add(langLabel);
     
     langBtn.setSize(120, 36);
-    langBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 36), Phaser.Geom.Rectangle.Contains);
+    langBtn.setInteractive(this.createCenteredHitArea(120, 36), Phaser.Geom.Rectangle.Contains);
     
     langBtn.on('pointerover', () => {
       this.tweens.add({ targets: langBg, alpha: 0.8, duration: 100 });
@@ -835,7 +869,7 @@ export default class BaseScene extends Phaser.Scene {
     }).setOrigin(0.5);
     cancelBtn.add([cancelBg, cancelLabel]);
     cancelBtn.setSize(90, 28);
-    cancelBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 90, 28), Phaser.Geom.Rectangle.Contains);
+    cancelBtn.setInteractive(this.createCenteredHitArea(90, 28), Phaser.Geom.Rectangle.Contains);
     cancelBtn.on('pointerdown', () => {
       overlay.destroy();
       modal.destroy();
@@ -856,7 +890,7 @@ export default class BaseScene extends Phaser.Scene {
     }).setOrigin(0.5);
     confirmBtn.add([confirmBg, confirmLabel]);
     confirmBtn.setSize(90, 28);
-    confirmBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 90, 28), Phaser.Geom.Rectangle.Contains);
+    confirmBtn.setInteractive(this.createCenteredHitArea(90, 28), Phaser.Geom.Rectangle.Contains);
     confirmBtn.on('pointerdown', () => {
       localStorage.removeItem('wasteland_year_save');
       localStorage.removeItem('equipmentCardManager');
@@ -962,7 +996,7 @@ export default class BaseScene extends Phaser.Scene {
       }).setOrigin(0.5);
       btnContainer.add([btnBg, btnLabel]);
       btnContainer.setSize(btn.width, 28);
-      btnContainer.setInteractive(new Phaser.Geom.Rectangle(0, 0, btn.width, 28), Phaser.Geom.Rectangle.Contains);
+      btnContainer.setInteractive(this.createCenteredHitArea(btn.width, 28), Phaser.Geom.Rectangle.Contains);
       btnContainer.on('pointerdown', () => closeModal(btn.callback));
       elements.push(btnContainer);
     });
@@ -1036,7 +1070,7 @@ export default class BaseScene extends Phaser.Scene {
 
     container.add([glowBg, bg, label]);
     container.setSize(100, 32);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 100, 32), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(100, 32), Phaser.Geom.Rectangle.Contains);
 
     container.on('pointerover', () => {
       this.tweens.add({ targets: glowBg, alpha: 0.8, duration: 150 });
@@ -1059,6 +1093,7 @@ export default class BaseScene extends Phaser.Scene {
     const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
+      if (tab.hitZone) preserved.push(tab.hitZone);
     });
 
     if (this.chipView) {

@@ -871,6 +871,10 @@ export default class BattleSystem {
       target.currentHp = Math.max(0, target.currentHp - actualDamage);
     }
 
+    if (target.currentHp <= 0) {
+      target.isDead = true;
+    }
+
     const attackerAllies = isPlayer ? this.playerTeam : this.enemyTeam;
     const attackerEnemies = isPlayer ? this.enemyTeam : this.playerTeam;
 

@@ -62,15 +62,15 @@ export const Const = {
   },
 
   FONT: {
-    SIZE_TITLE: '20px',
-    SIZE_SUBTITLE: '18px',
-    SIZE_NORMAL: '15px',
-    SIZE_SMALL: '13px',
-    SIZE_TINY: '11px',
+    SIZE_TITLE: '22px',
+    SIZE_SUBTITLE: '19px',
+    SIZE_NORMAL: '16px',
+    SIZE_SMALL: '14px',
+    SIZE_TINY: '12px',
     SIZE_ICON_LARGE: '42px',
     SIZE_ICON_MEDIUM: '36px',
     SIZE_ICON_SMALL: '28px',
-    FAMILY_CN: 'Noto Sans SC',
+    FAMILY_CN: '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif',
     FAMILY_EN: 'Arial'
   },
 

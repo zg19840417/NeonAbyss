@@ -25,6 +25,10 @@ export default class BattleScene extends Phaser.Scene {
     this.config = this.initConfig();
   }
 
+  createCenteredHitArea(width, height) {
+    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
+
   initConfig() {
     return {
       colors: {
@@ -202,14 +206,14 @@ export default class BattleScene extends Phaser.Scene {
     this.enemies.forEach((enemy, index) => {
       const x = startX + index * (cardWidth + 20);
       const card = this.createEnemyCard(x, areaY + 40, enemy);
-      this.enemyCards.push(card);
+      this.enemyCards.push({ container: card, enemy });
     });
   }
 
   createEnemyCard(x, y, enemy) {
     // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
     // 敌方卡片使用 N 品质（灰色基调），通过 fallback frame 实现红色调效果
-    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+    const cardContainer = CardRenderer.createMinionCard(this, {
       x, y,
       quality: 'N',
       name: enemy.name,
@@ -263,7 +267,7 @@ export default class BattleScene extends Phaser.Scene {
     cardContainer.setData('hpBarBg', hpBarBg);
 
     // [CardRenderer UPGRADE] 出场动画
-    CardRenderer.animateEntry(this.scene, cardContainer, 0);
+    CardRenderer.animateEntry(this, cardContainer, 0);
 
     return cardContainer;
   }
@@ -292,7 +296,7 @@ export default class BattleScene extends Phaser.Scene {
   createPlayerCard(x, y, minion) {
     // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
     const quality = RARITY_TO_QUALITY[minion.rarity] || 'N';
-    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+    const cardContainer = CardRenderer.createMinionCard(this, {
       x, y, quality,
       name: minion.name,
       star: minion.star || 1,
@@ -331,7 +335,7 @@ export default class BattleScene extends Phaser.Scene {
     cardContainer.setData('hpBarBg', hpBarBg);
 
     // [CardRenderer UPGRADE] 出场动画
-    CardRenderer.animateEntry(this.scene, cardContainer, 0);
+    CardRenderer.animateEntry(this, cardContainer, 0);
 
     return cardContainer;
   }
@@ -392,7 +396,7 @@ export default class BattleScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     container.add([bg, label]);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, btnWidth, btnHeight), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(btnWidth, btnHeight), Phaser.Geom.Rectangle.Contains);
 
     container.on('pointerover', () => {
       bg.clear()
@@ -658,9 +662,9 @@ export default class BattleScene extends Phaser.Scene {
       const enemy = this.enemies.find(e => e.name === entity.name);
       if (enemy) {
         enemy.hp = entity.currentHp;
-        const card = this.enemyCards.find(c => c.getData('enemy').name === entity.name);
+        const card = this.enemyCards.find(c => c.container?.getData('enemy')?.name === entity.name);
         if (card) {
-          this.redrawHPBar(card, entity.currentHp, entity.maxHp, false);
+          this.redrawHPBar(card.container, entity.currentHp, entity.maxHp, false);
         }
       }
     }

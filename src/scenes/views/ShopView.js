@@ -13,6 +13,10 @@ export default class ShopView {
     this.shopSystem = new ShopSystem(scene.baseSystem || window.gameData?.base);
   }
 
+  createCenteredHitArea(width, height) {
+    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
+
   show() {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
@@ -163,7 +167,8 @@ export default class ShopView {
     const tabHeight = 30;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
-    const y = height - 75;
+    // 避开主导航栏，防止二级分页按钮压住底部主导航点击区
+    const y = height - Const.UI.NAV_HEIGHT - 30;
 
     tabs.forEach((tab, index) => {
       const x = startX + index * tabWidth;
@@ -191,7 +196,7 @@ export default class ShopView {
       container.add(labelText);
 
       container.setSize(tabWidth - 4, tabHeight);
-      container.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth - 4, tabHeight), Phaser.Geom.Rectangle.Contains);
+      container.setInteractive(this.createCenteredHitArea(tabWidth - 4, tabHeight), Phaser.Geom.Rectangle.Contains);
 
       container.on('pointerdown', () => {
         if (this.shopSystem.currentTab !== tab.key) {
