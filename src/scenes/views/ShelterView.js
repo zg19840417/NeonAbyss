@@ -4,6 +4,10 @@ export default class ShelterView {
     this.elements = [];
   }
 
+  createCenteredHitArea(width, height) {
+    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
+
   show() {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
@@ -131,7 +135,7 @@ export default class ShelterView {
     recruitBtn.add(btnText);
 
     recruitBtn.setSize(50, 28);
-    recruitBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 50, 28), Phaser.Geom.Rectangle.Contains);
+    recruitBtn.setInteractive(this.createCenteredHitArea(50, 28), Phaser.Geom.Rectangle.Contains);
     recruitBtn.on('pointerdown', () => this.recruitCharacter(index));
     recruitBtn.on('pointerover', () => btnBg.clear().fillStyle(Const.COLORS.BUTTON_HOVER, 1).fillRoundedRect(-25, -14, 50, 28, 8));
     recruitBtn.on('pointerout', () => btnBg.clear().fillStyle(Const.COLORS.BUTTON_PRIMARY, 1).fillRoundedRect(-25, -14, 50, 28, 8));
@@ -145,7 +149,7 @@ export default class ShelterView {
     container.add(costText);
 
     container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
     container.on('pointerdown', () => this.showCharacterDetail(character));
 
     this.elements.push(container);
@@ -182,7 +186,7 @@ export default class ShelterView {
     container.add(text);
 
     container.setSize(120, 32);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 32), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(120, 32), Phaser.Geom.Rectangle.Contains);
     container.on('pointerdown', () => {
       this.scene.saveGameData();
       this.destroy();
@@ -325,7 +329,7 @@ export default class ShelterView {
     recruitBtn.add(btnText);
 
     recruitBtn.setSize(140, 36);
-    recruitBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 140, 36), Phaser.Geom.Rectangle.Contains);
+    recruitBtn.setInteractive(this.createCenteredHitArea(140, 36), Phaser.Geom.Rectangle.Contains);
     recruitBtn.on('pointerdown', () => {
       const index = this.scene.baseSystem.availableRecruits.indexOf(character);
       if (index >= 0) {

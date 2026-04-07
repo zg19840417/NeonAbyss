@@ -4,9 +4,11 @@ import Const from '../game/data/Const.js';
 import ChipView from './views/ChipView.js';
 import ShopView from './views/ShopView.js';
 import TeamView from './views/TeamView.js';
+import WildStageView from './views/WildStageView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
+import StageManager from '../game/systems/StageManager.js';
 import initConfigData from '../../assets/data/json/initConfig.json';
 
 function normalizeInitConfig(rawConfig) {
@@ -47,6 +49,7 @@ export default class BaseScene extends Phaser.Scene {
     this.chipView = null;
     this.shopView = null;
     this.teamView = null;
+    this.wildStageView = null;
     this.currentTab = 'sanctuary';
     this.tabButtons = {};
     this.modalOpen = false;
@@ -55,6 +58,10 @@ export default class BaseScene extends Phaser.Scene {
 
   createCenteredHitArea(width, height) {
     return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
+
+  init(data = {}) {
+    this.initialTab = data.initialTab || 'sanctuary';
   }
 
   ensureChromeOnTop() {
@@ -82,7 +89,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createBackground(width, height);
     this.createHeader(width);
     this.createBottomNav(width, height);
-    this.showView('sanctuary');
+    this.showView(this.initialTab || 'sanctuary');
 
     this.time.addEvent({
       delay: Const.GAME.SAVE_DELAY,
@@ -132,6 +139,7 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
     this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
+    this.stageManager = new StageManager();
 
     // 初始化 ReputationSystem
     if (!window.gameData.reputation) {
@@ -442,6 +450,7 @@ export default class BaseScene extends Phaser.Scene {
     const titles = {
       sanctuary: t('sanctuary'),
       team: t('team'),
+      wild: t('adventure'),
       dungeon: t('dungeon'),
       shop: t('shop'),
       settings: t('settings')
@@ -459,7 +468,7 @@ export default class BaseScene extends Phaser.Scene {
         this.showTeamContent();
         break;
       case 'wild':
-        this.scene.start('WildStageScene');
+        this.showWildContent();
         break;
       case 'shop':
         this.showShopContent();
@@ -523,6 +532,16 @@ export default class BaseScene extends Phaser.Scene {
     }
     this.teamView = new TeamView(this);
     this.teamView.show();
+  }
+
+  showWildContent() {
+    if (this.wildStageView) {
+      this.wildStageView.destroy();
+    }
+    this.wildStageView = new WildStageView(this, this.cameras.main.width, this.cameras.main.height, {
+      contentTop: 100,
+      contentBottom: this.cameras.main.height - Const.UI.NAV_HEIGHT - 8
+    });
   }
 
   createTeamMemberCard(x, y, character) {
@@ -1107,6 +1126,10 @@ export default class BaseScene extends Phaser.Scene {
     if (this.teamView) {
       this.teamView.destroy();
       this.teamView = null;
+    }
+    if (this.wildStageView) {
+      this.wildStageView.destroy();
+      this.wildStageView = null;
     }
 
     const childrenToDestroy = this.children.list.filter(child => {

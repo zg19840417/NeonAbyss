@@ -69,14 +69,20 @@ export default class MinionCardManager {
   }
 
   addCard(card) {
-    if (!card.id) {
-      card.id = 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+    const sourceCard = card instanceof MinionCard ? card.toJSON() : { ...card };
+    const hasDuplicateId = sourceCard.id && this.ownedCards.some(c => c.id === sourceCard.id);
+
+    // Gacha/source data often uses template ids like FM001; store each owned card as a unique instance.
+    if (!sourceCard.id || hasDuplicateId) {
+      sourceCard.id = 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
     }
-    if (!(card instanceof MinionCard)) {
-      card = new MinionCard(card);
+    if (!sourceCard.minionId) {
+      sourceCard.minionId = card.minionId || card.id || sourceCard.id;
     }
-    this.ownedCards.push(card);
-    return card;
+
+    const newCard = sourceCard instanceof MinionCard ? sourceCard : new MinionCard(sourceCard);
+    this.ownedCards.push(newCard);
+    return newCard;
   }
 
   removeCard(cardId) {

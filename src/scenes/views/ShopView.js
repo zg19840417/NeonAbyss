@@ -165,6 +165,7 @@ export default class ShopView {
 
     const tabWidth = 68;
     const tabHeight = 30;
+    const hitZoneHeight = 42;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
     // 避开主导航栏，防止二级分页按钮压住底部主导航点击区
@@ -175,6 +176,7 @@ export default class ShopView {
       const isActive = this.shopSystem.currentTab === tab.key;
 
       const container = this.scene.add.container(x, y);
+      container.setDepth(Const.DEPTH.NAV + 1);
 
       const bg = this.scene.add.graphics();
       bg.fillStyle(isActive ? Const.COLORS.PURPLE : Const.COLORS.BG_MID, 0.95);
@@ -195,10 +197,10 @@ export default class ShopView {
       }).setOrigin(0.5);
       container.add(labelText);
 
-      const hitZone = this.scene.add.rectangle(x, y, tabWidth - 4, tabHeight, 0x000000, 0.001);
+      const hitZone = this.scene.add.rectangle(x, y, tabWidth, hitZoneHeight, 0x000000, 0.001);
       hitZone.setVisible(true);
       hitZone.setAlpha(0.001);
-      hitZone.setDepth(Const.DEPTH.NAV + 2);
+      hitZone.setDepth(Const.DEPTH.NAV + 3);
       hitZone.setInteractive();
 
       hitZone.on('pointerdown', () => {
@@ -407,6 +409,7 @@ export default class ShopView {
 
     if (result.success) {
       if (result.reward.type === 'gacha') {
+        result.reward.characters = result.reward.characters.map(character => this.scene.minionCardManager.addCard(character));
         this.scene.saveGameData();
         this.showGachaResult(result.reward.characters, result.reward.count);
       } else {

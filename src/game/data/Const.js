@@ -206,9 +206,9 @@ export const Const = {
 
   // 初始货币
   INITIAL_CURRENCY: {
-    mycelium: 5000,
-    sourceCore: 100,
-    starCoin: 0
+    mycelium: 60000,
+    sourceCore: 60000,
+    starCoin: 60000
   },
 
   // 声望系统

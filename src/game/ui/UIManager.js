@@ -4,6 +4,10 @@ export default class UIManager {
     this.components = new Map();
     this.modals = [];
   }
+
+  createCenteredHitArea(width, height) {
+    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
+  }
   
   createButton(x, y, text, config = {}) {
     const {
@@ -31,7 +35,7 @@ export default class UIManager {
     
     container.add([bg, label]);
     container.setSize(width, height);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(this.createCenteredHitArea(width, height), Phaser.Geom.Rectangle.Contains);
     
     const originalBg = backgroundColor;
     
