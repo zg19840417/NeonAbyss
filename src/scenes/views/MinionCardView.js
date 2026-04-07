@@ -1,6 +1,10 @@
 import { t } from '../../game/data/Lang.js';
 import Const from '../../game/data/Const.js';
 import MinionCard from '../../game/entities/MinionCard.js';
+import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+
+// [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
+const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
 export default class MinionCardView {
   constructor(scene) {
@@ -72,14 +76,9 @@ export default class MinionCardView {
     } else {
       deployedCards.forEach((card, index) => {
         const cardContainer = this.createDeployedCard(width / 2, 170 + index * 85, card);
+        // [CardRenderer UPGRADE] 使用 CardRenderer.animateEntry 替换原来的 alpha tween
         cardContainer.setAlpha(0);
-        this.scene.tweens.add({
-          targets: cardContainer,
-          alpha: 1,
-          duration: 300,
-          delay: index * 80,
-          ease: 'Power2'
-        });
+        CardRenderer.animateEntry(this.scene, cardContainer, index * 80);
       });
     }
 
@@ -111,14 +110,9 @@ export default class MinionCardView {
       for (let i = 0; i < maxDisplay; i++) {
         const card = ownedCards[i];
         const cardContainer = this.createOwnedCard(width / 2, startY + i * 80, card, i);
+        // [CardRenderer UPGRADE] 使用 CardRenderer.animateEntry 替换原来的 alpha tween
         cardContainer.setAlpha(0);
-        this.scene.tweens.add({
-          targets: cardContainer,
-          alpha: 1,
-          duration: 300,
-          delay: i * 80,
-          ease: 'Power2'
-        });
+        CardRenderer.animateEntry(this.scene, cardContainer, i * 80);
       }
       if (ownedCards.length > 4) {
         this.addText(width / 2, startY + 4 * 80 + 10, `还有 ${ownedCards.length - 4} 张...`, {
@@ -131,112 +125,61 @@ export default class MinionCardView {
   }
 
   createDeployedCard(x, y, card) {
-    const container = this.scene.add.container(x, y);
-    const cardWidth = 300;
-    const cardHeight = 75;
-    const qualityConfig = this.getQualityConfig(card.rarity);
+    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics+Text 扁平色块
+    const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
+    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+      x, y, quality,
+      name: card.name,
+      star: card.star,
+      hp: card.maxHp,
+      atk: card.atk,
+      element: card.element || 'water',
+      scale: 0.55,
+      interactive: true,
+      onClick: () => this.showCardDetail(card)
+    });
 
-    const bg = this.scene.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
-    bg.lineStyle(2, parseInt(qualityConfig.color.replace('#', '0x')), 0.8);
-    bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
-    container.add(bg);
-
-    const elementConfig = card.getElementConfig();
-    const icon = elementConfig
-      ? this.scene.add.text(-cardWidth/2 + 30, 0, elementConfig.icon, { fontSize: '32px' }).setOrigin(0.5)
-      : this.scene.add.text(-cardWidth/2 + 30, 0, card.getRaceConfig().icon, { fontSize: '32px' }).setOrigin(0.5);
-    container.add(icon);
-
-    const nameText = this.scene.add.text(-cardWidth/2 + 60, -12, card.name, {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    container.add(nameText);
-
-    const starText = this.scene.add.text(-cardWidth/2 + 60, 10, this.getStarDisplay(card.star), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0, 0.5);
-    container.add(starText);
-
-    const statsText = this.scene.add.text(-cardWidth/2 + 60, 28, `HP:${card.maxHp} ATK:${card.atk}`, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5);
-    container.add(statsText);
-
-    const undeployBtn = this.scene.add.text(cardWidth/2 - 50, 0, '[-]', {
+    // [CardRenderer UPGRADE] 添加卸下按钮（覆盖在卡片右侧）
+    const undeployBtn = this.scene.add.text(x + 75, y, '[-]', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_EN,
       color: Const.TEXT_COLORS.DANGER
-    }).setOrigin(0.5).setInteractive();
-    undeployBtn.on('pointerdown', () => {
+    }).setOrigin(0.5).setInteractive().setDepth(10);
+    undeployBtn.on('pointerdown', (e) => {
+      e.stopPropagation();
       this.cardManager.undeployCard(card.id);
       this.scene.saveGameData();
       this.refresh();
     });
-    container.add(undeployBtn);
+    this.elements.push(undeployBtn);
 
-    container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-    container.on('pointerdown', () => this.showCardDetail(card));
-    this.elements.push(container);
-    return container;
+    this.elements.push(cardContainer);
+    return cardContainer;
   }
 
   createOwnedCard(x, y, card, index) {
-    const container = this.scene.add.container(x, y);
-    const cardWidth = 300;
-    const cardHeight = 70;
-    const qualityConfig = this.getQualityConfig(card.rarity);
+    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics+Text 扁平色块
+    const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
+    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+      x, y, quality,
+      name: card.name,
+      star: card.star,
+      hp: card.maxHp,
+      atk: card.atk,
+      element: card.element || 'water',
+      scale: 0.55,
+      interactive: true,
+      onClick: () => this.showCardDetail(card)
+    });
 
-    const bg = this.scene.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.9);
-    bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(2, parseInt(qualityConfig.color.replace('#', '0x')), 0.6);
-    bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    container.add(bg);
-
-    const elementConfig = card.getElementConfig();
-    const icon = elementConfig
-      ? this.scene.add.text(-cardWidth/2 + 30, 0, elementConfig.icon, { fontSize: '28px' }).setOrigin(0.5)
-      : this.scene.add.text(-cardWidth/2 + 30, 0, card.getRaceConfig().icon, { fontSize: '28px' }).setOrigin(0.5);
-    container.add(icon);
-
-    const nameText = this.scene.add.text(-cardWidth/2 + 60, -10, card.name, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    container.add(nameText);
-
-    const starText = this.scene.add.text(-cardWidth/2 + 60, 10, this.getStarDisplay(card.star), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0, 0.5);
-    container.add(starText);
-
-    const qualityBadge = this.scene.add.text(-cardWidth/2 + 130, 10, qualityConfig.name, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    container.add(qualityBadge);
-
-    const deployBtn = this.scene.add.text(cardWidth/2 - 50, 0, '[+]', {
+    // [CardRenderer UPGRADE] 添加部署按钮（覆盖在卡片右侧）
+    const deployBtn = this.scene.add.text(x + 75, y, '[+]', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_EN,
       color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5).setInteractive();
-    deployBtn.on('pointerdown', () => {
+    }).setOrigin(0.5).setInteractive().setDepth(10);
+    deployBtn.on('pointerdown', (e) => {
+      e.stopPropagation();
       const result = this.cardManager.deployCard(card.id);
       if (!result.success) {
         if (result.reason === 'max_deploy_reached') {
@@ -247,13 +190,10 @@ export default class MinionCardView {
         this.refresh();
       }
     });
-    container.add(deployBtn);
+    this.elements.push(deployBtn);
 
-    container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-    container.on('pointerdown', () => this.showCardDetail(card));
-    this.elements.push(container);
-    return container;
+    this.elements.push(cardContainer);
+    return cardContainer;
   }
 
   showCardDetail(card) {
@@ -272,6 +212,16 @@ export default class MinionCardView {
     const modalWidth = 300;
     const modalHeight = 480;
     const modal = this.scene.add.container(width / 2, height / 2);
+
+    // [CardRenderer UPGRADE] 弹窗入场动画
+    modal.setScale(0.5);
+    modal.setAlpha(0);
+    this.scene.tweens.add({
+      targets: modal,
+      scaleX: 1, scaleY: 1, alpha: 1,
+      duration: 300,
+      ease: 'Back.easeOut'
+    });
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 1);
@@ -294,27 +244,20 @@ export default class MinionCardView {
     modal.add(closeBtn);
     this.elements.push(closeBtn);
 
-    const elementConfig = card.getElementConfig();
-    const elementIcon = elementConfig ? elementConfig.icon : '🧑';
-    const icon = this.scene.add.text(0, -modalHeight/2 + 50, elementIcon, {
-      fontSize: '56px'
-    }).setOrigin(0.5);
-    modal.add(icon);
-
-    const nameText = this.scene.add.text(0, -modalHeight/2 + 100, card.name, {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0.5);
-    modal.add(nameText);
-
-    const starText = this.scene.add.text(0, -modalHeight/2 + 130, this.getStarDisplay(card.star), {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0.5);
-    modal.add(starText);
+    // [CardRenderer UPGRADE] 弹窗中使用 CardRenderer.createMinionCard 渲染大卡片
+    const detailQuality = RARITY_TO_QUALITY[card.rarity] || 'N';
+    const detailCard = CardRenderer.createMinionCard(this.scene, {
+      x: 0, y: -modalHeight/2 + 70,
+      quality: detailQuality,
+      name: card.name,
+      star: card.star,
+      hp: card.maxHp,
+      atk: card.atk,
+      element: card.element || 'water',
+      scale: 0.85,
+      interactive: false
+    });
+    modal.add(detailCard);
 
     const raceConfig = card.getRaceConfig();
     const raceText = this.scene.add.text(0, -modalHeight/2 + 155, `${raceConfig.icon} ${raceConfig.name}`, {

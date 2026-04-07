@@ -2,6 +2,7 @@ import { t } from '../../game/data/Lang.js';
 import Const from '../../game/data/Const.js';
 import ChipCard from '../../game/entities/ChipCard.js';
 import ChipCardManager from '../../game/systems/ChipCardManager.js';
+import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
 
 export default class EquipmentView {
   constructor(scene) {
@@ -60,70 +61,47 @@ export default class EquipmentView {
 
   showEquippedCard(x, y) {
     const equippedCard = this.cardManager.equippedCard;
-    const cardWidth = 280;
-    const cardHeight = 120;
-    const container = this.scene.add.container(x, y);
 
-    const bg = this.scene.add.graphics();
     if (equippedCard) {
-      const qualityConfig = Const.CHIP_QUALITY[equippedCard.quality] || Const.CHIP_QUALITY.N;
-      bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-      bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
-      bg.lineStyle(3, parseInt(qualityConfig.color.replace('#', '0x')), qualityConfig.glow);
-      bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
+      // [CardRenderer UPGRADE] 已装备卡片使用 CardRenderer.createChipCard
+      const chipCard = CardRenderer.createChipCard(this.scene, {
+        x, y,
+        quality: equippedCard.quality || 'N',
+        name: equippedCard.name,
+        star: equippedCard.star,
+        description: this.getStatsText(equippedCard),
+        interactive: true,
+        onClick: () => this.showCardDetail(equippedCard)
+      });
+      // [CardRenderer UPGRADE] 出场动画
+      CardRenderer.animateEntry(this.scene, chipCard, 0);
 
-      const glow = this.scene.add.graphics();
-      glow.setBlendMode(Phaser.BlendModes.ADD);
-      glow.fillStyle(parseInt(qualityConfig.color.replace('#', '0x')), 0.15);
-      glow.fillCircle(0, -10, 80);
-      container.add(glow);
-      this.elements.push(glow);
+      // [CardRenderer UPGRADE] 卸下按钮（覆盖在卡片右侧）
+      const unequipBtn = this.scene.add.text(x + 80, y, '[' + this.t('unequip') + ']', {
+        fontSize: Const.FONT.SIZE_TINY,
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.DANGER
+      }).setOrigin(0.5).setInteractive().setDepth(10);
+      unequipBtn.on('pointerdown', (e) => {
+        e.stopPropagation();
+        this.unequipCard();
+      });
+      this.elements.push(unequipBtn);
+
+      this.elements.push(chipCard);
+      return chipCard;
     } else {
+      // 空装备槽位 - 保留原有空状态显示
+      const cardWidth = 280;
+      const cardHeight = 120;
+      const container = this.scene.add.container(x, y);
+      const bg = this.scene.add.graphics();
       bg.fillStyle(Const.COLORS.BG_MID, 0.9);
       bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
       bg.lineStyle(2, Const.COLORS.BUTTON_SECONDARY, 0.5);
       bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
-    }
-    container.add(bg);
+      container.add(bg);
 
-    if (equippedCard) {
-      const qualityConfig = Const.CHIP_QUALITY[equippedCard.quality] || Const.CHIP_QUALITY.N;
-
-      const icon = this.scene.add.text(-cardWidth/2 + 40, -10, this.getCardIcon(equippedCard.quality), {
-        fontSize: '48px'
-      }).setOrigin(0.5);
-      container.add(icon);
-
-      const nameText = this.scene.add.text(-cardWidth/2 + 90, -30, equippedCard.name, {
-        fontSize: Const.FONT.SIZE_NORMAL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: qualityConfig.textColor
-      }).setOrigin(0, 0.5);
-      container.add(nameText);
-
-      const starText = this.scene.add.text(-cardWidth/2 + 90, 0, equippedCard.getStarDisplay(), {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_EN,
-        color: Const.TEXT_COLORS.YELLOW
-      }).setOrigin(0, 0.5);
-      container.add(starText);
-
-      const statsText = this.scene.add.text(-cardWidth/2 + 90, 30, this.getStatsText(equippedCard), {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.SECONDARY
-      }).setOrigin(0, 0.5);
-      container.add(statsText);
-
-      const unequipBtn = this.scene.add.text(cardWidth/2 - 50, 0, '[' + this.t('unequip') + ']', {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.DANGER
-      }).setOrigin(0.5).setInteractive();
-      unequipBtn.on('pointerdown', () => this.unequipCard());
-      container.add(unequipBtn);
-    } else {
       const icon = this.scene.add.text(0, -15, '📦', { fontSize: '36px' }).setOrigin(0.5);
       container.add(icon);
 
@@ -133,11 +111,11 @@ export default class EquipmentView {
         color: Const.TEXT_COLORS.INACTIVE
       }).setOrigin(0.5);
       container.add(emptyText);
-    }
 
-    container.setSize(cardWidth, cardHeight);
-    this.elements.push(container);
-    return container;
+      container.setSize(cardWidth, cardHeight);
+      this.elements.push(container);
+      return container;
+    }
   }
 
   showOwnedCards(x, startY) {
@@ -173,61 +151,36 @@ export default class EquipmentView {
   }
 
   createCardItem(x, y, card) {
-    const container = this.scene.add.container(x, y);
-    const cardWidth = 280;
-    const cardHeight = 70;
-    const qualityConfig = Const.CHIP_QUALITY[card.quality] || Const.CHIP_QUALITY.N;
+    // [CardRenderer UPGRADE] 使用 CardRenderer.createChipCard + scale:0.7 替换原来的 Graphics 绘制
+    const chipCard = CardRenderer.createChipCard(this.scene, {
+      x, y,
+      quality: card.quality || 'N',
+      name: card.name,
+      star: card.star,
+      description: this.getStatsText(card),
+      scale: 0.7,
+      interactive: true,
+      onClick: () => this.showCardDetail(card)
+    });
+
+    // [CardRenderer UPGRADE] 出场动画
+    CardRenderer.animateEntry(this.scene, chipCard, 0);
+
+    // [CardRenderer UPGRADE] 装备/已装备按钮（覆盖在卡片右侧）
     const isEquipped = this.cardManager.equippedCard && this.cardManager.equippedCard.id === card.id;
-
-    const bg = this.scene.add.graphics();
-    bg.fillStyle(isEquipped ? parseInt(qualityConfig.color.replace('#', '0x')) : Const.COLORS.BG_MID, isEquipped ? 0.2 : 0.9);
-    bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(2, parseInt(qualityConfig.color.replace('#', '0x')), isEquipped ? 0.8 : 0.5);
-    bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    container.add(bg);
-
-    const icon = this.scene.add.text(-cardWidth/2 + 35, 0, this.getCardIcon(card.quality), {
-      fontSize: '32px'
-    }).setOrigin(0.5);
-    container.add(icon);
-
-    const nameText = this.scene.add.text(-cardWidth/2 + 70, -12, card.name, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    container.add(nameText);
-
-    const starText = this.scene.add.text(-cardWidth/2 + 70, 10, card.getStarDisplay(), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0, 0.5);
-    container.add(starText);
-
-    const qualityBadge = this.scene.add.text(-cardWidth/2 + 160, 10, qualityConfig.name, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    container.add(qualityBadge);
-
-    const equipText = this.scene.add.text(cardWidth/2 - 50, 0, isEquipped ? '[' + this.t('equipped') + ']' : '[' + this.t('equip') + ']', {
+    const equipText = this.scene.add.text(x + 55, y, isEquipped ? '[' + this.t('equipped') + ']' : '[' + this.t('equip') + ']', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isEquipped ? Const.TEXT_COLORS.CYAN : Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0.5).setInteractive();
-    equipText.on('pointerdown', () => this.showCardDetail(card));
-    container.add(equipText);
+    }).setOrigin(0.5).setInteractive().setDepth(10);
+    equipText.on('pointerdown', (e) => {
+      e.stopPropagation();
+      this.showCardDetail(card);
+    });
+    this.elements.push(equipText);
 
-    container.setSize(cardWidth, cardHeight);
-    container.setInteractive(new Phaser.Geom.Rectangle(0, 0, cardWidth, cardHeight), Phaser.Geom.Rectangle.Contains);
-
-    container.on('pointerdown', () => this.showCardDetail(card));
-
-    this.elements.push(container);
-    return container;
+    this.elements.push(chipCard);
+    return chipCard;
   }
 
   showCardDetail(card) {
@@ -246,6 +199,16 @@ export default class EquipmentView {
     const modalWidth = 300;
     const modalHeight = 450;
     const modal = this.scene.add.container(width / 2, height / 2);
+
+    // [CardRenderer UPGRADE] 弹窗入场动画
+    modal.setScale(0.5);
+    modal.setAlpha(0);
+    this.scene.tweens.add({
+      targets: modal,
+      scaleX: 1, scaleY: 1, alpha: 1,
+      duration: 300,
+      ease: 'Back.easeOut'
+    });
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 1);
@@ -268,10 +231,17 @@ export default class EquipmentView {
     modal.add(closeBtn);
     this.elements.push(closeBtn);
 
-    const icon = this.scene.add.text(0, -modalHeight/2 + 60, this.getCardIcon(card.quality), {
-      fontSize: '56px'
-    }).setOrigin(0.5);
-    modal.add(icon);
+    // [CardRenderer UPGRADE] 详情弹窗中使用 CardRenderer.createChipCard 渲染大卡片
+    const detailCard = CardRenderer.createChipCard(this.scene, {
+      x: 0, y: -modalHeight/2 + 80,
+      quality: card.quality || 'N',
+      name: card.name,
+      star: card.star,
+      description: this.getStatsText(card),
+      scale: 1.1,
+      interactive: false
+    });
+    modal.add(detailCard);
 
     const nameText = this.scene.add.text(0, -modalHeight/2 + 115, card.name, {
       fontSize: Const.FONT.SIZE_TITLE,

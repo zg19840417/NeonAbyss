@@ -41,6 +41,21 @@ export default class PreloadScene extends Phaser.Scene {
       fontFamily: 'Noto Sans SC'
     }).setOrigin(0.5);
 
+    // 加载卡框图片资源
+    const qualities = ['N', 'R', 'SR', 'SSR', 'UR', 'LE'];
+    qualities.forEach(q => {
+      this.load.image(`card-frame-${q}`, `assets/images/ui/card-frame-${q}.jpg`);
+    });
+
+    // 加载元素占位立绘
+    const elements = ['water', 'fire', 'wind', 'light', 'dark'];
+    elements.forEach(e => {
+      this.load.image(`portrait-placeholder-${e}`, `assets/images/characters/placeholder-${e}.jpg`);
+    });
+
+    // 加载芯片图标集
+    this.load.image('chip-icon-set', 'assets/images/ui/chip-icon-set.jpg');
+
     this.load.on('progress', (value) => {
       progressBar.clear();
       progressBar.fillStyle(this.config.colors.amber, 1);
