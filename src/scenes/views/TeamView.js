@@ -1,7 +1,7 @@
 ﻿import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
 import CardRenderer from '../../game/utils/CardRenderer.js';
-import { getMainRole, RoleType } from '../../game/data/CharacterClass.js';
+import { RoleType } from '../../game/data/CharacterClass.js';
 
 const RARITY_TO_QUALITY = {
   common: 'N',
@@ -67,8 +67,8 @@ export default class TeamView {
     });
 
     const deployedMinions = this.scene.minionCardManager.getDeployedCards?.() || [];
-    const cardY = contentTop + 115;
-    const spacing = 92;
+    const cardY = contentTop + 116;
+    const spacing = 104;
     const cardXs = [width / 2 - spacing, width / 2, width / 2 + spacing];
 
     for (let index = 0; index < 3; index++) {
@@ -80,7 +80,8 @@ export default class TeamView {
       }
     }
 
-    this.renderChipAura(width / 2, contentTop + 250, width - 30);
+    this.renderChipAura(width / 2, contentTop + 246, width - 30);
+    this.formationBottom = contentTop + 286;
   }
 
   renderDeployedMinionCard(x, y, card) {
@@ -90,19 +91,21 @@ export default class TeamView {
       y,
       quality,
       name: card.name,
-      star: card.star,
-      hp: card.maxHp,
+      hp: card.currentHp ?? card.maxHp,
+      maxHp: card.maxHp,
       atk: card.atk,
+      spd: this.getSpeedValue(card),
       element: card.element || 'water',
+      charClass: card.charClass,
       portraitKey: extractPortraitKey(card.portrait),
-      scale: 0.5,
+      scale: 1,
       interactive: false
     });
     cardContainer.setDepth(Const.DEPTH.CONTENT + 1);
     this.elements.push(cardContainer);
     CardRenderer.addInteraction(this.scene, cardContainer, () => this.showCardDetail(card, true));
 
-    const action = this.createActionButton(x, y + 74, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
+    const action = this.createActionButton(x, y + 88, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
       this.toggleDeploy(card, true);
     }, 50, 22);
     action.setDepth(Const.DEPTH.CONTENT + 2);
@@ -175,7 +178,7 @@ export default class TeamView {
   }
 
   renderCollectionChrome(width, contentBottom) {
-    const headerY = 352;
+    const headerY = this.formationBottom || 388;
     const left = 16;
     const right = width - 16;
 
@@ -205,7 +208,7 @@ export default class TeamView {
     countText.setDepth(Const.DEPTH.CONTENT + 3);
     this.elements.push(countText);
 
-    this.collectionTop = 376;
+    this.collectionTop = headerY + 24;
     this.collectionBottom = contentBottom;
     this.collectionViewportHeight = this.collectionBottom - this.collectionTop;
 
@@ -264,83 +267,16 @@ export default class TeamView {
   }
 
   createCompactMinionRow(x, y, width, card) {
-    const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
-    const color = this.getQualityColorInt(quality);
-    const role = getMainRole(card.charClass) || RoleType.DPS;
-    const roleStyle = ROLE_STYLE[role] || ROLE_STYLE[RoleType.DPS];
-    const elementStyle = ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water;
-    const row = this.scene.add.container(x, y);
-    const rowWidth = width;
-    const rowHeight = 76;
-
-    const bg = this.scene.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.92);
-    bg.lineStyle(1.5, color, 0.75);
-    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
-    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
-    bg.lineStyle(1, color, 0.18);
-    bg.strokeRoundedRect(-rowWidth / 2 + 6, -rowHeight / 2 + 6, rowWidth - 12, rowHeight - 12, 10);
-    row.add(bg);
-
-    const portraitFrame = this.scene.add.graphics();
-    portraitFrame.fillStyle(0x111122, 1);
-    portraitFrame.lineStyle(1.5, color, 0.85);
-    portraitFrame.fillRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
-    portraitFrame.strokeRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
-    row.add(portraitFrame);
-
-    const portraitKey = extractPortraitKey(card.portrait);
-    if (portraitKey && this.scene.textures.exists(portraitKey)) {
-      const portrait = this.scene.add.image(-rowWidth / 2 + 38, 0, portraitKey);
-      portrait.setDisplaySize(48, 48);
-      row.add(portrait);
-    } else {
-      row.add(this.scene.add.text(-rowWidth / 2 + 38, 0, elementStyle.emoji || '•', {
-        fontSize: '26px'
-      }).setOrigin(0.5));
-    }
-
-    const nameText = this.scene.add.text(-rowWidth / 2 + 78, -18, card.name, {
-      fontSize: '14px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0, 0.5);
-    nameText.setWordWrapWidth(rowWidth - 180);
-    row.add(nameText);
-
-    row.add(this.scene.add.text(rowWidth / 2 - 84, -18, `${quality}  Lv${card.level || 1}`, {
-      fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_EN,
-      fontStyle: 'bold',
-      color: this.getQualityColorText(quality)
-    }).setOrigin(0, 0.5));
-
-    row.add(this.createMiniBadge(-rowWidth / 2 + 88, 6, 20, 18, elementStyle.color, elementStyle.label));
-    row.add(this.createMiniBadge(-rowWidth / 2 + 114, 6, 20, 18, roleStyle.color, roleStyle.label));
-
-    row.add(this.scene.add.text(-rowWidth / 2 + 140, 6, `能力x${this.getAbilityCount(card)}`, {
-      fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5));
-
-    row.add(this.scene.add.text(-rowWidth / 2 + 78, 28, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
-      fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0, 0.5));
-
-    const button = this.createInlineButton(rowWidth / 2 - 42, 0, '上阵', () => {
-      this.toggleDeploy(card, true);
+    const row = CardRenderer.createCompactMinionRow(this.scene, {
+      x,
+      y,
+      width,
+      card,
+      portraitKey: extractPortraitKey(card.portrait),
+      actionLabel: '上阵',
+      onClick: () => this.showCardDetail(card, true),
+      onAction: () => this.toggleDeploy(card, true)
     });
-    row.add(button);
-
-    row.setSize(rowWidth, rowHeight);
-    row.setInteractive(new Phaser.Geom.Rectangle(-rowWidth / 2, -rowHeight / 2, rowWidth - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
-    row.on('pointerdown', () => this.showCardDetail(card, true));
-    row.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, row, true));
-    row.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, row, false));
 
     this.contentContainer.add(row);
     return row;
@@ -698,11 +634,11 @@ export default class TeamView {
     const accentColor = isMinion ? this.getQualityColorInt(RARITY_TO_QUALITY[card.rarity] || 'N') : this.getQualityColorInt(card.quality || 'N');
     bg.fillStyle(Const.COLORS.BG_MID, 1);
     bg.lineStyle(2, accentColor, 0.8);
-    bg.fillRoundedRect(-148, -220, 296, 440, Const.UI.CARD_RADIUS);
-    bg.strokeRoundedRect(-148, -220, 296, 440, Const.UI.CARD_RADIUS);
+    bg.fillRoundedRect(-154, -244, 308, 488, Const.UI.CARD_RADIUS);
+    bg.strokeRoundedRect(-154, -244, 308, 488, Const.UI.CARD_RADIUS);
     modal.add(bg);
 
-    const closeBtn = this.scene.add.text(128, -198, 'X', {
+    const closeBtn = this.scene.add.text(132, -220, 'X', {
       fontSize: '18px',
       fontFamily: Const.FONT.FAMILY_EN,
       color: Const.TEXT_COLORS.SECONDARY
@@ -711,64 +647,63 @@ export default class TeamView {
     modal.add(closeBtn);
 
     if (isMinion) {
-      const portraitFrameY = -40;
-      const portraitWidth = 244;
-      const portraitHeight = 276;
-      const portraitBg = this.scene.add.graphics();
-      portraitBg.fillStyle(0xe9edf6, 0.98);
-      portraitBg.lineStyle(1.5, accentColor, 0.5);
-      portraitBg.fillRoundedRect(-122, portraitFrameY - portraitHeight / 2, portraitWidth, portraitHeight, 18);
-      portraitBg.strokeRoundedRect(-122, portraitFrameY - portraitHeight / 2, portraitWidth, portraitHeight, 18);
-      modal.add(portraitBg);
-
-      const portraitKey = extractPortraitKey(card.portrait);
-      if (portraitKey && this.scene.textures.exists(portraitKey)) {
-        const frame = this.scene.textures.getFrame(portraitKey, '__BASE');
-        const image = this.scene.add.image(0, portraitFrameY, portraitKey);
-        const fitScale = Math.min(
-          portraitWidth / (frame?.width || portraitWidth),
-          portraitHeight / (frame?.height || portraitHeight)
-        );
-        image.setScale(fitScale);
-        modal.add(image);
-      } else {
-        modal.add(this.scene.add.text(0, portraitFrameY, (ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji, {
-          fontSize: '72px'
-        }).setOrigin(0.5));
-      }
+      const portrait = CardRenderer.createDetailPortrait(this.scene, {
+        x: 0,
+        y: -74,
+        width: 252,
+        height: 326,
+        quality: RARITY_TO_QUALITY[card.rarity] || 'N',
+        portraitKey: extractPortraitKey(card.portrait),
+        element: card.element || 'water'
+      });
+      modal.add(portrait);
 
       const infoPanel = this.scene.add.graphics();
-      infoPanel.fillStyle(0x0b0f18, 0.96);
-      infoPanel.lineStyle(1.5, accentColor, 0.65);
-      infoPanel.fillRoundedRect(-122, 108, 244, 88, 16);
-      infoPanel.strokeRoundedRect(-122, 108, 244, 88, 16);
+      infoPanel.fillStyle(0x0b0f18, 0.97);
+      infoPanel.lineStyle(1.5, accentColor, 0.7);
+      infoPanel.fillRoundedRect(-126, 112, 252, 110, 16);
+      infoPanel.strokeRoundedRect(-126, 112, 252, 110, 16);
       modal.add(infoPanel);
 
-      modal.add(this.scene.add.text(-108, 128, card.name, {
+      modal.add(this.scene.add.text(-110, 132, card.name, {
         fontSize: '16px',
         fontFamily: Const.FONT.FAMILY_CN,
         fontStyle: 'bold',
         color: this.getQualityColorText(RARITY_TO_QUALITY[card.rarity] || 'N')
       }).setOrigin(0, 0.5));
 
-      modal.add(this.scene.add.text(108, 128, '★'.repeat(Math.min(card.star || 1, 5)), {
+      modal.add(this.scene.add.text(110, 132, `Lv${card.level || 1}`, {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_EN,
         fontStyle: 'bold',
-        color: '#ffd166'
+        color: Const.TEXT_COLORS.CYAN
       }).setOrigin(1, 0.5));
 
-      modal.add(this.scene.add.text(-108, 154, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
+      modal.add(this.scene.add.text(-110, 158, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_EN,
         color: Const.TEXT_COLORS.PRIMARY
       }).setOrigin(0, 0.5));
 
-      modal.add(this.scene.add.text(-108, 178, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji} ${card.element || 'water'}   Lv${card.level || 1}   能力x${this.getAbilityCount(card)}`, {
+      modal.add(this.scene.add.text(-110, 184, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji}  能力x${this.getAbilityCount(card)}   速度 ${this.getSpeedValue(card)}`, {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.SECONDARY
       }).setOrigin(0, 0.5));
+
+      modal.add(this.scene.add.text(-110, 206, `品质 ${RARITY_TO_QUALITY[card.rarity] || 'N'}   ${'★'.repeat(Math.min(card.star || 1, 5))}`, {
+        fontSize: '11px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: '#ffd166'
+      }).setOrigin(0, 0.5));
+
+      if (card.passiveSkill) {
+        modal.add(this.scene.add.text(-110, 226, `被动: ${card.passiveSkill.icon || ''} ${card.passiveSkill.name || ''}`, {
+          fontSize: '11px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.SUCCESS
+        }).setOrigin(0, 0.5));
+      }
     } else {
       const detailCard = CardRenderer.createChipCard(this.scene, {
         x: 0,
@@ -783,37 +718,14 @@ export default class TeamView {
       modal.add(detailCard);
     }
 
-    modal.add(this.scene.add.text(0, isMinion ? 80 : 34, isMinion ? '立绘详情' : '芯片详情', {
+    modal.add(this.scene.add.text(0, isMinion ? 90 : 34, isMinion ? '立绘详情' : '芯片详情', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isMinion ? '#ff6b6b' : '#4dabf7'
     }).setOrigin(0.5));
 
-    let cursorY = isMinion ? 226 : 62;
-    if (isMinion) {
-      const rows = [
-        `等级: ${card.level || 1}`,
-        `生命: ${card.maxHp || 0}`,
-        `攻击: ${card.atk || 0}`,
-        `速度: ${this.getSpeedValue(card)}`,
-        `能力数: ${this.getAbilityCount(card)}`
-      ];
-      rows.forEach((text) => {
-        modal.add(this.scene.add.text(-108, cursorY, text, {
-          fontSize: '11px',
-          fontFamily: Const.FONT.FAMILY_CN,
-          color: Const.TEXT_COLORS.SECONDARY
-        }).setOrigin(0, 0.5));
-        cursorY += 18;
-      });
-      if (card.passiveSkill) {
-        modal.add(this.scene.add.text(-108, cursorY + 4, `被动: ${card.passiveSkill.icon || ''} ${card.passiveSkill.name || ''}`, {
-          fontSize: '11px',
-          fontFamily: Const.FONT.FAMILY_CN,
-          color: Const.TEXT_COLORS.SUCCESS
-        }).setOrigin(0, 0.5));
-      }
-    } else {
+    let cursorY = 62;
+    if (!isMinion) {
       modal.add(this.scene.add.text(-108, cursorY, this.getChipAuraText(card), {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_EN,
@@ -832,7 +744,7 @@ export default class TeamView {
     }
 
     if ((isMinion && (card.star || 1) < 5) || (!isMinion && card.canUpgradeStar?.())) {
-      const upgradeBtn = this.createActionButton(0, isMinion ? 198 : 176, '升星', Const.COLORS.PURPLE, () => {
+      const upgradeBtn = this.createActionButton(0, isMinion ? 210 : 176, '升星', Const.COLORS.PURPLE, () => {
         this.upgradeCard(card, isMinion);
       }, 88, 28);
       upgradeBtn.setDepth(Const.DEPTH.MODAL_UI);

@@ -119,31 +119,8 @@ class ComfyUI {
   }
 }
 
-const FUSION_PROMPTS = {
-  'FM001': `1024x1536竖屏立绘，POV视角定焦镜头近距离特写。超现实写实风格，摄影师风格，电影质感，韩国22岁年轻女性。尖下巴又尖又长，尖鼻子高鼻梁，狐狸眼，长睫毛，卧蚕明显，眼旁一颗淡淡美人痣。冷白瓷白皮肤光滑水润，在环境光照射下有轻微光泽度。骨架偏瘦但胸部和臀部丰满，小蛮腰，披肩直发，夜店精致魅惑装扮，红润的唇彩。眼眸直视镜头不要漂移。
-
-她是废土上最古老的融合姬，与一棵巨大的变异古树深度融合。头发为苍翠的翠绿色披肩直发，发丝间缠绕着细小的白色小花和嫩绿的新芽。指甲为翠绿色美甲。身穿飘逸的翠绿色丝质吊带长裙，裙摆由层层叠叠的薄纱和透明丝质面料组成，轻盈得仿佛被风轻轻吹起，裙摆下是白皙的裸足。皮肤上有淡金色的树脉纹路，从锁骨蔓延至手臂。双腿缠绕着苍翠的藤蔓，藤蔓从脚踝一直延伸到膝盖，像树根一样扎入周围的土壤。
-
-她采用优雅的跪姿，双膝微微分开，双手自然垂放在大腿上，掌心朝上，指尖散发着微弱的翠绿色治愈光芒，姿势舒展自然。表情直视镜头，眼神冷艳中带着母性的温柔，仿佛在邀请观者进入她的治愈领域。背景为虚化的深山古树森林，巨大的树干和翠绿的藤蔓交织成一片朦胧的绿色穹顶，阳光从树冠缝隙中洒下形成金色光柱。整体色调以翠绿色为主题，点缀金色光芒，废土末世氛围。`,
-
-  'FM021': `1024x1536竖屏立绘，POV视角定焦镜头近距离特写。超现实写实风格，摄影师风格，电影质感，韩国22岁年轻女性。尖下巴又尖又长，尖鼻子高鼻梁，狐狸眼，长睫毛，卧蚕明显，眼旁一颗淡淡美人痣。冷白瓷白皮肤光滑水润。骨架偏瘦但胸部和臀部丰满，小蛮腰，披肩直发，夜店精致魅惑装扮。
-
-她是方舟计划的核心实验体，与变异雪豹深度嵌合。头发为银白色的蓬松披肩直发，发丝间有灰黑色的豹纹斑点。身穿飘逸的暗紫色透明丝质露肩长裙，裙摆由半透明的黑色羽毛和丝质面料组成，轻盈朦胧，裙摆下是白皙的裸足。脊椎两侧长出了一排可伸缩的骨刺，呈半透明的灰白色，锋利而优美。
-
-眼眸直视镜头不要漂移。她采用跪姿，臀部坐在小腿上，双手放在膝盖上，姿势舒展自然。表情直视镜头，眼神冷峻而孤独，狐狸眼中带着掠食者的威压，嘴角带着危险的微笑，仿佛在审视观者是否值得她出手。背景为虚化的废弃城区废墟，月光从乌云缝隙中洒下，照亮了废墟的轮廓。整体色调以紫色为主题，点缀银白色，废土末世氛围。`,
-
-  'FM041': `1024x1536竖屏立绘，POV视角定焦镜头近距离特写。超现实写实风格，摄影师风格，电影质感，韩国22岁年轻女性。尖下巴又尖又长，尖鼻子高鼻梁，狐狸眼，长睫毛，卧蚕明显，眼旁一颗淡淡美人痣。冷白瓷白皮肤光滑水润。骨架偏瘦但胸部和臀部丰满，小蛮腰，披肩直发，夜店精致魅惑装扮。
-
-她是方舟计划的首席机械工程师，与星舰引擎核心深度融合。头发为银白色的光泽披肩直发，发丝间有电路纹路的金属光泽。嘴唇涂着银白色口红，指甲为银色金属质感美甲。身穿飘逸的银白色和金色拼接透明丝质长裙，裙摆由半透明的金属纤维丝质面料组成，轻盈金属光泽，裙摆下是白皙的裸足。脊椎被金属管线取代，从背部延伸出去与引擎子系统相连；双眼是纯粹的机械光圈，发出稳定的白色冷光，如同永不熄灭的恒星。
-
-她采用坐姿，双腿自然下垂，姿势舒展自然。表情看向镜头，坚定而神圣，狐狸眼中带着守护者的使命，嘴角带着希望的微笑。背景为虚化的星舰引擎核心，巨大的推进器和能量管道在身后闪烁。整体色调以金色为主题，点缀银白色，废土末世氛围。`,
-
-  'FM061': `1024x1536竖屏立绘，POV视角定焦镜头近距离特写。超现实写实风格，摄影师风格，电影质感，韩国22岁年轻女性。尖下巴又尖又长，尖鼻子高鼻梁，狐狸眼，长睫毛，卧蚕明显，眼旁一颗淡淡美人痣。冷白瓷白皮肤光滑水润。骨架偏瘦但胸部和臀部丰满，小蛮腰，披肩直发，夜店精致魅惑装扮，红润的唇彩。
-
-她是第七避难所的首席能源工程师，与地热核心的火焰能量深度融合。头发为赤红色的飘浮流焰状披肩直发，发丝如火焰般飘动。指甲为赤红色美甲。身穿飘逸的赤红色和橙色拼接透明丝质露肩长裙，裙摆由半透明的火焰状丝质面料组成，轻盈燃烧，裙摆下是白皙的裸足。皮肤上布满不断渗出橙红色光芒的裂纹，在黑暗中如同燃烧的脉络；双眼是纯粹的火焰白光，眼眸直视镜头不要漂移。
-
-她采用跪姿，赤红色的火焰能量场环绕全身，姿势舒展自然。表情直视镜头，眼神冷峻而痛苦，狐狸眼中带着失去记忆后的孤独，嘴角带着一丝苦涩的微笑。背景为虚化的地热核心废墟，熔岩和火焰在远处燃烧，地面被高温烧成琉璃。整体色调以红色为主题，点缀橙红色和金色，废土末世氛围。`
-};
+const FUSION_PROMPTS_PATH = path.join(__dirname, 'character_prompts.json');
+const FUSION_PROMPTS = JSON.parse(fs.readFileSync(FUSION_PROMPTS_PATH, 'utf-8'));
 
 function buildWorkflow(charId, config, options) {
   const defaults = config.defaults;
@@ -156,9 +133,8 @@ function buildWorkflow(charId, config, options) {
 
   const workflow = {};
   for (const [key, node] of Object.entries(template)) {
-    const cleanKey = key.replace(/:/g, '_');
-    workflow[cleanKey] = { class_type: node.class_type, inputs: { ...node.inputs } };
-    const inputs = workflow[cleanKey].inputs;
+    workflow[key] = { class_type: node.class_type, inputs: { ...node.inputs } };
+    const inputs = workflow[key].inputs;
 
     if (key === '57:27' && inputs.text !== undefined) {
       inputs.text = options.prompt;
@@ -191,9 +167,6 @@ async function generateAndSave(charId, prompt, config, outputDir) {
 
   const queueResult = await comfyui.queuePrompt(workflow);
   
-  console.log(`  提交的工作流:`, JSON.stringify(workflow, null, 2));
-  console.log(`  ComfyUI响应:`, JSON.stringify(queueResult, null, 2));
-  
   if (!queueResult.prompt_id) {
     throw new Error(`提交 ${charId} 任务失败`);
   }
@@ -211,21 +184,51 @@ async function generateAndSave(charId, prompt, config, outputDir) {
       
       if (history[queueResult.prompt_id]) {
         const outputs = history[queueResult.prompt_id];
-        const saveNode = Object.keys(outputs).find(key => outputs[key].images);
+        const status = history[queueResult.prompt_id].status;
         
-        if (saveNode && outputs[saveNode].images) {
-          const images = outputs[saveNode].images;
-          console.log(`  生成完成！找到 ${images.length} 张图片`);
+        if (status && status.completed) {
+          const saveNode = Object.keys(outputs).find(key => outputs[key] && outputs[key].images);
           
-          const savedPaths = [];
-          for (const img of images) {
-            const savePath = path.join(outputDir, `${charId}.png`);
-            await comfyui.downloadImage(img.filename, img.subfolder, img.type, savePath);
-            console.log(`  已保存: ${savePath}`);
-            savedPaths.push(savePath);
+          if (saveNode && outputs[saveNode].images && outputs[saveNode].images.length > 0) {
+            const images = outputs[saveNode].images;
+            console.log(`  生成完成！找到 ${images.length} 张图片`);
+            
+            const savedPaths = [];
+            for (const img of images) {
+              const savePath = path.join(outputDir, `${charId}.png`);
+              await comfyui.downloadImage(img.filename, img.subfolder, img.type, savePath);
+              console.log(`  已保存: ${savePath}`);
+              savedPaths.push(savePath);
+            }
+            
+            return savedPaths;
+          } else {
+            console.log(`  任务已完成，尝试从ComfyUI输出目录获取图片...`);
+            const sourceDir = 'D:\\ComfyUI\\ComfyUI-aki-v2\\ComfyUI\\output';
+            const prefix = charId;
+            
+            try {
+              const files = fs.readdirSync(sourceDir)
+                .filter(f => f.startsWith(prefix + '_') && f.endsWith('.png'))
+                .map(f => ({
+                  name: f,
+                  path: path.join(sourceDir, f),
+                  time: fs.statSync(path.join(sourceDir, f)).mtime.getTime()
+                }))
+                .sort((a, b) => b.time - a.time);
+              
+              if (files.length > 0) {
+                const latestFile = files[0];
+                const savePath = path.join(outputDir, `${charId}.png`);
+                fs.copyFileSync(latestFile.path, savePath);
+                console.log(`  已复制: ${savePath}`);
+                return [savePath];
+              }
+            } catch (e) {
+              console.log(`  读取ComfyUI输出目录失败: ${e.message}`);
+            }
+            return [];
           }
-          
-          return savedPaths;
         }
       }
       
@@ -292,15 +295,15 @@ async function main() {
   console.log('');
 
   for (const charId of charIds) {
-    const prompt = FUSION_PROMPTS[charId];
-    if (!prompt) {
+    const charData = FUSION_PROMPTS[charId];
+    if (!charData || !charData.prompt) {
       console.log(`跳过 ${charId}: 未找到提示词`);
       continue;
     }
 
     try {
-      await generateAndSave(charId, prompt, config, outputDir);
-      console.log(`✓ ${charId} 生成并保存成功\n`);
+      await generateAndSave(charId, charData.prompt, config, outputDir);
+      console.log(`✓ ${charId} (${charData.name}) 生成并保存成功\n`);
     } catch (e) {
       console.error(`✗ ${charId} 生成失败: ${e.message}\n`);
     }

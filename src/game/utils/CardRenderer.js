@@ -1,5 +1,6 @@
 ﻿import AnimationHelper from './AnimationHelper.js';
 import Const from '../data/Const.js';
+import { getMainRole, RoleType } from '../data/CharacterClass.js';
 
 const QUALITY_COLOR_MAP = {
   N: 0x888888,
@@ -10,20 +11,19 @@ const QUALITY_COLOR_MAP = {
   LE: 0xff00ff
 };
 
-const ELEMENT_EMOJI_MAP = {
-  water: '💧',
-  fire: '🔥',
-  wind: '🍃',
-  light: '✨',
-  dark: '🌑'
+const ELEMENT_STYLE = {
+  water: { label: 'W', icon: '💧', color: 0x3d8bfd },
+  fire: { label: 'F', icon: '🔥', color: 0xff6b6b },
+  wind: { label: 'A', icon: '🍃', color: 0x51cf66 },
+  light: { label: 'L', icon: '✨', color: 0xf7b801 },
+  dark: { label: 'D', icon: '🌑', color: 0x845ef7 }
 };
 
-const ELEMENT_NAME_MAP = {
-  water: '水',
-  fire: '火',
-  wind: '风',
-  light: '光',
-  dark: '暗'
+const ROLE_STYLE = {
+  [RoleType.TANK]: { label: 'T', color: 0x4dabf7 },
+  [RoleType.DPS]: { label: 'D', color: 0xff922b },
+  [RoleType.SUPPORT]: { label: 'S', color: 0x20c997 },
+  [RoleType.HEALER]: { label: 'H', color: 0xff6bcb }
 };
 
 export default class CardRenderer {
@@ -31,116 +31,246 @@ export default class CardRenderer {
     const {
       x = 0,
       y = 0,
+      width = Const.BATTLE.LAYOUT.CARD_WIDTH,
+      height = Const.BATTLE.LAYOUT.CARD_HEIGHT,
       quality = 'N',
       name = '???',
-      star = 1,
       hp = 0,
+      maxHp = hp,
       atk = 0,
+      spd = '--',
       element = 'water',
+      charClass = null,
       portraitKey = null,
+      skillCooldowns = [0, 0, 0],
       interactive = false,
       onClick = null,
       scale = 1
     } = options;
 
-    const cardW = Const.MINION.CARD_WIDTH;
-    const cardH = Const.MINION.CARD_HEIGHT;
-    const infoH = 74;
-    const portraitInset = 10;
-    const portraitBoxY = -22;
-    const portraitBoxW = cardW - portraitInset * 2;
-    const portraitBoxH = cardH - infoH - 26;
-    const colorInt = QUALITY_COLOR_MAP[quality] || QUALITY_COLOR_MAP.N;
-    const qualityConfig = Const.CHIP_QUALITY[quality] || Const.CHIP_QUALITY.N;
-
+    const colorInt = this.getQualityColorInt(quality);
+    const qualityText = this.getQualityColorText(quality);
+    const elementStyle = this.getElementStyle(element);
+    const roleStyle = this.getRoleStyle(charClass);
+    const infoHeight = 40;
+    const portraitInset = 6;
+    const portraitWidth = width - portraitInset * 2;
+    const portraitHeight = height - infoHeight - 10;
     const container = scene.add.container(x, y);
-    container.setSize(cardW, cardH);
 
-    const shadow = scene.add.graphics();
-    shadow.fillStyle(colorInt, 0.14);
-    shadow.fillRoundedRect(-cardW / 2 - 4, -cardH / 2 - 4, cardW + 8, cardH + 8, 18);
-    container.add(shadow);
+    container.setSize(width, height + 14);
 
-    const frame = scene.add.graphics();
-    frame.fillStyle(0x11131f, 0.98);
-    frame.lineStyle(2, colorInt, 0.9);
-    frame.fillRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 16);
-    frame.strokeRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 16);
-    frame.lineStyle(1, colorInt, 0.22);
-    frame.strokeRoundedRect(-cardW / 2 + 6, -cardH / 2 + 6, cardW - 12, cardH - 12, 12);
-    container.add(frame);
+    const outerGlow = scene.add.graphics();
+    outerGlow.fillStyle(colorInt, 0.14);
+    outerGlow.fillRoundedRect(-width / 2 - 4, -height / 2 - 4, width + 8, height + 8, 14);
+    container.add(outerGlow);
 
-    const portraitBack = scene.add.graphics();
-    portraitBack.fillStyle(0xe9edf6, 0.96);
-    portraitBack.lineStyle(1, colorInt, 0.4);
-    portraitBack.fillRoundedRect(-portraitBoxW / 2, -cardH / 2 + portraitInset, portraitBoxW, portraitBoxH, 12);
-    portraitBack.strokeRoundedRect(-portraitBoxW / 2, -cardH / 2 + portraitInset, portraitBoxW, portraitBoxH, 12);
-    container.add(portraitBack);
+    const cardFrame = scene.add.graphics();
+    cardFrame.fillStyle(0x0a1020, 0.98);
+    cardFrame.lineStyle(2, colorInt, 0.92);
+    cardFrame.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
+    cardFrame.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    cardFrame.lineStyle(1, colorInt, 0.22);
+    cardFrame.strokeRoundedRect(-width / 2 + 4, -height / 2 + 4, width - 8, height - 8, 10);
+    container.add(cardFrame);
 
-    const portraitContainer = scene.add.container(0, portraitBoxY);
+    const portraitY = -height / 2 + portraitInset;
+    const portraitBg = scene.add.graphics();
+    portraitBg.fillStyle(0x111826, 1);
+    portraitBg.lineStyle(1, colorInt, 0.24);
+    portraitBg.fillRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
+    portraitBg.strokeRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
+    container.add(portraitBg);
 
+    const portraitMask = scene.add.graphics();
+    portraitMask.fillStyle(0xffffff, 1);
+    portraitMask.fillRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
+    portraitMask.visible = false;
+    container.add(portraitMask);
+
+    const portraitContainer = scene.add.container(0, portraitY + portraitHeight / 2);
     if (portraitKey && scene.textures.exists(portraitKey)) {
       const image = scene.add.image(0, 0, portraitKey);
       const frame = scene.textures.getFrame(portraitKey, '__BASE');
-      const sourceWidth = frame?.width || portraitBoxW;
-      const sourceHeight = frame?.height || portraitBoxH;
-      const fitScale = Math.min(portraitBoxW / sourceWidth, portraitBoxH / sourceHeight);
+      const sourceWidth = frame?.width || portraitWidth;
+      const sourceHeight = frame?.height || portraitHeight;
+      const fitScale = Math.min(portraitWidth / sourceWidth, portraitHeight / sourceHeight);
       image.setScale(fitScale);
+      image.setMask(portraitMask.createGeometryMask());
       portraitContainer.add(image);
     } else {
-      portraitContainer.add(scene.add.text(0, 0, ELEMENT_EMOJI_MAP[element] || '•', {
-        fontSize: '56px'
+      portraitContainer.add(scene.add.text(0, 0, elementStyle.icon, {
+        fontSize: `${Math.floor(portraitHeight * 0.42)}px`
       }).setOrigin(0.5));
     }
     container.add(portraitContainer);
 
+    const infoY = height / 2 - infoHeight;
     const infoPanel = scene.add.graphics();
-    infoPanel.fillStyle(0x0b0f18, 0.92);
-    infoPanel.lineStyle(1.5, colorInt, 0.75);
-    infoPanel.fillRoundedRect(-cardW / 2 + 8, cardH / 2 - infoH - 8, cardW - 16, infoH, 14);
-    infoPanel.strokeRoundedRect(-cardW / 2 + 8, cardH / 2 - infoH - 8, cardW - 16, infoH, 14);
-    infoPanel.lineStyle(1, colorInt, 0.18);
-    infoPanel.strokeRoundedRect(-cardW / 2 + 14, cardH / 2 - infoH - 2, cardW - 28, infoH - 12, 10);
+    infoPanel.fillStyle(0x09101a, 0.98);
+    infoPanel.lineStyle(1, colorInt, 0.7);
+    infoPanel.fillRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 10);
+    infoPanel.strokeRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 10);
     container.add(infoPanel);
 
-    const starStr = '★'.repeat(Math.min(star, 5));
-    const nameText = scene.add.text(-cardW / 2 + 16, cardH / 2 - 66, name, {
-      fontSize: '13px',
+    const nameText = scene.add.text(-width / 2 + 7, infoY + 7, name, {
+      fontSize: '8px',
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: qualityConfig.textColor
+      color: qualityText
     }).setOrigin(0, 0.5);
-    nameText.setWordWrapWidth(cardW - 32);
+    nameText.setWordWrapWidth(width - 30);
     container.add(nameText);
 
-    container.add(scene.add.text(cardW / 2 - 16, cardH / 2 - 66, starStr, {
-      fontSize: '11px',
+    container.add(this.createBadge(scene, width / 2 - 18, infoY + 7, 12, 8, elementStyle.color, elementStyle.label));
+    container.add(this.createBadge(scene, width / 2 - 6, infoY + 7, 12, 8, roleStyle.color, roleStyle.label));
+
+    const hpBarBg = scene.add.graphics();
+    const hpBarFill = scene.add.graphics();
+    const hpBarWidth = width - 18;
+    const hpBarHeight = 8;
+    const hpBarX = -hpBarWidth / 2;
+    const hpBarY = infoY + 13;
+    hpBarBg.fillStyle(0x101826, 1);
+    hpBarBg.fillRoundedRect(hpBarX, hpBarY, hpBarWidth, hpBarHeight, 4);
+    container.add(hpBarBg);
+    container.add(hpBarFill);
+
+    const hpText = scene.add.text(0, hpBarY + hpBarHeight / 2, '', {
+      fontSize: '6px',
       fontFamily: Const.FONT.FAMILY_EN,
       fontStyle: 'bold',
-      color: '#ffd166'
-    }).setOrigin(1, 0.5));
+      color: '#ffffff'
+    }).setOrigin(0.5);
+    container.add(hpText);
 
-    container.add(scene.add.text(-cardW / 2 + 16, cardH / 2 - 44, `HP ${hp}   ATK ${atk}`, {
-      fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0, 0.5));
+    container.setData('hpBarFill', hpBarFill);
+    container.setData('hpBarText', hpText);
+    container.setData('hpBarWidth', hpBarWidth - 2);
+    container.setData('hpBarX', hpBarX + 1);
+    container.setData('hpBarY', hpBarY + 1);
+    container.setData('hpBarHeight', hpBarHeight - 2);
+    this.updateHpBar(container, hp, maxHp, true);
 
-    container.add(scene.add.text(-cardW / 2 + 16, cardH / 2 - 24, `${ELEMENT_EMOJI_MAP[element] || ''} ${ELEMENT_NAME_MAP[element] || element || ''}`, {
-      fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5));
+    const rowY = infoY + 29;
+    const slots = [-width / 2 + 10, -width / 2 + 26, -width / 2 + 42, -width / 2 + 58, -width / 2 + 74];
+    container.add(this.createBattleToken(scene, slots[0], rowY, 13, `${atk}`, '⚔'));
+    const cooldowns = [...skillCooldowns, 0, 0, 0].slice(0, 3);
+    cooldowns.forEach((cooldown, index) => {
+      container.add(this.createBattleToken(scene, slots[index + 1], rowY, 13, `${cooldown}`, `${index + 1}`));
+    });
+    container.add(this.createBattleToken(scene, slots[4], rowY, 13, `${spd}`, '↯'));
+
+    const buffStrip = scene.add.container(0, height / 2 + 8);
+    container.add(buffStrip);
+    container.setData('buffStrip', buffStrip);
 
     container.setScale(scale);
     container.__baseScaleX = scale;
     container.__baseScaleY = scale;
 
     if (interactive) {
-      CardRenderer.addInteraction(scene, container, onClick);
+      this.addInteraction(scene, container, onClick);
     }
 
-    container.cardData = { quality, name, star, hp, atk, element };
+    return container;
+  }
+
+  static createCompactMinionRow(scene, options = {}) {
+    const {
+      x = 0,
+      y = 0,
+      width = 340,
+      card,
+      portraitKey = null,
+      actionLabel = '上阵',
+      onClick = null,
+      onAction = null
+    } = options;
+
+    const quality = this.normalizeQuality(card?.quality || card?.rarity);
+    const color = this.getQualityColorInt(quality);
+    const role = this.getRoleStyle(card?.charClass);
+    const element = this.getElementStyle(card?.element);
+    const rowHeight = 76;
+    const container = scene.add.container(x, y);
+    container.setSize(width, rowHeight);
+
+    const bg = scene.add.graphics();
+    bg.fillStyle(0x0d111d, 0.94);
+    bg.lineStyle(1.5, color, 0.75);
+    bg.fillRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 14);
+    bg.strokeRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 14);
+    bg.lineStyle(1, color, 0.2);
+    bg.strokeRoundedRect(-width / 2 + 5, -rowHeight / 2 + 5, width - 10, rowHeight - 10, 10);
+    container.add(bg);
+
+    const portraitBox = scene.add.graphics();
+    portraitBox.fillStyle(0xf2f4f8, 1);
+    portraitBox.lineStyle(1, color, 0.7);
+    portraitBox.fillRoundedRect(-width / 2 + 10, -28, 56, 56, 12);
+    portraitBox.strokeRoundedRect(-width / 2 + 10, -28, 56, 56, 12);
+    container.add(portraitBox);
+
+    if (portraitKey && scene.textures.exists(portraitKey)) {
+      const portrait = scene.add.image(-width / 2 + 38, 0, portraitKey);
+      portrait.setDisplaySize(48, 48);
+      container.add(portrait);
+    } else {
+      container.add(scene.add.text(-width / 2 + 38, 0, element.icon, {
+        fontSize: '24px'
+      }).setOrigin(0.5));
+    }
+
+    const title = scene.add.text(-width / 2 + 78, -18, card?.name || '未知', {
+      fontSize: '14px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5);
+    title.setWordWrapWidth(width - 178);
+    container.add(title);
+
+    container.add(scene.add.text(width / 2 - 86, -18, `${quality}  Lv${card?.level || 1}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: this.getQualityColorText(quality)
+    }).setOrigin(0, 0.5));
+
+    container.add(this.createBadge(scene, -width / 2 + 88, 6, 20, 18, element.color, element.label));
+    container.add(this.createBadge(scene, -width / 2 + 114, 6, 20, 18, role.color, role.label));
+
+    container.add(scene.add.text(-width / 2 + 140, 6, `能力x${this.getAbilityCount(card)}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.SECONDARY
+    }).setOrigin(0, 0.5));
+
+    container.add(scene.add.text(-width / 2 + 78, 28, `HP ${card?.maxHp || card?.hp || 0}   ATK ${card?.atk || 0}   SPD ${card?.spd ?? card?.baseSpd ?? '--'}`, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0, 0.5));
+
+    const actionButton = this.createInlineButton(scene, width / 2 - 42, 0, actionLabel, () => {
+      if (typeof onAction === 'function') {
+        onAction(card);
+      }
+    });
+    container.add(actionButton);
+
+    container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -rowHeight / 2, width - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
+    container.__baseScaleX = 1;
+    container.__baseScaleY = 1;
+    container.on('pointerdown', () => {
+      if (typeof onClick === 'function') {
+        onClick(card);
+      }
+    });
+    container.on('pointerover', () => AnimationHelper.tweenCardHover(scene, container, true));
+    container.on('pointerout', () => AnimationHelper.tweenCardHover(scene, container, false));
+
     return container;
   }
 
@@ -161,12 +291,12 @@ export default class CardRenderer {
 
     const cardW = 120;
     const cardH = 160;
-    const colorInt = QUALITY_COLOR_MAP[quality] || QUALITY_COLOR_MAP.N;
-    const qualityConfig = Const.CHIP_QUALITY[quality] || Const.CHIP_QUALITY.N;
+    const colorInt = this.getQualityColorInt(quality);
+    const qualityText = this.getQualityColorText(quality);
     const container = scene.add.container(x, y);
     container.setSize(cardW, cardH);
 
-    const glow = CardRenderer.createQualityGlow(scene, cardW, cardH, quality);
+    const glow = this.createQualityGlow(scene, cardW, cardH, quality);
     container.add(glow);
 
     const frame = scene.add.graphics();
@@ -189,10 +319,13 @@ export default class CardRenderer {
       const fitScale = Math.min(72 / (texture?.width || 72), 72 / (texture?.height || 72));
       icon.setScale(fitScale);
       container.add(icon);
-    } else if (element && ELEMENT_EMOJI_MAP[element]) {
-      container.add(scene.add.text(0, -20, ELEMENT_EMOJI_MAP[element], { fontSize: '42px' }).setOrigin(0.5));
     } else {
-      container.add(scene.add.text(0, -20, '💎', { fontSize: '42px' }).setOrigin(0.5));
+      container.add(scene.add.text(0, -20, element ? this.getElementStyle(element).icon : 'CORE', {
+        fontSize: '28px',
+        fontFamily: Const.FONT.FAMILY_EN,
+        fontStyle: 'bold',
+        color: qualityText
+      }).setOrigin(0.5));
     }
 
     const infoPanel = scene.add.graphics();
@@ -207,7 +340,7 @@ export default class CardRenderer {
       fontSize: '11px',
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: qualityConfig.textColor
+      color: qualityText
     }).setOrigin(0, 0);
     nameText.setWordWrapWidth(88);
     container.add(nameText);
@@ -227,11 +360,115 @@ export default class CardRenderer {
     container.__baseScaleY = scale;
 
     if (interactive) {
-      CardRenderer.addInteraction(scene, container, onClick);
+      this.addInteraction(scene, container, onClick);
     }
 
-    container.cardData = { quality, name, star, description, element };
     return container;
+  }
+
+  static createDetailPortrait(scene, options = {}) {
+    const {
+      x = 0,
+      y = 0,
+      width = 240,
+      height = 276,
+      quality = 'N',
+      portraitKey = null,
+      element = 'water'
+    } = options;
+
+    const container = scene.add.container(x, y);
+    const color = this.getQualityColorInt(quality);
+
+    const bg = scene.add.graphics();
+    bg.fillStyle(0xf2f4f8, 0.98);
+    bg.lineStyle(1.5, color, 0.5);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 18);
+    container.add(bg);
+
+    const maskShape = scene.add.graphics();
+    maskShape.fillStyle(0xffffff, 1);
+    maskShape.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
+    maskShape.visible = false;
+    container.add(maskShape);
+
+    if (portraitKey && scene.textures.exists(portraitKey)) {
+      const frame = scene.textures.getFrame(portraitKey, '__BASE');
+      const image = scene.add.image(0, 0, portraitKey);
+      const fitScale = Math.min(
+        width / (frame?.width || width),
+        height / (frame?.height || height)
+      );
+      image.setScale(fitScale);
+      image.setMask(maskShape.createGeometryMask());
+      container.add(image);
+    } else {
+      container.add(scene.add.text(0, 0, this.getElementStyle(element).icon, {
+        fontSize: '72px'
+      }).setOrigin(0.5));
+    }
+
+    return container;
+  }
+
+  static updateHpBar(container, currentHp, maxHp, isPlayer = true) {
+    const fill = container.getData('hpBarFill');
+    const text = container.getData('hpBarText');
+    if (!fill || !text) return;
+
+    const barWidth = container.getData('hpBarWidth') || 0;
+    const barX = container.getData('hpBarX') || 0;
+    const barY = container.getData('hpBarY') || 0;
+    const barHeight = container.getData('hpBarHeight') || 0;
+    const ratio = maxHp > 0 ? Phaser.Math.Clamp(currentHp / maxHp, 0, 1) : 0;
+
+    fill.clear();
+    fill.fillStyle(isPlayer ? Const.BATTLE.COLORS.HP_GREEN : Const.BATTLE.COLORS.HP_RED, 1);
+    fill.fillRoundedRect(barX, barY, barWidth * ratio, barHeight, 3);
+    text.setText(`${Math.max(0, Math.floor(currentHp))}/${Math.max(0, Math.floor(maxHp))}`);
+  }
+
+  static createInlineButton(scene, x, y, label, callback, width = 48, height = 22) {
+    const button = scene.add.container(x, y);
+    const bg = scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
+    bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    button.add(bg);
+
+    button.add(scene.add.text(0, 0, label, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0.5));
+
+    button.setSize(width, height);
+    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+    button.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+      if (typeof callback === 'function') {
+        callback();
+      }
+    });
+    button.on('pointerover', () => {
+      bg.clear();
+      bg.fillStyle(Const.COLORS.BUTTON_CYAN, 1);
+      bg.lineStyle(1, Const.COLORS.BUTTON_HOVER, 1);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    });
+    button.on('pointerout', () => {
+      bg.clear();
+      bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
+      bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    });
+
+    return button;
   }
 
   static animateEntry(scene, card, delay = 0) {
@@ -242,15 +479,8 @@ export default class CardRenderer {
     card.__baseScaleX = card.__baseScaleX ?? card.scaleX ?? 1;
     card.__baseScaleY = card.__baseScaleY ?? card.scaleY ?? 1;
     card.setInteractive();
-
-    card.on('pointerover', () => {
-      AnimationHelper.tweenCardHover(scene, card, true);
-    });
-
-    card.on('pointerout', () => {
-      AnimationHelper.tweenCardHover(scene, card, false);
-    });
-
+    card.on('pointerover', () => AnimationHelper.tweenCardHover(scene, card, true));
+    card.on('pointerout', () => AnimationHelper.tweenCardHover(scene, card, false));
     card.on('pointerdown', () => {
       AnimationHelper.tweenPulse(scene, card, 1.03, 90);
       if (typeof onClick === 'function') {
@@ -261,10 +491,9 @@ export default class CardRenderer {
 
   static createQualityGlow(scene, width, height, quality) {
     const qualityConfig = Const.CHIP_QUALITY[quality] || Const.CHIP_QUALITY.N;
-    const colorInt = QUALITY_COLOR_MAP[quality] || QUALITY_COLOR_MAP.N;
+    const colorInt = this.getQualityColorInt(quality);
     const glowAlpha = qualityConfig.glow * 0.28;
     const padding = 6;
-
     const graphics = scene.add.graphics();
     graphics.fillStyle(colorInt, glowAlpha);
     graphics.fillRoundedRect(
@@ -287,5 +516,76 @@ export default class CardRenderer {
     }
 
     return graphics;
+  }
+
+  static createBadge(scene, x, y, width, height, color, label) {
+    const container = scene.add.container(x, y);
+    const bg = scene.add.graphics();
+    bg.fillStyle(color, 0.18);
+    bg.lineStyle(1, color, 0.95);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 5);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 5);
+    container.add(bg);
+    container.add(scene.add.text(0, 0, label, {
+      fontSize: '8px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5));
+    return container;
+  }
+
+  static createBattleToken(scene, x, y, size, value, label) {
+    const container = scene.add.container(x, y);
+    const bg = scene.add.graphics();
+    bg.fillStyle(0x11192a, 1);
+    bg.lineStyle(1, 0x6eb7ff, 0.7);
+    bg.fillRoundedRect(-size / 2, -size / 2, size, size, 5);
+    bg.strokeRoundedRect(-size / 2, -size / 2, size, size, 5);
+    container.add(bg);
+    container.add(scene.add.text(0, -1.5, label, {
+      fontSize: '6px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: '#b5d9ff'
+    }).setOrigin(0.5));
+    container.add(scene.add.text(0, 4, value, {
+      fontSize: '6px',
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5));
+    return container;
+  }
+
+  static getQualityColorInt(quality) {
+    return QUALITY_COLOR_MAP[quality] || QUALITY_COLOR_MAP.N;
+  }
+
+  static getQualityColorText(quality) {
+    return (Const.CHIP_QUALITY[quality] || Const.CHIP_QUALITY.N).textColor;
+  }
+
+  static getElementStyle(element) {
+    return ELEMENT_STYLE[element] || ELEMENT_STYLE.water;
+  }
+
+  static getRoleStyle(charClass) {
+    const role = getMainRole(charClass) || RoleType.DPS;
+    return ROLE_STYLE[role] || ROLE_STYLE[RoleType.DPS];
+  }
+
+  static getAbilityCount(card) {
+    if (Array.isArray(card?.abilities)) return card.abilities.length;
+    if (Array.isArray(card?.abilityIds)) return card.abilityIds.length;
+    if (Array.isArray(card?.forcedAbilities)) return card.forcedAbilities.length;
+    if (card?.passiveSkill) return 1;
+    return 0;
+  }
+
+  static normalizeQuality(input) {
+    if (!input) return 'N';
+    if (['N', 'R', 'SR', 'SSR', 'UR', 'LE'].includes(input)) return input;
+    return { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' }[input] || 'N';
   }
 }

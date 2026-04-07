@@ -1,18 +1,18 @@
-import BattleSystem, { BattlePhase, Enemy } from '../game/systems/BattleSystem.js';
+﻿import BattleSystem from '../game/systems/BattleSystem.js';
 import EventBus from '../game/EventBus.js';
 import MinionCard from '../game/entities/MinionCard.js';
 import Const from '../game/data/Const.js';
-import CardRenderer from '../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+import CardRenderer from '../game/utils/CardRenderer.js';
 
-// [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
-const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
+const RARITY_TO_QUALITY = {
+  common: 'N',
+  rare: 'R',
+  epic: 'SR',
+  legendary: 'SSR'
+};
 
-// [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
 const PORTRAIT_KEY_MAP = {};
 
-/**
- * [PORTRAIT FIX] 从 portrait 路径中提取 Phaser 纹理 key
- */
 function extractPortraitKey(portraitPath) {
   if (!portraitPath) return null;
   const fileName = portraitPath.split('/').pop().replace('.png', '');
@@ -22,46 +22,19 @@ function extractPortraitKey(portraitPath) {
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BattleScene' });
-    this.config = this.initConfig();
-  }
-
-  createCenteredHitArea(width, height) {
-    return new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height);
-  }
-
-  initConfig() {
-    return {
-      colors: {
-        bgDark: Const.BATTLE.COLORS.BG_DARK,
-        bgMid: Const.BATTLE.COLORS.BG_MID,
-        border: Const.BATTLE.COLORS.BORDER,
-        amber: Const.BATTLE.COLORS.AMBER,
-        sacred: Const.BATTLE.COLORS.SACRED,
-        corrupt: Const.BATTLE.COLORS.CORRUPT,
-        textPrimary: Const.BATTLE.COLORS.TEXT_PRIMARY,
-        textSecondary: Const.BATTLE.COLORS.TEXT_SECONDARY,
-        hpGreen: Const.BATTLE.COLORS.HP_GREEN,
-        hpRed: Const.BATTLE.COLORS.HP_RED
-      },
-      layout: {
-        cardWidth: Const.BATTLE.LAYOUT.CARD_WIDTH,
-        cardHeight: Const.BATTLE.LAYOUT.CARD_HEIGHT,
-        enemyCardWidth: Const.BATTLE.LAYOUT.ENEMY_CARD_WIDTH,
-        enemyCardHeight: Const.BATTLE.LAYOUT.ENEMY_CARD_HEIGHT
-      },
-      animation: {
-        attackDuration: Const.BATTLE.LAYOUT.ATTACK_DURATION,
-        returnDuration: Const.BATTLE.LAYOUT.RETURN_DURATION
-      }
-    };
+    this.logEntries = [];
   }
 
   init(data) {
     this.currentFloor = data.floor || 1;
     this.currentDimension = data.dimension || 1;
+    this.stageName = data.stageName || `禁区 第${this.currentFloor}层`;
     this.enemies = data.enemies || [];
     this.minions = data.minions || data.players || [];
     this.equipmentCard = data.equipmentCard || data.chipCard || null;
+    this.isPaused = false;
+    this.battleEnded = false;
+    this.pauseOverlay = null;
   }
 
   create() {
@@ -70,28 +43,34 @@ export default class BattleScene extends Phaser.Scene {
 
     this.initializeBattle();
     this.createBackground(width, height);
-    this.createHeader(width, height);
-    this.createEnemyArea(width, height);
-    this.createPlayerArea(width, height);
-    this.createBattleLog(width, height);
+    this.createHeader(width);
+    this.createEnemyArea(width);
+    this.createPlayerArea(width);
+    this.createBattleLogBar(width);
     this.createBottomPanel(width, height);
 
     this.setupBattleSystem();
     this.startBattle();
   }
 
+  update() {
+    if (this.roundValueText && this.battleSystem) {
+      this.roundValueText.setText(`第 ${Math.max(1, this.battleSystem.turnCount || 1)} 回合`);
+    }
+  }
+
   initializeBattle() {
     if (this.enemies.length === 0) {
       this.enemies = [
-        { id: 1, name: '机械猎犬', hp: 80, maxHp: 80, atk: 15, level: 1, isBoss: false }
+        { id: 1, name: '机械猎犬', hp: 80, maxHp: 80, atk: 15, spd: 12, level: 1, isBoss: false, element: 'dark' }
       ];
     }
 
     if (this.minions.length === 0) {
       const minionManager = window.gameData?.minionCardManager;
       if (minionManager?.deployedCards) {
-        minionManager.deployedCards.forEach(id => {
-          const cardData = minionManager.ownedCards?.find(c => c.id === id);
+        minionManager.deployedCards.forEach((id) => {
+          const cardData = minionManager.ownedCards?.find((c) => c.id === id);
           if (cardData) {
             this.minions.push(MinionCard.fromJSON(cardData));
           }
@@ -101,334 +80,208 @@ export default class BattleScene extends Phaser.Scene {
 
     if (this.minions.length === 0) {
       this.minions = [
-        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, isMinionCard: true, rarity: 'N', race: 'plant', passiveSkill: null },
-        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, isMinionCard: true, rarity: 'R', race: 'plant', passiveSkill: null }
-      ].map(m => MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m));
+        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, spd: 12, isMinionCard: true, rarity: 'N', race: 'plant', element: 'fire' },
+        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, spd: 18, isMinionCard: true, rarity: 'R', race: 'plant', element: 'water' }
+      ].map((m) => (MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m)));
     }
 
-    if (!window.gameData.chipCardManager && this.equipmentCard) {
-      window.gameData.chipCardManager = {
-        ownedCards: [this.equipmentCard],
-        equippedCardId: this.equipmentCard.id
-      };
-    }
-
-    this.isPaused = false;
-    this.battleEnded = false;
+    this.logEntries = ['战斗开始'];
   }
 
   createBackground(width, height) {
     this.add.graphics()
-      .fillGradientStyle(
-        this.config.colors.bgDark, this.config.colors.bgDark,
-        0x2d2824, 0x2d2824,
-        1
-      )
+      .fillGradientStyle(Const.BATTLE.COLORS.BG_DARK, Const.BATTLE.COLORS.BG_DARK, 0x242032, 0x1a1624, 1)
       .fillRect(0, 0, width, height);
   }
 
-  createHeader(width, height) {
-    const headerY = 50;
+  createHeader(width) {
+    this.createCircleButton(28, 34, '←', () => this.returnToBase());
 
-    const bossLabel = this.currentFloor % 10 === 0 ? ' BOSS' : '';
-    this.floorText = this.add.text(width / 2, headerY - 10, `第 ${this.currentFloor} 层${bossLabel}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_FLOOR_TITLE,
-      fontFamily: 'Noto Sans SC',
+    this.roundValueText = this.add.text(20, 24, '第 1 回合', {
+      fontSize: '13px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_SECONDARY
+    }).setOrigin(0, 0.5);
+
+    this.add.text(width / 2, 24, this.stageName, {
+      fontSize: '18px',
+      fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: this.config.colors.amber
+      color: Const.BATTLE.COLORS.AMBER
     }).setOrigin(0.5);
-
-    this.dimensionText = this.add.text(width / 2, headerY + 15, `次元 ${this.currentDimension}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_DIMENSION,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.textSecondary
-    }).setOrigin(0.5);
-
-    this.backButton = this.createCircleButton(30, 40, '←', () => {
-      this.returnToBase();
-    });
   }
 
-  createCircleButton(x, y, text, callback) {
-    const container = this.add.container(x, y);
-    const bg = this.add.graphics();
-    bg.fillStyle(0x2a2520, 0.8);
-    bg.fillCircle(0, 0, 18);
-    bg.lineStyle(1, this.config.colors.border, 0.5);
-    bg.strokeCircle(0, 0, 18);
-
-    const label = this.add.text(0, 0, text, {
-      fontSize: Const.BATTLE.FONT.SIZE_CIRCLE_BTN,
-      fontFamily: 'Arial',
-      color: this.config.colors.textSecondary
-    }).setOrigin(0.5);
-
-    container.add([bg, label]);
-    container.setInteractive(new Phaser.Geom.Circle(0, 0, 18), Phaser.Geom.Circle.Contains);
-
-    container.on('pointerover', () => {
-      label.setColor('#d4a574');
-      bg.clear()
-        .fillStyle(0x3a3530, 0.9)
-        .fillCircle(0, 0, 18)
-        .lineStyle(1, this.config.colors.amber, 0.7)
-        .strokeCircle(0, 0, 18);
-    });
-    
-    container.on('pointerout', () => {
-      label.setColor(this.config.colors.textSecondary);
-      bg.clear()
-        .fillStyle(0x2a2520, 0.8)
-        .fillCircle(0, 0, 18)
-        .lineStyle(1, this.config.colors.border, 0.5)
-        .strokeCircle(0, 0, 18);
-    });
-    
-    container.on('pointerdown', callback);
-
-    return container;
-  }
-
-  createEnemyArea(width, height) {
-    const areaY = 160;
-
-    this.add.text(width / 2, areaY - 30, '敌方', {
-      fontSize: Const.BATTLE.FONT.SIZE_AREA_LABEL,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.textSecondary
-    }).setOrigin(0.5);
-
+  createEnemyArea(width) {
     this.enemyCards = [];
-    const cardWidth = this.config.layout.enemyCardWidth;
-    const totalWidth = this.enemies.length * cardWidth + (this.enemies.length - 1) * 20;
-    const startX = (width - totalWidth) / 2 + cardWidth / 2;
+    this.enemyY = 166;
+    this.add.text(24, 72, '敌方阵列', {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_SECONDARY
+    }).setOrigin(0, 0.5);
+    const positions = this.getRowPositions(width, this.enemies.length);
 
     this.enemies.forEach((enemy, index) => {
-      const x = startX + index * (cardWidth + 20);
-      const card = this.createEnemyCard(x, areaY + 40, enemy);
+      const card = this.createBattleCard(positions[index], this.enemyY, enemy, false);
       this.enemyCards.push({ container: card, enemy });
     });
   }
 
-  createEnemyCard(x, y, enemy) {
-    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
-    // 敌方卡片使用 N 品质（灰色基调），通过 fallback frame 实现红色调效果
-    const cardContainer = CardRenderer.createMinionCard(this, {
-      x, y,
-      quality: 'N',
-      name: enemy.name,
-      star: 1,
-      hp: enemy.hp,
-      atk: enemy.atk || 15,
-      element: 'dark',
-      scale: 0.5,
-      interactive: false,
-      portraitKey: extractPortraitKey(enemy.portrait)  // [PORTRAIT FIX]
-    });
-
-    // [CardRenderer UPGRADE] 叠加红色调覆盖层，标识敌方卡片
-    const { colors, layout } = this.config;
-    const cardWidth = layout.enemyCardWidth;
-    const cardHeight = layout.enemyCardHeight;
-
-    const redOverlay = this.add.graphics();
-    redOverlay.fillStyle(0xff0000, 0.08);
-    redOverlay.fillRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
-    cardContainer.add(redOverlay);
-
-    // Boss 标识
-    if (enemy.isBoss) {
-      const bossBorder = this.add.graphics();
-      bossBorder.lineStyle(2, colors.corrupt, 0.8);
-      bossBorder.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
-      cardContainer.add(bossBorder);
-    }
-
-    // [CardRenderer UPGRADE] 保留 HP 条逻辑
-    const hpBarBg = this.add.graphics();
-    hpBarBg.fillStyle(0x1a1815, 1);
-    hpBarBg.fillRect(-cardWidth / 2 + 10, cardHeight / 2 - 45, cardWidth - 20, 16);
-
-    const hpBar = this.add.graphics();
-    const hpPercent = enemy.hp / enemy.maxHp;
-    hpBar.fillStyle(colors.hpRed, 1);
-    hpBar.fillRect(-cardWidth / 2 + 11, cardHeight / 2 - 44, (cardWidth - 22) * hpPercent, 14);
-
-    const hpText = this.add.text(0, cardHeight / 2 - 37, `${enemy.hp}/${enemy.maxHp}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_HP,
-      fontFamily: 'Noto Sans SC',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    cardContainer.add([hpBarBg, hpBar, hpText]);
-    cardContainer.setData('enemy', enemy);
-    cardContainer.setData('hpBar', hpBar);
-    cardContainer.setData('hpText', hpText);
-    cardContainer.setData('hpBarBg', hpBarBg);
-
-    // [CardRenderer UPGRADE] 出场动画
-    CardRenderer.animateEntry(this, cardContainer, 0);
-
-    return cardContainer;
-  }
-
-  createPlayerArea(width, height) {
-    const areaY = 420;
-
-    this.add.text(width / 2, areaY - 20, '我方', {
-      fontSize: Const.BATTLE.FONT.SIZE_AREA_LABEL,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.textSecondary
-    }).setOrigin(0.5);
-
+  createPlayerArea(width) {
     this.playerCards = [];
-    const cardWidth = this.config.layout.cardWidth;
-    const totalWidth = this.minions.length * cardWidth + (this.minions.length - 1) * 15;
-    const startX = (width - totalWidth) / 2 + cardWidth / 2;
+    this.playerY = 450;
+    this.add.text(24, 356, '我方阵列', {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_SECONDARY
+    }).setOrigin(0, 0.5);
+    const positions = this.getRowPositions(width, this.minions.length);
 
     this.minions.forEach((minion, index) => {
-      const x = startX + index * (cardWidth + 15);
-      const card = this.createPlayerCard(x, areaY + 50, minion);
+      const card = this.createBattleCard(positions[index], this.playerY, minion, true);
       this.playerCards.push({ container: card, minion });
     });
   }
 
-  createPlayerCard(x, y, minion) {
-    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
-    const quality = RARITY_TO_QUALITY[minion.rarity] || 'N';
-    const cardContainer = CardRenderer.createMinionCard(this, {
-      x, y, quality,
-      name: minion.name,
-      star: minion.star || 1,
-      hp: minion.hp,
-      atk: minion.atk || 20,
-      element: minion.element || 'water',
-      scale: 0.5,
-      interactive: false,
-      portraitKey: extractPortraitKey(minion.portrait)  // [PORTRAIT FIX]
-    });
-
-    // [CardRenderer UPGRADE] 保留 HP 条逻辑 - 在卡片上叠加 HP 条
-    const { colors, layout } = this.config;
-    const cardWidth = layout.cardWidth;
-    const cardHeight = layout.cardHeight;
-
-    const hpBarBg = this.add.graphics();
-    hpBarBg.fillStyle(0x1a1815, 1);
-    hpBarBg.fillRect(-cardWidth / 2 + 8, cardHeight / 2 - 30, cardWidth - 16, 12);
-
-    const hpBar = this.add.graphics();
-    const hpPercent = minion.hp / minion.maxHp;
-    hpBar.fillStyle(colors.hpGreen, 1);
-    hpBar.fillRect(-cardWidth / 2 + 9, cardHeight / 2 - 29, (cardWidth - 18) * hpPercent, 10);
-
-    const hpText = this.add.text(0, cardHeight / 2 - 23, `${minion.hp}/${minion.maxHp}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_HP,
-      fontFamily: 'Noto Sans SC',
-      color: '#ffffff'
-    }).setOrigin(0.5);
-
-    cardContainer.add([hpBarBg, hpBar, hpText]);
-    cardContainer.setData('player', minion);
-    cardContainer.setData('hpBar', hpBar);
-    cardContainer.setData('hpText', hpText);
-    cardContainer.setData('hpBarBg', hpBarBg);
-
-    // [CardRenderer UPGRADE] 出场动画
-    CardRenderer.animateEntry(this, cardContainer, 0);
-
-    return cardContainer;
+  getRowPositions(width, count) {
+    const cardWidth = Const.BATTLE.LAYOUT.CARD_WIDTH;
+    const gap = 8;
+    const totalWidth = count * cardWidth + (count - 1) * gap;
+    const startX = (width - totalWidth) / 2 + cardWidth / 2;
+    return Array.from({ length: count }, (_, index) => startX + index * (cardWidth + gap));
   }
 
-  createBattleLog(width, height) {
-    const logY = 560;
-    const logHeight = 100;
+  createBattleCard(x, y, unit, isPlayer) {
+    const quality = isPlayer ? (RARITY_TO_QUALITY[unit.rarity] || 'N') : (unit.isBoss ? 'SSR' : 'N');
+    const currentHp = unit.currentHp ?? unit.hp ?? unit.maxHp ?? 0;
+    const maxHp = unit.maxHp ?? unit.hp ?? 0;
+    const card = CardRenderer.createMinionCard(this, {
+      x,
+      y,
+      width: Const.BATTLE.LAYOUT.CARD_WIDTH,
+      height: Const.BATTLE.LAYOUT.CARD_HEIGHT,
+      quality,
+      name: unit.name,
+      hp: currentHp,
+      maxHp,
+      atk: unit.atk || 0,
+      spd: unit.spd ?? unit.baseSpd ?? '--',
+      element: unit.element || (isPlayer ? 'water' : 'dark'),
+      charClass: unit.charClass,
+      portraitKey: extractPortraitKey(unit.portrait),
+      skillCooldowns: this.getSkillCooldowns(unit),
+      interactive: false,
+      scale: 1
+    });
 
-    const logBg = this.add.graphics();
-    logBg.fillStyle(0x1a1815, 0.8);
-    logBg.fillRoundedRect(20, logY, width - 40, logHeight, 6);
-    logBg.lineStyle(1, this.config.colors.border, 0.3);
-    logBg.strokeRoundedRect(20, logY, width - 40, logHeight, 6);
+    card.setData(isPlayer ? 'player' : 'enemy', unit);
+    card.setDepth(Const.DEPTH.CONTENT + 2);
+    CardRenderer.animateEntry(this, card, 0);
+    return card;
+  }
 
-    this.battleLogTexts = [];
-    for (let i = 0; i < 3; i++) {
-      const text = this.add.text(30, logY + 12 + i * 28, '', {
-        fontSize: Const.BATTLE.FONT.SIZE_LOG,
-        fontFamily: 'Noto Sans SC',
-        color: this.config.colors.textSecondary,
-        wordWrap: { width: width - 60 }
-      });
-      this.battleLogTexts.push(text);
+  getSkillCooldowns(unit) {
+    if (Array.isArray(unit.skillCooldowns) && unit.skillCooldowns.length > 0) {
+      return unit.skillCooldowns.slice(0, 3);
     }
+    if (Array.isArray(unit.skills) && unit.skills.length > 0) {
+      return unit.skills.slice(0, 3).map((skill) => skill.cooldownRemaining ?? skill.cooldown ?? 0);
+    }
+    return [0, 0, 0];
+  }
+
+  createBattleLogBar(width) {
+    const y = 628;
+    const h = 36;
+    this.logBar = this.add.container(width / 2, y);
+    this.logBar.setDepth(Const.DEPTH.CONTENT + 3);
+
+    const bg = this.add.graphics();
+    bg.fillStyle(0x11131f, 0.95);
+    bg.lineStyle(1, Const.BATTLE.COLORS.BORDER, 0.6);
+    bg.fillRoundedRect(-(width - 24) / 2, -h / 2, width - 24, h, 10);
+    bg.strokeRoundedRect(-(width - 24) / 2, -h / 2, width - 24, h, 10);
+    this.logBar.add(bg);
+
+    this.logBarLabel = this.add.text(-(width - 50) / 2, 0, '[战斗日志] 战斗开始', {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_SECONDARY
+    }).setOrigin(0, 0.5);
+    this.logBar.add(this.logBarLabel);
+
+    this.logBar.setSize(width - 24, h);
+    this.logBar.setInteractive(new Phaser.Geom.Rectangle(-(width - 24) / 2, -h / 2, width - 24, h), Phaser.Geom.Rectangle.Contains);
+    this.logBar.on('pointerdown', () => this.openPauseOverlay());
   }
 
   createBottomPanel(width, height) {
-    const panelY = 700;
-
-    const panelBg = this.add.graphics();
-    panelBg.fillStyle(0x1a1815, 0.9);
-    panelBg.fillRect(0, panelY - 30, width, 100);
-
-    this.pauseButton = this.createCircleButton(width / 2 - 60, panelY + 20, '⏸', () => {
-      this.togglePause();
-    });
-
-    this.returnButton = this.createActionButton(width / 2 + 60, panelY + 20, '返回基地', () => {
-      this.returnToBase();
-    });
+    const panelY = height - 34;
+    this.speedButton = this.createPillButton(92, panelY, '1x', () => this.toggleSpeed(), 76, 28);
+    this.pauseButton = this.createPillButton(width - 92, panelY, '暂停', () => this.openPauseOverlay(), 76, 28);
   }
 
-  createActionButton(x, y, text, callback) {
+  createCircleButton(x, y, label, callback) {
     const container = this.add.container(x, y);
-    const btnWidth = 100;
-    const btnHeight = 36;
-
     const bg = this.add.graphics();
-    bg.fillStyle(0x3a3530, 0.9);
-    bg.fillRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6);
-    bg.lineStyle(1, this.config.colors.border, 0.5);
-    bg.strokeRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6);
-
-    const label = this.add.text(0, 0, text, {
-      fontSize: Const.BATTLE.FONT.SIZE_BUTTON,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.textPrimary
+    bg.fillStyle(0x201d29, 0.95);
+    bg.lineStyle(1, Const.BATTLE.COLORS.BORDER, 0.7);
+    bg.fillCircle(0, 0, 18);
+    bg.strokeCircle(0, 0, 18);
+    const text = this.add.text(0, 0, label, {
+      fontSize: '16px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_PRIMARY
     }).setOrigin(0.5);
-
-    container.add([bg, label]);
-    container.setInteractive(this.createCenteredHitArea(btnWidth, btnHeight), Phaser.Geom.Rectangle.Contains);
-
-    container.on('pointerover', () => {
-      bg.clear()
-        .fillStyle(0x4a4540, 0.9)
-        .fillRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6)
-        .lineStyle(1, this.config.colors.amber, 0.7)
-        .strokeRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6);
-      label.setColor(this.config.colors.amber);
-    });
-    
-    container.on('pointerout', () => {
-      bg.clear()
-        .fillStyle(0x3a3530, 0.9)
-        .fillRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6)
-        .lineStyle(1, this.config.colors.border, 0.5)
-        .strokeRoundedRect(-btnWidth / 2, -btnHeight / 2, btnWidth, btnHeight, 6);
-      label.setColor(this.config.colors.textPrimary);
-    });
-    
+    container.add([bg, text]);
+    container.setInteractive(new Phaser.Geom.Circle(0, 0, 18), Phaser.Geom.Circle.Contains);
     container.on('pointerdown', callback);
+    return container;
+  }
 
+  createPillButton(x, y, label, callback, width = 76, height = 28) {
+    const container = this.add.container(x, y);
+    container.setDepth(Const.DEPTH.CONTENT + 3);
+    const bg = this.add.graphics();
+    bg.fillStyle(0x1c2032, 0.96);
+    bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 14);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 14);
+    const text = this.add.text(0, 0, label, {
+      fontSize: '12px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.TEXT_COLORS.PRIMARY
+    }).setOrigin(0.5);
+    container.add([bg, text]);
+    container.setSize(width, height);
+    container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+    container.on('pointerdown', callback);
+    container.on('pointerover', () => {
+      bg.clear();
+      bg.fillStyle(0x24324a, 1);
+      bg.lineStyle(1, Const.COLORS.BUTTON_HOVER, 1);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 14);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 14);
+    });
+    container.on('pointerout', () => {
+      bg.clear();
+      bg.fillStyle(0x1c2032, 0.96);
+      bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 14);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 14);
+    });
+    container.label = text;
     return container;
   }
 
   setupBattleSystem() {
     this.battleSystem = new BattleSystem(this, { battleSpeed: 1 });
-
-    this.battleSystem.setPlayerTeam(this.minions.map(m => ({
+    this.battleSystem.setPlayerTeam(this.minions.map((m) => ({
       id: m.id,
       name: m.name,
-      hp: m.hp,
-      maxHp: m.maxHp,
+      hp: m.maxHp || m.hp,
+      maxHp: m.maxHp || m.hp,
       atk: m.atk || 20,
       critRate: m.critRate || 0.15,
       def: m.def || 5,
@@ -436,10 +289,12 @@ export default class BattleScene extends Phaser.Scene {
       rarity: m.rarity,
       race: m.race,
       passiveSkill: m.passiveSkill,
-      element: m.element
+      element: m.element,
+      charClass: m.charClass,
+      spd: m.spd ?? m.baseSpd
     })));
-    
-    this.battleSystem.setEnemyTeam(this.enemies.map(e => new Enemy({
+
+    this.battleSystem.setEnemyTeam(this.enemies.map((e) => ({
       id: e.id,
       name: e.name,
       hp: e.hp,
@@ -448,12 +303,15 @@ export default class BattleScene extends Phaser.Scene {
       critRate: 0.1,
       def: 5,
       level: e.level,
-      isBoss: e.isBoss
+      isBoss: e.isBoss,
+      element: e.element || 'dark',
+      spd: e.spd ?? 10
     })));
 
     this._battleListeners = {
       onAttack: (data) => this.updateHPDisplay(data.target),
-      onDamage: (data) => { if (data.isCrit) this.showDamageNumber(data.target, data.damage, true); },
+      onDamage: (data) => this.showDamageNumber(data.target, data.damage, data.isCrit, false),
+      onHeal: (data) => this.showDamageNumber(data.target, data.amount || data.heal || 0, false, true),
       onBattleLog: (data) => this.addLogEntry(data.action, data.result),
       onVictory: (data) => this.onBattleVictory(data),
       onDefeat: (data) => this.onBattleDefeat(data),
@@ -469,423 +327,227 @@ export default class BattleScene extends Phaser.Scene {
     this.battleSystem.startBattle();
   }
 
-  onAttackAnimation(attacker, target, isCrit, onComplete) {
-    const isPlayer = this.minions.some(m => m.name === attacker.name);
-    const targetCards = isPlayer ? this.enemyCards : this.playerCards;
-    
-    const targetCard = targetCards.find(card => {
-      const entity = card.container.getData(isPlayer ? 'enemy' : 'player');
-      return entity && entity.name === target.name;
+  toggleSpeed() {
+    if (!this.battleSystem) return;
+    this.battleSystem.battleSpeed = this.battleSystem.battleSpeed === 1 ? 2 : 1;
+    if (this.speedButton?.label) {
+      this.speedButton.label.setText(`${this.battleSystem.battleSpeed}x`);
+    }
+  }
+
+  openPauseOverlay() {
+    if (this.pauseOverlay || this.battleEnded) return;
+    this.setPausedState(true);
+    this.speedButton?.setVisible(false);
+    this.pauseButton?.setVisible(false);
+
+    const width = this.cameras.main.width;
+    const height = this.cameras.main.height;
+    const container = this.add.container(width / 2, 374);
+    container.setDepth(Const.DEPTH.MODAL_OVERLAY + 10);
+
+    const overlay = this.add.graphics();
+    overlay.fillStyle(0x04060c, 0.92);
+    overlay.fillRoundedRect(-width / 2 + 12, -296, width - 24, 592, 16);
+    overlay.lineStyle(1.5, Const.BATTLE.COLORS.BORDER, 0.8);
+    overlay.strokeRoundedRect(-width / 2 + 12, -296, width - 24, 592, 16);
+    container.add(overlay);
+
+    container.add(this.add.text(0, -264, '战斗日志', {
+      fontSize: '18px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: Const.BATTLE.COLORS.AMBER
+    }).setOrigin(0.5));
+
+    const maxLines = 16;
+    const shown = this.logEntries.slice(-maxLines);
+    shown.forEach((entry, index) => {
+      container.add(this.add.text(-width / 2 + 28, -226 + index * 28, entry, {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.BATTLE.COLORS.TEXT_PRIMARY,
+        wordWrap: { width: width - 56 }
+      }).setOrigin(0, 0));
     });
 
-    if (targetCard) {
-      const originalX = targetCard.container.x;
-      const shakeX = isPlayer ? originalX - 10 : originalX + 10;
-      
-      this.tweens.add({
-        targets: targetCard.container,
-        x: shakeX,
-        duration: this.config.animation.attackDuration / 2,
-        ease: 'Power2',
-        yoyo: true,
-        onComplete: () => {
-          if (isCrit) {
-            this.showCritEffect(targetCard.container);
-          }
-          onComplete();
-        }
-      });
+    const continueBtn = this.createPillButton(-56, 256, '继续', () => this.closePauseOverlay(true), 96, 32);
+    const surrenderBtn = this.createPillButton(56, 256, '投降', () => this.returnToBase(), 96, 32);
+    container.add([continueBtn, surrenderBtn]);
+
+    this.pauseOverlay = container;
+  }
+
+  closePauseOverlay(resumeBattle) {
+    if (!this.pauseOverlay) return;
+    this.pauseOverlay.destroy();
+    this.pauseOverlay = null;
+    this.speedButton?.setVisible(true);
+    this.pauseButton?.setVisible(true);
+    if (resumeBattle) {
+      this.setPausedState(false);
+    }
+  }
+
+  setPausedState(paused) {
+    this.isPaused = paused;
+    if (!this.battleSystem) return;
+    if (paused) {
+      this.battleSystem.pause();
     } else {
-      onComplete();
-    }
-  }
-
-  showCritEffect(container) {
-    const critText = this.add.text(container.x, container.y - 60, '暴击!', {
-      fontSize: Const.BATTLE.FONT.SIZE_CRIT_LABEL,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: Const.BATTLE.COLORS.CRIT_GOLD
-    }).setOrigin(0.5);
-
-    this.tweens.add({
-      targets: critText,
-      y: critText.y - 30,
-      alpha: 0,
-      duration: 600,
-      ease: 'Power2',
-      onComplete: () => critText.destroy()
-    });
-  }
-
-  onSkillAnimation(character, targets, skill, onComplete) {
-    const isPlayer = this.minions.some(m => m.name === character.name);
-    const skillText = this.add.text(this.cameras.main.width / 2, 120, `${character.name} 使用技能`, {
-      fontSize: Const.BATTLE.FONT.SIZE_SKILL_DESC,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: Const.BATTLE.COLORS.SKILL_PURPLE
-    }).setOrigin(0.5);
-
-    const skillLabel = this.add.text(this.cameras.main.width / 2, 150, skill.name, {
-      fontSize: Const.BATTLE.FONT.SIZE_SKILL_NAME,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: Const.BATTLE.COLORS.SKILL_PURPLE
-    }).setOrigin(0.5);
-
-    this.tweens.add({
-      targets: skillLabel,
-      alpha: 0,
-      scale: 1.2,
-      duration: 800,
-      ease: 'Power2',
-      onComplete: () => skillLabel.destroy()
-    });
-
-    for (const target of targets) {
-      const targetCards = isPlayer ? this.enemyCards : this.playerCards;
-      const targetCard = targetCards.find(card => {
-        const entity = card.container.getData(isPlayer ? 'enemy' : 'player');
-        return entity && entity.name === target.name;
-      });
-
-      if (targetCard) {
-        const particle = this.add.graphics();
-        particle.fillStyle(0x9b59b6, 0.8);
-        particle.fillCircle(0, 0, 15);
-        particle.x = targetCard.container.x;
-        particle.y = targetCard.container.y;
-
-        this.tweens.add({
-          targets: particle,
-          alpha: 0,
-          scale: 2,
-          duration: 500,
-          ease: 'Power2',
-          onComplete: () => particle.destroy()
-        });
-      }
-    }
-
-    onComplete();
-  }
-
-  showDamageNumber(target, damage, isCrit, isHeal) {
-    const isPlayer = this.minions.some(m => m.name === target.name);
-    const targetCards = isPlayer ? this.playerCards : this.enemyCards;
-
-    const targetCard = targetCards.find(card => {
-      const entity = card.container.getData(isPlayer ? 'player' : 'enemy');
-      return entity && entity.name === target.name;
-    });
-
-    if (targetCard) {
-      const prefix = isHeal ? '+' : '-';
-      const color = isHeal ? '#44ff44' : (isCrit ? '#ff4444' : '#ffffff');
-      const fontSize = isHeal ? Const.BATTLE.FONT.SIZE_DAMAGE_HEAL
-        : (isCrit ? Const.BATTLE.FONT.SIZE_DAMAGE_CRIT : Const.BATTLE.FONT.SIZE_DAMAGE_NORMAL);
-
-      const damageText = this.add.text(targetCard.container.x, targetCard.container.y - 40, `${prefix}${damage}`, {
-        fontSize: fontSize,
-        fontFamily: 'Noto Sans SC',
-        fontStyle: 'bold',
-        color: color
-      }).setOrigin(0.5).setScale(0.5).setAlpha(0);
-
-      // 弹跳动画：放大到1.3再缩回1.0，同时alpha→1
-      this.tweens.add({
-        targets: damageText,
-        scaleX: 1.3,
-        scaleY: 1.3,
-        alpha: 1,
-        duration: 100,
-        ease: 'Power2',
-        onComplete: () => {
-          this.tweens.add({
-            targets: damageText,
-            scaleX: 1.0,
-            scaleY: 1.0,
-            duration: 100,
-            ease: 'Power2',
-            onComplete: () => {
-              // 上浮+淡出
-              this.tweens.add({
-                targets: damageText,
-                y: damageText.y - 30,
-                alpha: 0,
-                duration: 500,
-                ease: 'Power2',
-                onComplete: () => damageText.destroy()
-              });
-            }
-          });
-        }
-      });
-    }
-  }
-
-  playDeathAnimation(character) {
-    // [C13 FIX] this.playerTeam 不存在，应使用 this.minions 判断是否为玩家角色
-    const isPlayer = this.minions?.some(m => m.name === character.name) ?? false;
-    const cards = isPlayer ? this.playerCards : this.enemyCards;
-    const card = cards?.find(c => {
-      const entity = c.container?.getData(isPlayer ? 'player' : 'enemy');
-      return entity === character;
-    });
-    if (card?.container) {
-      this.tweens.add({
-        targets: card.container,
-        alpha: 0,
-        scaleX: 0.3,
-        scaleY: 0.3,
-        angle: 15,
-        duration: 600,
-        ease: 'Power2'
-      });
+      this.battleSystem.resume();
     }
   }
 
   updateHPDisplay(entity) {
-    const isPlayer = this.minions.some(m => m.name === entity.name);
-
-    if (isPlayer) {
-      const minion = this.minions.find(m => m.name === entity.name);
-      if (minion) {
-        minion.currentHp = entity.currentHp;
-        const card = this.playerCards.find(c => c.minion?.name === entity.name);
-        if (card) {
-          this.redrawHPBar(card.container, entity.currentHp, entity.maxHp, true);
-        }
-      }
-    } else {
-      const enemy = this.enemies.find(e => e.name === entity.name);
-      if (enemy) {
-        enemy.hp = entity.currentHp;
-        const card = this.enemyCards.find(c => c.container?.getData('enemy')?.name === entity.name);
-        if (card) {
-          this.redrawHPBar(card.container, entity.currentHp, entity.maxHp, false);
-        }
-      }
+    const playerCard = this.playerCards.find((c) => c.minion?.name === entity.name);
+    if (playerCard) {
+      CardRenderer.updateHpBar(playerCard.container, entity.currentHp, entity.maxHp, true);
+      return;
     }
-  }
 
-  redrawHPBar(container, currentHp, maxHp, isPlayer) {
-    const { colors, layout } = this.config;
-    const cardWidth = isPlayer ? layout.cardWidth : layout.enemyCardWidth;
-    const hpBar = container.getData('hpBar');
-    const hpText = container.getData('hpText');
-    
-    if (hpBar && hpText) {
-      hpBar.clear();
-      const hpPercent = Math.max(0, currentHp / maxHp);
-      hpBar.fillStyle(isPlayer ? colors.hpGreen : colors.hpRed, 1);
-      const barWidth = isPlayer ? cardWidth - 18 : cardWidth - 22;
-      hpBar.fillRect(
-        isPlayer ? -cardWidth / 2 + 9 : -cardWidth / 2 + 11,
-        isPlayer ? layout.cardHeight / 2 - 29 : layout.enemyCardHeight / 2 - 44,
-        barWidth * hpPercent,
-        isPlayer ? 10 : 14
-      );
-      hpText.setText(`${Math.max(0, currentHp)}/${maxHp}`);
+    const enemyCard = this.enemyCards.find((c) => c.enemy?.name === entity.name || c.container?.getData('enemy')?.name === entity.name);
+    if (enemyCard) {
+      CardRenderer.updateHpBar(enemyCard.container, entity.currentHp, entity.maxHp, false);
     }
   }
 
   addLogEntry(action, result) {
-    for (let i = 0; i < this.battleLogTexts.length - 1; i++) {
-      this.battleLogTexts[i].setText(this.battleLogTexts[i + 1].text);
+    const entry = `${action || ''} ${result || ''}`.trim();
+    if (!entry) return;
+    this.logEntries.push(entry);
+    this.logEntries = this.logEntries.slice(-40);
+    if (this.logBarLabel) {
+      this.logBarLabel.setText(`[战斗日志] ${entry}`);
     }
-    this.battleLogTexts[this.battleLogTexts.length - 1].setText(`${action} ${result}`);
+    if (this.pauseOverlay) {
+      this.closePauseOverlay(false);
+      this.openPauseOverlay();
+    }
+  }
+
+  showDamageNumber(target, amount, isCrit = false, isHeal = false) {
+    const targetCard = this.playerCards.find((c) => c.minion?.name === target.name)
+      || this.enemyCards.find((c) => c.enemy?.name === target.name || c.container?.getData('enemy')?.name === target.name);
+
+    if (!targetCard || !amount) return;
+
+    const prefix = isHeal ? '+' : '-';
+    const color = isHeal ? '#57f287' : (isCrit ? '#ff8a65' : '#ffffff');
+    const fontSize = isCrit ? '20px' : '14px';
+    const damageText = this.add.text(targetCard.container.x, targetCard.container.y - 56, `${prefix}${amount}`, {
+      fontSize,
+      fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color
+    }).setOrigin(0.5).setDepth(Const.DEPTH.MODAL_CONTENT);
+
+    this.tweens.add({
+      targets: damageText,
+      y: damageText.y - 24,
+      alpha: 0,
+      duration: 600,
+      ease: 'Power2',
+      onComplete: () => damageText.destroy()
+    });
+  }
+
+  playDeathAnimation(character) {
+    const targetCard = this.playerCards.find((c) => c.minion?.name === character.name)
+      || this.enemyCards.find((c) => c.enemy?.name === character.name || c.container?.getData('enemy')?.name === character.name);
+    if (!targetCard?.container) return;
+
+    const buffStrip = targetCard.container.getData('buffStrip');
+    if (buffStrip) {
+      buffStrip.setAlpha(0.3);
+    }
+
+    this.tweens.add({
+      targets: targetCard.container,
+      alpha: 0.42,
+      duration: 300,
+      ease: 'Power2'
+    });
+    targetCard.container.list.forEach((child) => {
+      if (child.setTint) {
+        child.setTint(0x777777);
+      }
+    });
   }
 
   onBattleVictory(data) {
     this.battleEnded = true;
-    this.showVictoryOverlay(data);
+    if (this.pauseOverlay) {
+      this.closePauseOverlay(false);
+    }
+    this.showResultOverlay('胜利', data, () => this.continueToNextFloor(), Const.BATTLE.COLORS.SACRED);
   }
 
   onBattleDefeat(data) {
     this.battleEnded = true;
-    this.showDefeatOverlay(data);
+    if (this.pauseOverlay) {
+      this.closePauseOverlay(false);
+    }
+    this.showResultOverlay('失败', data, () => this.returnToBase(), Const.BATTLE.COLORS.CORRUPT);
   }
 
-  showVictoryOverlay(data) {
+  showResultOverlay(title, data, callback, color) {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
-
     const overlay = this.add.graphics();
-    overlay.fillStyle(0x000000, 0.7);
+    overlay.fillStyle(0x000000, 0.72);
     overlay.fillRect(0, 0, width, height);
-    overlay.setAlpha(0);
+    overlay.setDepth(Const.DEPTH.MODAL_OVERLAY + 20);
 
     const panel = this.add.container(width / 2, height / 2);
-    panel.setAlpha(0);
-    panel.setScale(0.8);
+    panel.setDepth(Const.DEPTH.MODAL_CONTENT + 20);
 
-    const panelBg = this.add.graphics();
-    panelBg.fillStyle(0x252220, 0.98);
-    panelBg.fillRoundedRect(-120, -80, 240, 160, 12);
-    panelBg.lineStyle(2, this.config.colors.sacred, 0.8);
-    panelBg.strokeRoundedRect(-120, -80, 240, 160, 12);
+    const bg = this.add.graphics();
+    bg.fillStyle(0x11131f, 0.98);
+    bg.lineStyle(2, color, 0.85);
+    bg.fillRoundedRect(-128, -82, 256, 164, 16);
+    bg.strokeRoundedRect(-128, -82, 256, 164, 16);
+    panel.add(bg);
 
-    const victoryText = this.add.text(0, -50, '胜利!', {
-      fontSize: Const.BATTLE.FONT.SIZE_VICTORY,
-      fontFamily: 'Noto Sans SC',
+    panel.add(this.add.text(0, -42, title, {
+      fontSize: '28px',
+      fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
-      color: this.config.colors.sacred
-    }).setOrigin(0.5);
+      color: Phaser.Display.Color.IntegerToColor(color).rgba
+    }).setOrigin(0.5));
 
-    const myceliumReward = data.rewards?.mycelium || 0;
-    const sourceCoreReward = data.rewards?.sourceCore || 0;
-    const rewardText = this.add.text(0, -10, `获得菌丝: ${myceliumReward}` + (sourceCoreReward > 0 ? `  源核: ${sourceCoreReward}` : ''), {
-      fontSize: Const.BATTLE.FONT.SIZE_REWARD,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.amber
-    }).setOrigin(0.5);
+    const rewardText = title === '胜利'
+      ? `菌丝 ${data?.rewards?.mycelium || 0}${data?.rewards?.sourceCore ? `  源核 ${data.rewards.sourceCore}` : ''}`
+      : '角色将安全返回基地';
+    panel.add(this.add.text(0, -2, rewardText, {
+      fontSize: '13px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.BATTLE.COLORS.TEXT_PRIMARY
+    }).setOrigin(0.5));
 
-    const nextButton = this.createActionButton(0, 50, '继续战斗', () => {
-      overlay.destroy();
-      panel.destroy();
-      this.continueToNextFloor();
-    });
-
-    panel.add([panelBg, victoryText, rewardText, nextButton]);
-
-    this.tweens.add({
-      targets: overlay,
-      alpha: 1,
-      duration: 300
-    });
-
-    this.tweens.add({
-      targets: panel,
-      alpha: 1,
-      scale: 1,
-      duration: 400,
-      ease: 'Back.easeOut'
-    });
-  }
-
-  showDefeatOverlay(data) {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    const overlay = this.add.graphics();
-    overlay.fillStyle(0x000000, 0.7);
-    overlay.fillRect(0, 0, width, height);
-    overlay.setAlpha(0);
-
-    const panel = this.add.container(width / 2, height / 2);
-    panel.setAlpha(0);
-    panel.setScale(0.8);
-
-    const panelBg = this.add.graphics();
-    panelBg.fillStyle(0x252220, 0.98);
-    panelBg.fillRoundedRect(-120, -80, 240, 160, 12);
-    panelBg.lineStyle(2, this.config.colors.corrupt, 0.8);
-    panelBg.strokeRoundedRect(-120, -80, 240, 160, 12);
-
-    const defeatText = this.add.text(0, -50, '任务失败', {
-      fontSize: Const.BATTLE.FONT.SIZE_DEFEAT,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: this.config.colors.corrupt
-    }).setOrigin(0.5);
-
-    const hintText = this.add.text(0, -10, '角色将安全返回基地', {
-      fontSize: Const.BATTLE.FONT.SIZE_HINT,
-      fontFamily: 'Noto Sans SC',
-      color: this.config.colors.textSecondary
-    }).setOrigin(0.5);
-
-    const returnButton = this.createActionButton(0, 50, '返回基地', () => {
-      overlay.destroy();
-      panel.destroy();
-      this.returnToBase();
-    });
-
-    panel.add([panelBg, defeatText, hintText, returnButton]);
-
-    this.tweens.add({
-      targets: overlay,
-      alpha: 1,
-      duration: 300
-    });
-
-    this.tweens.add({
-      targets: panel,
-      alpha: 1,
-      scale: 1,
-      duration: 400,
-      ease: 'Back.easeOut'
-    });
+    const button = this.createPillButton(0, 46, title === '胜利' ? '继续' : '返回', callback, 96, 32);
+    panel.add(button);
   }
 
   continueToNextFloor() {
     EventBus.emit('battle:victory', { floor: this.currentFloor });
   }
 
-  generateNewEnemies(floor) {
-    const isBossFloor = floor % 10 === 0;
-    const enemyCount = isBossFloor ? 1 : Math.min(3, 1 + Math.floor(floor / 15));
-    const enemies = [];
-
-    const enemyTypes = ['机械猎犬', '巡逻机甲', '变异蜘蛛', '炮台', '腐化者'];
-    
-    for (let i = 0; i < enemyCount; i++) {
-      const type = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
-      const hpScale = Math.pow(1.12, floor - 1);
-      const atkScale = Math.pow(1.10, floor - 1);
-      
-      enemies.push({
-        id: floor * 10 + i,
-        name: type,
-        hp: Math.floor(80 * hpScale),
-        maxHp: Math.floor(80 * hpScale),
-        atk: Math.floor(15 * atkScale),
-        level: floor,
-        isBoss: isBossFloor
-      });
-    }
-    
-    return enemies;
-  }
-
   returnToBase() {
     if (this.battleSystem) {
       this.battleSystem.pause();
     }
-    
     EventBus.emit('battle:defeat', { floor: this.currentFloor });
-    
     this.scene.start('BaseScene');
   }
 
-  togglePause() {
-    this.isPaused = !this.isPaused;
-
-    if (this.isPaused) {
-      this.battleSystem.pause();
-      if (this.pauseButton) {
-        this.pauseButton.list[1].setText('▶');
-      }
-    } else {
-      this.battleSystem.resume();
-      if (this.pauseButton) {
-        this.pauseButton.list[1].setText('⏸');
-      }
-    }
-  }
-
   shutdown() {
-    if (this.battleSystem) {
-      if (this._battleListeners) {
-        Object.entries(this._battleListeners).forEach(([event, callback]) => {
-          this.battleSystem.off(event, callback);
-        });
-        this._battleListeners = null;
-      }
-      this.battleSystem.pause();
+    if (this._battleListeners && this.battleSystem) {
+      Object.entries(this._battleListeners).forEach(([event, callback]) => {
+        this.battleSystem.off(event, callback);
+      });
     }
+    this.closePauseOverlay(false);
     this.tweens.killAll();
   }
 }
