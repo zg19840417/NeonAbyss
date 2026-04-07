@@ -6,6 +6,20 @@ import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UP
 // [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
 const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
+// [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
+const PORTRAIT_KEY_MAP = { '辐射圣女残影': 'boss_radiant_saint' };
+
+/**
+ * [PORTRAIT FIX] 从 card.portrait 路径中提取 Phaser 纹理 key
+ * @param {string|null} portraitPath - 如 "characters/fusion/ComfyUI_temp_axxiq_00077_.png"
+ * @returns {string|null} 纹理 key，如 "ComfyUI_temp_axxiq_00077_"
+ */
+function extractPortraitKey(portraitPath) {
+  if (!portraitPath) return null;
+  const fileName = portraitPath.split('/').pop().replace('.png', '');
+  return PORTRAIT_KEY_MAP[fileName] || fileName;
+}
+
 export default class MinionCardView {
   constructor(scene) {
     this.scene = scene;
@@ -136,7 +150,8 @@ export default class MinionCardView {
       element: card.element || 'water',
       scale: 0.55,
       interactive: true,
-      onClick: () => this.showCardDetail(card)
+      onClick: () => this.showCardDetail(card),
+      portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
     });
 
     // [CardRenderer UPGRADE] 添加卸下按钮（覆盖在卡片右侧）
@@ -169,7 +184,8 @@ export default class MinionCardView {
       element: card.element || 'water',
       scale: 0.55,
       interactive: true,
-      onClick: () => this.showCardDetail(card)
+      onClick: () => this.showCardDetail(card),
+      portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
     });
 
     // [CardRenderer UPGRADE] 添加部署按钮（覆盖在卡片右侧）
@@ -255,7 +271,8 @@ export default class MinionCardView {
       atk: card.atk,
       element: card.element || 'water',
       scale: 0.85,
-      interactive: false
+      interactive: false,
+      portraitKey: extractPortraitKey(card.portrait)  // [PORTRAIT FIX]
     });
     modal.add(detailCard);
 

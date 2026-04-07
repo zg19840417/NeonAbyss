@@ -7,6 +7,18 @@ import CardRenderer from '../game/utils/CardRenderer.js'; // [CardRenderer UPGRA
 // [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
 const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
+// [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
+const PORTRAIT_KEY_MAP = { '辐射圣女残影': 'boss_radiant_saint' };
+
+/**
+ * [PORTRAIT FIX] 从 portrait 路径中提取 Phaser 纹理 key
+ */
+function extractPortraitKey(portraitPath) {
+  if (!portraitPath) return null;
+  const fileName = portraitPath.split('/').pop().replace('.png', '');
+  return PORTRAIT_KEY_MAP[fileName] || fileName;
+}
+
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BattleScene' });
@@ -206,7 +218,8 @@ export default class BattleScene extends Phaser.Scene {
       atk: enemy.atk || 15,
       element: 'dark',
       scale: 0.5,
-      interactive: false
+      interactive: false,
+      portraitKey: extractPortraitKey(enemy.portrait)  // [PORTRAIT FIX]
     });
 
     // [CardRenderer UPGRADE] 叠加红色调覆盖层，标识敌方卡片
@@ -287,7 +300,8 @@ export default class BattleScene extends Phaser.Scene {
       atk: minion.atk || 20,
       element: minion.element || 'water',
       scale: 0.5,
-      interactive: false
+      interactive: false,
+      portraitKey: extractPortraitKey(minion.portrait)  // [PORTRAIT FIX]
     });
 
     // [CardRenderer UPGRADE] 保留 HP 条逻辑 - 在卡片上叠加 HP 条
