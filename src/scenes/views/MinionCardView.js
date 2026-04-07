@@ -7,7 +7,7 @@ import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UP
 const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
 // [PORTRAIT FIX] 中文文件名 -> ASCII key 映射
-const PORTRAIT_KEY_MAP = { '辐射圣女残影': 'boss_radiant_saint' };
+const PORTRAIT_KEY_MAP = {};
 
 /**
  * [PORTRAIT FIX] 从 card.portrait 路径中提取 Phaser 纹理 key

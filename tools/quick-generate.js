@@ -219,16 +219,31 @@ async function generateImage() {
   console.log('正在等待生成完成...\n');
 
   let completed = false;
-  const maxWait = 60000;
+  const maxWait = 300000;
   const startTime = Date.now();
 
   while (!completed && Date.now() - startTime < maxWait) {
     try {
       const history = await comfyui.getHistory(queueResult.prompt_id);
-      if (history[queueResult.prompt_id] && history[queueResult.prompt_id].status) {
-        const status = history[queueResult.prompt_id].status;
-        if (status.completed || status.executed) {
+      if (history && history[queueResult.prompt_id]) {
+        const nodeStatus = history[queueResult.prompt_id];
+        if (nodeStatus.status) {
+          const status = nodeStatus.status;
+          if (status.completed || status.executed) {
+            completed = true;
+            console.log('\n检测到任务完成状态!');
+            break;
+          }
+          if (status.messages && status.messages.length > 0) {
+            const lastMsg = status.messages[status.messages.length - 1];
+            if (lastMsg[1] && lastMsg[1].data) {
+              process.stdout.write(`\r进度: ${lastMsg[1].data}`);
+            }
+          }
+        }
+        if (nodeStatus.images && nodeStatus.images.length > 0) {
           completed = true;
+          console.log('\n检测到生成的图片!');
           break;
         }
       }
@@ -236,14 +251,15 @@ async function generateImage() {
       console.log('检查状态时出错:', e.message);
     }
     
-    process.stdout.write('.');
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    process.stdout.write(`\r等待中... ${elapsed}s`);
+    await new Promise(resolve => setTimeout(resolve, 2000));
   }
 
   console.log('\n\n');
 
   if (!completed) {
-    throw new Error('生成超时');
+    throw new Error('生成超时 (超过5分钟)');
   }
 
   console.log('✓ 生成完成！正在下载图片...\n');
