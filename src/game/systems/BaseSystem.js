@@ -2,6 +2,16 @@ import Character from '../entities/Character.js';
 import { CharacterClass } from '../data/CharacterClass.js';
 import Const from '../data/Const.js';
 
+export const CurrencyType = {
+  SOURCE_CORE: 'sourceCore',
+  MYCELIUM: 'mycelium',
+  STAR_COIN: 'starCoin',
+  R_FRAGMENT: 'r_fragment',
+  SR_FRAGMENT: 'sr_fragment',
+  SSR_FRAGMENT: 'ssr_fragment',
+  UR_FRAGMENT: 'ur_fragment'
+};
+
 export default class BaseSystem {
   constructor(gameData = {}) {
     this.coins = gameData.coins || 10000;
@@ -11,6 +21,106 @@ export default class BaseSystem {
     this.team = gameData.team || [];
     this.availableRecruits = (gameData.availableRecruits || []).map(c => Character.fromJSON(c));
     this.lastRefreshTime = gameData.lastRefreshTime || Date.now();
+    
+    this.currencies = gameData.currencies || {
+      sourceCore: 100,
+      mycelium: 10000,
+      starCoin: 0,
+      r_fragment: 0,
+      sr_fragment: 0,
+      ssr_fragment: 0,
+      ur_fragment: 0
+    };
+    
+    this.inventory = gameData.inventory || {};
+    this.dailyPurchaseRecords = gameData.dailyPurchaseRecords || {};
+    this.lastDailyReset = gameData.lastDailyReset || this.getTodayString();
+  }
+  
+  getCurrency(type) {
+    return this.currencies[type] || 0;
+  }
+  
+  setCurrency(type, amount) {
+    this.currencies[type] = Math.max(0, amount);
+    return this.currencies[type];
+  }
+  
+  addCurrency(type, amount) {
+    if (!this.currencies[type]) {
+      this.currencies[type] = 0;
+    }
+    this.currencies[type] += amount;
+    return this.currencies[type];
+  }
+  
+  spendCurrency(type, amount) {
+    if (this.currencies[type] < amount) {
+      return { success: false, reason: 'not_enough_currency', required: amount, current: this.currencies[type] };
+    }
+    this.currencies[type] -= amount;
+    return { success: true, remaining: this.currencies[type] };
+  }
+  
+  canAffordCurrency(type, amount) {
+    return this.getCurrency(type) >= amount;
+  }
+  
+  getAllCurrencies() {
+    return { ...this.currencies };
+  }
+  
+  addItem(itemId, count = 1) {
+    if (!this.inventory[itemId]) {
+      this.inventory[itemId] = 0;
+    }
+    this.inventory[itemId] += count;
+    return this.inventory[itemId];
+  }
+  
+  removeItem(itemId, count = 1) {
+    if (!this.inventory[itemId] || this.inventory[itemId] < count) {
+      return { success: false, reason: 'not_enough_items' };
+    }
+    this.inventory[itemId] -= count;
+    if (this.inventory[itemId] <= 0) {
+      delete this.inventory[itemId];
+    }
+    return { success: true, remaining: this.inventory[itemId] || 0 };
+  }
+  
+  getItemCount(itemId) {
+    return this.inventory[itemId] || 0;
+  }
+  
+  hasItem(itemId, count = 1) {
+    return this.getItemCount(itemId) >= count;
+  }
+  
+  getTodayString() {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  }
+  
+  checkDailyReset() {
+    const today = this.getTodayString();
+    if (today !== this.lastDailyReset) {
+      this.dailyPurchaseRecords = {};
+      this.lastDailyReset = today;
+      return true;
+    }
+    return false;
+  }
+  
+  getDailyPurchaseCount(shopId) {
+    return this.dailyPurchaseRecords[shopId] || 0;
+  }
+  
+  recordDailyPurchase(shopId) {
+    if (!this.dailyPurchaseRecords[shopId]) {
+      this.dailyPurchaseRecords[shopId] = 0;
+    }
+    this.dailyPurchaseRecords[shopId]++;
   }
   
   initFacilities() {
@@ -288,7 +398,11 @@ export default class BaseSystem {
       characters: this.characters.map(c => c.toJSON()),
       team: this.team,
       availableRecruits: this.availableRecruits.map(c => c.toJSON()),
-      lastRefreshTime: this.lastRefreshTime
+      lastRefreshTime: this.lastRefreshTime,
+      currencies: this.currencies,
+      inventory: this.inventory,
+      dailyPurchaseRecords: this.dailyPurchaseRecords,
+      lastDailyReset: this.lastDailyReset
     };
   }
   
