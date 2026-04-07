@@ -1031,9 +1031,9 @@
     "achievementId": "SPC_005",
     "category": "special",
     "name": "星舰启航",
-    "description": "集齐全部10个星舰零件",
-    "condition": "collect_ship_parts",
-    "conditionValue": 10,
+    "description": "通关第十章终焉之地全部关卡",
+    "condition": "clear_zone_10",
+    "conditionValue": 1,
     "rewards": [
       {
         "type": "sourceCore",

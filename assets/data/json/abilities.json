@@ -492,11 +492,11 @@
   {
     "abilityId": "DPS_CORE_05",
     "name": "元素共鸣",
-    "description": "永久提升自身攻击力15%",
+    "description": "所有元素技能伤害提升15%，与自身元素属性无关的通用元素增伤",
     "type": "buff",
     "target": "self",
     "condition": "always",
-    "effect": "atk_boost_percent",
+    "effect": "element_damage_boost",
     "value": 0.15,
     "duration": 0,
     "stackable": false,

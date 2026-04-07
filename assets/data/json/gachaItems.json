@@ -1,442 +1,417 @@
 [
   {
-    "cardId": "FM001",
+    "cardId": "MC_wind_dps_002",
     "poolId": "POOL_NORMAL",
-    "weight": 10
+    "weight": 250
   },
   {
-    "cardId": "FM002",
+    "cardId": "MC_dark_dps_003",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM003",
+    "cardId": "MC_water_tank_004",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM004",
+    "cardId": "MC_light_support_005",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM005",
+    "cardId": "MC_light_support_006",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM006",
+    "cardId": "MC_wind_dps_007",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 50
   },
   {
-    "cardId": "FM007",
+    "cardId": "MC_water_tank_008",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM008",
+    "cardId": "MC_dark_support_009",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM009",
+    "cardId": "MC_fire_tank_010",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM010",
+    "cardId": "MC_wind_dps_011",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 1200
   },
   {
-    "cardId": "FM011",
+    "cardId": "MC_water_tank_012",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM012",
+    "cardId": "MC_dark_support_013",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM013",
+    "cardId": "MC_wind_tank_014",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM014",
+    "cardId": "MC_wind_dps_015",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM015",
+    "cardId": "MC_water_support_016",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 8500
   },
   {
-    "cardId": "FM016",
+    "cardId": "MC_wind_dps_017",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 8500
   },
   {
-    "cardId": "FM017",
+    "cardId": "MC_fire_tank_022",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM021",
+    "cardId": "MC_wind_dps_023",
     "poolId": "POOL_NORMAL",
-    "weight": 10
+    "weight": 50
   },
   {
-    "cardId": "FM022",
+    "cardId": "MC_water_support_024",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM023",
+    "cardId": "MC_fire_tank_025",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM024",
+    "cardId": "MC_dark_dps_026",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM025",
+    "cardId": "MC_fire_dps_027",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM026",
+    "cardId": "MC_water_dps_028",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM027",
+    "cardId": "MC_fire_tank_029",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM028",
+    "cardId": "MC_wind_support_030",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM029",
+    "cardId": "MC_dark_tank_031",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM030",
+    "cardId": "MC_dark_dps_032",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM031",
+    "cardId": "MC_light_support_033",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM032",
+    "cardId": "MC_wind_dps_034",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM033",
+    "cardId": "MC_dark_dps_035",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM034",
+    "cardId": "MC_light_support_036",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM035",
+    "cardId": "MC_water_support_037",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM036",
+    "cardId": "MC_fire_tank_038",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 8500
   },
   {
-    "cardId": "FM037",
+    "cardId": "MC_wind_support_039",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 250
   },
   {
-    "cardId": "FM038",
+    "cardId": "MC_fire_tank_042",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM039",
+    "cardId": "MC_wind_support_043",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 50
   },
   {
-    "cardId": "FM041",
+    "cardId": "MC_water_support_044",
     "poolId": "POOL_NORMAL",
-    "weight": 10
+    "weight": 50
   },
   {
-    "cardId": "FM042",
+    "cardId": "MC_fire_dps_045",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 50
   },
   {
-    "cardId": "FM043",
+    "cardId": "MC_wind_support_046",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM044",
+    "cardId": "MC_dark_dps_047",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM045",
+    "cardId": "MC_fire_dps_048",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM046",
+    "cardId": "MC_water_support_049",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM047",
+    "cardId": "MC_light_tank_050",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM048",
+    "cardId": "MC_fire_dps_051",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM049",
+    "cardId": "MC_light_tank_052",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM050",
+    "cardId": "MC_wind_dps_053",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM051",
+    "cardId": "MC_water_support_054",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM052",
+    "cardId": "MC_fire_tank_055",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM053",
+    "cardId": "MC_light_support_056",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM054",
+    "cardId": "MC_wind_dps_057",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM055",
+    "cardId": "MC_water_support_058",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM056",
+    "cardId": "MC_wind_dps_062",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM057",
+    "cardId": "MC_water_support_063",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM058",
+    "cardId": "MC_light_support_064",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM061",
+    "cardId": "MC_dark_dps_065",
     "poolId": "POOL_NORMAL",
-    "weight": 10
+    "weight": 50
   },
   {
-    "cardId": "FM062",
+    "cardId": "MC_fire_tank_066",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM063",
+    "cardId": "MC_water_tank_067",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM064",
+    "cardId": "MC_wind_dps_068",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM065",
+    "cardId": "MC_light_support_069",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM066",
+    "cardId": "MC_dark_support_070",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM067",
+    "cardId": "MC_wind_support_071",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 250
   },
   {
-    "cardId": "FM068",
+    "cardId": "MC_fire_dps_072",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM069",
+    "cardId": "MC_water_tank_073",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM070",
+    "cardId": "MC_wind_dps_074",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM071",
+    "cardId": "MC_light_dps_075",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM072",
+    "cardId": "MC_wind_tank_076",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM073",
+    "cardId": "MC_light_support_077",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM074",
+    "cardId": "MC_dark_dps_078",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM075",
+    "cardId": "MC_wind_tank_082",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 50
   },
   {
-    "cardId": "FM076",
+    "cardId": "MC_fire_dps_083",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 50
   },
   {
-    "cardId": "FM077",
+    "cardId": "MC_water_tank_084",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 250
   },
   {
-    "cardId": "FM078",
+    "cardId": "MC_light_support_085",
     "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 250
   },
   {
-    "cardId": "FM081",
+    "cardId": "MC_fire_tank_086",
     "poolId": "POOL_NORMAL",
-    "weight": 10
+    "weight": 250
   },
   {
-    "cardId": "FM082",
+    "cardId": "MC_wind_dps_087",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 250
   },
   {
-    "cardId": "FM083",
+    "cardId": "MC_dark_support_088",
     "poolId": "POOL_NORMAL",
-    "weight": 40
+    "weight": 1200
   },
   {
-    "cardId": "FM084",
+    "cardId": "MC_fire_tank_089",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM085",
+    "cardId": "MC_dark_dps_090",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM086",
+    "cardId": "MC_fire_dps_091",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM087",
+    "cardId": "MC_light_dps_092",
     "poolId": "POOL_NORMAL",
-    "weight": 150
+    "weight": 1200
   },
   {
-    "cardId": "FM088",
+    "cardId": "MC_dark_tank_093",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 1200
   },
   {
-    "cardId": "FM089",
+    "cardId": "MC_light_support_094",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM090",
+    "cardId": "MC_fire_tank_095",
     "poolId": "POOL_NORMAL",
-    "weight": 300
+    "weight": 8500
   },
   {
-    "cardId": "FM091",
+    "cardId": "MC_wind_dps_096",
     "poolId": "POOL_NORMAL",
-    "weight": 300
-  },
-  {
-    "cardId": "FM092",
-    "poolId": "POOL_NORMAL",
-    "weight": 300
-  },
-  {
-    "cardId": "FM093",
-    "poolId": "POOL_NORMAL",
-    "weight": 300
-  },
-  {
-    "cardId": "FM094",
-    "poolId": "POOL_NORMAL",
-    "weight": 500
-  },
-  {
-    "cardId": "FM095",
-    "poolId": "POOL_NORMAL",
-    "weight": 500
-  },
-  {
-    "cardId": "FM096",
-    "poolId": "POOL_NORMAL",
-    "weight": 500
+    "weight": 8500
   }
 ]
