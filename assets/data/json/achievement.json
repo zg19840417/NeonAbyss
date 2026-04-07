@@ -1,519 +1,1074 @@
 [
   {
-    "id": "E01",
-    "name": "初入禁区",
+    "achievementId": "EXP_001",
+    "category": "explore",
+    "name": "废土第一步",
+    "description": "通关第1个野外关卡",
+    "condition": "clear_wild_stage",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 1
+  },
+  {
+    "achievementId": "EXP_002",
+    "category": "explore",
+    "name": "城区探索者",
+    "description": "通关废弃城区全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_EXP_002",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 2
+  },
+  {
+    "achievementId": "EXP_003",
+    "category": "explore",
+    "name": "公路行者",
+    "description": "通关荒野公路全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_EXP_003",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 3
+  },
+  {
+    "achievementId": "EXP_004",
+    "category": "explore",
+    "name": "森林穿越者",
+    "description": "通关污染森林全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_EXP_004",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 4
+  },
+  {
+    "achievementId": "EXP_005",
+    "category": "explore",
+    "name": "河床寻路人",
+    "description": "通关干涸河床全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_EXP_005",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 5
+  },
+  {
+    "achievementId": "EXP_006",
+    "category": "explore",
+    "name": "前哨突破者",
+    "description": "通关军事前哨全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_EXP_006",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 6
+  },
+  {
+    "achievementId": "EXP_007",
+    "category": "explore",
+    "name": "沙漠旅人",
+    "description": "通关沙漠绿洲全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_EXP_007",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 7
+  },
+  {
+    "achievementId": "EXP_008",
+    "category": "explore",
+    "name": "基地侵入者",
+    "description": "通关军事基地全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_EXP_008",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 8
+  },
+  {
+    "achievementId": "EXP_009",
+    "category": "explore",
+    "name": "地下潜行者",
+    "description": "通关地下设施全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 400
+      }
+    ],
+    "titleReward": "TITLE_EXP_009",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 9
+  },
+  {
+    "achievementId": "EXP_010",
+    "category": "explore",
+    "name": "荒原穿越者",
+    "description": "通关辐射荒原全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 400
+      }
+    ],
+    "titleReward": "TITLE_EXP_010",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 10
+  },
+  {
+    "achievementId": "EXP_011",
+    "category": "explore",
+    "name": "核心挑战者",
+    "description": "通关核心禁区全部10关",
+    "condition": "clear_map_all",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      }
+    ],
+    "titleReward": "TITLE_EXP_011",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 11
+  },
+  {
+    "achievementId": "EXP_012",
+    "category": "explore",
+    "name": "废土开拓者",
+    "description": "通关全部10张野外地图",
+    "condition": "clear_all_maps",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 2000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_EXP_012"
+      }
+    ],
+    "titleReward": "TITLE_EXP_012",
+    "frameReward": "FRAME_EXP_012",
+    "isHidden": false,
+    "sortOrder": 12
+  },
+  {
+    "achievementId": "EXP_013",
+    "category": "explore",
+    "name": "禁区初探",
     "description": "首次进入禁区",
+    "condition": "enter_zone",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 1000
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 13
+  },
+  {
+    "achievementId": "EXP_014",
     "category": "explore",
-    "difficulty": 1,
-    "rewardReputation": 50,
-    "targetType": "enter_dungeon",
-    "targetValue": 1,
-    "isHidden": false
-  },
-  {
-    "id": "E02",
-    "name": "登楼者",
-    "description": "到达第5层",
-    "category": "explore",
-    "difficulty": 2,
-    "rewardReputation": 120,
-    "targetType": "reach_floor",
-    "targetValue": 5,
-    "isHidden": false
-  },
-  {
-    "id": "E03",
-    "name": "废土行者",
-    "description": "到达第10层",
-    "category": "explore",
-    "difficulty": 2,
-    "rewardReputation": 300,
-    "targetType": "reach_floor",
-    "targetValue": 10,
-    "isHidden": false
-  },
-  {
-    "id": "E04",
-    "name": "废土征服者",
-    "description": "到达第25层",
-    "category": "explore",
-    "difficulty": 3,
-    "rewardReputation": 700,
-    "targetType": "reach_floor",
-    "targetValue": 25,
-    "isHidden": false
-  },
-  {
-    "id": "E05",
-    "name": "方舟候选人",
-    "description": "到达第40层",
-    "category": "explore",
-    "difficulty": 4,
-    "rewardReputation": 1600,
-    "targetType": "reach_floor",
-    "targetValue": 40,
-    "isHidden": false
-  },
-  {
-    "id": "E06",
-    "name": "传奇归来",
-    "description": "到达第50层并通关",
-    "category": "explore",
-    "difficulty": 5,
-    "rewardReputation": 5000,
-    "targetType": "reach_floor",
-    "targetValue": 50,
-    "isHidden": false
-  },
-  {
-    "id": "E07",
-    "name": "宝箱猎人",
-    "description": "累计开启100个宝箱",
-    "category": "explore",
-    "difficulty": 2,
-    "rewardReputation": 180,
-    "targetType": "open_chest",
-    "targetValue": 100,
-    "isHidden": false
-  },
-  {
-    "id": "E08",
-    "name": "寻宝大师",
-    "description": "累计开启1000个宝箱",
-    "category": "explore",
-    "difficulty": 4,
-    "rewardReputation": 1200,
-    "targetType": "open_chest",
-    "targetValue": 1000,
-    "isHidden": false
-  },
-  {
-    "id": "E09",
-    "name": "无尽探索",
-    "description": "单次探索连续通过20层",
-    "category": "explore",
-    "difficulty": 3,
-    "rewardReputation": 560,
-    "targetType": "consecutive_floors",
-    "targetValue": 20,
-    "isHidden": false
-  },
-  {
-    "id": "E10",
-    "name": "速通专家",
-    "description": "1小时内到达第30层",
-    "category": "explore",
-    "difficulty": 5,
-    "rewardReputation": 3000,
-    "targetType": "speed_clear",
-    "targetValue": 30,
-    "isHidden": true
-  },
-  {
-    "id": "B01",
-    "name": "初次胜利",
-    "description": "赢得第一场战斗",
-    "category": "battle",
-    "difficulty": 1,
-    "rewardReputation": 50,
-    "targetType": "battle_win",
-    "targetValue": 1,
-    "isHidden": false
-  },
-  {
-    "id": "B02",
-    "name": "连胜新星",
-    "description": "获得5连胜",
-    "category": "battle",
-    "difficulty": 2,
-    "rewardReputation": 180,
-    "targetType": "win_streak",
-    "targetValue": 5,
-    "isHidden": false
-  },
-  {
-    "id": "B03",
-    "name": "不败传说",
-    "description": "获得20连胜",
-    "category": "battle",
-    "difficulty": 4,
-    "rewardReputation": 1200,
-    "targetType": "win_streak",
-    "targetValue": 20,
-    "isHidden": false
-  },
-  {
-    "id": "B04",
-    "name": "暴击达人",
-    "description": "单次战斗造成10次暴击",
-    "category": "battle",
-    "difficulty": 2,
-    "rewardReputation": 240,
-    "targetType": "critical_hit",
-    "targetValue": 10,
-    "isHidden": false
-  },
-  {
-    "id": "B05",
-    "name": "一击必杀",
-    "description": "单次攻击造成超过1000伤害",
-    "category": "battle",
-    "difficulty": 3,
-    "rewardReputation": 420,
-    "targetType": "single_damage",
-    "targetValue": 1000,
-    "isHidden": false
-  },
-  {
-    "id": "B06",
-    "name": "完美闪避",
-    "description": "单次战斗闪避5次攻击",
-    "category": "battle",
-    "difficulty": 3,
-    "rewardReputation": 350,
-    "targetType": "dodge",
-    "targetValue": 5,
-    "isHidden": false
-  },
-  {
-    "id": "B07",
-    "name": "团队协作",
-    "description": "全员存活通关一层",
-    "category": "battle",
-    "difficulty": 2,
-    "rewardReputation": 240,
-    "targetType": "perfect_clear",
-    "targetValue": 1,
-    "isHidden": false
-  },
-  {
-    "id": "B08",
-    "name": "以少胜多",
-    "description": "以1人队伍击败3个敌人",
-    "category": "battle",
-    "difficulty": 4,
-    "rewardReputation": 800,
-    "targetType": "outnumbered_victory",
-    "targetValue": 3,
-    "isHidden": false
-  },
-  {
-    "id": "B09",
-    "name": "BOSS猎手",
-    "description": "击败第一个BOSS",
-    "category": "battle",
-    "difficulty": 2,
-    "rewardReputation": 300,
-    "targetType": "defeat_boss",
-    "targetValue": 1,
-    "isHidden": false
-  },
-  {
-    "id": "B10",
     "name": "禁区征服者",
-    "description": "击败所有5个BOSS",
-    "category": "battle",
-    "difficulty": 5,
-    "rewardReputation": 4000,
-    "targetType": "defeat_all_boss",
-    "targetValue": 5,
-    "isHidden": false
+    "description": "通关全部20个禁区",
+    "condition": "clear_all_zones",
+    "conditionValue": 20,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 3000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_EXP_014"
+      }
+    ],
+    "titleReward": "TITLE_EXP_014",
+    "frameReward": "FRAME_EXP_014",
+    "isHidden": false,
+    "sortOrder": 14
   },
   {
-    "id": "B11",
-    "name": "无伤通关",
-    "description": "单层无任何融合姬受伤通关",
-    "category": "battle",
-    "difficulty": 5,
-    "rewardReputation": 2000,
-    "targetType": "no_damage_clear",
-    "targetValue": 1,
-    "isHidden": true
+    "achievementId": "EXP_015",
+    "category": "explore",
+    "name": "星舰零件收集者",
+    "description": "收集全部10个星舰零件",
+    "condition": "collect_ship_parts",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 5000
+      }
+    ],
+    "titleReward": "TITLE_EXP_015_LE",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 15
   },
   {
-    "id": "B12",
-    "name": "极速战斗",
-    "description": "10秒内结束一场战斗",
-    "category": "battle",
-    "difficulty": 3,
-    "rewardReputation": 560,
-    "targetType": "speed_battle",
-    "targetValue": 10,
-    "isHidden": true
+    "achievementId": "CMB_001",
+    "category": "combat",
+    "name": "初次胜利",
+    "description": "获得第一场战斗胜利",
+    "condition": "battle_win",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 1
   },
   {
-    "id": "C01",
-    "name": "新兵入伍",
-    "description": "招募第一个融合姬",
-    "category": "character",
-    "difficulty": 1,
-    "rewardReputation": 50,
-    "targetType": "recruit",
-    "targetValue": 1,
-    "isHidden": false
+    "achievementId": "CMB_002",
+    "category": "combat",
+    "name": "百战百胜",
+    "description": "累计胜利100场战斗",
+    "condition": "battle_win_total",
+    "conditionValue": 100,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_CMB_002",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 2
   },
   {
-    "id": "C02",
-    "name": "三人小队",
-    "description": "组建完整的3融合姬+1芯片队伍",
-    "category": "character",
-    "difficulty": 2,
-    "rewardReputation": 180,
-    "targetType": "team_full",
-    "targetValue": 4,
-    "isHidden": false
+    "achievementId": "CMB_003",
+    "category": "combat",
+    "name": "千胜将军",
+    "description": "累计胜利1000场战斗",
+    "condition": "battle_win_total",
+    "conditionValue": 1000,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_CMB_003"
+      }
+    ],
+    "titleReward": "TITLE_CMB_003",
+    "frameReward": "FRAME_CMB_003",
+    "isHidden": false,
+    "sortOrder": 3
   },
   {
-    "id": "C03",
-    "name": "职业收藏家",
-    "description": "收集所有12种职业各1个",
-    "category": "character",
-    "difficulty": 4,
-    "rewardReputation": 1600,
-    "targetType": "collect_class",
-    "targetValue": 12,
-    "isHidden": false
+    "achievementId": "CMB_004",
+    "category": "combat",
+    "name": "元素克制",
+    "description": "首次利用元素克制击败敌人",
+    "condition": "element_counter_kill",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 4
   },
   {
-    "id": "C04",
-    "name": "传说收集者",
-    "description": "收集所有SSR级融合姬",
-    "category": "character",
-    "difficulty": 5,
-    "rewardReputation": 2500,
-    "targetType": "collect_legendary",
-    "targetValue": 4,
-    "isHidden": true
+    "achievementId": "CMB_005",
+    "category": "combat",
+    "name": "弱者逆袭",
+    "description": "以低于推荐等级10级通关任意关卡",
+    "condition": "clear_stage_underlevel",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_CMB_005",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 5
   },
   {
-    "id": "C05",
-    "name": "强化新手",
-    "description": "首次强化装备成功",
-    "category": "character",
-    "difficulty": 1,
-    "rewardReputation": 75,
-    "targetType": "enhance_equip",
-    "targetValue": 1,
-    "isHidden": false
+    "achievementId": "CMB_006",
+    "category": "combat",
+    "name": "完美通关",
+    "description": "不损失任何融合姬通关任意关卡",
+    "condition": "clear_stage_perfect",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 6
   },
   {
-    "id": "C06",
-    "name": "装备大师",
-    "description": "拥有10件+10强化装备",
-    "category": "character",
-    "difficulty": 4,
-    "rewardReputation": 1440,
-    "targetType": "enhanced_equip",
-    "targetValue": 10,
-    "isHidden": false
+    "achievementId": "CMB_007",
+    "category": "combat",
+    "name": "Boss猎人",
+    "description": "首次击败禁区Boss",
+    "condition": "kill_zone_boss",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 7
   },
   {
-    "id": "C07",
+    "achievementId": "CMB_008",
+    "category": "combat",
+    "name": "全Boss征服",
+    "description": "击败全部10个禁区Boss",
+    "condition": "kill_all_bosses",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 2000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_CMB_008"
+      }
+    ],
+    "titleReward": "TITLE_CMB_008",
+    "frameReward": "FRAME_CMB_008",
+    "isHidden": false,
+    "sortOrder": 8
+  },
+  {
+    "achievementId": "CMB_009",
+    "category": "combat",
+    "name": "暴击大师",
+    "description": "单次战斗中累计暴击10次",
+    "condition": "critical_hit_in_battle",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 1000
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 9
+  },
+  {
+    "achievementId": "CMB_010",
+    "category": "combat",
+    "name": "速度之王",
+    "description": "在30秒内完成任意战斗",
+    "condition": "battle_speed_clear",
+    "conditionValue": 30,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_CMB_010",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 10
+  },
+  {
+    "achievementId": "COL_001",
+    "category": "collection",
+    "name": "初次招募",
+    "description": "首次通过抽卡获得融合姬",
+    "condition": "gacha_pull",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 1
+  },
+  {
+    "achievementId": "COL_002",
+    "category": "collection",
+    "name": "收集者",
+    "description": "拥有20张不同的融合姬",
+    "condition": "own_minion_count",
+    "conditionValue": 20,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 2
+  },
+  {
+    "achievementId": "COL_003",
+    "category": "collection",
+    "name": "收藏家",
+    "description": "拥有50张不同的融合姬",
+    "condition": "own_minion_count",
+    "conditionValue": 50,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      }
+    ],
+    "titleReward": "TITLE_COL_003",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 3
+  },
+  {
+    "achievementId": "COL_004",
+    "category": "collection",
+    "name": "全图鉴",
+    "description": "拥有全部100张融合姬",
+    "condition": "own_minion_count",
+    "conditionValue": 100,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 5000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_COL_004"
+      }
+    ],
+    "titleReward": "TITLE_COL_004_LE",
+    "frameReward": "FRAME_COL_004",
+    "isHidden": false,
+    "sortOrder": 4
+  },
+  {
+    "achievementId": "COL_005",
+    "category": "collection",
+    "name": "芯片收集者",
+    "description": "拥有10张不同的强化芯片",
+    "condition": "own_chip_count",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 5
+  },
+  {
+    "achievementId": "COL_006",
+    "category": "collection",
+    "name": "五系齐聚",
+    "description": "拥有5个种族各至少1张融合姬",
+    "condition": "own_all_races",
+    "conditionValue": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_COL_006",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 6
+  },
+  {
+    "achievementId": "COL_007",
+    "category": "collection",
+    "name": "五素齐聚",
+    "description": "拥有5种元素各至少1张融合姬",
+    "condition": "own_all_elements",
+    "conditionValue": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_COL_007",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 7
+  },
+  {
+    "achievementId": "COL_008",
+    "category": "collection",
+    "name": "品质收集·SR",
+    "description": "拥有全部SR品质融合姬",
+    "condition": "own_all_quality",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 1000
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 8
+  },
+  {
+    "achievementId": "COL_009",
+    "category": "collection",
+    "name": "品质收集·SSR",
+    "description": "拥有全部SSR品质融合姬",
+    "condition": "own_all_quality",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 2000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_COL_009"
+      }
+    ],
+    "titleReward": null,
+    "frameReward": "FRAME_COL_009",
+    "isHidden": false,
+    "sortOrder": 9
+  },
+  {
+    "achievementId": "COL_010",
+    "category": "collection",
+    "name": "品质收集·UR",
+    "description": "拥有全部UR品质融合姬",
+    "condition": "own_all_quality",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 3000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_COL_010"
+      }
+    ],
+    "titleReward": null,
+    "frameReward": "FRAME_COL_010",
+    "isHidden": false,
+    "sortOrder": 10
+  },
+  {
+    "achievementId": "GRW_001",
+    "category": "growth",
+    "name": "初次升级",
+    "description": "首次升级融合姬",
+    "condition": "upgrade_minion",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 1
+  },
+  {
+    "achievementId": "GRW_002",
+    "category": "growth",
+    "name": "精英培养",
+    "description": "任意融合姬达到30级",
+    "condition": "minion_reach_level",
+    "conditionValue": 30,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 2
+  },
+  {
+    "achievementId": "GRW_003",
+    "category": "growth",
+    "name": "大师培养",
+    "description": "任意融合姬达到50级",
+    "condition": "minion_reach_level",
+    "conditionValue": 50,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_GRW_003",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 3
+  },
+  {
+    "achievementId": "GRW_004",
+    "category": "growth",
     "name": "满级融合姬",
-    "description": "将任意融合姬升到满级",
-    "category": "character",
-    "difficulty": 3,
-    "rewardReputation": 840,
-    "targetType": "max_level_char",
-    "targetValue": 1,
-    "isHidden": false
+    "description": "任意融合姬达到满级",
+    "condition": "minion_reach_max_level",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_GRW_004"
+      }
+    ],
+    "titleReward": "TITLE_GRW_004",
+    "frameReward": "FRAME_GRW_004",
+    "isHidden": false,
+    "sortOrder": 4
   },
   {
-    "id": "C08",
-    "name": "百万血量",
-    "description": "单个融合姬生命值达到100000",
-    "category": "character",
-    "difficulty": 4,
-    "rewardReputation": 1200,
-    "targetType": "hp_milestone",
-    "targetValue": 100000,
-    "isHidden": true
+    "achievementId": "GRW_005",
+    "category": "growth",
+    "name": "首次合成",
+    "description": "首次使用合成系统",
+    "condition": "use_synthesis",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 5
   },
   {
-    "id": "M01",
-    "name": "小本经营",
-    "description": "累计获得10000菌丝",
-    "category": "manage",
-    "difficulty": 1,
-    "rewardReputation": 75,
-    "targetType": "earn_coins",
-    "targetValue": 10000,
-    "isHidden": false
+    "achievementId": "GRW_006",
+    "category": "growth",
+    "name": "合成大师",
+    "description": "累计合成50次",
+    "condition": "synthesis_total",
+    "conditionValue": 50,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 6
   },
   {
-    "id": "M02",
-    "name": "富甲一方",
-    "description": "累计获得1000000菌丝",
-    "category": "manage",
-    "difficulty": 3,
-    "rewardReputation": 700,
-    "targetType": "earn_coins",
-    "targetValue": 1000000,
-    "isHidden": false
+    "achievementId": "GRW_007",
+    "category": "growth",
+    "name": "异化诞生",
+    "description": "首次合成出异化SSR",
+    "condition": "synthesis_anomaly_ssr",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_GRW_007"
+      }
+    ],
+    "titleReward": null,
+    "frameReward": "FRAME_GRW_007",
+    "isHidden": false,
+    "sortOrder": 7
   },
   {
-    "id": "M03",
-    "name": "亿万富翁",
-    "description": "累计获得100000000菌丝",
-    "category": "manage",
-    "difficulty": 5,
-    "rewardReputation": 3500,
-    "targetType": "earn_coins",
-    "targetValue": 100000000,
-    "isHidden": true
+    "achievementId": "GRW_008",
+    "category": "growth",
+    "name": "芯片强化",
+    "description": "首次升级强化芯片",
+    "condition": "upgrade_chip",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 8
   },
   {
-    "id": "M04",
-    "name": "设施建设者",
-    "description": "升级任意设施到5级",
-    "category": "manage",
-    "difficulty": 2,
-    "rewardReputation": 240,
-    "targetType": "facility_level",
-    "targetValue": 5,
-    "isHidden": false
+    "achievementId": "GRW_009",
+    "category": "growth",
+    "name": "LE诞生",
+    "description": "首次合成出LE品质融合姬",
+    "condition": "synthesis_le",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 3000
+      }
+    ],
+    "titleReward": "TITLE_GRW_009_LE",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 9
   },
   {
-    "id": "M05",
-    "name": "完美基地",
-    "description": "所有设施达到满级",
-    "category": "manage",
-    "difficulty": 5,
-    "rewardReputation": 2500,
-    "targetType": "max_all_facility",
-    "targetValue": 5,
-    "isHidden": false
+    "achievementId": "GRW_010",
+    "category": "growth",
+    "name": "能力学习者",
+    "description": "任意融合姬学习新能力",
+    "condition": "learn_ability",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ],
+    "titleReward": null,
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 10
   },
   {
-    "id": "M06",
-    "name": "抽卡新手",
-    "description": "首次完成抽卡",
-    "category": "manage",
-    "difficulty": 1,
-    "rewardReputation": 100,
-    "targetType": "first_gacha",
-    "targetValue": 1,
-    "isHidden": false
-  },
-  {
-    "id": "M07",
-    "name": "抽卡达人",
-    "description": "累计抽卡100次",
-    "category": "manage",
-    "difficulty": 2,
-    "rewardReputation": 300,
-    "targetType": "gacha_count",
-    "targetValue": 100,
-    "isHidden": false
-  },
-  {
-    "id": "M08",
-    "name": "声望先锋",
-    "description": "达到声望等级30",
-    "category": "manage",
-    "difficulty": 2,
-    "rewardReputation": 360,
-    "targetType": "reputation_level",
-    "targetValue": 30,
-    "isHidden": false
-  },
-  {
-    "id": "M09",
-    "name": "废土传奇",
-    "description": "达到声望等级60",
-    "category": "manage",
-    "difficulty": 5,
-    "rewardReputation": 5000,
-    "targetType": "reputation_level",
-    "targetValue": 60,
-    "isHidden": false
-  },
-  {
-    "id": "S01",
+    "achievementId": "SOC_001",
+    "category": "social",
     "name": "幸存者",
-    "description": "游戏时长超过100小时",
-    "category": "special",
-    "difficulty": 2,
-    "rewardReputation": 600,
-    "targetType": "play_time",
-    "targetValue": 360000,
-    "isHidden": false
+    "description": "账号等级达到10级",
+    "condition": "account_level",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 1000
+      }
+    ],
+    "titleReward": "TITLE_SOC_001",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 1
   },
   {
-    "id": "S02",
-    "name": "忠诚玩家",
-    "description": "连续7天登录",
-    "category": "special",
-    "difficulty": 1,
-    "rewardReputation": 250,
-    "targetType": "login_streak",
-    "targetValue": 7,
-    "isHidden": false
+    "achievementId": "SOC_002",
+    "category": "social",
+    "name": "探索者",
+    "description": "账号等级达到25级",
+    "condition": "account_level",
+    "conditionValue": 25,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_SOC_002",
+    "frameReward": null,
+    "isHidden": false,
+    "sortOrder": 2
   },
   {
-    "id": "S03",
-    "name": "月度之星",
-    "description": "连续30天登录",
-    "category": "special",
-    "difficulty": 3,
-    "rewardReputation": 1400,
-    "targetType": "login_streak",
-    "targetValue": 30,
-    "isHidden": false
+    "achievementId": "SOC_003",
+    "category": "social",
+    "name": "先锋",
+    "description": "账号等级达到50级",
+    "condition": "account_level",
+    "conditionValue": 50,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SOC_003"
+      }
+    ],
+    "titleReward": "TITLE_SOC_003",
+    "frameReward": "FRAME_SOC_003",
+    "isHidden": false,
+    "sortOrder": 3
   },
   {
-    "id": "S04",
-    "name": "禁忌触碰",
-    "description": "使用禁忌药剂并获得隐藏融合姬",
-    "category": "special",
-    "difficulty": 5,
-    "rewardReputation": 5000,
-    "targetType": "forbidden_success",
-    "targetValue": 1,
-    "isHidden": true
+    "achievementId": "SOC_004",
+    "category": "social",
+    "name": "传奇",
+    "description": "账号等级达到75级",
+    "condition": "account_level",
+    "conditionValue": 75,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 800
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SOC_004"
+      }
+    ],
+    "titleReward": "TITLE_SOC_004",
+    "frameReward": "FRAME_SOC_004",
+    "isHidden": false,
+    "sortOrder": 4
   },
   {
-    "id": "S05",
-    "name": "完美主义者",
-    "description": "完成95%以上的成就",
-    "category": "special",
-    "difficulty": 5,
-    "rewardReputation": 8000,
-    "targetType": "achievement_rate",
-    "targetValue": 95,
-    "isHidden": true
+    "achievementId": "SOC_005",
+    "category": "social",
+    "name": "至高",
+    "description": "账号等级达到99级",
+    "condition": "account_level",
+    "conditionValue": 99,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 2000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SOC_005"
+      }
+    ],
+    "titleReward": "TITLE_SOC_005_LE",
+    "frameReward": "FRAME_SOC_005",
+    "isHidden": false,
+    "sortOrder": 5
   },
   {
-    "id": "S06",
-    "name": "速通大师",
-    "description": "从零开始24小时内通关第50层",
+    "achievementId": "SPC_001",
     "category": "special",
-    "difficulty": 5,
-    "rewardReputation": 10000,
-    "targetType": "speed_complete",
-    "targetValue": 1,
-    "isHidden": true
+    "name": "觉醒之人",
+    "description": "通关第一章最终关卡",
+    "condition": "clear_chapter_final",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "titleReward": "TITLE_SPC_001",
+    "frameReward": null,
+    "isHidden": true,
+    "sortOrder": 1
   },
   {
-    "id": "S07",
-    "name": "无敌之师",
-    "description": "全员SSR品质通关第50层",
+    "achievementId": "SPC_002",
     "category": "special",
-    "difficulty": 5,
-    "rewardReputation": 6000,
-    "targetType": "legendary_team_clear",
-    "targetValue": 1,
-    "isHidden": true
+    "name": "真相追寻者",
+    "description": "通关第四章最终关卡",
+    "condition": "clear_chapter_final",
+    "conditionValue": 4,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "titleReward": "TITLE_SPC_002",
+    "frameReward": null,
+    "isHidden": true,
+    "sortOrder": 2
   },
   {
-    "id": "S08",
-    "name": "彩蛋发现者",
-    "description": "发现游戏中所有隐藏彩蛋",
+    "achievementId": "SPC_003",
     "category": "special",
-    "difficulty": 4,
-    "rewardReputation": 2400,
-    "targetType": "find_easter_egg",
-    "targetValue": 10,
-    "isHidden": true
+    "name": "方舟发现者",
+    "description": "通关第八章最终关卡",
+    "condition": "clear_chapter_final",
+    "conditionValue": 8,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SPC_003"
+      }
+    ],
+    "titleReward": "TITLE_SPC_003",
+    "frameReward": "FRAME_SPC_003",
+    "isHidden": true,
+    "sortOrder": 3
+  },
+  {
+    "achievementId": "SPC_004",
+    "category": "special",
+    "name": "终焉终结者",
+    "description": "通关第十章最终Boss",
+    "condition": "clear_final_boss",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 3000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SPC_004"
+      }
+    ],
+    "titleReward": "TITLE_SPC_004_LE",
+    "frameReward": "FRAME_SPC_004",
+    "isHidden": true,
+    "sortOrder": 4
+  },
+  {
+    "achievementId": "SPC_005",
+    "category": "special",
+    "name": "星舰启航",
+    "description": "集齐全部10个星舰零件",
+    "condition": "collect_ship_parts",
+    "conditionValue": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 5000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SPC_005"
+      }
+    ],
+    "titleReward": "TITLE_SPC_005",
+    "frameReward": "FRAME_SPC_005",
+    "isHidden": true,
+    "sortOrder": 5
+  },
+  {
+    "achievementId": "SPC_006",
+    "category": "special",
+    "name": "全成就达成",
+    "description": "达成全部其他成就",
+    "condition": "all_achievements",
+    "conditionValue": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 10000
+      },
+      {
+        "type": "portrait_frame",
+        "id": "FRAME_SPC_006"
+      }
+    ],
+    "titleReward": "TITLE_SPC_006",
+    "frameReward": "FRAME_SPC_006",
+    "isHidden": true,
+    "sortOrder": 6
   }
 ]
