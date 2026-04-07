@@ -1,6 +1,7 @@
 import Character from '../entities/Character.js';
 import { CharacterClass } from '../data/CharacterClass.js';
 import Const from '../data/Const.js';
+import initConfig from '../../../assets/data/json/initConfig.json';
 
 export const CurrencyType = {
   SOURCE_CORE: 'sourceCore',
@@ -14,25 +15,17 @@ export const CurrencyType = {
 
 export default class BaseSystem {
   constructor(gameData = {}) {
-    this.mycelium = gameData.mycelium || 5000;     // 菌丝
-    this.sourceCore = gameData.sourceCore || 100;  // 源核
-    this.starCoin = gameData.starCoin || 0;        // 星币
+    this.mycelium = gameData.mycelium ?? initConfig.currencies.mycelium;
+    this.sourceCore = gameData.sourceCore ?? initConfig.currencies.sourceCore;
+    this.starCoin = gameData.starCoin ?? initConfig.currencies.starCoin;
     this.facilities = gameData.facilities || this.initFacilities();
-    this.energyDrinks = gameData.energyDrinks || [];
+    this.energyDrinks = gameData.energyDrinks ?? [].length > 0 ? gameData.energyDrinks : Array(initConfig.other.energyDrinks).fill(null);
     this.characters = (gameData.characters || []).map(c => Character.fromJSON(c));
     this.team = gameData.team || [];
     this.availableRecruits = (gameData.availableRecruits || []).map(c => Character.fromJSON(c));
     this.lastRefreshTime = gameData.lastRefreshTime || Date.now();
     
-    this.currencies = gameData.currencies || {
-      sourceCore: 100,
-      mycelium: 10000,
-      starCoin: 0,
-      r_fragment: 0,
-      sr_fragment: 0,
-      ssr_fragment: 0,
-      ur_fragment: 0
-    };
+    this.currencies = gameData.currencies || { ...initConfig.currencies };
     
     this.inventory = gameData.inventory || {};
     this.dailyPurchaseRecords = gameData.dailyPurchaseRecords || {};
@@ -419,10 +412,11 @@ export default class BaseSystem {
       const saved = localStorage.getItem('baseSystem_v2');
       if (saved) {
         const data = JSON.parse(saved);
-        this.mycelium = data.mycelium || 5000;
-        this.sourceCore = data.sourceCore || 100;
-        this.starCoin = data.starCoin || 0;
+        this.mycelium = data.mycelium ?? initConfig.currencies.mycelium;
+        this.sourceCore = data.sourceCore ?? initConfig.currencies.sourceCore;
+        this.starCoin = data.starCoin ?? initConfig.currencies.starCoin;
         this.facilities = data.facilities || this.initFacilities();
+        this.energyDrinks = data.energyDrinks || [];
         this.characters = (data.characters || []).map(c => Character.fromJSON(c));
         this.team = data.team || [];
         this.availableRecruits = (data.availableRecruits || []).map(c => Character.fromJSON(c));

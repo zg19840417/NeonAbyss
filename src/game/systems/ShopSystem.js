@@ -1,5 +1,6 @@
 import shopData from '../../../assets/data/json/shop.json';
 import itemsData from '../../../assets/data/json/items.json';
+import GachaSystem from './GachaSystem.js';
 
 export const ShopType = {
   SOURCE_CORE: 'sourceCore',
@@ -22,8 +23,9 @@ export const CurrencyConfig = {
 export default class ShopSystem {
   constructor(baseSystem) {
     this.baseSystem = baseSystem;
-    this.currentTab = ShopType.SOURCE_CORE;
+    this.currentTab = ShopType.GACHA;
     this.shopItems = this.loadShopItems();
+    this.gachaSystem = new GachaSystem(baseSystem);
   }
   
   loadShopItems() {
@@ -62,7 +64,7 @@ export default class ShopSystem {
       }
     }
     
-    if (!this.baseSystem.canAffordCurrency(shopItem.currency, shopItem.cost)) {
+    if (!this.baseSystem.canAfford(shopItem.currency, shopItem.cost)) {
       return { can: false, reason: 'not_enough_currency' };
     }
     
@@ -125,8 +127,12 @@ export default class ShopSystem {
         break;
         
       case ShopType.GACHA:
+        const count = shopItem.itemId === 'GACHA_TEN' ? 10 : 1;
+        const characters = this.gachaSystem.rollGacha(count);
+        characters.forEach(char => this.gachaSystem.grantCharacter(char));
         reward.type = 'gacha';
-        reward.gachaType = shopItem.itemId;
+        reward.characters = characters;
+        reward.count = count;
         break;
         
       default:
@@ -170,5 +176,17 @@ export default class ShopSystem {
   
   getAllCurrenciesDisplay() {
     return Object.keys(CurrencyConfig).map(type => this.getCurrencyDisplay(type));
+  }
+
+  getGachaHistory() {
+    return this.gachaSystem.getHistory();
+  }
+
+  clearGachaHistory() {
+    this.gachaSystem.clearHistory();
+  }
+
+  getGachaPityInfo() {
+    return this.gachaSystem.getPityInfo();
   }
 }

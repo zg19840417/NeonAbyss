@@ -1,3 +1,5 @@
+import { t, getLanguage, setLanguage, SUPPORTED_LANGUAGES } from '../game/data/Lang.js';
+
 export default class MainMenuScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MainMenuScene' });
@@ -60,22 +62,22 @@ export default class MainMenuScene extends Phaser.Scene {
   }
 
   createTitle(width, height) {
-    const subtitle = this.add.text(width / 2, 160, '废土元年', {
-      fontSize: '14px',
+    const title = this.add.text(width / 2, 180, t('game_title_zh'), {
+      fontSize: '22px',
       fontFamily: 'Noto Sans SC',
-      color: '#00ffff'
-    }).setOrigin(0.5);
-
-    const title = this.add.text(width / 2, 210, 'NEON ABYSS', {
-      fontSize: '32px',
-      fontFamily: 'Arial',
       fontStyle: 'bold',
       color: '#ff66cc'
     }).setOrigin(0.5);
 
+    const subtitle = this.add.text(width / 2, 220, t('game_title_en'), {
+      fontSize: '12px',
+      fontFamily: 'Arial',
+      color: '#00ffff'
+    }).setOrigin(0.5);
+
     const glow = this.add.graphics();
     glow.fillStyle(0xff66cc, 0.03);
-    glow.fillCircle(width / 2, 210, 80);
+    glow.fillCircle(width / 2, 200, 80);
     glow.setBlendMode(Phaser.BlendModes.ADD);
 
     this.tweens.add({
@@ -100,7 +102,7 @@ export default class MainMenuScene extends Phaser.Scene {
   }
 
   createTapToStart(width, height) {
-    const tapHint = this.add.text(width / 2, height - 120, '点击屏幕开始游戏', {
+    const tapHint = this.add.text(width / 2, height - 120, t('tap_to_start'), {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
       color: '#8888aa'
@@ -115,11 +117,59 @@ export default class MainMenuScene extends Phaser.Scene {
       ease: 'Sine.easeInOut'
     });
 
+    this.createLanguageSwitch(width);
+
     const clickArea = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0);
     clickArea.setInteractive();
     clickArea.on('pointerdown', () => {
       this.cameras.main.fade(300, 0, 0, 0);
       setTimeout(() => this.scene.start('BaseScene'), 300);
+    });
+  }
+
+  createLanguageSwitch(width) {
+    const langSwitch = this.add.container(width - 35, 35);
+    langSwitch.setDepth(100);
+    
+    const bg = this.add.graphics();
+    bg.fillStyle(0x1a1a2e, 0.95);
+    bg.fillRoundedRect(-25, -15, 50, 30, 8);
+    bg.lineStyle(1, 0xffd700, 0.5);
+    bg.strokeRoundedRect(-25, -15, 50, 30, 8);
+    langSwitch.add(bg);
+    
+    const currentLang = getLanguage();
+    const langText = currentLang === 'zh_cn' ? '中文' : 'EN';
+    
+    const text = this.add.text(0, 0, langText, {
+      fontSize: '12px',
+      fontFamily: 'Noto Sans SC',
+      color: '#ffd700'
+    }).setOrigin(0.5);
+    langSwitch.add(text);
+    
+    const hitArea = this.add.rectangle(width - 35, 35, 50, 30, 0x000000, 0);
+    hitArea.setDepth(101);
+    langSwitch.on('pointerdown', () => {
+      const newLang = getLanguage() === 'zh_cn' ? 'en_us' : 'zh_cn';
+      setLanguage(newLang);
+      this.scene.restart();
+    });
+    
+    langSwitch.on('pointerover', () => {
+      bg.clear();
+      bg.fillStyle(0x2a2a4e, 0.95);
+      bg.fillRoundedRect(-25, -15, 50, 30, 8);
+      bg.lineStyle(1, 0xffd700, 0.8);
+      bg.strokeRoundedRect(-25, -15, 50, 30, 8);
+    });
+    
+    langSwitch.on('pointerout', () => {
+      bg.clear();
+      bg.fillStyle(0x1a1a2e, 0.95);
+      bg.fillRoundedRect(-25, -15, 50, 30, 8);
+      bg.lineStyle(1, 0xffd700, 0.5);
+      bg.strokeRoundedRect(-25, -15, 50, 30, 8);
     });
   }
 

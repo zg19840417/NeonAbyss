@@ -1,3 +1,5 @@
+import AnimationHelper from '../../game/utils/AnimationHelper.js';
+
 export default class SettingsView {
   constructor(scene) {
     this.scene = scene;
@@ -47,10 +49,51 @@ export default class SettingsView {
 
     this.createResetButton(width / 2, 320);
 
-    this.addText(width / 2, height - 130, '废土元年 v2.0.0', {
+    this.createLanguageButton(width / 2, 380);
+
+    this.addText(width / 2, height - 130, t('game_title_zh') + ' v1.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#6666aa'
+    });
+  }
+
+  createLanguageButton(x, y) {
+    const { Const, getLanguage, setLanguage } = this.scene;
+    
+    const currentLang = getLanguage();
+    const langText = currentLang === 'zh_cn' ? '中文' : 'English';
+    
+    const btn = this.scene.add.container(x, y);
+    
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_MID, 1);
+    bg.fillRoundedRect(-60, -18, 120, 36, Const.UI.BUTTON_RADIUS);
+    btn.add(bg);
+    
+    const label = this.scene.add.text(0, 0, t('language') + ': ' + langText, {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.CYAN
+    }).setOrigin(0.5);
+    btn.add(label);
+    
+    btn.setSize(120, 36);
+    btn.setInteractive(new Phaser.Geom.Rectangle(-60, -18, 120, 36), Phaser.Geom.Rectangle.Contains);
+    
+    btn.on('pointerdown', () => {
+      const newLang = getLanguage() === 'zh_cn' ? 'en_us' : 'zh_cn';
+      setLanguage(newLang);
+      this.scene.saveGameData();
+      this.scene.scene.restart();
+    });
+    
+    btn.on('pointerover', () => {
+      AnimationHelper.tweenPulse(this.scene, btn, 1.05);
+    });
+    
+    btn.on('pointerout', () => {
+      btn.setScale(1);
     });
   }
 

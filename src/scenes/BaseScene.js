@@ -1,5 +1,5 @@
 import BaseSystem from '../game/systems/BaseSystem.js';
-import Lang, { t } from '../game/data/Lang.js';
+import Lang, { t, getLanguage, setLanguage } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
 import EquipmentView from './views/EquipmentView.js';
 import ShopView from './views/ShopView.js';
@@ -7,6 +7,7 @@ import TeamView from './views/TeamView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
+import initConfig from '../../assets/data/json/initConfig.json';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
@@ -24,6 +25,10 @@ export default class BaseScene extends Phaser.Scene {
   create() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
+
+    this.t = t;
+    this.getLanguage = getLanguage;
+    this.setLanguage = setLanguage;
 
     this.initializeBaseSystem();
     this.createBackground(width, height);
@@ -44,21 +49,27 @@ export default class BaseScene extends Phaser.Scene {
     }
     if (!window.gameData.base) {
       window.gameData.base = {
-        mycelium: 0,
-        sourceCore: 0,
+        mycelium: initConfig.currencies.mycelium,
+        sourceCore: initConfig.currencies.sourceCore,
+        starCoin: initConfig.currencies.starCoin,
+        currencies: { ...initConfig.currencies },
         facilities: null,
         characters: [],
         team: [],
-        availableRecruits: []
+        availableRecruits: [],
+        energyDrinks: Array(initConfig.other.energyDrinks).fill(null)
       };
     }
 
     // 确保新货币字段存在（兼容旧存档）
     if (window.gameData.base.mycelium === undefined) {
-      window.gameData.base.mycelium = 0;
+      window.gameData.base.mycelium = initConfig.currencies.mycelium;
     }
     if (window.gameData.base.sourceCore === undefined) {
-      window.gameData.base.sourceCore = 0;
+      window.gameData.base.sourceCore = initConfig.currencies.sourceCore;
+    }
+    if (window.gameData.base.starCoin === undefined) {
+      window.gameData.base.starCoin = initConfig.currencies.starCoin;
     }
 
     this.baseSystem = new BaseSystem(window.gameData.base);
@@ -710,7 +721,42 @@ export default class BaseScene extends Phaser.Scene {
       this.showResetConfirm();
     });
 
-    this.add.text(width / 2, height - 130, '废土元年 v2.0.0', {
+    const langBtn = this.add.container(width / 2, 380);
+    const langBg = this.add.graphics();
+    const currentLang = getLanguage();
+    const langText = currentLang === 'zh_cn' ? '中文' : 'English';
+    langBg.fillStyle(Const.COLORS.BG_MID, 1);
+    langBg.fillRoundedRect(-60, -18, 120, 36, Const.UI.BUTTON_RADIUS);
+    langBg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.5);
+    langBg.strokeRoundedRect(-60, -18, 120, 36, Const.UI.BUTTON_RADIUS);
+    langBtn.add(langBg);
+    
+    const langLabel = this.add.text(0, 0, t('language') + ': ' + langText, {
+      fontSize: Const.FONT.SIZE_SMALL,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.CYAN
+    }).setOrigin(0.5);
+    langBtn.add(langLabel);
+    
+    langBtn.setSize(120, 36);
+    langBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 120, 36), Phaser.Geom.Rectangle.Contains);
+    
+    langBtn.on('pointerover', () => {
+      this.tweens.add({ targets: langBg, alpha: 0.8, duration: 100 });
+    });
+    
+    langBtn.on('pointerout', () => {
+      this.tweens.add({ targets: langBg, alpha: 1, duration: 100 });
+    });
+    
+    langBtn.on('pointerdown', () => {
+      const newLang = getLanguage() === 'zh_cn' ? 'en_us' : 'zh_cn';
+      setLanguage(newLang);
+      this.saveGameData();
+      this.scene.restart();
+    });
+
+    this.add.text(width / 2, height - 130, t('game_title_zh') + ' v1.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#6666aa'
@@ -786,7 +832,17 @@ export default class BaseScene extends Phaser.Scene {
       localStorage.removeItem('chipCardManager');
       localStorage.removeItem('reputationSystem');
       window.gameData = {
-        base: { mycelium: 0, sourceCore: 0, characters: [] },
+        base: {
+          mycelium: initConfig.currencies.mycelium,
+          sourceCore: initConfig.currencies.sourceCore,
+          starCoin: initConfig.currencies.starCoin,
+          currencies: { ...initConfig.currencies },
+          facilities: null,
+          characters: [],
+          team: [],
+          availableRecruits: [],
+          energyDrinks: Array(initConfig.other.energyDrinks).fill(null)
+        },
         dungeon: { currentFloor: 1, highestFloor: 1 },
         achievements: [],
         settings: { seVolume: 0.8, bgmVolume: 0.7 }

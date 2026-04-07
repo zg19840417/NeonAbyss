@@ -1,12 +1,13 @@
 import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
 import ShopSystem, { ShopType, CurrencyConfig } from '../../game/systems/ShopSystem.js';
+import GachaSystem from '../../game/systems/GachaSystem.js';
 
 export default class ShopView {
   constructor(scene) {
     this.scene = scene;
     this.elements = [];
-    this.currentTab = 'minion';
+    this.currentTab = ShopType.GACHA;
     this._detailOverlay = null;
     this._detailModal = null;
     this.shopSystem = new ShopSystem(scene.baseSystem || window.gameData?.base);
@@ -36,7 +37,7 @@ export default class ShopView {
     const height = this.scene.cameras.main.height;
 
     const marginX = 25;
-    const startY = 130;
+    let startY = 130;
     const cardHeight = 58;
     const cardGap = 8;
     const bottomY = height - 120;
@@ -50,6 +51,11 @@ export default class ShopView {
         color: Const.TEXT_COLORS.INACTIVE
       });
       return;
+    }
+
+    if (this.shopSystem.currentTab === ShopType.GACHA) {
+      this.renderGachaHeader(width, startY);
+      startY += 50;
     }
 
     const scrollContainer = this.scene.add.container(marginX, startY);
@@ -91,12 +97,12 @@ export default class ShopView {
   setupScroll() {
     const height = this.scene.cameras.main.height;
     const width = this.scene.cameras.main.width;
-    const scrollTop = 100;
-    const scrollBottom = height - 90;
+    const scrollTop = 130;
+    const scrollBottom = height - 120;
 
     const maskGraphics = this.scene.add.graphics();
     maskGraphics.fillStyle(0xffffff, 1);
-    maskGraphics.fillRect(25, scrollTop, width - 50, scrollBottom - scrollTop);
+    maskGraphics.fillRect(25, scrollTop - 30, width - 50, scrollBottom - scrollTop + 30);
     maskGraphics.setVisible(false);
     this.elements.push(maskGraphics);
 
@@ -146,18 +152,18 @@ export default class ShopView {
   renderTabs(width) {
     const height = this.scene.cameras.main.height;
     const tabs = [
+      { key: ShopType.GACHA, icon: '🎰', label: '抽卡' },
       { key: ShopType.SOURCE_CORE, icon: '💎', label: '源核' },
       { key: ShopType.MYCELIUM, icon: '🍄', label: '菌丝' },
       { key: ShopType.STAR_COIN, icon: '⭐', label: '星币' },
-      { key: ShopType.FRAGMENT, icon: '🔮', label: '碎片' },
-      { key: ShopType.GACHA, icon: '🎰', label: '抽卡' }
+      { key: ShopType.FRAGMENT, icon: '🔮', label: '碎片' }
     ];
 
     const tabWidth = 68;
     const tabHeight = 30;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
-    const y = height - 70;
+    const y = height - 75;
 
     tabs.forEach((tab, index) => {
       const x = startX + index * tabWidth;
@@ -391,13 +397,324 @@ export default class ShopView {
     const result = this.shopSystem.purchase(item);
 
     if (result.success) {
-      const rewardText = this.getRewardText(result.reward);
-      this.showToast(`获得 ${rewardText}！`, true);
-      this.scene.saveGameData();
-      this.refresh();
+      if (result.reward.type === 'gacha') {
+        this.scene.saveGameData();
+        this.showGachaResult(result.reward.characters, result.reward.count);
+      } else {
+        const rewardText = this.getRewardText(result.reward);
+        this.showToast(`获得 ${rewardText}！`, true);
+        this.scene.saveGameData();
+        this.refresh();
+      }
     } else {
       this.showToast(this.getCannotPurchaseReason(result.reason), false);
     }
+  }
+
+  showGachaResult(characters, count) {
+    const width = this.scene.cameras.main.width;
+    const height = this.scene.cameras.main.height;
+    
+    const overlay = this.scene.add.graphics();
+    overlay.fillStyle(0x000000, 0.85);
+    overlay.fillRect(0, 0, width, height);
+    overlay.setDepth(3000);
+    overlay.setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
+    this.elements.push(overlay);
+    
+    const container = this.scene.add.container(width / 2, height / 2);
+    container.setDepth(3001);
+    this.elements.push(container);
+    
+    const titleText = this.scene.add.text(0, -height/2 + 80, '融合召唤', {
+      fontSize: '24px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: '#ffd700'
+    }).setOrigin(0.5);
+    container.add(titleText);
+    
+    const isTenPull = count >= 10;
+    const cardWidth = isTenPull ? 70 : 120;
+    const cardGap = 10;
+    const totalWidth = count * cardWidth + (count - 1) * cardGap;
+    const startX = -totalWidth / 2 + cardWidth / 2;
+    
+    const cardContainers = [];
+    
+    characters.forEach((char, i) => {
+      const x = startX + i * (cardWidth + cardGap);
+      const card = this.createGachaCard(x, 0, char, i * 150);
+      cardContainers.push(card);
+      container.add(card);
+    });
+    
+    const confirmBtn = this.scene.add.container(0, height/2 - 60);
+    const btnBg = this.scene.add.graphics();
+    btnBg.fillStyle(0xffd700, 1);
+    btnBg.fillRoundedRect(-50, -18, 100, 36, 8);
+    confirmBtn.add(btnBg);
+    
+    const btnText = this.scene.add.text(0, 0, '确 定', {
+      fontSize: '14px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: '#000000'
+    }).setOrigin(0.5);
+    confirmBtn.add(btnText);
+    
+    confirmBtn.setSize(100, 36);
+    confirmBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 100, 36), Phaser.Geom.Rectangle.Contains);
+    
+    const closeGacha = () => {
+      container.destroy();
+      this.elements = this.elements.filter(e => e !== overlay);
+      overlay.destroy();
+      this.refresh();
+    };
+    
+    confirmBtn.on('pointerdown', closeGacha);
+    container.add(confirmBtn);
+    this.elements.push(confirmBtn);
+  }
+
+  createGachaCard(x, y, character, delay = 0) {
+    const container = this.scene.add.container(x, y);
+    
+    const qualityColor = GachaSystem.getQualityColor(character.quality);
+    const qualityName = GachaSystem.getQualityName(character.quality);
+    
+    this.scene.time.delayedCall(delay, () => {
+      const glow = this.scene.add.graphics();
+      glow.fillStyle(parseInt(qualityColor.replace('#', '0x')), 0.3);
+      glow.fillCircle(0, 0, 50);
+      container.add(glow);
+      
+      const bg = this.scene.add.graphics();
+      bg.fillStyle(parseInt(qualityColor.replace('#', '0x')), 1);
+      bg.fillRoundedRect(-40, -55, 80, 110, 8);
+      container.add(bg);
+      
+      const innerBg = this.scene.add.graphics();
+      innerBg.fillStyle(0x1a1a2e, 1);
+      innerBg.fillRoundedRect(-36, -51, 72, 102, 6);
+      container.add(innerBg);
+      
+      const border = this.scene.add.graphics();
+      border.lineStyle(2, parseInt(qualityColor.replace('#', '0x')), 1);
+      border.strokeRoundedRect(-36, -51, 72, 102, 6);
+      container.add(border);
+      
+      const classIcon = this.getClassIcon(character.charClass);
+      const iconText = this.scene.add.text(0, -25, classIcon, { fontSize: '32px' }).setOrigin(0.5);
+      container.add(iconText);
+      
+      const nameText = this.scene.add.text(0, 10, character.name, {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
+        color: qualityColor
+      }).setOrigin(0.5);
+      container.add(nameText);
+      
+      const qualityText = this.scene.add.text(0, 30, qualityName, {
+        fontSize: '10px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: qualityColor
+      }).setOrigin(0.5);
+      container.add(qualityText);
+      
+      container.setScale(0);
+      this.scene.tweens.add({
+        targets: container,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 300,
+        ease: 'Back.easeOut'
+      });
+      
+      this.scene.tweens.add({
+        targets: glow,
+        alpha: 0.5,
+        duration: 500,
+        yoyo: true,
+        repeat: -1
+      });
+    });
+    
+    return container;
+  }
+
+  getClassIcon(charClass) {
+    const icons = {
+      plant: '🌿',
+      animal: '🐾',
+      mech: '⚙️',
+      energy: '⚡',
+      hybrid: '🔮'
+    };
+    return icons[charClass] || '❓';
+  }
+
+  renderGachaHeader(width, y) {
+    const historyBtn = this.scene.add.container(width - 45, y + 15);
+    
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(Const.COLORS.BG_DARK, 0.9);
+    bg.fillRoundedRect(-30, -15, 60, 30, 6);
+    historyBtn.add(bg);
+    
+    const text = this.scene.add.text(0, 0, '抽卡记录', {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#ffd700'
+    }).setOrigin(0.5);
+    historyBtn.add(text);
+    
+    historyBtn.setSize(60, 30);
+    historyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 60, 30), Phaser.Geom.Rectangle.Contains);
+    
+    historyBtn.on('pointerdown', () => {
+      this.showGachaHistory();
+    });
+    
+    historyBtn.on('pointerover', () => {
+      historyBtn.setScale(1.05);
+    });
+    
+    historyBtn.on('pointerout', () => {
+      historyBtn.setScale(1);
+    });
+    
+    this.elements.push(historyBtn);
+    
+    const pityInfo = this.shopSystem.getGachaPityInfo();
+    const pityText = this.scene.add.text(25, y + 15, `保底: ${pityInfo.ssrPity}抽`, {
+      fontSize: '10px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.INACTIVE
+    }).setOrigin(0, 0.5);
+    this.elements.push(pityText);
+  }
+
+  showGachaHistory() {
+    const width = this.scene.cameras.main.width;
+    const height = this.scene.cameras.main.height;
+    
+    const history = this.shopSystem.getGachaHistory();
+    
+    const overlay = this.scene.add.graphics();
+    overlay.fillStyle(0x000000, 0.9);
+    overlay.fillRect(0, 0, width, height);
+    overlay.setDepth(3000);
+    overlay.setInteractive(new Phaser.Geom.Rectangle(0, 0, width, height), Phaser.Geom.Rectangle.Contains);
+    this.elements.push(overlay);
+    
+    const container = this.scene.add.container(0, 0);
+    container.setDepth(3001);
+    this.elements.push(container);
+    
+    const titleText = this.scene.add.text(width / 2, 50, '抽卡记录', {
+      fontSize: '18px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: '#ffd700'
+    }).setOrigin(0.5);
+    container.add(titleText);
+    
+    const closeBtn = this.scene.add.container(width - 30, 50);
+    const closeBg = this.scene.add.graphics();
+    closeBg.fillStyle(0xff6666, 1);
+    closeBg.fillCircle(0, 0, 15);
+    closeBtn.add(closeBg);
+    
+    const closeText = this.scene.add.text(0, 0, '×', {
+      fontSize: '16px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5);
+    closeBtn.add(closeText);
+    
+    closeBtn.setSize(30, 30);
+    closeBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 30, 30), Phaser.Geom.Rectangle.Contains);
+    
+    const closeHistory = () => {
+      container.destroy();
+      this.elements = this.elements.filter(e => e !== overlay);
+      overlay.destroy();
+    };
+    
+    closeBtn.on('pointerdown', closeHistory);
+    overlay.on('pointerdown', closeHistory);
+    container.add(closeBtn);
+    this.elements.push(closeBtn);
+    
+    if (history.length === 0) {
+      const emptyText = this.scene.add.text(width / 2, height / 2, '暂无抽卡记录', {
+        fontSize: '14px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.INACTIVE
+      }).setOrigin(0.5);
+      container.add(emptyText);
+    } else {
+      const startY = 100;
+      const itemHeight = 45;
+      const visibleCount = 12;
+      
+      const listContainer = this.scene.add.container(0, startY);
+      container.add(listContainer);
+      
+      history.slice(0, 50).forEach((record, index) => {
+        const y = index * itemHeight;
+        const item = this.scene.add.container(width / 2, y);
+        
+        const qualityColor = GachaSystem.getQualityColor(record.quality);
+        const qualityName = GachaSystem.getQualityName(record.quality);
+        const classIcon = this.getClassIcon(record.charClass);
+        
+        const bg = this.scene.add.graphics();
+        bg.fillStyle(0x1a1a2e, 0.8);
+        bg.fillRoundedRect(-width/2 + 20, -itemHeight/2 + 2, width - 40, itemHeight - 4, 4);
+        item.add(bg);
+        
+        const iconText = this.scene.add.text(-width/2 + 50, 0, classIcon, { fontSize: '20px' }).setOrigin(0.5);
+        item.add(iconText);
+        
+        const nameText = this.scene.add.text(-width/2 + 90, -5, record.name, {
+          fontSize: '12px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          fontStyle: 'bold',
+          color: qualityColor
+        }).setOrigin(0, 0.5);
+        item.add(nameText);
+        
+        const qualityText = this.scene.add.text(-width/2 + 90, 10, qualityName, {
+          fontSize: '10px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: qualityColor
+        }).setOrigin(0, 0.5);
+        item.add(qualityText);
+        
+        const timeText = this.scene.add.text(width/2 - 40, 0, this.formatTime(record.time), {
+          fontSize: '10px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.INACTIVE
+        }).setOrigin(1, 0.5);
+        item.add(timeText);
+        
+        listContainer.add(item);
+      });
+    }
+  }
+
+  formatTime(timestamp) {
+    const date = new Date(timestamp);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    return `${month}/${day} ${hour}:${minute.toString().padStart(2, '0')}`;
   }
 
   getRewardText(reward) {
@@ -408,7 +725,7 @@ export default class ShopView {
       const itemInfo = this.shopSystem.getItemInfo(reward.item);
       return itemInfo?.name || reward.item;
     } else if (reward.type === 'gacha') {
-      return reward.gachaType === 'GACHA_SINGLE' ? '单抽券×1' : '十连券×10';
+      return `融合姬×${reward.count}`;
     }
     return '奖励';
   }

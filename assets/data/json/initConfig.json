@@ -1,0 +1,20 @@
+{
+  "currencies": {
+    "mycelium": 60000,
+    "sourceCore": 60000,
+    "starCoin": 60000,
+    "r_fragment": 0,
+    "sr_fragment": 0,
+    "ssr_fragment": 0,
+    "ur_fragment": 0
+  },
+  "other": {
+    "teamSize": 4,
+    "inventorySize": 50,
+    "facilityLevel": 1,
+    "maxFloor": 0,
+    "reputation": 0,
+    "energyDrinks": 3,
+    "recruitCost": 500
+  }
+}

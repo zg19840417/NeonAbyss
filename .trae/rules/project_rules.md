@@ -136,6 +136,22 @@ src/
 | 源核 | 稀有代币 | 抽卡招募融合姬、稀有培养、购买高级道具、购买抗辐射药剂 |
 | 星币 | 付费代币 | 商城礼包，可替换源核消费 |
 
+## 初始数值配置
+
+### 配置文件
+- **Excel表**：`assets/data/excel/initConfig.xlsx`
+- **JSON文件**：`assets/data/json/initConfig.json`
+- **生成脚本**：`tools/generateInitConfig.js`
+
+### 修改流程
+1. 修改 `initConfig.xlsx` 中的数值
+2. 运行 `node tools/generateInitConfig.js` 生成JSON
+3. 游戏自动加载 `initConfig.json`
+
+### 可配置项
+- 初始货币（菌丝、源核、星币、各类碎片）
+- 其他初始值（队伍容量、背包容量、设施等级等）
+
 ## 声望体系
 - 声望 = 账号等级，范围1-99级
 - 通过打怪、任务等获得声望经验值
