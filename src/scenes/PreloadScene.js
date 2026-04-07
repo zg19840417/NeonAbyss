@@ -1,7 +1,39 @@
+import Const from '../game/data/Const.js';
+import initConfigData from '../../assets/data/json/initConfig.json';
+
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PreloadScene' });
     this.config = this.initConfig();
+  }
+
+  normalizeInitConfig(rawConfig) {
+    const fallback = {
+      currencies: {
+        mycelium: Const.INITIAL_CURRENCY.mycelium,
+        sourceCore: Const.INITIAL_CURRENCY.sourceCore,
+        starCoin: Const.INITIAL_CURRENCY.starCoin
+      },
+      other: {
+        energyDrinks: 0
+      }
+    };
+
+    if (!Array.isArray(rawConfig)) {
+      return fallback;
+    }
+
+    const currencies = { ...fallback.currencies };
+    rawConfig.forEach(entry => {
+      if (!entry?.key) return;
+      const value = Number(entry.initialValue);
+      currencies[entry.key] = Number.isFinite(value) ? value : 0;
+    });
+
+    return {
+      currencies,
+      other: { ...fallback.other }
+    };
   }
 
   initConfig() {
@@ -133,13 +165,18 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   initializeGameData() {
+    const initConfig = this.normalizeInitConfig(initConfigData);
+
     if (!window.gameData) {
       window.gameData = {};
     }
 
     if (!window.gameData.base) {
       window.gameData.base = {
-        mycelium: 5000, sourceCore: 100, starCoin: 0,
+        mycelium: initConfig.currencies.mycelium,
+        sourceCore: initConfig.currencies.sourceCore,
+        starCoin: initConfig.currencies.starCoin,
+        currencies: { ...initConfig.currencies },
         facilities: null,
         characters: [],
         team: [

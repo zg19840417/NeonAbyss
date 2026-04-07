@@ -195,10 +195,13 @@ export default class ShopView {
       }).setOrigin(0.5);
       container.add(labelText);
 
-      container.setSize(tabWidth - 4, tabHeight);
-      container.setInteractive(this.createCenteredHitArea(tabWidth - 4, tabHeight), Phaser.Geom.Rectangle.Contains);
+      const hitZone = this.scene.add.rectangle(x, y, tabWidth - 4, tabHeight, 0x000000, 0.001);
+      hitZone.setVisible(true);
+      hitZone.setAlpha(0.001);
+      hitZone.setDepth(Const.DEPTH.NAV + 2);
+      hitZone.setInteractive();
 
-      container.on('pointerdown', () => {
+      hitZone.on('pointerdown', () => {
         if (this.shopSystem.currentTab !== tab.key) {
           AnimationHelper.tweenPulse(this.scene, container, 0.9);
           this.shopSystem.setCurrentTab(tab.key);
@@ -206,19 +209,20 @@ export default class ShopView {
         }
       });
 
-      container.on('pointerover', () => {
+      hitZone.on('pointerover', () => {
         if (this.shopSystem.currentTab !== tab.key) {
           AnimationHelper.tweenCardHover(this.scene, container, true);
         }
       });
 
-      container.on('pointerout', () => {
+      hitZone.on('pointerout', () => {
         if (this.shopSystem.currentTab !== tab.key) {
           container.setScale(1);
         }
       });
 
       this.elements.push(container);
+      this.elements.push(hitZone);
     });
   }
 

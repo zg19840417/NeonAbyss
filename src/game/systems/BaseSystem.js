@@ -6,9 +6,9 @@ import initConfigData from '../../../assets/data/json/initConfig.json';
 function normalizeInitConfig(rawConfig) {
   const fallback = {
     currencies: {
-      mycelium: 60000,
-      sourceCore: 60000,
-      starCoin: 60000
+      mycelium: Const.INITIAL_CURRENCY.mycelium,
+      sourceCore: Const.INITIAL_CURRENCY.sourceCore,
+      starCoin: Const.INITIAL_CURRENCY.starCoin
     },
     other: {
       energyDrinks: 0
