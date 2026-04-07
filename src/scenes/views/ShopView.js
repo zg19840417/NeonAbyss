@@ -1,6 +1,6 @@
 import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
-import ShopSystem from '../../game/systems/ShopSystem.js';
+import ShopSystem, { ShopType, CurrencyConfig } from '../../game/systems/ShopSystem.js';
 
 export default class ShopView {
   constructor(scene) {
@@ -17,42 +17,8 @@ export default class ShopView {
     const height = this.scene.cameras.main.height;
 
     this.shopSystem.refreshDaily();
-    this.renderHeader(width);
     this.renderTabs(width);
     this.renderContent(width);
-    this.renderFooter(width, height);
-    this.startCountdown();
-  }
-
-  renderHeader(width) {
-    this.addText(width / 2, 22, '商店', {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    });
-
-    const currencies = this.shopSystem.getAllCurrenciesDisplay();
-    const displayCurrencies = currencies.filter(c => c.amount > 0 || c.name === '源核' || c.name === '菌丝');
-
-    const startX = width - 20;
-    displayCurrencies.slice(0, 3).forEach((curr, index) => {
-      const x = startX - index * 80;
-      const bg = this.scene.add.graphics();
-      bg.fillStyle(Const.COLORS.BG_DARK, 0.95);
-      bg.fillRoundedRect(x - 36, 10, 70, 20, 4);
-      bg.lineStyle(1, parseInt(curr.color.replace('#', '0x')), 0.5);
-      bg.strokeRoundedRect(x - 36, 10, 70, 20, 4);
-      this.elements.push(bg);
-
-      const text = this.scene.add.text(x, 20, `${curr.icon} ${this.formatNumber(curr.amount)}`, {
-        fontSize: '10px',
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: curr.color
-      }).setOrigin(0.5);
-      this.elements.push(text);
-    });
   }
 
   formatNumber(num) {
@@ -65,7 +31,120 @@ export default class ShopView {
     return num.toString();
   }
 
+  renderContent(width) {
+    const items = this.shopSystem.getCurrentItems();
+    const height = this.scene.cameras.main.height;
+
+    const marginX = 25;
+    const startY = 130;
+    const cardHeight = 58;
+    const cardGap = 8;
+    const bottomY = height - 120;
+    const visibleHeight = bottomY - startY;
+    const contentWidth = width - marginX * 2;
+
+    if (items.length === 0) {
+      this.addText(width / 2, startY + 50, '暂无商品', {
+        fontSize: Const.FONT.SIZE_SMALL,
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.INACTIVE
+      });
+      return;
+    }
+
+    const scrollContainer = this.scene.add.container(marginX, startY);
+    this.elements.push(scrollContainer);
+    this.scrollContainer = scrollContainer;
+
+    const contentHeight = items.length * (cardHeight + cardGap);
+    const maxScroll = Math.max(0, contentHeight - visibleHeight);
+
+    this.scrollConfig = {
+      containerY: startY,
+      contentHeight: contentHeight,
+      visibleHeight: visibleHeight,
+      startY: 0,
+      endY: -maxScroll,
+      currentY: 0,
+      speed: 8,
+      isDragging: false,
+      lastPointerY: 0
+    };
+
+    items.forEach((item, index) => {
+      const y = index * (cardHeight + cardGap);
+      const card = this.createShopCard(contentWidth / 2, y, item, index);
+      card.setAlpha(0);
+      this.scene.tweens.add({
+        targets: card,
+        alpha: 1,
+        duration: 200,
+        delay: index * 50,
+        ease: 'Power2'
+      });
+      scrollContainer.add(card);
+    });
+
+    this.setupScroll();
+  }
+
+  setupScroll() {
+    const height = this.scene.cameras.main.height;
+    const width = this.scene.cameras.main.width;
+    const scrollTop = 100;
+    const scrollBottom = height - 90;
+
+    const maskGraphics = this.scene.add.graphics();
+    maskGraphics.fillStyle(0xffffff, 1);
+    maskGraphics.fillRect(25, scrollTop, width - 50, scrollBottom - scrollTop);
+    maskGraphics.setVisible(false);
+    this.elements.push(maskGraphics);
+
+    this.scrollContainer?.setMask(maskGraphics.createGeometryMask());
+
+    this.scrollHandlers = {
+      onPointerDown: (pointer) => {
+        if (pointer.y > scrollTop && pointer.y < scrollBottom) {
+          this.scrollConfig.isDragging = true;
+          this.scrollConfig.lastPointerY = pointer.y;
+        }
+      },
+      onPointerMove: (pointer) => {
+        if (!this.scrollConfig.isDragging) return;
+
+        const deltaY = pointer.y - this.scrollConfig.lastPointerY;
+        this.scrollConfig.lastPointerY = pointer.y;
+
+        const newY = this.scrollConfig.currentY + deltaY;
+        this.scrollConfig.currentY = Phaser.Math.Clamp(newY, this.scrollConfig.endY, this.scrollConfig.startY);
+
+        if (this.scrollContainer) {
+          this.scrollContainer.y = this.scrollConfig.containerY + this.scrollConfig.currentY;
+        }
+      },
+      onPointerUp: () => {
+        this.scrollConfig.isDragging = false;
+      },
+      onWheel: (pointer, gameObjects, deltaX, deltaY) => {
+        if (pointer.y > scrollTop && pointer.y < scrollBottom) {
+          const newY = this.scrollConfig.currentY + deltaY * 0.5;
+          this.scrollConfig.currentY = Phaser.Math.Clamp(newY, this.scrollConfig.endY, this.scrollConfig.startY);
+
+          if (this.scrollContainer) {
+            this.scrollContainer.y = this.scrollConfig.containerY + this.scrollConfig.currentY;
+          }
+        }
+      }
+    };
+
+    this.scene.input.on('pointerdown', this.scrollHandlers.onPointerDown);
+    this.scene.input.on('pointermove', this.scrollHandlers.onPointerMove);
+    this.scene.input.on('pointerup', this.scrollHandlers.onPointerUp);
+    this.scene.input.on('wheel', this.scrollHandlers.onWheel);
+  }
+
   renderTabs(width) {
+    const height = this.scene.cameras.main.height;
     const tabs = [
       { key: ShopType.SOURCE_CORE, icon: '💎', label: '源核' },
       { key: ShopType.MYCELIUM, icon: '🍄', label: '菌丝' },
@@ -75,10 +154,10 @@ export default class ShopView {
     ];
 
     const tabWidth = 68;
-    const tabHeight = 36;
+    const tabHeight = 30;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
-    const y = 52;
+    const y = height - 70;
 
     tabs.forEach((tab, index) => {
       const x = startX + index * tabWidth;
@@ -88,18 +167,18 @@ export default class ShopView {
 
       const bg = this.scene.add.graphics();
       bg.fillStyle(isActive ? Const.COLORS.PURPLE : Const.COLORS.BG_MID, 0.95);
-      bg.fillRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 8);
+      bg.fillRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 6);
       if (isActive) {
         bg.lineStyle(2, Const.COLORS.PURPLE, 1);
-        bg.strokeRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 8);
+        bg.strokeRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 6);
       }
       container.add(bg);
 
-      const iconText = this.scene.add.text(0, -6, tab.icon, { fontSize: '18px' }).setOrigin(0.5);
+      const iconText = this.scene.add.text(0, -5, tab.icon, { fontSize: '14px' }).setOrigin(0.5);
       container.add(iconText);
 
-      const labelText = this.scene.add.text(0, 10, tab.label, {
-        fontSize: '11px',
+      const labelText = this.scene.add.text(0, 6, tab.label, {
+        fontSize: '9px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: isActive ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.SECONDARY
       }).setOrigin(0.5);
@@ -130,110 +209,6 @@ export default class ShopView {
 
       this.elements.push(container);
     });
-  }
-
-  renderContent(width) {
-    const items = this.shopSystem.getCurrentItems();
-    const height = this.scene.cameras.main.height;
-
-    const startY = 75;
-    const cardHeight = 58;
-    const cardGap = 8;
-    const bottomMargin = 90;
-    const contentHeight = items.length * (cardHeight + cardGap);
-    const scrollHeight = Math.min(contentHeight, height - startY - bottomMargin);
-
-    if (items.length === 0) {
-      this.addText(width / 2, startY + 100, '暂无商品', {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.INACTIVE
-      });
-      return;
-    }
-
-    const scrollMask = this.scene.add.graphics();
-    scrollMask.fillStyle(0xffffff, 1);
-    scrollMask.fillRect(0, startY, width, scrollHeight);
-    this.elements.push(scrollMask);
-
-    const scrollContainer = this.scene.add.container(0, 0);
-    scrollContainer.setMask(scrollMask.createGeometryMask());
-    this.elements.push(scrollContainer);
-
-    this.scrollContainer = scrollContainer;
-    this.scrollMask = scrollMask;
-
-    items.forEach((item, index) => {
-      const y = startY + index * (cardHeight + cardGap);
-      const card = this.createShopCard(width / 2, y, item, index);
-      card.setAlpha(0);
-      this.scene.tweens.add({
-        targets: card,
-        alpha: 1,
-        duration: 200,
-        delay: index * 50,
-        ease: 'Power2'
-      });
-      scrollContainer.add(card);
-    });
-
-    this.scrollConfig = {
-      startY: startY,
-      endY: startY + contentHeight - scrollHeight,
-      currentY: startY,
-      speed: 8,
-      isDragging: false,
-      lastPointerY: 0
-    };
-
-    this.setupScroll();
-  }
-
-  setupScroll() {
-    const height = this.scene.cameras.main.height;
-    const scrollTop = 75;
-    const scrollBottom = height - 90;
-
-    this.scrollHandlers = {
-      onPointerDown: (pointer) => {
-        if (pointer.y > scrollTop && pointer.y < scrollBottom) {
-          this.scrollConfig.isDragging = true;
-          this.scrollConfig.lastPointerY = pointer.y;
-        }
-      },
-      onPointerMove: (pointer) => {
-        if (!this.scrollConfig.isDragging) return;
-
-        const deltaY = pointer.y - this.scrollConfig.lastPointerY;
-        this.scrollConfig.lastPointerY = pointer.y;
-
-        const newY = this.scrollConfig.currentY + deltaY;
-        this.scrollConfig.currentY = Phaser.Math.Clamp(newY, this.scrollConfig.endY, this.scrollConfig.startY);
-
-        if (this.scrollContainer) {
-          this.scrollContainer.y = this.scrollConfig.currentY - this.scrollConfig.startY;
-        }
-      },
-      onPointerUp: () => {
-        this.scrollConfig.isDragging = false;
-      },
-      onWheel: (pointer, gameObjects, deltaX, deltaY) => {
-        if (pointer.y > scrollTop && pointer.y < scrollBottom) {
-          const newY = this.scrollConfig.currentY + deltaY * 0.5;
-          this.scrollConfig.currentY = Phaser.Math.Clamp(newY, this.scrollConfig.endY, this.scrollConfig.startY);
-
-          if (this.scrollContainer) {
-            this.scrollContainer.y = this.scrollConfig.currentY - this.scrollConfig.startY;
-          }
-        }
-      }
-    };
-
-    this.scene.input.on('pointerdown', this.scrollHandlers.onPointerDown);
-    this.scene.input.on('pointermove', this.scrollHandlers.onPointerMove);
-    this.scene.input.on('pointerup', this.scrollHandlers.onPointerUp);
-    this.scene.input.on('wheel', this.scrollHandlers.onWheel);
   }
 
   createShopCard(x, y, item, index) {
@@ -473,25 +448,6 @@ export default class ShopView {
         this.elements = this.elements.filter(el => el !== toastBg && el !== toastText);
       }
     });
-  }
-
-  renderFooter(width, height) {
-    const footerY = height - 35;
-
-    const line = this.scene.add.graphics();
-    line.lineStyle(1, Const.COLORS.BG_DARK, 0.5);
-    line.lineBetween(30, footerY - 10, width - 30, footerY - 10);
-    this.elements.push(line);
-
-    this.addText(width / 2, footerY, '滑动查看更多商品 | 点击购买', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.INACTIVE
-    });
-  }
-
-  startCountdown() {
-    // TODO: implement daily refresh countdown
   }
 
   refresh() {

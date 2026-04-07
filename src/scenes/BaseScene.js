@@ -154,6 +154,7 @@ export default class BaseScene extends Phaser.Scene {
     centerGlow.setBlendMode(Phaser.BlendModes.ADD);
 
     const glowColors = {
+      sanctuary: { color: Const.COLORS.PURPLE, alpha: 0.06 },
       tavern: { color: Const.COLORS.PURPLE, alpha: 0.08 },
       team: { color: Const.COLORS.CYAN, alpha: 0.06 },
       equipment: { color: Const.COLORS.YELLOW, alpha: 0.08 },
