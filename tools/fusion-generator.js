@@ -145,69 +145,37 @@ const FUSION_PROMPTS = {
 她采用跪姿，赤红色的火焰能量场环绕全身，姿势舒展自然。表情直视镜头，眼神冷峻而痛苦，狐狸眼中带着失去记忆后的孤独，嘴角带着一丝苦涩的微笑。背景为虚化的地热核心废墟，熔岩和火焰在远处燃烧，地面被高温烧成琉璃。整体色调以红色为主题，点缀橙红色和金色，废土末世氛围。`
 };
 
-function buildWorkflow(config, options) {
+function buildWorkflow(charId, config, options) {
   const defaults = config.defaults;
   const width = options.width || defaults.width;
   const height = options.height || defaults.height;
-  const seed = options.seed || Math.floor(Math.random() * 9999999999);
+  const seed = options.seed || Math.floor(Math.random() * 99999999999);
 
-  return {
-    "3": {
-      "inputs": {
-        "seed": seed,
-        "steps": options.steps || defaults.steps,
-        "cfg": options.cfg || defaults.cfg,
-        "sampler_name": options.sampler || defaults.sampler_name,
-        "scheduler": defaults.scheduler,
-        "positive": ["7", "conditioning"],
-        "negative": ["8", "conditioning"],
-        "model": ["4", "1"],
-        "latent_image": ["5", "latent"]
-      },
-      "class_type": "KSampler"
-    },
-    "4": {
-      "inputs": { "ckpt_name": options.model || "v1-5-pruned-emaonly-fp16.safetensors" },
-      "class_type": "CheckpointLoaderSimple"
-    },
-    "5": {
-      "inputs": {
-        "width": width,
-        "height": height,
-        "batch_size": options.batch_size || defaults.batch_size
-      },
-      "class_type": "EmptyLatentImage"
-    },
-    "6": {
-      "inputs": {
-        "samples": ["3", "samples"],
-        "vae": ["4", "2"],
-        "filename_prefix": options.filename_prefix || "ComfyUI"
-      },
-      "class_type": "VAEDecode"
-    },
-    "7": {
-      "inputs": {
-        "images": ["6", "IMAGE"],
-        "filename_prefix": options.filename_prefix || "ComfyUI"
-      },
-      "class_type": "SaveImage"
-    },
-    "8": {
-      "inputs": {
-        "text": options.prompt,
-        "clip": ["4", "3"]
-      },
-      "class_type": "CLIPTextEncode"
-    },
-    "9": {
-      "inputs": {
-        "text": options.negative_prompt || config.common.negative_prompt,
-        "clip": ["4", "3"]
-      },
-      "class_type": "CLIPTextEncode"
+  const templatePath = path.join(__dirname, '..', 'image_z_image_turbo.json');
+  const template = JSON.parse(fs.readFileSync(templatePath, 'utf-8'));
+
+  const workflow = {};
+  for (const [key, node] of Object.entries(template)) {
+    const cleanKey = key.replace(/:/g, '_');
+    workflow[cleanKey] = { class_type: node.class_type, inputs: { ...node.inputs } };
+    const inputs = workflow[cleanKey].inputs;
+
+    if (key === '57:27' && inputs.text !== undefined) {
+      inputs.text = options.prompt;
     }
-  };
+    if (key === '9' && inputs.filename_prefix !== undefined) {
+      inputs.filename_prefix = options.filename_prefix || charId;
+    }
+    if (key === '57:13') {
+      if (inputs.width !== undefined) inputs.width = width;
+      if (inputs.height !== undefined) inputs.height = height;
+    }
+    if (key === '57:3' && inputs.seed !== undefined) {
+      inputs.seed = seed;
+    }
+  }
+
+  return workflow;
 }
 
 async function generateAndSave(charId, prompt, config, outputDir) {
@@ -215,20 +183,15 @@ async function generateAndSave(charId, prompt, config, outputDir) {
   
   console.log(`\n正在生成 ${charId}...`);
   
-  const workflow = buildWorkflow(config, {
+  const workflow = buildWorkflow(charId, config, {
     prompt: prompt,
-    negative_prompt: config.common.negative_prompt,
     width: 1024,
-    height: 1536,
-    steps: 25,
-    cfg: 7,
-    sampler: 'euler_ancestral',
-    batch_size: 1,
-    filename_prefix: charId
+    height: 1536
   });
 
   const queueResult = await comfyui.queuePrompt(workflow);
   
+  console.log(`  提交的工作流:`, JSON.stringify(workflow, null, 2));
   console.log(`  ComfyUI响应:`, JSON.stringify(queueResult, null, 2));
   
   if (!queueResult.prompt_id) {
@@ -323,9 +286,9 @@ async function main() {
 
   console.log('生成参数:');
   console.log('  分辨率: 1024 x 1536');
-  console.log('  步数: 25');
-  console.log('  CFG: 7');
-  console.log('  采样器: euler_ancestral');
+  console.log('  步数: 8');
+  console.log('  CFG: 1');
+  console.log('  采样器: res_multistep');
   console.log('');
 
   for (const charId of charIds) {
