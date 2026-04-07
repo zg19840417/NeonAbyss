@@ -132,8 +132,9 @@ export const Const = {
     'SSR+': { name: '传说', nameEn: 'SSR+', color: '#ff2222', textColor: '#ff4444', glowColor: 0xdd0000 }
   },
 
-  EQUIPMENT_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
-  EQUIPMENT_SKILL_MULTIPLIER: { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.7, 5: 2.0 },
+  // [C17 FIX] EQUIPMENT_ 前缀统一改为 CHIP_ 前缀
+  CHIP_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
+  CHIP_SKILL_MULTIPLIER: { 1: 1.0, 2: 1.2, 3: 1.4, 4: 1.7, 5: 2.0 },
   STAR_UPGRADE_COST: { 1: 10, 2: 30, 3: 80, 4: 200 },
 
   // ===== 战斗场景专用 (BattleScene) =====

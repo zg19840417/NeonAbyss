@@ -258,6 +258,7 @@ export default class BaseScene extends Phaser.Scene {
       { key: 'team', icon: '队', label: t('team') },
       { key: 'dungeon', icon: '牢', label: t('dungeon') },
       { key: 'shop', icon: '店', label: t('shop') },
+      { key: 'task', icon: '务', label: t('task') },
       { key: 'settings', icon: '设', label: t('settings') }
     ];
 
@@ -1024,6 +1025,22 @@ export default class BaseScene extends Phaser.Scene {
       window.gameData.minionCardManager = this.minionCardManager.toJSON();
     }
     localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
+  }
+
+  // [U03 FIX] 实现 showToast 方法，多个 View 通过 scene.showToast?.() 调用
+  showToast(message, duration = 2000) {
+    if (this._toastText) this._toastText.destroy();
+    const width = this.cameras.main.width;
+    const toastBg = this.add.rectangle(width / 2, 120, Math.min(message.length * 16 + 40, width - 40), 36, 0x2a2520, 0.9).setStrokeStyle(1, 0xa8d8a8).setDepth(2000);
+    this._toastText = this.add.text(width / 2, 120, message, {
+      fontSize: '14px', fontFamily: 'Noto Sans SC', color: '#d4ccc0',
+      wordWrap: { width: width - 60 }
+    }).setOrigin(0.5).setDepth(2001);
+    this.tweens.add({
+      targets: [toastBg, this._toastText],
+      alpha: 0, delay: duration, duration: 300,
+      onComplete: () => { toastBg.destroy(); if (this._toastText) { this._toastText.destroy(); this._toastText = null; } }
+    });
   }
 
   shutdown() {

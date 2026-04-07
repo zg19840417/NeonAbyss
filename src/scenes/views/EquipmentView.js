@@ -551,8 +551,9 @@ export default class EquipmentView {
     return textObj;
   }
 
+  // [C28/U04 FIX] 对齐 CHIP_QUALITY 6级品质，补充 UR 和 LE 图标
   getCardIcon(quality) {
-    const icons = { 'N': '🟫', 'R': '🔵', 'SR': '🟣', 'SSR': '🟡', 'SSR+': '🔴' };
+    const icons = { 'N': '🟫', 'R': '🔵', 'SR': '🟣', 'SSR': '🟡', 'UR': '🔴', 'LE': '👑' };
     return icons[quality] || '🟫';
   }
 

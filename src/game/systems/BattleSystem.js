@@ -123,10 +123,12 @@ export default class BattleSystem {
       const bonuses = equippedCard.getEffectiveStats();
       
       this.playerTeam.forEach(follower => {
-        // 芯片属性为百分比加成
-        follower.maxHp += Math.floor(follower.maxHp * (bonuses.hpPercent || 0) / 100);
-        follower.currentHp += Math.floor(follower.maxHp * (bonuses.hpPercent || 0) / 100);
-        follower.atk += Math.floor(follower.atk * (bonuses.atkPercent || 0) / 100);
+        // [C14 FIX] 先计算加成增量，再分别加到 maxHp 和 currentHp，避免用已修改的 maxHp 计算 currentHp
+        const hpBonus = Math.floor(follower.maxHp * (bonuses.hpPercent || 0) / 100);
+        const atkBonus = Math.floor(follower.atk * (bonuses.atkPercent || 0) / 100);
+        follower.maxHp += hpBonus;
+        follower.currentHp += hpBonus;
+        follower.atk += atkBonus;
       });
       
       this.equipmentSkills = equippedCard.skills
@@ -857,6 +859,9 @@ export default class BattleSystem {
       }
     }
 
+    // [C12 FIX] hpPercentBefore 必须在扣血之前计算，否则死亡时 currentHp=0 永远触发 low_hp
+    const hpPercentBefore = target.currentHp / target.maxHp;
+
     // 使用 takeDamage 让圣盾和重生逻辑生效
     let actualDamage;
     if (typeof target.takeDamage === 'function') {
@@ -899,11 +904,12 @@ export default class BattleSystem {
       }
     }
 
-    const hpPercentBefore = target.currentHp / target.maxHp;
-    if (hpPercentBefore < 0.3) {
-      this.checkEquipmentTriggers('on_low_hp', { target, targetHpPercent: hpPercentBefore });
-    } else if (hpPercentBefore < 0.5) {
-      this.checkEquipmentTriggers('on_low_hp_50', { target, targetHpPercent: hpPercentBefore });
+    // [C12 FIX] 使用扣血前的 hpPercentBefore 判断低血量触发
+    if (hpPercentBefore >= 0.3 && target.currentHp / target.maxHp < 0.3) {
+      this.checkEquipmentTriggers('on_low_hp', { target, targetHpPercent: target.currentHp / target.maxHp });
+    }
+    if (hpPercentBefore >= 0.5 && target.currentHp / target.maxHp < 0.5) {
+      this.checkEquipmentTriggers('on_low_hp_50', { target, targetHpPercent: target.currentHp / target.maxHp });
     }
 
     if (isCrit) {
