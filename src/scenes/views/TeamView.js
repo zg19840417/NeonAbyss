@@ -426,12 +426,14 @@ export default class TeamView {
   }
 
   getEquipmentQualityConfig(quality) {
+    // [U05 FIX] 对齐 CHIP_QUALITY 6级品质体系，补充 UR 和 LE
     const configs = {
-      N: { name: '普通', color: '#8a7a6a', textColor: '#8a7a6a', icon: '🔧' },
-      R: { name: '稀有', color: '#4dabf7', textColor: '#4dabf7', icon: '⚔️' },
-      SR: { name: '精良', color: '#51cf66', textColor: '#51cf66', icon: '🗡️' },
-      SSR: { name: '史诗', color: '#9775fa', textColor: '#9775fa', icon: '🔥' },
-      'SSR+': { name: '传说', color: '#ffd700', textColor: '#ffd700', icon: '💎' }
+      N: { name: '普通', color: '#888888', textColor: '#888888', icon: '🔧' },
+      R: { name: '稀有', color: '#4a90d9', textColor: '#4a90d9', icon: '⚔️' },
+      SR: { name: '精良', color: '#9b59b6', textColor: '#9b59b6', icon: '🗡️' },
+      SSR: { name: '史诗', color: '#f39c12', textColor: '#f39c12', icon: '🔥' },
+      UR: { name: '传说', color: '#e74c3c', textColor: '#e74c3c', icon: '💎' },
+      LE: { name: '神话', color: '#ff4444', textColor: '#ff4444', icon: '👑' }
     };
     return configs[quality] || configs.N;
   }

@@ -193,6 +193,7 @@
     "targetElement": "dark",
     "targetRace": "all",
     "skillIds": [
+      "CSK006",
       "CSK007",
       "CSK008"
     ],
@@ -277,7 +278,8 @@
     "skillIds": [
       "CSK029",
       "CSK030",
-      "CSK031"
+      "CSK031",
+      "CSK032"
     ],
     "description": "传说功能芯片，限定混合系辅助，全体增益10%攻速，危急时额外行动+20%攻击"
   }

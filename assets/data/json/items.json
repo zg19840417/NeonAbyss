@@ -435,5 +435,477 @@
       "bossDrop",
       "questReward"
     ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_PROF_RANDOM",
+    "name": "随机职业插件",
+    "nameEn": "Random Profession Plugin",
+    "type": "plugin",
+    "subType": "professionPlugin",
+    "description": "芯片合成时随机限定职业方向",
+    "effect": {
+      "type": "professionPlugin",
+      "profession": "random"
+    },
+    "buyPrice": 50,
+    "sellPrice": 10,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_RACE_SR",
+    "name": "SR种族插件",
+    "nameEn": "SR Race Plugin",
+    "type": "plugin",
+    "subType": "racePlugin",
+    "description": "芯片合成时限定SR级种族方向",
+    "effect": {
+      "type": "racePlugin",
+      "quality": "SR"
+    },
+    "buyPrice": 80,
+    "sellPrice": 15,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_ELEMENT_SR",
+    "name": "SR元素插件",
+    "nameEn": "SR Element Plugin",
+    "type": "plugin",
+    "subType": "elementPlugin",
+    "description": "芯片合成时限定SR级元素方向",
+    "effect": {
+      "type": "elementPlugin",
+      "quality": "SR"
+    },
+    "buyPrice": 80,
+    "sellPrice": 15,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "ITEM_EXP_CHIP_SMALL",
+    "name": "初级芯片经验模块",
+    "nameEn": "Basic Chip EXP Module",
+    "type": "material",
+    "subType": "chipExp",
+    "description": "芯片经验值+100",
+    "effect": {
+      "type": "chipExp",
+      "value": 100
+    },
+    "buyPrice": 30,
+    "sellPrice": 5,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_EXP_CHIP_MEDIUM",
+    "name": "中级芯片经验模块",
+    "nameEn": "Mid Chip EXP Module",
+    "type": "material",
+    "subType": "chipExp",
+    "description": "芯片经验值+500",
+    "effect": {
+      "type": "chipExp",
+      "value": 500
+    },
+    "buyPrice": 120,
+    "sellPrice": 20,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_EXP_CHIP_LARGE",
+    "name": "高级芯片经验模块",
+    "nameEn": "Advanced Chip EXP Module",
+    "type": "material",
+    "subType": "chipExp",
+    "description": "芯片经验值+2000",
+    "effect": {
+      "type": "chipExp",
+      "value": 2000
+    },
+    "buyPrice": 400,
+    "sellPrice": 60,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_N_FRAGMENT_BOX",
+    "name": "N品质碎片宝箱",
+    "nameEn": "N Fragment Box",
+    "type": "material",
+    "subType": "fragmentBox",
+    "description": "打开获得随机N品质融合姬碎片x5",
+    "effect": {
+      "type": "fragmentBox",
+      "quality": "N",
+      "count": 5
+    },
+    "buyPrice": 0,
+    "sellPrice": 10,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "quest",
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "ITEM_UPGRADE_MATERIAL_LOW",
+    "name": "初级强化材料",
+    "nameEn": "Basic Upgrade Material",
+    "type": "material",
+    "subType": "upgradeMaterial",
+    "description": "融合姬升级消耗材料",
+    "effect": {
+      "type": "upgradeMaterial",
+      "tier": 1
+    },
+    "buyPrice": 20,
+    "sellPrice": 5,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_UPGRADE_MATERIAL_MID",
+    "name": "中级强化材料",
+    "nameEn": "Mid Upgrade Material",
+    "type": "material",
+    "subType": "upgradeMaterial",
+    "description": "融合姬升级消耗材料",
+    "effect": {
+      "type": "upgradeMaterial",
+      "tier": 2
+    },
+    "buyPrice": 80,
+    "sellPrice": 15,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_CHIP_EXP_SMALL",
+    "name": "芯片经验微粒",
+    "nameEn": "Chip EXP Dust",
+    "type": "material",
+    "subType": "chipExp",
+    "description": "芯片经验值+50",
+    "effect": {
+      "type": "chipExp",
+      "value": 50
+    },
+    "buyPrice": 15,
+    "sellPrice": 3,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_CHIP_EXP_MEDIUM",
+    "name": "芯片经验结晶",
+    "nameEn": "Chip EXP Crystal",
+    "type": "material",
+    "subType": "chipExp",
+    "description": "芯片经验值+300",
+    "effect": {
+      "type": "chipExp",
+      "value": 300
+    },
+    "buyPrice": 80,
+    "sellPrice": 12,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_SKILL_UPGRADE_MATERIAL",
+    "name": "技能升级材料",
+    "nameEn": "Skill Upgrade Material",
+    "type": "material",
+    "subType": "skillUpgrade",
+    "description": "技能升级消耗材料",
+    "effect": {
+      "type": "skillUpgrade"
+    },
+    "buyPrice": 100,
+    "sellPrice": 20,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "shop",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "ITEM_SOURCE_CORE",
+    "name": "源核",
+    "nameEn": "Source Core",
+    "type": "consumable",
+    "subType": "currency",
+    "description": "高级货币，用于抽卡和商店高级商品",
+    "effect": {
+      "type": "currency"
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 9999,
+    "obtainMethods": [
+      "quest",
+      "achievement",
+      "zoneDrop"
+    ]
+  },
+  {
+    "itemId": "PACK_NEWBIE",
+    "name": "新手礼包",
+    "nameEn": "Newbie Pack",
+    "type": "consumable",
+    "subType": "pack",
+    "description": "新手礼包，包含源核x200和随机SR融合姬碎片x10",
+    "effect": {
+      "type": "pack",
+      "contents": [
+        {
+          "id": "ITEM_SOURCE_CORE",
+          "count": 200
+        },
+        {
+          "id": "FRAGMENT_SR_RANDOM",
+          "count": 10
+        }
+      ]
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "PACK_DAILY_DEAL",
+    "name": "每日特惠包",
+    "nameEn": "Daily Deal Pack",
+    "type": "consumable",
+    "subType": "pack",
+    "description": "每日特惠，包含源核x100和抗辐射药剂x2",
+    "effect": {
+      "type": "pack",
+      "contents": [
+        {
+          "id": "ITEM_SOURCE_CORE",
+          "count": 100
+        },
+        {
+          "id": "ITEM_RAD_MEDICINE",
+          "count": 2
+        }
+      ]
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "ITEM_PLUGIN_SSR",
+    "name": "SSR定向插件",
+    "nameEn": "SSR Direction Plugin",
+    "type": "plugin",
+    "subType": "directionPlugin",
+    "description": "芯片合成时限定SSR品质方向",
+    "effect": {
+      "type": "directionPlugin",
+      "quality": "SSR"
+    },
+    "buyPrice": 150,
+    "sellPrice": 30,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "PACK_LIMITED_UP",
+    "name": "限定UP礼包",
+    "nameEn": "Limited UP Pack",
+    "type": "consumable",
+    "subType": "pack",
+    "description": "限定UP活动礼包，包含源核x500",
+    "effect": {
+      "type": "pack",
+      "contents": [
+        {
+          "id": "ITEM_SOURCE_CORE",
+          "count": 500
+        }
+      ]
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 1,
+    "obtainMethods": [
+      "shop"
+    ]
+  },
+  {
+    "itemId": "GACHA_SINGLE",
+    "name": "单抽券",
+    "nameEn": "Single Gacha Ticket",
+    "type": "consumable",
+    "subType": "gachaTicket",
+    "description": "可用于常驻融合姬池单抽1次",
+    "effect": {
+      "type": "gachaTicket",
+      "count": 1
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "quest",
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "GACHA_TEN",
+    "name": "十连抽券",
+    "nameEn": "Ten Gacha Ticket",
+    "type": "consumable",
+    "subType": "gachaTicket",
+    "description": "可用于常驻融合姬池十连抽1次",
+    "effect": {
+      "type": "gachaTicket",
+      "count": 10
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "quest",
+      "achievement"
+    ]
+  },
+  {
+    "itemId": "MINION_R",
+    "name": "R品质融合姬碎片",
+    "nameEn": "R Minion Fragment",
+    "type": "material",
+    "subType": "minionFragment",
+    "description": "R品质融合姬通用碎片，用于碎片兑换",
+    "effect": {
+      "type": "minionFragment",
+      "quality": "R"
+    },
+    "buyPrice": 0,
+    "sellPrice": 5,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "gachaDuplicate",
+      "quest"
+    ]
+  },
+  {
+    "itemId": "MINION_SR",
+    "name": "SR品质融合姬碎片",
+    "nameEn": "SR Minion Fragment",
+    "type": "material",
+    "subType": "minionFragment",
+    "description": "SR品质融合姬通用碎片，用于碎片兑换",
+    "effect": {
+      "type": "minionFragment",
+      "quality": "SR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 10,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "gachaDuplicate",
+      "quest"
+    ]
+  },
+  {
+    "itemId": "MINION_SSR",
+    "name": "SSR品质融合姬碎片",
+    "nameEn": "SSR Minion Fragment",
+    "type": "material",
+    "subType": "minionFragment",
+    "description": "SSR品质融合姬通用碎片，用于碎片兑换",
+    "effect": {
+      "type": "minionFragment",
+      "quality": "SSR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 20,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "gachaDuplicate",
+      "quest"
+    ]
+  },
+  {
+    "itemId": "MINION_UR",
+    "name": "UR品质融合姬碎片",
+    "nameEn": "UR Minion Fragment",
+    "type": "material",
+    "subType": "minionFragment",
+    "description": "UR品质融合姬通用碎片，用于碎片兑换",
+    "effect": {
+      "type": "minionFragment",
+      "quality": "UR"
+    },
+    "buyPrice": 0,
+    "sellPrice": 50,
+    "stackLimit": 999,
+    "obtainMethods": [
+      "gachaDuplicate",
+      "quest"
+    ]
+  },
+  {
+    "itemId": "MYCELIUM_500",
+    "name": "菌丝包裹",
+    "nameEn": "Mycelium Bundle",
+    "type": "consumable",
+    "subType": "currency",
+    "description": "包含500菌丝",
+    "effect": {
+      "type": "currency",
+      "currency": "mycelium",
+      "amount": 500
+    },
+    "buyPrice": 0,
+    "sellPrice": 0,
+    "stackLimit": 99,
+    "obtainMethods": [
+      "shop"
+    ]
   }
 ]

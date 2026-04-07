@@ -1,13 +1,19 @@
 [
   {
     "poolId": "POOL_NORMAL",
-    "poolName": "常驻融合姬池",
+    "poolName": "融合召唤",
     "poolType": "normal",
     "singleCost": 200,
-    "tenCost": 1800,
+    "tenCost": 2000,
     "pityLimit": 90,
     "pityGuarantee": "SSR",
     "softPityStart": 75,
-    "description": "常驻融合姬卡池，包含R~LE品质融合姬，90抽保底SSR品质"
+    "pitySR": 10,
+    "pitySSR": 40,
+    "pityUR": 200,
+    "softPitySRStart": 8,
+    "softPitySSRStart": 35,
+    "softPityURStart": 180,
+    "description": "常驻融合姬卡池，SR10抽保底，SSR40抽保底，UR200抽保底"
   }
 ]

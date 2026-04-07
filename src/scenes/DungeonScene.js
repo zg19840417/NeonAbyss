@@ -337,24 +337,13 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   onBattleDefeat(data) {
+    // [C31 FIX] 战败不应给予全额奖励和芯片掉落，仅给少量安慰奖
     const currentFloor = data.floor || this.currentFloor;
-    const enemies = this.generateEnemiesForFloor(currentFloor);
-    const rewards = this.calculateBattleRewards(enemies);
 
+    // 战败仅给 10% 的菌丝安慰奖，不给源核和芯片
+    const consolationMycelium = Math.floor((10 + currentFloor * 5) * 0.1);
     if (window.gameData.base) {
-      window.gameData.base.mycelium = (window.gameData.base.mycelium || 0) + rewards.mycelium;
-      window.gameData.base.sourceCore = (window.gameData.base.sourceCore || 0) + rewards.sourceCore;
-    }
-
-    // 如果有芯片掉落，添加到背包
-    if (Math.random() < 0.15 + this.currentDimension * 0.05 && window.gameData.chipCardManager) {
-      window.gameData.chipCardManager.addCard({
-        id: 'chip_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
-        quality: ['N', 'R', 'SR'][Math.floor(Math.random() * 3)],
-        star: 1,
-        hpPercent: Math.floor(Math.random() * 10) + 2,
-        atkPercent: Math.floor(Math.random() * 8) + 1
-      });
+      window.gameData.base.mycelium = (window.gameData.base.mycelium || 0) + consolationMycelium;
     }
 
     this.dungeonSystem.returnToBase();

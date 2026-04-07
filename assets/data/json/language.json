@@ -1763,21 +1763,5 @@
     "id": "boss_omega_sentinel",
     "zh_cn": "终焉守卫",
     "en_us": "Omega Sentinel"
-  },
-  {"id": "equipment_card", "zh_cn": "芯片卡", "en_us": "Chip Card"},
-  {"id": "my_cards", "zh_cn": "我的芯片", "en_us": "My Chips"},
-  {"id": "tap_to_equip", "zh_cn": "点击装备", "en_us": "Tap to Equip"},
-  {"id": "no_card_equipped", "zh_cn": "未装备芯片", "en_us": "No Chip Equipped"},
-  {"id": "equip", "zh_cn": "装备", "en_us": "Equip"},
-  {"id": "stat_bonus", "zh_cn": "属性加成", "en_us": "Stat Bonus"},
-  {"id": "skills", "zh_cn": "技能", "en_us": "Skills"},
-  {"id": "skill_type_aura", "zh_cn": "光环", "en_us": "Aura"},
-  {"id": "skill_type_trigger", "zh_cn": "触发", "en_us": "Trigger"},
-  {"id": "skill_type_modify", "zh_cn": "改造", "en_us": "Modify"},
-  {"id": "star_upgrade", "zh_cn": "升星", "en_us": "Star Upgrade"},
-  {"id": "material_upgrade", "zh_cn": "材料升级", "en_us": "Material Upgrade"},
-  {"id": "star_stone", "zh_cn": "星辉石", "en_us": "Star Stone"},
-  {"id": "owned", "zh_cn": "已拥有", "en_us": "Owned"},
-  {"id": "merge_upgrade", "zh_cn": "合成升级", "en_us": "Merge Upgrade"},
-  {"id": "insufficient_material", "zh_cn": "材料不足", "en_us": "Insufficient Material"}
+  }
 ]

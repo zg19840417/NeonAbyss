@@ -627,7 +627,8 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   playDeathAnimation(character) {
-    const isPlayer = this.playerTeam?.includes(character);
+    // [C13 FIX] this.playerTeam 不存在，应使用 this.minions 判断是否为玩家角色
+    const isPlayer = this.minions?.some(m => m.name === character.name) ?? false;
     const cards = isPlayer ? this.playerCards : this.enemyCards;
     const card = cards?.find(c => {
       const entity = c.container?.getData(isPlayer ? 'player' : 'enemy');

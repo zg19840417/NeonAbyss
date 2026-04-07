@@ -15,9 +15,9 @@
     "atkGrowth": 9,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -41,9 +41,9 @@
     "atkGrowth": 10,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -67,9 +67,9 @@
     "atkGrowth": 9,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -93,9 +93,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -119,9 +119,9 @@
     "atkGrowth": 6,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -145,9 +145,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -171,9 +171,9 @@
     "atkGrowth": 11,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -197,9 +197,9 @@
     "atkGrowth": 4,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -223,9 +223,9 @@
     "atkGrowth": 7,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -249,9 +249,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -275,9 +275,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -301,9 +301,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -327,9 +327,9 @@
     "atkGrowth": 4,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -353,9 +353,9 @@
     "atkGrowth": 4,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -379,9 +379,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -405,9 +405,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -431,9 +431,9 @@
     "atkGrowth": 6,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -457,9 +457,9 @@
     "atkGrowth": 5,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -483,9 +483,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -509,9 +509,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -535,9 +535,9 @@
     "atkGrowth": 11,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -561,9 +561,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -587,9 +587,9 @@
     "atkGrowth": 8,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -613,9 +613,9 @@
     "atkGrowth": 11,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -639,9 +639,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -665,9 +665,9 @@
     "atkGrowth": 12,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -691,9 +691,9 @@
     "atkGrowth": 14,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -717,9 +717,9 @@
     "atkGrowth": 9,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -743,9 +743,9 @@
     "atkGrowth": 4,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -769,9 +769,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -795,9 +795,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -821,9 +821,9 @@
     "atkGrowth": 8,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -847,9 +847,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -873,9 +873,9 @@
     "atkGrowth": 8,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -899,9 +899,9 @@
     "atkGrowth": 7,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -925,9 +925,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -951,9 +951,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -977,9 +977,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1003,9 +1003,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1029,9 +1029,9 @@
     "atkGrowth": 4,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1055,9 +1055,9 @@
     "atkGrowth": 6,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1081,9 +1081,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1107,9 +1107,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1133,9 +1133,9 @@
     "atkGrowth": 9,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1159,9 +1159,9 @@
     "atkGrowth": 13,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1185,9 +1185,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1211,9 +1211,9 @@
     "atkGrowth": 11,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1237,9 +1237,9 @@
     "atkGrowth": 7,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1263,9 +1263,9 @@
     "atkGrowth": 7,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1289,9 +1289,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1315,9 +1315,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1341,9 +1341,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1367,9 +1367,9 @@
     "atkGrowth": 7,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1393,9 +1393,9 @@
     "atkGrowth": 4,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1419,9 +1419,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1445,9 +1445,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1471,9 +1471,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1497,9 +1497,9 @@
     "atkGrowth": 4,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1523,9 +1523,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1549,9 +1549,9 @@
     "atkGrowth": 5,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1575,9 +1575,9 @@
     "atkGrowth": 12,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1601,9 +1601,9 @@
     "atkGrowth": 13,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1627,9 +1627,9 @@
     "atkGrowth": 7,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1653,9 +1653,9 @@
     "atkGrowth": 9,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1679,9 +1679,9 @@
     "atkGrowth": 14,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1705,9 +1705,9 @@
     "atkGrowth": 3,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1731,9 +1731,9 @@
     "atkGrowth": 3,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1757,9 +1757,9 @@
     "atkGrowth": 14,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1783,9 +1783,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1809,9 +1809,9 @@
     "atkGrowth": 7,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1835,9 +1835,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1861,9 +1861,9 @@
     "atkGrowth": 8,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1887,9 +1887,9 @@
     "atkGrowth": 3,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1913,9 +1913,9 @@
     "atkGrowth": 11,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1939,9 +1939,9 @@
     "atkGrowth": 8,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1965,9 +1965,9 @@
     "atkGrowth": 3,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -1991,9 +1991,9 @@
     "atkGrowth": 4,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2017,9 +2017,9 @@
     "atkGrowth": 11,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2043,9 +2043,9 @@
     "atkGrowth": 6,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2069,9 +2069,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2095,9 +2095,9 @@
     "atkGrowth": 7,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2121,9 +2121,9 @@
     "atkGrowth": 4,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2147,9 +2147,9 @@
     "atkGrowth": 16,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2173,9 +2173,9 @@
     "atkGrowth": 3,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2199,9 +2199,9 @@
     "atkGrowth": 6,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2225,9 +2225,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2251,9 +2251,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2277,9 +2277,9 @@
     "atkGrowth": 5,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2303,9 +2303,9 @@
     "atkGrowth": 4,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2329,9 +2329,9 @@
     "atkGrowth": 12,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2355,9 +2355,9 @@
     "atkGrowth": 6,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2381,9 +2381,9 @@
     "atkGrowth": 7,
     "spdGrowth": 1,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2407,9 +2407,9 @@
     "atkGrowth": 3,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2433,9 +2433,9 @@
     "atkGrowth": 5,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2459,9 +2459,9 @@
     "atkGrowth": 4,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_T_Active01",
-      "SK_T_Active02",
-      "SK_T_Active03"
+      "SK_tank_Active01",
+      "SK_tank_Active02",
+      "SK_tank_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2485,9 +2485,9 @@
     "atkGrowth": 8,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2511,9 +2511,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2537,9 +2537,9 @@
     "atkGrowth": 5,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2563,9 +2563,9 @@
     "atkGrowth": 10,
     "spdGrowth": 3,
     "skillIds": [
-      "SK_D_Active01",
-      "SK_D_Active02",
-      "SK_D_Active03"
+      "SK_dps_Active01",
+      "SK_dps_Active02",
+      "SK_dps_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],
@@ -2589,9 +2589,9 @@
     "atkGrowth": 6,
     "spdGrowth": 2,
     "skillIds": [
-      "SK_S_Active01",
-      "SK_S_Active02",
-      "SK_S_Active03"
+      "SK_support_Active01",
+      "SK_support_Active02",
+      "SK_support_Active03"
     ],
     "abilityPoolId": null,
     "forcedAbilities": [],

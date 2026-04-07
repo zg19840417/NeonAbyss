@@ -39,39 +39,9 @@ export default class BaseSystem {
     this.lastDailyReset = gameData.lastDailyReset || this.getTodayString();
   }
   
-  getCurrency(type) {
-    return this.currencies[type] || 0;
-  }
-  
-  setCurrency(type, amount) {
-    this.currencies[type] = Math.max(0, amount);
-    return this.currencies[type];
-  }
-  
-  addCurrency(type, amount) {
-    if (!this.currencies[type]) {
-      this.currencies[type] = 0;
-    }
-    this.currencies[type] += amount;
-    return this.currencies[type];
-  }
-  
-  spendCurrency(type, amount) {
-    if (this.currencies[type] < amount) {
-      return { success: false, reason: 'not_enough_currency', required: amount, current: this.currencies[type] };
-    }
-    this.currencies[type] -= amount;
-    return { success: true, remaining: this.currencies[type] };
-  }
-  
-  canAffordCurrency(type, amount) {
-    return this.getCurrency(type) >= amount;
-  }
-  
-  getAllCurrencies() {
-    return { ...this.currencies };
-  }
-  
+  // [C30 FIX] 已删除重复的第一套货币方法（getCurrency/setCurrency/addCurrency/spendCurrency/canAffordCurrency/getAllCurrencies）
+  // 统一使用文件底部的第二套方法（操作 mycelium/sourceCore/starCoin 字段）
+
   addItem(itemId, count = 1) {
     if (!this.inventory[itemId]) {
       this.inventory[itemId] = 0;
@@ -349,6 +319,8 @@ export default class BaseSystem {
   }
   
   // ===== 三级货币系统 =====
+  // [C30 FIX] 删除重复的第一套货币方法（第42-73行），统一使用此套（操作 mycelium/sourceCore/starCoin 字段）
+  // 原第一套方法操作 this.currencies 对象，与实际存储字段不一致，已删除。
   addCurrency(type, amount) {
     if (type === 'mycelium') this.mycelium += amount;
     else if (type === 'sourceCore') this.sourceCore += amount;

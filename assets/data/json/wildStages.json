@@ -5,18 +5,17 @@
     "mapName": "废弃城区",
     "stageIndex": 1,
     "requiredLevel": 1,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 2
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 2
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 3
       }
     ],
@@ -35,8 +34,7 @@
         "type": "mycelium",
         "amount": 35
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_02",
@@ -47,15 +45,15 @@
     "requiredStageId": "WS_01_01",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 3
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 3
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 4
       }
     ],
@@ -74,8 +72,7 @@
         "type": "mycelium",
         "amount": 40
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_03",
@@ -86,15 +83,15 @@
     "requiredStageId": "WS_01_02",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 4
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 4
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 5
       }
     ],
@@ -113,8 +110,7 @@
         "type": "mycelium",
         "amount": 45
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_04",
@@ -125,15 +121,15 @@
     "requiredStageId": "WS_01_03",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 5
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 5
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 6
       }
     ],
@@ -152,8 +148,7 @@
         "type": "mycelium",
         "amount": 50
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_05",
@@ -164,15 +159,15 @@
     "requiredStageId": "WS_01_04",
     "enemies": [
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 6
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 6
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 7
       }
     ],
@@ -211,15 +206,15 @@
     "requiredStageId": "WS_01_05",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 7
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 7
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 8
       }
     ],
@@ -238,8 +233,7 @@
         "type": "mycelium",
         "amount": 60
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_07",
@@ -250,15 +244,15 @@
     "requiredStageId": "WS_01_06",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 8
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 8
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 9
       }
     ],
@@ -277,8 +271,7 @@
         "type": "mycelium",
         "amount": 65
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_08",
@@ -289,15 +282,15 @@
     "requiredStageId": "WS_01_07",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 9
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 9
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 10
       }
     ],
@@ -316,8 +309,7 @@
         "type": "mycelium",
         "amount": 70
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_09",
@@ -328,15 +320,15 @@
     "requiredStageId": "WS_01_08",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 10
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 10
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 11
       }
     ],
@@ -355,8 +347,7 @@
         "type": "mycelium",
         "amount": 75
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_01_10",
@@ -367,15 +358,15 @@
     "requiredStageId": "WS_01_09",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 11
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 11
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 12
       }
     ],
@@ -411,18 +402,17 @@
     "mapName": "荒野公路",
     "stageIndex": 1,
     "requiredLevel": 11,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 12
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 12
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 13
       }
     ],
@@ -441,8 +431,7 @@
         "type": "mycelium",
         "amount": 55
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_02",
@@ -453,15 +442,15 @@
     "requiredStageId": "WS_02_01",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 13
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 13
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 14
       }
     ],
@@ -480,8 +469,7 @@
         "type": "mycelium",
         "amount": 60
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_03",
@@ -492,15 +480,15 @@
     "requiredStageId": "WS_02_02",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 14
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 14
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 15
       }
     ],
@@ -519,8 +507,7 @@
         "type": "mycelium",
         "amount": 65
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_04",
@@ -531,15 +518,15 @@
     "requiredStageId": "WS_02_03",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 15
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 15
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 16
       }
     ],
@@ -558,8 +545,7 @@
         "type": "mycelium",
         "amount": 70
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_05",
@@ -570,15 +556,15 @@
     "requiredStageId": "WS_02_04",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 16
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 16
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 17
       }
     ],
@@ -617,15 +603,15 @@
     "requiredStageId": "WS_02_05",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 17
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 17
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 18
       }
     ],
@@ -644,8 +630,7 @@
         "type": "mycelium",
         "amount": 80
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_07",
@@ -656,15 +641,15 @@
     "requiredStageId": "WS_02_06",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 18
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 18
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 19
       }
     ],
@@ -683,8 +668,7 @@
         "type": "mycelium",
         "amount": 85
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_08",
@@ -695,15 +679,15 @@
     "requiredStageId": "WS_02_07",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 19
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 19
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 20
       }
     ],
@@ -722,8 +706,7 @@
         "type": "mycelium",
         "amount": 90
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_09",
@@ -734,15 +717,15 @@
     "requiredStageId": "WS_02_08",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 20
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 20
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 21
       }
     ],
@@ -761,8 +744,7 @@
         "type": "mycelium",
         "amount": 95
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_02_10",
@@ -773,15 +755,15 @@
     "requiredStageId": "WS_02_09",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 21
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 21
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 22
       }
     ],
@@ -817,18 +799,17 @@
     "mapName": "污染森林",
     "stageIndex": 1,
     "requiredLevel": 21,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 22
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 22
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 23
       }
     ],
@@ -847,8 +828,7 @@
         "type": "mycelium",
         "amount": 75
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_02",
@@ -859,15 +839,15 @@
     "requiredStageId": "WS_03_01",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 23
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 23
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 24
       }
     ],
@@ -886,8 +866,7 @@
         "type": "mycelium",
         "amount": 80
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_03",
@@ -898,15 +877,15 @@
     "requiredStageId": "WS_03_02",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 24
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 24
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 25
       }
     ],
@@ -925,8 +904,7 @@
         "type": "mycelium",
         "amount": 85
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_04",
@@ -937,15 +915,15 @@
     "requiredStageId": "WS_03_03",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 25
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 25
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 26
       }
     ],
@@ -964,8 +942,7 @@
         "type": "mycelium",
         "amount": 90
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_05",
@@ -976,15 +953,15 @@
     "requiredStageId": "WS_03_04",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 26
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 26
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 27
       }
     ],
@@ -1023,15 +1000,15 @@
     "requiredStageId": "WS_03_05",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 27
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 27
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 28
       }
     ],
@@ -1050,8 +1027,7 @@
         "type": "mycelium",
         "amount": 100
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_07",
@@ -1062,15 +1038,15 @@
     "requiredStageId": "WS_03_06",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 28
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 28
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 29
       }
     ],
@@ -1089,8 +1065,7 @@
         "type": "mycelium",
         "amount": 105
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_08",
@@ -1101,15 +1076,15 @@
     "requiredStageId": "WS_03_07",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 29
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 29
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 30
       }
     ],
@@ -1128,8 +1103,7 @@
         "type": "mycelium",
         "amount": 110
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_09",
@@ -1140,15 +1114,15 @@
     "requiredStageId": "WS_03_08",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 30
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 30
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 31
       }
     ],
@@ -1167,8 +1141,7 @@
         "type": "mycelium",
         "amount": 115
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_03_10",
@@ -1179,15 +1152,15 @@
     "requiredStageId": "WS_03_09",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 31
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 31
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 32
       }
     ],
@@ -1223,18 +1196,17 @@
     "mapName": "干涸河床",
     "stageIndex": 1,
     "requiredLevel": 31,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 32
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 32
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 33
       }
     ],
@@ -1253,8 +1225,7 @@
         "type": "mycelium",
         "amount": 95
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_02",
@@ -1265,15 +1236,15 @@
     "requiredStageId": "WS_04_01",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 33
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 33
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 34
       }
     ],
@@ -1292,8 +1263,7 @@
         "type": "mycelium",
         "amount": 100
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_03",
@@ -1304,15 +1274,15 @@
     "requiredStageId": "WS_04_02",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 34
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 34
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 35
       }
     ],
@@ -1331,8 +1301,7 @@
         "type": "mycelium",
         "amount": 105
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_04",
@@ -1343,15 +1312,15 @@
     "requiredStageId": "WS_04_03",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 35
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 35
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 36
       }
     ],
@@ -1370,8 +1339,7 @@
         "type": "mycelium",
         "amount": 110
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_05",
@@ -1382,15 +1350,15 @@
     "requiredStageId": "WS_04_04",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 36
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 36
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 37
       }
     ],
@@ -1429,15 +1397,15 @@
     "requiredStageId": "WS_04_05",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 37
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 37
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 38
       }
     ],
@@ -1456,8 +1424,7 @@
         "type": "mycelium",
         "amount": 120
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_07",
@@ -1468,15 +1435,15 @@
     "requiredStageId": "WS_04_06",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 38
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 38
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 39
       }
     ],
@@ -1495,8 +1462,7 @@
         "type": "mycelium",
         "amount": 125
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_08",
@@ -1507,15 +1473,15 @@
     "requiredStageId": "WS_04_07",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 39
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 39
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 40
       }
     ],
@@ -1534,8 +1500,7 @@
         "type": "mycelium",
         "amount": 130
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_09",
@@ -1546,15 +1511,15 @@
     "requiredStageId": "WS_04_08",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 40
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 40
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 41
       }
     ],
@@ -1573,8 +1538,7 @@
         "type": "mycelium",
         "amount": 135
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_04_10",
@@ -1585,15 +1549,15 @@
     "requiredStageId": "WS_04_09",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 41
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 41
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 42
       }
     ],
@@ -1629,18 +1593,17 @@
     "mapName": "军事前哨",
     "stageIndex": 1,
     "requiredLevel": 41,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 42
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 42
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 43
       }
     ],
@@ -1659,8 +1622,7 @@
         "type": "mycelium",
         "amount": 115
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_02",
@@ -1671,15 +1633,15 @@
     "requiredStageId": "WS_05_01",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 43
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 43
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 44
       }
     ],
@@ -1698,8 +1660,7 @@
         "type": "mycelium",
         "amount": 120
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_03",
@@ -1710,15 +1671,15 @@
     "requiredStageId": "WS_05_02",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 44
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 44
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 45
       }
     ],
@@ -1737,8 +1698,7 @@
         "type": "mycelium",
         "amount": 125
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_04",
@@ -1749,15 +1709,15 @@
     "requiredStageId": "WS_05_03",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 45
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 45
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 46
       }
     ],
@@ -1776,8 +1736,7 @@
         "type": "mycelium",
         "amount": 130
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_05",
@@ -1788,15 +1747,15 @@
     "requiredStageId": "WS_05_04",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 46
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 46
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 47
       }
     ],
@@ -1835,15 +1794,15 @@
     "requiredStageId": "WS_05_05",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 47
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 47
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 48
       }
     ],
@@ -1862,8 +1821,7 @@
         "type": "mycelium",
         "amount": 140
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_07",
@@ -1874,15 +1832,15 @@
     "requiredStageId": "WS_05_06",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 48
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 48
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 49
       }
     ],
@@ -1901,8 +1859,7 @@
         "type": "mycelium",
         "amount": 145
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_08",
@@ -1913,15 +1870,15 @@
     "requiredStageId": "WS_05_07",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 49
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 49
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 50
       }
     ],
@@ -1940,8 +1897,7 @@
         "type": "mycelium",
         "amount": 150
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_09",
@@ -1952,15 +1908,15 @@
     "requiredStageId": "WS_05_08",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 50
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 50
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 51
       }
     ],
@@ -1979,8 +1935,7 @@
         "type": "mycelium",
         "amount": 155
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_05_10",
@@ -1991,15 +1946,15 @@
     "requiredStageId": "WS_05_09",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 51
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 51
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 52
       }
     ],
@@ -2035,18 +1990,17 @@
     "mapName": "沙漠绿洲",
     "stageIndex": 1,
     "requiredLevel": 51,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 52
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 53
       },
       {
-        "enemyId": "E015",
+        "enemyId": "E_L005",
         "level": 53
       }
     ],
@@ -2065,8 +2019,7 @@
         "type": "mycelium",
         "amount": 135
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_02",
@@ -2077,15 +2030,15 @@
     "requiredStageId": "WS_06_01",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 53
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 54
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 54
       }
     ],
@@ -2104,8 +2057,7 @@
         "type": "mycelium",
         "amount": 140
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_03",
@@ -2116,15 +2068,15 @@
     "requiredStageId": "WS_06_02",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 54
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 55
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 55
       }
     ],
@@ -2143,8 +2095,7 @@
         "type": "mycelium",
         "amount": 145
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_04",
@@ -2155,15 +2106,15 @@
     "requiredStageId": "WS_06_03",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 55
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 56
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 56
       }
     ],
@@ -2182,8 +2133,7 @@
         "type": "mycelium",
         "amount": 150
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_05",
@@ -2194,15 +2144,15 @@
     "requiredStageId": "WS_06_04",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 56
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 57
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 57
       }
     ],
@@ -2241,15 +2191,15 @@
     "requiredStageId": "WS_06_05",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 57
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 58
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 58
       }
     ],
@@ -2268,8 +2218,7 @@
         "type": "mycelium",
         "amount": 160
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_07",
@@ -2280,15 +2229,15 @@
     "requiredStageId": "WS_06_06",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 58
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 59
       },
       {
-        "enemyId": "E015",
+        "enemyId": "E_L005",
         "level": 59
       }
     ],
@@ -2307,8 +2256,7 @@
         "type": "mycelium",
         "amount": 165
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_08",
@@ -2319,15 +2267,15 @@
     "requiredStageId": "WS_06_07",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 59
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 60
       },
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 60
       }
     ],
@@ -2346,8 +2294,7 @@
         "type": "mycelium",
         "amount": 170
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_09",
@@ -2358,15 +2305,15 @@
     "requiredStageId": "WS_06_08",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 60
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 61
       },
       {
-        "enemyId": "E012",
+        "enemyId": "E_L002",
         "level": 61
       }
     ],
@@ -2385,8 +2332,7 @@
         "type": "mycelium",
         "amount": 175
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_06_10",
@@ -2397,15 +2343,15 @@
     "requiredStageId": "WS_06_09",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 61
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 62
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 62
       }
     ],
@@ -2441,18 +2387,17 @@
     "mapName": "军事基地",
     "stageIndex": 1,
     "requiredLevel": 61,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 62
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 63
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 63
       }
     ],
@@ -2471,8 +2416,7 @@
         "type": "mycelium",
         "amount": 155
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_02",
@@ -2483,15 +2427,15 @@
     "requiredStageId": "WS_07_01",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 63
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 64
       },
       {
-        "enemyId": "E015",
+        "enemyId": "E_L005",
         "level": 64
       }
     ],
@@ -2510,8 +2454,7 @@
         "type": "mycelium",
         "amount": 160
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_03",
@@ -2522,15 +2465,15 @@
     "requiredStageId": "WS_07_02",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 64
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 65
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 65
       }
     ],
@@ -2549,8 +2492,7 @@
         "type": "mycelium",
         "amount": 165
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_04",
@@ -2561,15 +2503,15 @@
     "requiredStageId": "WS_07_03",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 65
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 66
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 66
       }
     ],
@@ -2588,8 +2530,7 @@
         "type": "mycelium",
         "amount": 170
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_05",
@@ -2600,15 +2541,15 @@
     "requiredStageId": "WS_07_04",
     "enemies": [
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 66
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 67
       },
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 67
       }
     ],
@@ -2647,15 +2588,15 @@
     "requiredStageId": "WS_07_05",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 67
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 68
       },
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 68
       }
     ],
@@ -2674,8 +2615,7 @@
         "type": "mycelium",
         "amount": 180
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_07",
@@ -2686,15 +2626,15 @@
     "requiredStageId": "WS_07_06",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 68
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 69
       },
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 69
       }
     ],
@@ -2713,8 +2653,7 @@
         "type": "mycelium",
         "amount": 185
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_08",
@@ -2725,15 +2664,15 @@
     "requiredStageId": "WS_07_07",
     "enemies": [
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 69
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 70
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 70
       }
     ],
@@ -2752,8 +2691,7 @@
         "type": "mycelium",
         "amount": 190
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_09",
@@ -2764,15 +2702,15 @@
     "requiredStageId": "WS_07_08",
     "enemies": [
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 70
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 71
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 71
       }
     ],
@@ -2791,8 +2729,7 @@
         "type": "mycelium",
         "amount": 195
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_07_10",
@@ -2803,15 +2740,15 @@
     "requiredStageId": "WS_07_09",
     "enemies": [
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 71
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 72
       },
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 72
       }
     ],
@@ -2847,18 +2784,17 @@
     "mapName": "地下设施",
     "stageIndex": 1,
     "requiredLevel": 71,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 72
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 73
       },
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 73
       }
     ],
@@ -2877,8 +2813,7 @@
         "type": "mycelium",
         "amount": 175
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_02",
@@ -2889,15 +2824,15 @@
     "requiredStageId": "WS_08_01",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 73
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 74
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 74
       }
     ],
@@ -2916,8 +2851,7 @@
         "type": "mycelium",
         "amount": 180
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_03",
@@ -2928,15 +2862,15 @@
     "requiredStageId": "WS_08_02",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 74
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 75
       },
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 75
       }
     ],
@@ -2955,8 +2889,7 @@
         "type": "mycelium",
         "amount": 185
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_04",
@@ -2967,15 +2900,15 @@
     "requiredStageId": "WS_08_03",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 75
       },
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 76
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 76
       }
     ],
@@ -2994,8 +2927,7 @@
         "type": "mycelium",
         "amount": 190
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_05",
@@ -3006,15 +2938,15 @@
     "requiredStageId": "WS_08_04",
     "enemies": [
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 76
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 77
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 77
       }
     ],
@@ -3053,15 +2985,15 @@
     "requiredStageId": "WS_08_05",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 77
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 78
       },
       {
-        "enemyId": "E015",
+        "enemyId": "E_L005",
         "level": 78
       }
     ],
@@ -3080,8 +3012,7 @@
         "type": "mycelium",
         "amount": 200
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_07",
@@ -3092,15 +3023,15 @@
     "requiredStageId": "WS_08_06",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 78
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 79
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 79
       }
     ],
@@ -3119,8 +3050,7 @@
         "type": "mycelium",
         "amount": 205
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_08",
@@ -3131,15 +3061,15 @@
     "requiredStageId": "WS_08_07",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 79
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 80
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 80
       }
     ],
@@ -3158,8 +3088,7 @@
         "type": "mycelium",
         "amount": 210
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_09",
@@ -3170,15 +3099,15 @@
     "requiredStageId": "WS_08_08",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 80
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 81
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 81
       }
     ],
@@ -3197,8 +3126,7 @@
         "type": "mycelium",
         "amount": 215
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_08_10",
@@ -3209,15 +3137,15 @@
     "requiredStageId": "WS_08_09",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 81
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 82
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 82
       }
     ],
@@ -3253,18 +3181,17 @@
     "mapName": "辐射荒原",
     "stageIndex": 1,
     "requiredLevel": 81,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 82
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 83
       },
       {
-        "enemyId": "E016",
+        "enemyId": "E_L006",
         "level": 83
       }
     ],
@@ -3283,8 +3210,7 @@
         "type": "mycelium",
         "amount": 195
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_02",
@@ -3295,15 +3221,15 @@
     "requiredStageId": "WS_09_01",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 83
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 84
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 84
       }
     ],
@@ -3322,8 +3248,7 @@
         "type": "mycelium",
         "amount": 200
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_03",
@@ -3334,15 +3259,15 @@
     "requiredStageId": "WS_09_02",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 84
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 85
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 85
       }
     ],
@@ -3361,8 +3286,7 @@
         "type": "mycelium",
         "amount": 205
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_04",
@@ -3373,15 +3297,15 @@
     "requiredStageId": "WS_09_03",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 85
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 86
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 86
       }
     ],
@@ -3400,8 +3324,7 @@
         "type": "mycelium",
         "amount": 210
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_05",
@@ -3412,15 +3335,15 @@
     "requiredStageId": "WS_09_04",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 86
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 87
       },
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 87
       }
     ],
@@ -3459,15 +3382,15 @@
     "requiredStageId": "WS_09_05",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 87
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 88
       },
       {
-        "enemyId": "E014",
+        "enemyId": "E_L004",
         "level": 88
       }
     ],
@@ -3486,8 +3409,7 @@
         "type": "mycelium",
         "amount": 220
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_07",
@@ -3498,15 +3420,15 @@
     "requiredStageId": "WS_09_06",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 88
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 89
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 89
       }
     ],
@@ -3525,8 +3447,7 @@
         "type": "mycelium",
         "amount": 225
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_08",
@@ -3537,15 +3458,15 @@
     "requiredStageId": "WS_09_07",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 89
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 90
       },
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 90
       }
     ],
@@ -3564,8 +3485,7 @@
         "type": "mycelium",
         "amount": 230
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_09",
@@ -3576,15 +3496,15 @@
     "requiredStageId": "WS_09_08",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 90
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 91
       },
       {
-        "enemyId": "E014",
+        "enemyId": "E_L004",
         "level": 91
       }
     ],
@@ -3603,8 +3523,7 @@
         "type": "mycelium",
         "amount": 235
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_09_10",
@@ -3615,15 +3534,15 @@
     "requiredStageId": "WS_09_09",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 91
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 92
       },
       {
-        "enemyId": "E014",
+        "enemyId": "E_L004",
         "level": 92
       }
     ],
@@ -3659,18 +3578,17 @@
     "mapName": "核心禁区",
     "stageIndex": 1,
     "requiredLevel": 91,
-    "requiredStageId": null,
     "enemies": [
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 92
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 93
       },
       {
-        "enemyId": "E016",
+        "enemyId": "E_L006",
         "level": 93
       }
     ],
@@ -3689,8 +3607,7 @@
         "type": "mycelium",
         "amount": 215
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_02",
@@ -3701,15 +3618,15 @@
     "requiredStageId": "WS_10_01",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 93
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 94
       },
       {
-        "enemyId": "E016",
+        "enemyId": "E_L006",
         "level": 94
       }
     ],
@@ -3728,8 +3645,7 @@
         "type": "mycelium",
         "amount": 220
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_03",
@@ -3740,15 +3656,15 @@
     "requiredStageId": "WS_10_02",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 94
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 95
       },
       {
-        "enemyId": "E014",
+        "enemyId": "E_L004",
         "level": 95
       }
     ],
@@ -3767,8 +3683,7 @@
         "type": "mycelium",
         "amount": 225
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_04",
@@ -3779,15 +3694,15 @@
     "requiredStageId": "WS_10_03",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 95
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 96
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 96
       }
     ],
@@ -3806,8 +3721,7 @@
         "type": "mycelium",
         "amount": 230
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_05",
@@ -3818,15 +3732,15 @@
     "requiredStageId": "WS_10_04",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 96
       },
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 97
       },
       {
-        "enemyId": "E012",
+        "enemyId": "E_L002",
         "level": 97
       }
     ],
@@ -3865,15 +3779,15 @@
     "requiredStageId": "WS_10_05",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 97
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 98
       },
       {
-        "enemyId": "E012",
+        "enemyId": "E_L002",
         "level": 98
       }
     ],
@@ -3892,8 +3806,7 @@
         "type": "mycelium",
         "amount": 240
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_07",
@@ -3904,15 +3817,15 @@
     "requiredStageId": "WS_10_06",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 98
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 99
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 99
       }
     ],
@@ -3931,8 +3844,7 @@
         "type": "mycelium",
         "amount": 245
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_08",
@@ -3943,15 +3855,15 @@
     "requiredStageId": "WS_10_07",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 99
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 100
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 100
       }
     ],
@@ -3970,8 +3882,7 @@
         "type": "mycelium",
         "amount": 250
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_09",
@@ -3982,15 +3893,15 @@
     "requiredStageId": "WS_10_08",
     "enemies": [
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 100
       },
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 101
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 101
       }
     ],
@@ -4009,8 +3920,7 @@
         "type": "mycelium",
         "amount": 255
       }
-    ],
-    "unlockZoneId": null
+    ]
   },
   {
     "stageId": "WS_10_10",
@@ -4021,15 +3931,15 @@
     "requiredStageId": "WS_10_09",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 101
       },
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 102
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 102
       }
     ],
