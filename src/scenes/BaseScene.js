@@ -15,7 +15,7 @@ export default class BaseScene extends Phaser.Scene {
     this.equipmentView = null;
     this.shopView = null;
     this.teamView = null;
-    this.currentTab = 'tavern';
+    this.currentTab = 'sanctuary';
     this.tabButtons = {};
     this.modalOpen = false;
     this._transitioning = false;
@@ -29,7 +29,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createBackground(width, height);
     this.createHeader(width);
     this.createBottomNav(width, height);
-    this.showView('tavern');
+    this.showView('sanctuary');
 
     this.time.addEvent({
       delay: Const.GAME.SAVE_DELAY,
@@ -162,7 +162,7 @@ export default class BaseScene extends Phaser.Scene {
       settings: { color: Const.COLORS.CYAN, alpha: 0.05 }
     };
 
-    const glow = glowColors[viewKey] || glowColors.tavern;
+    const glow = glowColors[viewKey] || glowColors.sanctuary;
 
     for (let i = 0; i < 3; i++) {
       centerGlow.fillStyle(glow.color, glow.alpha / (i + 1));
@@ -216,7 +216,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   createHeader(width) {
-    this.titleText = this.add.text(width / 2, Const.UI.TITLE_Y, t('tavern'), {
+    this.titleText = this.add.text(width / 2, Const.UI.TITLE_Y, t('sanctuary'), {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -254,7 +254,7 @@ export default class BaseScene extends Phaser.Scene {
     navBg.lineBetween(0, navY, width, navY);
 
     const tabs = [
-      { key: 'tavern', icon: '酒', label: t('tavern') },
+      { key: 'sanctuary', icon: '所', label: t('sanctuary') },
       { key: 'team', icon: '队', label: t('team') },
       { key: 'dungeon', icon: '牢', label: t('dungeon') },
       { key: 'shop', icon: '店', label: t('shop') },
@@ -364,7 +364,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createAtmosphereBg(key);
 
     const titles = {
-      tavern: t('tavern'),
+      sanctuary: t('sanctuary'),
       team: t('team'),
       dungeon: t('dungeon'),
       shop: t('shop'),
@@ -372,11 +372,11 @@ export default class BaseScene extends Phaser.Scene {
     };
 
     if (this.titleText) {
-      this.titleText.setText(titles[key] || t('tavern'));
+      this.titleText.setText(titles[key] || t('sanctuary'));
     }
 
     switch (key) {
-      case 'tavern':
+      case 'sanctuary':
         this.showTavernContent();
         break;
       case 'team':
@@ -398,7 +398,7 @@ export default class BaseScene extends Phaser.Scene {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    const banner = this.add.text(width / 2, 110, t('tavern_welcome'), {
+    const banner = this.add.text(width / 2, 110, t('sanctuary_welcome'), {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -415,7 +415,7 @@ export default class BaseScene extends Phaser.Scene {
       fontSize: Const.FONT.SIZE_ICON_LARGE
     }).setOrigin(0.5);
 
-    const bartenderName = this.add.text(width / 2, 250, t('bartender'), {
+    const bartenderName = this.add.text(width / 2, 250, t('admin_ada'), {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -432,7 +432,7 @@ export default class BaseScene extends Phaser.Scene {
       this.tryEnterDungeon();
     });
 
-    const hint = this.add.text(width / 2, height - 130, t('tavern_hint'), {
+    const hint = this.add.text(width / 2, height - 130, t('sanctuary_hint'), {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE

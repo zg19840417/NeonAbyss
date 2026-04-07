@@ -1,4 +1,4 @@
-export default class TavernView {
+export default class ShelterView {
   constructor(scene) {
     this.scene = scene;
     this.elements = [];
@@ -10,7 +10,7 @@ export default class TavernView {
     const { t } = this.scene;
     const { Const } = this.scene;
 
-    this.addText(width / 2, 90, t('tavern_welcome'), {
+    this.addText(width / 2, 90, t('sanctuary_welcome'), {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -21,7 +21,7 @@ export default class TavernView {
 
     this.renderRecruitSection(width);
 
-    this.addText(width / 2, height - 130, t('tavern_hint'), {
+    this.addText(width / 2, height - 130, t('sanctuary_hint'), {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE
