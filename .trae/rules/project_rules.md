@@ -266,11 +266,14 @@ npm run preview # 预览
 | 功能 | 状态 | 文件 |
 |------|------|------|
 | 基础角色系统 | ✅ | Character.js |
-| 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js（待重命名为ChipCard） |
 | 融合姬卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js |
 | 战斗系统 | ✅ | BattleSystem.js |
 | 存档系统 | ✅ | SaveSystem.js |
 | UI视图 | ✅ | views/*.js |
+| 商店系统v2.0 | ✅ | ShopView.js, ShopSystem.js, BaseSystem.js |
+| 货币系统 | ✅ | BaseSystem.js (currencies) |
+| 物品背包系统 | ✅ | BaseSystem.js (inventory) |
+| 每日限购系统 | ✅ | BaseSystem.js (dailyPurchaseRecords) |
 
 ## 问题追踪
 
@@ -279,6 +282,8 @@ npm run preview # 预览
 | 事件监听器泄漏 | ✅ 已修复 |
 | 装备卡t()函数调用 | ✅ 已修复 |
 | 融合姬卡被动触发逻辑 | ✅ 已修复 |
+| 商店滚动事件累积 | ✅ 已修复 |
+| 闭包引用错误 | ✅ 已修复 |
 
 ---
 
@@ -493,11 +498,11 @@ src/
 | 功能 | 状态 | 文件 | 说明 |
 |------|------|------|------|
 | 基础角色系统 | ✅ | Character.js | 角色基类，含属性/技能框架 |
-| 装备卡系统 | ✅ | EquipmentCard.js, EquipmentCardManager.js | 待重命名为 ChipCard |
 | 融合姬卡系统 | ✅ | MinionCard.js, PassiveSkill.js, MinionConfig.js | 继承 Character，含被动技能 |
 | 战斗系统 | ✅ | BattleSystem.js | 自动战斗逻辑 |
 | 存档系统 | ✅ | SaveSystem.js | localStorage 持久化 |
 | UI视图 | ✅ | views/*.js | ShelterView, TeamView 等 |
+| 商店系统v2.0 | ✅ | ShopView.js, ShopSystem.js | 5商店+货币+限购+滚动 |
 
 ### 4. 数据流向
 

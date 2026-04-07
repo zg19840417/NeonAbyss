@@ -24,7 +24,7 @@ export default class ShopView {
   }
   
   renderHeader(width) {
-    this.addText(width / 2, 45, '商店', {
+    this.addText(width / 2, 22, '商店', {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -34,21 +34,34 @@ export default class ShopView {
     const currencies = this.shopSystem.getAllCurrenciesDisplay();
     const displayCurrencies = currencies.filter(c => c.amount > 0 || c.name === '源核' || c.name === '菌丝');
     
-    const startX = width - 30;
+    const startX = width - 20;
     displayCurrencies.slice(0, 3).forEach((curr, index) => {
-      const x = startX - index * 90;
+      const x = startX - index * 80;
       const bg = this.scene.add.graphics();
-      bg.fillStyle(0x000000, 0.3);
-      bg.fillRoundedRect(x - 40, 25, 80, 24, 4);
+      bg.fillStyle(Const.COLORS.BG_DARK, 0.95);
+      bg.fillRoundedRect(x - 36, 10, 70, 20, 4);
+      bg.lineStyle(1, parseInt(curr.color.replace('#', '0x')), 0.5);
+      bg.strokeRoundedRect(x - 36, 10, 70, 20, 4);
       this.elements.push(bg);
       
-      const text = this.scene.add.text(x, 37, `${curr.icon} ${curr.amount}`, {
-        fontSize: '11px',
+      const text = this.scene.add.text(x, 20, `${curr.icon} ${this.formatNumber(curr.amount)}`, {
+        fontSize: '10px',
         fontFamily: Const.FONT.FAMILY_CN,
+        fontStyle: 'bold',
         color: curr.color
       }).setOrigin(0.5);
       this.elements.push(text);
     });
+  }
+  
+  formatNumber(num) {
+    if (num >= 10000) {
+      return (num / 10000).toFixed(1) + 'w';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'k';
+    }
+    return num.toString();
   }
   
   renderTabs(width) {
@@ -60,10 +73,11 @@ export default class ShopView {
       { key: ShopType.GACHA, icon: '🎰', label: '抽卡' }
     ];
     
-    const tabWidth = 55;
+    const tabWidth = 68;
+    const tabHeight = 36;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
-    const y = 80;
+    const y = 52;
     
     tabs.forEach((tab, index) => {
       const x = startX + index * tabWidth;
@@ -72,26 +86,26 @@ export default class ShopView {
       const container = this.scene.add.container(x, y);
       
       const bg = this.scene.add.graphics();
-      bg.fillStyle(isActive ? Const.COLORS.PURPLE : Const.COLORS.BG_DARK, 0.8);
-      bg.fillRoundedRect(-tabWidth/2 + 2, -12, tabWidth - 4, 24, 6);
+      bg.fillStyle(isActive ? Const.COLORS.PURPLE : Const.COLORS.BG_MID, 0.95);
+      bg.fillRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 8);
       if (isActive) {
-        bg.lineStyle(2, Const.COLORS.PURPLE, 0.8);
-        bg.strokeRoundedRect(-tabWidth/2 + 2, -12, tabWidth - 4, 24, 6);
+        bg.lineStyle(2, Const.COLORS.PURPLE, 1);
+        bg.strokeRoundedRect(-tabWidth/2 + 2, -tabHeight/2, tabWidth - 4, tabHeight, 8);
       }
       container.add(bg);
       
-      const iconText = this.scene.add.text(0, -3, tab.icon, { fontSize: '14px' }).setOrigin(0.5);
+      const iconText = this.scene.add.text(0, -6, tab.icon, { fontSize: '18px' }).setOrigin(0.5);
       container.add(iconText);
       
-      const labelText = this.scene.add.text(0, 7, tab.label, {
-        fontSize: '9px',
+      const labelText = this.scene.add.text(0, 10, tab.label, {
+        fontSize: '11px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: isActive ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.SECONDARY
       }).setOrigin(0.5);
       container.add(labelText);
       
-      container.setSize(tabWidth - 4, 24);
-      container.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth - 4, 24), Phaser.Geom.Rectangle.Contains);
+      container.setSize(tabWidth - 4, tabHeight);
+      container.setInteractive(new Phaser.Geom.Rectangle(0, 0, tabWidth - 4, tabHeight), Phaser.Geom.Rectangle.Contains);
       
       container.on('pointerdown', () => {
         if (this.shopSystem.currentTab !== tab.key) {
@@ -121,8 +135,15 @@ export default class ShopView {
     const items = this.shopSystem.getCurrentItems();
     const height = this.scene.cameras.main.height;
     
+    const startY = 75;
+    const cardHeight = 58;
+    const cardGap = 8;
+    const bottomMargin = 90;
+    const contentHeight = items.length * (cardHeight + cardGap);
+    const scrollHeight = Math.min(contentHeight, height - startY - bottomMargin);
+    
     if (items.length === 0) {
-      this.addText(width / 2, 300, '暂无商品', {
+      this.addText(width / 2, startY + 100, '暂无商品', {
         fontSize: Const.FONT.SIZE_SMALL,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
@@ -130,21 +151,9 @@ export default class ShopView {
       return;
     }
     
-    const startY = 115;
-    const cardHeight = 58;
-    const cardGap = 8;
-    const contentHeight = items.length * (cardHeight + cardGap);
-    const scrollHeight = Math.min(contentHeight, height - 200);
-    const scrollY = startY;
-    
-    const scrollBg = this.scene.add.graphics();
-    scrollBg.fillStyle(0x000000, 0.2);
-    scrollBg.fillRoundedRect(15, scrollY, width - 30, scrollHeight, 8);
-    this.elements.push(scrollBg);
-    
     const scrollMask = this.scene.add.graphics();
     scrollMask.fillStyle(0xffffff, 1);
-    scrollMask.fillRect(0, scrollY, width, scrollHeight);
+    scrollMask.fillRect(0, startY, width, scrollHeight);
     this.elements.push(scrollMask);
     
     const scrollContainer = this.scene.add.container(0, 0);
@@ -153,7 +162,6 @@ export default class ShopView {
     
     this.scrollContainer = scrollContainer;
     this.scrollMask = scrollMask;
-    this.scrollBg = scrollBg;
     
     items.forEach((item, index) => {
       const y = startY + index * (cardHeight + cardGap);
@@ -183,8 +191,8 @@ export default class ShopView {
   
   setupScroll() {
     const height = this.scene.cameras.main.height;
-    const scrollTop = 115;
-    const scrollBottom = height - 80;
+    const scrollTop = 75;
+    const scrollBottom = height - 90;
     
     this.scrollHandlers = {
       onPointerDown: (pointer) => {
@@ -232,23 +240,28 @@ export default class ShopView {
     const cardWidth = 320;
     const cardHeight = 60;
     
+    const currencyConfig = CurrencyConfig[item.currency] || { icon: '?', color: '#ffffff' };
+    const itemInfo = this.shopSystem.getItemInfo(item.itemId);
+    const itemIcon = this.getItemIcon(item, itemInfo);
+    const rarityColor = this.getRarityColor(item);
+    
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.95);
     bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(1, Const.COLORS.BG_DARK, 0.5);
+    bg.lineStyle(2, rarityColor, 0.6);
     bg.strokeRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
     container.add(bg);
     
-    const currencyConfig = CurrencyConfig[item.currency] || { icon: '?', color: '#ffffff' };
-    const itemInfo = this.shopSystem.getItemInfo(item.itemId);
-    const icon = itemInfo?.name?.includes('源核') ? '💎' : 
-                 itemInfo?.name?.includes('菌丝') ? '🍄' : 
-                 item.icon || '📦';
+    const glowBg = this.scene.add.graphics();
+    glowBg.fillStyle(rarityColor, 0.1);
+    glowBg.fillCircle(-cardWidth/2 + 35, 0, 28);
+    container.add(glowBg);
+    container.sendToBack(glowBg);
     
-    const iconText = this.scene.add.text(-cardWidth/2 + 35, 0, icon, { fontSize: '24px' }).setOrigin(0.5);
+    const iconText = this.scene.add.text(-cardWidth/2 + 35, 0, itemIcon, { fontSize: '26px' }).setOrigin(0.5);
     container.add(iconText);
     
-    const nameText = this.scene.add.text(-cardWidth/2 + 65, -8, item.itemName, {
+    const nameText = this.scene.add.text(-cardWidth/2 + 65, -10, item.itemName, {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -257,10 +270,11 @@ export default class ShopView {
     container.add(nameText);
     
     const limitText = this.getLimitText(item);
+    const limitColor = item.dailyLimit > 0 ? Const.TEXT_COLORS.CYAN : Const.TEXT_COLORS.SECONDARY;
     const limitDisplay = this.scene.add.text(-cardWidth/2 + 65, 10, limitText, {
       fontSize: '10px',
       fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
+      color: limitColor
     }).setOrigin(0, 0.5);
     container.add(limitDisplay);
     
@@ -268,7 +282,7 @@ export default class ShopView {
     const canPurchase = this.shopSystem.canPurchase(item);
     const btnColor = canPurchase.can ? Const.COLORS.BUTTON_PRIMARY : Const.COLORS.BG_DARK;
     const btnBg = this.scene.add.graphics();
-    btnBg.fillStyle(btnColor, 1);
+    btnBg.fillStyle(btnColor, canPurchase.can ? 1 : 0.5);
     btnBg.fillRoundedRect(-35, -14, 70, 28, Const.UI.BUTTON_RADIUS);
     buyBtn.add(btnBg);
     
@@ -282,19 +296,23 @@ export default class ShopView {
     buyBtn.setSize(70, 28);
     buyBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 70, 28), Phaser.Geom.Rectangle.Contains);
     
+    const currentItem = item;
+    const currentIndex = index;
+    const currentCanPurchase = canPurchase;
+    
     buyBtn.on('pointerdown', () => {
-      if (canPurchase.can) {
+      if (currentCanPurchase.can) {
         AnimationHelper.tweenPulse(this.scene, buyBtn, 0.9);
         this.scene.time.delayedCall(150, () => {
-          this.purchaseItem(item, index);
+          this.purchaseItem(currentItem, currentIndex);
         });
       } else {
-        this.showToast(this.getCannotPurchaseReason(canPurchase.reason));
+        this.showToast(this.getCannotPurchaseReason(currentCanPurchase.reason), false);
       }
     });
     
     buyBtn.on('pointerover', () => {
-      if (canPurchase.can) {
+      if (currentCanPurchase.can) {
         AnimationHelper.tweenPulse(this.scene, buyBtn, 1.1);
       }
     });
@@ -307,6 +325,68 @@ export default class ShopView {
     
     this.elements.push(container);
     return container;
+  }
+  
+  getItemIcon(item, itemInfo) {
+    const iconMap = {
+      'ITEM_RAD_MEDICINE': '💊',
+      'ITEM_PLUGIN_PROF_RANDOM': '🔧',
+      'ITEM_PLUGIN_PROF_TANK': '🛡️',
+      'ITEM_PLUGIN_PROF_DPS': '⚔️',
+      'ITEM_PLUGIN_PROF_SUPPORT': '💚',
+      'ITEM_PLUGIN_RACE_SR': '🧬',
+      'ITEM_PLUGIN_ELEMENT_SR': '⚡',
+      'ITEM_PLUGIN_SSR': '🔮',
+      'ITEM_EXP_CHIP_SMALL': '📗',
+      'ITEM_EXP_CHIP_MEDIUM': '📘',
+      'ITEM_EXP_CHIP_LARGE': '📙',
+      'ITEM_N_FRAGMENT_BOX': '📦',
+      'ITEM_UPGRADE_MATERIAL_LOW': '🪨',
+      'ITEM_UPGRADE_MATERIAL_MID': '💎',
+      'ITEM_CHIP_EXP_SMALL': '🧪',
+      'ITEM_CHIP_EXP_MEDIUM': '⚗️',
+      'ITEM_SKILL_UPGRADE_MATERIAL': '✨',
+      'ITEM_SOURCE_CORE': '💎',
+      'PACK_NEWBIE': '🎁',
+      'PACK_DAILY_DEAL': '📫',
+      'PACK_LIMITED_UP': '🌟',
+      'GACHA_SINGLE': '🎟️',
+      'GACHA_TEN': '🎫',
+      'MINION_R': '👤',
+      'MINION_SR': '👤',
+      'MINION_SSR': '👤',
+      'MINION_UR': '👑'
+    };
+    
+    if (iconMap[item.itemId]) return iconMap[item.itemId];
+    
+    if (item.itemName.includes('源核')) return '💎';
+    if (item.itemName.includes('菌丝')) return '🍄';
+    if (item.itemName.includes('芯片') || item.itemName.includes('晶片')) return '🔧';
+    if (item.itemName.includes('经验') || item.itemName.includes('芯片')) return '📖';
+    if (item.itemName.includes('礼包')) return '🎁';
+    if (item.itemName.includes('角色') || item.itemName.includes('角色')) return '👤';
+    
+    return '📦';
+  }
+  
+  getRarityColor(item) {
+    const price = item.cost;
+    const currency = item.currency;
+    
+    if (item.itemId.includes('SSR') || item.itemId.includes('UR') || 
+        (currency === 'starCoin' && price >= 50)) {
+      return 0xff8800;
+    }
+    if (item.itemId.includes('SR') || price >= 500 || 
+        (currency === 'sourceCore' && price >= 300)) {
+      return 0xaa44ff;
+    }
+    if (item.itemId.includes('_R') || price >= 100) {
+      return 0x4488ff;
+    }
+    
+    return 0x666666;
   }
   
   getLimitText(item) {
