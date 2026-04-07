@@ -1,5 +1,6 @@
 import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
+import ShopSystem from '../../game/systems/ShopSystem.js';
 
 export default class ShopView {
   constructor(scene) {
@@ -8,6 +9,7 @@ export default class ShopView {
     this.currentTab = 'minion';
     this._detailOverlay = null;
     this._detailModal = null;
+    this.shopSystem = new ShopSystem(scene.baseSystem || window.gameData?.base);
   }
 
   show() {
