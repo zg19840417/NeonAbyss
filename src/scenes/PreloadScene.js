@@ -58,9 +58,34 @@ export default class PreloadScene extends Phaser.Scene {
 
     // 加载随从立绘（fusion 目录）
     const fusionPortraits = [
-      'FM005', 'FM011', 'FM012', 'FM013', 'FM015', 'FM016', 'FM020',
-      'FM032', 'FM033', 'FM035', 'FM036', 'FM037', 'FM039', 'FM043',
-      'FM044', 'FM046', 'FM048', 'FM049', 'FM053', 'FM057', 'FM058', 'FM095'
+      ''''''FM001'''''', 
+      '''''FM002''''', 
+      ''''FM003'''', 
+      '''FM004''', 
+      '''''''FM005''''''', 
+      ''FM006'', 
+      'FM007', 
+      '''''''FM011''''''', 
+      '''''''FM012''''''', 
+      '''''''FM013''''''', 
+      '''''''FM015''''''', 
+      '''''''FM016''''''', 
+      '''''''FM020''''''', 
+      '''''''FM032''''''', 
+      '''''''FM033''''''', 
+      '''''''FM035''''''', 
+      '''''''FM036''''''', 
+      '''''''FM037''''''', 
+      '''''''FM039''''''', 
+      '''''''FM043''''''', 
+      '''''''FM044''''''', 
+      '''''''FM046''''''', 
+      '''''''FM048''''''', 
+      '''''''FM049''''''', 
+      '''''''FM053''''''', 
+      '''''''FM057''''''', 
+      '''''''FM058''''''', 
+      '''''''FM095'''''''
     ];
     fusionPortraits.forEach(name => {
       this.load.image(name, `assets/images/characters/fusion/${name}.png`);
@@ -68,6 +93,7 @@ export default class PreloadScene extends Phaser.Scene {
 
     // 加载Boss立绘（boss 目录）
     const bossPortraits = [
+      { key: 'B001', path: 'assets/images/characters/boss/B001.png' },
       { key: 'B002', path: 'assets/images/characters/boss/B002.png' },
       { key: 'B005', path: 'assets/images/characters/boss/B005.png' },
       { key: 'B006', path: 'assets/images/characters/boss/B006.png' },
