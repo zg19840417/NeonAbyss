@@ -1,6 +1,10 @@
 import { t } from '../../game/data/Lang.js';
 import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
+import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+
+// [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
+const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
 export default class TeamView {
   constructor(scene) {
@@ -104,92 +108,55 @@ export default class TeamView {
   }
 
   createCard(x, y, card, isDeployed) {
-    const cardWidth = 300;
-    const cardHeight = 65;
+    // [CardRenderer UPGRADE] 区分随从卡和装备卡，使用不同的 CardRenderer 方法
     const isMinion = card.cardType === 'minion';
-    const qualityConfig = isMinion
-      ? this.getMinionQualityConfig(card.rarity)
-      : this.getEquipmentQualityConfig(card.quality);
+    let cardContainer;
 
-    const bg = this.scene.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bg.fillRoundedRect(x - cardWidth/2, y - cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(2, parseInt(qualityConfig.color.replace('#', '0x')), 0.7);
-    bg.strokeRoundedRect(x - cardWidth/2, y - cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS_SMALL);
-    this.elements.push(bg);
+    if (isMinion) {
+      const quality = RARITY_TO_QUALITY[card.rarity] || 'N';
+      cardContainer = CardRenderer.createMinionCard(this.scene, {
+        x, y, quality,
+        name: card.name,
+        star: card.star,
+        hp: card.maxHp,
+        atk: card.atk,
+        element: card.element || 'water',
+        scale: 0.55,
+        interactive: false
+      });
+    } else {
+      cardContainer = CardRenderer.createChipCard(this.scene, {
+        x, y,
+        quality: card.quality || 'N',
+        name: card.name,
+        star: card.star,
+        description: this.getEquipmentStats(card),
+        scale: 0.7,
+        interactive: false
+      });
+    }
 
-    const icon = this.scene.add.text(x - cardWidth/2 + 30, y, isMinion
-      ? card.getElementConfig?.()?.icon || '🐺'
-      : qualityConfig.icon, { fontSize: '28px' }).setOrigin(0.5);
-    this.elements.push(icon);
+    // [CardRenderer UPGRADE] 出场动画
+    CardRenderer.animateEntry(this.scene, cardContainer, 0);
 
-    const nameText = this.scene.add.text(x - cardWidth/2 + 60, y - 10, card.name, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0, 0.5);
-    this.elements.push(nameText);
+    // [CardRenderer UPGRADE] 使用 CardRenderer.addInteraction 替换原来的手动交互
+    CardRenderer.addInteraction(this.scene, cardContainer, (clickedCard) => {
+      this.showCardDetail(card, isMinion);
+    });
 
-    const starText = this.scene.add.text(x - cardWidth/2 + 60, y + 10, '★'.repeat(card.star || 1), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0, 0.5);
-    this.elements.push(starText);
-
-    const typeBadge = this.scene.add.text(x - cardWidth/2 + 115, y + 10, isMinion ? '随从' : '装备', {
-      fontSize: '10px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: isMinion ? '#ff6b6b' : '#4dabf7'
-    }).setOrigin(0, 0.5);
-    this.elements.push(typeBadge);
-
-    const statsText = isMinion
-      ? `HP:${card.maxHp} ATK:${card.atk}`
-      : this.getEquipmentStats(card);
-    const statsDisplay = this.scene.add.text(x - cardWidth/2 + 60, y + 24, statsText, {
-      fontSize: '10px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.INACTIVE
-    }).setOrigin(0, 0.5);
-    this.elements.push(statsDisplay);
-
-    const deployBtnBg = this.scene.add.graphics();
-    deployBtnBg.fillStyle(Const.COLORS.BG_DARK, 0.8);
-    deployBtnBg.fillRoundedRect(x + cardWidth/2 - 45, y - 15, 40, 30, 5);
-    deployBtnBg.lineStyle(1, Const.COLORS.CYAN, 0.5);
-    deployBtnBg.strokeRoundedRect(x + cardWidth/2 - 45, y - 15, 40, 30, 5);
-    this.elements.push(deployBtnBg);
-
-    const deployBtn = this.scene.add.text(x + cardWidth/2 - 25, y, isDeployed ? '[-]' : '[+]', {
+    // [CardRenderer UPGRADE] 部署/卸下按钮（覆盖在卡片右侧）
+    const deployBtn = this.scene.add.text(x + 75, y, isDeployed ? '[-]' : '[+]', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_EN,
       color: isDeployed ? Const.TEXT_COLORS.DANGER : Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5);
+    }).setOrigin(0.5).setInteractive().setDepth(10);
+    deployBtn.on('pointerdown', (e) => {
+      e.stopPropagation();
+      this.toggleDeploy(card, isMinion);
+    });
     this.elements.push(deployBtn);
 
-    const hitArea = this.scene.add.rectangle(x, y, cardWidth, cardHeight, 0x000000, 0);
-    hitArea.setDepth(100);
-    hitArea.setInteractive({ useHandCursor: true });
-
-    hitArea.on('pointerover', () => {
-      AnimationHelper.tweenCardHover(this.scene, hitArea, true);
-    });
-
-    hitArea.on('pointerout', () => {
-      AnimationHelper.tweenCardHover(this.scene, hitArea, false);
-    });
-
-    hitArea.on('pointerdown', (pointer, localX, localY) => {
-      AnimationHelper.tweenPulse(this.scene, hitArea, 0.95);
-      if (localX > cardWidth/2 - 50) {
-        this.toggleDeploy(card, isMinion);
-      } else {
-        this.showCardDetail(card, isMinion);
-      }
-    });
-    this.elements.push(hitArea);
+    this.elements.push(cardContainer);
   }
 
   toggleDeploy(card, isMinion) {
@@ -257,34 +224,43 @@ export default class TeamView {
     closeBtn.on('pointerout', () => closeBtn.setScale(1));
     modal.add(closeBtn);
 
-    const icon = isMinion
-      ? this.scene.add.text(0, -160, card.getElementConfig?.()?.icon || '🐺', { fontSize: '48px' }).setOrigin(0.5)
-      : this.scene.add.text(0, -160, qualityConfig.icon, { fontSize: '48px' }).setOrigin(0.5);
-    modal.add(icon);
+    // [CardRenderer UPGRADE] 详情弹窗中使用 CardRenderer 渲染卡片
+    if (isMinion) {
+      const detailQuality = RARITY_TO_QUALITY[card.rarity] || 'N';
+      const detailCard = CardRenderer.createMinionCard(this.scene, {
+        x: 0, y: -120,
+        quality: detailQuality,
+        name: card.name,
+        star: card.star,
+        hp: card.maxHp,
+        atk: card.atk,
+        element: card.element || 'water',
+        scale: 0.8,
+        interactive: false
+      });
+      modal.add(detailCard);
+    } else {
+      const detailCard = CardRenderer.createChipCard(this.scene, {
+        x: 0, y: -120,
+        quality: card.quality || 'N',
+        name: card.name,
+        star: card.star,
+        description: this.getEquipmentStats(card),
+        scale: 1.0,
+        interactive: false
+      });
+      modal.add(detailCard);
+    }
 
-    const typeLabel = this.scene.add.text(0, -115, isMinion ? '🐺 随从卡' : '⚔️ 装备卡', {
+    const typeLabel = this.scene.add.text(0, -35, isMinion ? '随从卡' : '装备卡', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isMinion ? '#ff6b6b' : '#4dabf7'
     }).setOrigin(0.5);
     modal.add(typeLabel);
 
-    const nameText = this.scene.add.text(0, -85, card.name, {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityConfig.textColor
-    }).setOrigin(0.5);
-    modal.add(nameText);
-
-    const starText = this.scene.add.text(0, -55, '★'.repeat(card.star || 1), {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.YELLOW
-    }).setOrigin(0.5);
-    modal.add(starText);
-
-    let y = -20;
+    // [CardRenderer UPGRADE] 名称和星级已由 CardRenderer 在卡片中渲染，此处不再重复显示
+    let y = -15;
 
     if (isMinion) {
       const stats = [

@@ -2,6 +2,10 @@ import BattleSystem, { BattlePhase, Enemy } from '../game/systems/BattleSystem.j
 import EventBus from '../game/EventBus.js';
 import MinionCard from '../game/entities/MinionCard.js';
 import Const from '../game/data/Const.js';
+import CardRenderer from '../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+
+// [CardRenderer UPGRADE] 品质映射：rarity -> CardRenderer quality
+const RARITY_TO_QUALITY = { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' };
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -191,40 +195,39 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   createEnemyCard(x, y, enemy) {
-    const container = this.add.container(x, y);
+    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
+    // 敌方卡片使用 N 品质（灰色基调），通过 fallback frame 实现红色调效果
+    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+      x, y,
+      quality: 'N',
+      name: enemy.name,
+      star: 1,
+      hp: enemy.hp,
+      atk: enemy.atk || 15,
+      element: 'dark',
+      scale: 0.5,
+      interactive: false
+    });
+
+    // [CardRenderer UPGRADE] 叠加红色调覆盖层，标识敌方卡片
     const { colors, layout } = this.config;
     const cardWidth = layout.enemyCardWidth;
     const cardHeight = layout.enemyCardHeight;
 
-    const bg = this.add.graphics();
-    bg.fillStyle(0x2a2520, 0.95);
-    bg.fillRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
-    bg.lineStyle(2, enemy.isBoss ? colors.corrupt : colors.border, 0.8);
-    bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
+    const redOverlay = this.add.graphics();
+    redOverlay.fillStyle(0xff0000, 0.08);
+    redOverlay.fillRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
+    cardContainer.add(redOverlay);
 
-    const nameText = this.add.text(0, -cardHeight / 2 + 20, enemy.name, {
-      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_NAME,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: colors.textPrimary
-    }).setOrigin(0.5);
+    // Boss 标识
+    if (enemy.isBoss) {
+      const bossBorder = this.add.graphics();
+      bossBorder.lineStyle(2, colors.corrupt, 0.8);
+      bossBorder.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 8);
+      cardContainer.add(bossBorder);
+    }
 
-    const levelText = this.add.text(0, -cardHeight / 2 + 40, `Lv.${enemy.level || 1}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_LEVEL,
-      fontFamily: 'Noto Sans SC',
-      color: colors.textSecondary
-    }).setOrigin(0.5);
-
-    const portraitBg = this.add.graphics();
-    portraitBg.fillStyle(0x1a1815, 1);
-    portraitBg.fillRect(-cardWidth / 2 + 10, -cardHeight / 2 + 55, cardWidth - 20, 80);
-    portraitBg.lineStyle(1, colors.border, 0.3);
-    portraitBg.strokeRect(-cardWidth / 2 + 10, -cardHeight / 2 + 55, cardWidth - 20, 80);
-
-    const portraitPlaceholder = this.add.text(0, -cardHeight / 2 + 95, enemy.isBoss ? '👹' : '🤖', {
-      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_PORTRAIT
-    }).setOrigin(0.5);
-
+    // [CardRenderer UPGRADE] 保留 HP 条逻辑
     const hpBarBg = this.add.graphics();
     hpBarBg.fillStyle(0x1a1815, 1);
     hpBarBg.fillRect(-cardWidth / 2 + 10, cardHeight / 2 - 45, cardWidth - 20, 16);
@@ -240,19 +243,16 @@ export default class BattleScene extends Phaser.Scene {
       color: '#ffffff'
     }).setOrigin(0.5);
 
-    const atkText = this.add.text(0, cardHeight / 2 - 20, `⚔️ ${enemy.atk || 15}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_ENEMY_ATK,
-      fontFamily: 'Noto Sans SC',
-      color: colors.textSecondary
-    }).setOrigin(0.5);
+    cardContainer.add([hpBarBg, hpBar, hpText]);
+    cardContainer.setData('enemy', enemy);
+    cardContainer.setData('hpBar', hpBar);
+    cardContainer.setData('hpText', hpText);
+    cardContainer.setData('hpBarBg', hpBarBg);
 
-    container.add([bg, nameText, levelText, portraitBg, portraitPlaceholder, hpBarBg, hpBar, hpText, atkText]);
-    container.setData('enemy', enemy);
-    container.setData('hpBar', hpBar);
-    container.setData('hpText', hpText);
-    container.setData('hpBarBg', hpBarBg);
+    // [CardRenderer UPGRADE] 出场动画
+    CardRenderer.animateEntry(this.scene, cardContainer, 0);
 
-    return container;
+    return cardContainer;
   }
 
   createPlayerArea(width, height) {
@@ -277,39 +277,23 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   createPlayerCard(x, y, minion) {
-    const container = this.add.container(x, y);
+    // [CardRenderer UPGRADE] 使用 CardRenderer.createMinionCard 替换原来的 Graphics 绘制
+    const quality = RARITY_TO_QUALITY[minion.rarity] || 'N';
+    const cardContainer = CardRenderer.createMinionCard(this.scene, {
+      x, y, quality,
+      name: minion.name,
+      star: minion.star || 1,
+      hp: minion.hp,
+      atk: minion.atk || 20,
+      element: minion.element || 'water',
+      scale: 0.5,
+      interactive: false
+    });
+
+    // [CardRenderer UPGRADE] 保留 HP 条逻辑 - 在卡片上叠加 HP 条
     const { colors, layout } = this.config;
     const cardWidth = layout.cardWidth;
     const cardHeight = layout.cardHeight;
-
-    const bg = this.add.graphics();
-    bg.fillStyle(0x2a2520, 0.95);
-    bg.fillRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 6);
-    bg.lineStyle(2, colors.sacred, 0.5);
-    bg.strokeRoundedRect(-cardWidth / 2, -cardHeight / 2, cardWidth, cardHeight, 6);
-
-    const nameText = this.add.text(0, -cardHeight / 2 + 15, minion.name, {
-      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_NAME,
-      fontFamily: 'Noto Sans SC',
-      fontStyle: 'bold',
-      color: colors.textPrimary
-    }).setOrigin(0.5);
-
-    const levelText = this.add.text(0, -cardHeight / 2 + 30, `Lv.${minion.level || 1}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_LEVEL,
-      fontFamily: 'Noto Sans SC',
-      color: colors.textSecondary
-    }).setOrigin(0.5);
-
-    const portraitBg = this.add.graphics();
-    portraitBg.fillStyle(0x1a1815, 1);
-    portraitBg.fillRect(-cardWidth / 2 + 8, -cardHeight / 2 + 40, cardWidth - 16, 45);
-    portraitBg.lineStyle(1, colors.border, 0.3);
-    portraitBg.strokeRect(-cardWidth / 2 + 8, -cardHeight / 2 + 40, cardWidth - 16, 45);
-
-    const portraitPlaceholder = this.add.text(0, -cardHeight / 2 + 62, '🧑', {
-      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_PORTRAIT
-    }).setOrigin(0.5);
 
     const hpBarBg = this.add.graphics();
     hpBarBg.fillStyle(0x1a1815, 1);
@@ -326,19 +310,16 @@ export default class BattleScene extends Phaser.Scene {
       color: '#ffffff'
     }).setOrigin(0.5);
 
-    const atkText = this.add.text(0, cardHeight / 2 - 10, `⚔️${minion.atk || 20}`, {
-      fontSize: Const.BATTLE.FONT.SIZE_PLAYER_ATK,
-      fontFamily: 'Noto Sans SC',
-      color: colors.textSecondary
-    }).setOrigin(0.5);
+    cardContainer.add([hpBarBg, hpBar, hpText]);
+    cardContainer.setData('player', minion);
+    cardContainer.setData('hpBar', hpBar);
+    cardContainer.setData('hpText', hpText);
+    cardContainer.setData('hpBarBg', hpBarBg);
 
-    container.add([bg, nameText, levelText, portraitBg, portraitPlaceholder, hpBarBg, hpBar, hpText, atkText]);
-    container.setData('player', minion);
-    container.setData('hpBar', hpBar);
-    container.setData('hpText', hpText);
-    container.setData('hpBarBg', hpBarBg);
+    // [CardRenderer UPGRADE] 出场动画
+    CardRenderer.animateEntry(this.scene, cardContainer, 0);
 
-    return container;
+    return cardContainer;
   }
 
   createBattleLog(width, height) {
