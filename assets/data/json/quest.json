@@ -1,80 +1,384 @@
 [
   {
-    "questId": "D01",
-    "name": "每日登录",
-    "description": "登录游戏",
-    "type": "daily",
-    "category": "other",
-    "targetParam": "login",
-    "targetValue": 1,
-    "rewardReputation": 10,
-    "rewardMycelium": 100,
-    "isFixed": true,
-    "weight": 0
+    "questId": "DLY_001",
+    "questType": "daily_normal",
+    "name": "日常巡逻",
+    "description": "完成3场野外关卡战斗",
+    "condition": "complete_wild_battle",
+    "targetCount": 3,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 10,
+    "isExclusive": false
   },
   {
-    "questId": "D02",
-    "name": "探索禁区",
-    "description": "进入禁区并完成1层探索",
-    "type": "daily",
-    "category": "explore",
-    "targetParam": "complete_floor",
-    "targetValue": 1,
-    "rewardReputation": 15,
-    "rewardMycelium": 200,
-    "isFixed": true,
-    "weight": 0
-  },
-  {
-    "questId": "D03",
-    "name": "战斗胜利",
-    "description": "赢得战斗胜利",
-    "type": "daily",
-    "category": "battle",
-    "targetParam": "battle_win",
-    "targetValue": 3,
-    "rewardReputation": 20,
-    "rewardMycelium": 300,
-    "isFixed": true,
-    "weight": 0
-  },
-  {
-    "questId": "D04",
-    "name": "招募融合姬",
-    "description": "在庇护所招募新融合姬",
-    "type": "daily",
-    "category": "manage",
-    "targetParam": "recruit",
-    "targetValue": 1,
-    "rewardReputation": 10,
-    "rewardMycelium": 150,
-    "isFixed": true,
-    "weight": 0
-  },
-  {
-    "questId": "D05",
+    "questId": "DLY_002",
+    "questType": "daily_normal",
     "name": "禁区探索",
-    "description": "完成一次禁区探索",
-    "type": "daily",
-    "category": "explore",
-    "targetParam": "complete_explore",
-    "targetValue": 1,
-    "rewardReputation": 10,
-    "rewardMycelium": 100,
-    "isFixed": true,
-    "weight": 0
+    "description": "完成1次禁区探索（通关任意层数即可）",
+    "condition": "complete_zone",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      },
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 8,
+    "isExclusive": false
   },
   {
-    "questId": "D06",
-    "name": "升级设施",
-    "description": "升级任意基地设施",
-    "type": "daily",
-    "category": "manage",
-    "targetParam": "upgrade_facility",
-    "targetValue": 1,
-    "rewardReputation": 15,
-    "rewardMycelium": 250,
-    "isFixed": true,
-    "weight": 0
+    "questId": "DLY_003",
+    "questType": "daily_normal",
+    "name": "融合姬培养",
+    "description": "升级任意融合姬1次",
+    "condition": "upgrade_minion",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 10,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_004",
+    "questType": "daily_normal",
+    "name": "芯片强化",
+    "description": "升级任意强化芯片1次",
+    "condition": "upgrade_chip",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 300
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 10,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_005",
+    "questType": "daily_normal",
+    "name": "合成实验",
+    "description": "使用合成系统1次",
+    "condition": "use_synthesis",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_006",
+    "questType": "daily_normal",
+    "name": "商店采购",
+    "description": "在任意商店购买1次商品",
+    "condition": "shop_purchase",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 6,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_007",
+    "questType": "daily_normal",
+    "name": "招募融合姬",
+    "description": "进行1次抽卡（单抽或十连均可）",
+    "condition": "gacha_pull",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_008",
+    "questType": "daily_normal",
+    "name": "队伍编组",
+    "description": "修改队伍配置1次",
+    "condition": "modify_team",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 200
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 6,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_009",
+    "questType": "daily_normal",
+    "name": "Boss挑战",
+    "description": "挑战任意禁区Boss 1次（无论胜负）",
+    "condition": "challenge_boss",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 500
+      },
+      {
+        "type": "sourceCore",
+        "amount": 50
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "DLY_010",
+    "questType": "daily_normal",
+    "name": "图鉴查看",
+    "description": "查看任意融合姬详情1次",
+    "condition": "view_minion_detail",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "mycelium",
+        "amount": 100
+      }
+    ],
+    "activityPoints": 25,
+    "weight": 4,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_001",
+    "questType": "daily_elite",
+    "name": "连胜挑战",
+    "description": "连续胜利5场战斗（中途失败重新计数）",
+    "condition": "consecutive_win",
+    "targetCount": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 100
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 10,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_002",
+    "questType": "daily_elite",
+    "name": "深层探索",
+    "description": "通关任意禁区的5层以上",
+    "condition": "clear_zone_floor",
+    "targetCount": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 150
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_003",
+    "questType": "daily_elite",
+    "name": "弱者逆袭",
+    "description": "以低于推荐等级10级通关任意关卡",
+    "condition": "clear_underlevel",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 150
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 6,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_004",
+    "questType": "daily_elite",
+    "name": "完美战斗",
+    "description": "不损失任何融合姬通关任意关卡",
+    "condition": "perfect_clear",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 200
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 6,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_005",
+    "questType": "daily_elite",
+    "name": "多种族编队",
+    "description": "使用包含3个不同种族融合姬的队伍通关1次",
+    "condition": "multi_race_team_clear",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 100
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "ELT_006",
+    "questType": "daily_elite",
+    "name": "多元素编队",
+    "description": "使用包含3种不同元素融合姬的队伍通关1次",
+    "condition": "multi_element_team_clear",
+    "targetCount": 1,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 100
+      }
+    ],
+    "activityPoints": 50,
+    "weight": 8,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_001",
+    "questType": "weekly",
+    "name": "周常探索",
+    "description": "完成30场野外关卡战斗",
+    "condition": "complete_wild_battle",
+    "targetCount": 30,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_002",
+    "questType": "weekly",
+    "name": "周常禁区",
+    "description": "通关5个不同的禁区",
+    "condition": "clear_unique_zone",
+    "targetCount": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 500
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_003",
+    "questType": "weekly",
+    "name": "周常Boss",
+    "description": "击败3个不同的禁区Boss",
+    "condition": "kill_unique_boss",
+    "targetCount": 3,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 800
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_004",
+    "questType": "weekly",
+    "name": "周常培养",
+    "description": "升级融合姬10次",
+    "condition": "upgrade_minion",
+    "targetCount": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_005",
+    "questType": "weekly",
+    "name": "周常招募",
+    "description": "进行10次抽卡",
+    "condition": "gacha_pull",
+    "targetCount": 10,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
+  },
+  {
+    "questId": "WKY_006",
+    "questType": "weekly",
+    "name": "周常合成",
+    "description": "使用合成系统5次",
+    "condition": "use_synthesis",
+    "targetCount": 5,
+    "rewards": [
+      {
+        "type": "sourceCore",
+        "amount": 300
+      }
+    ],
+    "activityPoints": 0,
+    "weight": 0,
+    "isExclusive": false
   }
 ]

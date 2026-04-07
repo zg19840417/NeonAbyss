@@ -21,7 +21,7 @@
     "element": "wind",
     "elementName": "风",
     "elementNameEn": "Wind",
-    "strongAgainst": "dark",
+    "strongAgainst": "water",
     "weakAgainst": "fire",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
@@ -40,7 +40,7 @@
     "elementName": "暗",
     "elementNameEn": "Dark",
     "strongAgainst": "light",
-    "weakAgainst": "wind",
+    "weakAgainst": "light",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
   }
