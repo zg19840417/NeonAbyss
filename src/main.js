@@ -5,6 +5,8 @@ import MainMenuScene from './scenes/MainMenuScene.js'
 import BaseScene from './scenes/BaseScene.js'
 import DungeonScene from './scenes/DungeonScene.js'
 import BattleScene from './scenes/BattleScene.js'
+import WildStageScene from './scenes/WildStageScene.js'
+import ZoneExploreScene from './scenes/ZoneExploreScene.js'
 
 const config = {
   type: Phaser.AUTO,
@@ -23,7 +25,7 @@ const config = {
       debug: false
     }
   },
-  scene: [BootScene, PreloadScene, MainMenuScene, BaseScene, DungeonScene, BattleScene]
+  scene: [BootScene, PreloadScene, MainMenuScene, BaseScene, DungeonScene, BattleScene, WildStageScene, ZoneExploreScene]
 }
 
 window.addEventListener('load', () => {

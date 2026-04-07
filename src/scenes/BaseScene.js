@@ -383,7 +383,7 @@ export default class BaseScene extends Phaser.Scene {
         this.showTeamContent();
         break;
       case 'dungeon':
-        this.showDungeonContent();
+        this.scene.start('WildStageScene');
         break;
       case 'shop':
         this.showShopContent();
