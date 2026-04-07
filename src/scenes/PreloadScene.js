@@ -58,9 +58,9 @@ export default class PreloadScene extends Phaser.Scene {
 
     // 加载随从立绘（fusion 目录）
     const fusionPortraits = [
-      'ComfyUI_temp_axxiq_00077_', 'ComfyUI_temp_axxiq_00081_',
-      'ComfyUI_temp_axxiq_00087_', 'ComfyUI_temp_axxiq_00097_',
-      'ComfyUI_temp_axxiq_00099_'
+      'FM005', 'FM011', 'FM012', 'FM013', 'FM015', 'FM016', 'FM020',
+      'FM032', 'FM033', 'FM035', 'FM036', 'FM037', 'FM039', 'FM043',
+      'FM044', 'FM046', 'FM048', 'FM049', 'FM053', 'FM057', 'FM058', 'FM095'
     ];
     fusionPortraits.forEach(name => {
       this.load.image(name, `assets/images/characters/fusion/${name}.png`);
@@ -68,10 +68,10 @@ export default class PreloadScene extends Phaser.Scene {
 
     // 加载Boss立绘（boss 目录）
     const bossPortraits = [
-      { key: 'ComfyUI_temp_jchdm_00010_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00010_.png' },
-      { key: 'ComfyUI_temp_jchdm_00013_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00013_.png' },
-      { key: 'ComfyUI_temp_jchdm_00021_', path: 'assets/images/characters/boss/ComfyUI_temp_jchdm_00021_.png' },
-      { key: 'boss_radiant_saint', path: 'assets/images/characters/boss/辐射圣女残影.png' }
+      { key: 'B002', path: 'assets/images/characters/boss/B002.png' },
+      { key: 'B005', path: 'assets/images/characters/boss/B005.png' },
+      { key: 'B006', path: 'assets/images/characters/boss/B006.png' },
+      { key: 'B010', path: 'assets/images/characters/boss/B010.png' }
     ];
     bossPortraits.forEach(({ key, path }) => {
       this.load.image(key, path);

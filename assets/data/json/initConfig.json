@@ -1,20 +1,32 @@
-{
-  "currencies": {
-    "mycelium": 60000,
-    "sourceCore": 60000,
-    "starCoin": 60000,
-    "r_fragment": 0,
-    "sr_fragment": 0,
-    "ssr_fragment": 0,
-    "ur_fragment": 0
+[
+  {
+    "key": "starCoin",
+    "name": "星币",
+    "initialValue": "60000",
+    "description": "特殊货币"
   },
-  "other": {
-    "teamSize": 4,
-    "inventorySize": 50,
-    "facilityLevel": 1,
-    "maxFloor": 0,
-    "reputation": 0,
-    "energyDrinks": 3,
-    "recruitCost": 500
+  {
+    "key": "r_fragment",
+    "name": "R碎片",
+    "initialValue": "0",
+    "description": "R级角色碎片"
+  },
+  {
+    "key": "sr_fragment",
+    "name": "SR碎片",
+    "initialValue": "0",
+    "description": "SR级角色碎片"
+  },
+  {
+    "key": "ssr_fragment",
+    "name": "SSR碎片",
+    "initialValue": "0",
+    "description": "SSR级角色碎片"
+  },
+  {
+    "key": "ur_fragment",
+    "name": "UR碎片",
+    "initialValue": "0",
+    "description": "UR级角色碎片"
   }
-}
+]
