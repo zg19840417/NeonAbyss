@@ -1,6 +1,4 @@
 import { Enemy } from './BattleSystem.js';
-import enemiesData from '../../../assets/data/json/enemies.json';
-import bossesData from '../../../assets/data/json/bosses.json';
 
 export const DungeonState = {
   IDLE: 'idle',
@@ -66,12 +64,23 @@ export default class DungeonSystem {
   }
   
   generateEnemy(floorNumber) {
-    const enemyType = enemiesData[Math.floor(Math.random() * enemiesData.length)];
-    const hpGrowth = 1.12;
-    const atkGrowth = 1.10;
-    const hpScale = Math.pow(hpGrowth, floorNumber - 1);
-    const atkScale = Math.pow(atkGrowth, floorNumber - 1);
-
+    const enemyTypes = [
+      { name: '机械猎犬', baseHp: 80, baseAtk: 15, hpGrowth: 1.12, atkGrowth: 1.10 },
+      { name: '巡逻机甲', baseHp: 120, baseAtk: 12, hpGrowth: 1.13, atkGrowth: 1.09 },
+      { name: '变异蜘蛛', baseHp: 60, baseAtk: 14, hpGrowth: 1.11, atkGrowth: 1.10 },
+      { name: '炮台', baseHp: 50, baseAtk: 20, hpGrowth: 1.10, atkGrowth: 1.12 },
+      { name: '腐化者', baseHp: 100, baseAtk: 10, hpGrowth: 1.12, atkGrowth: 1.08 },
+      { name: '暴走者', baseHp: 70, baseAtk: 22, hpGrowth: 1.11, atkGrowth: 1.13 },
+      { name: '影子刺客', baseHp: 65, baseAtk: 18, hpGrowth: 1.11, atkGrowth: 1.11 },
+      { name: '重装卫士', baseHp: 200, baseAtk: 8, hpGrowth: 1.15, atkGrowth: 1.07 },
+      { name: '毒液喷射者', baseHp: 90, baseAtk: 12, hpGrowth: 1.12, atkGrowth: 1.09 },
+      { name: '灵魂收割者', baseHp: 110, baseAtk: 16, hpGrowth: 1.13, atkGrowth: 1.10 }
+    ];
+    
+    const enemyType = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+    const hpScale = Math.pow(enemyType.hpGrowth, floorNumber - 1);
+    const atkScale = Math.pow(enemyType.atkGrowth, floorNumber - 1);
+    
     return new Enemy({
       name: enemyType.name,
       hp: Math.floor(enemyType.baseHp * hpScale),
@@ -84,16 +93,24 @@ export default class DungeonSystem {
   }
   
   generateBoss(floorNumber) {
-    const bossIndex = Math.min(this.currentDimension - 1, bossesData.length - 1);
-    const bossData = bossesData[bossIndex];
-    const scaleFactor = 1 + (floorNumber - this.currentDimension * 10) * 0.15;
-
+    const dimensionBosses = [
+      [{ name: '毁灭领主', baseHp: 2000, baseAtk: 30, critRate: 0.15, dodgeRate: 0.05 }],
+      [{ name: '暗影帝王', baseHp: 3500, baseAtk: 35, critRate: 0.30, dodgeRate: 0.25 }],
+      [{ name: '天网核心', baseHp: 5000, baseAtk: 40, critRate: 0.20, dodgeRate: 0.10 }],
+      [{ name: '机械母体', baseHp: 8000, baseAtk: 35, critRate: 0.10, dodgeRate: 0.00 }],
+      [{ name: '终焉之神', baseHp: 15000, baseAtk: 50, critRate: 0.25, dodgeRate: 0.15 }]
+    ];
+    
+    const dimensionIndex = Math.min(this.currentDimension - 1, dimensionBosses.length - 1);
+    const bossData = dimensionBosses[dimensionIndex][0];
+    const scaleFactor = 1 + (floorNumber - this.currentDimension * 10) * 0.1;
+    
     return new Enemy({
       name: bossData.name,
       hp: Math.floor(bossData.baseHp * scaleFactor),
       atk: Math.floor(bossData.baseAtk * scaleFactor),
-      critRate: 0.15,
-      dodgeRate: 0.05,
+      critRate: bossData.critRate,
+      dodgeRate: bossData.dodgeRate,
       level: floorNumber,
       isBoss: true
     });
@@ -152,22 +169,48 @@ export default class DungeonSystem {
     const totalEnemyHp = enemies.reduce((sum, e) => sum + (e.maxHp || e.hp || 0), 0);
     const floorBonus = 1 + (this.currentFloor - 1) * 0.15;
     const dimensionBonus = 1 + (this.currentDimension - 1) * 0.5;
-
+    
     const baseGold = Math.floor(totalEnemyHp / 10 * floorBonus);
     const gold = Math.floor(baseGold * dimensionBonus);
-
+    
     this.totalGoldEarned += gold;
-
+    
     this.emit('onAchievementProgress', {
       type: 'gold_earn',
       value: this.totalGoldEarned
     });
-
+    
+    const loot = {
+      gold: gold,
+      equipment: null
+    };
+    
+    if (Math.random() < 0.15 + this.currentDimension * 0.05) {
+      loot.equipment = this.generateLoot();
+    }
+    
+    return loot;
+  }
+  
+  generateLoot() {
+    const qualityRoll = Math.random();
+    const floorBonus = Math.min(this.currentFloor / 100, 0.5);
+    
+    let quality = 'N';
+    if (qualityRoll < 0.03 + floorBonus * 0.02) quality = 'SR';
+    else if (qualityRoll < 0.10 + floorBonus * 0.05) quality = 'R';
+    else if (qualityRoll < 0.25 + floorBonus * 0.10) quality = 'N';
+    
+    const lootTypes = ['weapon', 'armor', 'accessory'];
+    const type = lootTypes[Math.floor(Math.random() * lootTypes.length)];
+    
     return {
-      gold: gold
+      type: type,
+      quality: quality,
+      floor: this.currentFloor
     };
   }
-
+  
   startOfflineProgress() {
     this.offlineProgress.enabled = true;
     this.offlineProgress.lastBattleTime = Date.now();

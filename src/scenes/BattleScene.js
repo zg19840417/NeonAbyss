@@ -81,13 +81,13 @@ export default class BattleScene extends Phaser.Scene {
 
     if (this.minions.length === 0) {
       this.minions = [
-        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, isMinionCard: true, rarity: 'common', race: 'human', passiveSkill: null },
-        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, isMinionCard: true, rarity: 'rare', race: 'human', passiveSkill: null }
+        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, isMinionCard: true, rarity: 'N', race: 'plant', passiveSkill: null },
+        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, isMinionCard: true, rarity: 'R', race: 'plant', passiveSkill: null }
       ].map(m => MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m));
     }
 
-    if (!window.gameData.equipmentCardManager && this.equipmentCard) {
-      window.gameData.equipmentCardManager = {
+    if (!window.gameData.chipCardManager && this.equipmentCard) {
+      window.gameData.chipCardManager = {
         ownedCards: [this.equipmentCard],
         equippedCardId: this.equipmentCard.id
       };
@@ -734,7 +734,9 @@ export default class BattleScene extends Phaser.Scene {
       color: this.config.colors.sacred
     }).setOrigin(0.5);
 
-    const rewardText = this.add.text(0, -10, `获得金币: ${data.rewards?.coins || 0}`, {
+    const myceliumReward = data.rewards?.mycelium || 0;
+    const sourceCoreReward = data.rewards?.sourceCore || 0;
+    const rewardText = this.add.text(0, -10, `获得菌丝: ${myceliumReward}` + (sourceCoreReward > 0 ? `  源核: ${sourceCoreReward}` : ''), {
       fontSize: Const.BATTLE.FONT.SIZE_REWARD,
       fontFamily: 'Noto Sans SC',
       color: this.config.colors.amber

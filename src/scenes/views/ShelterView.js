@@ -1,4 +1,4 @@
-export default class TavernView {
+export default class ShelterView {
   constructor(scene) {
     this.scene = scene;
     this.elements = [];
@@ -10,7 +10,7 @@ export default class TavernView {
     const { t } = this.scene;
     const { Const } = this.scene;
 
-    this.addText(width / 2, 90, t('tavern_welcome'), {
+    this.addText(width / 2, 90, t('sanctuary_welcome'), {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -21,7 +21,7 @@ export default class TavernView {
 
     this.renderRecruitSection(width);
 
-    this.addText(width / 2, height - 130, t('tavern_hint'), {
+    this.addText(width / 2, height - 130, t('sanctuary_hint'), {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE
@@ -198,7 +198,7 @@ export default class TavernView {
     const result = this.scene.baseSystem.recruitCharacter(index);
 
     if (!result.success) {
-      if (result.reason === 'not_enough_coins') {
+      if (result.reason === 'not_enough_currency') {
         this.scene.showToast?.('金币不足！需要 200 金币');
       } else if (result.reason === 'character_full') {
         this.scene.showToast?.('角色已达上限！');

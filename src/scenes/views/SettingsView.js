@@ -47,7 +47,7 @@ export default class SettingsView {
 
     this.createResetButton(width / 2, 320);
 
-    this.addText(width / 2, height - 130, '霓虹深渊 v1.0.0', {
+    this.addText(width / 2, height - 130, '废土元年 v2.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#6666aa'

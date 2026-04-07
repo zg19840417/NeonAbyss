@@ -60,7 +60,7 @@ export default class MainMenuScene extends Phaser.Scene {
   }
 
   createTitle(width, height) {
-    const subtitle = this.add.text(width / 2, 160, '霓虹深渊', {
+    const subtitle = this.add.text(width / 2, 160, '废土元年', {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
       color: '#00ffff'

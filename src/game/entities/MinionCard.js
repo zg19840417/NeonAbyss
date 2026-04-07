@@ -17,7 +17,7 @@ export default class MinionCard extends Character {
 
     this.rarity = data.rarity || Rarity.COMMON;
     this.element = data.element || null;
-    this.race = data.race || Race.HUMAN;
+    this.race = data.race || Race.PLANT;
     this.portrait = data.portrait || null;
     this.description = data.description || '';
     this.star = data.star || 1;
@@ -51,12 +51,17 @@ export default class MinionCard extends Character {
 
   _applyRaceBonus() {
     switch (this.race) {
-      case Race.MECH:
-        this._mechImmune = true;
+      case Race.PLANT:
+        // 均衡型，无特殊加成
         break;
 
-      case Race.MUTANT:
-        this._mutantRegen = 0.05;
+      case Race.ANIMAL:
+        this.atk = Math.floor(this.atk * 1.15);
+        this.critRate = Math.min(this.critRate + 0.10, 0.90);
+        break;
+
+      case Race.MECH:
+        this._mechImmune = true;
         break;
 
       case Race.ENERGY:
@@ -65,12 +70,12 @@ export default class MinionCard extends Character {
         this.currentHp = this.maxHp;
         break;
 
-      case Race.BEAST:
-        this.atk = Math.floor(this.atk * 1.15);
-        this.critRate = Math.min(this.critRate + 0.10, 0.90);
+      case Race.HYBRID:
+        this.maxHp = Math.floor(this.maxHp * 1.05);
+        this.atk = Math.floor(this.atk * 1.05);
+        this.currentHp = this.maxHp;
         break;
 
-      case Race.HUMAN:
       default:
         break;
     }
@@ -176,7 +181,7 @@ export default class MinionCard extends Character {
   }
 
   getRaceConfig() {
-    return RaceConfig[this.race] || RaceConfig[Race.HUMAN];
+    return RaceConfig[this.race] || RaceConfig[Race.PLANT];
   }
 
   toJSON() {

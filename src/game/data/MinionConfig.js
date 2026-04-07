@@ -1,69 +1,93 @@
+// ===== 稀有度体系 =====
 export const Rarity = {
-  N: 'N',
-  R: 'R',
-  SR: 'SR',
-  SSR: 'SSR',
-  UR: 'UR',
-  LE: 'LE'
+  COMMON: 'common',
+  RARE: 'rare',
+  EPIC: 'epic',
+  LEGENDARY: 'legendary'
 };
 
 export const RarityConfig = {
-  [Rarity.N]: {
+  [Rarity.COMMON]: {
     name: '普通',
-    nameEn: 'N',
+    nameEn: 'Common',
     statMultiplier: 1.0,
     borderColor: 0x8a7a6a,
     glowColor: null,
     particleColor: null,
     textColor: '#8a7a6a'
   },
-  [Rarity.R]: {
+  [Rarity.RARE]: {
     name: '稀有',
-    nameEn: 'R',
+    nameEn: 'Rare',
     statMultiplier: 1.2,
     borderColor: 0x4dabf7,
     glowColor: 0x4dabf7,
     particleColor: 0x4dabf7,
     textColor: '#4dabf7'
   },
-  [Rarity.SR]: {
-    name: '精良',
-    nameEn: 'SR',
+  [Rarity.EPIC]: {
+    name: '史诗',
+    nameEn: 'Epic',
     statMultiplier: 1.5,
     borderColor: 0x9775fa,
     glowColor: 0x9775fa,
     particleColor: 0x9775fa,
     textColor: '#9775fa'
   },
-  [Rarity.SSR]: {
-    name: '史诗',
-    nameEn: 'SSR',
+  [Rarity.LEGENDARY]: {
+    name: '传说',
+    nameEn: 'Legendary',
     statMultiplier: 2.0,
     borderColor: 0xffd700,
     glowColor: 0xffd700,
     particleColor: 0xffd700,
     textColor: '#ffd700'
-  },
-  [Rarity.UR]: {
-    name: '传说',
-    nameEn: 'UR',
-    statMultiplier: 2.5,
-    borderColor: 0xff6b35,
-    glowColor: 0xff6b35,
-    particleColor: 0xff6b35,
-    textColor: '#ff6b35'
-  },
-  [Rarity.LE]: {
-    name: '神话',
-    nameEn: 'LE',
-    statMultiplier: 3.0,
-    borderColor: 0xff00ff,
-    glowColor: 0xff00ff,
-    particleColor: 0xff00ff,
-    textColor: '#ff00ff'
   }
 };
 
+// ===== 种族体系（5大种族，按融合对象分类） =====
+export const Race = {
+  PLANT: 'plant',
+  ANIMAL: 'animal',
+  MECH: 'mech',
+  ENERGY: 'energy',
+  HYBRID: 'hybrid'
+};
+
+export const RaceConfig = {
+  [Race.PLANT]: {
+    name: '植物系',
+    nameEn: 'Plant',
+    icon: '🌿',
+    description: '与变异植物融合的融合者'
+  },
+  [Race.ANIMAL]: {
+    name: '动物系',
+    nameEn: 'Animal',
+    icon: '🐾',
+    description: '与变异动物融合的融合者'
+  },
+  [Race.MECH]: {
+    name: '机械系',
+    nameEn: 'Mech',
+    icon: '⚙️',
+    description: '与残存机械融合的融合者'
+  },
+  [Race.ENERGY]: {
+    name: '能量系',
+    nameEn: 'Energy',
+    icon: '💎',
+    description: '与辐射能量体融合的融合者'
+  },
+  [Race.HYBRID]: {
+    name: '混合系',
+    nameEn: 'Hybrid',
+    icon: '🔮',
+    description: '多种融合的融合者'
+  }
+};
+
+// ===== 元素体系（5种元素） =====
 export const Element = {
   WATER: 'water',
   FIRE: 'fire',
@@ -81,7 +105,7 @@ export const ElementConfig = {
     strongAgainst: Element.FIRE,
     weakAgainst: Element.WIND,
     bonusMultiplier: 1.2,
-    resistMultiplier: 1.0
+    resistMultiplier: 0.8
   },
   [Element.FIRE]: {
     name: '火',
@@ -91,7 +115,7 @@ export const ElementConfig = {
     strongAgainst: Element.WIND,
     weakAgainst: Element.WATER,
     bonusMultiplier: 1.2,
-    resistMultiplier: 1.0
+    resistMultiplier: 0.8
   },
   [Element.WIND]: {
     name: '风',
@@ -101,7 +125,7 @@ export const ElementConfig = {
     strongAgainst: Element.DARK,
     weakAgainst: Element.FIRE,
     bonusMultiplier: 1.2,
-    resistMultiplier: 1.0
+    resistMultiplier: 0.8
   },
   [Element.LIGHT]: {
     name: '光',
@@ -111,7 +135,7 @@ export const ElementConfig = {
     strongAgainst: Element.DARK,
     weakAgainst: Element.DARK,
     bonusMultiplier: 1.2,
-    resistMultiplier: 1.0
+    resistMultiplier: 0.8
   },
   [Element.DARK]: {
     name: '暗',
@@ -121,7 +145,7 @@ export const ElementConfig = {
     strongAgainst: Element.LIGHT,
     weakAgainst: Element.LIGHT,
     bonusMultiplier: 1.2,
-    resistMultiplier: 1.0
+    resistMultiplier: 0.8
   }
 };
 
@@ -134,53 +158,12 @@ export function getElementMultiplier(attackerElement, defenderElement) {
   return 1.0;
 }
 
-export const Race = {
-  PLANT: 'plant',
-  ANIMAL: 'animal',
-  MECH: 'mech',
-  ENERGY: 'energy',
-  HYBRID: 'hybrid'
-};
-
-export const RaceConfig = {
-  [Race.PLANT]: {
-    name: '植物',
-    nameEn: 'Plant',
-    icon: '🌿',
-    description: '植物种族，每回合恢复最大生命值5%'
-  },
-  [Race.ANIMAL]: {
-    name: '动物',
-    nameEn: 'Animal',
-    icon: '🐺',
-    description: '动物种族，攻击力+15%，暴击率+10%'
-  },
-  [Race.MECH]: {
-    name: '机械',
-    nameEn: 'Mech',
-    icon: '🤖',
-    description: '机械种族，受到治疗效果降低30%，但免疫中毒和眩晕'
-  },
-  [Race.ENERGY]: {
-    name: '能量体',
-    nameEn: 'Energy',
-    icon: '💎',
-    description: '能量种族，闪避率额外+15%，但生命值上限-20%'
-  },
-  [Race.HYBRID]: {
-    name: '混合体',
-    nameEn: 'Hybrid',
-    icon: '🧬',
-    description: '混合种族，均衡型种族，无特殊加成'
-  }
-};
-
 export default {
   Rarity,
   RarityConfig,
-  Element,
-  ElementConfig,
   Race,
   RaceConfig,
+  Element,
+  ElementConfig,
   getElementMultiplier
 };

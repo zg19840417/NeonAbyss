@@ -1,17 +1,21 @@
 import BaseSystem from '../game/systems/BaseSystem.js';
 import Lang, { t } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
+import EquipmentView from './views/EquipmentView.js';
 import ShopView from './views/ShopView.js';
 import TeamView from './views/TeamView.js';
+import ChipCardManager from '../game/systems/ChipCardManager.js';
+import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BaseScene' });
     this.baseSystem = null;
+    this.equipmentView = null;
     this.shopView = null;
     this.teamView = null;
-    this.currentTab = 'home';
+    this.currentTab = 'sanctuary';
     this.tabButtons = {};
     this.modalOpen = false;
     this._transitioning = false;
@@ -25,7 +29,7 @@ export default class BaseScene extends Phaser.Scene {
     this.createBackground(width, height);
     this.createHeader(width);
     this.createBottomNav(width, height);
-    this.showView('home');
+    this.showView('sanctuary');
 
     this.time.addEvent({
       delay: Const.GAME.SAVE_DELAY,
@@ -40,7 +44,8 @@ export default class BaseScene extends Phaser.Scene {
     }
     if (!window.gameData.base) {
       window.gameData.base = {
-        coins: Const.GAME.INITIAL_COINS,
+        mycelium: 0,
+        sourceCore: 0,
         facilities: null,
         characters: [],
         team: [],
@@ -48,9 +53,34 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
 
+    // 确保新货币字段存在（兼容旧存档）
+    if (window.gameData.base.mycelium === undefined) {
+      window.gameData.base.mycelium = 0;
+    }
+    if (window.gameData.base.sourceCore === undefined) {
+      window.gameData.base.sourceCore = 0;
+    }
+
     this.baseSystem = new BaseSystem(window.gameData.base);
     this.cleanCharacterData();
 
+    // 初始化 ChipCardManager（替代 EquipmentCardManager）
+    if (!window.gameData.chipCardManager) {
+      window.gameData.chipCardManager = {
+        ownedCards: [],
+        equippedCardId: null,
+        shopCards: []
+      };
+    }
+    this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
+
+    // 初始化 ReputationSystem
+    if (!window.gameData.reputation) {
+      window.gameData.reputation = {};
+    }
+    this.reputationSystem = new ReputationSystem(window.gameData.reputation);
+
+    // 初始化 MinionCardManager
     if (!window.gameData.minionCardManager) {
       window.gameData.minionCardManager = {
         ownedCards: [],
@@ -59,20 +89,48 @@ export default class BaseScene extends Phaser.Scene {
       };
     }
     this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
+
+    // 清理旧版本存档中的 equipmentCardManager
+    this.cleanLegacySaveData();
   }
 
   cleanCharacterData() {
     const validClasses = ['Warrior', 'Mage', 'Rogue', 'Priest', 'Tank', 'Archer', 'Paladin', 'Berserker', 'Hunter', 'Cleric'];
     const originalCount = this.baseSystem.characters.length;
-    
+
     this.baseSystem.characters = this.baseSystem.characters.filter(c => {
       if (!c || !c.charClass) return false;
       const className = c.charClass.name || '';
       return validClasses.some(vc => className.includes(vc) || vc.includes(className));
     });
-    
+
     const removedCount = originalCount - this.baseSystem.characters.length;
     if (removedCount > 0) {
+      this.saveGameData();
+    }
+  }
+
+  /**
+   * 清理旧版本存档数据
+   * 移除已废弃的 equipmentCardManager 相关数据
+   */
+  cleanLegacySaveData() {
+    let needsSave = false;
+
+    // 移除旧的 equipmentCardManager
+    if (window.gameData.equipmentCardManager) {
+      delete window.gameData.equipmentCardManager;
+      needsSave = true;
+    }
+
+    // 移除旧的 localStorage 键
+    try {
+      localStorage.removeItem('equipmentCardManager');
+    } catch (e) {
+      // 忽略
+    }
+
+    if (needsSave) {
       this.saveGameData();
     }
   }
@@ -94,18 +152,18 @@ export default class BaseScene extends Phaser.Scene {
 
     const centerGlow = this.add.graphics();
     centerGlow.setBlendMode(Phaser.BlendModes.ADD);
-    
+
     const glowColors = {
-      home: { color: Const.COLORS.PURPLE, alpha: 0.08 },
+      tavern: { color: Const.COLORS.PURPLE, alpha: 0.08 },
       team: { color: Const.COLORS.CYAN, alpha: 0.06 },
-      explore: { color: Const.COLORS.MAGENTA, alpha: 0.08 },
-      quest: { color: Const.COLORS.YELLOW, alpha: 0.08 },
+      equipment: { color: Const.COLORS.YELLOW, alpha: 0.08 },
+      dungeon: { color: Const.COLORS.MAGENTA, alpha: 0.08 },
       shop: { color: Const.COLORS.PINK, alpha: 0.06 },
       settings: { color: Const.COLORS.CYAN, alpha: 0.05 }
     };
-    
-    const glow = glowColors[viewKey] || glowColors.home;
-    
+
+    const glow = glowColors[viewKey] || glowColors.sanctuary;
+
     for (let i = 0; i < 3; i++) {
       centerGlow.fillStyle(glow.color, glow.alpha / (i + 1));
       centerGlow.fillCircle(width / 2, height / 2 - 50, 150 + i * 80);
@@ -125,23 +183,23 @@ export default class BaseScene extends Phaser.Scene {
 
     const decor = this.add.graphics();
     decor.setAlpha(Const.ALPHA.DECOR);
-    
+
     decor.lineStyle(2, Const.COLORS.PURPLE, 0.5);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_SMALL, 110);
-    
+
     decor.lineStyle(2, Const.COLORS.MAGENTA, 0.5);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_SMALL, 110);
-    
+
     decor.lineStyle(2, Const.COLORS.CYAN, 0.3);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_MEDIUM, height - 130);
     decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_SMALL, height - 100);
-    
+
     decor.lineStyle(2, Const.COLORS.PINK, 0.3);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_MEDIUM, height - 130);
     decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_SMALL, height - 100);
-    
+
     this.bgElements.push(decor);
 
     const particles = this.add.graphics();
@@ -158,15 +216,28 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   createHeader(width) {
-    this.titleText = this.add.text(width / 2, Const.UI.TITLE_Y, t('home'), {
+    this.titleText = this.add.text(width / 2, Const.UI.TITLE_Y, t('sanctuary'), {
       fontSize: Const.FONT.SIZE_TITLE,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
       color: Const.TEXT_COLORS.PINK
     }).setOrigin(0.5);
 
-    this.coinDisplay = this.add.text(width / 2, Const.UI.COIN_Y, `${t('coin')}: 0`, {
-      fontSize: Const.FONT.SIZE_SMALL,
+    // 三种货币显示：菌丝 / 源核 / 星币
+    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#51cf66'
+    }).setOrigin(0.5);
+
+    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
+      fontSize: Const.FONT.SIZE_TINY,
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: '#4dabf7'
+    }).setOrigin(0.5);
+
+    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `⭐ 星币: 0`, {
+      fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
     }).setOrigin(0.5);
@@ -183,12 +254,11 @@ export default class BaseScene extends Phaser.Scene {
     navBg.lineBetween(0, navY, width, navY);
 
     const tabs = [
-      { key: 'home', icon: '庇', label: '庇护所' },
-      { key: 'team', icon: '队', label: '队伍' },
-      { key: 'explore', icon: '探', label: '探索' },
-      { key: 'quest', icon: '任', label: '任务' },
-      { key: 'shop', icon: '店', label: '商店' },
-      { key: 'settings', icon: '设', label: '设置' }
+      { key: 'sanctuary', icon: '所', label: t('sanctuary') },
+      { key: 'team', icon: '队', label: t('team') },
+      { key: 'dungeon', icon: '牢', label: t('dungeon') },
+      { key: 'shop', icon: '店', label: t('shop') },
+      { key: 'settings', icon: '设', label: t('settings') }
     ];
 
     const tabWidth = width / tabs.length;
@@ -263,7 +333,7 @@ export default class BaseScene extends Phaser.Scene {
     if (this._transitioning) return;
 
     // 获取需要保留的元素
-    const preserved = [this.coinDisplay, this.titleText];
+    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
     });
@@ -294,30 +364,26 @@ export default class BaseScene extends Phaser.Scene {
     this.createAtmosphereBg(key);
 
     const titles = {
-      home: '庇护所',
-      team: '队伍',
-      explore: '探索',
-      quest: '任务',
-      shop: '商店',
-      settings: '设置'
+      sanctuary: t('sanctuary'),
+      team: t('team'),
+      dungeon: t('dungeon'),
+      shop: t('shop'),
+      settings: t('settings')
     };
 
     if (this.titleText) {
-      this.titleText.setText(titles[key] || '庇护所');
+      this.titleText.setText(titles[key] || t('sanctuary'));
     }
 
     switch (key) {
-      case 'home':
-        this.showHomeContent();
+      case 'sanctuary':
+        this.showTavernContent();
         break;
       case 'team':
         this.showTeamContent();
         break;
-      case 'explore':
-        this.showExploreContent();
-        break;
-      case 'quest':
-        this.showQuestContent();
+      case 'dungeon':
+        this.scene.start('WildStageScene');
         break;
       case 'shop':
         this.showShopContent();
@@ -328,11 +394,11 @@ export default class BaseScene extends Phaser.Scene {
     }
   }
 
-  showHomeContent() {
+  showTavernContent() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    const banner = this.add.text(width / 2, 110, t('tavern_welcome'), {
+    const banner = this.add.text(width / 2, 110, t('sanctuary_welcome'), {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -349,7 +415,7 @@ export default class BaseScene extends Phaser.Scene {
       fontSize: Const.FONT.SIZE_ICON_LARGE
     }).setOrigin(0.5);
 
-    const bartenderName = this.add.text(width / 2, 250, t('bartender'), {
+    const bartenderName = this.add.text(width / 2, 250, t('admin_ada'), {
       fontSize: Const.FONT.SIZE_SMALL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -366,7 +432,7 @@ export default class BaseScene extends Phaser.Scene {
       this.tryEnterDungeon();
     });
 
-    const hint = this.add.text(width / 2, height - 130, t('tavern_hint'), {
+    const hint = this.add.text(width / 2, height - 130, t('sanctuary_hint'), {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE
@@ -391,14 +457,13 @@ export default class BaseScene extends Phaser.Scene {
     bg.strokeRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
 
     const qualityColors = {
-      N: Const.TEXT_COLORS.PRIMARY,
-      R: Const.TEXT_COLORS.CYAN,
-      SR: Const.TEXT_COLORS.PINK,
-      SSR: Const.TEXT_COLORS.YELLOW,
-      UR: Const.TEXT_COLORS.MAGENTA,
-      LE: Const.TEXT_COLORS.MAGENTA
+      common: Const.TEXT_COLORS.PRIMARY,
+      rare: Const.TEXT_COLORS.CYAN,
+      epic: Const.TEXT_COLORS.PINK,
+      legendary: Const.TEXT_COLORS.YELLOW,
+      mythic: Const.TEXT_COLORS.MAGENTA
     };
-    const qualityColor = qualityColors[character.quality] || qualityColors[character.rarity] || Const.TEXT_COLORS.PRIMARY;
+    const qualityColor = qualityColors[character.quality] || Const.TEXT_COLORS.PRIMARY;
 
     const nameLabel = this.add.text(-120, -8, character.name, {
       fontSize: Const.FONT.SIZE_NORMAL,
@@ -446,11 +511,11 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
-  showExploreContent() {
+  showDungeonContent() {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    const exploreBanner = this.add.text(width / 2, 110, '探索', {
+    const dungeonBanner = this.add.text(width / 2, 110, '禁区入口', {
       fontSize: Const.FONT.SIZE_NORMAL,
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -502,36 +567,6 @@ export default class BaseScene extends Phaser.Scene {
     }).setOrigin(0.5);
   }
 
-  showQuestContent() {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    const questBanner = this.add.text(width / 2, 110, '任务', {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    }).setOrigin(0.5);
-
-    const card = this.add.graphics();
-    card.fillStyle(Const.COLORS.BG_MID, 0.9);
-    card.fillRoundedRect(width/2 - 120, 150, 240, 200, Const.UI.CARD_RADIUS);
-    card.lineStyle(2, Const.COLORS.YELLOW, 0.5);
-    card.strokeRoundedRect(width/2 - 120, 150, 240, 200, Const.UI.CARD_RADIUS);
-
-    this.add.text(width / 2, 220, '暂无可用任务', {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-
-    this.add.text(width / 2, 260, '更多任务即将开放', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.INACTIVE
-    }).setOrigin(0.5);
-  }
-
   showShopContent() {
     if (this.shopView) {
       this.shopView.destroy();
@@ -550,14 +585,13 @@ export default class BaseScene extends Phaser.Scene {
     bg.strokeRoundedRect(-140, -32, 280, 64, Const.UI.CARD_RADIUS_SMALL);
 
     const qualityColors = {
-      N: Const.TEXT_COLORS.PRIMARY,
-      R: Const.TEXT_COLORS.CYAN,
-      SR: Const.TEXT_COLORS.PINK,
-      SSR: Const.TEXT_COLORS.YELLOW,
-      UR: Const.TEXT_COLORS.MAGENTA,
-      LE: Const.TEXT_COLORS.MAGENTA
+      common: Const.TEXT_COLORS.PRIMARY,
+      rare: Const.TEXT_COLORS.CYAN,
+      epic: Const.TEXT_COLORS.PINK,
+      legendary: Const.TEXT_COLORS.YELLOW,
+      mythic: Const.TEXT_COLORS.MAGENTA
     };
-    const qualityColor = qualityColors[character.quality] || qualityColors[character.rarity] || Const.TEXT_COLORS.PRIMARY;
+    const qualityColor = qualityColors[character.quality] || Const.TEXT_COLORS.PRIMARY;
 
     const nameLabel = this.add.text(-120, -8, character.name, {
       fontSize: Const.FONT.SIZE_SMALL,
@@ -674,7 +708,7 @@ export default class BaseScene extends Phaser.Scene {
       this.showResetConfirm();
     });
 
-    this.add.text(width / 2, height - 130, '霓虹深渊 v1.0.0', {
+    this.add.text(width / 2, height - 130, '废土元年 v2.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#6666aa'
@@ -745,9 +779,12 @@ export default class BaseScene extends Phaser.Scene {
     confirmBtn.setSize(90, 28);
     confirmBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 90, 28), Phaser.Geom.Rectangle.Contains);
     confirmBtn.on('pointerdown', () => {
-      localStorage.removeItem('sodaDungeonSave');
+      localStorage.removeItem('wasteland_year_save');
+      localStorage.removeItem('equipmentCardManager');
+      localStorage.removeItem('chipCardManager');
+      localStorage.removeItem('reputationSystem');
       window.gameData = {
-        base: { coins: Const.GAME.INITIAL_COINS, characters: [] },
+        base: { mycelium: 0, sourceCore: 0, characters: [] },
         dungeon: { currentFloor: 1, highestFloor: 1 },
         achievements: [],
         settings: { seVolume: 0.8, bgmVolume: 0.7 }
@@ -756,9 +793,17 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
+  showEquipmentContent() {
+    if (this.equipmentView) {
+      this.equipmentView.destroy();
+    }
+    this.equipmentView = new EquipmentView(this);
+    this.equipmentView.show();
+  }
+
   tryEnterDungeon() {
     const teamCount = this.baseSystem.getTeamMemberCount();
-    
+
     if (teamCount === 0) {
       this.showTeamEmptyAlert();
     } else if (teamCount < Const.GAME.MAX_TEAM_SIZE) {
@@ -922,11 +967,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   clearContent() {
-    const preserved = [this.coinDisplay, this.titleText];
+    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
     });
 
+    if (this.equipmentView) {
+      this.equipmentView.destroy();
+      this.equipmentView = null;
+    }
     if (this.shopView) {
       this.shopView.destroy();
       this.shopView = null;
@@ -948,17 +997,33 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   updateUI() {
+    const mycelium = window.gameData?.base?.mycelium || 0;
+    const sourceCore = window.gameData?.base?.sourceCore || 0;
+    const coins = this.baseSystem.starCoin || 0;
+
+    if (this.myceliumDisplay) {
+      this.myceliumDisplay.setText(`🍄 菌丝: ${mycelium.toLocaleString()}`);
+    }
+    if (this.sourceCoreDisplay) {
+      this.sourceCoreDisplay.setText(`💎 源核: ${sourceCore.toLocaleString()}`);
+    }
     if (this.coinDisplay) {
-      this.coinDisplay.setText(`${t('coin')}: ${this.baseSystem.coins.toLocaleString()}`);
+      this.coinDisplay.setText(`⭐ 星币: ${coins.toLocaleString()}`);
     }
   }
 
   saveGameData() {
     window.gameData.base = this.baseSystem.toJSON();
+    window.gameData.chipCardManager = {
+      ownedCards: this.chipCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
+      equippedCardId: this.chipCardManager.equippedCard?.id || null,
+      shopCards: (this.chipCardManager.shopCards || []).map(c => c.toJSON ? c.toJSON() : c)
+    };
+    window.gameData.reputation = this.reputationSystem.toJSON();
     if (this.minionCardManager) {
       window.gameData.minionCardManager = this.minionCardManager.toJSON();
     }
-    localStorage.setItem('sodaDungeonSave', JSON.stringify(window.gameData));
+    localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
   }
 
   shutdown() {
