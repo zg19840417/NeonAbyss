@@ -1763,7 +1763,6 @@
     "id": "boss_omega_sentinel",
     "zh_cn": "终焉守卫",
     "en_us": "Omega Sentinel"
-<<<<<<< HEAD
   },
   {
     "id": "game_title_zh",
@@ -2004,7 +2003,5 @@
     "id": "adventure",
     "zh_cn": "冒险",
     "en_us": "Adventure"
-=======
->>>>>>> eeb19f3b677eaa017efe3b7a1893a6bedefd2386
   }
 ]

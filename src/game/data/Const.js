@@ -106,10 +106,10 @@ export const Const = {
     MODAL_UI: 1002
   },
 
-  // 装备卡品质体系 (equipment.json 的 quality 字段使用此套命名)
+  // 芯片卡品质体系 (equipment.json 的 quality 字段使用此套命名)
   // 随从卡品质体系见 MinionConfig.js 的 Rarity: common / rare / epic / legendary
   // 品质对照映射:
-  //   装备 (EQUIPMENT_QUALITY)  |  随从 (MinionConfig.Rarity)  |  等级
+  //   芯片 (CHIP_QUALITY)       |  随从 (MinionConfig.Rarity)  |  等级
   //   --------------------------|------------------------------|------
   //   N                         |  common                      |  1星
   //   R                         |  rare                        |  2星

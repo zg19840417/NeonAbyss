@@ -1,7 +1,7 @@
 import BaseSystem from '../game/systems/BaseSystem.js';
 import Lang, { t, getLanguage, setLanguage } from '../game/data/Lang.js';
 import Const from '../game/data/Const.js';
-import EquipmentView from './views/EquipmentView.js';
+import ChipView from './views/ChipView.js';
 import ShopView from './views/ShopView.js';
 import TeamView from './views/TeamView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
@@ -13,7 +13,7 @@ export default class BaseScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BaseScene' });
     this.baseSystem = null;
-    this.equipmentView = null;
+    this.chipView = null;
     this.shopView = null;
     this.teamView = null;
     this.currentTab = 'sanctuary';
@@ -851,12 +851,12 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
-  showEquipmentContent() {
-    if (this.equipmentView) {
-      this.equipmentView.destroy();
+  showChipContent() {
+    if (this.chipView) {
+      this.chipView.destroy();
     }
-    this.equipmentView = new EquipmentView(this);
-    this.equipmentView.show();
+    this.chipView = new ChipView(this);
+    this.chipView.show();
   }
 
   tryEnterDungeon() {
@@ -1030,9 +1030,9 @@ export default class BaseScene extends Phaser.Scene {
       if (tab.container) preserved.push(tab.container);
     });
 
-    if (this.equipmentView) {
-      this.equipmentView.destroy();
-      this.equipmentView = null;
+    if (this.chipView) {
+      this.chipView.destroy();
+      this.chipView = null;
     }
     if (this.shopView) {
       this.shopView.destroy();

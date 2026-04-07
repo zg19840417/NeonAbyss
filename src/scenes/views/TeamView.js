@@ -59,11 +59,11 @@ export default class TeamView {
     const deployedCards = [];
 
     if (equippedCard) {
-      deployedCards.push({ ...equippedCard, cardType: 'equipment' });
+      deployedCards.push({ ...equippedCard, cardType: 'chip' });
     }
     deployedCards.push(...deployedMinions.map(m => ({ ...m, cardType: 'minion' })));
 
-    this.addText(width / 2, 155, `(${deployedCards.length}/4) 随从3+装备1`, {
+    this.addText(width / 2, 155, `(${deployedCards.length}/4) 随从3+芯片1`, {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
@@ -90,12 +90,12 @@ export default class TeamView {
     });
 
     const ownedMinions = this.scene.minionCardManager.getAvailableCards?.() || [];
-    const allEquipments = this.scene.chipCardManager?.getAllCards?.() || [];
+    const allChips = this.scene.chipCardManager?.getAllCards?.() || [];
     const equippedId = this.scene.chipCardManager?.equippedCard?.id;
-    const availableEquipments = allEquipments.filter(e => e.id !== equippedId);
+    const availableChips = allChips.filter(e => e.id !== equippedId);
     const allOwned = [
       ...ownedMinions.map(m => ({ ...m, cardType: 'minion' })),
-      ...availableEquipments.map(e => ({ ...e, cardType: 'equipment' }))
+      ...availableChips.map(e => ({ ...e, cardType: 'chip' }))
     ];
 
     if (allOwned.length === 0) {
@@ -120,7 +120,7 @@ export default class TeamView {
   }
 
   createCard(x, y, card, isDeployed) {
-    // [CardRenderer UPGRADE] 区分随从卡和装备卡，使用不同的 CardRenderer 方法
+    // [CardRenderer UPGRADE] 区分随从卡和芯片卡，使用不同的 CardRenderer 方法
     const isMinion = card.cardType === 'minion';
     let cardContainer;
 
@@ -143,7 +143,7 @@ export default class TeamView {
         quality: card.quality || 'N',
         name: card.name,
         star: card.star,
-        description: this.getEquipmentStats(card),
+        description: this.getChipStats(card),
         scale: 0.7,
         interactive: false
       });
@@ -219,7 +219,7 @@ export default class TeamView {
     modal.setAlpha(0);
     const qualityConfig = isMinion
       ? this.getMinionQualityConfig(card.rarity)
-      : this.getEquipmentQualityConfig(card.quality);
+      : this.getChipQualityConfig(card.quality);
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 1);
@@ -259,14 +259,14 @@ export default class TeamView {
         quality: card.quality || 'N',
         name: card.name,
         star: card.star,
-        description: this.getEquipmentStats(card),
+        description: this.getChipStats(card),
         scale: 1.0,
         interactive: false
       });
       modal.add(detailCard);
     }
 
-    const typeLabel = this.scene.add.text(0, -35, isMinion ? '随从卡' : '装备卡', {
+    const typeLabel = this.scene.add.text(0, -35, isMinion ? '随从卡' : '芯片卡', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: isMinion ? '#ff6b6b' : '#4dabf7'
@@ -303,7 +303,7 @@ export default class TeamView {
         y += 25;
       }
     } else {
-      const equipStats = this.scene.add.text(-100, y, this.getEquipmentStats(card), {
+      const equipStats = this.scene.add.text(-100, y, this.getChipStats(card), {
         fontSize: Const.FONT.SIZE_TINY,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.CYAN
@@ -415,7 +415,7 @@ export default class TeamView {
     return this.getQualityConfig(quality);
   }
 
-  getEquipmentQualityConfig(quality) {
+  getChipQualityConfig(quality) {
     // [U05 FIX] 对齐 CHIP_QUALITY 6级品质体系，补充 UR 和 LE
     const configs = {
       N: { name: '普通', color: '#888888', textColor: '#888888', icon: '🔧' },
@@ -439,7 +439,7 @@ export default class TeamView {
     return configs[quality] || configs.common;
   }
 
-  getEquipmentStats(card) {
+  getChipStats(card) {
     const stats = [];
     const effective = card.getEffectiveStats?.() || {};
     if (effective.atk > 0) stats.push(`ATK+${effective.atk}`);

@@ -30,7 +30,7 @@ export default class SaveSystem {
         sfxVolume: 0.8,
         battleSpeed: 1,
         autoBattle: false,
-        autoEquipment: false
+        autoChip: false
       },
       statistics: {
         totalPlayTime: 0,

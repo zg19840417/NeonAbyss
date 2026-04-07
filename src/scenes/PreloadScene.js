@@ -143,7 +143,7 @@ export default class PreloadScene extends Phaser.Scene {
         bgmVolume: 0.7,
         seVolume: 0.8,
         autoBattle: true,
-        autoEquipment: true,
+        autoChip: true,
         battleSpeed: 1
       };
     }

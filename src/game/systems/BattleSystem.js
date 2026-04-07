@@ -106,11 +106,11 @@ export default class BattleSystem {
       }
     });
     
-    this.applyEquipmentCardBonuses();
-    this.applyEquipmentSkills();
+    this.applyChipCardBonuses();
+    this.applyChipSkills();
   }
   
-  applyEquipmentCardBonuses() {
+  applyChipCardBonuses() {
     try {
       const chipData = window.gameData?.chipCardManager;
       if (!chipData?.equippedCardId) return;
@@ -139,20 +139,20 @@ export default class BattleSystem {
           return skillCopy;
         });
       
-      this.addBattleLog('装备卡', `【${equippedCard.name}】已生效`);
+      this.addBattleLog('芯片卡', `【${equippedCard.name}】已生效`);
     } catch (e) {
       console.warn('Failed to apply equipment card bonuses:', e);
     }
   }
   
-  applyEquipmentSkills() {
+  applyChipSkills() {
     if (!this.equipmentSkills || this.equipmentSkills.length === 0) return;
     
     this.equipmentSkills.forEach(skill => {
       if (skill.type === 'aura') {
-        this.applyEquipmentAura(skill);
+        this.applyChipAura(skill);
       } else if (skill.type === 'modify') {
-        this.applyEquipmentModify(skill);
+        this.applyChipModify(skill);
       }
     });
     
@@ -160,11 +160,11 @@ export default class BattleSystem {
     const modifyCount = this.equipmentSkills.filter(s => s.type === 'modify').length;
     
     if (auraCount > 0 || modifyCount > 0) {
-      this.addBattleLog('装备技能', `光环${auraCount}个 + 改造${modifyCount}个已激活`);
+      this.addBattleLog('芯片技能', `光环${auraCount}个 + 改造${modifyCount}个已激活`);
     }
   }
   
-  applyEquipmentAura(skill) {
+  applyChipAura(skill) {
     if (skill.type !== 'aura') return;
     
     const effectiveValue = Math.floor(skill.effectValue * (skill.skillMultiplier || 1));
@@ -215,7 +215,7 @@ export default class BattleSystem {
     });
   }
   
-  applyEquipmentModify(skill) {
+  applyChipModify(skill) {
     if (skill.type !== 'modify') return;
     
     const effectiveValue = skill.modifyValue || skill.effectValue;
@@ -253,7 +253,7 @@ export default class BattleSystem {
     });
   }
   
-  checkEquipmentTriggers(triggerType, context = {}) {
+  checkChipTriggers(triggerType, context = {}) {
     if (!this.equipmentSkills || this.equipmentSkills.length === 0) return;
     
     const triggerConditions = {
@@ -276,14 +276,14 @@ export default class BattleSystem {
       if (shouldTrigger) {
         const chance = skill.effectChance || 1.0;
         if (Math.random() <= chance) {
-          this.executeEquipmentTrigger(skill, context);
+          this.executeChipTrigger(skill, context);
           skill.currentCooldown = skill.triggerCooldown || 0;
         }
       }
     });
   }
   
-  executeEquipmentTrigger(skill, context = {}) {
+  executeChipTrigger(skill, context = {}) {
     const effectiveValue = Math.floor(skill.effectValue * (skill.skillMultiplier || 1));
     
     switch (skill.effectType) {
@@ -294,8 +294,8 @@ export default class BattleSystem {
             follower.currentHp = Math.min(follower.maxHp, follower.currentHp + healAmount);
           }
         });
-        this.addBattleLog('装备触发', `【${skill.name}】全队恢复${effectiveValue}%生命`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】全队恢复${effectiveValue}%生命` });
+        this.addBattleLog('芯片触发', `【${skill.name}】全队恢复${effectiveValue}%生命`);
+        this.emit('onBattleLog', { action: '芯片触发', result: `【${skill.name}】全队恢复${effectiveValue}%生命` });
         break;
         
       case 'atk_boost':
@@ -309,8 +309,8 @@ export default class BattleSystem {
             });
           }
         });
-        this.addBattleLog('装备触发', `【${skill.name}】全队攻击+${effectiveValue}%`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】攻击提升` });
+        this.addBattleLog('芯片触发', `【${skill.name}】全队攻击+${effectiveValue}%`);
+        this.emit('onBattleLog', { action: '芯片触发', result: `【${skill.name}】攻击提升` });
         break;
         
       case 'shield':
@@ -325,8 +325,8 @@ export default class BattleSystem {
             });
           }
         });
-        this.addBattleLog('装备触发', `【${skill.name}】全队获得护盾`);
-        this.emit('onBattleLog', { action: '装备触发', result: `【${skill.name}】护盾生成` });
+        this.addBattleLog('芯片触发', `【${skill.name}】全队获得护盾`);
+        this.emit('onBattleLog', { action: '芯片触发', result: `【${skill.name}】护盾生成` });
         break;
         
       case 'burn':
@@ -342,7 +342,7 @@ export default class BattleSystem {
               });
             }
           });
-          this.addBattleLog('装备触发', `【${skill.name}】使敌人${skill.effectType === 'burn' ? '灼烧' : '中毒'}`);
+          this.addBattleLog('芯片触发', `【${skill.name}】使敌人${skill.effectType === 'burn' ? '灼烧' : '中毒'}`);
         }
         break;
         
@@ -358,13 +358,13 @@ export default class BattleSystem {
               });
             }
           });
-          this.addBattleLog('装备触发', `【${skill.name}】使敌人眩晕`);
+          this.addBattleLog('芯片触发', `【${skill.name}】使敌人眩晕`);
         }
         break;
     }
   }
   
-  applyOnHitEquipmentEffects(attacker, target) {
+  applyOnHitChipEffects(attacker, target) {
     if (!attacker.equipmentEffects || attacker.equipmentEffects.length === 0) return;
     
     attacker.equipmentEffects.forEach(effect => {
@@ -377,14 +377,14 @@ export default class BattleSystem {
           value: effect.value,
           duration: effect.duration || 3
         });
-        this.addBattleLog('装备效果', `${target.name} 受到${effect.type === 'burn' ? '灼烧' : '中毒'}`);
+        this.addBattleLog('芯片效果', `${target.name} 受到${effect.type === 'burn' ? '灼烧' : '中毒'}`);
       }
     });
   }
   
   startBattle() {
     this.initialize();
-    this.checkEquipmentTriggers('battle_start');
+    this.checkChipTriggers('battle_start');
     this.executeAutoBattle();
   }
   
@@ -419,7 +419,7 @@ export default class BattleSystem {
       return;
     }
     
-    this.checkEquipmentTriggers('turn_start');
+    this.checkChipTriggers('turn_start');
     this.processPassiveSkills(this.playerTeam, 'turn_start', this.playerTeam, this.enemyTeam);
     this.processPassiveSkills(this.enemyTeam, 'turn_start', this.enemyTeam, this.playerTeam);
     this.processBuffs(this.playerTeam);
@@ -431,7 +431,7 @@ export default class BattleSystem {
       if (availableSkill) {
         this.currentPhase = BattlePhase.SKILL;
         this.executeSkillAction(playerToAct, availableSkill, () => {
-          this.decrementEquipmentSkillCooldowns();
+          this.decrementChipSkillCooldowns();
           setTimeout(() => {
             this.executeEnemyTurn();
           }, 200 / this.battleSpeed);
@@ -443,7 +443,7 @@ export default class BattleSystem {
     if (playerToAct) {
       this.currentPhase = BattlePhase.PLAYER_ATTACK;
       this.executeCharacterAction(playerToAct, () => {
-        this.decrementEquipmentSkillCooldowns();
+        this.decrementChipSkillCooldowns();
 
         // Windfury: second attack if available
         if (playerToAct.hasWindfury && playerToAct.hasWindfury() && !playerToAct._windfuryUsed && !playerToAct.isDead) {
@@ -462,12 +462,12 @@ export default class BattleSystem {
         }
       });
     } else {
-      this.decrementEquipmentSkillCooldowns();
+      this.decrementChipSkillCooldowns();
       this.executeEnemyTurn();
     }
   }
   
-  decrementEquipmentSkillCooldowns() {
+  decrementChipSkillCooldowns() {
     if (!this.equipmentSkills) return;
     this.equipmentSkills.forEach(skill => {
       if (skill.currentCooldown > 0) {
@@ -673,7 +673,7 @@ export default class BattleSystem {
           target.currentHp = Math.max(0, target.currentHp - dmg);
 
           if (isPlayer) {
-            this.applyOnHitEquipmentEffects(character, target);
+            this.applyOnHitChipEffects(character, target);
           }
 
           this.emit('onDamage', { target, damage: dmg, isCrit: effect.isCrit || false, isPlayer });
@@ -835,7 +835,7 @@ export default class BattleSystem {
     if (isDodged) {
       this.addBattleLog(`${target.name} 闪避了攻击`, 'MISS');
       this.emit('onAttack', { attacker, target, damage: 0, isCrit: false, isDodged: true });
-      this.checkEquipmentTriggers('on_dodge', { attacker, target, isDodged: true });
+      this.checkChipTriggers('on_dodge', { attacker, target, isDodged: true });
       this.scene.onAttackAnimation(attacker, target, false, () => {
         onComplete();
       });
@@ -886,13 +886,13 @@ export default class BattleSystem {
       this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
     }
 
-    this.applyOnHitEquipmentEffects(attacker, target);
+    this.applyOnHitChipEffects(attacker, target);
 
     if (target.isDead) {
       this.emit('onCharacterDeath', { character: target, isPlayer: this.playerTeam.includes(target) });
 
       const deathTriggerType = isPlayer ? 'enemy_death' : 'ally_death';
-      this.checkEquipmentTriggers(deathTriggerType, { target, targets: [target] });
+      this.checkChipTriggers(deathTriggerType, { target, targets: [target] });
 
       const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
       const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
@@ -906,14 +906,14 @@ export default class BattleSystem {
 
     // [C12 FIX] 使用扣血前的 hpPercentBefore 判断低血量触发
     if (hpPercentBefore >= 0.3 && target.currentHp / target.maxHp < 0.3) {
-      this.checkEquipmentTriggers('on_low_hp', { target, targetHpPercent: target.currentHp / target.maxHp });
+      this.checkChipTriggers('on_low_hp', { target, targetHpPercent: target.currentHp / target.maxHp });
     }
     if (hpPercentBefore >= 0.5 && target.currentHp / target.maxHp < 0.5) {
-      this.checkEquipmentTriggers('on_low_hp_50', { target, targetHpPercent: target.currentHp / target.maxHp });
+      this.checkChipTriggers('on_low_hp_50', { target, targetHpPercent: target.currentHp / target.maxHp });
     }
 
     if (isCrit) {
-      this.checkEquipmentTriggers('on_crit', { attacker, target, isCrit: true, targets: [target] });
+      this.checkChipTriggers('on_crit', { attacker, target, isCrit: true, targets: [target] });
     }
 
     if (attacker.lifeSteal > 0 && finalDamage > 0) {

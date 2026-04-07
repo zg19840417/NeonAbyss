@@ -1,8 +1,9 @@
-import Character from '../entities/Character.js';
-import { CharacterClass } from '../data/CharacterClass.js';
+import MinionCard from '../entities/MinionCard.js';
 import gachaPoolsData from '../../../assets/data/json/gachaPools.json';
+import gachaItemsData from '../../../assets/data/json/gachaItems.json';
+import minionCardsData from '../../../assets/data/json/minionCards.json';
 
-const QUALITY_ORDER = ['N', 'R', 'SR', 'SSR', 'UR', 'mythic'];
+const QUALITY_ORDER = ['N', 'R', 'SR', 'SSR', 'UR', 'LE'];
 
 const QUALITY_COLORS = {
   N: '#8a7a6a',
@@ -10,7 +11,7 @@ const QUALITY_COLORS = {
   SR: '#9775fa',
   SSR: '#f59f00',
   UR: '#ff6b6b',
-  mythic: '#e64980'
+  LE: '#e64980'
 };
 
 const QUALITY_NAMES = {
@@ -19,7 +20,7 @@ const QUALITY_NAMES = {
   SR: '精良',
   SSR: '史诗',
   UR: '传说',
-  mythic: '神话'
+  LE: '神话'
 };
 
 export default class GachaSystem {
@@ -29,11 +30,34 @@ export default class GachaSystem {
     this.currentPool = this.pools[0];
     this.pityCounter = this.loadPityCounter();
     this.history = this.loadHistory();
+
+    // 构建卡池索引：按数组索引映射gachaItems -> minionCards
+    // gachaItems的FM编号对应minionCards数组的顺序索引（FM001=index 0）
+    this.minionCardsList = minionCardsData;
+
+    // 按poolId+quality分组gachaItems，用于按品质抽卡
+    this.poolItemsByQuality = {};
+    for (let i = 0; i < gachaItemsData.length; i++) {
+      const item = gachaItemsData[i];
+      // FM001 -> index 0, FM002 -> index 1, ...
+      const cardIndex = parseInt(item.cardId.replace('FM', '')) - 1;
+      const cardData = this.minionCardsList[cardIndex];
+      if (!cardData) continue;
+      const quality = cardData.quality;
+      const poolId = item.poolId;
+      if (!this.poolItemsByQuality[poolId]) {
+        this.poolItemsByQuality[poolId] = {};
+      }
+      if (!this.poolItemsByQuality[poolId][quality]) {
+        this.poolItemsByQuality[poolId][quality] = [];
+      }
+      this.poolItemsByQuality[poolId][quality].push({ ...item, cardIndex, quality });
+    }
   }
 
   loadPityCounter() {
     const saved = localStorage.getItem('gachaPity');
-    return saved ? JSON.parse(saved) : { count: 0, ssrCount: 0, urCount: 0 };
+    return saved ? JSON.parse(saved) : { count: 0, srCount: 0, ssrCount: 0, urCount: 0 };
   }
 
   savePityCounter() {
@@ -54,6 +78,9 @@ export default class GachaSystem {
       id: character.id,
       name: character.name,
       quality: character.quality,
+      rarity: character.rarity,
+      element: character.element,
+      race: character.race,
       charClass: character.charClass,
       time: Date.now()
     });
@@ -74,26 +101,31 @@ export default class GachaSystem {
 
   rollGacha(count = 1) {
     const results = [];
-    
+
     for (let i = 0; i < count; i++) {
       this.pityCounter.count++;
+      this.pityCounter.srCount++;
       this.pityCounter.ssrCount++;
       this.pityCounter.urCount++;
-      
+
       const quality = this.calculateQuality();
       const character = this.createCharacter(quality);
-      
+
       results.push(character);
       this.addToHistory(character);
-      
+
+      // 重置保底计数
+      if (QUALITY_ORDER.indexOf(quality) >= QUALITY_ORDER.indexOf('SR')) {
+        this.pityCounter.srCount = 0;
+      }
       if (QUALITY_ORDER.indexOf(quality) >= QUALITY_ORDER.indexOf('SSR')) {
         this.pityCounter.ssrCount = 0;
       }
-      if (quality === 'mythic') {
+      if (quality === 'LE') {
         this.pityCounter.urCount = 0;
       }
     }
-    
+
     this.savePityCounter();
     return results;
   }
@@ -101,88 +133,148 @@ export default class GachaSystem {
   calculateQuality() {
     const pool = this.currentPool;
     const roll = Math.random() * 100;
-    
+
+    // UR(LE)保底
     if (this.pityCounter.urCount >= pool.pityUR) {
-      return 'mythic';
+      return 'LE';
     }
-    
+
+    // SSR保底
     if (this.pityCounter.ssrCount >= pool.pitySSR) {
       return 'SSR';
     }
-    
-    if (this.pityCounter.count >= pool.pityLimit) {
-      return this.getRandomQuality(['SR', 'SSR', 'UR', 'mythic']);
+
+    // SR十连保底
+    if (this.pityCounter.srCount >= pool.pitySR) {
+      return 'SR';
     }
-    
-    if (this.pityCounter.count >= pool.softPityStart && this.pityCounter.count < pool.pityLimit) {
-      const softPityChance = (this.pityCounter.count - pool.softPityStart) / (pool.pityLimit - pool.softPityStart);
-      const boostedChance = pool.pityGuarantee === 'SSR' ? softPityChance * 50 : softPityChance * 30;
+
+    // 硬保底（pityLimit）
+    if (this.pityCounter.count >= pool.pityLimit) {
+      return this.getRandomQuality(['SR', 'SSR', 'UR', 'LE']);
+    }
+
+    // SSR软保底
+    if (this.pityCounter.ssrCount >= (pool.softPitySSRStart || 35) && this.pityCounter.ssrCount < pool.pitySSR) {
+      const softPityChance = (this.pityCounter.ssrCount - (pool.softPitySSRStart || 35)) / (pool.pitySSR - (pool.softPitySSRStart || 35));
+      const boostedChance = softPityChance * 50;
       if (roll < boostedChance) {
         return this.getRandomQuality(['SR', 'SSR']);
       }
     }
-    
-    if (roll < 0.5) return 'mythic';
-    if (roll < 2.5) return 'SSR';
-    if (roll < 10) return 'SR';
-    if (roll < 30) return 'R';
+
+    // SR软保底
+    if (this.pityCounter.srCount >= (pool.softPitySRStart || 8) && this.pityCounter.srCount < pool.pitySR) {
+      const softPityChance = (this.pityCounter.srCount - (pool.softPitySRStart || 8)) / (pool.pitySR - (pool.softPitySRStart || 8));
+      const boostedChance = softPityChance * 30;
+      if (roll < boostedChance) {
+        return 'SR';
+      }
+    }
+
+    // 基础概率
+    if (roll < 0.5) return 'LE';
+    if (roll < 2.5) return 'UR';
+    if (roll < 10) return 'SSR';
+    if (roll < 30) return 'SR';
+    if (roll < 60) return 'R';
     return 'N';
   }
 
   getRandomQuality(qualities) {
     const weights = {
-      N: 10, R: 20, SR: 30, SSR: 25, UR: 12, mythic: 3
+      N: 10, R: 20, SR: 30, SSR: 25, UR: 12, LE: 3
     };
-    
+
     const filteredQualities = qualities.filter(q => weights[q] !== undefined);
     const totalWeight = filteredQualities.reduce((sum, q) => sum + weights[q], 0);
     let random = Math.random() * totalWeight;
-    
+
     for (const quality of filteredQualities) {
       random -= weights[quality];
       if (random <= 0) return quality;
     }
-    
+
     return filteredQualities[filteredQualities.length - 1];
   }
 
+  /**
+   * 从gachaItems.json按品质加权随机选取一个cardId，
+   * 再从minionCards.json查找完整数据创建MinionCard实例
+   */
   createCharacter(quality = 'N') {
-    const qualityMultipliers = {
-      N: 1.0,
-      R: 1.15,
-      SR: 1.30,
-      SSR: 1.50,
-      UR: 1.65,
-      mythic: 1.80
-    };
-    
-    const multiplier = qualityMultipliers[quality] || 1.0;
-    const classes = Object.values(CharacterClass);
-    const charClass = classes[Math.floor(Math.random() * classes.length)];
-    
-    const nameSet = this.getNameSetByClass(charClass);
-    const randomName = nameSet[Math.floor(Math.random() * nameSet.length)];
-    
-    const data = {
-      name: randomName,
-      charClass: charClass,
-      level: 1,
-      quality: quality
-    };
-    
-    return new Character(data);
+    const poolId = this.currentPool.poolId;
+    const poolItems = this.poolItemsByQuality[poolId];
+
+    if (!poolItems || !poolItems[quality] || poolItems[quality].length === 0) {
+      // 回退：如果该品质在卡池中没有配置项，尝试从minionCards中按品质随机选
+      console.warn(`[GachaSystem] 卡池 ${poolId} 中没有品质 ${quality} 的卡，从minionCards随机选取`);
+      return this._fallbackCreate(quality);
+    }
+
+    // 按weight加权随机
+    const items = poolItems[quality];
+    const totalWeight = items.reduce((sum, item) => sum + (item.weight || 1), 0);
+    let random = Math.random() * totalWeight;
+    let selectedItem = items[items.length - 1];
+
+    for (const item of items) {
+      random -= (item.weight || 1);
+      if (random <= 0) {
+        selectedItem = item;
+        break;
+      }
+    }
+
+    // 从minionCards查找完整数据（通过数组索引）
+    const cardData = this.minionCardsList[selectedItem.cardIndex];
+    if (!cardData) {
+      console.warn(`[GachaSystem] 找不到cardIndex=${selectedItem.cardIndex}的minionCard数据`);
+      return this._fallbackCreate(quality);
+    }
+
+    return this._createMinionCardFromData(cardData);
   }
 
-  getNameSetByClass(charClass) {
-    const names = {
-      plant: ['艾伦', '莉莉', '艾米', '莎拉', '安娜', '珍妮', '凯特', '玛丽', '苏珊', '艾拉', '薇拉', '娜塔莉'],
-      animal: ['杰克', '汤姆', '麦克', '大卫', '卢克', '保罗', '马克', '布莱克', '莱恩', '泰勒', '尼克', '马特'],
-      mech: ['Nova', 'Pulse', 'Apex', 'Flux', 'Zenith', 'Cipher', 'Vector', 'Matrix', 'Nexus', 'Prism', 'Echo', 'Raven'],
-      energy: ['焰', '霜', '雷', '光', '暗', '星', '月', '日', '风', '雨', '雾', '岚'],
-      hybrid: ['融合姬-α', '融合姬-β', '融合姬-γ', '融合姬-Ω', '融合姬-Σ', '融合姬-Δ', '融合姬-Ψ', '融合姬-Φ']
+  /**
+   * 从minionCards.json数据创建MinionCard实例
+   */
+  _createMinionCardFromData(cardData) {
+    // 将minionCards.json的quality映射到MinionCard的rarity
+    const qualityToRarity = {
+      N: 'common', R: 'rare', SR: 'epic', SSR: 'legendary', UR: 'legendary', LE: 'legendary'
     };
-    
-    return names[charClass] || names.plant;
+
+    const data = {
+      id: cardData.cardId,
+      minionId: cardData.cardId,
+      name: cardData.name,
+      charClass: cardData.profession || 'berserker',
+      level: 1,
+      rarity: qualityToRarity[cardData.quality] || 'common',
+      quality: cardData.quality,
+      element: cardData.element || null,
+      race: cardData.race || 'plant',
+      portrait: cardData.portrait || null,
+      description: cardData.description || '',
+      star: 1
+    };
+
+    return new MinionCard(data);
+  }
+
+  /**
+   * 回退方案：直接从minionCards按品质随机选
+   */
+  _fallbackCreate(quality) {
+    const matching = minionCardsData.filter(c => c.quality === quality);
+    if (matching.length === 0) {
+      // 最终回退：随机选一个
+      const randomCard = minionCardsData[Math.floor(Math.random() * minionCardsData.length)];
+      return this._createMinionCardFromData(randomCard);
+    }
+    const cardData = matching[Math.floor(Math.random() * matching.length)];
+    return this._createMinionCardFromData(cardData);
   }
 
   grantCharacter(character) {
@@ -193,6 +285,7 @@ export default class GachaSystem {
   getPityInfo() {
     return {
       currentCount: this.pityCounter.count,
+      srPity: this.currentPool.pitySR - this.pityCounter.srCount,
       ssrPity: this.currentPool.pitySSR - this.pityCounter.ssrCount,
       urPity: this.currentPool.pityUR - this.pityCounter.urCount
     };
