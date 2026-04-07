@@ -1,5 +1,4 @@
 import Character from '../entities/Character.js';
-import Equipment from './Equipment.js';
 import { CharacterClass } from '../data/CharacterClass.js';
 import Const from '../data/Const.js';
 
