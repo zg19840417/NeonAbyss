@@ -196,10 +196,10 @@ export default class DungeonSystem {
     const qualityRoll = Math.random();
     const floorBonus = Math.min(this.currentFloor / 100, 0.5);
     
-    let quality = 'common';
-    if (qualityRoll < 0.03 + floorBonus * 0.02) quality = 'epic';
-    else if (qualityRoll < 0.10 + floorBonus * 0.05) quality = 'rare';
-    else if (qualityRoll < 0.25 + floorBonus * 0.10) quality = 'uncommon';
+    let quality = 'N';
+    if (qualityRoll < 0.03 + floorBonus * 0.02) quality = 'SR';
+    else if (qualityRoll < 0.10 + floorBonus * 0.05) quality = 'R';
+    else if (qualityRoll < 0.25 + floorBonus * 0.10) quality = 'N';
     
     const lootTypes = ['weapon', 'armor', 'accessory'];
     const type = lootTypes[Math.floor(Math.random() * lootTypes.length)];

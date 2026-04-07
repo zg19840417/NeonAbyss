@@ -198,7 +198,7 @@ export default class TavernView {
     const result = this.scene.baseSystem.recruitCharacter(index);
 
     if (!result.success) {
-      if (result.reason === 'not_enough_coins') {
+      if (result.reason === 'not_enough_currency') {
         this.scene.showToast?.('金币不足！需要 200 金币');
       } else if (result.reason === 'character_full') {
         this.scene.showToast?.('角色已达上限！');

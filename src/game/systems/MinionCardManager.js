@@ -132,7 +132,7 @@ export default class MinionCardManager {
 
   generateCardByRarity(rarity) {
     const templates = minionsData.filter(m => {
-      const rarityOrder = ['common', 'rare', 'epic', 'legendary'];
+      const rarityOrder = ['N', 'R', 'SR', 'SSR'];
       return rarityOrder.indexOf(m.rarity) <= rarityOrder.indexOf(rarity);
     });
     if (templates.length === 0) return this.generateRandomCard();

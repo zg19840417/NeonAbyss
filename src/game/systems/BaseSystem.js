@@ -1,5 +1,4 @@
 import Character from '../entities/Character.js';
-import Equipment from './Equipment.js';
 import { CharacterClass } from '../data/CharacterClass.js';
 import Const from '../data/Const.js';
 
@@ -52,7 +51,7 @@ export default class BaseSystem {
     }
     
     if (this.mycelium < cost) {
-      return { success: false, reason: 'not_enough_coins', required: cost, current: this.mycelium };
+      return { success: false, reason: 'not_enough_currency', required: cost, current: this.mycelium };
     }
 
     this.mycelium -= cost;
@@ -123,18 +122,18 @@ export default class BaseSystem {
     const roll = Math.random();
     
     if (roll < 0.01 * synthesizerBonus) return 'mythic';
-    if (roll < 0.05 * synthesizerBonus) return 'legendary';
-    if (roll < 0.15 * synthesizerBonus) return 'epic';
-    if (roll < 0.35 * synthesizerBonus) return 'rare';
-    return 'common';
+    if (roll < 0.05 * synthesizerBonus) return 'SSR';
+    if (roll < 0.15 * synthesizerBonus) return 'SR';
+    if (roll < 0.35 * synthesizerBonus) return 'R';
+    return 'N';
   }
   
-  createCharacter(charClass, quality = 'common') {
+  createCharacter(charClass, quality = 'N') {
     const qualityMultipliers = {
-      common: 1.0,
-      rare: 1.15,
-      epic: 1.30,
-      legendary: 1.50,
+      N: 1.0,
+      R: 1.15,
+      SR: 1.30,
+      SSR: 1.50,
       mythic: 1.80
     };
     
@@ -162,7 +161,7 @@ export default class BaseSystem {
     const recruitCost = 200;
     
     if (this.sourceCore < recruitCost) {
-      return { success: false, reason: 'not_enough_coins', required: recruitCost };
+      return { success: false, reason: 'not_enough_currency', required: recruitCost };
     }
 
     if (this.characters.length >= 20) {

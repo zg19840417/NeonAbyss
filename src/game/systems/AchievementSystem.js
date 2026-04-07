@@ -18,7 +18,7 @@ export const Achievement = {
     description: '到达第10层',
     type: AchievementType.FLOOR_REACH,
     target: 10,
-    reward: { coins: 100 }
+    reward: { mycelium: 100 }
   },
   FLOOR_50: {
     id: 'floor_50',
@@ -26,7 +26,7 @@ export const Achievement = {
     description: '到达第50层',
     type: AchievementType.FLOOR_REACH,
     target: 50,
-    reward: { coins: 500 }
+    reward: { mycelium: 500 }
   },
   FLOOR_100: {
     id: 'floor_100',
@@ -34,7 +34,7 @@ export const Achievement = {
     description: '到达第100层',
     type: AchievementType.FLOOR_REACH,
     target: 100,
-    reward: { coins: 1000 }
+    reward: { mycelium: 1000 }
   },
   BATTLE_WIN_10: {
     id: 'battle_win_10',
@@ -42,7 +42,7 @@ export const Achievement = {
     description: '赢得10场战斗',
     type: AchievementType.BATTLE_WIN,
     target: 10,
-    reward: { coins: 50 }
+    reward: { mycelium: 50 }
   },
   BATTLE_WIN_100: {
     id: 'battle_win_100',
@@ -50,7 +50,7 @@ export const Achievement = {
     description: '赢得100场战斗',
     type: AchievementType.BATTLE_WIN,
     target: 100,
-    reward: { coins: 500 }
+    reward: { mycelium: 500 }
   },
   BATTLE_WIN_1000: {
     id: 'battle_win_1000',
@@ -58,7 +58,7 @@ export const Achievement = {
     description: '赢得1000场战斗',
     type: AchievementType.BATTLE_WIN,
     target: 1000,
-    reward: { coins: 5000 }
+    reward: { mycelium: 5000 }
   },
   GOLD_10000: {
     id: 'gold_10000',
@@ -66,7 +66,7 @@ export const Achievement = {
     description: '累计获得10000金币',
     type: AchievementType.GOLD_EARN,
     target: 10000,
-    reward: { coins: 200 }
+    reward: { mycelium: 200 }
   },
   GOLD_100000: {
     id: 'gold_100000',
@@ -74,7 +74,7 @@ export const Achievement = {
     description: '累计获得100000金币',
     type: AchievementType.GOLD_EARN,
     target: 100000,
-    reward: { coins: 2000 }
+    reward: { mycelium: 2000 }
   },
   RECRUIT_3: {
     id: 'recruit_3',
@@ -82,7 +82,7 @@ export const Achievement = {
     description: '招募3名角色',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 3,
-    reward: { coins: 100 }
+    reward: { mycelium: 100 }
   },
   RECRUIT_10: {
     id: 'recruit_10',
@@ -90,7 +90,7 @@ export const Achievement = {
     description: '招募10名角色',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 10,
-    reward: { coins: 500 }
+    reward: { mycelium: 500 }
   },
   BOSS_DEFEAT_1: {
     id: 'boss_defeat_1',
@@ -98,7 +98,7 @@ export const Achievement = {
     description: '击败第1个BOSS',
     type: AchievementType.BOSS_DEFEAT,
     target: 1,
-    reward: { coins: 200 }
+    reward: { mycelium: 200 }
   },
   BOSS_DEFEAT_10: {
     id: 'boss_defeat_10',
@@ -106,7 +106,7 @@ export const Achievement = {
     description: '击败10个BOSS',
     type: AchievementType.BOSS_DEFEAT,
     target: 10,
-    reward: { coins: 1000 }
+    reward: { mycelium: 1000 }
   },
   DIMENSION_2: {
     id: 'dimension_2',
@@ -114,7 +114,7 @@ export const Achievement = {
     description: '进入第2维度',
     type: AchievementType.DIMENSION_REACH,
     target: 2,
-    reward: { coins: 300 }
+    reward: { mycelium: 300 }
   },
   DIMENSION_3: {
     id: 'dimension_3',
@@ -122,7 +122,7 @@ export const Achievement = {
     description: '进入第3维度',
     type: AchievementType.DIMENSION_REACH,
     target: 3,
-    reward: { coins: 500 }
+    reward: { mycelium: 500 }
   },
   DIMENSION_5: {
     id: 'dimension_5',
@@ -130,7 +130,7 @@ export const Achievement = {
     description: '进入第5维度',
     type: AchievementType.DIMENSION_REACH,
     target: 5,
-    reward: { coins: 2000 }
+    reward: { mycelium: 2000 }
   }
 };
 

@@ -44,7 +44,6 @@ export default class BaseScene extends Phaser.Scene {
     }
     if (!window.gameData.base) {
       window.gameData.base = {
-        coins: Const.GAME.INITIAL_COINS,
         mycelium: 0,
         sourceCore: 0,
         facilities: null,
@@ -709,7 +708,7 @@ export default class BaseScene extends Phaser.Scene {
       this.showResetConfirm();
     });
 
-    this.add.text(width / 2, height - 130, '霓虹深渊 v1.0.0', {
+    this.add.text(width / 2, height - 130, '废土元年 v2.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#6666aa'
@@ -780,12 +779,12 @@ export default class BaseScene extends Phaser.Scene {
     confirmBtn.setSize(90, 28);
     confirmBtn.setInteractive(new Phaser.Geom.Rectangle(0, 0, 90, 28), Phaser.Geom.Rectangle.Contains);
     confirmBtn.on('pointerdown', () => {
-      localStorage.removeItem('sodaDungeonSave');
+      localStorage.removeItem('wasteland_year_save');
       localStorage.removeItem('equipmentCardManager');
       localStorage.removeItem('chipCardManager');
       localStorage.removeItem('reputationSystem');
       window.gameData = {
-        base: { coins: Const.GAME.INITIAL_COINS, mycelium: 0, sourceCore: 0, characters: [] },
+        base: { mycelium: 0, sourceCore: 0, characters: [] },
         dungeon: { currentFloor: 1, highestFloor: 1 },
         achievements: [],
         settings: { seVolume: 0.8, bgmVolume: 0.7 }
@@ -1024,7 +1023,7 @@ export default class BaseScene extends Phaser.Scene {
     if (this.minionCardManager) {
       window.gameData.minionCardManager = this.minionCardManager.toJSON();
     }
-    localStorage.setItem('sodaDungeonSave', JSON.stringify(window.gameData));
+    localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
   }
 
   shutdown() {

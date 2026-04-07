@@ -73,7 +73,7 @@ export default class PreloadScene extends Phaser.Scene {
 
     if (!window.gameData.base) {
       window.gameData.base = {
-        coins: 10000,
+        mycelium: 5000, sourceCore: 100, starCoin: 0,
         facilities: null,
         characters: [],
         team: [
@@ -125,7 +125,7 @@ export default class PreloadScene extends Phaser.Scene {
 
   loadSavedData() {
     try {
-      const saved = localStorage.getItem('sodaDungeonSave');
+      const saved = localStorage.getItem('wasteland_year_save');
       if (saved) {
         const parsed = JSON.parse(saved);
         

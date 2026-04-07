@@ -361,7 +361,7 @@ export default class DungeonScene extends Phaser.Scene {
     window.gameData.dungeon = this.dungeonSystem.toJSON();
     this.dungeonSystem.save();
 
-    localStorage.setItem('sodaDungeonSave', JSON.stringify(window.gameData));
+    localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
 
     this.scene.start('BaseScene');
   }

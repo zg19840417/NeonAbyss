@@ -66,7 +66,7 @@ export default class EquipmentView {
 
     const bg = this.scene.add.graphics();
     if (equippedCard) {
-      const qualityConfig = Const.EQUIPMENT_QUALITY[equippedCard.quality] || Const.EQUIPMENT_QUALITY.N;
+      const qualityConfig = Const.CHIP_QUALITY[equippedCard.quality] || Const.CHIP_QUALITY.N;
       bg.fillStyle(Const.COLORS.BG_MID, 0.95);
       bg.fillRoundedRect(-cardWidth/2, -cardHeight/2, cardWidth, cardHeight, Const.UI.CARD_RADIUS);
       bg.lineStyle(3, parseInt(qualityConfig.color.replace('#', '0x')), qualityConfig.glow);
@@ -87,7 +87,7 @@ export default class EquipmentView {
     container.add(bg);
 
     if (equippedCard) {
-      const qualityConfig = Const.EQUIPMENT_QUALITY[equippedCard.quality] || Const.EQUIPMENT_QUALITY.N;
+      const qualityConfig = Const.CHIP_QUALITY[equippedCard.quality] || Const.CHIP_QUALITY.N;
 
       const icon = this.scene.add.text(-cardWidth/2 + 40, -10, this.getCardIcon(equippedCard.quality), {
         fontSize: '48px'
@@ -176,7 +176,7 @@ export default class EquipmentView {
     const container = this.scene.add.container(x, y);
     const cardWidth = 280;
     const cardHeight = 70;
-    const qualityConfig = Const.EQUIPMENT_QUALITY[card.quality] || Const.EQUIPMENT_QUALITY.N;
+    const qualityConfig = Const.CHIP_QUALITY[card.quality] || Const.CHIP_QUALITY.N;
     const isEquipped = this.cardManager.equippedCard && this.cardManager.equippedCard.id === card.id;
 
     const bg = this.scene.add.graphics();
@@ -252,7 +252,7 @@ export default class EquipmentView {
     bg.fillRoundedRect(-modalWidth/2, -modalHeight/2, modalWidth, modalHeight, Const.UI.CARD_RADIUS);
     modal.add(bg);
 
-    const qualityConfig = Const.EQUIPMENT_QUALITY[card.quality] || Const.EQUIPMENT_QUALITY.N;
+    const qualityConfig = Const.CHIP_QUALITY[card.quality] || Const.CHIP_QUALITY.N;
     const borderGlow = this.scene.add.graphics();
     borderGlow.setBlendMode(Phaser.BlendModes.ADD);
     borderGlow.fillStyle(parseInt(qualityConfig.color.replace('#', '0x')), 0.1);

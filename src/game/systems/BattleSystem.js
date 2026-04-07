@@ -1035,8 +1035,8 @@ export default class BattleSystem {
   
   calculateRewards() {
     const totalEnemyHp = this.enemyTeam.reduce((sum, e) => sum + (e.maxHp || 0), 0);
-    const coins = Math.floor(totalEnemyHp / 10);
-    return { coins };
+    const mycelium = Math.floor(totalEnemyHp / 10);
+    return { mycelium };
   }
   
   pause() {
