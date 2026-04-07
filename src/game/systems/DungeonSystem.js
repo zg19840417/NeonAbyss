@@ -16,7 +16,7 @@ export default class DungeonSystem {
     this.state = DungeonState.IDLE;
     
     this.autoBattleEnabled = gameData.autoBattleEnabled !== undefined ? gameData.autoBattleEnabled : true;
-    this.autoEquipmentEnabled = gameData.autoEquipmentEnabled !== undefined ? gameData.autoEquipmentEnabled : true;
+    this.autoChipEnabled = gameData.autoChipEnabled !== undefined ? gameData.autoChipEnabled : true;
     
     this.offlineProgress = gameData.offlineProgress || {
       enabled: false,
@@ -276,7 +276,7 @@ export default class DungeonSystem {
       currentDimension: this.currentDimension,
       state: this.state,
       autoBattleEnabled: this.autoBattleEnabled,
-      autoEquipmentEnabled: this.autoEquipmentEnabled,
+      autoChipEnabled: this.autoChipEnabled,
       totalBattlesWon: this.totalBattlesWon,
       totalGoldEarned: this.totalGoldEarned,
       isBossFloor: this.currentFloor % 10 === 0
@@ -288,9 +288,9 @@ export default class DungeonSystem {
     return this.autoBattleEnabled;
   }
   
-  setAutoEquipment(enabled) {
-    this.autoEquipmentEnabled = enabled;
-    return this.autoEquipmentEnabled;
+  setAutoChip(enabled) {
+    this.autoChipEnabled = enabled;
+    return this.autoChipEnabled;
   }
   
   on(event, callback) {
@@ -317,7 +317,7 @@ export default class DungeonSystem {
       maxReachedFloor: this.maxReachedFloor,
       currentDimension: this.currentDimension,
       autoBattleEnabled: this.autoBattleEnabled,
-      autoEquipmentEnabled: this.autoEquipmentEnabled,
+      autoChipEnabled: this.autoChipEnabled,
       totalBattlesWon: this.totalBattlesWon,
       totalGoldEarned: this.totalGoldEarned,
       offlineProgress: this.offlineProgress
@@ -341,7 +341,7 @@ export default class DungeonSystem {
         this.maxReachedFloor = data.maxReachedFloor || 1;
         this.currentDimension = data.currentDimension || 1;
         this.autoBattleEnabled = data.autoBattleEnabled !== undefined ? data.autoBattleEnabled : true;
-        this.autoEquipmentEnabled = data.autoEquipmentEnabled !== undefined ? data.autoEquipmentEnabled : true;
+        this.autoChipEnabled = data.autoChipEnabled !== undefined ? data.autoChipEnabled : true;
         this.totalBattlesWon = data.totalBattlesWon || 0;
         this.totalGoldEarned = data.totalGoldEarned || 0;
         this.offlineProgress = data.offlineProgress || this.offlineProgress;

@@ -4,7 +4,7 @@ import ChipCard from '../../game/entities/ChipCard.js';
 import ChipCardManager from '../../game/systems/ChipCardManager.js';
 import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
 
-export default class EquipmentView {
+export default class ChipView {
   constructor(scene) {
     this.scene = scene;
     this.elements = [];
@@ -63,7 +63,7 @@ export default class EquipmentView {
     const equippedCard = this.cardManager.equippedCard;
 
     if (equippedCard) {
-      // [CardRenderer UPGRADE] 已装备卡片使用 CardRenderer.createChipCard
+      // [CardRenderer UPGRADE] 已装配芯片使用 CardRenderer.createChipCard
       const chipCard = CardRenderer.createChipCard(this.scene, {
         x, y,
         quality: equippedCard.quality || 'N',
@@ -91,7 +91,7 @@ export default class EquipmentView {
       this.elements.push(chipCard);
       return chipCard;
     } else {
-      // 空装备槽位 - 保留原有空状态显示
+      // 空芯片槽位 - 保留原有空状态显示
       const cardWidth = 280;
       const cardHeight = 120;
       const container = this.scene.add.container(x, y);
@@ -122,7 +122,7 @@ export default class EquipmentView {
     const cards = this.cardManager.getAllCards();
 
     if (cards.length === 0) {
-      const emptyText = this.scene.add.text(x, startY + 30, '暂无装备卡', {
+      const emptyText = this.scene.add.text(x, startY + 30, '暂无芯片卡', {
         fontSize: Const.FONT.SIZE_SMALL,
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.INACTIVE
@@ -166,7 +166,7 @@ export default class EquipmentView {
     // [CardRenderer UPGRADE] 出场动画
     CardRenderer.animateEntry(this.scene, chipCard, 0);
 
-    // [CardRenderer UPGRADE] 装备/已装备按钮（覆盖在卡片右侧）
+    // [CardRenderer UPGRADE] 芯片/已装配按钮（覆盖在卡片右侧）
     const isEquipped = this.cardManager.equippedCard && this.cardManager.equippedCard.id === card.id;
     const equipText = this.scene.add.text(x + 55, y, isEquipped ? '[' + this.t('equipped') + ']' : '[' + this.t('equip') + ']', {
       fontSize: Const.FONT.SIZE_TINY,
@@ -295,7 +295,7 @@ export default class EquipmentView {
     const unlockedSkills = card.getUnlockedSkills();
     let skillY = -modalHeight/2 + 285;
     unlockedSkills.forEach(skill => {
-      const skillTypeColor = skill.type === 'aura' ? Const.TEXT_COLORS.PINK : 
+      const skillTypeColor = skill.type === 'aura' ? Const.TEXT_COLORS.PINK :
                             skill.type === 'trigger' ? Const.TEXT_COLORS.YELLOW : Const.TEXT_COLORS.CYAN;
       const skillTypeText = skill.type === 'aura' ? this.t('skill_type_aura') :
                             skill.type === 'trigger' ? this.t('skill_type_trigger') : this.t('skill_type_modify');

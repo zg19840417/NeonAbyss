@@ -192,7 +192,7 @@ export default class CardRenderer {
   // ==================== 芯片卡片 ====================
 
   /**
-   * 创建一张装备/芯片卡片（较小尺寸）
+   * 创建一张芯片卡片（较小尺寸）
    * @param {Phaser.Scene} scene - 场景实例
    * @param {object} options - 配置项
    * @param {number} options.x - X坐标
