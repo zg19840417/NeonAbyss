@@ -94,8 +94,8 @@ export default class BottomNav {
     const oldTab = this.tabButtons[this.currentTab];
     if (oldTab) {
       oldTab.bg.clear();
-      oldTab.icon.setColor('#6666aa');
-      oldTab.label.setColor('#6666aa');
+      oldTab.icon.setColor(Const.TEXT_COLORS.INACTIVE);
+      oldTab.label.setColor(Const.TEXT_COLORS.INACTIVE);
       oldTab.isActive = false;
     }
 

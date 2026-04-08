@@ -4,6 +4,8 @@ export const BattleSpeed = {
   FASTEST: 3
 };
 
+import Const from '../data/Const.js';
+
 export const SpeedConfig = {
   [BattleSpeed.NORMAL]: {
     name: '1x',
@@ -55,12 +57,12 @@ export default class BattleSpeedManager {
     
     const container = this.scene.add.container(x, y);
     
-    const bg = this.scene.add.circle(0, 0, size / 2, 0x2a2520);
-    bg.setStrokeStyle(2, 0x4a4540);
-    
+    const bg = this.scene.add.circle(0, 0, size / 2, Const.COLORS.BG_MID);
+    bg.setStrokeStyle(2, Const.COLORS.GRAY);
+
     const speedText = this.scene.add.text(0, -5, this.getSpeedName(), {
       fontSize: '18px',
-      fill: '#d4a574',
+      fill: Const.TEXT_COLORS.GOLD,
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold'
     }).setOrigin(0.5);
@@ -84,11 +86,11 @@ export default class BattleSpeedManager {
     });
     
     container.on('pointerover', () => {
-      bg.setStrokeStyle(2, 0xd4a574);
+      bg.setStrokeStyle(2, Const.COLORS.GOLD);
     });
-    
+
     container.on('pointerout', () => {
-      bg.setStrokeStyle(2, 0x4a4540);
+      bg.setStrokeStyle(2, Const.COLORS.GRAY);
     });
     
     this.button = container;

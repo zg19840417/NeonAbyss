@@ -1,5 +1,6 @@
 import { ensureGlobalGameData } from '../game/data/GameData.js';
 import { extractPortraitKey } from '../game/utils/PortraitRegistry.js';
+import Const from '../game/data/Const.js';
 
 const uiAssetUrls = import.meta.glob('../../assets/images/ui/*.jpg', {
   eager: true,
@@ -66,9 +67,9 @@ export default class PreloadScene extends Phaser.Scene {
     super({ key: 'PreloadScene' });
     this.config = {
       colors: {
-        amber: 0xd4a574,
-        textPrimary: '#d4ccc0',
-        textSecondary: '#8a7a6a'
+        amber: Const.COLORS.GOLD,
+        textPrimary: Const.TEXT_COLORS.PRIMARY,
+        textSecondary: Const.TEXT_COLORS.SECONDARY
       }
     };
   }

@@ -51,17 +51,17 @@ export default class DOMUIManager {
     header.className = 'ui-header';
     header.style.cssText = `
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-bottom: 1px solid rgba(212,165,116,0.2);
-      background: rgba(42,38,33,0.98);
+      padding: 12px 16px; border-bottom: 1px solid rgba(201,168,76,0.2);
+      background: rgba(12,14,26,0.98);
     `;
 
     const title = document.createElement('span');
-    title.style.cssText = 'font-size:16px; font-weight:bold; color:#d4a574;';
+    title.style.cssText = 'font-size:16px; font-weight:bold; color:#c9a84c;';
     title.textContent = options.title || '';
 
     const closeBtn = document.createElement('button');
     closeBtn.style.cssText = `
-      background:none; border:1px solid rgba(212,165,116,0.3); color:#d4a574;
+      background:none; border:1px solid rgba(201,168,76,0.3); color:#c9a84c;
       padding:4px 12px; border-radius:4px; cursor:pointer; font-size:14px;
     `;
     closeBtn.textContent = '✕';
@@ -132,8 +132,8 @@ export default class DOMUIManager {
       pointer-events: none;
       transition: opacity 0.3s;
       white-space: nowrap;
-      background: ${type === 'success' ? 'rgba(0,180,80,0.9)' : type === 'error' ? 'rgba(220,50,50,0.9)' : 'rgba(60,55,48,0.95)'};
-      border: 1px solid ${type === 'success' ? 'rgba(0,220,100,0.5)' : type === 'error' ? 'rgba(255,80,80,0.5)' : 'rgba(212,165,116,0.3)'};
+      background: ${type === 'success' ? 'rgba(0,180,80,0.9)' : type === 'error' ? 'rgba(220,50,50,0.9)' : 'rgba(20,24,40,0.95)'};
+      border: 1px solid ${type === 'success' ? 'rgba(0,220,100,0.5)' : type === 'error' ? 'rgba(255,80,80,0.5)' : 'rgba(201,168,76,0.3)'};
     `;
     toast.textContent = message;
     document.body.appendChild(toast);

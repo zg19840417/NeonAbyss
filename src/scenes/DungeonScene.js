@@ -5,6 +5,7 @@ import FusionGirlManager from '../game/systems/FusionGirlManager.js';
 import { syncFusionGirlProgress } from '../game/systems/FusionGirlProgressSync.js';
 import { ensureGlobalGameData, syncRuntimeGameData } from '../game/data/GameData.js';
 import { getFusionGirlById, getPortraitSetsByFusionGirlId, getFusionGirlCombatStats } from '../game/data/FusionGirlData.js';
+import Const from '../game/data/Const.js';
 import enemiesData from '../../assets/data/json/enemies.json';
 
 export default class DungeonScene extends Phaser.Scene {
@@ -37,7 +38,7 @@ export default class DungeonScene extends Phaser.Scene {
 
   createBackground(width, height) {
     const bg = this.add.graphics();
-    bg.fillGradientStyle(0x1a1815, 0x1a1815, 0x2d2824, 0x2d2824, 1);
+    bg.fillGradientStyle(Const.COLORS.BG_DARK, Const.COLORS.BG_DARK, Const.COLORS.BG_MID, Const.COLORS.BG_MID, 1);
     bg.fillRect(0, 0, width, height);
   }
 
@@ -48,26 +49,26 @@ export default class DungeonScene extends Phaser.Scene {
       fontSize: '24px',
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#d4a574'
+      color: Const.TEXT_COLORS.GOLD
     }).setOrigin(0.5);
 
     const bossLabel = isBossFloor ? ' BOSS' : '';
     this.add.text(width / 2, 100, `第${this.currentFloor}层${bossLabel}`, {
       fontSize: '18px',
       fontFamily: 'Noto Sans SC',
-      color: isBossFloor ? '#d86a6a' : '#d4a574'
+      color: isBossFloor ? '#d86a6a' : Const.TEXT_COLORS.GOLD
     }).setOrigin(0.5);
 
     this.add.text(width / 2, 130, `维度 ${this.currentDimension}`, {
       fontSize: '12px',
       fontFamily: 'Noto Sans SC',
-      color: '#8a7a6a'
+      color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
 
     this.add.text(width / 2, 180, '正在进入自动战斗...', {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
-      color: '#8a7a6a'
+      color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
   }
 

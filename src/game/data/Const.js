@@ -1,48 +1,55 @@
 export const Const = {
   COLORS: {
-    BG_DARK: 0x0a0a14,
-    BG_MID: 0x0d0d1d,
-    BG_LIGHT: 0x080812,
-    BG_HOVER: 0x1a1a2e,
-    BG_DANGER: 0x330000,
-    CYAN: 0x00ffff,
-    PINK: 0xff66cc,
-    PURPLE: 0x9933ff,
-    MAGENTA: 0xff00ff,
-    YELLOW: 0xffff00,
-    RED: 0xff6666,
-    GREEN: 0x66bb6a,
-    BUTTON_PRIMARY: 0x00ccff,
-    BUTTON_HOVER: 0x33ddff,
-    BUTTON_SECONDARY: 0x2a2a4a,
-    BUTTON_CYAN: 0x00ccff,
-    BUTTON_DANGER_BORDER: 0xff3333,
-    BUTTON_INACTIVE: 0x444466,
-    OVERLAY: 0x000000
+    BG_DARK: 0x0c0e1a,
+    BG_MID: 0x141828,
+    BG_LIGHT: 0x1a1e32,
+    BG_HOVER: 0x242a42,
+    BG_DANGER: 0x2a1515,
+    GOLD: 0xc9a84c,
+    GOLD_LIGHT: 0xe8d48b,
+    CYAN: 0x5b8dd9,
+    PINK: 0xd4728a,
+    PURPLE: 0x8b6cc7,
+    PURPLE_DARK: 0x4a3f6b,
+    MAGENTA: 0x9b6cc7,
+    YELLOW: 0xf7b801,
+    RED: 0xef4444,
+    GREEN: 0x22c55e,
+    GRAY: 0x4a5568,
+    GRAY_LIGHT: 0x6b7280,
+    BUTTON_PRIMARY: 0xc9a84c,
+    BUTTON_HOVER: 0xd4b85c,
+    BUTTON_SECONDARY: 0x242a42,
+    BUTTON_CYAN: 0x5b8dd9,
+    BUTTON_DANGER_BORDER: 0xef4444,
+    BUTTON_INACTIVE: 0x3a3f55,
+    OVERLAY: 0x0a0c14
   },
 
   TEXT_COLORS: {
-    PRIMARY: '#ffffff',
-    SECONDARY: '#8888aa',
-    DARK: '#0a0a14',
-    CYAN: '#00ffff',
-    PINK: '#ff66cc',
-    PURPLE: '#9933ff',
-    MAGENTA: '#ff00ff',
-    YELLOW: '#ffff00',
-    RED: '#ff6666',
-    DANGER: '#ff6666',
-    SUCCESS: '#66bb6a',
-    INACTIVE: '#6666aa'
+    PRIMARY: '#e8e6e3',
+    SECONDARY: '#8a8a9a',
+    DARK: '#0c0e1a',
+    GOLD: '#c9a84c',
+    GOLD_LIGHT: '#e8d48b',
+    CYAN: '#5b8dd9',
+    PINK: '#d4728a',
+    PURPLE: '#8b6cc7',
+    MAGENTA: '#9b6cc7',
+    YELLOW: '#f7b801',
+    RED: '#ef4444',
+    DANGER: '#ef4444',
+    SUCCESS: '#22c55e',
+    INACTIVE: '#4a4a6a'
   },
 
   ALPHA: {
     OVERLAY: 0.85,
-    GRID: 0.03,
-    DECOR: 0.4,
-    GLOW: 0.5,
-    PARTICLE_MIN: 0.2,
-    PARTICLE_MAX: 0.5
+    GRID: 0.015,
+    DECOR: 0.2,
+    GLOW: 0.3,
+    PARTICLE_MIN: 0.1,
+    PARTICLE_MAX: 0.3
   },
 
   UI: {
@@ -222,12 +229,12 @@ export const Const = {
 
   // 芯片品质体系（替代 EQUIPMENT_QUALITY）
   CHIP_QUALITY: {
-    N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通', maxStar: 3, skillCount: 1 },
-    R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有', maxStar: 4, skillCount: 1 },
-    SR: { color: '#9b59b6', textColor: '#9b59b6', glow: 0.5, name: '精良', maxStar: 4, skillCount: 1 },
-    SSR: { color: '#f39c12', textColor: '#f39c12', glow: 0.7, name: '史诗', maxStar: 5, skillCount: 2 },
-    UR: { color: '#ff4444', textColor: '#ff4444', glow: 0.85, name: '传说', maxStar: 5, skillCount: 2 },
-    LE: { color: '#ff00ff', textColor: '#ff00ff', glow: 1.0, name: '神话', maxStar: 5, skillCount: 3 }
+    N: { color: '#8a8a8a', textColor: '#8a8a8a', glow: 0, name: '普通', maxStar: 3, skillCount: 1 },
+    R: { color: '#5b8dd9', textColor: '#5b8dd9', glow: 0.15, name: '稀有', maxStar: 4, skillCount: 1 },
+    SR: { color: '#a78bfa', textColor: '#a78bfa', glow: 0.25, name: '精良', maxStar: 4, skillCount: 1 },
+    SSR: { color: '#f59e0b', textColor: '#f59e0b', glow: 0.4, name: '史诗', maxStar: 5, skillCount: 2 },
+    UR: { color: '#ef4444', textColor: '#ef4444', glow: 0.55, name: '传说', maxStar: 5, skillCount: 2 },
+    LE: { color: '#d946ef', textColor: '#d946ef', glow: 0.7, name: '神话', maxStar: 5, skillCount: 3 }
   },
 
   // 随从卡UI常量

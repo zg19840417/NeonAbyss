@@ -25,13 +25,13 @@ export default class TopBar {
     this.myceliumDisplay = this.scene.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
-      color: '#51cf66'
+      color: '#6b9e6b'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
     this.sourceCoreDisplay = this.scene.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
-      color: '#4dabf7'
+      color: '#5b8dd9'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
     this.coinDisplay = this.scene.add.text(width / 2 + 100, Const.UI.COIN_Y, '⭐ 星币: 0', {

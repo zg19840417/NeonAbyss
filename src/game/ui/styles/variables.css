@@ -1,29 +1,29 @@
 /* ===== DOM UI 设计令牌 ===== */
 :root {
-  /* 颜色 */
-  --ui-bg-dark: #0a0a14;
-  --ui-bg-mid: #0d0d1d;
-  --ui-bg-light: #080812;
-  --ui-bg-hover: #1a1a2e;
+  /* 颜色 - 废土奢华配色 */
+  --ui-bg-dark: #0c0e1a;
+  --ui-bg-mid: #141828;
+  --ui-bg-light: #1a1e32;
+  --ui-bg-hover: #242a42;
   --ui-bg-card: #12121f;
-  --ui-border: rgba(212, 165, 116, 0.2);
-  --ui-border-active: rgba(212, 165, 116, 0.6);
+  --ui-border: rgba(201, 168, 76, 0.2);
+  --ui-border-active: rgba(201, 168, 76, 0.6);
 
   /* 主题色 */
-  --ui-accent: #d4a574;
-  --ui-cyan: #00ffff;
-  --ui-pink: #ff66cc;
-  --ui-purple: #9933ff;
-  --ui-magenta: #ff00ff;
-  --ui-green: #66bb6a;
-  --ui-red: #ff6666;
-  --ui-yellow: #ffd700;
+  --ui-accent: #c9a84c;
+  --ui-cyan: #5b8dd9;
+  --ui-pink: #d4728a;
+  --ui-purple: #8b6cc7;
+  --ui-magenta: #9b6cc7;
+  --ui-green: #22c55e;
+  --ui-red: #ef4444;
+  --ui-yellow: #f7b801;
 
   /* 文字 */
-  --ui-text-primary: #ffffff;
-  --ui-text-secondary: #8888aa;
-  --ui-text-inactive: #6666aa;
-  --ui-text-danger: #ff6666;
+  --ui-text-primary: #e8e6e3;
+  --ui-text-secondary: #8a8a9a;
+  --ui-text-inactive: #4a4a6a;
+  --ui-text-danger: #ef4444;
 
   /* 间距 */
   --ui-padding-xs: 4px;

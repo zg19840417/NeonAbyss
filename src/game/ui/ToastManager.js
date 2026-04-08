@@ -31,7 +31,7 @@ export default class ToastManager {
     const width = this.scene.cameras.main.width;
 
     const typeConfig = {
-      info: { bg: 0x2a2520, border: 0xa8d8a8, color: '#d4ccc0' },
+      info: { bg: Const.COLORS.BG_MID, border: 0xa8d8a8, color: Const.TEXT_COLORS.PRIMARY },
       success: { bg: 0x003300, border: 0x00ff88, color: '#00ff88' },
       error: { bg: 0x330000, border: 0xff6b6b, color: '#ff6666' }
     };

@@ -104,7 +104,7 @@ export default class SettingsView {
     this.addText(width / 2, height - 130, t('game_title_zh') + ' v1.0.0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
-      color: '#6666aa'
+      color: Const.TEXT_COLORS.INACTIVE
     });
   }
 

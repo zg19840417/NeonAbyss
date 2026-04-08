@@ -1,5 +1,6 @@
 import ZoneData from '../../game/data/ZoneData.js';
 import EventManager from '../../game/systems/EventManager.js';
+import Const from '../../game/data/Const.js';
 
 export default class ZoneExploreView {
   constructor(scene, width, height) {
@@ -19,7 +20,7 @@ export default class ZoneExploreView {
     // 层数进度条
     const progressText = `层数: ${zm.currentLayer} / ${zoneInfo.totalLayers}`;
     this.scene.add.text(this.width / 2, 10, progressText, {
-      fontSize: '14px', color: '#d4a574', fontFamily: 'Arial'
+      fontSize: '14px', color: Const.TEXT_COLORS.GOLD, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
     // 当前层事件
@@ -69,7 +70,7 @@ export default class ZoneExploreView {
 
   _showBranchSelection(eventData, y, branchCount) {
     this.scene.add.text(this.width / 2, y, `选择路径 (${branchCount}选1)`, {
-      fontSize: '14px', color: '#d4a574', fontFamily: 'Arial'
+      fontSize: '14px', color: Const.TEXT_COLORS.GOLD, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
     const btnWidth = Math.min(120, (this.width - 40) / branchCount - 10);
@@ -118,7 +119,7 @@ export default class ZoneExploreView {
 
       case 'trade':
         this.scene.add.text(this.width / 2, y + 30, '发现商人！', {
-          fontSize: '14px', color: '#4dabf7', fontFamily: 'Arial'
+          fontSize: '14px', color: Const.TEXT_COLORS.CYAN, fontFamily: 'Arial'
         }).setOrigin(0.5);
         this._showContinueButton(y + 70, result.rewards);
         break;

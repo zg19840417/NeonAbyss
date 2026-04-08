@@ -1,4 +1,5 @@
 import { t, getLanguage, setLanguage, SUPPORTED_LANGUAGES } from '../game/data/Lang.js';
+import Const from '../game/data/Const.js';
 
 export default class MainMenuScene extends Phaser.Scene {
   constructor() {
@@ -6,12 +7,12 @@ export default class MainMenuScene extends Phaser.Scene {
     this.particles = [];
     this.config = {
       colors: {
-        bgDark: 0x0a0a14,
-        bgMid: 0x0d0d1d,
-        cyan: 0x00ffff,
-        magenta: 0xff00ff,
-        pink: 0xff66cc,
-        purple: 0x9933ff
+        bgDark: Const.COLORS.BG_DARK,
+        bgMid: Const.COLORS.BG_MID,
+        cyan: Const.COLORS.CYAN,
+        magenta: Const.COLORS.MAGENTA,
+        pink: Const.COLORS.PINK,
+        purple: Const.COLORS.PURPLE
       },
       animation: {
         particleCount: 30
@@ -37,26 +38,26 @@ export default class MainMenuScene extends Phaser.Scene {
 
   createBackground(width, height) {
     const bg = this.add.graphics();
-    bg.fillGradientStyle(0x0a0a14, 0x0a0a14, 0x080812, 0x080812, 1);
+    bg.fillGradientStyle(Const.COLORS.BG_DARK, Const.COLORS.BG_DARK, Const.COLORS.BG_LIGHT, Const.COLORS.BG_LIGHT, 1);
     bg.fillRect(0, 0, width, height);
 
     const grid = this.add.graphics();
     grid.setAlpha(0.06);
-    grid.lineStyle(1, 0x00ffff, 0.3);
+    grid.lineStyle(1, Const.COLORS.CYAN, 0.3);
     for (let x = 0; x < width; x += 40) grid.lineBetween(x, 0, x, height);
     for (let y = 0; y < height; y += 40) grid.lineBetween(0, y, width, y);
 
     const decor = this.add.graphics();
-    decor.lineStyle(2, 0x00ffff, 0.6);
+    decor.lineStyle(2, Const.COLORS.CYAN, 0.6);
     decor.lineBetween(20, 20, 60, 20);
     decor.lineBetween(20, 20, 20, 60);
-    decor.lineStyle(2, 0xff00ff, 0.6);
+    decor.lineStyle(2, Const.COLORS.MAGENTA, 0.6);
     decor.lineBetween(width - 20, 20, width - 60, 20);
     decor.lineBetween(width - 20, 20, width - 20, 60);
-    decor.lineStyle(2, 0x00ffff, 0.6);
+    decor.lineStyle(2, Const.COLORS.CYAN, 0.6);
     decor.lineBetween(20, height - 20, 60, height - 20);
     decor.lineBetween(20, height - 20, 20, height - 60);
-    decor.lineStyle(2, 0xff00ff, 0.6);
+    decor.lineStyle(2, Const.COLORS.MAGENTA, 0.6);
     decor.lineBetween(width - 20, height - 20, width - 60, height - 20);
     decor.lineBetween(width - 20, height - 20, width - 20, height - 60);
   }
@@ -66,17 +67,17 @@ export default class MainMenuScene extends Phaser.Scene {
       fontSize: '22px',
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#ff66cc'
+      color: Const.TEXT_COLORS.PINK
     }).setOrigin(0.5);
 
     const subtitle = this.add.text(width / 2, 220, t('game_title_en'), {
       fontSize: '12px',
       fontFamily: 'Arial',
-      color: '#00ffff'
+      color: Const.TEXT_COLORS.CYAN
     }).setOrigin(0.5);
 
     const glow = this.add.graphics();
-    glow.fillStyle(0xff66cc, 0.03);
+    glow.fillStyle(Const.COLORS.PINK, 0.03);
     glow.fillCircle(width / 2, 200, 80);
     glow.setBlendMode(Phaser.BlendModes.ADD);
 
@@ -105,7 +106,7 @@ export default class MainMenuScene extends Phaser.Scene {
     const tapHint = this.add.text(width / 2, height - 120, t('tap_to_start'), {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
-      color: '#8888aa'
+      color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
 
     this.tweens.add({
@@ -130,24 +131,24 @@ export default class MainMenuScene extends Phaser.Scene {
   createLanguageSwitch(width) {
     const langSwitch = this.add.container(width - 35, 35);
     langSwitch.setDepth(100);
-    
+
     const bg = this.add.graphics();
-    bg.fillStyle(0x1a1a2e, 0.95);
+    bg.fillStyle(Const.COLORS.BG_HOVER, 0.95);
     bg.fillRoundedRect(-25, -15, 50, 30, 8);
-    bg.lineStyle(1, 0xffd700, 0.5);
+    bg.lineStyle(1, Const.COLORS.GOLD, 0.5);
     bg.strokeRoundedRect(-25, -15, 50, 30, 8);
     langSwitch.add(bg);
-    
+
     const currentLang = getLanguage();
     const langText = currentLang === 'zh_cn' ? '中文' : 'EN';
-    
+
     const text = this.add.text(0, 0, langText, {
       fontSize: '12px',
       fontFamily: 'Noto Sans SC',
-      color: '#ffd700'
+      color: Const.TEXT_COLORS.GOLD
     }).setOrigin(0.5);
     langSwitch.add(text);
-    
+
     const hitArea = this.add.rectangle(width - 35, 35, 50, 30, 0x000000, 0);
     hitArea.setDepth(101);
     langSwitch.on('pointerdown', () => {
@@ -155,26 +156,26 @@ export default class MainMenuScene extends Phaser.Scene {
       setLanguage(newLang);
       this.scene.restart();
     });
-    
+
     langSwitch.on('pointerover', () => {
       bg.clear();
-      bg.fillStyle(0x2a2a4e, 0.95);
+      bg.fillStyle(Const.COLORS.BUTTON_HOVER, 0.95);
       bg.fillRoundedRect(-25, -15, 50, 30, 8);
-      bg.lineStyle(1, 0xffd700, 0.8);
+      bg.lineStyle(1, Const.COLORS.GOLD, 0.8);
       bg.strokeRoundedRect(-25, -15, 50, 30, 8);
     });
-    
+
     langSwitch.on('pointerout', () => {
       bg.clear();
-      bg.fillStyle(0x1a1a2e, 0.95);
+      bg.fillStyle(Const.COLORS.BG_HOVER, 0.95);
       bg.fillRoundedRect(-25, -15, 50, 30, 8);
-      bg.lineStyle(1, 0xffd700, 0.5);
+      bg.lineStyle(1, Const.COLORS.GOLD, 0.5);
       bg.strokeRoundedRect(-25, -15, 50, 30, 8);
     });
   }
 
   createParticles(width, height) {
-    const colors = [0x00ffff, 0xff00ff, 0xff66cc, 0xffff00, 0x9933ff];
+    const colors = [Const.COLORS.CYAN, Const.COLORS.MAGENTA, Const.COLORS.PINK, Const.COLORS.YELLOW, Const.COLORS.PURPLE];
     for (let i = 0; i < this.config.animation.particleCount; i++) {
       const p = this.add.graphics();
       const color = colors[Math.floor(Math.random() * colors.length)];
