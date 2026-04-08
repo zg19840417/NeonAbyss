@@ -12,8 +12,6 @@
         "amount": 500
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 1
   },
@@ -31,7 +29,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_002",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 2
   },
@@ -49,7 +46,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_003",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 3
   },
@@ -67,7 +63,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_004",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 4
   },
@@ -85,7 +80,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_005",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 5
   },
@@ -103,7 +97,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_006",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 6
   },
@@ -121,7 +114,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_007",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 7
   },
@@ -139,7 +131,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_008",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 8
   },
@@ -157,7 +148,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_009",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 9
   },
@@ -175,7 +165,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_010",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 10
   },
@@ -193,7 +182,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_011",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 11
   },
@@ -232,8 +220,6 @@
         "amount": 1000
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 13
   },
@@ -273,7 +259,6 @@
       }
     ],
     "titleReward": "TITLE_EXP_015_LE",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 15
   },
@@ -290,8 +275,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 1
   },
@@ -309,7 +292,6 @@
       }
     ],
     "titleReward": "TITLE_CMB_002",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 2
   },
@@ -348,8 +330,6 @@
         "amount": 500
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 4
   },
@@ -367,7 +347,6 @@
       }
     ],
     "titleReward": "TITLE_CMB_005",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 5
   },
@@ -384,8 +363,6 @@
         "amount": 200
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 6
   },
@@ -402,8 +379,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 7
   },
@@ -442,8 +417,6 @@
         "amount": 1000
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 9
   },
@@ -461,7 +434,6 @@
       }
     ],
     "titleReward": "TITLE_CMB_010",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 10
   },
@@ -478,8 +450,6 @@
         "amount": 500
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 1
   },
@@ -496,8 +466,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 2
   },
@@ -515,7 +483,6 @@
       }
     ],
     "titleReward": "TITLE_COL_003",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 3
   },
@@ -554,8 +521,6 @@
         "amount": 200
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 5
   },
@@ -573,7 +538,6 @@
       }
     ],
     "titleReward": "TITLE_COL_006",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 6
   },
@@ -591,7 +555,6 @@
       }
     ],
     "titleReward": "TITLE_COL_007",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 7
   },
@@ -601,15 +564,13 @@
     "name": "品质收集·SR",
     "description": "拥有全部SR品质融合姬",
     "condition": "own_all_quality",
-    "conditionValue": 1,
+    "conditionValue": 0,
     "rewards": [
       {
         "type": "sourceCore",
         "amount": 1000
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 8
   },
@@ -619,7 +580,7 @@
     "name": "品质收集·SSR",
     "description": "拥有全部SSR品质融合姬",
     "condition": "own_all_quality",
-    "conditionValue": 1,
+    "conditionValue": 0,
     "rewards": [
       {
         "type": "sourceCore",
@@ -630,7 +591,6 @@
         "id": "FRAME_COL_009"
       }
     ],
-    "titleReward": null,
     "frameReward": "FRAME_COL_009",
     "isHidden": false,
     "sortOrder": 9
@@ -641,7 +601,7 @@
     "name": "品质收集·UR",
     "description": "拥有全部UR品质融合姬",
     "condition": "own_all_quality",
-    "conditionValue": 1,
+    "conditionValue": 0,
     "rewards": [
       {
         "type": "sourceCore",
@@ -652,7 +612,6 @@
         "id": "FRAME_COL_010"
       }
     ],
-    "titleReward": null,
     "frameReward": "FRAME_COL_010",
     "isHidden": false,
     "sortOrder": 10
@@ -670,8 +629,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 1
   },
@@ -688,8 +645,6 @@
         "amount": 200
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 2
   },
@@ -707,7 +662,6 @@
       }
     ],
     "titleReward": "TITLE_GRW_003",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 3
   },
@@ -746,8 +700,6 @@
         "amount": 500
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 5
   },
@@ -764,8 +716,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 6
   },
@@ -786,7 +736,6 @@
         "id": "FRAME_GRW_007"
       }
     ],
-    "titleReward": null,
     "frameReward": "FRAME_GRW_007",
     "isHidden": false,
     "sortOrder": 7
@@ -804,8 +753,6 @@
         "amount": 500
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 8
   },
@@ -823,7 +770,6 @@
       }
     ],
     "titleReward": "TITLE_GRW_009_LE",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 9
   },
@@ -840,8 +786,6 @@
         "amount": 300
       }
     ],
-    "titleReward": null,
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 10
   },
@@ -859,7 +803,6 @@
       }
     ],
     "titleReward": "TITLE_SOC_001",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 1
   },
@@ -877,7 +820,6 @@
       }
     ],
     "titleReward": "TITLE_SOC_002",
-    "frameReward": null,
     "isHidden": false,
     "sortOrder": 2
   },
@@ -961,7 +903,6 @@
       }
     ],
     "titleReward": "TITLE_SPC_001",
-    "frameReward": null,
     "isHidden": true,
     "sortOrder": 1
   },
@@ -979,7 +920,6 @@
       }
     ],
     "titleReward": "TITLE_SPC_002",
-    "frameReward": null,
     "isHidden": true,
     "sortOrder": 2
   },

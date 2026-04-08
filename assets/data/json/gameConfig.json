@@ -1,0 +1,86 @@
+[
+  {
+    "configKey": "ENEMY_SPD_SCALE",
+    "configValue": "1.02",
+    "configType": 0,
+    "description": "敌人SPD等级缩放系数",
+    "category": "combat"
+  },
+  {
+    "configKey": "PLAYER_DEFAULT_CRIT_RATE",
+    "configValue": "0.15",
+    "configType": 0,
+    "description": "玩家默认暴击率",
+    "category": "combat"
+  },
+  {
+    "configKey": "ENEMY_DEFAULT_CRIT_RATE",
+    "configValue": "0.1",
+    "configType": 0,
+    "description": "敌人默认暴击率",
+    "category": "combat"
+  },
+  {
+    "configKey": "DEFAULT_DODGE_RATE",
+    "configValue": "0.05",
+    "configType": 0,
+    "description": "默认闪避率",
+    "category": "combat"
+  },
+  {
+    "configKey": "DEFAULT_DEFENSE",
+    "configValue": "5",
+    "configType": 0,
+    "description": "默认防御力",
+    "category": "combat"
+  },
+  {
+    "configKey": "PLAYER_CRIT_DAMAGE",
+    "configValue": "1.5",
+    "configType": 0,
+    "description": "玩家暴击伤害倍率",
+    "category": "combat"
+  },
+  {
+    "configKey": "ENEMY_CRIT_DAMAGE",
+    "configValue": "2",
+    "configType": 0,
+    "description": "敌人暴击伤害倍率",
+    "category": "combat"
+  },
+  {
+    "configKey": "DAMAGE_VARIANCE_MIN",
+    "configValue": "0.9",
+    "configType": 0,
+    "description": "伤害浮动下限",
+    "category": "combat"
+  },
+  {
+    "configKey": "DAMAGE_VARIANCE_MAX",
+    "configValue": "1.1",
+    "configType": 0,
+    "description": "伤害浮动上限",
+    "category": "combat"
+  },
+  {
+    "configKey": "DEF_COEFFICIENT",
+    "configValue": "0.5",
+    "configType": 0,
+    "description": "防御力伤害减免系数",
+    "category": "combat"
+  },
+  {
+    "configKey": "REPUTATION_BASE_EXP",
+    "configValue": "100",
+    "configType": 0,
+    "description": "声望基础经验",
+    "category": "progression"
+  },
+  {
+    "configKey": "REPUTATION_GROWTH_RATE",
+    "configValue": "1.2",
+    "configType": 0,
+    "description": "声望经验增长率",
+    "category": "progression"
+  }
+]

@@ -4,7 +4,7 @@
     "elementName": "水",
     "elementNameEn": "Water",
     "strongAgainst": "fire",
-    "weakAgainst": "wind",
+    "weakAgainst": "dark",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
   },
@@ -21,7 +21,7 @@
     "element": "wind",
     "elementName": "风",
     "elementNameEn": "Wind",
-    "strongAgainst": "dark",
+    "strongAgainst": "light",
     "weakAgainst": "fire",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
@@ -31,7 +31,7 @@
     "elementName": "光",
     "elementNameEn": "Light",
     "strongAgainst": "dark",
-    "weakAgainst": "dark",
+    "weakAgainst": "wind",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
   },
@@ -39,8 +39,8 @@
     "element": "dark",
     "elementName": "暗",
     "elementNameEn": "Dark",
-    "strongAgainst": "light",
-    "weakAgainst": "wind",
+    "strongAgainst": "water",
+    "weakAgainst": "light",
     "bonusMultiplier": 1.2,
     "resistMultiplier": 0.8
   }
