@@ -1,3 +1,5 @@
+import Const from '../../game/data/Const.js';
+
 export default class DungeonView {
   constructor(scene) {
     this.scene = scene;
@@ -8,7 +10,6 @@ export default class DungeonView {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
     const { t } = this.scene;
-    const { Const } = this.scene;
 
     this.addText(width / 2, 110, '禁区入口', {
       fontSize: Const.FONT.SIZE_NORMAL,
@@ -17,7 +18,7 @@ export default class DungeonView {
       color: Const.TEXT_COLORS.PINK
     });
 
-    this.addCard(width/2 - 120, 150, 240, 200, Const.COLORS.MAGENTA);
+    this.addCard(width / 2 - 120, 150, 240, 200, Const.COLORS.MAGENTA);
 
     const floor = window.gameData?.dungeon?.currentFloor || 1;
     this.addText(width / 2, 200, t('current_floor', { floor }), {
@@ -33,7 +34,7 @@ export default class DungeonView {
       color: Const.TEXT_COLORS.SECONDARY
     });
 
-    const teamCount = this.scene.baseSystem.getTeamMemberCount();
+    const teamCount = this.scene.minionCardManager?.getDeployedCards?.().length || 0;
     if (teamCount === 0) {
       this.addText(width / 2, 300, t('team_empty'), {
         fontSize: Const.FONT.SIZE_SMALL,
@@ -75,7 +76,7 @@ export default class DungeonView {
   }
 
   destroy() {
-    this.elements.forEach(el => el.destroy());
+    this.elements.forEach((element) => element.destroy());
     this.elements = [];
   }
 }

@@ -1,47 +1,45 @@
-/**
- * 奖励分发系统
- * 统一处理 exp/mycelium/sourceCore/minionCard/chip/shipPart 等奖励
- */
+import MinionCardManager from './MinionCardManager.js';
+import ChipCardManager from './ChipCardManager.js';
+
 export default class RewardManager {
   constructor() {
     this.rewardsLog = [];
   }
 
-  /**
-   * 分发奖励
-   * @param {Array} rewards - [{type, amount, id?, cardId?, quality?}] 奖励数组
-   * @returns {Object} 分发结果汇总
-   */
   distributeRewards(rewards) {
     const result = { exp: 0, mycelium: 0, sourceCore: 0, starCoin: 0, items: [] };
-    if (!Array.isArray(rewards)) return result;
+    if (!Array.isArray(rewards)) {
+      return result;
+    }
 
-    rewards.forEach(r => {
-      switch (r.type) {
+    rewards.forEach((reward) => {
+      switch (reward.type) {
         case 'exp':
-          result.exp += r.amount || 0;
-          this._addExp(r.amount);
+          result.exp += reward.amount || 0;
+          this._addExp(reward.amount);
           break;
         case 'mycelium':
-          result.mycelium += r.amount || 0;
-          this._addCurrency('mycelium', r.amount);
+          result.mycelium += reward.amount || 0;
+          this._addCurrency('mycelium', reward.amount);
           break;
         case 'sourceCore':
-          result.sourceCore += r.amount || 0;
-          this._addCurrency('sourceCore', r.amount);
+          result.sourceCore += reward.amount || 0;
+          this._addCurrency('sourceCore', reward.amount);
           break;
         case 'starCoin':
-          result.starCoin += r.amount || 0;
-          this._addCurrency('starCoin', r.amount);
+          result.starCoin += reward.amount || 0;
+          this._addCurrency('starCoin', reward.amount);
           break;
         case 'minionCard':
-          this._grantMinionCard(r, result);
+          this._grantMinionCard(reward, result);
           break;
         case 'chip':
-          this._grantChip(r, result);
+          this._grantChip(reward, result);
           break;
         case 'shipPart':
-          this._grantShipPart(r, result);
+          this._grantShipPart(reward, result);
+          break;
+        default:
           break;
       }
     });
@@ -50,117 +48,77 @@ export default class RewardManager {
     return result;
   }
 
-  /**
-   * 发放随从卡
-   * @param {Object} r - {type, cardId?, quality?, amount?}
-   * @param {Object} result - 结果汇总对象
-   */
-  _grantMinionCard(r, result) {
-    const manager = window.gameData?.minionCardManager;
-    if (!manager) {
-      console.warn('[RewardManager] minionCardManager未初始化，无法发放随从卡');
-      result.items.push({ type: 'minionCard', amount: r.amount || 1, success: false });
-      return;
-    }
-
-    const amount = r.amount || 1;
+  _grantMinionCard(reward, result) {
+    const manager = MinionCardManager.fromJSON(window.gameData?.minionCardManager || {});
+    const amount = reward.amount || 1;
     const granted = [];
 
-    for (let i = 0; i < amount; i++) {
-      if (r.cardId) {
-        // 指定cardId发放
+    for (let index = 0; index < amount; index += 1) {
+      if (reward.cardId) {
         const card = manager.addCard({
-          id: 'minion_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
-          minionId: r.cardId,
-          name: r.name || r.cardId,
-          quality: r.quality || 'N',
-          element: r.element || null,
-          race: r.race || 'plant',
-          charClass: r.charClass || r.profession || 'berserker',
+          id: `minion_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+          minionId: reward.cardId,
+          name: reward.name || reward.cardId,
+          quality: reward.quality || 'N',
+          element: reward.element || null,
+          race: reward.race || 'plant',
+          charClass: reward.charClass || reward.profession || 'berserker',
           level: 1,
           star: 1
         });
         granted.push(card);
-      } else if (r.quality) {
-        // 按品质随机发放
-        const card = manager.generateCardByRarity(r.quality);
-        granted.push(card);
+      } else if (reward.quality) {
+        granted.push(manager.generateCardByRarity(reward.quality));
       } else {
-        // 完全随机
-        const card = manager.generateRandomCard();
-        granted.push(card);
+        granted.push(manager.generateRandomCard());
       }
     }
 
+    window.gameData.minionCardManager = manager.toJSON();
     result.items.push({
       type: 'minionCard',
       amount: granted.length,
       success: true,
-      cards: granted.map(c => ({ id: c.id, name: c.name, quality: c.quality }))
+      cards: granted.map((card) => ({ id: card.id, name: card.name, quality: card.quality }))
     });
   }
 
-  /**
-   * 发放芯片
-   * @param {Object} r - {type, quality?, amount?}
-   * @param {Object} result - 结果汇总对象
-   */
-  _grantChip(r, result) {
-    const manager = window.gameData?.chipCardManager;
-    if (!manager) {
-      console.warn('[RewardManager] chipCardManager未初始化，无法发放芯片');
-      result.items.push({ type: 'chip', amount: r.amount || 1, success: false });
-      return;
-    }
-
-    const amount = r.amount || 1;
+  _grantChip(reward, result) {
+    const manager = ChipCardManager.fromJSON(window.gameData?.chipCardManager || {});
+    const amount = reward.amount || 1;
     const granted = [];
 
-    for (let i = 0; i < amount; i++) {
-      if (r.chipData) {
-        // 指定芯片数据
-        const addResult = manager.addCard(r.chipData);
-        if (addResult.success) granted.push(addResult.card);
+    for (let index = 0; index < amount; index += 1) {
+      if (reward.chipData) {
+        const addResult = manager.addCard(reward.chipData);
+        if (addResult.success) {
+          granted.push(addResult.card);
+        }
       } else {
-        // 随机生成
-        const card = manager.generateRandomCard();
-        granted.push(card);
+        granted.push(manager.generateRandomCard());
       }
     }
 
+    window.gameData.chipCardManager = manager.toJSON();
     result.items.push({
       type: 'chip',
       amount: granted.length,
       success: true,
-      chips: granted.map(c => ({ id: c.id, name: c.name, quality: c.quality }))
+      chips: granted.map((chip) => ({ id: chip.id, name: chip.name, quality: chip.quality }))
     });
   }
 
-  /**
-   * 记录方舟部件收集
-   * @param {Object} r - {type, id, name?}
-   * @param {Object} result - 结果汇总对象
-   */
-  _grantShipPart(r, result) {
-    if (!window.gameData) {
-      console.warn('[RewardManager] gameData未初始化，无法记录方舟部件');
-      result.items.push({ type: 'shipPart', id: r.id, success: false });
-      return;
-    }
-
-    // 初始化shipParts集合
+  _grantShipPart(reward, result) {
     if (!window.gameData.shipParts) {
       window.gameData.shipParts = [];
     }
 
-    const partId = r.id || r.partId;
+    const partId = reward.id || reward.partId;
     if (!partId) {
-      console.warn('[RewardManager] shipPart缺少id');
       result.items.push({ type: 'shipPart', success: false });
       return;
     }
 
-    // 检查是否已收集
     if (!window.gameData.shipParts.includes(partId)) {
       window.gameData.shipParts.push(partId);
     }
@@ -168,7 +126,7 @@ export default class RewardManager {
     result.items.push({
       type: 'shipPart',
       id: partId,
-      name: r.name || partId,
+      name: reward.name || partId,
       success: true
     });
   }
@@ -181,8 +139,7 @@ export default class RewardManager {
 
   _addCurrency(type, amount) {
     if (window.gameData?.base) {
-      const current = window.gameData.base[type] || 0;
-      window.gameData.base[type] = current + (amount || 0);
+      window.gameData.base[type] = (window.gameData.base[type] || 0) + (amount || 0);
     }
   }
 

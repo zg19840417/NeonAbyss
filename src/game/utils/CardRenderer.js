@@ -82,21 +82,15 @@ export default class CardRenderer {
     portraitBg.strokeRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
     container.add(portraitBg);
 
-    const portraitMask = scene.add.graphics();
-    portraitMask.fillStyle(0xffffff, 1);
-    portraitMask.fillRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
-    portraitMask.visible = false;
-    container.add(portraitMask);
-
     const portraitContainer = scene.add.container(0, portraitY + portraitHeight / 2);
-    if (portraitKey && scene.textures.exists(portraitKey)) {
-      const image = scene.add.image(0, 0, portraitKey);
-      const frame = scene.textures.getFrame(portraitKey, '__BASE');
+    const resolvedPortraitKey = this.resolvePortraitTextureKey(scene, portraitKey, element);
+    if (resolvedPortraitKey) {
+      const image = scene.add.image(0, 0, resolvedPortraitKey);
+      const frame = scene.textures.getFrame(resolvedPortraitKey, '__BASE');
       const sourceWidth = frame?.width || portraitWidth;
       const sourceHeight = frame?.height || portraitHeight;
       const fitScale = Math.min(portraitWidth / sourceWidth, portraitHeight / sourceHeight);
       image.setScale(fitScale);
-      image.setMask(portraitMask.createGeometryMask());
       portraitContainer.add(image);
     } else {
       portraitContainer.add(scene.add.text(0, 0, elementStyle.icon, {
@@ -183,7 +177,6 @@ export default class CardRenderer {
       width = 340,
       card,
       portraitKey = null,
-      actionLabel = '上阵',
       onClick = null,
       onAction = null
     } = options;
@@ -212,9 +205,12 @@ export default class CardRenderer {
     portraitBox.strokeRoundedRect(-width / 2 + 10, -28, 56, 56, 12);
     container.add(portraitBox);
 
-    if (portraitKey && scene.textures.exists(portraitKey)) {
-      const portrait = scene.add.image(-width / 2 + 38, 0, portraitKey);
-      portrait.setDisplaySize(48, 48);
+    const resolvedPortraitKey = this.resolvePortraitTextureKey(scene, portraitKey, card?.element);
+    if (resolvedPortraitKey) {
+      const portrait = scene.add.image(-width / 2 + 38, 0, resolvedPortraitKey);
+      const frame = scene.textures.getFrame(resolvedPortraitKey, '__BASE');
+      const fitScale = Math.min(48 / (frame?.width || 48), 48 / (frame?.height || 48));
+      portrait.setScale(fitScale);
       container.add(portrait);
     } else {
       container.add(scene.add.text(-width / 2 + 38, 0, element.icon, {
@@ -253,14 +249,7 @@ export default class CardRenderer {
       color: Const.TEXT_COLORS.PRIMARY
     }).setOrigin(0, 0.5));
 
-    const actionButton = this.createInlineButton(scene, width / 2 - 42, 0, actionLabel, () => {
-      if (typeof onAction === 'function') {
-        onAction(card);
-      }
-    });
-    container.add(actionButton);
-
-    container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -rowHeight / 2, width - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
+    container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -rowHeight / 2, width, rowHeight), Phaser.Geom.Rectangle.Contains);
     container.__baseScaleX = 1;
     container.__baseScaleY = 1;
     container.on('pointerdown', () => {
@@ -387,21 +376,15 @@ export default class CardRenderer {
     bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 18);
     container.add(bg);
 
-    const maskShape = scene.add.graphics();
-    maskShape.fillStyle(0xffffff, 1);
-    maskShape.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
-    maskShape.visible = false;
-    container.add(maskShape);
-
-    if (portraitKey && scene.textures.exists(portraitKey)) {
-      const frame = scene.textures.getFrame(portraitKey, '__BASE');
-      const image = scene.add.image(0, 0, portraitKey);
+    const resolvedPortraitKey = this.resolvePortraitTextureKey(scene, portraitKey, element);
+    if (resolvedPortraitKey) {
+      const frame = scene.textures.getFrame(resolvedPortraitKey, '__BASE');
+      const image = scene.add.image(0, 0, resolvedPortraitKey);
       const fitScale = Math.min(
         width / (frame?.width || width),
         height / (frame?.height || height)
       );
       image.setScale(fitScale);
-      image.setMask(maskShape.createGeometryMask());
       container.add(image);
     } else {
       container.add(scene.add.text(0, 0, this.getElementStyle(element).icon, {
@@ -588,4 +571,15 @@ export default class CardRenderer {
     if (['N', 'R', 'SR', 'SSR', 'UR', 'LE'].includes(input)) return input;
     return { common: 'N', rare: 'R', epic: 'SR', legendary: 'SSR' }[input] || 'N';
   }
+  static resolvePortraitTextureKey(scene, portraitKey, element) {
+    if (portraitKey && scene.textures.exists(portraitKey)) {
+      return portraitKey;
+    }
+    const placeholderKey = `portrait-placeholder-${element || 'water'}`;
+    if (scene.textures.exists(placeholderKey)) {
+      return placeholderKey;
+    }
+    return null;
+  }
 }
+

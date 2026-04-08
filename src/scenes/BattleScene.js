@@ -3,6 +3,7 @@ import EventBus from '../game/EventBus.js';
 import MinionCard from '../game/entities/MinionCard.js';
 import Const from '../game/data/Const.js';
 import CardRenderer from '../game/utils/CardRenderer.js';
+import { extractPortraitKey } from '../game/utils/PortraitRegistry.js';
 
 const RARITY_TO_QUALITY = {
   common: 'N',
@@ -10,14 +11,6 @@ const RARITY_TO_QUALITY = {
   epic: 'SR',
   legendary: 'SSR'
 };
-
-const PORTRAIT_KEY_MAP = {};
-
-function extractPortraitKey(portraitPath) {
-  if (!portraitPath) return null;
-  const fileName = portraitPath.split('/').pop().replace('.png', '');
-  return PORTRAIT_KEY_MAP[fileName] || fileName;
-}
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
@@ -145,7 +138,7 @@ export default class BattleScene extends Phaser.Scene {
 
   getRowPositions(width, count) {
     const cardWidth = Const.BATTLE.LAYOUT.CARD_WIDTH;
-    const gap = 8;
+    const gap = 6;
     const totalWidth = count * cardWidth + (count - 1) * gap;
     const startX = (width - totalWidth) / 2 + cardWidth / 2;
     return Array.from({ length: count }, (_, index) => startX + index * (cardWidth + gap));
@@ -551,3 +544,4 @@ export default class BattleScene extends Phaser.Scene {
     this.tweens.killAll();
   }
 }
+

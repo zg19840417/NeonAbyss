@@ -1,6 +1,7 @@
 ﻿import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
 import CardRenderer from '../../game/utils/CardRenderer.js';
+import { extractPortraitKey } from '../../game/utils/PortraitRegistry.js';
 import { RoleType } from '../../game/data/CharacterClass.js';
 
 const RARITY_TO_QUALITY = {
@@ -9,8 +10,6 @@ const RARITY_TO_QUALITY = {
   epic: 'SR',
   legendary: 'SSR'
 };
-
-const PORTRAIT_KEY_MAP = {};
 
 const ROLE_STYLE = {
   [RoleType.TANK]: { label: 'T', color: 0x4dabf7 },
@@ -26,12 +25,6 @@ const ELEMENT_STYLE = {
   light: { label: 'L', color: 0xf7b801, emoji: '✨' },
   dark: { label: 'D', color: 0x845ef7, emoji: '🌑' }
 };
-
-function extractPortraitKey(portraitPath) {
-  if (!portraitPath) return null;
-  const fileName = portraitPath.split('/').pop().replace('.png', '');
-  return PORTRAIT_KEY_MAP[fileName] || fileName;
-}
 
 export default class TeamView {
   constructor(scene) {
@@ -67,8 +60,8 @@ export default class TeamView {
     });
 
     const deployedMinions = this.scene.minionCardManager.getDeployedCards?.() || [];
-    const cardY = contentTop + 116;
-    const spacing = 104;
+    const cardY = contentTop + 120;
+    const spacing = 112;
     const cardXs = [width / 2 - spacing, width / 2, width / 2 + spacing];
 
     for (let index = 0; index < 3; index++) {
@@ -80,8 +73,8 @@ export default class TeamView {
       }
     }
 
-    this.renderChipAura(width / 2, contentTop + 246, width - 30);
-    this.formationBottom = contentTop + 286;
+    this.renderChipAura(width / 2, contentTop + 268, width - 24);
+    this.formationBottom = contentTop + 312;
   }
 
   renderDeployedMinionCard(x, y, card) {
@@ -105,15 +98,15 @@ export default class TeamView {
     this.elements.push(cardContainer);
     CardRenderer.addInteraction(this.scene, cardContainer, () => this.showCardDetail(card, true));
 
-    const action = this.createActionButton(x, y + 88, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
+    const action = this.createActionButton(x, y + 98, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
       this.toggleDeploy(card, true);
     }, 50, 22);
     action.setDepth(Const.DEPTH.CONTENT + 2);
   }
 
   renderEmptySlot(x, y, label) {
-    const width = 82;
-    const height = 126;
+    const width = 96;
+    const height = 145;
     const container = this.scene.add.container(x, y);
 
     const bg = this.scene.add.graphics();
@@ -273,9 +266,7 @@ export default class TeamView {
       width,
       card,
       portraitKey: extractPortraitKey(card.portrait),
-      actionLabel: '上阵',
-      onClick: () => this.showCardDetail(card, true),
-      onAction: () => this.toggleDeploy(card, true)
+      onClick: () => this.showCardDetail(card, true)
     });
 
     this.contentContainer.add(row);
@@ -335,13 +326,8 @@ export default class TeamView {
       row.add(this.createMiniBadge(rowWidth / 2 - 76 + index * 24, 12, 20, 18, color, icon));
     });
 
-    const button = this.createInlineButton(rowWidth / 2 - 42, 0, '装备', () => {
-      this.toggleDeploy(chip, false);
-    });
-    row.add(button);
-
     row.setSize(rowWidth, rowHeight);
-    row.setInteractive(new Phaser.Geom.Rectangle(-rowWidth / 2, -rowHeight / 2, rowWidth - 72, rowHeight), Phaser.Geom.Rectangle.Contains);
+    row.setInteractive(new Phaser.Geom.Rectangle(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight), Phaser.Geom.Rectangle.Contains);
     row.on('pointerdown', () => this.showCardDetail(chip, false));
     row.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, row, true));
     row.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, row, false));
@@ -415,15 +401,9 @@ export default class TeamView {
       container.add(this.createMiniBadge(width / 2 - 76 + index * 24, 18, 20, 18, color, icon));
     });
 
-    const actionLabel = this.scene.chipCardManager?.equippedCard?.id === chip.id ? '卸下' : '装备';
-    const action = this.createInlineButton(width / 2 - 46, 0, actionLabel, () => {
-      this.toggleDeploy(chip, false);
-    }, 50, 24);
-    container.add(action);
-
     if (interactive) {
       container.setSize(width, height);
-      container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width - 70, height), Phaser.Geom.Rectangle.Contains);
+      container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
       container.on('pointerdown', () => this.showCardDetail(chip, false));
       container.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, container, true));
       container.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, container, false));
@@ -511,13 +491,43 @@ export default class TeamView {
 
     button.setSize(width, height);
     button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
-    button.on('pointerdown', () => callback());
+    button.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+      callback();
+    });
     button.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
     button.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
     this.elements.push(button);
     return button;
   }
 
+
+  createModalActionButton(x, y, label, color, callback, width = 52, height = 24) {
+    const button = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(color, 1);
+    bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.75);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    button.add(bg);
+
+    button.add(this.scene.add.text(0, 0, label, {
+      fontSize: '11px',
+      fontFamily: Const.FONT.FAMILY_CN,
+      color: Const.TEXT_COLORS.PRIMARY,
+      fontStyle: 'bold'
+    }).setOrigin(0.5));
+
+    button.setSize(width, height);
+    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+    button.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+      callback();
+    });
+    button.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
+    button.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
+    return button;
+  }
   setupScroll(contentHeight) {
     this.clearScroll();
 
@@ -587,18 +597,39 @@ export default class TeamView {
   toggleDeploy(card, isMinion) {
     if (isMinion) {
       if (this.scene.minionCardManager.deployedCards.includes(card.id)) {
-        this.scene.minionCardManager.undeployCard(card.id);
-      } else {
-        const result = this.scene.minionCardManager.deployCard(card.id);
-        if (!result.success && result.reason === 'max_deploy_reached') {
-          this.scene.showToast?.('随从上阵位已满');
+        const result = this.scene.minionCardManager.undeployCard(card.id);
+        if (!result.success) {
+          this.scene.showToast?.('卸下失败');
           return;
         }
+        this.scene.showToast?.('已卸下随从');
+      } else {
+        const result = this.scene.minionCardManager.deployCard(card.id);
+        if (!result.success) {
+          const message = {
+            max_deploy_reached: '随从上阵位已满',
+            card_not_found: '未找到这张随从卡',
+            already_deployed: '该随从已在阵容中'
+          }[result.reason] || '上阵失败';
+          this.scene.showToast?.(message);
+          return;
+        }
+        this.scene.showToast?.('已上阵随从');
       }
     } else if (this.scene.chipCardManager.equippedCard?.id === card.id) {
-      this.scene.chipCardManager.unequipCard();
+      const result = this.scene.chipCardManager.unequipCard();
+      if (!result.success) {
+        this.scene.showToast?.('卸下芯片失败');
+        return;
+      }
+      this.scene.showToast?.('已卸下芯片');
     } else {
-      this.scene.chipCardManager.equipCard(card.id);
+      const result = this.scene.chipCardManager.equipCard(card.id);
+      if (!result.success) {
+        this.scene.showToast?.('装备芯片失败');
+        return;
+      }
+      this.scene.showToast?.('已装备芯片');
     }
 
     this.scene.saveGameData();
@@ -608,15 +639,31 @@ export default class TeamView {
   showCardDetail(card, isMinion) {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
+    const modalWidth = 336;
+    const modalHeight = 524;
 
     const overlay = this.scene.add.graphics();
     overlay.fillStyle(Const.COLORS.BG_DARK, Const.ALPHA.OVERLAY);
     overlay.fillRect(0, 0, width, height);
     overlay.setDepth(Const.DEPTH.MODAL_OVERLAY);
     overlay.setAlpha(0);
-    overlay.setInteractive();
-    overlay.on('pointerdown', () => this.closeCardDetail());
     this.overlayElements.push(overlay);
+
+    const closeZone = this.scene.add.zone(width / 2, height / 2, width, height);
+    closeZone.setDepth(Const.DEPTH.MODAL_OVERLAY);
+    closeZone.setInteractive();
+    closeZone.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+      const left = width / 2 - modalWidth / 2;
+      const right = width / 2 + modalWidth / 2;
+      const top = height / 2 - modalHeight / 2;
+      const bottom = height / 2 + modalHeight / 2;
+      if (pointer.x >= left && pointer.x <= right && pointer.y >= top && pointer.y <= bottom) {
+        return;
+      }
+      this.closeCardDetail();
+    });
+    this.overlayElements.push(closeZone);
 
     this.scene.tweens.add({
       targets: overlay,
@@ -632,26 +679,22 @@ export default class TeamView {
 
     const bg = this.scene.add.graphics();
     const accentColor = isMinion ? this.getQualityColorInt(RARITY_TO_QUALITY[card.rarity] || 'N') : this.getQualityColorInt(card.quality || 'N');
-    bg.fillStyle(Const.COLORS.BG_MID, 1);
-    bg.lineStyle(2, accentColor, 0.8);
-    bg.fillRoundedRect(-154, -244, 308, 488, Const.UI.CARD_RADIUS);
-    bg.strokeRoundedRect(-154, -244, 308, 488, Const.UI.CARD_RADIUS);
+    bg.fillStyle(0x0b0f18, 0.98);
+    bg.fillRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 22);
     modal.add(bg);
 
-    const closeBtn = this.scene.add.text(132, -220, 'X', {
-      fontSize: '18px',
-      fontFamily: Const.FONT.FAMILY_EN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
-    closeBtn.on('pointerdown', () => this.closeCardDetail());
-    modal.add(closeBtn);
-
     if (isMinion) {
+      const isDeployed = this.scene.minionCardManager?.deployedCards?.includes(card.id);
+      const portraitShadow = this.scene.add.graphics();
+      portraitShadow.fillStyle(0x000000, 0.28);
+      portraitShadow.fillRoundedRect(-156, -246, 312, 394, 22);
+      modal.add(portraitShadow);
+
       const portrait = CardRenderer.createDetailPortrait(this.scene, {
         x: 0,
-        y: -74,
-        width: 252,
-        height: 326,
+        y: -49,
+        width: 304,
+        height: 390,
         quality: RARITY_TO_QUALITY[card.rarity] || 'N',
         portraitKey: extractPortraitKey(card.portrait),
         element: card.element || 'water'
@@ -659,51 +702,52 @@ export default class TeamView {
       modal.add(portrait);
 
       const infoPanel = this.scene.add.graphics();
-      infoPanel.fillStyle(0x0b0f18, 0.97);
-      infoPanel.lineStyle(1.5, accentColor, 0.7);
-      infoPanel.fillRoundedRect(-126, 112, 252, 110, 16);
-      infoPanel.strokeRoundedRect(-126, 112, 252, 110, 16);
+      infoPanel.fillStyle(0x0f1522, 0.98);
+      infoPanel.lineStyle(1, accentColor, 0.35);
+      infoPanel.fillRoundedRect(-152, 160, 304, 78, 18);
+      infoPanel.strokeRoundedRect(-152, 160, 304, 78, 18);
       modal.add(infoPanel);
 
-      modal.add(this.scene.add.text(-110, 132, card.name, {
-        fontSize: '16px',
+      modal.add(this.scene.add.text(-132, 182, card.name, {
+        fontSize: '18px',
         fontFamily: Const.FONT.FAMILY_CN,
         fontStyle: 'bold',
         color: this.getQualityColorText(RARITY_TO_QUALITY[card.rarity] || 'N')
       }).setOrigin(0, 0.5));
 
-      modal.add(this.scene.add.text(110, 132, `Lv${card.level || 1}`, {
-        fontSize: '12px',
+      modal.add(this.scene.add.text(132, 182, `Lv${card.level || 1}`, {
+        fontSize: '14px',
         fontFamily: Const.FONT.FAMILY_EN,
         fontStyle: 'bold',
         color: Const.TEXT_COLORS.CYAN
       }).setOrigin(1, 0.5));
 
-      modal.add(this.scene.add.text(-110, 158, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
-        fontSize: '12px',
+      modal.add(this.scene.add.text(-132, 206, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
+        fontSize: '13px',
         fontFamily: Const.FONT.FAMILY_EN,
         color: Const.TEXT_COLORS.PRIMARY
       }).setOrigin(0, 0.5));
 
-      modal.add(this.scene.add.text(-110, 184, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji}  能力x${this.getAbilityCount(card)}   速度 ${this.getSpeedValue(card)}`, {
+      modal.add(this.scene.add.text(-132, 228, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji}  能力x${this.getAbilityCount(card)}   品质 ${RARITY_TO_QUALITY[card.rarity] || 'N'}`, {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.TEXT_COLORS.SECONDARY
       }).setOrigin(0, 0.5));
 
-      modal.add(this.scene.add.text(-110, 206, `品质 ${RARITY_TO_QUALITY[card.rarity] || 'N'}   ${'★'.repeat(Math.min(card.star || 1, 5))}`, {
+      modal.add(this.scene.add.text(132, 228, `${'★'.repeat(Math.min(card.star || 1, 5))}`, {
         fontSize: '11px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: '#ffd166'
-      }).setOrigin(0, 0.5));
+      }).setOrigin(1, 0.5));
 
-      if (card.passiveSkill) {
-        modal.add(this.scene.add.text(-110, 226, `被动: ${card.passiveSkill.icon || ''} ${card.passiveSkill.name || ''}`, {
-          fontSize: '11px',
-          fontFamily: Const.FONT.FAMILY_CN,
-          color: Const.TEXT_COLORS.SUCCESS
-        }).setOrigin(0, 0.5));
-      }
+      const actionLabel = isDeployed ? '卸下' : '上阵';
+      const actionColor = isDeployed ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN;
+      const actionBtn = this.createModalActionButton((card.star || 1) < 5 ? -62 : 0, 278, actionLabel, actionColor, () => {
+        this.closeCardDetail();
+        this.toggleDeploy(card, true);
+      }, 118, 32);
+      actionBtn.setDepth(Const.DEPTH.MODAL_UI);
+      modal.add(actionBtn);
     } else {
       const detailCard = CardRenderer.createChipCard(this.scene, {
         x: 0,
@@ -716,16 +760,8 @@ export default class TeamView {
         interactive: false
       });
       modal.add(detailCard);
-    }
-
-    modal.add(this.scene.add.text(0, isMinion ? 90 : 34, isMinion ? '立绘详情' : '芯片详情', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: isMinion ? '#ff6b6b' : '#4dabf7'
-    }).setOrigin(0.5));
-
-    let cursorY = 62;
-    if (!isMinion) {
+      const isEquipped = this.scene.chipCardManager?.equippedCard?.id === card.id;
+      let cursorY = 62;
       modal.add(this.scene.add.text(-108, cursorY, this.getChipAuraText(card), {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_EN,
@@ -741,12 +777,19 @@ export default class TeamView {
         }).setOrigin(0, 0.5));
         cursorY += 22;
       });
+
+      const chipAction = this.createModalActionButton(0, 176, isEquipped ? '卸下' : '装备', isEquipped ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN, () => {
+        this.closeCardDetail();
+        this.toggleDeploy(card, false);
+      }, 112, 30);
+      chipAction.setDepth(Const.DEPTH.MODAL_UI);
+      modal.add(chipAction);
     }
 
     if ((isMinion && (card.star || 1) < 5) || (!isMinion && card.canUpgradeStar?.())) {
-      const upgradeBtn = this.createActionButton(0, isMinion ? 210 : 176, '升星', Const.COLORS.PURPLE, () => {
+      const upgradeBtn = this.createModalActionButton(isMinion ? 74 : -64, isMinion ? 278 : 176, '升星', Const.COLORS.PURPLE, () => {
         this.upgradeCard(card, isMinion);
-      }, 88, 28);
+      }, 88, 30);
       upgradeBtn.setDepth(Const.DEPTH.MODAL_UI);
       modal.add(upgradeBtn);
     }
@@ -866,3 +909,6 @@ export default class TeamView {
     this.maskGraphics = null;
   }
 }
+
+
+

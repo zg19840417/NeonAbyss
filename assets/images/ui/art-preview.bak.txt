@@ -1,0 +1,935 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搴熷湡鍏冨勾 - 缇庢湳璧勬簮棰勮</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: #1a1815;
+      color: #d4ccc0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #d4a574;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    
+    h2 {
+      color: #d4a574;
+      border-bottom: 2px solid #4a4540;
+      padding-bottom: 10px;
+      margin: 40px 0 20px 0;
+    }
+    
+    h3 {
+      color: #a8d8a8;
+      margin: 20px 0 10px 0;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .card {
+      background: #2a2520;
+      border: 1px solid #4a4540;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .card-preview {
+      width: 100%;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-info {
+      padding: 15px;
+    }
+    
+    .card-name {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    
+    .card-type {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    
+    .card-desc {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.4;
+    }
+    
+    /* 瑙掕壊绫诲瀷棰滆壊 */
+    .type-tank { border-left: 4px solid #4a90d9; }
+    .type-dps { border-left: 4px solid #d94a4a; }
+    .type-support { border-left: 4px solid #d9a54a; }
+    .type-healer { border-left: 4px solid #4ad97a; }
+    .type-legendary { border-left: 4px solid #d94ad9; }
+    .type-enemy { border-left: 4px solid #8b4513; }
+    .type-boss { border-left: 4px solid #ff4444; }
+    
+    /* 瑙掕壊鍗犱綅绗︽牱寮?*/
+    .char-placeholder {
+      width: 140px;
+      height: 200px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .char-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.1;
+    }
+    
+    /* 鍧﹀厠绫?- 娣辩豢闈掗摐 */
+    .char-tank {
+      background: linear-gradient(135deg, #2d4a3e 0%, #1a2f26 100%);
+      border: 2px solid #4a7c59;
+    }
+    .char-tank::before { background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(168,216,168,0.1) 10px, rgba(168,216,168,0.1) 20px); }
+    
+    /* 杈撳嚭绫?- 琛€绾㈡殫閲?*/
+    .char-dps {
+      background: linear-gradient(135deg, #4a2d2d 0%, #2f1a1a 100%);
+      border: 2px solid #7c4a4a;
+    }
+    .char-dps::before { background: radial-gradient(circle at 50% 50%, rgba(216,168,168,0.2), transparent); }
+    
+    /* 杈呭姪绫?- 鍐涚豢閲?*/
+    .char-support {
+      background: linear-gradient(135deg, #3e4a2d 0%, #262f1a 100%);
+      border: 2px solid #6b7c4a;
+    }
+    .char-support::before { background: linear-gradient(180deg, transparent, rgba(212,165,116,0.1)); }
+    
+    /* 娌荤枟绫?- 鐧介噾绁炲湥 */
+    .char-healer {
+      background: linear-gradient(135deg, #4a4a3e 0%, #2f2f26 100%);
+      border: 2px solid #c0c0a0;
+    }
+    .char-healer::before { background: radial-gradient(ellipse at center, rgba(255,255,220,0.15), transparent); }
+    
+    /* 浼犺绾?- 榛戦噾琛€绾?*/
+    .char-legendary {
+      background: linear-gradient(135deg, #2d2d3e 0%, #1a1a26 100%);
+      border: 2px solid #7c6b8c;
+      box-shadow: 0 0 20px rgba(217,74,217,0.3);
+    }
+    .char-legendary::before { 
+      background: conic-gradient(from 0deg, transparent, rgba(217,74,217,0.2), transparent, rgba(212,165,116,0.2), transparent); 
+    }
+    
+    /* 鏁屼汉 - 鏆楄壊璋?*/
+    .char-enemy {
+      background: linear-gradient(135deg, #3e2d2d 0%, #261a1a 100%);
+      border: 2px solid #5c3d3d;
+    }
+    .char-enemy::before { background: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(139,69,19,0.1) 5px, rgba(139,69,19,0.1) 10px); }
+    
+    /* BOSS - 绾㈤粦璀﹀憡鑹?*/
+    .char-boss {
+      background: linear-gradient(135deg, #4a1a1a 0%, #2f0d0d 100%);
+      border: 3px solid #ff4444;
+      box-shadow: 0 0 25px rgba(255,68,68,0.4);
+      animation: bossGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes bossGlow {
+      from { box-shadow: 0 0 25px rgba(255,68,68,0.4); }
+      to { box-shadow: 0 0 35px rgba(255,68,68,0.6); }
+    }
+    .char-boss::before { 
+      background: radial-gradient(circle at 50% 30%, rgba(255,68,68,0.3), transparent 70%); 
+    }
+    
+    .char-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+    
+    .char-name-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    /* UI 鍏冪礌灞曠ず */
+    .ui-showcase {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 20px;
+      background: #222;
+      border-radius: 8px;
+    }
+    
+    .ui-item {
+      text-align: center;
+    }
+    
+    .btn-demo {
+      padding: 14px 28px;
+      background: #2a2520;
+      border: 1px solid #4a4540;
+      color: #d4ccc0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .btn-demo:hover {
+      background: #3a3530;
+      color: #d4a574;
+      transform: scale(1.05);
+    }
+    
+    .hp-bar-demo {
+      width: 200px;
+      height: 14px;
+      background: #1a1815;
+      border-radius: 0;
+      position: relative;
+      margin: 10px auto;
+    }
+    
+    .hp-fill {
+      height: 100%;
+      border-radius: 0;
+      transition: width 0.3s;
+    }
+    
+    .hp-friendly {
+      background: linear-gradient(90deg, #a8d8a8, #c8f0c8);
+      width: 75%;
+    }
+    
+    .hp-enemy {
+      background: linear-gradient(90deg, #d8a8a8, #e8c8c8);
+      width: 60%;
+    }
+    
+    .hp-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    
+    /* 缁熻淇℃伅 */
+    .stats {
+      display: inline-flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #222;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .stat-label {
+      color: #888;
+    }
+    
+    .stat-value {
+      color: #d4a574;
+      font-weight: bold;
+    }
+    
+    /* 棰滆壊鏍锋湰 */
+    .color-palette {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    
+    .color-swatch {
+      width: 80px;
+      height: 60px;
+      border-radius: 6px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 5px;
+      font-size: 10px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+      font-weight: bold;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      border-top: 1px solid #4a4540;
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>馃幃 搴熷湡鍏冨勾 - 缇庢湳璧勬簮璁捐瑙勮寖</h1>
+
+<div class="section">
+  <h2>馃搳 椤圭洰姒傝</h2>
+  <div class="stats">
+    <div class="stat-item"><span class="stat-label">鑱屼笟鎬绘暟:</span><span class="stat-value">16绉?/span></div>
+    <div class="stat-item"><span class="stat-label">鏅€氭晫浜?</span><span class="stat-value">10绉?/span></div>
+    <div class="stat-item"><span class="stat-label">BOSS:</span><span class="stat-value">5涓?/span></div>
+    <div class="stat-item"><span class="stat-label">UI鍏冪礌:</span><span class="stat-value">瀹屾暣</span></div>
+    <div class="stat-item"><span class="stat-label">鍦烘櫙鑳屾櫙:</span><span class="stat-value">3濂?/span></div>
+  </div>
+  
+  <h3 style="margin-top: 20px;">馃帹 鏍稿績鑹插僵鏂规</h3>
+  <div class="color-palette">
+    <div class="color-swatch" style="background: #1a1815;">#1a1815<br>鑳屾櫙</div>
+    <div class="color-swatch" style="background: #2a2520;">#2a2520<br>闈㈡澘</div>
+    <div class="color-swatch" style="background: #4a4540;">#4a4540<br>杈规</div>
+    <div class="color-swatch" style="background: #d4ccc0;">#d4ccc0<br>鏂囧瓧</div>
+    <div class="color-swatch" style="background: #d4a574;">#d4a574<br>鐞ョ弨</div>
+    <div class="color-swatch" style="background: #a8d8a8;">#a8d8a8<br>绁炲湥缁?/div>
+    <div class="color-swatch" style="background: #d8a8a8;">#d8a8a8<br>鑵愯触绾?/div>
+  </div>
+</div>
+
+<!-- 鍧﹀厠绫昏亴涓?-->
+<div class="section">
+  <h2>馃洝锔?鍧﹀厠绫昏亴涓氾紙4绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #4a7c59;">馃洝锔?/div>
+          <div class="char-name-overlay">閾佸鍗＋</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">閾佸鍗＋ (Iron Wall Guardian)</div>
+        <div class="card-type">鍧﹀厠 路 妞嶇墿+閲嶇敳铻嶅悎</div>
+        <div class="card-desc">鍘氶噸鏉跨敳缂犵粫鍙戝厜钘よ敁锛岀繝缁胯壊鐪肩潧锛屾寔宸ㄧ浘濮挎€佺ǔ閲?/div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #c0c0a0;">鉁?/div>
+          <div class="char-name-overlay">鐢熷懡瀹堟姢鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鐢熷懡瀹堟姢鑰?(Life Guardian)</div>
+        <div class="card-type">鍧﹀厠/娌荤枟 路 鍔ㄧ墿铻嶅悎</div>
+        <div class="card-desc">鐧借壊闀胯缁ｇ敓鍛戒箣鏍戯紝鐏甸箍瑙掞紝鎵嬫寔鍏夌悆娉曟潠</div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #ff8c00;">鈿欙笍</div>
+          <div class="char-name-overlay">閽㈤搧澹佸瀿</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">閽㈤搧澹佸瀿 (Steel Bastion)</div>
+        <div class="card-type">鍧﹀厠 路 绾満姊?/div>
+        <div class="card-desc">鍏ㄨ鐩栭噸鍨嬭鐢诧紝姗欒壊鑳介噺鏍稿績锛屽崟鍚戦€忔槑闈㈢僵</div>
+      </div>
+    </div>
+    
+    <div class="card type-tank">
+      <div class="card-preview">
+        <div class="char-placeholder char-tank">
+          <div class="char-icon" style="color: #cd853f;">馃挭</div>
+          <div class="char-name-overlay">涓嶅眻鎰忓織</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">涓嶅眻鎰忓織 (Unyielding Will)</div>
+        <div class="card-type">鍧﹀厠 路 宀╃煶铻嶅悎</div>
+        <div class="card-desc">鍗婅韩宀╃煶缁撴櫠瑕嗙洊锛岀绉樼鏂囧彂鍏夛紝鑲岃倝鍏呮弧鍔涢噺鎰?/div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 杈撳嚭绫昏亴涓?-->
+<div class="section">
+  <h2>鈿旓笍 杈撳嚭绫昏亴涓氾紙6绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #dc143c;">馃惡</div>
+          <div class="char-name-overlay">鐙傛垬澹?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鐙傛垬澹?(Berserker)</div>
+        <div class="card-type">杈撳嚭 路 閲庡吔铻嶅悎</div>
+        <div class="card-desc">瑁搁湶涓婅韩鏈夊吔绾癸紝鍙岃噦宸ㄥぇ鍏界埅锛屽吔鐬崇孩鍏夛紝鍏藉奖娈嬪儚</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #9370db;">馃敭</div>
+          <div class="char-name-overlay">鍏冪礌娉曞笀</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鍏冪礌娉曞笀 (Elemental Mage)</div>
+        <div class="card-type">杈撳嚭 路 鍏冪礌铻嶅悎</div>
+        <div class="card-desc">娴佸姩鍏冪礌绾硅矾闀胯锛屽乏鐏彸鍐帮紝鍏冪礌绮掑瓙鐜粫</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #8b008b;">馃棥锔?/div>
+          <div class="char-name-overlay">褰卞瓙鍒哄</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">褰卞瓙鍒哄 (Shadow Assassin)</div>
+        <div class="card-type">杈撳嚭 路 鏆楀奖铻嶅悎</div>
+        <div class="card-desc">鍏ㄨ韩琚殫褰卞寘瑁癸紝鍙湶绱厜鐪硷紝鍙屽寱棣栨殫褰辨尝鍔?/div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #ff8c00;">馃敡</div>
+          <div class="char-name-overlay">鏈烘宸ョ▼甯?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鏈烘宸ョ▼甯?(Mech Engineer)</div>
+        <div class="card-type">杈撳嚭 路 鏈烘鏀归€?/div>
+        <div class="card-desc">宸ヨ宸ュ叿琚嬶紝鍙宠噦鏈烘鐐彴锛孒UD鎶ょ洰闀?/div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #4b0082;">馃拃</div>
+          <div class="char-name-overlay">姣佺伃鏈＋</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">姣佺伃鏈＋ (Destruction Warlock)</div>
+        <div class="card-type">杈撳嚭 路 铏氱┖铻嶅悎</div>
+        <div class="card-desc">榛戞殫娉曡绌洪棿瑁傜紳锛屼笉绋冲畾鑳介噺鐞冿紝鎵洸绌洪棿鏁堟灉</div>
+      </div>
+    </div>
+    
+    <div class="card type-dps">
+      <div class="card-preview">
+        <div class="char-placeholder char-dps">
+          <div class="char-icon" style="color: #ffd700;">鈿旓笍</div>
+          <div class="char-name-overlay">鏈虹敳鎴樼</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鏈虹敳鎴樼 (Mecha War God)</div>
+        <div class="card-type">杈撳嚭 路 鎴樼铻嶅悎</div>
+        <div class="card-desc">娴佺嚎鍨嬭交鍨嬫満鐢诧紝鍙戝厜鎴樼绾圭珷锛屽厜缈煎睍寮€锛岃兘閲忛暱鍓?/div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 杈呭姪绫昏亴涓?-->
+<div class="section">
+  <h2>馃幆 杈呭姪绫昏亴涓氾紙3绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #556b2f;">馃帠锔?/div>
+          <div class="char-name-overlay">鎴樻湳鎸囨尌瀹?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鎴樻湳鎸囨尌瀹?(Tactical Commander)</div>
+        <div class="card-type">杈呭姪 路 鏅鸿兘铻嶅悎</div>
+        <div class="card-desc">骞茬粌鍐涜閫犲瀷锛岀缁忔帴鍙ｈ缃紝鎴樻湳骞虫澘锛屾暟鎹祦鐪奸暅</div>
+      </div>
+    </div>
+    
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #87ceeb;">馃寑</div>
+          <div class="char-name-overlay">鐤鹃鍓戝</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鐤鹃鍓戝 (Wind Swordsman)</div>
+        <div class="card-type">杈呭姪 路 椋庡厓绱犺瀺鍚?/div>
+        <div class="card-desc">杞荤泩姝﹀＋鏈嶏紝閫忔槑椋庝箣缈硷紝椋庡睘鎬х粏鍒€锛岄鐨勮建杩?/div>
+      </div>
+    </div>
+    
+    <div class="card type-support">
+      <div class="card-preview">
+        <div class="char-placeholder char-support">
+          <div class="char-icon" style="color: #c0c0c0;">鈴?/div>
+          <div class="char-name-overlay">鏃剁┖琛岃€?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鏃剁┖琛岃€?(Time Walker)</div>
+        <div class="card-type">杈呭姪 路 鏃堕棿铻嶅悎</div>
+        <div class="card-desc">鏈潵鎰熸湇瑁咃紝鏃堕挓鐪肩湼锛屾椂闂寸鐗囨紓娴紝娌欐紡娉曞櫒</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 娌荤枟绫昏亴涓?-->
+<div class="section">
+  <h2>馃挌 娌荤枟绫昏亴涓氾紙3绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="color: #228b22;">馃尶</div>
+          <div class="char-name-overlay">鑷劧娌绘剤甯?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鑷劧娌绘剤甯?(Natural Healer)</div>
+        <div class="card-type">娌荤枟 路 鑷劧铻嶅悎</div>
+        <div class="card-desc">鏍戝彾鑺辩摚瑁呮潫锛岃姳鍐犺棨钄撳彂锛屾湪鏉栫敓鍛戒箣鑺憋紝鑴氫笅鑺辫崏鐢熼暱</div>
+      </div>
+    </div>
+    
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="color: #fffacd;">鉁濓笍</div>
+          <div class="char-name-overlay">绁炲湥鐗у笀</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">绁炲湥鐗у笀 (Holy Priest)</div>
+        <div class="card-type">娌荤枟 路 鍏夋槑铻嶅悎</div>
+        <div class="card-desc">鍗庝附闀胯鍗佸瓧绾规牱锛屽厜涔嬬窘缈硷紝鏌斿拰鍏夌幆锛屾不鎰堝厜鑺掑弻鎵?/div>
+      </div>
+    </div>
+    
+    <div class="card type-healer">
+      <div class="card-preview">
+        <div class="char-placeholder char-healer">
+          <div class="char-icon" style="background: linear-gradient(45deg, red, blue, green, yellow); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">馃寛</div>
+          <div class="char-name-overlay">鍏冪礌棰嗕富</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鍏冪礌棰嗕富 (Elemental Lord)</div>
+        <div class="card-type">娌荤枟 路 鍏ㄥ厓绱犺瀺鍚?/div>
+        <div class="card-desc">澶氬厓绱犳瀯鎴愯韩浣擄紝宸︾伀鍙冲啺锛岄棯鐢靛ご鍙戯紝鍥涘厓绱犵幆</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 浼犺绾ц亴涓?-->
+<div class="section">
+  <h2>猸?浼犺绾ц亴涓氾紙4绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #ffd700;">馃憫</div>
+          <div class="char-name-overlay">閾佽鐙傚崼</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">閾佽鐙傚崼 (Iron Blood Guardian)</div>
+        <div class="card-type">浼犺 路 缁堟瀬鍧﹀厠</div>
+        <div class="card-desc">榛戦噾缁堟瀬瑁呯敳锛屾祦鍔ㄨ绾㈢汗璺紝鍏噦鍚勬寔姝﹀櫒锛屾殫褰辩窘缈?/div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #dda0dd;">馃懃</div>
+          <div class="char-name-overlay">骞诲奖鎴樺皢</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">骞诲奖鎴樺皢 (Phantom General)</div>
+        <div class="card-type">浼犺 路 骞诲奖鍒嗚韩</div>
+        <div class="card-desc">鍗婇€忔槑鏈綋+3瀹炰綋褰卞瓙锛屾繁娓婄溂锛岀┖闂翠笉鏂壄鏇?/div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #4169e1;">馃寣</div>
+          <div class="char-name-overlay">姘告亽瀹堟湜鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">姘告亽瀹堟湜鑰?(Eternal Watcher)</div>
+        <div class="card-type">浼犺 路 鏃堕棿瀹堟姢</div>
+        <div class="card-desc">鏄熷厜韬綋锛岄摱娌虫姭椋庯紝鏃跺厜鏉冩潠锛屽畤瀹欑溂鐪?/div>
+      </div>
+    </div>
+    
+    <div class="card type-legendary">
+      <div class="card-preview">
+        <div class="char-placeholder char-legendary">
+          <div class="char-icon" style="color: #ffd700;">馃幁</div>
+          <div class="char-name-overlay">鍛借繍缂栫粐鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鍛借繍缂栫粐鑰?(Fate Weaver)</div>
+        <div class="card-type">浼犺 路 鍥犳灉寰嬭€?/div>
+        <div class="card-desc">鎮诞绌轰腑锛屽懡杩愪笣绾夸氦缁囷紝杩囧幓鐜板湪鏈潵褰卞儚锛屾棤娉曠洿瑙嗙湡瀹?/div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 鏁屼汉璁捐 -->
+<div class="section">
+  <h2>馃懝 鏅€氭晫浜猴紙10绉嶏級</h2>
+  <div class="card-grid">
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #b22222;">馃悤</div>
+          <div class="char-name-overlay">鏈烘鐚庣姮</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鏈烘鐚庣姮 (Mechanical Hound)</div>
+        <div class="card-type">鐢熺墿鏈烘 路 杈撳嚭鍨?/div>
+        <div class="card-desc">鏈烘楠ㄦ灦+鐢熺墿缁勭粐锛岀孩鑹茬數瀛愮溂锛岄灜鐘惰兘閲忓熬</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #556b2f;">馃</div>
+          <div class="char-name-overlay">宸￠€绘満鐢?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">宸￠€绘満鐢?(Patrol Mech)</div>
+        <div class="card-type">鏈烘 路 鍧﹀厠鍨?/div>
+        <div class="card-desc">绗ㄩ噸鍙岃冻鏈哄櫒浜猴紝鎵弿浠兏锛屽崟鐪兼縺鍏夛紝鐢靛嚮璀︽</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #9932cc;">馃暦锔?/div>
+          <div class="char-name-overlay">鍙樺紓铚樿洓</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鍙樺紓铚樿洓 (Mutant Spider)</div>
+        <div class="card-type">鍙樺紓鐢熺墿 路 鏁忔嵎鍨?/div>
+        <div class="card-desc">鍏吙宸ㄥ瀷铚樿洓锛屾斁灏勬枒绾癸紝澶氬彂澶у皬涓嶄竴鐪硷紝姣掓恫鍙ｅ櫒</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #daa520;">馃敨</div>
+          <div class="char-name-overlay">鐐彴</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鐐彴 (Turret)</div>
+        <div class="card-type">鏈烘 路 杩滅▼鍨?/div>
+        <div class="card-desc">鍦嗘煴搴曞骇锛屾棆杞弻绠＄偖濉旓紝绾㈣壊鐬勫噯婵€鍏夛紝浼犳劅鍣ㄦ帰澶?/div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #2f4f4f;">鈽狅笍</div>
+          <div class="char-name-overlay">鑵愬寲鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鑵愬寲鑰?(Corruptor)</div>
+        <div class="card-type">铻嶅悎澶辫触浣?路 鍑忕泭鍨?/div>
+        <div class="card-desc">涓ラ噸鎵洸浜哄舰锛岃厫铓€鐥曡抗鐨偆锛岄粦鑹茬矘娑叉祦鍑猴紝闈㈤儴妯＄硦</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #8b0000;">馃挗</div>
+          <div class="char-name-overlay">鏆磋蛋鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鏆磋蛋鑰?(Berserker)</div>
+        <div class="card-type">鐙傛毚铻嶅悎浣?路 鐙傛毚鍨?/div>
+        <div class="card-desc">鏋佸害鑶ㄨ儉鑲岃倝锛屾殫绾㈣绠℃毚璧凤紝鍏ㄧ櫧鐪肩潧锛岀儹娴壄鏇?/div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #4b0082;">馃棥锔?/div>
+          <div class="char-name-overlay">褰卞瓙鍒哄</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">褰卞瓙鍒哄 (Shadow Assassin)</div>
+        <div class="card-type">澶卞績鑰?路 鍒哄鍨?/div>
+        <div class="card-desc">闃村奖鍗婂疄浣擄紝浠呰疆寤撳彲瑙侊紝寮洸鏆楀奖鍖曢锛岀Щ鍔ㄦ畫褰?/div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #696969;">馃洝锔?/div>
+          <div class="char-name-overlay">閲嶈鍗＋</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">閲嶈鍗＋ (Heavy Guardian)</div>
+        <div class="card-type">鏈烘绮捐嫳 路 閲嶅潶鍨?/div>
+        <div class="card-desc">宸ㄥ瀷鐞冨舰韬綋锛屽洓鏉＄矖鑵匡紝宸ㄥぇ鐙溂锛屾槑鏄捐鐢叉澘</div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #32cd32;">鈽ｏ笍</div>
+          <div class="char-name-overlay">姣掓恫鍠峰皠鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">姣掓恫鍠峰皠鑰?(Toxic Spitter)</div>
+        <div class="card-type">鍙樺紓绮捐嫳 路 鑼冨洿浼ゅ</div>
+        <div class="card-desc">鑳稿墠宸ㄥぇ姣掑泭锛屽彛閮ㄥ彉鍠峰皠绠★紝鐥呮€佺豢鐨偆锛屾瘨姘斾簯闆?/div>
+      </div>
+    </div>
+    
+    <div class="card type-enemy">
+      <div class="card-preview">
+        <div class="char-placeholder char-enemy">
+          <div class="char-icon" style="color: #faebd7;">馃拃</div>
+          <div class="char-name-overlay">鐏甸瓊鏀跺壊鑰?/div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鐏甸瓊鏀跺壊鑰?(Soul Reaper)</div>
+        <div class="card-type">楂樼骇澶卞績鑰?路 鍚歌鍨?/div>
+        <div class="card-desc鑻嶇櫧楠烽珔闈㈠瓟锛岀牬鐑傞粦琚嶏紝宸ㄥぇ闀板垁锛岀伒榄傜伀鐒扮噧鐑?/div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOSS璁捐 -->
+<div class="section">
+  <h2>馃懣 BOSS鏁屼汉锛?涓級</h2>
+  <div class="card-grid">
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #ff4500;">馃懝</div>
+          <div class="char-name-overlay">Lvl 10 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">馃敟 姣佺伃棰嗕富路闃垮皵鎴堟柉</div>
+        <div class="card-type">Floor 10 BOSS 路 鍙敜鍨?/div>
+        <div class="card-desc">涓夊ご鍏噦宸ㄥ瀷鏈虹敳锛屼腑澶瓵I鎺у埗涓や晶姝﹀櫒绯荤粺锛岃儗閮ㄥ彫鍞ゆ硶闃?/div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #9400d3;">BOSS</div>
+          <div class="char-name-overlay">Lvl 20 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">馃寫 鏆楀奖甯濈帇路璇哄厠钀ㄦ柉</div>
+        <div class="card-type">Floor 20 BOSS 路 鍒嗚韩鍨?/div>
+        <div class="card-desc">绾补鏆楀奖浜哄舰锛岄粦鏆楃殗琚嶏紝鍑濆浐鏆楀奖鐨囧啝锛屾殫褰辨潈鏉?/div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #00bfff;">馃</div>
+          <div class="char-name-overlay">Lvl 30 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">馃挔 澶╃綉鏍稿績路鏅幈濮?/div>
+        <div class="card-type">Floor 30 BOSS 路 鎺у埗鍨?/div>
+        <div class="desc">宸ㄥ瀷鐞冨舰AI鏍稿績锛屾暟鎹祦琛ㄩ潰锛屽崼鏄熻妭鐐圭幆缁曪紝鍙戝厜澶勭悊鍣?/div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; color: #ff6347;">馃彮</div>
+          <div class="char-name-overlay">Lvl 40 BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鈿欙笍 鏈烘姣嶄綋路鍒涗笘绾?/div>
+        <div class="card-type">Floor 40 BOSS 路 鍙敜鍨?/div>
+        <div class="card-desc">宸ュ巶褰㈡€佸法鍨嬫満姊帮紝澶氫釜鐢熶骇绠￠亾锛屽皬鍨嬪嚭鍙ｏ紝涓ぎ鎺у埗瀹?/div>
+      </div>
+    </div>
+    
+    <div class="card type-boss">
+      <div class="card-preview">
+        <div class="char-placeholder char-boss" style="width: 160px; height: 220px;">
+          <div class="char-icon" style="font-size: 56px; background: linear-gradient(45deg, gold, red, purple, cyan); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">馃寑</div>
+          <div class="char-name-overlay">FINAL BOSS</div>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">鈾撅笍 缁堢剦涔嬬路濂ョ背鑼?/div>
+        <div class="card-type">Floor 50 FINAL BOSS 路 涓夐樁娈靛彉韬?/div>
+        <div class="card-desc">P1瀹岀編鎴樺＋鈫扨2鏆楀奖鍫曡惤鈫扨3瀹囧畽鑳介噺浣擄紝缁堟瀬瀛樺湪</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UI鍏冪礌灞曠ず -->
+<div class="section">
+  <h2>馃帹 UI鍏冪礌璁捐</h2>
+  
+  <h3>鎸夐挳鏍峰紡</h3>
+  <div class="ui-showcase">
+    <div class="ui-item">
+      <button class="btn-demo">寮€濮嬫父鎴?/button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">涓昏鎿嶄綔鎸夐挳</p>
+    </div>
+    <div class="ui-item">
+      <button class="btn-demo">鏀诲嚮</button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">鎴樻枟鎿嶄綔鎸夐挳</p>
+    </div>
+    <div class="ui-item">
+      <button class="btn-demo">鎾ら€€</button>
+      <p style="font-size: 11px; color: #888; margin-top: 8px;">鍗遍櫓鎿嶄綔鎸夐挳</p>
+    </div>
+  </div>
+  
+  <h3>琛€鏉℃牱寮?/h3>
+  <div class="ui-showcase">
+    <div class="ui-item">
+      <p style="font-size: 12px; margin-bottom: 5px;">鍙嬫柟琛€鏉★紙缁胯壊娓愬彉锛?/p>
+      <div class="hp-bar-demo">
+        <div class="hp-fill hp-friendly"></div>
+        <div class="hp-text">750 / 1000</div>
+      </div>
+    </div>
+    <div class="ui-item">
+      <p style="font-size: 12px; margin-bottom: 5px;">鏁屾柟琛€鏉★紙绾㈣壊娓愬彉锛?/p>
+      <div class="hp-bar-demo">
+        <div class="hp-fill hp-enemy"></div>
+        <div class="hp-text">300 / 500</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>搴熷湡鍏冨勾 (Neon Abyss) - 缇庢湳璧勬簮璁捐瑙勮寖 v1.0</p>
+  <p>椋庢牸瀹氫綅锛氬簾鍦?+ 绁炲湥铻嶅悎 | 璁捐鍒嗚鲸鐜囷細375脳812 | 寮曟搸锛歅haser 3</p>
+  <p>鐢熸垚鏃堕棿锛?026-04-03 | 鏂囨。鐗堟湰锛?.0</p>
+</footer>
+
+</body>
+</html>
+

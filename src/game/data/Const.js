@@ -188,10 +188,10 @@ export const Const = {
       SIZE_PLAYER_PORTRAIT: '24px'
     },
     LAYOUT: {
-      CARD_WIDTH: 96,
-      CARD_HEIGHT: 144,
-      ENEMY_CARD_WIDTH: 96,
-      ENEMY_CARD_HEIGHT: 144,
+      CARD_WIDTH: 106,
+      CARD_HEIGHT: 159,
+      ENEMY_CARD_WIDTH: 106,
+      ENEMY_CARD_HEIGHT: 159,
       ATTACK_DURATION: 400,
       RETURN_DURATION: 300
     }

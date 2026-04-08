@@ -9,38 +9,7 @@ import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
 import StageManager from '../game/systems/StageManager.js';
-import initConfigData from '../../assets/data/json/initConfig.json';
-
-function normalizeInitConfig(rawConfig) {
-  const fallback = {
-    currencies: {
-      mycelium: Const.INITIAL_CURRENCY.mycelium,
-      sourceCore: Const.INITIAL_CURRENCY.sourceCore,
-      starCoin: Const.INITIAL_CURRENCY.starCoin
-    },
-    other: {
-      energyDrinks: 0
-    }
-  };
-
-  if (!Array.isArray(rawConfig)) {
-    return fallback;
-  }
-
-  const currencies = { ...fallback.currencies };
-  rawConfig.forEach(entry => {
-    if (!entry?.key) return;
-    const value = Number(entry.initialValue);
-    currencies[entry.key] = Number.isFinite(value) ? value : 0;
-  });
-
-  return {
-    currencies,
-    other: { ...fallback.other }
-  };
-}
-
-const initConfig = normalizeInitConfig(initConfigData);
+import { ensureGlobalGameData, resetGameData, syncRuntimeGameData } from '../game/data/GameData.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
@@ -102,65 +71,15 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   initializeBaseSystem() {
-    if (!window.gameData) {
-      window.gameData = {};
-    }
-    if (!window.gameData.base) {
-      window.gameData.base = {
-        mycelium: initConfig.currencies.mycelium,
-        sourceCore: initConfig.currencies.sourceCore,
-        starCoin: initConfig.currencies.starCoin,
-        currencies: { ...initConfig.currencies },
-        facilities: null,
-        characters: [],
-        team: [],
-        availableRecruits: [],
-        energyDrinks: Array(initConfig.other.energyDrinks).fill(null)
-      };
-    }
-
-    // 纭繚鏂拌揣甯佸瓧娈靛瓨鍦紙鍏煎鏃у瓨妗ｏ級
-    if (window.gameData.base.mycelium === undefined) {
-      window.gameData.base.mycelium = initConfig.currencies.mycelium;
-    }
-    if (window.gameData.base.sourceCore === undefined) {
-      window.gameData.base.sourceCore = initConfig.currencies.sourceCore;
-    }
-    if (window.gameData.base.starCoin === undefined) {
-      window.gameData.base.starCoin = initConfig.currencies.starCoin;
-    }
-
+    ensureGlobalGameData();
     this.baseSystem = new BaseSystem(window.gameData.base);
     this.cleanCharacterData();
 
-    // 鍒濆鍖?ChipCardManager锛堟浛浠?EquipmentCardManager锛?
-    if (!window.gameData.chipCardManager) {
-      window.gameData.chipCardManager = {
-        ownedCards: [],
-        equippedCardId: null,
-        shopCards: []
-      };
-    }
     this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
     this.stageManager = new StageManager();
-
-    // 鍒濆鍖?ReputationSystem
-    if (!window.gameData.reputation) {
-      window.gameData.reputation = {};
-    }
     this.reputationSystem = new ReputationSystem(window.gameData.reputation);
-
-    // 鍒濆鍖?MinionCardManager
-    if (!window.gameData.minionCardManager) {
-      window.gameData.minionCardManager = {
-        ownedCards: [],
-        deployedCards: [],
-        maxDeploy: 3
-      };
-    }
     this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
 
-    // 娓呯悊鏃х増鏈瓨妗ｄ腑鐨?equipmentCardManager
     this.cleanLegacySaveData();
   }
 
@@ -294,20 +213,19 @@ export default class BaseScene extends Phaser.Scene {
       color: Const.TEXT_COLORS.PINK
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    // 涓夌璐у竵鏄剧ず锛氳弻涓?/ 婧愭牳 / 鏄熷竵
-    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '馃崉 鑿屼笣: 0', {
+    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#51cf66'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '馃拵 婧愭牳: 0', {
+    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: '#4dabf7'
     }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
 
-    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, `猸?鏄熷竵: 0`, {
+    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, '⭐ 星币: 0', {
       fontSize: Const.FONT.SIZE_TINY,
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.CYAN
@@ -666,7 +584,7 @@ export default class BaseScene extends Phaser.Scene {
       color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
 
-    const teamCount = this.baseSystem.getTeamMemberCount();
+    const teamCount = this.minionCardManager?.getDeployedCards?.().length || 0;
     if (teamCount === 0) {
       this.add.text(width / 2, 300, t('team_empty'), {
         fontSize: Const.FONT.SIZE_SMALL,
@@ -930,60 +848,7 @@ export default class BaseScene extends Phaser.Scene {
         return;
       }
 
-      localStorage.removeItem('wasteland_year_save');
-      localStorage.removeItem('equipmentCardManager');
-      localStorage.removeItem('chipCardManager');
-      localStorage.removeItem('reputationSystem');
-      window.gameData = {
-        base: {
-          mycelium: initConfig.currencies.mycelium,
-          sourceCore: initConfig.currencies.sourceCore,
-          starCoin: initConfig.currencies.starCoin,
-          currencies: { ...initConfig.currencies },
-          facilities: null,
-          characters: [],
-          team: [],
-          availableRecruits: [],
-          energyDrinks: Array(initConfig.other.energyDrinks).fill(null)
-        },
-        dungeon: {
-          currentFloor: 1,
-          maxReachedFloor: 1,
-          currentDimension: 1,
-          totalBattlesWon: 0,
-          totalGoldEarned: 0,
-          offlineProgress: {
-            enabled: false,
-            lastBattleTime: Date.now(),
-            battlesWon: 0,
-            goldEarned: 0
-          }
-        },
-        chipCardManager: {
-          ownedCards: [],
-          equippedCardId: null,
-          shopCards: []
-        },
-        minionCardManager: {
-          ownedCards: [],
-          deployedCards: [],
-          maxDeploy: 3
-        },
-        reputation: {},
-        achievements: {
-          progress: {},
-          unlocked: [],
-          claimedRewards: []
-        },
-        settings: {
-          masterVolume: 0.8,
-          bgmVolume: 0.7,
-          seVolume: 0.8,
-          autoBattle: true,
-          autoChip: true,
-          battleSpeed: 1
-        }
-      };
+      window.gameData = resetGameData();
       this.showToast('账号进度已重置');
       this.scene.restart();
     });
@@ -997,7 +862,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   tryEnterDungeon() {
-    const teamCount = this.baseSystem.getTeamMemberCount();
+    const teamCount = this.minionCardManager?.getDeployedCards?.().length || 0;
 
     if (teamCount === 0) {
       this.showTeamEmptyAlert();
@@ -1202,28 +1067,23 @@ export default class BaseScene extends Phaser.Scene {
     const coins = this.baseSystem.starCoin || 0;
 
     if (this.myceliumDisplay) {
-      this.myceliumDisplay.setText(`馃崉 鑿屼笣: ${mycelium.toLocaleString()}`);
+      this.myceliumDisplay.setText(`🍄 菌丝: ${mycelium.toLocaleString()}`);
     }
     if (this.sourceCoreDisplay) {
-      this.sourceCoreDisplay.setText(`馃拵 婧愭牳: ${sourceCore.toLocaleString()}`);
+      this.sourceCoreDisplay.setText(`💎 源核: ${sourceCore.toLocaleString()}`);
     }
     if (this.coinDisplay) {
-      this.coinDisplay.setText(`猸?鏄熷竵: ${coins.toLocaleString()}`);
+      this.coinDisplay.setText(`⭐ 星币: ${coins.toLocaleString()}`);
     }
   }
 
   saveGameData() {
-    window.gameData.base = this.baseSystem.toJSON();
-    window.gameData.chipCardManager = {
-      ownedCards: this.chipCardManager.getAllCards().map(c => c.toJSON ? c.toJSON() : c),
-      equippedCardId: this.chipCardManager.equippedCard?.id || null,
-      shopCards: (this.chipCardManager.shopCards || []).map(c => c.toJSON ? c.toJSON() : c)
-    };
-    window.gameData.reputation = this.reputationSystem.toJSON();
-    if (this.minionCardManager) {
-      window.gameData.minionCardManager = this.minionCardManager.toJSON();
-    }
-    localStorage.setItem('wasteland_year_save', JSON.stringify(window.gameData));
+    syncRuntimeGameData({
+      baseSystem: this.baseSystem,
+      chipCardManager: this.chipCardManager,
+      minionCardManager: this.minionCardManager,
+      reputationSystem: this.reputationSystem
+    });
   }
 
   // [U03 FIX] 瀹炵幇 showToast 鏂规硶锛屽涓?View 閫氳繃 scene.showToast?.() 璋冪敤
