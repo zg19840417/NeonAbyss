@@ -1,4 +1,18 @@
-﻿import AnimationHelper from './AnimationHelper.js';
+﻿/**
+ * 卡牌渲染工厂
+ * 
+ * 当前为统一入口，负责所有卡牌类型的渲染。
+ * 未来拆分计划：
+ *   - BattleCardRenderer: 战斗单位卡 (createBattleUnitCard)
+ *   - ChipCardRenderer: 芯片卡 (createChipCard)
+ *   - CharacterRowRenderer: 紧凑角色行 (createCompactUnitRow)
+ *   - PortraitRenderer: 大头像展示 (createDetailPortrait)
+ *   - ButtonRenderer: 通用按钮 (createInlineButton)
+ * 
+ * 拆分时机：当某个渲染器需要独立迭代或超过 200 行时
+ */
+
+import AnimationHelper from './AnimationHelper.js';
 import Const from '../data/Const.js';
 import { getMainRole, RoleType } from '../data/CharacterClass.js';
 

@@ -23,6 +23,9 @@ export default class BootScene extends Phaser.Scene {
     this.responsive = ResponsiveUtils.getInstance();
     this.responsive.update(width, height);
 
+    // 挂载到全局，方便非 Scene 代码访问
+    window.responsiveUtils = this.responsive;
+
     this._boundResize = this._onResize.bind(this);
     
     window.addEventListener('resize', this._boundResize);

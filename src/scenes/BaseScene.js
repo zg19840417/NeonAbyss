@@ -5,12 +5,18 @@ import ChipView from './views/ChipView.js';
 import ShopView from './views/ShopView.js';
 import TeamView from './views/TeamView.js';
 import WildStageView from './views/WildStageView.js';
+import SettingsView from './views/SettingsView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
 import FusionGirlManager from '../game/systems/FusionGirlManager.js';
 import { syncFusionGirlProgress } from '../game/systems/FusionGirlProgressSync.js';
 import StageManager from '../game/systems/StageManager.js';
 import { ensureGlobalGameData, resetGameData, syncRuntimeGameData } from '../game/data/GameData.js';
+import ModalManager from '../game/ui/ModalManager.js';
+import ToastManager from '../game/ui/ToastManager.js';
+import TopBar from '../game/ui/TopBar.js';
+import BottomNav from '../game/ui/BottomNav.js';
+import EventBus, { GameEvents } from '../game/EventBus.js';
 
 export default class BaseScene extends Phaser.Scene {
   constructor() {
@@ -20,9 +26,12 @@ export default class BaseScene extends Phaser.Scene {
     this.shopView = null;
     this.teamView = null;
     this.wildStageView = null;
+    this.settingsView = null;
     this.currentTab = 'sanctuary';
-    this.tabButtons = {};
-    this.modalOpen = false;
+    this.topBar = null;
+    this.bottomNav = null;
+    this.modalManager = null;
+    this.toastManager = null;
     this._transitioning = false;
     this._persistGameData = null;
     this._persistOnVisibilityChange = null;
@@ -37,16 +46,8 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   ensureChromeOnTop() {
-    this.titleText?.setDepth(Const.DEPTH.NAV);
-    this.myceliumDisplay?.setDepth(Const.DEPTH.NAV);
-    this.sourceCoreDisplay?.setDepth(Const.DEPTH.NAV);
-    this.coinDisplay?.setDepth(Const.DEPTH.NAV);
-    this.navBg?.setDepth(Const.DEPTH.NAV);
-
-    Object.values(this.tabButtons).forEach(tab => {
-      tab.container?.setDepth(Const.DEPTH.NAV + 1);
-      tab.hitZone?.setDepth(Const.DEPTH.NAV + 2);
-    });
+    this.topBar?.ensureOnTop();
+    this.bottomNav?.ensureOnTop();
   }
 
   create() {
@@ -64,18 +65,27 @@ export default class BaseScene extends Phaser.Scene {
     this.getLanguage = getLanguage;
     this.setLanguage = setLanguage;
 
+    this.modalManager = new ModalManager(this);
+    this.toastManager = new ToastManager(this);
+
     this.initializeBaseSystem();
     this.setupPersistenceGuards();
     this.createBackground(width, height);
-    this.createHeader(width);
-    this.createBottomNav(width, height);
+    this.topBar = new TopBar(this);
+    this.topBar.create(width);
+    this.bottomNav = new BottomNav(this);
+    this.bottomNav.create(width, height, (key) => this.showView(key));
     this.showView(this.initialTab || 'sanctuary');
 
-    this.time.addEvent({
-      delay: Const.GAME.SAVE_DELAY,
-      callback: () => this.updateUI(),
-      loop: true
-    });
+    // 事件驱动的 UI 更新
+    EventBus.on(GameEvents.CURRENCY_CHANGED, () => this.updateUI());
+    EventBus.on(GameEvents.TEAM_UPDATED, () => this.updateUI());
+    EventBus.on(GameEvents.TEAM_DEPLOY_CHANGED, () => this.updateUI());
+    EventBus.on(GameEvents.CHIP_EQPPED, () => this.updateUI());
+    EventBus.on(GameEvents.CHIP_UNEQUIPPED, () => this.updateUI());
+    EventBus.on(GameEvents.FUSION_LEVEL_UP, () => this.updateUI());
+    EventBus.on(GameEvents.FUSION_QUALITY_UP, () => this.updateUI());
+    EventBus.on(GameEvents.DATA_RESET, () => this.updateUI());
   }
 
   initializeBaseSystem() {
@@ -170,33 +180,6 @@ export default class BaseScene extends Phaser.Scene {
     this.bgElements.push(particles);
   }
 
-  createHeader(width) {
-    this.titleText = this.add.text(width / 2, Const.UI.TITLE_Y, t('sanctuary'), {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
-
-    this.myceliumDisplay = this.add.text(width / 2 - 100, Const.UI.COIN_Y, '🍄 菌丝: 0', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: '#51cf66'
-    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
-
-    this.sourceCoreDisplay = this.add.text(width / 2, Const.UI.COIN_Y, '💎 源核: 0', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: '#4dabf7'
-    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
-
-    this.coinDisplay = this.add.text(width / 2 + 100, Const.UI.COIN_Y, '⭐ 星币: 0', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5).setDepth(Const.DEPTH.NAV);
-  }
-
   setupPersistenceGuards() {
     if (!this._persistGameData) {
       this._persistGameData = () => {
@@ -221,116 +204,15 @@ export default class BaseScene extends Phaser.Scene {
     document.addEventListener('visibilitychange', this._persistOnVisibilityChange);
   }
 
-  createBottomNav(width, height) {
-    const navHeight = Const.UI.NAV_HEIGHT;
-    const navY = height - navHeight;
-
-    const navBg = this.add.graphics();
-    navBg.fillStyle(Const.COLORS.BG_LIGHT, 0.98);
-    navBg.fillRect(0, navY, width, navHeight);
-    navBg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.5);
-    navBg.lineBetween(0, navY, width, navY);
-    navBg.setDepth(Const.DEPTH.NAV);
-    this.navBg = navBg;
-
-    const tabs = [
-      { key: 'sanctuary', icon: '所', label: t('sanctuary') },
-      { key: 'team', icon: '队', label: t('team') },
-      { key: 'wild', icon: '冒', label: t('adventure') },
-      { key: 'shop', icon: '店', label: t('shop') },
-      { key: 'task', icon: '务', label: t('task') },
-      { key: 'settings', icon: '设', label: t('settings') }
-    ];
-
-    const tabWidth = width / tabs.length;
-
-    tabs.forEach((tab, index) => {
-      const x = tabWidth * index + tabWidth / 2;
-      const isActive = index === 0;
-
-      const tabContainer = this.add.container(x, navY + navHeight / 2);
-
-      const tabBg = this.add.graphics();
-      if (isActive) {
-        tabBg.fillStyle(Const.COLORS.PURPLE, 0.3);
-        tabBg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 8);
-      }
-      tabContainer.add(tabBg);
-
-      const iconText = this.add.text(0, -8, `[${tab.icon}]`, {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_EN,
-        color: isActive ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.INACTIVE
-      }).setOrigin(0.5);
-      tabContainer.add(iconText);
-
-      const labelText = this.add.text(0, 14, tab.label, {
-        fontSize: Const.FONT.SIZE_TINY,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: isActive ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.INACTIVE
-      }).setOrigin(0.5);
-      tabContainer.add(labelText);
-
-      tabContainer.setSize(tabWidth, navHeight);
-      const hitZone = this.add.rectangle(x, navY + navHeight / 2, tabWidth, navHeight, 0x000000, 0.001);
-      hitZone.setVisible(true);
-      hitZone.setAlpha(0.001);
-      hitZone.setDepth(Const.DEPTH.NAV + 2);
-      hitZone.setInteractive();
-      hitZone.on('pointerdown', () => {
-        this.switchTab(tab.key);
-      });
-
-      this.tabButtons[tab.key] = {
-        container: tabContainer,
-        bg: tabBg,
-        icon: iconText,
-        label: labelText,
-        hitZone,
-        isActive
-      };
-    });
-
-    this.ensureChromeOnTop();
-  }
-
-  switchTab(key) {
-    if (this.currentTab === key) return;
-
-    const oldTab = this.tabButtons[this.currentTab];
-    if (oldTab) {
-      oldTab.bg.clear();
-      oldTab.icon.setColor('#6666aa');
-      oldTab.label.setColor('#6666aa');
-      oldTab.isActive = false;
-    }
-
-    const newTab = this.tabButtons[key];
-    if (newTab) {
-      newTab.bg.clear();
-      newTab.bg.fillStyle(Const.COLORS.PURPLE, 0.3);
-      const tabWidth = newTab.container.width;
-      const navHeight = newTab.container.height;
-      newTab.bg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 8);
-      newTab.icon.setColor(Const.TEXT_COLORS.PRIMARY);
-      newTab.label.setColor(Const.TEXT_COLORS.PRIMARY);
-      newTab.isActive = true;
-    }
-
-    this.currentTab = key;
-    this.showView(key);
-  }
-
   showView(key) {
     // 正在做淡出切换时，忽略重复切页请求。
     if (this._transitioning) return;
 
     // 顶栏与底部导航常驻，不参与内容区切换。
-    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
-    Object.values(this.tabButtons).forEach(tab => {
-      if (tab.container) preserved.push(tab.container);
-      if (tab.hitZone) preserved.push(tab.hitZone);
-    });
+    const preserved = [
+      ...(this.topBar?.getPreservedElements() || []),
+      ...(this.bottomNav?.getPreservedElements() || [])
+    ];
 
     // 其余元素视为内容区，先淡出再重建。
     const contentElements = this.children.list.filter(child => {
@@ -366,9 +248,7 @@ export default class BaseScene extends Phaser.Scene {
       settings: t('settings')
     };
 
-    if (this.titleText) {
-      this.titleText.setText(titles[key] || t('sanctuary'));
-    }
+    this.topBar?.setTitle(titles[key] || t('sanctuary'));
 
     switch (key) {
       case 'sanctuary':
@@ -455,110 +335,27 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showShopContent() {
-    if (this.shopView) {
-      this.shopView.destroy();
+    // 使用 DOM 商店面板
+    if (window.domUI) {
+      import('../game/ui/panels/ShopPanel.js').then(module => {
+        module.createShopPanel(window.domUI, this);
+      });
+    } else {
+      // 回退到 Canvas 版本
+      if (this.shopView) {
+        this.shopView.destroy();
+      }
+      this.shopView = new ShopView(this);
+      this.shopView.show();
     }
-    this.shopView = new ShopView(this);
-    this.shopView.show();
   }
 
   showSettingsContent() {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    this.add.text(width / 2, 138, '账号', {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5);
-
-    const bindCard = this.add.container(width / 2, 210);
-    const bindBg = this.add.graphics();
-    bindBg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bindBg.fillRoundedRect(-140, -38, 280, 76, Const.UI.CARD_RADIUS);
-    bindBg.lineStyle(1.5, Const.COLORS.BUTTON_CYAN, 0.65);
-    bindBg.strokeRoundedRect(-140, -38, 280, 76, Const.UI.CARD_RADIUS);
-    bindCard.add(bindBg);
-
-    bindCard.add(this.add.text(-116, -10, '绑定账号', {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0, 0.5));
-
-    bindCard.add(this.add.text(-116, 16, '功能预留，后续接入账号 SDK', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5));
-
-    const bindBtn = this.add.container(92, 0);
-    const bindBtnBg = this.add.graphics();
-    bindBtnBg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
-    bindBtnBg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.9);
-    bindBtnBg.fillRoundedRect(-42, -16, 84, 32, Const.UI.BUTTON_RADIUS);
-    bindBtnBg.strokeRoundedRect(-42, -16, 84, 32, Const.UI.BUTTON_RADIUS);
-    bindBtn.add(bindBtnBg);
-    bindBtn.add(this.add.text(0, 0, '敬请期待', {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.CYAN
-    }).setOrigin(0.5));
-    bindBtn.setSize(84, 32);
-    bindBtn.setInteractive(this.createCenteredHitArea(84, 32), Phaser.Geom.Rectangle.Contains);
-    bindBtn.on('pointerdown', () => {
-      this.showToast('账号绑定功能暂未接入 SDK');
-    });
-    bindCard.add(bindBtn);
-
-    this.add.text(width / 2, 300, '危险操作', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.DANGER
-    }).setOrigin(0.5);
-
-    const resetBtn = this.add.container(width / 2, 352);
-    const resetGlow = this.add.graphics();
-    resetGlow.fillStyle(Const.COLORS.MAGENTA, 0.15);
-    resetGlow.fillRoundedRect(-75, -20, 150, 40, Const.UI.CARD_RADIUS_SMALL);
-    resetGlow.setBlendMode(Phaser.BlendModes.ADD);
-    resetGlow.setAlpha(0.5);
-
-    const resetBg = this.add.graphics();
-    resetBg.fillStyle(Const.COLORS.BG_DANGER, 1);
-    resetBg.fillRoundedRect(-70, -16, 140, 32, Const.UI.BUTTON_RADIUS);
-    resetBg.lineStyle(1, Const.COLORS.BUTTON_DANGER_BORDER, 0.8);
-    resetBg.strokeRoundedRect(-70, -16, 140, 32, Const.UI.BUTTON_RADIUS);
-
-    const resetLabel = this.add.text(0, 0, '重置账号', {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.DANGER
-    }).setOrigin(0.5);
-
-    resetBtn.add([resetGlow, resetBg, resetLabel]);
-    resetBtn.setSize(140, 32);
-    resetBtn.setInteractive(this.createCenteredHitArea(140, 32), Phaser.Geom.Rectangle.Contains);
-    resetBtn.on('pointerover', () => {
-      this.tweens.add({ targets: resetGlow, alpha: 0.8, duration: 150 });
-      resetLabel.setColor(Const.TEXT_COLORS.PRIMARY);
-    });
-    resetBtn.on('pointerout', () => {
-      this.tweens.add({ targets: resetGlow, alpha: 0.5, duration: 150 });
-      resetLabel.setColor(Const.TEXT_COLORS.DANGER);
-    });
-    resetBtn.on('pointerdown', () => {
-      this.showResetConfirm(1);
-    });
-
-    this.add.text(width / 2, height - 130, t('game_title_zh') + ' v1.0.0', {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: '#6666aa'
-    }).setOrigin(0.5);
+    if (this.settingsView) {
+      this.settingsView.destroy();
+    }
+    this.settingsView = new SettingsView(this);
+    this.settingsView.show();
   }
 
   showResetConfirm(step = 1) {
@@ -639,6 +436,7 @@ export default class BaseScene extends Phaser.Scene {
 
       window.gameData = resetGameData();
       this.showToast('账号进度已重置');
+      EventBus.emit(GameEvents.DATA_RESET);
       this.scene.restart();
     });
   }
@@ -663,69 +461,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showModal(config) {
-    if (this.modalOpen) return;
-    this.modalOpen = true;
-
-    const { title, desc, buttons, borderColor, titleColor } = config;
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-    const elements = [];
-
-    const overlay = this.add.graphics();
-    overlay.fillStyle(Const.COLORS.BG_DARK, Const.ALPHA.OVERLAY);
-    overlay.fillRect(0, 0, width, height);
-    overlay.setDepth(1000);
-    elements.push(overlay);
-
-    const modal = this.add.graphics();
-    modal.setDepth(1001);
-    modal.fillStyle(Const.COLORS.BG_MID, 1);
-    modal.fillRoundedRect(width/2 - 130, height/2 - 80, 260, 160, Const.UI.CARD_RADIUS);
-    modal.lineStyle(2, borderColor, 0.8);
-    modal.strokeRoundedRect(width/2 - 130, height/2 - 80, 260, 160, Const.UI.CARD_RADIUS);
-    elements.push(modal);
-
-    const titleText = this.add.text(width/2, height/2 - 50, title, {
-      fontSize: Const.FONT.SIZE_TITLE,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: titleColor
-    }).setOrigin(0.5).setDepth(1002);
-    elements.push(titleText);
-
-    const descText = this.add.text(width/2, height/2 - 15, desc, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY,
-      align: 'center'
-    }).setOrigin(0.5).setDepth(1002);
-    elements.push(descText);
-
-    const closeModal = (callback) => {
-      if (!this.modalOpen) return;
-      this.modalOpen = false;
-      elements.forEach(el => {
-        if (el && el.destroy) el.destroy();
-      });
-      if (callback) callback();
-    };
-
-    buttons.forEach((btn) => {
-      const btnContainer = this.add.container(width/2 + btn.offsetX, height/2 + 40).setDepth(1002);
-      const btnBg = this.add.graphics();
-      btnBg.fillStyle(btn.bgColor, 1);
-      btnBg.fillRoundedRect(-btn.width/2, -14, btn.width, 28, Const.UI.BUTTON_RADIUS);
-      const btnLabel = this.add.text(0, 0, btn.text, {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: btn.textColor
-      }).setOrigin(0.5);
-      btnContainer.add([btnBg, btnLabel]);
-      btnContainer.setSize(btn.width, 28);
-      btnContainer.setInteractive(this.createCenteredHitArea(btn.width, 28), Phaser.Geom.Rectangle.Contains);
-      btnContainer.on('pointerdown', () => closeModal(btn.callback));
-      elements.push(btnContainer);
-    });
+    return this.modalManager?.show(config);
   }
 
   showTeamEmptyAlert() {
@@ -741,7 +477,7 @@ export default class BaseScene extends Phaser.Scene {
           width: 120,
           bgColor: Const.COLORS.BUTTON_PRIMARY,
           textColor: Const.TEXT_COLORS.DARK,
-          callback: () => this.switchTab('shop')
+          callback: () => this.bottomNav?.switchTab('shop')
         }
       ]
     });
@@ -760,7 +496,7 @@ export default class BaseScene extends Phaser.Scene {
           width: 90,
           bgColor: Const.COLORS.BUTTON_SECONDARY,
           textColor: Const.TEXT_COLORS.PRIMARY,
-          callback: () => this.switchTab('team')
+          callback: () => this.bottomNav?.switchTab('team')
         },
         {
           text: t('continue'),
@@ -816,11 +552,10 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   clearContent() {
-    const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
-    Object.values(this.tabButtons).forEach(tab => {
-      if (tab.container) preserved.push(tab.container);
-      if (tab.hitZone) preserved.push(tab.hitZone);
-    });
+    const preserved = [
+      ...(this.topBar?.getPreservedElements() || []),
+      ...(this.bottomNav?.getPreservedElements() || [])
+    ];
 
     if (this.chipView) {
       this.chipView.destroy();
@@ -838,6 +573,10 @@ export default class BaseScene extends Phaser.Scene {
       this.wildStageView.destroy();
       this.wildStageView = null;
     }
+    if (this.settingsView) {
+      this.settingsView.destroy();
+      this.settingsView = null;
+    }
 
     const childrenToDestroy = this.children.list.filter(child => {
       return !preserved.includes(child);
@@ -854,16 +593,7 @@ export default class BaseScene extends Phaser.Scene {
     const mycelium = window.gameData?.base?.mycelium || 0;
     const sourceCore = window.gameData?.base?.sourceCore || 0;
     const coins = this.baseSystem.starCoin || 0;
-
-    if (this.myceliumDisplay) {
-      this.myceliumDisplay.setText(`🍄 菌丝: ${mycelium.toLocaleString()}`);
-    }
-    if (this.sourceCoreDisplay) {
-      this.sourceCoreDisplay.setText(`💎 源核: ${sourceCore.toLocaleString()}`);
-    }
-    if (this.coinDisplay) {
-      this.coinDisplay.setText(`⭐ 星币: ${coins.toLocaleString()}`);
-    }
+    this.topBar?.updateCurrencies(mycelium, sourceCore, coins);
   }
 
   saveGameData() {
@@ -873,25 +603,17 @@ export default class BaseScene extends Phaser.Scene {
       fusionGirlManager: this.fusionGirlManager,
       reputationSystem: this.reputationSystem
     });
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
   }
 
   // 统一的轻提示入口，供各个 View 直接调用。
   showToast(message, duration = 2000) {
-    if (this._toastText) this._toastText.destroy();
-    const width = this.cameras.main.width;
-    const toastBg = this.add.rectangle(width / 2, 120, Math.min(message.length * 16 + 40, width - 40), 36, 0x2a2520, 0.9).setStrokeStyle(1, 0xa8d8a8).setDepth(2000);
-    this._toastText = this.add.text(width / 2, 120, message, {
-      fontSize: '14px', fontFamily: 'Noto Sans SC', color: '#d4ccc0',
-      wordWrap: { width: width - 60 }
-    }).setOrigin(0.5).setDepth(2001);
-    this.tweens.add({
-      targets: [toastBg, this._toastText],
-      alpha: 0, delay: duration, duration: 300,
-      onComplete: () => { toastBg.destroy(); if (this._toastText) { this._toastText.destroy(); this._toastText = null; } }
-    });
+    this.toastManager?.show(message, { duration });
   }
 
   shutdown() {
+    this.modalManager?.destroy();
+    this.toastManager?.destroy();
     if (this._persistGameData) {
       window.removeEventListener('beforeunload', this._persistGameData);
       window.removeEventListener('pagehide', this._persistGameData);
@@ -899,6 +621,15 @@ export default class BaseScene extends Phaser.Scene {
     if (this._persistOnVisibilityChange) {
       document.removeEventListener('visibilitychange', this._persistOnVisibilityChange);
     }
+    // 清理 EventBus 监听
+    EventBus.off(GameEvents.CURRENCY_CHANGED);
+    EventBus.off(GameEvents.TEAM_UPDATED);
+    EventBus.off(GameEvents.TEAM_DEPLOY_CHANGED);
+    EventBus.off(GameEvents.CHIP_EQPPED);
+    EventBus.off(GameEvents.CHIP_UNEQUIPPED);
+    EventBus.off(GameEvents.FUSION_LEVEL_UP);
+    EventBus.off(GameEvents.FUSION_QUALITY_UP);
+    EventBus.off(GameEvents.DATA_RESET);
     this.saveGameData();
     this.tweens.killAll();
   }

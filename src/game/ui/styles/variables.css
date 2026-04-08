@@ -1,0 +1,55 @@
+/* ===== DOM UI 设计令牌 ===== */
+:root {
+  /* 颜色 */
+  --ui-bg-dark: #0a0a14;
+  --ui-bg-mid: #0d0d1d;
+  --ui-bg-light: #080812;
+  --ui-bg-hover: #1a1a2e;
+  --ui-bg-card: #12121f;
+  --ui-border: rgba(212, 165, 116, 0.2);
+  --ui-border-active: rgba(212, 165, 116, 0.6);
+
+  /* 主题色 */
+  --ui-accent: #d4a574;
+  --ui-cyan: #00ffff;
+  --ui-pink: #ff66cc;
+  --ui-purple: #9933ff;
+  --ui-magenta: #ff00ff;
+  --ui-green: #66bb6a;
+  --ui-red: #ff6666;
+  --ui-yellow: #ffd700;
+
+  /* 文字 */
+  --ui-text-primary: #ffffff;
+  --ui-text-secondary: #8888aa;
+  --ui-text-inactive: #6666aa;
+  --ui-text-danger: #ff6666;
+
+  /* 间距 */
+  --ui-padding-xs: 4px;
+  --ui-padding-sm: 8px;
+  --ui-padding-md: 12px;
+  --ui-padding-lg: 16px;
+  --ui-padding-xl: 20px;
+  --ui-margin-sm: 8px;
+  --ui-margin-md: 12px;
+
+  /* 圆角 */
+  --ui-radius-sm: 4px;
+  --ui-radius-md: 8px;
+  --ui-radius-lg: 12px;
+  --ui-radius-xl: 16px;
+
+  /* 字体 */
+  --ui-font-cn: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  --ui-font-en: Arial, sans-serif;
+  --ui-font-size-xs: 10px;
+  --ui-font-size-sm: 12px;
+  --ui-font-size-md: 14px;
+  --ui-font-size-lg: 16px;
+  --ui-font-size-xl: 20px;
+
+  /* 动画 */
+  --ui-transition-fast: 150ms ease;
+  --ui-transition-normal: 250ms ease;
+}

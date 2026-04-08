@@ -75,6 +75,8 @@ export const Const = {
   },
 
   LAYOUT: {
+    // 推荐：使用 ResponsiveUtils.getInstance().scale() 获取动态缩放因子
+    // 以下为设计基准值（375x812），仅用于无 ResponsiveUtils 时的回退
     MARGIN_SMALL: 15,
     MARGIN_MEDIUM: 50,
     MARGIN_LARGE: 80,
