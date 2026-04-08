@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ES_WATER_001",
+    "shopElement": "water",
+    "itemType": "material",
+    "itemId": "ITEM_WATER_MEMORY",
+    "itemName": "水点记忆晶体",
+    "cost": 20,
+    "dailyLimit": 5,
+    "description": "水点商店示例商品"
+  },
+  {
+    "id": "ES_FIRE_001",
+    "shopElement": "fire",
+    "itemType": "material",
+    "itemId": "ITEM_FIRE_MEMORY",
+    "itemName": "火点燃素结晶",
+    "cost": 20,
+    "dailyLimit": 5,
+    "description": "火点商店示例商品"
+  },
+  {
+    "id": "ES_WIND_001",
+    "shopElement": "wind",
+    "itemType": "material",
+    "itemId": "ITEM_WIND_MEMORY",
+    "itemName": "风点流息结晶",
+    "cost": 20,
+    "dailyLimit": 5,
+    "description": "风点商店示例商品"
+  }
+]

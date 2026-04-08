@@ -1,0 +1,123 @@
+[
+  {
+    "bossId": "WILDBOSS_001",
+    "name": "辐射巨兽·荒原咆哮者",
+    "mapId": "1",
+    "element": "dark",
+    "baseHp": "8000",
+    "baseAtk": "450",
+    "baseSpd": "35",
+    "description": "核战后的废墟中咆哮的巨型变异生物",
+    "portrait": "radiation_beast"
+  },
+  {
+    "bossId": "WILDBOSS_002",
+    "name": "剧毒领主·沼泽窒息者",
+    "mapId": "2",
+    "element": "water",
+    "baseHp": "7500",
+    "baseAtk": "480",
+    "baseSpd": "38",
+    "description": "沼泽深处的剧毒统治者",
+    "portrait": "toxic_lord"
+  },
+  {
+    "bossId": "WILDBOSS_003",
+    "name": "钢铁巨像·锈蚀泰坦",
+    "mapId": "3",
+    "element": "dark",
+    "baseHp": "9000",
+    "baseAtk": "420",
+    "baseSpd": "25",
+    "description": "废弃军事要塞中的古老战争机甲",
+    "portrait": "steel_colossus"
+  },
+  {
+    "bossId": "WILDBOSS_004",
+    "name": "冰霜巨龙·永冻脊骨",
+    "mapId": "4",
+    "element": "water",
+    "baseHp": "8500",
+    "baseAtk": "500",
+    "baseSpd": "40",
+    "description": "冰封高原的上古巨龙遗骸",
+    "portrait": "frost_dragon"
+  },
+  {
+    "bossId": "WILDBOSS_005",
+    "name": "熔岩古龙·灰烬焚尽者",
+    "mapId": "5",
+    "element": "fire",
+    "baseHp": "8800",
+    "baseAtk": "550",
+    "baseSpd": "36",
+    "description": "炽热火山深处的火焰精灵化身",
+    "portrait": "lava_dragon"
+  },
+  {
+    "bossId": "WILDBOSS_006",
+    "name": "精灵古树·暗夜吞噬者",
+    "mapId": "6",
+    "element": "wind",
+    "baseHp": "9500",
+    "baseAtk": "400",
+    "baseSpd": "20",
+    "description": "幽暗森林最古老的巨树意志",
+    "portrait": "ancient_tree"
+  },
+  {
+    "bossId": "WILDBOSS_007",
+    "name": "沙海蜃楼·蜃景幻主",
+    "mapId": "7",
+    "element": "fire",
+    "baseHp": "7000",
+    "baseAtk": "520",
+    "baseSpd": "45",
+    "description": "沙漠荒原中的神秘蜃景存在",
+    "portrait": "mirage_lord"
+  },
+  {
+    "bossId": "WILDBOSS_008",
+    "name": "海皇利维坦·深渊沉眠者",
+    "mapId": "8",
+    "element": "water",
+    "baseHp": "9200",
+    "baseAtk": "480",
+    "baseSpd": "32",
+    "description": "沉没都市的真正统治者",
+    "portrait": "sea_leviathan"
+  },
+  {
+    "bossId": "WILDBOSS_009",
+    "name": "超级计算机·矩阵母体",
+    "mapId": "9",
+    "element": "dark",
+    "baseHp": "10000",
+    "baseAtk": "380",
+    "baseSpd": "15",
+    "description": "觉醒的超级AI，将入侵者视为病毒",
+    "portrait": "matrix_mother"
+  },
+  {
+    "bossId": "WILDBOSS_010",
+    "name": "维度撕裂者·虚空信使",
+    "mapId": "10",
+    "element": "dark",
+    "baseHp": "8500",
+    "baseAtk": "560",
+    "baseSpd": "50",
+    "description": "来自异次元的侦察信使",
+    "portrait": "void_herald"
+  },
+  {
+    "bossId": "BOSS_FINAL_001",
+    "name": "终焉之核·奥米茄",
+    "mapId": "10",
+    "element": "dark",
+    "baseHp": "15000",
+    "baseAtk": "600",
+    "baseSpd": "40",
+    "description": "融合技术的创造者，唯一成功的完美融合体",
+    "portrait": "omega_core"
+  }
+]

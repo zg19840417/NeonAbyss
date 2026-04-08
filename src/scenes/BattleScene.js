@@ -1,6 +1,5 @@
 ﻿import BattleSystem from '../game/systems/BattleSystem.js';
 import EventBus from '../game/EventBus.js';
-import MinionCard from '../game/entities/MinionCard.js';
 import Const from '../game/data/Const.js';
 import CardRenderer from '../game/utils/CardRenderer.js';
 import { extractPortraitKey } from '../game/utils/PortraitRegistry.js';
@@ -22,10 +21,13 @@ export default class BattleScene extends Phaser.Scene {
   init(data) {
     this.currentFloor = data.floor || 1;
     this.currentDimension = data.dimension || 1;
-    this.stageName = data.stageName || `禁区 第${this.currentFloor}层`;
+    this.stageId = data.stageId || null;
+    this.stageName = data.stageName || (this.stageId ? this.stageId : `禁区 第${this.currentFloor}层`);
     this.enemies = data.enemies || [];
     this.minions = data.minions || data.players || [];
     this.equipmentCard = data.equipmentCard || data.chipCard || null;
+    this.onStageVictory = typeof data.onVictory === 'function' ? data.onVictory : null;
+    this.onStageDefeat = typeof data.onDefeat === 'function' ? data.onDefeat : null;
     this.isPaused = false;
     this.battleEnded = false;
     this.pauseOverlay = null;
@@ -61,22 +63,10 @@ export default class BattleScene extends Phaser.Scene {
     }
 
     if (this.minions.length === 0) {
-      const minionManager = window.gameData?.minionCardManager;
-      if (minionManager?.deployedCards) {
-        minionManager.deployedCards.forEach((id) => {
-          const cardData = minionManager.ownedCards?.find((c) => c.id === id);
-          if (cardData) {
-            this.minions.push(MinionCard.fromJSON(cardData));
-          }
-        });
-      }
-    }
-
-    if (this.minions.length === 0) {
       this.minions = [
-        { id: 'temp_1', name: '炎魔卫士', hp: 150, maxHp: 150, atk: 25, spd: 12, isMinionCard: true, rarity: 'N', race: 'plant', element: 'fire' },
-        { id: 'temp_2', name: '寒冰射手', hp: 100, maxHp: 100, atk: 30, spd: 18, isMinionCard: true, rarity: 'R', race: 'plant', element: 'water' }
-      ].map((m) => (MinionCard.fromJSON ? MinionCard.fromJSON(m) : new MinionCard(m)));
+        { id: 'temp_1', fusionGirlId: 'temp_1', name: '测试融合姬A', hp: 150, maxHp: 150, atk: 25, spd: 12, quality: 'N', element: 'fire', isFusionGirl: true },
+        { id: 'temp_2', fusionGirlId: 'temp_2', name: '测试融合姬B', hp: 100, maxHp: 100, atk: 30, spd: 18, quality: 'R', element: 'water', isFusionGirl: true }
+      ];
     }
 
     this.logEntries = ['战斗开始'];
@@ -149,7 +139,7 @@ export default class BattleScene extends Phaser.Scene {
     const quality = isPlayer ? (RARITY_TO_QUALITY[unit.rarity] || 'N') : (unit.isBoss ? 'SSR' : 'N');
     const currentHp = unit.currentHp ?? unit.hp ?? unit.maxHp ?? 0;
     const maxHp = unit.maxHp ?? unit.hp ?? 0;
-    const card = CardRenderer.createMinionCard(this, {
+    const card = CardRenderer.createBattleUnitCard(this, {
       x,
       y,
       width: Const.BATTLE.LAYOUT.CARD_WIDTH,
@@ -299,7 +289,7 @@ export default class BattleScene extends Phaser.Scene {
       atk: m.atk || 20,
       critRate: m.critRate || 0.15,
       def: m.def || 5,
-      isMinionCard: m.isMinionCard || true,
+      isFusionGirl: m.isFusionGirl !== false,
       rarity: m.rarity,
       race: m.race,
       passiveSkill: m.passiveSkill,
@@ -466,6 +456,79 @@ export default class BattleScene extends Phaser.Scene {
     });
   }
 
+  onAttackAnimation(attacker, target, isCrit, onComplete) {
+    const attackerCard = this.findCardEntry(attacker)?.container;
+    const targetCard = this.findCardEntry(target)?.container;
+
+    if (!attackerCard || !targetCard) {
+      onComplete?.();
+      return;
+    }
+
+    const originalX = attackerCard.x;
+    const step = attackerCard.x < targetCard.x ? 18 : -18;
+
+    this.tweens.add({
+      targets: attackerCard,
+      x: originalX + step,
+      duration: 120,
+      yoyo: true,
+      ease: 'Power2',
+      onYoyo: () => {
+        this.tweens.add({
+          targets: targetCard,
+          alpha: isCrit ? 0.35 : 0.55,
+          duration: 70,
+          yoyo: true,
+          repeat: isCrit ? 1 : 0
+        });
+      },
+      onComplete: () => {
+        attackerCard.x = originalX;
+        onComplete?.();
+      }
+    });
+  }
+
+  onSkillAnimation(character, targets, skill, onComplete) {
+    const sourceCard = this.findCardEntry(character)?.container;
+    const targetCards = (targets || [])
+      .map((target) => this.findCardEntry(target)?.container)
+      .filter(Boolean);
+
+    const flash = this.add.circle(
+      sourceCard?.x || this.cameras.main.width / 2,
+      sourceCard?.y || this.cameras.main.height / 2,
+      12,
+      0x9b59ff,
+      0.5
+    );
+    flash.setDepth(Const.DEPTH.MODAL_CONTENT + 5);
+
+    this.tweens.add({
+      targets: flash,
+      scaleX: 6,
+      scaleY: 6,
+      alpha: 0,
+      duration: 260,
+      ease: 'Quad.easeOut',
+      onStart: () => {
+        targetCards.forEach((card) => {
+          this.tweens.add({
+            targets: card,
+            alpha: 0.5,
+            duration: 90,
+            yoyo: true
+          });
+        });
+      },
+      onComplete: () => {
+        flash.destroy();
+        onComplete?.();
+      }
+    });
+  }
+
   playDeathAnimation(character) {
     const targetCard = this.findCardEntry(character);
     if (!targetCard?.container) return;
@@ -543,15 +606,35 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   continueToNextFloor() {
-    EventBus.emit('battle:victory', { floor: this.currentFloor });
+    if (this.onStageVictory) {
+      this.onStageVictory({
+        stageId: this.stageId,
+        enemies: this.enemies,
+        rewards: this.battleSystem?.calculateRewards?.() || {}
+      });
+      return;
+    }
+
+    EventBus.emit('battle:victory', {
+      floor: this.currentFloor,
+      enemies: this.enemies,
+      rewards: this.battleSystem?.calculateRewards?.() || {}
+    });
   }
 
   returnToBase() {
     if (this.battleSystem) {
       this.battleSystem.pause();
     }
-    EventBus.emit('battle:defeat', { floor: this.currentFloor });
-    this.scene.start('BaseScene');
+    if (this.onStageDefeat) {
+      this.onStageDefeat({
+        stageId: this.stageId,
+        enemies: this.enemies
+      });
+      return;
+    }
+
+    EventBus.emit('battle:defeat', { floor: this.currentFloor, enemies: this.enemies });
   }
 
   shutdown() {

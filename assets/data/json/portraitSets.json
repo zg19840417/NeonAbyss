@@ -1,0 +1,42 @@
+[
+  {
+    "id": "PS_LINGSHUANG_01",
+    "fusionGirlId": "FG_WATER_001",
+    "setOrder": 1,
+    "setName": "初雪诊疗",
+    "coverPortrait": "characters/fusion/FM001.png",
+    "description": "凌霜第一套立绘占位数据",
+    "isDefault": true,
+    "unlockPreviewText": "解锁新的立绘表现与品质提升"
+  },
+  {
+    "id": "PS_LINGSHUANG_02",
+    "fusionGirlId": "FG_WATER_001",
+    "setOrder": 2,
+    "setName": "寒潮守护",
+    "coverPortrait": "characters/fusion/FM001.png",
+    "description": "凌霜第二套立绘占位数据",
+    "isDefault": false,
+    "unlockPreviewText": "解锁新的立绘表现与品质提升"
+  },
+  {
+    "id": "PS_LIEYAN_01",
+    "fusionGirlId": "FG_FIRE_001",
+    "setOrder": 1,
+    "setName": "余火巡行",
+    "coverPortrait": "characters/fusion/FM002.png",
+    "description": "烈焰第一套立绘占位数据",
+    "isDefault": true,
+    "unlockPreviewText": "解锁新的立绘表现与品质提升"
+  },
+  {
+    "id": "PS_CHENFENG_01",
+    "fusionGirlId": "FG_WIND_001",
+    "setOrder": 1,
+    "setName": "静风观测",
+    "coverPortrait": "characters/fusion/FM003.png",
+    "description": "晨风第一套立绘占位数据",
+    "isDefault": true,
+    "unlockPreviewText": "解锁新的立绘表现与品质提升"
+  }
+]

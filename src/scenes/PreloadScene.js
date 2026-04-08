@@ -1,4 +1,3 @@
-import Const from '../game/data/Const.js';
 import { ensureGlobalGameData } from '../game/data/GameData.js';
 import { extractPortraitKey } from '../game/utils/PortraitRegistry.js';
 
@@ -30,14 +29,8 @@ function findAssetUrl(assetMap, fileName) {
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
     super({ key: 'PreloadScene' });
-    this.config = this.initConfig();
-  }
-
-  initConfig() {
-    return {
+    this.config = {
       colors: {
-        bgDark: 0x1a1815,
-        bgMid: 0x252220,
         amber: 0xd4a574,
         textPrimary: '#d4ccc0',
         textSecondary: '#8a7a6a'
@@ -62,7 +55,7 @@ export default class PreloadScene extends Phaser.Scene {
       fontFamily: 'Noto Sans SC'
     }).setOrigin(0.5);
 
-    const tipText = this.add.text(width / 2, height / 2 + 40, '正在初始化游戏资源', {
+    const tipText = this.add.text(width / 2, height / 2 + 40, '正在初始化游戏资源...', {
       fontSize: '12px',
       fill: this.config.colors.textSecondary,
       fontFamily: 'Noto Sans SC'

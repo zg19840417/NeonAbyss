@@ -1,5 +1,4 @@
 import Character from '../entities/Character.js';
-import MinionCard from '../entities/MinionCard.js';
 import Skill from './Skill.js';
 import { BuffType } from './BuffSystem.js';
 import ChipCardManager from './ChipCardManager.js';
@@ -45,16 +44,52 @@ export default class BattleSystem {
     this.battleLog = [];
     this.turnCount = 0;
   }
+
+  createCombatEntity(data = {}) {
+    const entity = data instanceof Character ? data : new Character({
+      id: data.id,
+      name: data.name,
+      charClass: data.charClass,
+      level: data.level || 1,
+      hp: data.maxHp || data.hp,
+      currentHp: data.currentHp ?? data.hp ?? data.maxHp,
+      skills: data.skills || [],
+      equipment: data.equipment || {}
+    });
+
+    entity.id = data.id || entity.id;
+    entity.name = data.name || entity.name;
+    entity.level = data.level || entity.level || 1;
+    entity.maxHp = data.maxHp ?? data.hp ?? entity.maxHp;
+    entity.currentHp = data.currentHp ?? data.hp ?? data.maxHp ?? entity.currentHp;
+    entity.atk = data.atk ?? entity.atk;
+    entity.def = data.def ?? entity.def ?? 5;
+    entity.spd = data.spd ?? data.baseSpd ?? entity.spd ?? 10;
+    entity.critRate = data.critRate ?? entity.critRate ?? 0.1;
+    entity.dodgeRate = data.dodgeRate ?? entity.dodgeRate ?? 0.05;
+    entity.critDamage = data.critDamage ?? entity.critDamage ?? 1.5;
+    entity.damageReduction = data.damageReduction ?? entity.damageReduction ?? 0;
+    entity.lifeSteal = data.lifeSteal ?? entity.lifeSteal ?? 0;
+    entity.skills = data.skills || entity.skills || [];
+    entity.buffs = Array.isArray(data.buffs) ? [...data.buffs] : (entity.buffs || []);
+    entity.debuffs = Array.isArray(data.debuffs) ? [...data.debuffs] : (entity.debuffs || []);
+    entity.passiveSkill = data.passiveSkill ?? entity.passiveSkill ?? null;
+    entity.element = data.element ?? entity.element ?? null;
+    entity.race = data.race ?? entity.race ?? null;
+    entity.rarity = data.rarity ?? entity.rarity ?? null;
+    entity.isFusionGirl = Boolean(data.isFusionGirl || entity.isFusionGirl);
+    entity.isBoss = Boolean(data.isBoss || entity.isBoss);
+    entity.shieldValue = data.shieldValue ?? entity.shieldValue ?? 0;
+    entity.equipmentEffects = Array.isArray(data.equipmentEffects) ? [...data.equipmentEffects] : (entity.equipmentEffects || []);
+    entity._hasRebirthed = Boolean(data._hasRebirthed || entity._hasRebirthed);
+    entity._windfuryUsed = Boolean(data._windfuryUsed || entity._windfuryUsed);
+
+    return entity;
+  }
   
   setPlayerTeam(characters) {
     this.playerTeam = characters.map(char => {
-      if (char instanceof Character) {
-        // Already a proper instance
-      } else if (char.isMinionCard || char.rarity || char.passiveSkill) {
-        char = new MinionCard(char);
-      } else {
-        char = new Character(char);
-      }
+      char = this.createCombatEntity(char);
       char.isDead = false;
       char.currentHp = char.maxHp;
       char.equipmentEffects = [];
@@ -83,7 +118,7 @@ export default class BattleSystem {
       char.isDead = false;
       char.currentHp = char.maxHp;
       char.equipmentEffects = [];
-      if (char.isMinionCard) {
+      if (char.passiveSkill) {
         char._hasRebirthed = false;
         char._windfuryUsed = false;
         if (char.passiveSkill) {
@@ -96,7 +131,7 @@ export default class BattleSystem {
     this.enemyTeam.forEach(enemy => {
       enemy.isDead = false;
       enemy.currentHp = enemy.maxHp;
-      if (enemy.isMinionCard) {
+      if (enemy.passiveSkill) {
         enemy._hasRebirthed = false;
         enemy._windfuryUsed = false;
         if (enemy.passiveSkill) {
@@ -483,7 +518,7 @@ export default class BattleSystem {
   // BUG6 FIX: 添加可选的target参数
   processPassiveSkills(team, eventType, allies, enemies, target = null) {
     for (const entity of team) {
-      if (entity.isDead || !entity.isMinionCard || !entity.passiveSkill) continue;
+      if (entity.isDead || !entity.passiveSkill) continue;
 
       const context = {
         eventType,
@@ -519,7 +554,7 @@ export default class BattleSystem {
 
   processAllyDeathPassiveSkills(deadCharacter, allies, enemies) {
     for (const entity of allies) {
-      if (entity.isDead || !entity.isMinionCard || !entity.passiveSkill) continue;
+      if (entity.isDead || !entity.passiveSkill) continue;
       if (entity.passiveSkill.type !== 'on_ally_death') continue;
 
       const context = {
@@ -547,7 +582,7 @@ export default class BattleSystem {
         const buff = entity.buffs[i];
         
         if (buff.type === BuffType.POISON) {
-          if (entity.isMinionCard && entity.isMechImmune?.()) continue;
+          if (entity.isMechImmune?.()) continue;
           const poisonDamage = Math.floor(buff.value * entity.maxHp);
           entity.currentHp = Math.max(0, entity.currentHp - poisonDamage);
           this.addBattleLog(`${entity.name} 受到中毒伤害`, `-${poisonDamage}`);
@@ -565,7 +600,7 @@ export default class BattleSystem {
         }
         
         if (buff.type === BuffType.STUN) {
-          if (entity.isMinionCard && entity.isMechImmune?.()) {
+          if (entity.isMechImmune?.()) {
             entity.buffs.splice(i, 1);
             this.addBattleLog(`[免疫]`, `${entity.name} 机械种族免疫眩晕`);
             continue;
@@ -592,7 +627,7 @@ export default class BattleSystem {
           const debuff = entity.debuffs[i];
 
           if (debuff.type === BuffType.POISON) {
-            if (entity.isMinionCard && entity.isMechImmune?.()) continue;
+            if (entity.isMechImmune?.()) continue;
             const poisonDamage = Math.floor(debuff.value * entity.maxHp);
             entity.currentHp = Math.max(0, entity.currentHp - poisonDamage);
             this.addBattleLog(`${entity.name} 受到中毒伤害`, `-${poisonDamage}`);
@@ -610,7 +645,7 @@ export default class BattleSystem {
           }
 
           if (debuff.type === BuffType.STUN) {
-            if (entity.isMinionCard && entity.isMechImmune?.()) {
+            if (entity.isMechImmune?.()) {
               entity.debuffs.splice(i, 1);
               this.addBattleLog(`[免疫]`, `${entity.name} 机械种族免疫眩晕`);
               continue;
@@ -879,12 +914,12 @@ export default class BattleSystem {
     const attackerEnemies = isPlayer ? this.enemyTeam : this.playerTeam;
 
     // Trigger on_attack passives for attacker
-    if (attacker.isMinionCard && attacker.passiveSkill) {
+    if (attacker.passiveSkill) {
       this.processPassiveSkills([attacker], 'attack', attackerAllies, attackerEnemies, target);
     }
 
     // Trigger on_damage_taken passives for target
-    if (target.isMinionCard && target.passiveSkill) {
+    if (target.passiveSkill) {
       const targetAllies = this.playerTeam.includes(target) ? this.playerTeam : this.enemyTeam;
       const targetEnemies = this.playerTeam.includes(target) ? this.enemyTeam : this.playerTeam;
       this.processPassiveSkills([target], 'damage_taken', targetAllies, targetEnemies);
@@ -903,7 +938,7 @@ export default class BattleSystem {
       this.processAllyDeathPassiveSkills(target, targetAllies, targetEnemies);
 
       // Trigger on_kill passives for attacker
-      if (attacker.isMinionCard && attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
+      if (attacker.passiveSkill && attacker.passiveSkill.type === 'on_kill') {
         this.processPassiveSkills([attacker], 'kill', attackerAllies, attackerEnemies);
       }
     }
@@ -992,7 +1027,7 @@ export default class BattleSystem {
     if (targets.length === 0) return null;
     if (targets.length === 1) return targets[0];
     
-    const tauntTargets = targets.filter(t => t.isMinionCard && t.hasTaunt?.());
+    const tauntTargets = targets.filter(t => t.hasTaunt?.());
     if (tauntTargets.length > 0) {
       return tauntTargets[Math.floor(Math.random() * tauntTargets.length)];
     }

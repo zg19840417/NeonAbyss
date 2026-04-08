@@ -8,7 +8,7 @@ import BattleScene from './scenes/BattleScene.js'
 import WildStageScene from './scenes/WildStageScene.js'
 import ZoneExploreScene from './scenes/ZoneExploreScene.js'
 
-const renderResolution = Math.min(window.devicePixelRatio || 1, 2)
+const renderResolution = Math.min(window.devicePixelRatio || 1, 3)
 
 const config = {
   type: Phaser.AUTO,
@@ -18,6 +18,9 @@ const config = {
   backgroundColor: '#1a1815',
   resolution: renderResolution,
   autoRound: true,
+  antialias: true,
+  roundPixels: false,
+  pixelArt: false,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH

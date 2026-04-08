@@ -27,7 +27,7 @@ const ROLE_STYLE = {
 };
 
 export default class CardRenderer {
-  static createMinionCard(scene, options = {}) {
+  static createBattleUnitCard(scene, options = {}) {
     const {
       x = 0,
       y = 0,
@@ -170,7 +170,7 @@ export default class CardRenderer {
     return container;
   }
 
-  static createCompactMinionRow(scene, options = {}) {
+  static createCompactUnitRow(scene, options = {}) {
     const {
       x = 0,
       y = 0,

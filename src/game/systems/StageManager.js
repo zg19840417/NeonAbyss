@@ -1,8 +1,7 @@
 import StageData from '../data/StageData.js';
 import EnemyData from '../data/EnemyData.js';
 import RewardManager from './RewardManager.js';
-
-const SAVE_KEY = 'stageManager';
+import { ensureGlobalGameData, saveGameData as persistGameData } from '../data/GameData.js';
 
 /**
  * 野外关卡管理系统
@@ -16,23 +15,24 @@ export default class StageManager {
   }
 
   load() {
-    try {
-      const saved = localStorage.getItem(SAVE_KEY);
-      if (saved) {
-        const data = JSON.parse(saved);
-        this.clearedStages = data.clearedStages || {};
-      }
-    } catch (e) {
-      console.warn('Failed to load StageManager:', e);
-    }
+    const gameData = ensureGlobalGameData();
+    const clearedStageIds = Array.isArray(gameData?.progress?.clearedStages)
+      ? gameData.progress.clearedStages
+      : [];
+
+    this.clearedStages = {};
+    clearedStageIds.forEach((stageId) => {
+      this.clearedStages[stageId] = { firstClear: true };
+    });
   }
 
   save() {
-    try {
-      localStorage.setItem(SAVE_KEY, JSON.stringify({ clearedStages: this.clearedStages }));
-    } catch (e) {
-      console.warn('Failed to save StageManager:', e);
+    ensureGlobalGameData();
+    if (!window.gameData.progress) {
+      window.gameData.progress = { clearedStages: [] };
     }
+    window.gameData.progress.clearedStages = this.getClearedStageIds();
+    persistGameData(window.gameData);
   }
 
   getClearedStageIds() {

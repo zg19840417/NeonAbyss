@@ -1,17 +1,5 @@
 [
   {
-    "key": "mycelium",
-    "name": "菌丝",
-    "initialValue": "60000",
-    "description": "基础货币"
-  },
-  {
-    "key": "sourceCore",
-    "name": "源核",
-    "initialValue": "60000",
-    "description": "稀有代币"
-  },
-  {
     "key": "starCoin",
     "name": "星币",
     "initialValue": "60000",

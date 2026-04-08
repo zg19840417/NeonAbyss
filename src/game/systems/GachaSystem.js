@@ -1,26 +1,23 @@
-import MinionCard from '../entities/MinionCard.js';
-import gachaPoolsData from '../../../assets/data/json/gachaPools.json';
-import gachaItemsData from '../../../assets/data/json/gachaItems.json';
-import minionCardsData from '../../../assets/data/json/minionCards.json';
+﻿import gachaPoolsData from '../../../assets/data/json/gachaPools.json';
+import portraitSetsData from '../../../assets/data/json/portraitSets.json';
+import portraitFragmentsData from '../../../assets/data/json/portraitFragments.json';
+import FusionGirlManager from './FusionGirlManager.js';
+import { getFusionGirlById } from '../data/FusionGirlData.js';
 
-const QUALITY_ORDER = ['N', 'R', 'SR', 'SSR', 'UR', 'LE'];
+const QUALITY_ORDER = ['R', 'SR', 'SSR', 'UR'];
 
 const QUALITY_COLORS = {
-  N: '#8a7a6a',
   R: '#4dabf7',
   SR: '#9775fa',
   SSR: '#f59f00',
-  UR: '#ff6b6b',
-  LE: '#e64980'
+  UR: '#ff6b6b'
 };
 
 const QUALITY_NAMES = {
-  N: '普通',
   R: '稀有',
   SR: '精良',
   SSR: '史诗',
-  UR: '传说',
-  LE: '神话'
+  UR: '传说'
 };
 
 export default class GachaSystem {
@@ -30,24 +27,6 @@ export default class GachaSystem {
     this.currentPool = this.pools[0];
     this.pityCounter = this.loadPityCounter();
     this.history = this.loadHistory();
-    this.minionCardsList = minionCardsData;
-
-    this.poolItemsByQuality = {};
-    for (let index = 0; index < gachaItemsData.length; index += 1) {
-      const item = gachaItemsData[index];
-      const cardIndex = parseInt(item.cardId.replace('FM', ''), 10) - 1;
-      const cardData = this.minionCardsList[cardIndex];
-      if (!cardData) continue;
-      const quality = cardData.quality;
-      const poolId = item.poolId;
-      if (!this.poolItemsByQuality[poolId]) {
-        this.poolItemsByQuality[poolId] = {};
-      }
-      if (!this.poolItemsByQuality[poolId][quality]) {
-        this.poolItemsByQuality[poolId][quality] = [];
-      }
-      this.poolItemsByQuality[poolId][quality].push({ ...item, cardIndex, quality });
-    }
   }
 
   loadPityCounter() {
@@ -74,15 +53,15 @@ export default class GachaSystem {
     window.gameData.gacha.history = [...this.history];
   }
 
-  addToHistory(character) {
+  addToHistory(fragment) {
     this.history.unshift({
-      id: character.id,
-      name: character.name,
-      quality: character.quality,
-      rarity: character.rarity,
-      element: character.element,
-      race: character.race,
-      charClass: character.charClass,
+      id: fragment.id,
+      fusionGirlId: fragment.fusionGirlId,
+      fusionGirlName: fragment.fusionGirlName,
+      portraitSetId: fragment.portraitSetId,
+      portraitSetName: fragment.portraitSetName,
+      fragmentQuality: fragment.fragmentQuality,
+      fragmentSlot: fragment.fragmentSlot,
       time: Date.now()
     });
     if (this.history.length > 100) {
@@ -100,7 +79,37 @@ export default class GachaSystem {
     this.saveHistory();
   }
 
+  getFusionGirlManager() {
+    return FusionGirlManager.fromJSON(window.gameData?.fusionGirlManager || {});
+  }
+
+  getAvailableGirlIds() {
+    const manager = this.getFusionGirlManager();
+    return manager.getSummonUnlockedGirlIds();
+  }
+
+  getAvailableFragmentsByQuality(quality) {
+    const unlockedGirlIds = this.getAvailableGirlIds();
+    if (!Array.isArray(unlockedGirlIds) || unlockedGirlIds.length === 0) {
+      return [];
+    }
+
+    return portraitFragmentsData.filter((fragment) => {
+      if (fragment.fragmentQuality !== quality) return false;
+      if (!unlockedGirlIds.includes(fragment.fusionGirlId)) return false;
+      return portraitSetsData.some((set) => set.id === fragment.portraitSetId && set.fusionGirlId === fragment.fusionGirlId);
+    });
+  }
+
+  hasAvailableFragments() {
+    return QUALITY_ORDER.some((quality) => this.getAvailableFragmentsByQuality(quality).length > 0);
+  }
+
   rollGacha(count = 1) {
+    if (!this.hasAvailableFragments()) {
+      return { success: false, reason: 'no_unlocked_fragments', results: [] };
+    }
+
     const results = [];
 
     for (let index = 0; index < count; index += 1) {
@@ -110,10 +119,13 @@ export default class GachaSystem {
       this.pityCounter.urCount += 1;
 
       const quality = this.calculateQuality();
-      const character = this.createCharacter(quality);
+      const fragment = this.createFragmentReward(quality);
+      if (!fragment) {
+        continue;
+      }
 
-      results.push(character);
-      this.addToHistory(character);
+      results.push(fragment);
+      this.addToHistory(fragment);
 
       if (QUALITY_ORDER.indexOf(quality) >= QUALITY_ORDER.indexOf('SR')) {
         this.pityCounter.srCount = 0;
@@ -121,26 +133,22 @@ export default class GachaSystem {
       if (QUALITY_ORDER.indexOf(quality) >= QUALITY_ORDER.indexOf('SSR')) {
         this.pityCounter.ssrCount = 0;
       }
-      if (quality === 'LE') {
+      if (quality === 'UR') {
         this.pityCounter.urCount = 0;
       }
     }
 
     this.savePityCounter();
-    return results;
+    return { success: results.length > 0, results };
   }
 
   calculateQuality() {
     const pool = this.currentPool;
     const roll = Math.random() * 100;
 
-    if (this.pityCounter.urCount >= pool.pityUR) return 'LE';
+    if (this.pityCounter.urCount >= pool.pityUR) return 'UR';
     if (this.pityCounter.ssrCount >= pool.pitySSR) return 'SSR';
     if (this.pityCounter.srCount >= pool.pitySR) return 'SR';
-
-    if (this.pityCounter.count >= pool.pityLimit) {
-      return this.getRandomQuality(['SR', 'SSR', 'UR', 'LE']);
-    }
 
     if (this.pityCounter.ssrCount >= (pool.softPitySSRStart || 35) && this.pityCounter.ssrCount < pool.pitySSR) {
       const softPityChance = (this.pityCounter.ssrCount - (pool.softPitySSRStart || 35)) / (pool.pitySSR - (pool.softPitySSRStart || 35));
@@ -156,16 +164,14 @@ export default class GachaSystem {
       }
     }
 
-    if (roll < 0.5) return 'LE';
-    if (roll < 2.5) return 'UR';
-    if (roll < 10) return 'SSR';
-    if (roll < 30) return 'SR';
-    if (roll < 60) return 'R';
-    return 'N';
+    if (roll < 5) return 'UR';
+    if (roll < 15) return 'SSR';
+    if (roll < 40) return 'SR';
+    return 'R';
   }
 
   getRandomQuality(qualities) {
-    const weights = { N: 10, R: 20, SR: 30, SSR: 25, UR: 12, LE: 3 };
+    const weights = { R: 60, SR: 25, SSR: 10, UR: 5 };
     const filteredQualities = qualities.filter((quality) => weights[quality] !== undefined);
     const totalWeight = filteredQualities.reduce((sum, quality) => sum + weights[quality], 0);
     let random = Math.random() * totalWeight;
@@ -177,80 +183,62 @@ export default class GachaSystem {
       }
     }
 
-    return filteredQualities[filteredQualities.length - 1];
+    return filteredQualities[filteredQualities.length - 1] || 'R';
   }
 
-  createCharacter(quality = 'N') {
-    const poolId = this.currentPool.poolId;
-    const poolItems = this.poolItemsByQuality[poolId];
-
-    if (!poolItems || !poolItems[quality] || poolItems[quality].length === 0) {
-      console.warn(`[GachaSystem] 卡池 ${poolId} 中没有品质 ${quality} 的卡，回退到同品质随机卡。`);
-      return this._fallbackCreate(quality);
+  createFragmentReward(quality = 'R') {
+    let available = this.getAvailableFragmentsByQuality(quality);
+    if (available.length === 0) {
+      available = QUALITY_ORDER.flatMap((q) => this.getAvailableFragmentsByQuality(q));
+    }
+    if (available.length === 0) {
+      return null;
     }
 
-    const items = poolItems[quality];
-    const totalWeight = items.reduce((sum, item) => sum + (item.weight || 1), 0);
-    let random = Math.random() * totalWeight;
-    let selectedItem = items[items.length - 1];
+    const selected = available[Math.floor(Math.random() * available.length)];
+    const fusionGirl = getFusionGirlById(selected.fusionGirlId);
+    const portraitSet = portraitSetsData.find((item) => item.id === selected.portraitSetId);
 
-    for (const item of items) {
-      random -= (item.weight || 1);
-      if (random <= 0) {
-        selectedItem = item;
-        break;
-      }
-    }
-
-    const cardData = this.minionCardsList[selectedItem.cardIndex];
-    if (!cardData) {
-      console.warn(`[GachaSystem] 未找到 cardIndex=${selectedItem.cardIndex} 的卡牌数据，回退到同品质随机卡。`);
-      return this._fallbackCreate(quality);
-    }
-
-    return this._createMinionCardFromData(cardData);
-  }
-
-  _createMinionCardFromData(cardData) {
-    const qualityToRarity = {
-      N: 'common',
-      R: 'rare',
-      SR: 'epic',
-      SSR: 'legendary',
-      UR: 'legendary',
-      LE: 'legendary'
+    return {
+      id: selected.id,
+      type: 'portraitFragment',
+      fusionGirlId: selected.fusionGirlId,
+      fusionGirlName: fusionGirl?.name || selected.fusionGirlId,
+      portraitSetId: selected.portraitSetId,
+      portraitSetName: portraitSet?.setName || selected.portraitSetId,
+      fragmentQuality: selected.fragmentQuality,
+      fragmentSlot: selected.fragmentSlot,
+      requiredCount: selected.requiredCount,
+      bonusType: selected.bonusType,
+      bonusValue: selected.bonusValue,
+      overflowElement: selected.overflowElement,
+      icon: selected.icon,
+      description: selected.description,
+      amount: 1
     };
+  }
 
-    return new MinionCard({
-      id: cardData.cardId,
-      minionId: cardData.cardId,
-      name: cardData.name,
-      charClass: cardData.profession || 'berserker',
-      level: 1,
-      rarity: qualityToRarity[cardData.quality] || 'common',
-      quality: cardData.quality,
-      element: cardData.element || null,
-      race: cardData.race || 'plant',
-      portrait: cardData.portrait || null,
-      description: cardData.description || '',
-      star: 1,
-      hp: cardData.hp || cardData.maxHp || 100,
-      maxHp: cardData.maxHp || cardData.hp || 100,
-      atk: cardData.atk || 20,
-      spd: cardData.spd ?? cardData.baseSpd ?? 10
+  applyResults(fragmentResults) {
+    const manager = this.getFusionGirlManager();
+    const grants = [];
+    const elementPoints = { ...(window.gameData?.elementPoints || { water: 0, fire: 0, wind: 0 }) };
+
+    fragmentResults.forEach((fragment) => {
+      const result = manager.addFragment(fragment, fragment.amount || 1);
+      if (result.success && result.overflowCount > 0) {
+        const element = result.overflowElement || 'water';
+        elementPoints[element] = (elementPoints[element] || 0) + result.overflowCount;
+      }
+      grants.push({ ...fragment, progressResult: result });
     });
-  }
 
-  _fallbackCreate(quality) {
-    const matching = minionCardsData.filter((card) => card.quality === quality);
-    const cardData = matching.length > 0
-      ? matching[Math.floor(Math.random() * matching.length)]
-      : minionCardsData[Math.floor(Math.random() * minionCardsData.length)];
-    return this._createMinionCardFromData(cardData);
-  }
+    if (!window.gameData) {
+      window.gameData = {};
+    }
+    window.gameData.fusionGirlManager = manager.toJSON();
+    window.gameData.elementPoints = elementPoints;
 
-  grantCharacter(character) {
-    return character;
+    return grants;
   }
 
   getPityInfo() {
@@ -263,7 +251,7 @@ export default class GachaSystem {
   }
 
   getQualityColor(quality) {
-    return QUALITY_COLORS[quality] || QUALITY_COLORS.N;
+    return QUALITY_COLORS[quality] || QUALITY_COLORS.R;
   }
 
   getQualityName(quality) {
@@ -271,7 +259,7 @@ export default class GachaSystem {
   }
 
   static getQualityColor(quality) {
-    return QUALITY_COLORS[quality] || QUALITY_COLORS.N;
+    return QUALITY_COLORS[quality] || QUALITY_COLORS.R;
   }
 
   static getQualityName(quality) {

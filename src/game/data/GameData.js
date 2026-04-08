@@ -1,5 +1,6 @@
 ﻿import Const from './Const.js';
 import initConfigData from '../../../assets/data/json/initConfig.json';
+import { createDefaultFusionGirlManagerData, createDefaultElementPointData, normalizeFusionGirlManagerData } from './FusionGirlData.js';
 
 export const SAVE_KEY = 'wasteland_year_save';
 
@@ -89,13 +90,12 @@ export function createDefaultChipCardData() {
   };
 }
 
-export function createDefaultMinionCardData() {
-  return {
-    ownedCards: [],
-    deployedCards: [],
-    maxDeploy: 3,
-    shopMinions: []
-  };
+export function createDefaultFusionGirlData() {
+  return createDefaultFusionGirlManagerData();
+}
+
+export function createDefaultElementPoints() {
+  return createDefaultElementPointData();
 }
 
 export function createDefaultProgress() {
@@ -106,11 +106,11 @@ export function createDefaultProgress() {
 
 export function createDefaultGameData() {
   return {
-    version: '3.0.0',
+    version: '3.1.0',
     base: createDefaultBaseData(),
     dungeon: createDefaultDungeonData(),
     chipCardManager: createDefaultChipCardData(),
-    minionCardManager: createDefaultMinionCardData(),
+    fusionGirlManager: createDefaultFusionGirlData(),
     reputation: {},
     achievements: createDefaultAchievements(),
     settings: createDefaultSettings(),
@@ -120,6 +120,7 @@ export function createDefaultGameData() {
       history: []
     },
     shipParts: [],
+    elementPoints: createDefaultElementPoints(),
     minionStones: 0,
     starStones: 0
   };
@@ -127,8 +128,7 @@ export function createDefaultGameData() {
 
 export function mergeGameData(savedData = {}) {
   const defaults = createDefaultGameData();
-
-  return {
+  const merged = {
     ...defaults,
     ...savedData,
     base: {
@@ -147,10 +147,19 @@ export function mergeGameData(savedData = {}) {
       ...defaults.chipCardManager,
       ...(savedData.chipCardManager || {})
     },
-    minionCardManager: {
-      ...defaults.minionCardManager,
-      ...(savedData.minionCardManager || {})
-    },
+    fusionGirlManager: normalizeFusionGirlManagerData({
+      ...defaults.fusionGirlManager,
+      ...(savedData.fusionGirlManager || {}),
+      ownedGirls: Array.isArray(savedData.fusionGirlManager?.ownedGirls)
+        ? savedData.fusionGirlManager.ownedGirls
+        : defaults.fusionGirlManager.ownedGirls,
+      deployedGirlIds: Array.isArray(savedData.fusionGirlManager?.deployedGirlIds)
+        ? savedData.fusionGirlManager.deployedGirlIds
+        : defaults.fusionGirlManager.deployedGirlIds,
+      summonUnlockedGirlIds: Array.isArray(savedData.fusionGirlManager?.summonUnlockedGirlIds)
+        ? savedData.fusionGirlManager.summonUnlockedGirlIds
+        : defaults.fusionGirlManager.summonUnlockedGirlIds
+    }),
     reputation: {
       ...defaults.reputation,
       ...(savedData.reputation || {})
@@ -176,8 +185,14 @@ export function mergeGameData(savedData = {}) {
       ...defaults.progress,
       ...(savedData.progress || {})
     },
-    shipParts: Array.isArray(savedData.shipParts) ? savedData.shipParts : defaults.shipParts
+    shipParts: Array.isArray(savedData.shipParts) ? savedData.shipParts : defaults.shipParts,
+    elementPoints: {
+      ...defaults.elementPoints,
+      ...(savedData.elementPoints || {})
+    }
   };
+
+  return merged;
 }
 
 export function loadGameData() {
@@ -215,7 +230,7 @@ export function ensureGlobalGameData() {
 export function syncRuntimeGameData({
   baseSystem = null,
   chipCardManager = null,
-  minionCardManager = null,
+  fusionGirlManager = null,
   reputationSystem = null,
   dungeonSystem = null
 } = {}) {
@@ -227,8 +242,8 @@ export function syncRuntimeGameData({
   if (chipCardManager) {
     current.chipCardManager = chipCardManager.toJSON();
   }
-  if (minionCardManager) {
-    current.minionCardManager = minionCardManager.toJSON();
+  if (fusionGirlManager) {
+    current.fusionGirlManager = fusionGirlManager.toJSON();
   }
   if (reputationSystem) {
     current.reputation = reputationSystem.toJSON();
@@ -240,4 +255,3 @@ export function syncRuntimeGameData({
   window.gameData = current;
   return saveGameData(current);
 }
-

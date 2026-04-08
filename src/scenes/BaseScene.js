@@ -7,7 +7,8 @@ import TeamView from './views/TeamView.js';
 import WildStageView from './views/WildStageView.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import ReputationSystem from '../game/systems/ReputationSystem.js';
-import MinionCardManager from '../game/systems/MinionCardManager.js';
+import FusionGirlManager from '../game/systems/FusionGirlManager.js';
+import { syncFusionGirlProgress } from '../game/systems/FusionGirlProgressSync.js';
 import StageManager from '../game/systems/StageManager.js';
 import { ensureGlobalGameData, resetGameData, syncRuntimeGameData } from '../game/data/GameData.js';
 
@@ -77,7 +78,8 @@ export default class BaseScene extends Phaser.Scene {
     this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
     this.stageManager = new StageManager();
     this.reputationSystem = new ReputationSystem(window.gameData.reputation);
-    this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
+    this.fusionGirlManager = FusionGirlManager.fromJSON(window.gameData.fusionGirlManager);
+    this.fusionGirlManager = syncFusionGirlProgress(window.gameData);
   }
 
   createBackground(width, height) {
@@ -642,7 +644,7 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   tryEnterDungeon() {
-    const teamCount = this.minionCardManager?.getDeployedCards?.().length || 0;
+    const teamCount = this.fusionGirlManager?.getDeployedGirls?.().length || 0;
 
     if (teamCount === 0) {
       this.showTeamEmptyAlert();
@@ -861,7 +863,7 @@ export default class BaseScene extends Phaser.Scene {
     syncRuntimeGameData({
       baseSystem: this.baseSystem,
       chipCardManager: this.chipCardManager,
-      minionCardManager: this.minionCardManager,
+      fusionGirlManager: this.fusionGirlManager,
       reputationSystem: this.reputationSystem
     });
   }

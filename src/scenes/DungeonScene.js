@@ -1,8 +1,10 @@
 ﻿import DungeonSystem from '../game/systems/DungeonSystem.js';
 import EventBus from '../game/EventBus.js';
-import MinionCardManager from '../game/systems/MinionCardManager.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
+import FusionGirlManager from '../game/systems/FusionGirlManager.js';
+import { syncFusionGirlProgress } from '../game/systems/FusionGirlProgressSync.js';
 import { ensureGlobalGameData, syncRuntimeGameData } from '../game/data/GameData.js';
+import { getFusionGirlById, getPortraitSetsByFusionGirlId, getFusionGirlCombatStats } from '../game/data/FusionGirlData.js';
 import enemiesData from '../../assets/data/json/enemies.json';
 
 export default class DungeonScene extends Phaser.Scene {
@@ -26,6 +28,7 @@ export default class DungeonScene extends Phaser.Scene {
 
   initializeDungeonSystem() {
     ensureGlobalGameData();
+    syncFusionGirlProgress(window.gameData);
     this.dungeonSystem = new DungeonSystem(window.gameData.dungeon);
     this.dungeonSystem.load();
     this.currentFloor = this.dungeonSystem.currentFloor;
@@ -49,7 +52,7 @@ export default class DungeonScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     const bossLabel = isBossFloor ? ' BOSS' : '';
-    this.add.text(width / 2, 100, `第{this.currentFloor}层{bossLabel}`, {
+    this.add.text(width / 2, 100, `第${this.currentFloor}层${bossLabel}`, {
       fontSize: '18px',
       fontFamily: 'Noto Sans SC',
       color: isBossFloor ? '#d86a6a' : '#d4a574'
@@ -150,17 +153,34 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   getPlayerTeam() {
-    const manager = MinionCardManager.fromJSON(window.gameData?.minionCardManager || {});
-    const deployedCards = manager.getDeployedCards();
-    if (deployedCards.length > 0) {
-      return deployedCards.map((card) => (card.toJSON ? card.toJSON() : card));
-    }
+    const fusionManager = FusionGirlManager.fromJSON(window.gameData?.fusionGirlManager || {});
+    const deployedGirls = fusionManager.getDeployedGirls?.() || [];
+    return deployedGirls.map((girl) => this.createFusionGirlBattleUnit(girl));
+  }
 
-    return [
-      { id: 'starter_1', name: '艾伦', hp: 100, maxHp: 100, atk: 20, level: 1, element: 'fire', rarity: 'common' },
-      { id: 'starter_2', name: '莉亚', hp: 80, maxHp: 80, atk: 25, level: 1, element: 'water', rarity: 'rare' },
-      { id: 'starter_3', name: '杰克', hp: 120, maxHp: 120, atk: 18, level: 1, element: 'wind', rarity: 'common' }
-    ];
+  createFusionGirlBattleUnit(girl) {
+    const fusionData = getFusionGirlById(girl.id);
+    const portraitSets = getPortraitSetsByFusionGirlId(girl.id);
+    const activeSet = portraitSets.find((set) => (girl.completedPortraitSetIds || []).includes(set.id))
+      || portraitSets.find((set) => set.id === fusionData?.defaultPortraitSetId)
+      || portraitSets[0];
+
+    const combatStats = getFusionGirlCombatStats(girl, fusionData);
+
+    return {
+      id: girl.id,
+      fusionGirlId: girl.id,
+      name: fusionData?.name || girl.name || girl.id,
+      hp: combatStats.maxHp,
+      maxHp: combatStats.maxHp,
+      atk: combatStats.atk,
+      spd: combatStats.spd,
+      level: combatStats.level,
+      element: fusionData?.element || 'water',
+      quality: girl.quality || 'N',
+      portrait: activeSet?.coverPortrait || null,
+      isFusionGirl: true
+    };
   }
 
   getChipCard() {
@@ -218,8 +238,15 @@ export default class DungeonScene extends Phaser.Scene {
   onBattleVictory(data) {
     const currentFloor = data.floor || this.currentFloor;
     const isBossFloor = currentFloor % 10 === 0;
-    const enemies = this.generateEnemiesForFloor(currentFloor);
-    const rewards = this.calculateBattleRewards(enemies);
+    const enemies = Array.isArray(data.enemies) && data.enemies.length > 0
+      ? data.enemies
+      : this.generateEnemiesForFloor(currentFloor);
+    const rewards = data.rewards && typeof data.rewards.mycelium === 'number'
+      ? {
+          mycelium: Number(data.rewards.mycelium || 0),
+          sourceCore: Number(data.rewards.sourceCore || 0)
+        }
+      : this.calculateBattleRewards(enemies);
 
     if (window.gameData.base) {
       window.gameData.base.mycelium = (window.gameData.base.mycelium || 0) + rewards.mycelium;

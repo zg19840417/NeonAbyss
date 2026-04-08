@@ -1,6 +1,11 @@
 import Const from '../../game/data/Const.js';
 import WorldMapData from '../../game/data/WorldMapData.js';
 import { t } from '../../game/data/Lang.js';
+import {
+  getFusionGirlById,
+  getPortraitSetsByFusionGirlId,
+  getFusionGirlCombatStats
+} from '../../game/data/FusionGirlData.js';
 
 export default class WildStageView {
   constructor(scene, width, height, layout = {}) {
@@ -456,22 +461,30 @@ export default class WildStageView {
 
     const stageManager = this.scene.stageManager;
     const enemies = stageManager.getStageEnemies(stage.stageId);
+    const minions = this.getDeployedFusionGirls();
+    const equipmentCard = this.scene.chipCardManager?.equippedCard
+      ? this.scene.chipCardManager.equippedCard.toJSON()
+      : null;
 
     if (enemies.length === 0) {
       console.warn('No enemies found for stage:', stage.stageId);
       return;
     }
 
+    if (minions.length === 0) {
+      this.scene.showToast?.('请先在队伍页上阵融合姬');
+      this.scene.scene.start('BaseScene', { initialTab: 'team' });
+      return;
+    }
+
     this.scene.scene.start('BattleScene', {
       enemies,
       stageId: stage.stageId,
+      stageName: WorldMapData.getStageName(stage),
+      minions,
+      equipmentCard,
       onVictory: () => {
         stageManager.clearStage(stage.stageId);
-        if (!window.gameData.progress) window.gameData.progress = {};
-        if (!window.gameData.progress.clearedStages) window.gameData.progress.clearedStages = [];
-        if (!window.gameData.progress.clearedStages.includes(stage.stageId)) {
-          window.gameData.progress.clearedStages.push(stage.stageId);
-        }
         this.scene.scene.start('BaseScene', { initialTab: 'wild' });
       },
       onDefeat: () => {
@@ -484,5 +497,32 @@ export default class WildStageView {
     this.destroy();
     console.log('Entering dungeon:', dungeon.dungeonId, WorldMapData.getDungeonName(dungeon));
     this.scene.scene.start('DungeonScene');
+  }
+
+  getDeployedFusionGirls() {
+    const girls = this.scene.fusionGirlManager?.getDeployedGirls?.() || [];
+    return girls.map((girl) => {
+      const fusionData = getFusionGirlById(girl.id);
+      const portraitSets = getPortraitSetsByFusionGirlId(girl.id);
+      const activeSet = portraitSets.find((set) => (girl.completedPortraitSetIds || []).includes(set.id))
+        || portraitSets.find((set) => set.id === fusionData?.defaultPortraitSetId)
+        || portraitSets[0];
+      const combatStats = getFusionGirlCombatStats(girl, fusionData);
+
+      return {
+        id: girl.id,
+        fusionGirlId: girl.id,
+        name: fusionData?.name || girl.name || girl.id,
+        hp: combatStats.maxHp,
+        maxHp: combatStats.maxHp,
+        atk: combatStats.atk,
+        spd: combatStats.spd,
+        level: combatStats.level,
+        element: fusionData?.element || 'water',
+        quality: girl.quality || 'N',
+        portrait: activeSet?.coverPortrait || null,
+        isFusionGirl: true
+      };
+    });
   }
 }

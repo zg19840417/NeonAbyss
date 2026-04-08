@@ -112,7 +112,7 @@ export default class SaveSystem {
       floor: saveData?.dungeon?.currentFloor || 1,
       maxFloor: saveData?.dungeon?.maxReachedFloor || 1,
       mycelium: saveData?.base?.mycelium || 0,
-      teamSize: saveData?.minionCardManager?.deployedCards?.length || 0
+      teamSize: saveData?.fusionGirlManager?.deployedGirlIds?.length || 0
     };
   }
 

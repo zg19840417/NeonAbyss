@@ -1,4 +1,4 @@
-import shopData from '../../../assets/data/json/shop.json';
+﻿import shopData from '../../../assets/data/json/shop.json';
 import itemsData from '../../../assets/data/json/items.json';
 import GachaSystem from './GachaSystem.js';
 
@@ -14,10 +14,15 @@ export const CurrencyConfig = {
   sourceCore: { icon: '💎', name: '源核', color: '#4dabf7' },
   mycelium: { icon: '🍄', name: '菌丝', color: '#51cf66' },
   starCoin: { icon: '⭐', name: '星币', color: '#ffd700' },
-  r_fragment: { icon: '🟫', name: 'R碎片', color: '#cd7f32' },
-  sr_fragment: { icon: '⬜', name: 'SR碎片', color: '#c0c0c0' },
-  ssr_fragment: { icon: '🟨', name: 'SSR碎片', color: '#ffd700' },
-  ur_fragment: { icon: '🔶', name: 'UR碎片', color: '#e5e4e2' }
+  water: { icon: '💧', name: '水点数', color: '#74c0fc' },
+  fire: { icon: '🔥', name: '火点数', color: '#ff6b6b' },
+  wind: { icon: '🍃', name: '风点数', color: '#63e6be' }
+};
+
+const SOURCE_CORE_AMOUNT_MAP = {
+  ITEM_SOURCE_CORE_SMALL: 100,
+  ITEM_SOURCE_CORE_MEDIUM: 500,
+  ITEM_SOURCE_CORE_LARGE: 1000
 };
 
 export default class ShopSystem {
@@ -30,14 +35,19 @@ export default class ShopSystem {
 
   loadShopItems() {
     const items = {};
+
     shopData.forEach((item) => {
+      if (!item.visible) return;
       if (!items[item.shopType]) {
         items[item.shopType] = [];
       }
-      if (item.visible) {
-        items[item.shopType].push({ ...item });
-      }
+      items[item.shopType].push({ ...item });
     });
+
+    Object.values(items).forEach((group) => {
+      group.sort((left, right) => Number(left.sortOrder || 0) - Number(right.sortOrder || 0));
+    });
+
     return items;
   }
 
@@ -54,6 +64,10 @@ export default class ShopSystem {
   }
 
   canPurchase(shopItem) {
+    if (!shopItem) {
+      return { can: false, reason: 'invalid_item' };
+    }
+
     if (shopItem.dailyLimit === -1) {
       const count = this.baseSystem.getDailyPurchaseCount(shopItem.shopId);
       if (count > 0) {
@@ -66,6 +80,10 @@ export default class ShopSystem {
       }
     }
 
+    if (shopItem.shopType === ShopType.GACHA && !this.gachaSystem.hasAvailableFragments()) {
+      return { can: false, reason: 'no_unlocked_fragments' };
+    }
+
     if (!this.baseSystem.canAfford(shopItem.currency, shopItem.cost)) {
       return { can: false, reason: 'not_enough_currency' };
     }
@@ -74,9 +92,10 @@ export default class ShopSystem {
   }
 
   getRemainingCount(shopItem) {
-    if (shopItem.dailyLimit <= 0) {
+    if (!shopItem || shopItem.dailyLimit <= 0) {
       return -1;
     }
+
     const count = this.baseSystem.getDailyPurchaseCount(shopItem.shopId);
     return Math.max(0, shopItem.dailyLimit - count);
   }
@@ -85,6 +104,11 @@ export default class ShopSystem {
     const check = this.canPurchase(shopItem);
     if (!check.can) {
       return { success: false, reason: check.reason };
+    }
+
+    const rewardPreview = this.previewReward(shopItem);
+    if (!rewardPreview.success) {
+      return rewardPreview;
     }
 
     const spendResult = this.baseSystem.spendCurrency(shopItem.currency, shopItem.cost);
@@ -96,7 +120,7 @@ export default class ShopSystem {
       this.baseSystem.recordDailyPurchase(shopItem.shopId);
     }
 
-    const reward = this.grantReward(shopItem);
+    const reward = this.grantReward(shopItem, rewardPreview.payload);
     return {
       success: true,
       reward,
@@ -104,47 +128,95 @@ export default class ShopSystem {
     };
   }
 
-  grantReward(shopItem) {
+  previewReward(shopItem) {
+    if (shopItem.shopType !== ShopType.GACHA) {
+      return { success: true, payload: null };
+    }
+
+    const count = shopItem.itemId === 'GACHA_TEN' ? 10 : 1;
+    const gachaResult = this.gachaSystem.rollGacha(count);
+    if (!gachaResult.success) {
+      return { success: false, reason: gachaResult.reason || 'gacha_failed' };
+    }
+
+    return { success: true, payload: gachaResult };
+  }
+
+  grantReward(shopItem, previewPayload = null) {
     const reward = { type: 'unknown', item: shopItem.itemId };
 
     switch (shopItem.shopType) {
       case ShopType.SOURCE_CORE:
       case ShopType.MYCELIUM:
       case ShopType.STAR_COIN:
-        if (shopItem.itemId === 'ITEM_SOURCE_CORE') {
-          const amounts = { '源核x100': 100, '源核x500': 500, '源核x1000': 1000 };
-          const amount = amounts[shopItem.itemName] || 100;
-          this.baseSystem.addCurrency('sourceCore', amount);
-          reward.type = 'currency';
-          reward.currencyType = 'sourceCore';
-          reward.amount = amount;
-        } else if (shopItem.itemId === 'MYCELIUM_500') {
-          this.baseSystem.addCurrency('mycelium', 500);
-          reward.type = 'currency';
-          reward.currencyType = 'mycelium';
-          reward.amount = 500;
-        } else {
-          this.baseSystem.addItem(shopItem.itemId, 1);
-          reward.type = 'item';
-        }
-        break;
+        return this.grantStandardReward(shopItem, reward);
 
       case ShopType.GACHA: {
         const count = shopItem.itemId === 'GACHA_TEN' ? 10 : 1;
-        const characters = this.gachaSystem.rollGacha(count);
+        const gachaResult = previewPayload || this.gachaSystem.rollGacha(count);
+        const fragments = this.gachaSystem.applyResults(gachaResult.results || []);
+
         reward.type = 'gacha';
-        reward.characters = characters;
         reward.count = count;
-        break;
+        reward.fragments = fragments;
+        reward.resultSummary = this.buildFragmentSummary(fragments);
+        return reward;
       }
 
       default:
         this.baseSystem.addItem(shopItem.itemId, 1);
         reward.type = 'item';
-        break;
+        return reward;
+    }
+  }
+
+  grantStandardReward(shopItem, reward) {
+    if (shopItem.itemId in SOURCE_CORE_AMOUNT_MAP) {
+      const amount = SOURCE_CORE_AMOUNT_MAP[shopItem.itemId];
+      this.baseSystem.addCurrency('sourceCore', amount);
+      reward.type = 'currency';
+      reward.currencyType = 'sourceCore';
+      reward.amount = amount;
+      return reward;
     }
 
+    if (shopItem.itemId === 'MYCELIUM_500') {
+      this.baseSystem.addCurrency('mycelium', 500);
+      reward.type = 'currency';
+      reward.currencyType = 'mycelium';
+      reward.amount = 500;
+      return reward;
+    }
+
+    this.baseSystem.addItem(shopItem.itemId, 1);
+    reward.type = 'item';
     return reward;
+  }
+
+  buildFragmentSummary(fragments) {
+    const summary = {
+      completedSetCount: 0,
+      qualityUpgradeReadyCount: 0,
+      overflowPoints: { water: 0, fire: 0, wind: 0 }
+    };
+
+    fragments.forEach((fragment) => {
+      const result = fragment.progressResult;
+      if (!result?.success) return;
+
+      if (result.completedSet) {
+        summary.completedSetCount += 1;
+      }
+      if (result.gainedUpgradeOpportunity) {
+        summary.qualityUpgradeReadyCount += 1;
+      }
+      if (result.overflowCount > 0) {
+        const element = result.overflowElement || 'water';
+        summary.overflowPoints[element] = (summary.overflowPoints[element] || 0) + result.overflowCount;
+      }
+    });
+
+    return summary;
   }
 
   getItemInfo(itemId) {
@@ -167,7 +239,7 @@ export default class ShopSystem {
 
   getCurrencyDisplay(type) {
     const config = CurrencyConfig[type];
-    const amount = this.baseSystem.getCurrency(type);
+    const amount = this.baseSystem.getCurrency ? this.baseSystem.getCurrency(type) : 0;
     return {
       icon: config?.icon || '?',
       name: config?.name || type,

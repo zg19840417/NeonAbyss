@@ -77,15 +77,15 @@ export const Achievement = {
   RECRUIT_3: {
     id: 'recruit_3',
     name: '初建队伍',
-    description: '获得3张随从卡',
+    description: '解锁3名融合姬',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 3,
     reward: { mycelium: 100 }
   },
   RECRUIT_10: {
     id: 'recruit_10',
-    name: '卡库扩充',
-    description: '获得10张随从卡',
+    name: '队伍扩编',
+    description: '解锁10名融合姬',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 10,
     reward: { mycelium: 500 }
