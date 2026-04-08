@@ -11,19 +11,54 @@ const placeholderAssetUrls = import.meta.glob('../../assets/images/characters/pl
   import: 'default'
 });
 
+// 懒加载的立绘资源映射
 const fusionPortraitUrls = import.meta.glob('../../assets/images/characters/fusion/*.png', {
-  eager: true,
+  eager: false,
   import: 'default'
 });
 
 const bossPortraitUrls = import.meta.glob('../../assets/images/characters/boss/*.png', {
-  eager: true,
+  eager: false,
   import: 'default'
 });
 
 function findAssetUrl(assetMap, fileName) {
   const entry = Object.entries(assetMap).find(([path]) => path.endsWith(`/${fileName}`));
   return entry ? entry[1] : null;
+}
+
+/**
+ * 按需加载单张立绘
+ * @param {Phaser.Scene} scene - Phaser场景实例
+ * @param {string} key - 立绘键名（如 'FM001', 'B002'）
+ * @returns {Promise<void>}
+ */
+export async function loadPortrait(scene, key) {
+  if (scene.textures.exists(key)) return; // 已加载则跳过
+
+  const allMaps = { ...fusionPortraitUrls, ...bossPortraitUrls };
+  const entry = Object.entries(allMaps).find(([path]) => path.endsWith(`/${key}.png`));
+  if (!entry) return;
+
+  const [_, loader] = entry;
+  const assetUrl = await loader();
+  if (assetUrl) {
+    scene.load.image(key, assetUrl);
+    return new Promise(resolve => {
+      scene.load.once(`filecomplete-image-${key}`, resolve);
+      scene.load.start();
+    });
+  }
+}
+
+/**
+ * 批量预加载立绘
+ * @param {Phaser.Scene} scene - Phaser场景实例
+ * @param {string[]} keys - 立绘键名数组
+ */
+export async function preloadPortraits(scene, keys) {
+  const promises = keys.map(key => loadPortrait(scene, key));
+  await Promise.all(promises);
 }
 
 export default class PreloadScene extends Phaser.Scene {
@@ -61,32 +96,23 @@ export default class PreloadScene extends Phaser.Scene {
       fontFamily: 'Noto Sans SC'
     }).setOrigin(0.5);
 
+    // 仅加载核心UI资源
     const qualities = ['N', 'R', 'SR', 'SSR', 'UR', 'LE'];
     qualities.forEach((quality) => {
       const assetUrl = findAssetUrl(uiAssetUrls, `card-frame-${quality}.jpg`);
-      if (assetUrl) {
-        this.load.image(`card-frame-${quality}`, assetUrl);
-      }
+      if (assetUrl) this.load.image(`card-frame-${quality}`, assetUrl);
     });
 
     ['water', 'fire', 'wind', 'light', 'dark'].forEach((element) => {
       const assetUrl = findAssetUrl(placeholderAssetUrls, `placeholder-${element}.jpg`);
-      if (assetUrl) {
-        this.load.image(`portrait-placeholder-${element}`, assetUrl);
-      }
+      if (assetUrl) this.load.image(`portrait-placeholder-${element}`, assetUrl);
     });
 
     const chipIconUrl = findAssetUrl(uiAssetUrls, 'chip-icon-set.jpg');
-    if (chipIconUrl) {
-      this.load.image('chip-icon-set', chipIconUrl);
-    }
+    if (chipIconUrl) this.load.image('chip-icon-set', chipIconUrl);
 
-    [...Object.entries(fusionPortraitUrls), ...Object.entries(bossPortraitUrls)].forEach(([filePath, assetUrl]) => {
-      const portraitKey = extractPortraitKey(filePath);
-      if (portraitKey && assetUrl) {
-        this.load.image(portraitKey, assetUrl);
-      }
-    });
+    // 角色立绘改为按需加载，不再预加载
+    // 使用 loadPortrait(scene, key) 或 preloadPortraits(scene, keys) 按需加载
 
     this.load.on('progress', (value) => {
       progressBar.clear();

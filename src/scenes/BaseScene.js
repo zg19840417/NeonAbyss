@@ -53,6 +53,13 @@ export default class BaseScene extends Phaser.Scene {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
+    // 初始化 DOM UI 管理器
+    if (!window.domUI) {
+      import('./../game/ui/DOMUIManager.js').then(module => {
+        window.domUI = new module.default(this.game);
+      });
+    }
+
     this.t = t;
     this.getLanguage = getLanguage;
     this.setLanguage = setLanguage;
