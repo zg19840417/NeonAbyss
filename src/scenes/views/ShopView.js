@@ -156,11 +156,11 @@ export default class ShopView {
   renderTabs(width) {
     const height = this.scene.cameras.main.height;
     const tabs = [
-      { key: ShopType.GACHA, icon: '🎰', label: '抽卡' },
+      { key: ShopType.GACHA, icon: '🎴', label: '抽卡' },
       { key: ShopType.SOURCE_CORE, icon: '💎', label: '源核' },
       { key: ShopType.MYCELIUM, icon: '🍄', label: '菌丝' },
       { key: ShopType.STAR_COIN, icon: '⭐', label: '星币' },
-      { key: ShopType.FRAGMENT, icon: '🔮', label: '碎片' }
+      { key: ShopType.FRAGMENT, icon: '🧩', label: '碎片' }
     ];
 
     const tabWidth = 68;
@@ -168,7 +168,7 @@ export default class ShopView {
     const hitZoneHeight = 42;
     const totalWidth = tabs.length * tabWidth;
     const startX = (width - totalWidth) / 2 + tabWidth / 2;
-    // 避开主导航栏，防止二级分页按钮压住底部主导航点击区
+    // 二级页签上移，避开底部主导航点击区域。
     const y = height - Const.UI.NAV_HEIGHT - 30;
 
     tabs.forEach((tab, index) => {
@@ -322,45 +322,45 @@ export default class ShopView {
 
   getItemIcon(item, itemInfo) {
     const iconMap = {
-      'ITEM_RAD_MEDICINE': '💊',
-      'ITEM_PLUGIN_PROF_RANDOM': '🔧',
-      'ITEM_PLUGIN_PROF_TANK': '🛡️',
-      'ITEM_PLUGIN_PROF_DPS': '⚔️',
-      'ITEM_PLUGIN_PROF_SUPPORT': '💚',
-      'ITEM_PLUGIN_RACE_SR': '🧬',
-      'ITEM_PLUGIN_ELEMENT_SR': '⚡',
-      'ITEM_PLUGIN_SSR': '🔮',
-      'ITEM_EXP_CHIP_SMALL': '📗',
-      'ITEM_EXP_CHIP_MEDIUM': '📘',
-      'ITEM_EXP_CHIP_LARGE': '📙',
-      'ITEM_N_FRAGMENT_BOX': '📦',
-      'ITEM_UPGRADE_MATERIAL_LOW': '🪨',
-      'ITEM_UPGRADE_MATERIAL_MID': '💎',
-      'ITEM_CHIP_EXP_SMALL': '🧪',
-      'ITEM_CHIP_EXP_MEDIUM': '⚗️',
-      'ITEM_SKILL_UPGRADE_MATERIAL': '✨',
-      'ITEM_SOURCE_CORE': '💎',
-      'PACK_NEWBIE': '🎁',
-      'PACK_DAILY_DEAL': '📫',
-      'PACK_LIMITED_UP': '🌟',
-      'GACHA_SINGLE': '🎟️',
-      'GACHA_TEN': '🎫',
-      'MINION_R': '👤',
-      'MINION_SR': '👤',
-      'MINION_SSR': '👤',
-      'MINION_UR': '👑'
+      ITEM_RAD_MEDICINE: '💊',
+      ITEM_PLUGIN_PROF_RANDOM: '🧩',
+      ITEM_PLUGIN_PROF_TANK: '🛡',
+      ITEM_PLUGIN_PROF_DPS: '⚔',
+      ITEM_PLUGIN_PROF_SUPPORT: '💗',
+      ITEM_PLUGIN_RACE_SR: '🧬',
+      ITEM_PLUGIN_ELEMENT_SR: '✦',
+      ITEM_PLUGIN_SSR: '🔮',
+      ITEM_EXP_CHIP_SMALL: '📋',
+      ITEM_EXP_CHIP_MEDIUM: '📘',
+      ITEM_EXP_CHIP_LARGE: '📙',
+      ITEM_N_FRAGMENT_BOX: '🎁',
+      ITEM_UPGRADE_MATERIAL_LOW: '🔧',
+      ITEM_UPGRADE_MATERIAL_MID: '💎',
+      ITEM_CHIP_EXP_SMALL: '🔹',
+      ITEM_CHIP_EXP_MEDIUM: '🔷',
+      ITEM_SKILL_UPGRADE_MATERIAL: '✨',
+      ITEM_SOURCE_CORE: '💎',
+      PACK_NEWBIE: '🎁',
+      PACK_DAILY_DEAL: '🛍',
+      PACK_LIMITED_UP: '⏰',
+      GACHA_SINGLE: '🎴',
+      GACHA_TEN: '🎴',
+      MINION_R: '👤',
+      MINION_SR: '👤',
+      MINION_SSR: '👤',
+      MINION_UR: '🌟'
     };
 
     if (iconMap[item.itemId]) return iconMap[item.itemId];
 
     if (item.itemName.includes('源核')) return '💎';
     if (item.itemName.includes('菌丝')) return '🍄';
-    if (item.itemName.includes('芯片') || item.itemName.includes('晶片')) return '🔧';
-    if (item.itemName.includes('经验') || item.itemName.includes('芯片')) return '📖';
+    if (item.itemName.includes('插件') || item.itemName.includes('碎片')) return '🧩';
+    if (item.itemName.includes('经验') || item.itemName.includes('芯片')) return '📘';
     if (item.itemName.includes('礼包')) return '🎁';
-    if (item.itemName.includes('角色') || item.itemName.includes('角色')) return '👤';
+    if (item.itemName.includes('角色')) return '👤';
 
-    return '📦';
+    return '🎁';
   }
 
   getRarityColor(item) {
@@ -383,7 +383,7 @@ export default class ShopView {
   }
 
   getLimitText(item) {
-    if (item.dailyLimit === 0) return '无限购';
+    if (item.dailyLimit === 0) return '不限购';
     if (item.dailyLimit === -1) return '一次性';
     const remaining = this.shopSystem.getRemainingCount(item);
     return `剩余: ${remaining}/${item.dailyLimit}`;
@@ -467,7 +467,7 @@ export default class ShopView {
     btnBg.fillRoundedRect(-50, -18, 100, 36, 8);
     confirmBtn.add(btnBg);
     
-    const btnText = this.scene.add.text(0, 0, '确 定', {
+    const btnText = this.scene.add.text(0, 0, '确认', {
       fontSize: '14px',
       fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
@@ -562,10 +562,10 @@ export default class ShopView {
       plant: '🌿',
       animal: '🐾',
       mech: '⚙️',
-      energy: '⚡',
-      hybrid: '🔮'
+      energy: '✦',
+      hybrid: '🧬'
     };
-    return icons[charClass] || '❓';
+    return icons[charClass] || '✧';
   }
 
   renderGachaHeader(width, y) {
@@ -601,7 +601,7 @@ export default class ShopView {
     this.elements.push(historyBtn);
     
     const pityInfo = this.shopSystem.getGachaPityInfo();
-    const pityText = this.scene.add.text(25, y + 15, `保底: ${pityInfo.ssrPity}抽`, {
+    const pityText = this.scene.add.text(25, y + 15, `保底: ${pityInfo.ssrPity} 抽`, {
       fontSize: '10px',
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.INACTIVE
@@ -732,12 +732,12 @@ export default class ShopView {
   getRewardText(reward) {
     if (reward.type === 'currency') {
       const currencyName = CurrencyConfig[reward.currencyType]?.name || reward.currencyType;
-      return `${currencyName}×${reward.amount}`;
+      return `${currencyName} x${reward.amount}`;
     } else if (reward.type === 'item') {
       const itemInfo = this.shopSystem.getItemInfo(reward.item);
       return itemInfo?.name || reward.item;
     } else if (reward.type === 'gacha') {
-      return `融合姬×${reward.count}`;
+      return `融合姬 x${reward.count}`;
     }
     return '奖励';
   }
@@ -808,3 +808,4 @@ export default class ShopView {
     this.elements = [];
   }
 }
+

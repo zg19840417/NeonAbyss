@@ -40,7 +40,7 @@ export default class StageManager {
   }
 
   canEnterStage(stageId) {
-    const playerLevel = window.gameData?.reputationSystem?.level || 1;
+    const playerLevel = window.gameData?.reputation?.level || 1;
     return StageData.checkRequirements(stageId, playerLevel, this.getClearedStageIds());
   }
 

@@ -1,28 +1,25 @@
-export default class ChipCard {
+﻿export default class ChipCard {
   constructor(data = {}) {
     this.id = data.id || 'chip_' + Date.now();
     this.chipId = data.chipId || null;
     this.name = data.name || '未知芯片';
     this.nameEn = data.nameEn || 'Unknown Chip';
-    this.quality = data.quality || 'N';  // N/R/SR/SSR/UR/LE
+    this.quality = data.quality || 'N';
     this.star = data.star || 1;
     this.maxStar = data.maxStar || this.getDefaultMaxStar();
     this.description = data.description || '';
-    this.icon = data.icon || '🔧';
+    this.icon = data.icon || '⚙';
 
-    // 百分比属性（独立配置，不写死）
+    // 百分比属性，独立配置，不写死。
     this.hpPercent = data.hpPercent || 0;
     this.atkPercent = data.atkPercent || 0;
 
-    // 目标限制
-    this.targetProfession = data.targetProfession || null;  // null=通用, tank/dps/support
-    this.targetElement = data.targetElement || null;        // null=通用, water/fire/wind/light/dark
-    this.targetRace = data.targetRace || null;              // null=通用, plant/animal/mech/energy/hybrid
+    // 目标限制，null 表示通用。
+    this.targetProfession = data.targetProfession || null;
+    this.targetElement = data.targetElement || null;
+    this.targetRace = data.targetRace || null;
 
-    // 技能列表
     this.skills = data.skills || [];
-
-    // 升级费用
     this.upgradeCost = data.upgradeCost || this.calculateUpgradeCost();
   }
 
@@ -54,13 +51,13 @@ export default class ChipCard {
     };
   }
 
+  // 根据品质决定可解锁技能数：N/R/SR=1，SSR/UR=2，LE=3。
   getUnlockedSkills() {
-    // 根据品质决定可解锁技能数：N/R/SR=1, SSR/UR=2, LE=3
     const skillCountMap = { N: 1, R: 1, SR: 1, SSR: 2, UR: 2, LE: 3 };
     const maxSkills = skillCountMap[this.quality] || 1;
-    return this.skills.slice(0, maxSkills).map(s => ({
-      ...s,
-      value: s.value ? s.value * this.getSkillMultiplier() : s.value
+    return this.skills.slice(0, maxSkills).map((skill) => ({
+      ...skill,
+      value: skill.value ? skill.value * this.getSkillMultiplier() : skill.value
     }));
   }
 
@@ -72,7 +69,7 @@ export default class ChipCard {
     if (!this.canUpgradeStar()) {
       return { success: false, reason: 'max_star' };
     }
-    this.star++;
+    this.star += 1;
     this.upgradeCost = this.calculateUpgradeCost();
     return { success: true, newStar: this.star };
   }

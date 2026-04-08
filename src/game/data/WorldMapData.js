@@ -58,7 +58,7 @@ class WorldMapData {
       return window.gameData?.progress?.clearedRegions?.includes(condition.regionId);
     }
     if (condition.type === 'playerLevel') {
-      return (window.gameData?.reputationSystem?.level || 1) >= condition.level;
+      return (window.gameData?.reputation?.level || 1) >= condition.level;
     }
     return false;
   }

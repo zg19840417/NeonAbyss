@@ -1,0 +1,1257 @@
+{
+  "radiation_beast": {
+    "type": "wildBoss",
+    "name": "辐射巨兽·荒原咆哮者",
+    "prompt": "【Boss名称】辐射巨兽·荒原咆哮者\n【描述】核战后的废墟中咆哮的巨型变异生物"
+  },
+  "toxic_lord": {
+    "type": "wildBoss",
+    "name": "剧毒领主·沼泽窒息者",
+    "prompt": "【Boss名称】剧毒领主·沼泽窒息者\n【描述】沼泽深处的剧毒统治者"
+  },
+  "steel_colossus": {
+    "type": "wildBoss",
+    "name": "钢铁巨像·锈蚀泰坦",
+    "prompt": "【Boss名称】钢铁巨像·锈蚀泰坦\n【描述】废弃军事要塞中的古老战争机甲"
+  },
+  "frost_dragon": {
+    "type": "wildBoss",
+    "name": "冰霜巨龙·永冻脊骨",
+    "prompt": "【Boss名称】冰霜巨龙·永冻脊骨\n【描述】冰封高原的上古巨龙遗骸"
+  },
+  "lava_dragon": {
+    "type": "wildBoss",
+    "name": "熔岩古龙·灰烬焚尽者",
+    "prompt": "【Boss名称】熔岩古龙·灰烬焚尽者\n【描述】炽热火山深处的火焰精灵化身"
+  },
+  "ancient_tree": {
+    "type": "wildBoss",
+    "name": "精灵古树·暗夜吞噬者",
+    "prompt": "【Boss名称】精灵古树·暗夜吞噬者\n【描述】幽暗森林最古老的巨树意志"
+  },
+  "mirage_lord": {
+    "type": "wildBoss",
+    "name": "沙海蜃楼·蜃景幻主",
+    "prompt": "【Boss名称】沙海蜃楼·蜃景幻主\n【描述】沙漠荒原中的神秘蜃景存在"
+  },
+  "sea_leviathan": {
+    "type": "wildBoss",
+    "name": "海皇利维坦·深渊沉眠者",
+    "prompt": "【Boss名称】海皇利维坦·深渊沉眠者\n【描述】沉没都市的真正统治者"
+  },
+  "matrix_mother": {
+    "type": "wildBoss",
+    "name": "超级计算机·矩阵母体",
+    "prompt": "【Boss名称】超级计算机·矩阵母体\n【描述】觉醒的超级AI，将入侵者视为病毒"
+  },
+  "void_herald": {
+    "type": "wildBoss",
+    "name": "维度撕裂者·虚空信使",
+    "prompt": "【Boss名称】维度撕裂者·虚空信使\n【描述】来自异次元的侦察信使"
+  },
+  "omega_core": {
+    "type": "finalBoss",
+    "name": "终焉之核·奥米茄",
+    "prompt": "【Boss名称】终焉之核·奥米茄\n【描述】融合技术的创造者，唯一成功的完美融合体"
+  },
+  "mutant_01_da_ta_01": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 1,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】辐射废墟\n【元素】dark\n【职业】tank"
+  },
+  "mutant_01_da_dp_02": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 1,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】辐射废墟\n【元素】dark\n【职业】dps"
+  },
+  "mutant_01_da_su_03": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 1,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】辐射废墟\n【元素】dark\n【职业】support"
+  },
+  "mutant_01_wa_ta_04": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 1,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】辐射废墟\n【元素】water\n【职业】tank"
+  },
+  "mutant_01_wa_dp_05": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 1,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】辐射废墟\n【元素】water\n【职业】dps"
+  },
+  "mutant_01_wa_su_06": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 1,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】辐射废墟\n【元素】water\n【职业】support"
+  },
+  "mutant_01_fi_ta_07": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 1,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】辐射废墟\n【元素】fire\n【职业】tank"
+  },
+  "mutant_01_fi_dp_08": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 1,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】辐射废墟\n【元素】fire\n【职业】dps"
+  },
+  "mutant_01_fi_su_09": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 1,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】辐射废墟\n【元素】fire\n【职业】support"
+  },
+  "mutant_01_wi_ta_10": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 1,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】辐射废墟\n【元素】wind\n【职业】tank"
+  },
+  "mutant_01_wi_dp_11": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 1,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】辐射废墟\n【元素】wind\n【职业】dps"
+  },
+  "mutant_01_wi_su_12": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 1,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】辐射废墟\n【元素】wind\n【职业】support"
+  },
+  "mutant_01_li_ta_13": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 1,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】辐射废墟\n【元素】light\n【职业】tank"
+  },
+  "mutant_01_li_dp_14": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 1,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】辐射废墟\n【元素】light\n【职业】dps"
+  },
+  "mutant_01_li_su_15": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 1,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】辐射废墟\n【元素】light\n【职业】support"
+  },
+  "mutant_02_da_ta_16": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 2,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】有毒沼泽\n【元素】dark\n【职业】tank"
+  },
+  "mutant_02_da_dp_17": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 2,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】有毒沼泽\n【元素】dark\n【职业】dps"
+  },
+  "mutant_02_da_su_18": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 2,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】有毒沼泽\n【元素】dark\n【职业】support"
+  },
+  "mutant_02_wa_ta_19": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 2,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】有毒沼泽\n【元素】water\n【职业】tank"
+  },
+  "mutant_02_wa_dp_20": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 2,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】有毒沼泽\n【元素】water\n【职业】dps"
+  },
+  "mutant_02_wa_su_21": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 2,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】有毒沼泽\n【元素】water\n【职业】support"
+  },
+  "mutant_02_fi_ta_22": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 2,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】有毒沼泽\n【元素】fire\n【职业】tank"
+  },
+  "mutant_02_fi_dp_23": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 2,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】有毒沼泽\n【元素】fire\n【职业】dps"
+  },
+  "mutant_02_fi_su_24": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 2,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】有毒沼泽\n【元素】fire\n【职业】support"
+  },
+  "mutant_02_wi_ta_25": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 2,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】有毒沼泽\n【元素】wind\n【职业】tank"
+  },
+  "mutant_02_wi_dp_26": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 2,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】有毒沼泽\n【元素】wind\n【职业】dps"
+  },
+  "mutant_02_wi_su_27": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 2,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】有毒沼泽\n【元素】wind\n【职业】support"
+  },
+  "mutant_02_li_ta_28": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 2,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】有毒沼泽\n【元素】light\n【职业】tank"
+  },
+  "mutant_02_li_dp_29": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 2,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】有毒沼泽\n【元素】light\n【职业】dps"
+  },
+  "mutant_02_li_su_30": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 2,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】有毒沼泽\n【元素】light\n【职业】support"
+  },
+  "mutant_03_da_ta_31": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 3,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】钢铁要塞\n【元素】dark\n【职业】tank"
+  },
+  "mutant_03_da_dp_32": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 3,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】钢铁要塞\n【元素】dark\n【职业】dps"
+  },
+  "mutant_03_da_su_33": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 3,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】钢铁要塞\n【元素】dark\n【职业】support"
+  },
+  "mutant_03_wa_ta_34": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 3,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】钢铁要塞\n【元素】water\n【职业】tank"
+  },
+  "mutant_03_wa_dp_35": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 3,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】钢铁要塞\n【元素】water\n【职业】dps"
+  },
+  "mutant_03_wa_su_36": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 3,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】钢铁要塞\n【元素】water\n【职业】support"
+  },
+  "mutant_03_fi_ta_37": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 3,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】钢铁要塞\n【元素】fire\n【职业】tank"
+  },
+  "mutant_03_fi_dp_38": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 3,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】钢铁要塞\n【元素】fire\n【职业】dps"
+  },
+  "mutant_03_fi_su_39": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 3,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】钢铁要塞\n【元素】fire\n【职业】support"
+  },
+  "mutant_03_wi_ta_40": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 3,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】钢铁要塞\n【元素】wind\n【职业】tank"
+  },
+  "mutant_03_wi_dp_41": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 3,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】钢铁要塞\n【元素】wind\n【职业】dps"
+  },
+  "mutant_03_wi_su_42": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 3,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】钢铁要塞\n【元素】wind\n【职业】support"
+  },
+  "mutant_03_li_ta_43": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 3,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】钢铁要塞\n【元素】light\n【职业】tank"
+  },
+  "mutant_03_li_dp_44": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 3,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】钢铁要塞\n【元素】light\n【职业】dps"
+  },
+  "mutant_03_li_su_45": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 3,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】钢铁要塞\n【元素】light\n【职业】support"
+  },
+  "mutant_04_da_ta_46": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 4,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】冰封高原\n【元素】dark\n【职业】tank"
+  },
+  "mutant_04_da_dp_47": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 4,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】冰封高原\n【元素】dark\n【职业】dps"
+  },
+  "mutant_04_da_su_48": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 4,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】冰封高原\n【元素】dark\n【职业】support"
+  },
+  "mutant_04_wa_ta_49": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 4,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】冰封高原\n【元素】water\n【职业】tank"
+  },
+  "mutant_04_wa_dp_50": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 4,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】冰封高原\n【元素】water\n【职业】dps"
+  },
+  "mutant_04_wa_su_51": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 4,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】冰封高原\n【元素】water\n【职业】support"
+  },
+  "mutant_04_fi_ta_52": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 4,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】冰封高原\n【元素】fire\n【职业】tank"
+  },
+  "mutant_04_fi_dp_53": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 4,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】冰封高原\n【元素】fire\n【职业】dps"
+  },
+  "mutant_04_fi_su_54": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 4,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】冰封高原\n【元素】fire\n【职业】support"
+  },
+  "mutant_04_wi_ta_55": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 4,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】冰封高原\n【元素】wind\n【职业】tank"
+  },
+  "mutant_04_wi_dp_56": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 4,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】冰封高原\n【元素】wind\n【职业】dps"
+  },
+  "mutant_04_wi_su_57": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 4,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】冰封高原\n【元素】wind\n【职业】support"
+  },
+  "mutant_04_li_ta_58": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 4,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】冰封高原\n【元素】light\n【职业】tank"
+  },
+  "mutant_04_li_dp_59": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 4,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】冰封高原\n【元素】light\n【职业】dps"
+  },
+  "mutant_04_li_su_60": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 4,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】冰封高原\n【元素】light\n【职业】support"
+  },
+  "mutant_05_da_ta_61": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 5,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】炽热火山\n【元素】dark\n【职业】tank"
+  },
+  "mutant_05_da_dp_62": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 5,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】炽热火山\n【元素】dark\n【职业】dps"
+  },
+  "mutant_05_da_su_63": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 5,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】炽热火山\n【元素】dark\n【职业】support"
+  },
+  "mutant_05_wa_ta_64": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 5,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】炽热火山\n【元素】water\n【职业】tank"
+  },
+  "mutant_05_wa_dp_65": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 5,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】炽热火山\n【元素】water\n【职业】dps"
+  },
+  "mutant_05_wa_su_66": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 5,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】炽热火山\n【元素】water\n【职业】support"
+  },
+  "mutant_05_fi_ta_67": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 5,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】炽热火山\n【元素】fire\n【职业】tank"
+  },
+  "mutant_05_fi_dp_68": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 5,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】炽热火山\n【元素】fire\n【职业】dps"
+  },
+  "mutant_05_fi_su_69": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 5,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】炽热火山\n【元素】fire\n【职业】support"
+  },
+  "mutant_05_wi_ta_70": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 5,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】炽热火山\n【元素】wind\n【职业】tank"
+  },
+  "mutant_05_wi_dp_71": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 5,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】炽热火山\n【元素】wind\n【职业】dps"
+  },
+  "mutant_05_wi_su_72": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 5,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】炽热火山\n【元素】wind\n【职业】support"
+  },
+  "mutant_05_li_ta_73": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 5,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】炽热火山\n【元素】light\n【职业】tank"
+  },
+  "mutant_05_li_dp_74": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 5,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】炽热火山\n【元素】light\n【职业】dps"
+  },
+  "mutant_05_li_su_75": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 5,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】炽热火山\n【元素】light\n【职业】support"
+  },
+  "mutant_06_da_ta_76": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 6,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】幽暗森林\n【元素】dark\n【职业】tank"
+  },
+  "mutant_06_da_dp_77": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 6,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】幽暗森林\n【元素】dark\n【职业】dps"
+  },
+  "mutant_06_da_su_78": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 6,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】幽暗森林\n【元素】dark\n【职业】support"
+  },
+  "mutant_06_wa_ta_79": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 6,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】幽暗森林\n【元素】water\n【职业】tank"
+  },
+  "mutant_06_wa_dp_80": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 6,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】幽暗森林\n【元素】water\n【职业】dps"
+  },
+  "mutant_06_wa_su_81": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 6,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】幽暗森林\n【元素】water\n【职业】support"
+  },
+  "mutant_06_fi_ta_82": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 6,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】幽暗森林\n【元素】fire\n【职业】tank"
+  },
+  "mutant_06_fi_dp_83": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 6,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】幽暗森林\n【元素】fire\n【职业】dps"
+  },
+  "mutant_06_fi_su_84": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 6,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】幽暗森林\n【元素】fire\n【职业】support"
+  },
+  "mutant_06_wi_ta_85": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 6,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】幽暗森林\n【元素】wind\n【职业】tank"
+  },
+  "mutant_06_wi_dp_86": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 6,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】幽暗森林\n【元素】wind\n【职业】dps"
+  },
+  "mutant_06_wi_su_87": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 6,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】幽暗森林\n【元素】wind\n【职业】support"
+  },
+  "mutant_06_li_ta_88": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 6,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】幽暗森林\n【元素】light\n【职业】tank"
+  },
+  "mutant_06_li_dp_89": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 6,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】幽暗森林\n【元素】light\n【职业】dps"
+  },
+  "mutant_06_li_su_90": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 6,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】幽暗森林\n【元素】light\n【职业】support"
+  },
+  "mutant_07_da_ta_91": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 7,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】沙漠荒原\n【元素】dark\n【职业】tank"
+  },
+  "mutant_07_da_dp_92": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 7,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】沙漠荒原\n【元素】dark\n【职业】dps"
+  },
+  "mutant_07_da_su_93": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 7,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】沙漠荒原\n【元素】dark\n【职业】support"
+  },
+  "mutant_07_wa_ta_94": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 7,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】沙漠荒原\n【元素】water\n【职业】tank"
+  },
+  "mutant_07_wa_dp_95": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 7,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】沙漠荒原\n【元素】water\n【职业】dps"
+  },
+  "mutant_07_wa_su_96": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 7,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】沙漠荒原\n【元素】water\n【职业】support"
+  },
+  "mutant_07_fi_ta_97": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 7,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】沙漠荒原\n【元素】fire\n【职业】tank"
+  },
+  "mutant_07_fi_dp_98": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 7,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】沙漠荒原\n【元素】fire\n【职业】dps"
+  },
+  "mutant_07_fi_su_99": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 7,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】沙漠荒原\n【元素】fire\n【职业】support"
+  },
+  "mutant_07_wi_ta_100": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 7,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】沙漠荒原\n【元素】wind\n【职业】tank"
+  },
+  "mutant_07_wi_dp_101": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 7,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】沙漠荒原\n【元素】wind\n【职业】dps"
+  },
+  "mutant_07_wi_su_102": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 7,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】沙漠荒原\n【元素】wind\n【职业】support"
+  },
+  "mutant_07_li_ta_103": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 7,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】沙漠荒原\n【元素】light\n【职业】tank"
+  },
+  "mutant_07_li_dp_104": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 7,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】沙漠荒原\n【元素】light\n【职业】dps"
+  },
+  "mutant_07_li_su_105": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 7,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】沙漠荒原\n【元素】light\n【职业】support"
+  },
+  "mutant_08_da_ta_106": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 8,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】深海沉城\n【元素】dark\n【职业】tank"
+  },
+  "mutant_08_da_dp_107": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 8,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】深海沉城\n【元素】dark\n【职业】dps"
+  },
+  "mutant_08_da_su_108": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 8,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】深海沉城\n【元素】dark\n【职业】support"
+  },
+  "mutant_08_wa_ta_109": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 8,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】深海沉城\n【元素】water\n【职业】tank"
+  },
+  "mutant_08_wa_dp_110": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 8,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】深海沉城\n【元素】water\n【职业】dps"
+  },
+  "mutant_08_wa_su_111": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 8,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】深海沉城\n【元素】water\n【职业】support"
+  },
+  "mutant_08_fi_ta_112": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 8,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】深海沉城\n【元素】fire\n【职业】tank"
+  },
+  "mutant_08_fi_dp_113": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 8,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】深海沉城\n【元素】fire\n【职业】dps"
+  },
+  "mutant_08_fi_su_114": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 8,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】深海沉城\n【元素】fire\n【职业】support"
+  },
+  "mutant_08_wi_ta_115": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 8,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】深海沉城\n【元素】wind\n【职业】tank"
+  },
+  "mutant_08_wi_dp_116": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 8,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】深海沉城\n【元素】wind\n【职业】dps"
+  },
+  "mutant_08_wi_su_117": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 8,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】深海沉城\n【元素】wind\n【职业】support"
+  },
+  "mutant_08_li_ta_118": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 8,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】深海沉城\n【元素】light\n【职业】tank"
+  },
+  "mutant_08_li_dp_119": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 8,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】深海沉城\n【元素】light\n【职业】dps"
+  },
+  "mutant_08_li_su_120": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 8,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】深海沉城\n【元素】light\n【职业】support"
+  },
+  "mutant_09_da_ta_121": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 9,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】机械迷宫\n【元素】dark\n【职业】tank"
+  },
+  "mutant_09_da_dp_122": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 9,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】机械迷宫\n【元素】dark\n【职业】dps"
+  },
+  "mutant_09_da_su_123": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 9,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】机械迷宫\n【元素】dark\n【职业】support"
+  },
+  "mutant_09_wa_ta_124": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 9,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】机械迷宫\n【元素】water\n【职业】tank"
+  },
+  "mutant_09_wa_dp_125": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 9,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】机械迷宫\n【元素】water\n【职业】dps"
+  },
+  "mutant_09_wa_su_126": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 9,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】机械迷宫\n【元素】water\n【职业】support"
+  },
+  "mutant_09_fi_ta_127": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 9,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】机械迷宫\n【元素】fire\n【职业】tank"
+  },
+  "mutant_09_fi_dp_128": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 9,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】机械迷宫\n【元素】fire\n【职业】dps"
+  },
+  "mutant_09_fi_su_129": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 9,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】机械迷宫\n【元素】fire\n【职业】support"
+  },
+  "mutant_09_wi_ta_130": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 9,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】机械迷宫\n【元素】wind\n【职业】tank"
+  },
+  "mutant_09_wi_dp_131": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 9,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】机械迷宫\n【元素】wind\n【职业】dps"
+  },
+  "mutant_09_wi_su_132": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 9,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】机械迷宫\n【元素】wind\n【职业】support"
+  },
+  "mutant_09_li_ta_133": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 9,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】机械迷宫\n【元素】light\n【职业】tank"
+  },
+  "mutant_09_li_dp_134": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 9,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】机械迷宫\n【元素】light\n【职业】dps"
+  },
+  "mutant_09_li_su_135": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 9,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】机械迷宫\n【元素】light\n【职业】support"
+  },
+  "mutant_10_da_ta_136": {
+    "type": "mutant",
+    "name": "暗影巨兽",
+    "mapId": 10,
+    "element": "dark",
+    "profession": "tank",
+    "prompt": "【变异生物名称】暗影巨兽\n【地图】虚空裂隙\n【元素】dark\n【职业】tank"
+  },
+  "mutant_10_da_dp_137": {
+    "type": "mutant",
+    "name": "虚空猛兽",
+    "mapId": 10,
+    "element": "dark",
+    "profession": "dps",
+    "prompt": "【变异生物名称】虚空猛兽\n【地图】虚空裂隙\n【元素】dark\n【职业】dps"
+  },
+  "mutant_10_da_su_138": {
+    "type": "mutant",
+    "name": "腐蚀使者",
+    "mapId": 10,
+    "element": "dark",
+    "profession": "support",
+    "prompt": "【变异生物名称】腐蚀使者\n【地图】虚空裂隙\n【元素】dark\n【职业】support"
+  },
+  "mutant_10_wa_ta_139": {
+    "type": "mutant",
+    "name": "寒冰巨怪",
+    "mapId": 10,
+    "element": "water",
+    "profession": "tank",
+    "prompt": "【变异生物名称】寒冰巨怪\n【地图】虚空裂隙\n【元素】water\n【职业】tank"
+  },
+  "mutant_10_wa_dp_140": {
+    "type": "mutant",
+    "name": "暴雨利刃",
+    "mapId": 10,
+    "element": "water",
+    "profession": "dps",
+    "prompt": "【变异生物名称】暴雨利刃\n【地图】虚空裂隙\n【元素】water\n【职业】dps"
+  },
+  "mutant_10_wa_su_141": {
+    "type": "mutant",
+    "name": "深渊精灵",
+    "mapId": 10,
+    "element": "water",
+    "profession": "support",
+    "prompt": "【变异生物名称】深渊精灵\n【地图】虚空裂隙\n【元素】water\n【职业】support"
+  },
+  "mutant_10_fi_ta_142": {
+    "type": "mutant",
+    "name": "熔岩甲虫",
+    "mapId": 10,
+    "element": "fire",
+    "profession": "tank",
+    "prompt": "【变异生物名称】熔岩甲虫\n【地图】虚空裂隙\n【元素】fire\n【职业】tank"
+  },
+  "mutant_10_fi_dp_143": {
+    "type": "mutant",
+    "name": "灰烬利爪",
+    "mapId": 10,
+    "element": "fire",
+    "profession": "dps",
+    "prompt": "【变异生物名称】灰烬利爪\n【地图】虚空裂隙\n【元素】fire\n【职业】dps"
+  },
+  "mutant_10_fi_su_144": {
+    "type": "mutant",
+    "name": "火山精魂",
+    "mapId": 10,
+    "element": "fire",
+    "profession": "support",
+    "prompt": "【变异生物名称】火山精魂\n【地图】虚空裂隙\n【元素】fire\n【职业】support"
+  },
+  "mutant_10_wi_ta_145": {
+    "type": "mutant",
+    "name": "龙卷泰坦",
+    "mapId": 10,
+    "element": "wind",
+    "profession": "tank",
+    "prompt": "【变异生物名称】龙卷泰坦\n【地图】虚空裂隙\n【元素】wind\n【职业】tank"
+  },
+  "mutant_10_wi_dp_146": {
+    "type": "mutant",
+    "name": "风暴猎手",
+    "mapId": 10,
+    "element": "wind",
+    "profession": "dps",
+    "prompt": "【变异生物名称】风暴猎手\n【地图】虚空裂隙\n【元素】wind\n【职业】dps"
+  },
+  "mutant_10_wi_su_147": {
+    "type": "mutant",
+    "name": "疾风守护",
+    "mapId": 10,
+    "element": "wind",
+    "profession": "support",
+    "prompt": "【变异生物名称】疾风守护\n【地图】虚空裂隙\n【元素】wind\n【职业】support"
+  },
+  "mutant_10_li_ta_148": {
+    "type": "mutant",
+    "name": "光辉甲壳",
+    "mapId": 10,
+    "element": "light",
+    "profession": "tank",
+    "prompt": "【变异生物名称】光辉甲壳\n【地图】虚空裂隙\n【元素】light\n【职业】tank"
+  },
+  "mutant_10_li_dp_149": {
+    "type": "mutant",
+    "name": "烈日尖牙",
+    "mapId": 10,
+    "element": "light",
+    "profession": "dps",
+    "prompt": "【变异生物名称】烈日尖牙\n【地图】虚空裂隙\n【元素】light\n【职业】dps"
+  },
+  "mutant_10_li_su_150": {
+    "type": "mutant",
+    "name": "星尘灵体",
+    "mapId": 10,
+    "element": "light",
+    "profession": "support",
+    "prompt": "【变异生物名称】星尘灵体\n【地图】虚空裂隙\n【元素】light\n【职业】support"
+  }
+}

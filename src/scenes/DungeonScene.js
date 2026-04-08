@@ -1,4 +1,4 @@
-import DungeonSystem from '../game/systems/DungeonSystem.js';
+﻿import DungeonSystem from '../game/systems/DungeonSystem.js';
 import EventBus from '../game/EventBus.js';
 import MinionCardManager from '../game/systems/MinionCardManager.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
@@ -49,13 +49,13 @@ export default class DungeonScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     const bossLabel = isBossFloor ? ' BOSS' : '';
-    this.add.text(width / 2, 100, `第 ${this.currentFloor} 层${bossLabel}`, {
+    this.add.text(width / 2, 100, `第{this.currentFloor}层{bossLabel}`, {
       fontSize: '18px',
       fontFamily: 'Noto Sans SC',
       color: isBossFloor ? '#d86a6a' : '#d4a574'
     }).setOrigin(0.5);
 
-    this.add.text(width / 2, 130, `次元 ${this.currentDimension}`, {
+    this.add.text(width / 2, 130, `维度 ${this.currentDimension}`, {
       fontSize: '12px',
       fontFamily: 'Noto Sans SC',
       color: '#8a7a6a'
@@ -284,3 +284,4 @@ export default class DungeonScene extends Phaser.Scene {
     this.dungeonSystem?.save();
   }
 }
+

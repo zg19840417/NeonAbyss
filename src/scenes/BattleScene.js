@@ -16,6 +16,7 @@ export default class BattleScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BattleScene' });
     this.logEntries = [];
+    this.pauseOverlayBlocker = null;
   }
 
   init(data) {
@@ -168,9 +169,29 @@ export default class BattleScene extends Phaser.Scene {
     });
 
     card.setData(isPlayer ? 'player' : 'enemy', unit);
+    card.setData('unitId', unit.id);
+    card.setData('unitName', unit.name);
     card.setDepth(Const.DEPTH.CONTENT + 2);
     CardRenderer.animateEntry(this, card, 0);
     return card;
+  }
+
+  findCardEntry(entity) {
+    const matchById = (entry) => {
+      const unit = entry.minion || entry.enemy || entry.container?.getData('player') || entry.container?.getData('enemy');
+      return entity?.id != null && unit?.id != null && entity.id === unit.id;
+    };
+
+    const matchByName = (entry) => {
+      const unit = entry.minion || entry.enemy || entry.container?.getData('player') || entry.container?.getData('enemy');
+      return entity?.name && unit?.name && entity.name === unit.name;
+    };
+
+    return this.playerCards.find(matchById)
+      || this.enemyCards.find(matchById)
+      || this.playerCards.find(matchByName)
+      || this.enemyCards.find(matchByName)
+      || null;
   }
 
   getSkillCooldowns(unit) {
@@ -336,6 +357,13 @@ export default class BattleScene extends Phaser.Scene {
 
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
+    this.pauseOverlayBlocker = this.add.zone(width / 2, height / 2, width, height);
+    this.pauseOverlayBlocker.setDepth(Const.DEPTH.MODAL_OVERLAY + 9);
+    this.pauseOverlayBlocker.setInteractive();
+    this.pauseOverlayBlocker.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+    });
+
     const container = this.add.container(width / 2, 374);
     container.setDepth(Const.DEPTH.MODAL_OVERLAY + 10);
 
@@ -375,6 +403,8 @@ export default class BattleScene extends Phaser.Scene {
     if (!this.pauseOverlay) return;
     this.pauseOverlay.destroy();
     this.pauseOverlay = null;
+    this.pauseOverlayBlocker?.destroy();
+    this.pauseOverlayBlocker = null;
     this.speedButton?.setVisible(true);
     this.pauseButton?.setVisible(true);
     if (resumeBattle) {
@@ -393,16 +423,9 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   updateHPDisplay(entity) {
-    const playerCard = this.playerCards.find((c) => c.minion?.name === entity.name);
-    if (playerCard) {
-      CardRenderer.updateHpBar(playerCard.container, entity.currentHp, entity.maxHp, true);
-      return;
-    }
-
-    const enemyCard = this.enemyCards.find((c) => c.enemy?.name === entity.name || c.container?.getData('enemy')?.name === entity.name);
-    if (enemyCard) {
-      CardRenderer.updateHpBar(enemyCard.container, entity.currentHp, entity.maxHp, false);
-    }
+    const cardEntry = this.findCardEntry(entity);
+    if (!cardEntry?.container) return;
+    CardRenderer.updateHpBar(cardEntry.container, entity.currentHp, entity.maxHp, Boolean(cardEntry.minion));
   }
 
   addLogEntry(action, result) {
@@ -420,10 +443,8 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   showDamageNumber(target, amount, isCrit = false, isHeal = false) {
-    const targetCard = this.playerCards.find((c) => c.minion?.name === target.name)
-      || this.enemyCards.find((c) => c.enemy?.name === target.name || c.container?.getData('enemy')?.name === target.name);
-
-    if (!targetCard || !amount) return;
+    const targetCard = this.findCardEntry(target);
+    if (!targetCard?.container || !amount) return;
 
     const prefix = isHeal ? '+' : '-';
     const color = isHeal ? '#57f287' : (isCrit ? '#ff8a65' : '#ffffff');
@@ -446,8 +467,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   playDeathAnimation(character) {
-    const targetCard = this.playerCards.find((c) => c.minion?.name === character.name)
-      || this.enemyCards.find((c) => c.enemy?.name === character.name || c.container?.getData('enemy')?.name === character.name);
+    const targetCard = this.findCardEntry(character);
     if (!targetCard?.container) return;
 
     const buffStrip = targetCard.container.getData('buffStrip');

@@ -1,4 +1,4 @@
-import Const from './Const.js';
+﻿import Const from './Const.js';
 import initConfigData from '../../../assets/data/json/initConfig.json';
 
 export const SAVE_KEY = 'wasteland_year_save';
@@ -39,11 +39,6 @@ export function createDefaultBaseData() {
     mycelium: INIT_CONFIG.currencies.mycelium,
     sourceCore: INIT_CONFIG.currencies.sourceCore,
     starCoin: INIT_CONFIG.currencies.starCoin,
-    currencies: { ...INIT_CONFIG.currencies },
-    facilities: null,
-    characters: [],
-    team: [],
-    availableRecruits: [],
     energyDrinks: Array(INIT_CONFIG.other.energyDrinks).fill(null),
     inventory: {},
     dailyPurchaseRecords: {},
@@ -120,6 +115,10 @@ export function createDefaultGameData() {
     achievements: createDefaultAchievements(),
     settings: createDefaultSettings(),
     progress: createDefaultProgress(),
+    gacha: {
+      pityCounter: { count: 0, srCount: 0, ssrCount: 0, urCount: 0 },
+      history: []
+    },
     shipParts: [],
     minionStones: 0,
     starStones: 0
@@ -128,16 +127,13 @@ export function createDefaultGameData() {
 
 export function mergeGameData(savedData = {}) {
   const defaults = createDefaultGameData();
+
   return {
     ...defaults,
     ...savedData,
     base: {
       ...defaults.base,
-      ...(savedData.base || {}),
-      currencies: {
-        ...defaults.base.currencies,
-        ...(savedData.base?.currencies || {})
-      }
+      ...(savedData.base || {})
     },
     dungeon: {
       ...defaults.dungeon,
@@ -167,6 +163,15 @@ export function mergeGameData(savedData = {}) {
       ...defaults.settings,
       ...(savedData.settings || {})
     },
+    gacha: {
+      ...defaults.gacha,
+      ...(savedData.gacha || {}),
+      pityCounter: {
+        ...defaults.gacha.pityCounter,
+        ...(savedData.gacha?.pityCounter || {})
+      },
+      history: Array.isArray(savedData.gacha?.history) ? savedData.gacha.history : defaults.gacha.history
+    },
     progress: {
       ...defaults.progress,
       ...(savedData.progress || {})
@@ -183,7 +188,7 @@ export function loadGameData() {
     }
     return mergeGameData(JSON.parse(saved));
   } catch (error) {
-    console.warn('存档加载失败，使用默认数据', error);
+    console.warn('存档加载失败，改用默认数据。', error);
     return createDefaultGameData();
   }
 }
@@ -197,11 +202,6 @@ export function saveGameData(gameData) {
 export function resetGameData() {
   const freshData = createDefaultGameData();
   localStorage.removeItem(SAVE_KEY);
-  localStorage.removeItem('equipmentCardManager');
-  localStorage.removeItem('chipCardManager');
-  localStorage.removeItem('reputationSystem');
-  localStorage.removeItem('gachaPity');
-  localStorage.removeItem('gachaHistory');
   localStorage.setItem(SAVE_KEY, JSON.stringify(freshData));
   return freshData;
 }
@@ -240,3 +240,4 @@ export function syncRuntimeGameData({
   window.gameData = current;
   return saveGameData(current);
 }
+

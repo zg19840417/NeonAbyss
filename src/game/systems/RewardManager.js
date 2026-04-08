@@ -1,5 +1,6 @@
 import MinionCardManager from './MinionCardManager.js';
 import ChipCardManager from './ChipCardManager.js';
+import ReputationSystem from './ReputationSystem.js';
 
 export default class RewardManager {
   constructor() {
@@ -132,8 +133,10 @@ export default class RewardManager {
   }
 
   _addExp(amount) {
-    if (window.gameData?.reputationSystem) {
-      window.gameData.reputationSystem.addExp(amount || 0);
+    if (window.gameData?.reputation) {
+      const system = ReputationSystem.fromJSON(window.gameData.reputation);
+      system.addExp(amount || 0);
+      window.gameData.reputation = system.toJSON();
     }
   }
 

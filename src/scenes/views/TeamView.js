@@ -639,7 +639,7 @@ export default class TeamView {
   showCardDetail(card, isMinion) {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
-    const modalWidth = 336;
+    const modalWidth = Math.min(width - 16, 344);
     const modalHeight = 524;
 
     const overlay = this.scene.add.graphics();
@@ -654,13 +654,6 @@ export default class TeamView {
     closeZone.setInteractive();
     closeZone.on('pointerdown', (pointer) => {
       pointer.event?.stopPropagation?.();
-      const left = width / 2 - modalWidth / 2;
-      const right = width / 2 + modalWidth / 2;
-      const top = height / 2 - modalHeight / 2;
-      const bottom = height / 2 + modalHeight / 2;
-      if (pointer.x >= left && pointer.x <= right && pointer.y >= top && pointer.y <= bottom) {
-        return;
-      }
       this.closeCardDetail();
     });
     this.overlayElements.push(closeZone);
@@ -677,6 +670,13 @@ export default class TeamView {
     modal.setScale(0.5);
     modal.setAlpha(0);
 
+    const modalBlocker = this.scene.add.zone(0, 0, modalWidth, modalHeight + 76);
+    modalBlocker.setInteractive();
+    modalBlocker.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
+    });
+    modal.add(modalBlocker);
+
     const bg = this.scene.add.graphics();
     const accentColor = isMinion ? this.getQualityColorInt(RARITY_TO_QUALITY[card.rarity] || 'N') : this.getQualityColorInt(card.quality || 'N');
     bg.fillStyle(0x0b0f18, 0.98);
@@ -687,13 +687,13 @@ export default class TeamView {
       const isDeployed = this.scene.minionCardManager?.deployedCards?.includes(card.id);
       const portraitShadow = this.scene.add.graphics();
       portraitShadow.fillStyle(0x000000, 0.28);
-      portraitShadow.fillRoundedRect(-156, -246, 312, 394, 22);
+      portraitShadow.fillRoundedRect(-(modalWidth - 24) / 2, -246, modalWidth - 24, 394, 22);
       modal.add(portraitShadow);
 
       const portrait = CardRenderer.createDetailPortrait(this.scene, {
         x: 0,
         y: -49,
-        width: 304,
+        width: modalWidth - 32,
         height: 390,
         quality: RARITY_TO_QUALITY[card.rarity] || 'N',
         portraitKey: extractPortraitKey(card.portrait),
@@ -704,8 +704,8 @@ export default class TeamView {
       const infoPanel = this.scene.add.graphics();
       infoPanel.fillStyle(0x0f1522, 0.98);
       infoPanel.lineStyle(1, accentColor, 0.35);
-      infoPanel.fillRoundedRect(-152, 160, 304, 78, 18);
-      infoPanel.strokeRoundedRect(-152, 160, 304, 78, 18);
+      infoPanel.fillRoundedRect(-(modalWidth - 32) / 2, 160, modalWidth - 32, 78, 18);
+      infoPanel.strokeRoundedRect(-(modalWidth - 32) / 2, 160, modalWidth - 32, 78, 18);
       modal.add(infoPanel);
 
       modal.add(this.scene.add.text(-132, 182, card.name, {
@@ -820,7 +820,14 @@ export default class TeamView {
     if (isMinion) {
       result = this.scene.minionCardManager.starUpgrade(card.id);
     } else {
-      result = this.scene.chipCardManager.upgradeStar(card.id, window.gameData?.starStones || Number.MAX_SAFE_INTEGER);
+      const starStones = window.gameData?.starStones || 0;
+      const upgradeCost = card.upgradeCost || 0;
+      if (starStones < upgradeCost) {
+        this.scene.showToast?.('升星材料不足');
+        return;
+      }
+      window.gameData.starStones = starStones - upgradeCost;
+      result = this.scene.chipCardManager.upgradeStar(card.id, upgradeCost);
     }
 
     if (result.success) {

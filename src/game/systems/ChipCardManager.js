@@ -1,4 +1,4 @@
-import ChipCard from '../entities/ChipCard.js';
+﻿import ChipCard from '../entities/ChipCard.js';
 
 export default class ChipCardManager {
   constructor(gameData = {}) {
@@ -24,8 +24,8 @@ export default class ChipCardManager {
     const names = {
       N: ['铁片芯片', '铜线芯片', '废料芯片'],
       R: ['精钢芯片', '合金芯片', '光学芯片'],
-      SR: ['烈焰芯片', '冰霜芯片', '雷霆芯片'],
-      SSR: ['龙鳞芯片', '凤凰芯片', '陨星芯片'],
+      SR: ['烈焰芯片', '冰霜芯片', '雷鸣芯片'],
+      SSR: ['龙鳞芯片', '凤羽芯片', '陨星芯片'],
       UR: ['虚空芯片', '深渊芯片', '永恒芯片'],
       LE: ['创世芯片', '终焉芯片', '混沌芯片']
     };
@@ -131,7 +131,7 @@ export default class ChipCardManager {
       return { success: false, reason: 'card_not_found' };
     }
 
-    // 检查3张是否同品质
+    // 检查3张芯片是否同品质
     const quality = cards[0].quality;
     const allSameQuality = cards.every(c => c.quality === quality);
     if (!allSameQuality) {
@@ -235,7 +235,7 @@ export default class ChipCardManager {
   }
 
   onTurnEnd() {
-    // 芯片回合结束处理（预留）
+    // 鑺墖鍥炲悎缁撴潫澶勭悊锛堥鐣欙級
   }
 
   checkTriggers(condition, context) {
@@ -270,28 +270,16 @@ export default class ChipCardManager {
   }
 
   save() {
-    try {
-      localStorage.setItem('chipCardManager', JSON.stringify(this.toJSON()));
-    } catch (e) {
-      console.warn('Failed to save chip card manager:', e);
-    }
+    return this.toJSON();
   }
 
   load() {
-    try {
-      const saved = localStorage.getItem('chipCardManager');
-      if (saved) {
-        const data = JSON.parse(saved);
-        this.ownedCards = (data.ownedCards || []).map(cardData => ChipCard.fromJSON(cardData));
-        this.equippedCardId = data.equippedCardId || null;
-        this.equippedCard = this.equippedCardId ? this.getCardById(this.equippedCardId) : null;
-      }
-    } catch (e) {
-      console.warn('Failed to load chip card manager:', e);
-    }
+    return this;
   }
 
   static fromJSON(json) {
     return new ChipCardManager(json);
   }
 }
+
+

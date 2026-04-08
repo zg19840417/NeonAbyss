@@ -52,25 +52,11 @@ export default class ReputationSystem {
   }
 
   save() {
-    try {
-      localStorage.setItem('reputationSystem', JSON.stringify(this.toJSON()));
-    } catch (e) {
-      console.warn('Failed to save reputation system:', e);
-    }
+    return this.toJSON();
   }
 
   load() {
-    try {
-      const saved = localStorage.getItem('reputationSystem');
-      if (saved) {
-        const data = JSON.parse(saved);
-        this.level = data.level || 1;
-        this.exp = data.exp || 0;
-        this.totalExp = data.totalExp || 0;
-      }
-    } catch (e) {
-      console.warn('Failed to load reputation system:', e);
-    }
+    return this;
   }
 
   static fromJSON(json) {

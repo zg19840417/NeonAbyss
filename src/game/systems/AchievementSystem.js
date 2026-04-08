@@ -1,5 +1,3 @@
-import { BuffType, BuffConfig } from './BuffSystem.js';
-
 export const AchievementType = {
   FLOOR_REACH: 'floor_reach',
   BATTLE_WIN: 'battle_win',
@@ -62,55 +60,55 @@ export const Achievement = {
   },
   GOLD_10000: {
     id: 'gold_10000',
-    name: '万元户',
-    description: '累计获得10000金币',
+    name: '小有积蓄',
+    description: '累计获得10000菌丝',
     type: AchievementType.GOLD_EARN,
     target: 10000,
     reward: { mycelium: 200 }
   },
   GOLD_100000: {
     id: 'gold_100000',
-    name: '富豪',
-    description: '累计获得100000金币',
+    name: '富足补给',
+    description: '累计获得100000菌丝',
     type: AchievementType.GOLD_EARN,
     target: 100000,
     reward: { mycelium: 2000 }
   },
   RECRUIT_3: {
     id: 'recruit_3',
-    name: '三人成行',
-    description: '招募3名角色',
+    name: '初建队伍',
+    description: '获得3张随从卡',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 3,
     reward: { mycelium: 100 }
   },
   RECRUIT_10: {
     id: 'recruit_10',
-    name: '佣兵团长',
-    description: '招募10名角色',
+    name: '卡库扩充',
+    description: '获得10张随从卡',
     type: AchievementType.CHARACTER_RECRUIT,
     target: 10,
     reward: { mycelium: 500 }
   },
   BOSS_DEFEAT_1: {
     id: 'boss_defeat_1',
-    name: '首杀BOSS',
-    description: '击败第1个BOSS',
+    name: '首杀首领',
+    description: '击败1个首领',
     type: AchievementType.BOSS_DEFEAT,
     target: 1,
     reward: { mycelium: 200 }
   },
   BOSS_DEFEAT_10: {
     id: 'boss_defeat_10',
-    name: 'BOSS猎人',
-    description: '击败10个BOSS',
+    name: '首领猎手',
+    description: '击败10个首领',
     type: AchievementType.BOSS_DEFEAT,
     target: 10,
     reward: { mycelium: 1000 }
   },
   DIMENSION_2: {
     id: 'dimension_2',
-    name: '异维度',
+    name: '异维初见',
     description: '进入第2维度',
     type: AchievementType.DIMENSION_REACH,
     target: 2,
@@ -154,7 +152,7 @@ export default class AchievementSystem {
 
   emit(event, data) {
     if (this.listeners[event]) {
-      this.listeners[event].forEach(callback => callback(data));
+      this.listeners[event].forEach((callback) => callback(data));
     }
   }
 
@@ -201,7 +199,7 @@ export default class AchievementSystem {
 
   checkAchievements(type) {
     const achievementList = Object.values(Achievement).filter(
-      a => a.type === type && !this.unlocked.includes(a.id)
+      (achievement) => achievement.type === type && !this.unlocked.includes(achievement.id)
     );
 
     for (const achievement of achievementList) {
@@ -246,13 +244,11 @@ export default class AchievementSystem {
   claimReward(achievementId) {
     const achievement = Achievement[achievementId];
     if (!achievement) return null;
-
     if (!this.unlocked.includes(achievementId)) return null;
     if (this.claimedRewards.includes(achievementId)) return null;
 
     this.claimedRewards.push(achievementId);
     this.emit('onRewardClaim', { achievement, reward: achievement.reward });
-
     return achievement.reward;
   }
 
@@ -265,19 +261,19 @@ export default class AchievementSystem {
   }
 
   getUnlockedAchievements() {
-    return this.unlocked.map(id => Achievement[id]).filter(Boolean);
+    return this.unlocked.map((id) => Achievement[id]).filter(Boolean);
   }
 
   getLockedAchievements() {
     return Object.values(Achievement).filter(
-      a => !this.unlocked.includes(a.id)
+      (achievement) => !this.unlocked.includes(achievement.id)
     );
   }
 
   getClaimableRewards() {
     return this.unlocked
-      .filter(id => !this.claimedRewards.includes(id))
-      .map(id => Achievement[id])
+      .filter((id) => !this.claimedRewards.includes(id))
+      .map((id) => Achievement[id])
       .filter(Boolean);
   }
 

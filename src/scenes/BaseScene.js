@@ -73,55 +73,11 @@ export default class BaseScene extends Phaser.Scene {
   initializeBaseSystem() {
     ensureGlobalGameData();
     this.baseSystem = new BaseSystem(window.gameData.base);
-    this.cleanCharacterData();
 
     this.chipCardManager = new ChipCardManager(window.gameData.chipCardManager);
     this.stageManager = new StageManager();
     this.reputationSystem = new ReputationSystem(window.gameData.reputation);
     this.minionCardManager = MinionCardManager.fromJSON(window.gameData.minionCardManager);
-
-    this.cleanLegacySaveData();
-  }
-
-  cleanCharacterData() {
-    const validClasses = ['Warrior', 'Mage', 'Rogue', 'Priest', 'Tank', 'Archer', 'Paladin', 'Berserker', 'Hunter', 'Cleric'];
-    const originalCount = this.baseSystem.characters.length;
-
-    this.baseSystem.characters = this.baseSystem.characters.filter(c => {
-      if (!c || !c.charClass) return false;
-      const className = c.charClass.name || '';
-      return validClasses.some(vc => className.includes(vc) || vc.includes(className));
-    });
-
-    const removedCount = originalCount - this.baseSystem.characters.length;
-    if (removedCount > 0) {
-      this.saveGameData();
-    }
-  }
-
-  /**
-   * 娓呯悊鏃х増鏈瓨妗ｆ暟鎹?
-   * 绉婚櫎宸插簾寮冪殑 equipmentCardManager 鐩稿叧鏁版嵁
-   */
-  cleanLegacySaveData() {
-    let needsSave = false;
-
-    // 绉婚櫎鏃х殑 equipmentCardManager
-    if (window.gameData.equipmentCardManager) {
-      delete window.gameData.equipmentCardManager;
-      needsSave = true;
-    }
-
-    // 绉婚櫎鏃х殑 localStorage 閿?
-    try {
-      localStorage.removeItem('equipmentCardManager');
-    } catch (e) {
-      // 蹇界暐
-    }
-
-    if (needsSave) {
-      this.saveGameData();
-    }
   }
 
   createBackground(width, height) {
@@ -357,22 +313,22 @@ export default class BaseScene extends Phaser.Scene {
   }
 
   showView(key) {
-    // 濡傛灉姝ｅ湪杩囨浮涓紝璺宠繃
+    // 正在做淡出切换时，忽略重复切页请求。
     if (this._transitioning) return;
 
-    // 鑾峰彇闇€瑕佷繚鐣欑殑鍏冪礌
+    // 顶栏与底部导航常驻，不参与内容区切换。
     const preserved = [this.coinDisplay, this.myceliumDisplay, this.sourceCoreDisplay, this.titleText];
     Object.values(this.tabButtons).forEach(tab => {
       if (tab.container) preserved.push(tab.container);
       if (tab.hitZone) preserved.push(tab.hitZone);
     });
 
-    // 鏀堕泦闇€瑕佹贰鍑虹殑鍐呭鍏冪礌
+    // 其余元素视为内容区，先淡出再重建。
     const contentElements = this.children.list.filter(child => {
       return !preserved.includes(child);
     });
 
-    // 濡傛灉鏈夊唴瀹瑰厓绱狅紝鍏堟贰鍑哄啀鍒囨崲
+    // 有内容时先淡出，完成后再次进入 showView 真正重建。
     if (contentElements.length > 0) {
       this._transitioning = true;
       this.tweens.add({
@@ -443,7 +399,7 @@ export default class BaseScene extends Phaser.Scene {
     card.lineStyle(2, Const.COLORS.PURPLE, 0.5);
     card.strokeRoundedRect(width/2 - Const.LAYOUT.CARD_WIDTH/2, 140, Const.LAYOUT.CARD_WIDTH, Const.LAYOUT.CARD_HEIGHT, Const.UI.CARD_RADIUS);
 
-    const bartenderIcon = this.add.text(width / 2, 190, '馃嵑', {
+    const bartenderIcon = this.add.text(width / 2, 190, '🍺', {
       fontSize: Const.FONT.SIZE_ICON_LARGE
     }).setOrigin(0.5);
 
@@ -489,188 +445,12 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
-  createTeamMemberCard(x, y, character) {
-    const container = this.add.container(x, y);
-
-    const bg = this.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bg.fillRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-    bg.strokeRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-
-    const qualityColors = {
-      common: Const.TEXT_COLORS.PRIMARY,
-      rare: Const.TEXT_COLORS.CYAN,
-      epic: Const.TEXT_COLORS.PINK,
-      legendary: Const.TEXT_COLORS.YELLOW,
-      mythic: Const.TEXT_COLORS.MAGENTA
-    };
-    const qualityColor = qualityColors[character.quality] || Const.TEXT_COLORS.PRIMARY;
-
-    const nameLabel = this.add.text(-120, -8, character.name, {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityColor
-    }).setOrigin(0, 0.5);
-
-    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '鏈煡') + ' Lv.' + character.level, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5);
-
-    const removeBtn = this.add.text(110, 0, t('remove'), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.DANGER
-    }).setOrigin(0.5).setInteractive();
-
-    removeBtn.on('pointerdown', () => {
-      this.baseSystem.removeFromTeam(character.id);
-      this.saveGameData();
-      this.showView('team');
-    });
-
-    container.add([bg, nameLabel, classLabel, removeBtn]);
-    container.setSize(280, 56);
-    container.setInteractive(this.createCenteredHitArea(280, 56), Phaser.Geom.Rectangle.Contains);
-
-    container.on('pointerover', () => {
-      bg.clear();
-      bg.fillStyle(Const.COLORS.BG_HOVER, 1);
-      bg.fillRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-      bg.lineStyle(2, Const.COLORS.CYAN, 0.7);
-      bg.strokeRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-    });
-
-    container.on('pointerout', () => {
-      bg.clear();
-      bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-      bg.fillRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-      bg.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-      bg.strokeRoundedRect(-140, -28, 280, 56, Const.UI.CARD_RADIUS_SMALL);
-    });
-  }
-
-  showDungeonContent() {
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
-
-    const dungeonBanner = this.add.text(width / 2, 110, '绂佸尯鍏ュ彛', {
-      fontSize: Const.FONT.SIZE_NORMAL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    }).setOrigin(0.5);
-
-    const card = this.add.graphics();
-    card.fillStyle(Const.COLORS.BG_MID, 0.9);
-    card.fillRoundedRect(width/2 - 120, 150, 240, 200, Const.UI.CARD_RADIUS);
-    card.lineStyle(2, Const.COLORS.MAGENTA, 0.5);
-    card.strokeRoundedRect(width/2 - 120, 150, 240, 200, Const.UI.CARD_RADIUS);
-
-    const floor = window.gameData?.dungeon?.currentFloor || 1;
-    this.add.text(width / 2, 200, t('current_floor', { floor }), {
-      fontSize: Const.FONT.SIZE_ICON_SMALL,
-      fontFamily: Const.FONT.FAMILY_EN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PINK
-    }).setOrigin(0.5);
-
-    this.add.text(width / 2, 250, t('auto_battle'), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-
-    const teamCount = this.minionCardManager?.getDeployedCards?.().length || 0;
-    if (teamCount === 0) {
-      this.add.text(width / 2, 300, t('team_empty'), {
-        fontSize: Const.FONT.SIZE_SMALL,
-        fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: Const.TEXT_COLORS.DANGER
-      }).setOrigin(0.5);
-
-      this.createActionButton(width / 2, 340, t('go_to_shop'), () => {
-        this.switchTab('shop');
-      });
-    } else {
-      this.createActionButton(width / 2, 340, t('start_explore'), () => {
-        this.tryEnterDungeon();
-      });
-    }
-
-    this.add.text(width / 2, height - 130, t('team_count', { count: teamCount }), {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0.5);
-  }
-
   showShopContent() {
     if (this.shopView) {
       this.shopView.destroy();
     }
     this.shopView = new ShopView(this);
     this.shopView.show();
-  }
-
-  createRecruitCard(x, y, character, index) {
-    const container = this.add.container(x, y);
-
-    const bg = this.add.graphics();
-    bg.fillStyle(Const.COLORS.BG_MID, 0.95);
-    bg.fillRoundedRect(-140, -32, 280, 64, Const.UI.CARD_RADIUS_SMALL);
-    bg.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-    bg.strokeRoundedRect(-140, -32, 280, 64, Const.UI.CARD_RADIUS_SMALL);
-
-    const qualityColors = {
-      common: Const.TEXT_COLORS.PRIMARY,
-      rare: Const.TEXT_COLORS.CYAN,
-      epic: Const.TEXT_COLORS.PINK,
-      legendary: Const.TEXT_COLORS.YELLOW,
-      mythic: Const.TEXT_COLORS.MAGENTA
-    };
-    const qualityColor = qualityColors[character.quality] || Const.TEXT_COLORS.PRIMARY;
-
-    const nameLabel = this.add.text(-120, -8, character.name, {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: qualityColor
-    }).setOrigin(0, 0.5);
-
-    const classLabel = this.add.text(-120, 12, (character.charClass?.name || '鏈煡') + ' Lv.' + character.level, {
-      fontSize: Const.FONT.SIZE_TINY,
-      fontFamily: Const.FONT.FAMILY_CN,
-      color: Const.TEXT_COLORS.SECONDARY
-    }).setOrigin(0, 0.5);
-
-    const recruitBtn = this.add.container(105, 0);
-    const btnBg = this.add.graphics();
-    btnBg.fillStyle(Const.COLORS.BUTTON_PRIMARY, 1);
-    btnBg.fillRoundedRect(-30, -14, 60, 28, Const.UI.BUTTON_RADIUS);
-    const btnText = this.add.text(0, 0, t('recruit'), {
-      fontSize: Const.FONT.SIZE_SMALL,
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.DARK
-    }).setOrigin(0.5);
-    recruitBtn.add([btnBg, btnText]);
-    recruitBtn.setSize(60, 28);
-    recruitBtn.setInteractive(this.createCenteredHitArea(60, 28), Phaser.Geom.Rectangle.Contains);
-
-    recruitBtn.on('pointerdown', () => {
-      const result = this.baseSystem.recruitCharacter(index);
-      if (result.success) {
-        this.saveGameData();
-        this.showView('shop');
-      }
-    });
-
-    container.add([bg, nameLabel, classLabel, recruitBtn]);
   }
 
   showSettingsContent() {
@@ -1086,7 +866,7 @@ export default class BaseScene extends Phaser.Scene {
     });
   }
 
-  // [U03 FIX] 瀹炵幇 showToast 鏂规硶锛屽涓?View 閫氳繃 scene.showToast?.() 璋冪敤
+  // 统一的轻提示入口，供各个 View 直接调用。
   showToast(message, duration = 2000) {
     if (this._toastText) this._toastText.destroy();
     const width = this.cameras.main.width;
