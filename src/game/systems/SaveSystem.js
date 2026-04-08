@@ -164,7 +164,8 @@ export default class SaveSystem {
 
   _migrateSaveData(data) {
     // v1 → v2: 添加 inventory 字段（如果不存在）
-    if (!data.version || data.version < 2) {
+    const versionNum = typeof data.version === 'number' ? data.version : parseInt(data.version, 10) || 0;
+    if (versionNum < 2) {
       if (!data.base) data.base = {};
       if (!data.base.inventory) data.base.inventory = {};
       data.version = 2;
@@ -175,7 +176,7 @@ export default class SaveSystem {
 
   _validateData(data) {
     if (!data || typeof data !== 'object') return false;
-    if (!data.version || typeof data.version !== 'number') return false;
+    if (!data.version || (typeof data.version !== 'number' && typeof data.version !== 'string')) return false;
     if (!data.base || typeof data.base !== 'object') return false;
     if (typeof data.base.mycelium !== 'number') return false;
     if (typeof data.base.sourceCore !== 'number') return false;

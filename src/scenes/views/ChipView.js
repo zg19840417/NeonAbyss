@@ -3,6 +3,7 @@ import Const from '../../game/data/Const.js';
 import ChipCard from '../../game/entities/ChipCard.js';
 import ChipCardManager from '../../game/systems/ChipCardManager.js';
 import CardRenderer from '../../game/utils/CardRenderer.js'; // [CardRenderer UPGRADE]
+import EventBus, { GameEvents } from '../../game/EventBus.js';
 
 export default class ChipView {
   constructor(scene) {
@@ -506,6 +507,7 @@ export default class ChipView {
 
   saveAndRefresh() {
     window.gameData.chipCardManager = this.cardManager.toJSON();
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
     this.destroy();
     this.show();
   }

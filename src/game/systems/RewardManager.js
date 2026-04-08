@@ -1,6 +1,7 @@
 import ChipCardManager from './ChipCardManager.js';
 import ReputationSystem from './ReputationSystem.js';
 import FusionGirlManager from './FusionGirlManager.js';
+import EventBus, { GameEvents } from '../EventBus.js';
 
 export default class RewardManager {
   constructor() {
@@ -52,6 +53,7 @@ export default class RewardManager {
     });
 
     this.rewardsLog.push(result);
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
     return result;
   }
 

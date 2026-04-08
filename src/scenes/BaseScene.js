@@ -35,6 +35,9 @@ export default class BaseScene extends Phaser.Scene {
     this._transitioning = false;
     this._persistGameData = null;
     this._persistOnVisibilityChange = null;
+    this._eventListeners = {};
+    this._cachedGrid = null;
+    this._cachedDecor = null;
   }
 
   createCenteredHitArea(width, height) {
@@ -58,6 +61,8 @@ export default class BaseScene extends Phaser.Scene {
     if (!window.domUI) {
       import('./../game/ui/DOMUIManager.js').then(module => {
         window.domUI = new module.default(this.game);
+      }).catch(err => {
+        console.warn('DOM UI 加载失败，将使用 Canvas 备用方案:', err);
       });
     }
 
@@ -78,14 +83,19 @@ export default class BaseScene extends Phaser.Scene {
     this.showView(this.initialTab || 'sanctuary');
 
     // 事件驱动的 UI 更新
-    EventBus.on(GameEvents.CURRENCY_CHANGED, () => this.updateUI());
-    EventBus.on(GameEvents.TEAM_UPDATED, () => this.updateUI());
-    EventBus.on(GameEvents.TEAM_DEPLOY_CHANGED, () => this.updateUI());
-    EventBus.on(GameEvents.CHIP_EQPPED, () => this.updateUI());
-    EventBus.on(GameEvents.CHIP_UNEQUIPPED, () => this.updateUI());
-    EventBus.on(GameEvents.FUSION_LEVEL_UP, () => this.updateUI());
-    EventBus.on(GameEvents.FUSION_QUALITY_UP, () => this.updateUI());
-    EventBus.on(GameEvents.DATA_RESET, () => this.updateUI());
+    this._eventListeners = {
+      [GameEvents.CURRENCY_CHANGED]: () => this.updateUI(),
+      [GameEvents.TEAM_UPDATED]: () => this.updateUI(),
+      [GameEvents.TEAM_DEPLOY_CHANGED]: () => this.updateUI(),
+      [GameEvents.CHIP_EQPPED]: () => this.updateUI(),
+      [GameEvents.CHIP_UNEQUIPPED]: () => this.updateUI(),
+      [GameEvents.FUSION_LEVEL_UP]: () => this.updateUI(),
+      [GameEvents.FUSION_QUALITY_UP]: () => this.updateUI(),
+      [GameEvents.DATA_RESET]: () => this.updateUI(),
+    };
+    Object.entries(this._eventListeners).forEach(([event, fn]) => {
+      EventBus.on(event, fn);
+    });
   }
 
   initializeBaseSystem() {
@@ -111,9 +121,15 @@ export default class BaseScene extends Phaser.Scene {
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
-    this.bgElements.forEach(el => el.destroy());
+    // 只销毁动态元素（centerGlow 和 particles），保留缓存的 grid 和 decor
+    this.bgElements.forEach(el => {
+      if (el !== this._cachedGrid && el !== this._cachedDecor) {
+        el.destroy();
+      }
+    });
     this.bgElements = [];
 
+    // 动态元素：centerGlow（依赖 viewKey 的颜色）
     const centerGlow = this.add.graphics();
     centerGlow.setBlendMode(Phaser.BlendModes.ADD);
 
@@ -135,38 +151,44 @@ export default class BaseScene extends Phaser.Scene {
     }
     this.bgElements.push(centerGlow);
 
-    const grid = this.add.graphics();
-    grid.setAlpha(Const.ALPHA.GRID);
-    grid.lineStyle(1, Const.COLORS.CYAN, 0.3);
-    for (let x = 0; x < width; x += Const.LAYOUT.GRID_SPACING) {
-      grid.lineBetween(x, 0, x, height);
+    // 缓存不变的 grid
+    if (!this._cachedGrid) {
+      this._cachedGrid = this.add.graphics();
+      this._cachedGrid.setAlpha(Const.ALPHA.GRID);
+      this._cachedGrid.lineStyle(1, Const.COLORS.CYAN, 0.3);
+      for (let x = 0; x < width; x += Const.LAYOUT.GRID_SPACING) {
+        this._cachedGrid.lineBetween(x, 0, x, height);
+      }
+      for (let y = 0; y < height; y += Const.LAYOUT.GRID_SPACING) {
+        this._cachedGrid.lineBetween(0, y, width, y);
+      }
     }
-    for (let y = 0; y < height; y += Const.LAYOUT.GRID_SPACING) {
-      grid.lineBetween(0, y, width, y);
+    this.bgElements.push(this._cachedGrid);
+
+    // 缓存不变的 decor
+    if (!this._cachedDecor) {
+      this._cachedDecor = this.add.graphics();
+      this._cachedDecor.setAlpha(Const.ALPHA.DECOR);
+
+      this._cachedDecor.lineStyle(2, Const.COLORS.PURPLE, 0.5);
+      this._cachedDecor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
+      this._cachedDecor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_SMALL, 110);
+
+      this._cachedDecor.lineStyle(2, Const.COLORS.MAGENTA, 0.5);
+      this._cachedDecor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
+      this._cachedDecor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_SMALL, 110);
+
+      this._cachedDecor.lineStyle(2, Const.COLORS.CYAN, 0.3);
+      this._cachedDecor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_MEDIUM, height - 130);
+      this._cachedDecor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_SMALL, height - 100);
+
+      this._cachedDecor.lineStyle(2, Const.COLORS.PINK, 0.3);
+      this._cachedDecor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_MEDIUM, height - 130);
+      this._cachedDecor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_SMALL, height - 100);
     }
-    this.bgElements.push(grid);
+    this.bgElements.push(this._cachedDecor);
 
-    const decor = this.add.graphics();
-    decor.setAlpha(Const.ALPHA.DECOR);
-
-    decor.lineStyle(2, Const.COLORS.PURPLE, 0.5);
-    decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
-    decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, Const.LAYOUT.MARGIN_SMALL, 110);
-
-    decor.lineStyle(2, Const.COLORS.MAGENTA, 0.5);
-    decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_MEDIUM, Const.LAYOUT.MARGIN_LARGE);
-    decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, Const.LAYOUT.MARGIN_LARGE, width - Const.LAYOUT.MARGIN_SMALL, 110);
-
-    decor.lineStyle(2, Const.COLORS.CYAN, 0.3);
-    decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_MEDIUM, height - 130);
-    decor.lineBetween(Const.LAYOUT.MARGIN_SMALL, height - 130, Const.LAYOUT.MARGIN_SMALL, height - 100);
-
-    decor.lineStyle(2, Const.COLORS.PINK, 0.3);
-    decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_MEDIUM, height - 130);
-    decor.lineBetween(width - Const.LAYOUT.MARGIN_SMALL, height - 130, width - Const.LAYOUT.MARGIN_SMALL, height - 100);
-
-    this.bgElements.push(decor);
-
+    // 动态元素：particles（随机位置）
     const particles = this.add.graphics();
     const pColors = [Const.COLORS.CYAN, Const.COLORS.MAGENTA, Const.COLORS.PINK, Const.COLORS.PURPLE, Const.COLORS.YELLOW];
     for (let i = 0; i < Const.LAYOUT.PARTICLE_COUNT; i++) {
@@ -211,7 +233,9 @@ export default class BaseScene extends Phaser.Scene {
     // 顶栏与底部导航常驻，不参与内容区切换。
     const preserved = [
       ...(this.topBar?.getPreservedElements() || []),
-      ...(this.bottomNav?.getPreservedElements() || [])
+      ...(this.bottomNav?.getPreservedElements() || []),
+      this._cachedGrid,
+      this._cachedDecor
     ];
 
     // 其余元素视为内容区，先淡出再重建。
@@ -339,6 +363,12 @@ export default class BaseScene extends Phaser.Scene {
     if (window.domUI) {
       import('../game/ui/panels/ShopPanel.js').then(module => {
         module.createShopPanel(window.domUI, this);
+      }).catch(err => {
+        console.warn('DOM 商店面板加载失败，回退到 Canvas 版本:', err);
+        // 回退到 Canvas 版本
+        if (this.shopView) this.shopView.destroy();
+        this.shopView = new ShopView(this);
+        this.shopView.show();
       });
     } else {
       // 回退到 Canvas 版本
@@ -456,7 +486,7 @@ export default class BaseScene extends Phaser.Scene {
     } else if (teamCount < Const.GAME.MAX_TEAM_SIZE) {
       this.showTeamNotFullConfirm();
     } else {
-      this.scene.start('DungeonScene');
+      this.scene.start(Const.SCENES.DUNGEON);
     }
   }
 
@@ -504,7 +534,7 @@ export default class BaseScene extends Phaser.Scene {
           width: 90,
           bgColor: Const.COLORS.BUTTON_PRIMARY,
           textColor: Const.TEXT_COLORS.DARK,
-          callback: () => this.scene.start('DungeonScene')
+          callback: () => this.scene.start(Const.SCENES.DUNGEON)
         }
       ]
     });
@@ -554,7 +584,9 @@ export default class BaseScene extends Phaser.Scene {
   clearContent() {
     const preserved = [
       ...(this.topBar?.getPreservedElements() || []),
-      ...(this.bottomNav?.getPreservedElements() || [])
+      ...(this.bottomNav?.getPreservedElements() || []),
+      this._cachedGrid,
+      this._cachedDecor
     ];
 
     if (this.chipView) {
@@ -622,14 +654,10 @@ export default class BaseScene extends Phaser.Scene {
       document.removeEventListener('visibilitychange', this._persistOnVisibilityChange);
     }
     // 清理 EventBus 监听
-    EventBus.off(GameEvents.CURRENCY_CHANGED);
-    EventBus.off(GameEvents.TEAM_UPDATED);
-    EventBus.off(GameEvents.TEAM_DEPLOY_CHANGED);
-    EventBus.off(GameEvents.CHIP_EQPPED);
-    EventBus.off(GameEvents.CHIP_UNEQUIPPED);
-    EventBus.off(GameEvents.FUSION_LEVEL_UP);
-    EventBus.off(GameEvents.FUSION_QUALITY_UP);
-    EventBus.off(GameEvents.DATA_RESET);
+    Object.entries(this._eventListeners).forEach(([event, fn]) => {
+      EventBus.off(event, fn);
+    });
+    this._eventListeners = {};
     this.saveGameData();
     this.tweens.killAll();
   }

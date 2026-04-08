@@ -127,7 +127,7 @@ export default class PreloadScene extends Phaser.Scene {
       progressBg.destroy();
       loadingText.destroy();
       tipText.destroy();
-      this.scene.start('MainMenuScene');
+      this.scene.start(Const.SCENES.MAIN_MENU);
     });
 
     this.load.on('loaderror', (file) => {

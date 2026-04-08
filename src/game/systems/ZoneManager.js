@@ -19,23 +19,15 @@ export default class ZoneManager {
   }
 
   load() {
-    try {
-      const saved = localStorage.getItem(SAVE_KEY);
-      if (saved) {
-        const data = JSON.parse(saved);
-        this.completedZones = data.completedZones || {};
-      }
-    } catch (e) {
-      console.warn('Failed to load ZoneManager:', e);
+    const data = window.gameData?.zone;
+    if (data?.completedZones) {
+      this.completedZones = data.completedZones;
     }
   }
 
   save() {
-    try {
-      localStorage.setItem(SAVE_KEY, JSON.stringify({ completedZones: this.completedZones }));
-    } catch (e) {
-      console.warn('Failed to save ZoneManager:', e);
-    }
+    // 不再独立写入 localStorage，由调用方通过 syncRuntimeGameData 统一持久化
+    // 保留 toJSON() 供 syncRuntimeGameData 使用
   }
 
   enterZone(zoneId) {

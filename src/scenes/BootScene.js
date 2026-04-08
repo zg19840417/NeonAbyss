@@ -1,4 +1,5 @@
 import ResponsiveUtils, { DesignWidth, DesignHeight } from '../utils/ResponsiveUtils.js';
+import Const from '../game/data/Const.js';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -13,7 +14,7 @@ export default class BootScene extends Phaser.Scene {
   create() {
     this.setupResponsive();
     this.setupGameScale();
-    this.scene.start('PreloadScene');
+    this.scene.start(Const.SCENES.PRELOAD);
   }
 
   setupResponsive() {

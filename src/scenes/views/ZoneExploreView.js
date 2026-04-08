@@ -1,6 +1,7 @@
+import Const from '../../game/data/Const.js';
 import ZoneData from '../../game/data/ZoneData.js';
 import EventManager from '../../game/systems/EventManager.js';
-import Const from '../../game/data/Const.js';
+import { t } from '../../game/data/Lang.js';
 
 export default class ZoneExploreView {
   constructor(scene, width, height) {
@@ -18,9 +19,9 @@ export default class ZoneExploreView {
     if (!zoneInfo) return;
 
     // 层数进度条
-    const progressText = `层数: ${zm.currentLayer} / ${zoneInfo.totalLayers}`;
+    const progressText = t('stage_progress', { current: zm.currentLayer, total: zoneInfo.totalLayers });
     this.scene.add.text(this.width / 2, 10, progressText, {
-      fontSize: '14px', color: Const.TEXT_COLORS.GOLD, fontFamily: 'Arial'
+      fontSize: '14px', color: Const.BATTLE.COLORS.TEXT_PRIMARY, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
     // 当前层事件
@@ -36,16 +37,16 @@ export default class ZoneExploreView {
 
   _showBossEvent(eventData) {
     const y = 40;
-    this.scene.add.text(this.width / 2, y, '⚠ BOSS战 ⚠', {
-      fontSize: '18px', color: '#ff4444', fontFamily: 'Arial'
+    this.scene.add.text(this.width / 2, y, t('challenge_boss'), {
+      fontSize: '18px', color: Const.TEXT_COLORS.DANGER, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
-    const bossName = eventData.result?.enemies?.[0]?.name || '未知Boss';
+    const bossName = eventData.result?.enemies?.[0]?.name || 'Unknown Boss';
     this.scene.add.text(this.width / 2, y + 30, bossName, {
-      fontSize: '14px', color: '#e0e0e0', fontFamily: 'Arial'
+      fontSize: '14px', color: Const.TEXT_COLORS.SECONDARY, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
-    const fightBtn = this.scene.add.text(this.width / 2, y + 70, '挑战Boss', {
+    const fightBtn = this.scene.add.text(this.width / 2, y + 70, t('challenge_boss'), {
       fontSize: '16px', color: '#ffffff', backgroundColor: '#cc3333',
       padding: { x: 20, y: 8 }
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
@@ -69,8 +70,8 @@ export default class ZoneExploreView {
   }
 
   _showBranchSelection(eventData, y, branchCount) {
-    this.scene.add.text(this.width / 2, y, `选择路径 (${branchCount}选1)`, {
-      fontSize: '14px', color: Const.TEXT_COLORS.GOLD, fontFamily: 'Arial'
+    this.scene.add.text(this.width / 2, y, t('select_path', { count: branchCount }), {
+      fontSize: '14px', color: Const.BATTLE.COLORS.TEXT_PRIMARY, fontFamily: 'Arial'
     }).setOrigin(0.5);
 
     const btnWidth = Math.min(120, (this.width - 40) / branchCount - 10);
@@ -97,10 +98,10 @@ export default class ZoneExploreView {
 
     switch (processed.type) {
       case 'battle':
-        this.scene.add.text(this.width / 2, y + 30, '遭遇敌人！', {
+        this.scene.add.text(this.width / 2, y + 30, t('encounter_enemy'), {
           fontSize: '14px', color: '#ff6b6b', fontFamily: 'Arial'
         }).setOrigin(0.5);
-        const fightBtn = this.scene.add.text(this.width / 2, y + 70, '战斗', {
+        const fightBtn = this.scene.add.text(this.width / 2, y + 70, t('battle'), {
           fontSize: '14px', color: '#ffffff', backgroundColor: '#cc3333',
           padding: { x: 20, y: 6 }
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
@@ -111,14 +112,14 @@ export default class ZoneExploreView {
 
       case 'story':
         this.scene.add.text(this.width / 2, y + 20, result.content, {
-          fontSize: '13px', color: '#e0e0e0', fontFamily: 'Arial',
+          fontSize: '13px', color: Const.TEXT_COLORS.SECONDARY, fontFamily: 'Arial',
           wordWrap: { width: this.width - 40 }, align: 'center'
         }).setOrigin(0.5, 0);
         this._showContinueButton(y + 100, result.rewards);
         break;
 
       case 'trade':
-        this.scene.add.text(this.width / 2, y + 30, '发现商人！', {
+        this.scene.add.text(this.width / 2, y + 30, t('found_merchant'), {
           fontSize: '14px', color: Const.TEXT_COLORS.CYAN, fontFamily: 'Arial'
         }).setOrigin(0.5);
         this._showContinueButton(y + 70, result.rewards);
@@ -126,7 +127,7 @@ export default class ZoneExploreView {
 
       case 'random':
         this.scene.add.text(this.width / 2, y + 30, result.content, {
-          fontSize: '13px', color: '#ffd43b', fontFamily: 'Arial',
+          fontSize: '13px', color: Const.TEXT_COLORS.YELLOW, fontFamily: 'Arial',
           wordWrap: { width: this.width - 40 }, align: 'center'
         }).setOrigin(0.5, 0);
         this._showContinueButton(y + 100, result.rewards);
@@ -135,7 +136,7 @@ export default class ZoneExploreView {
   }
 
   _showContinueButton(y, rewards) {
-    const btn = this.scene.add.text(this.width / 2, y, '继续前进 →', {
+    const btn = this.scene.add.text(this.width / 2, y, t('continue_forward'), {
       fontSize: '14px', color: '#ffffff', backgroundColor: '#4a6a4a',
       padding: { x: 20, y: 8 }
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
@@ -148,7 +149,8 @@ export default class ZoneExploreView {
       // 推进层数
       if (this.scene.zoneManager.isZoneComplete()) {
         this.scene.zoneManager.completeZone();
-        this.scene.scene.start('WildStageScene');
+        this.scene.saveZoneData();
+        this.scene.scene.start(Const.SCENES.WILD_STAGE);
       } else {
         this.scene.zoneManager.advanceLayer();
         this.scene.scene.restart({ zoneId: this.scene.zoneId });
@@ -158,14 +160,15 @@ export default class ZoneExploreView {
 
   _enterBattle(enemies) {
     if (!enemies || enemies.length === 0) return;
-    this.scene.scene.start('BattleScene', {
+    this.scene.scene.start(Const.SCENES.BATTLE, {
       enemies,
       zoneId: this.scene.zoneId,
       onVictory: () => {
         // 推进层数
         if (this.scene.zoneManager.isZoneComplete()) {
           this.scene.zoneManager.completeZone();
-          this.scene.scene.start('WildStageScene');
+          this.scene.saveZoneData();
+          this.scene.scene.start(Const.SCENES.WILD_STAGE);
         } else {
           this.scene.zoneManager.advanceLayer();
           this.scene.scene.restart({ zoneId: this.scene.zoneId });

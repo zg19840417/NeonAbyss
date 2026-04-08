@@ -124,7 +124,7 @@ export default class MainMenuScene extends Phaser.Scene {
     clickArea.setInteractive();
     clickArea.on('pointerdown', () => {
       this.cameras.main.fade(300, 0, 0, 0);
-      setTimeout(() => this.scene.start('BaseScene'), 300);
+      setTimeout(() => this.scene.start(Const.SCENES.BASE), 300);
     });
   }
 

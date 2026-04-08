@@ -28,10 +28,18 @@ export default class WildStageScene extends Phaser.Scene {
       fontSize: '14px', color: '#aaaaaa'
     }).setInteractive({ useHandCursor: true });
     backBtn.on('pointerdown', () => {
-      this.scene.start('BaseScene');
+      this.scene.start(Const.SCENES.BASE);
     });
 
     // 关卡视图
     this.view = new WildStageView(this, width, height);
+  }
+
+  shutdown() {
+    // 清理 View
+    if (this.view) {
+      this.view.destroy();
+      this.view = null;
+    }
   }
 }

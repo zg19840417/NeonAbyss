@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import ZoneManager from '../game/systems/ZoneManager.js';
 import ZoneExploreView from './views/ZoneExploreView.js';
+import { syncRuntimeGameData } from '../game/data/GameData.js';
 import Const from '../game/data/Const.js';
 
 export default class ZoneExploreScene extends Phaser.Scene {
@@ -16,7 +17,7 @@ export default class ZoneExploreScene extends Phaser.Scene {
     const { width, height } = this.scale.gameSize;
 
     if (!this.zoneId) {
-      this.scene.start('WildStageScene');
+      this.scene.start(Const.SCENES.WILD_STAGE);
       return;
     }
 
@@ -39,10 +40,21 @@ export default class ZoneExploreScene extends Phaser.Scene {
       fontSize: '14px', color: '#aaaaaa'
     }).setInteractive({ useHandCursor: true });
     backBtn.on('pointerdown', () => {
-      this.scene.start('WildStageScene');
+      this.scene.start(Const.SCENES.WILD_STAGE);
     });
 
     // 禁区视图
     this.view = new ZoneExploreView(this, width, height);
+  }
+
+  saveZoneData() {
+    syncRuntimeGameData({ zoneManager: this.zoneManager });
+  }
+
+  shutdown() {
+    if (this.zoneManager) {
+      // 保存区域数据
+      this.saveZoneData?.();
+    }
   }
 }

@@ -1,29 +1,49 @@
 export const Const = {
+  SCENES: {
+    BOOT: 'BootScene',
+    PRELOAD: 'PreloadScene',
+    MAIN_MENU: 'MainMenuScene',
+    BASE: 'BaseScene',
+    DUNGEON: 'DungeonScene',
+    BATTLE: 'BattleScene',
+    WILD_STAGE: 'WildStageScene',
+    ZONE_EXPLORE: 'ZoneExploreScene',
+  },
+
   COLORS: {
-    BG_DARK: 0x0c0e1a,
-    BG_MID: 0x141828,
-    BG_LIGHT: 0x1a1e32,
-    BG_HOVER: 0x242a42,
-    BG_DANGER: 0x2a1515,
-    GOLD: 0xc9a84c,
-    GOLD_LIGHT: 0xe8d48b,
-    CYAN: 0x5b8dd9,
-    PINK: 0xd4728a,
-    PURPLE: 0x8b6cc7,
-    PURPLE_DARK: 0x4a3f6b,
-    MAGENTA: 0x9b6cc7,
-    YELLOW: 0xf7b801,
-    RED: 0xef4444,
-    GREEN: 0x22c55e,
-    GRAY: 0x4a5568,
-    GRAY_LIGHT: 0x6b7280,
-    BUTTON_PRIMARY: 0xc9a84c,
-    BUTTON_HOVER: 0xd4b85c,
-    BUTTON_SECONDARY: 0x242a42,
-    BUTTON_CYAN: 0x5b8dd9,
-    BUTTON_DANGER_BORDER: 0xef4444,
-    BUTTON_INACTIVE: 0x3a3f55,
-    OVERLAY: 0x0a0c14
+    BG_DARK: 0x0a0a14,
+    BG_MID: 0x0d0d1d,
+    BG_LIGHT: 0x080812,
+    BG_HOVER: 0x1a1a2e,
+    BG_DANGER: 0x330000,
+    BG_CARD: 0x12121f,
+    BG_INPUT: 0x0b0f18,
+    BG_PANEL: 0x0f1522,
+    BG_DEEP: 0x0d111d,
+    CYAN: 0x00ffff,
+    PINK: 0xff66cc,
+    PURPLE: 0x9933ff,
+    MAGENTA: 0xff00ff,
+    YELLOW: 0xffff00,
+    RED: 0xff6666,
+    GREEN: 0x66bb6a,
+    BUTTON_PRIMARY: 0x00ccff,
+    BUTTON_HOVER: 0x33ddff,
+    BUTTON_SECONDARY: 0x2a2a4a,
+    BUTTON_CYAN: 0x00ccff,
+    BUTTON_DANGER_BORDER: 0xff3333,
+    BUTTON_INACTIVE: 0x444466,
+    OVERLAY: 0x000000,
+    TEXT_LIGHT: '#f2f4f8',
+    ACCENT_BLUE: 0x4dabf7,
+    ACCENT_ORANGE: 0xff922b,
+    ACCENT_GREEN: 0x20c997,
+    ACCENT_PINK: 0xff6bcb,
+    ACCENT_RED: 0xff6b6b,
+    ACCENT_YELLOW: 0xf7b801,
+    ACCENT_PURPLE: 0x845ef7,
+    ACCENT_GREEN_BTN: 0x51cf66,
+    ACCENT_BLUE_BTN: 0x3d8bfd,
   },
 
   TEXT_COLORS: {
@@ -69,16 +89,20 @@ export const Const = {
   },
 
   FONT: {
-    SIZE_TITLE: '22px',
-    SIZE_SUBTITLE: '19px',
-    SIZE_NORMAL: '16px',
-    SIZE_SMALL: '14px',
-    SIZE_TINY: '12px',
+    SIZE_TINY: '9px',
+    SIZE_MINI: '10px',
+    SIZE_MICRO: '11px',
+    SIZE_SMALL: '12px',
+    SIZE_BODY: '13px',
+    SIZE_NORMAL: '14px',
+    SIZE_MEDIUM: '16px',
+    SIZE_SUBTITLE: '18px',
+    SIZE_TITLE: '20px',
     SIZE_ICON_LARGE: '42px',
-    SIZE_ICON_MEDIUM: '36px',
-    SIZE_ICON_SMALL: '28px',
+    SIZE_ICON_MEDIUM: '28px',
+    SIZE_ICON_SMALL: '24px',
     FAMILY_CN: '"Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif',
-    FAMILY_EN: 'Arial'
+    FAMILY_EN: 'Arial, sans-serif',
   },
 
   LAYOUT: {
@@ -124,26 +148,8 @@ export const Const = {
   //   R                         |  rare                        |  2星
   //   SR                        |  epic                        |  3星
   //   SSR                       |  legendary                   |  4星
-  //   SSR+                      |  (无对应)                    |  5星
-  EQUIPMENT_QUALITY: {
-    N: { color: '#888888', textColor: '#888888', glow: 0.2, name: '普通' },
-    R: { color: '#4a90d9', textColor: '#4a90d9', glow: 0.35, name: '稀有' },
-    SR: { color: '#9b59b6', textColor: '#9b59b6', glow: 0.5, name: '史诗' },
-    SSR: { color: '#f39c12', textColor: '#f39c12', glow: 0.7, name: '传说' },
-    'SSR+': { color: '#e74c3c', textColor: '#e74c3c', glow: 1.0, name: '神话' }
-  },
-
-  QUALITY_CONFIG: {
-    common: { name: '普通', nameEn: 'Common', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
-    rare: { name: '稀有', nameEn: 'Rare', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
-    epic: { name: '史诗', nameEn: 'Epic', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
-    legendary: { name: '传说', nameEn: 'Legendary', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
-    N: { name: '普通', nameEn: 'N', color: '#aaaaaa', textColor: '#cccccc', glowColor: 0x666666 },
-    R: { name: '稀有', nameEn: 'R', color: '#4488ff', textColor: '#6699ff', glowColor: 0x2266dd },
-    SR: { name: '精良', nameEn: 'SR', color: '#aa44ff', textColor: '#cc66ff', glowColor: 0x8822dd },
-    SSR: { name: '史诗', nameEn: 'SSR', color: '#ff8800', textColor: '#ffaa33', glowColor: 0xdd6600 },
-    'SSR+': { name: '传说', nameEn: 'SSR+', color: '#ff2222', textColor: '#ff4444', glowColor: 0xdd0000 }
-  },
+  //   UR                        |  (无对应)                    |  5星
+  //   LE                        |  (无对应)                    |  6星
 
   // [C17 FIX] EQUIPMENT_ 前缀统一改为 CHIP_ 前缀
   CHIP_STAR_MULTIPLIER: { 1: 1.0, 2: 1.3, 3: 1.6, 4: 2.0, 5: 2.5 },
@@ -227,7 +233,7 @@ export const Const = {
     EXP_PER_STAGE_CLEAR: 20
   },
 
-  // 芯片品质体系（替代 EQUIPMENT_QUALITY）
+  // 芯片品质体系
   CHIP_QUALITY: {
     N: { color: '#8a8a8a', textColor: '#8a8a8a', glow: 0, name: '普通', maxStar: 3, skillCount: 1 },
     R: { color: '#5b8dd9', textColor: '#5b8dd9', glow: 0.15, name: '稀有', maxStar: 4, skillCount: 1 },
