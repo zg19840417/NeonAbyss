@@ -12,18 +12,18 @@ const QUALITY_COLOR_MAP = {
 };
 
 const ELEMENT_STYLE = {
-  water: { label: 'W', icon: '💧', color: 0x3d8bfd },
-  fire: { label: 'F', icon: '🔥', color: 0xff6b6b },
-  wind: { label: 'A', icon: '🍃', color: 0x51cf66 },
-  light: { label: 'L', icon: '✨', color: 0xf7b801 },
-  dark: { label: 'D', icon: '🌑', color: 0x845ef7 }
+  water: { label: 'W', icon: '💧', badgeIcon: '◈', color: 0x3d8bfd },
+  fire: { label: 'F', icon: '🔥', badgeIcon: '✦', color: 0xff6b6b },
+  wind: { label: 'A', icon: '🍃', badgeIcon: '❋', color: 0x51cf66 },
+  light: { label: 'L', icon: '✨', badgeIcon: '✧', color: 0xf7b801 },
+  dark: { label: 'D', icon: '🌑', badgeIcon: '☽', color: 0x845ef7 }
 };
 
 const ROLE_STYLE = {
-  [RoleType.TANK]: { label: 'T', color: 0x4dabf7 },
-  [RoleType.DPS]: { label: 'D', color: 0xff922b },
-  [RoleType.SUPPORT]: { label: 'S', color: 0x20c997 },
-  [RoleType.HEALER]: { label: 'H', color: 0xff6bcb }
+  [RoleType.TANK]: { label: 'T', icon: '🛡', badgeIcon: '⛨', color: 0x4dabf7 },
+  [RoleType.DPS]: { label: 'D', icon: '⚔', badgeIcon: '✦', color: 0xff922b },
+  [RoleType.SUPPORT]: { label: 'S', icon: '✦', badgeIcon: '✣', color: 0x20c997 },
+  [RoleType.HEALER]: { label: 'H', icon: '✚', badgeIcon: '✚', color: 0xff6bcb }
 };
 
 export default class CardRenderer {
@@ -62,24 +62,24 @@ export default class CardRenderer {
 
     const outerGlow = scene.add.graphics();
     outerGlow.fillStyle(colorInt, 0.14);
-    outerGlow.fillRoundedRect(-width / 2 - 4, -height / 2 - 4, width + 8, height + 8, 14);
+    outerGlow.fillRoundedRect(-width / 2 - 4, -height / 2 - 4, width + 8, height + 8, 0);
     container.add(outerGlow);
 
     const cardFrame = scene.add.graphics();
     cardFrame.fillStyle(0x0a1020, 0.98);
     cardFrame.lineStyle(2, colorInt, 0.92);
-    cardFrame.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
-    cardFrame.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    cardFrame.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    cardFrame.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
     cardFrame.lineStyle(1, colorInt, 0.22);
-    cardFrame.strokeRoundedRect(-width / 2 + 4, -height / 2 + 4, width - 8, height - 8, 10);
+    cardFrame.strokeRoundedRect(-width / 2 + 4, -height / 2 + 4, width - 8, height - 8, 0);
     container.add(cardFrame);
 
     const portraitY = -height / 2 + portraitInset;
     const portraitBg = scene.add.graphics();
     portraitBg.fillStyle(0x111826, 1);
     portraitBg.lineStyle(1, colorInt, 0.24);
-    portraitBg.fillRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
-    portraitBg.strokeRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 10);
+    portraitBg.fillRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 0);
+    portraitBg.strokeRoundedRect(-portraitWidth / 2, portraitY, portraitWidth, portraitHeight, 0);
     container.add(portraitBg);
 
     const portraitContainer = scene.add.container(0, portraitY + portraitHeight / 2);
@@ -103,8 +103,8 @@ export default class CardRenderer {
     const infoPanel = scene.add.graphics();
     infoPanel.fillStyle(0x09101a, 0.98);
     infoPanel.lineStyle(1, colorInt, 0.7);
-    infoPanel.fillRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 10);
-    infoPanel.strokeRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 10);
+    infoPanel.fillRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 0);
+    infoPanel.strokeRoundedRect(-width / 2 + 4, infoY, width - 8, infoHeight - 4, 0);
     container.add(infoPanel);
 
     const nameText = scene.add.text(-width / 2 + 7, infoY + 7, name, {
@@ -116,8 +116,8 @@ export default class CardRenderer {
     nameText.setWordWrapWidth(width - 30);
     container.add(nameText);
 
-    container.add(this.createBadge(scene, width / 2 - 18, infoY + 7, 12, 8, elementStyle.color, elementStyle.label));
-    container.add(this.createBadge(scene, width / 2 - 6, infoY + 7, 12, 8, roleStyle.color, roleStyle.label));
+    container.add(this.createIconBadge(scene, width / 2 - 18, infoY + 7, 12, 8, elementStyle.color, elementStyle.badgeIcon || elementStyle.icon));
+    container.add(this.createIconBadge(scene, width / 2 - 6, infoY + 7, 12, 8, roleStyle.color, roleStyle.badgeIcon || roleStyle.icon));
 
     const hpBarBg = scene.add.graphics();
     const hpBarFill = scene.add.graphics();
@@ -192,17 +192,17 @@ export default class CardRenderer {
     const bg = scene.add.graphics();
     bg.fillStyle(0x0d111d, 0.94);
     bg.lineStyle(1.5, color, 0.75);
-    bg.fillRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 14);
-    bg.strokeRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 14);
+    bg.fillRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 0);
+    bg.strokeRoundedRect(-width / 2, -rowHeight / 2, width, rowHeight, 0);
     bg.lineStyle(1, color, 0.2);
-    bg.strokeRoundedRect(-width / 2 + 5, -rowHeight / 2 + 5, width - 10, rowHeight - 10, 10);
+    bg.strokeRoundedRect(-width / 2 + 5, -rowHeight / 2 + 5, width - 10, rowHeight - 10, 0);
     container.add(bg);
 
     const portraitBox = scene.add.graphics();
     portraitBox.fillStyle(0xf2f4f8, 1);
     portraitBox.lineStyle(1, color, 0.7);
-    portraitBox.fillRoundedRect(-width / 2 + 10, -28, 56, 56, 12);
-    portraitBox.strokeRoundedRect(-width / 2 + 10, -28, 56, 56, 12);
+    portraitBox.fillRoundedRect(-width / 2 + 10, -28, 56, 56, 0);
+    portraitBox.strokeRoundedRect(-width / 2 + 10, -28, 56, 56, 0);
     container.add(portraitBox);
 
     const resolvedPortraitKey = this.resolvePortraitTextureKey(scene, portraitKey, card?.element);
@@ -234,8 +234,8 @@ export default class CardRenderer {
       color: this.getQualityColorText(quality)
     }).setOrigin(0, 0.5));
 
-    container.add(this.createBadge(scene, -width / 2 + 88, 6, 20, 18, element.color, element.label));
-    container.add(this.createBadge(scene, -width / 2 + 114, 6, 20, 18, role.color, role.label));
+    container.add(this.createIconBadge(scene, -width / 2 + 88, 6, 20, 18, element.color, element.badgeIcon || element.icon, '12px'));
+    container.add(this.createIconBadge(scene, -width / 2 + 114, 6, 20, 18, role.color, role.badgeIcon || role.icon, '12px'));
 
     container.add(scene.add.text(-width / 2 + 140, 6, `能力x${this.getAbilityCount(card)}`, {
       fontSize: '11px',
@@ -291,15 +291,15 @@ export default class CardRenderer {
     const frame = scene.add.graphics();
     frame.fillStyle(0x11131f, 0.96);
     frame.lineStyle(2, colorInt, 0.9);
-    frame.fillRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 16);
-    frame.strokeRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 16);
+    frame.fillRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 0);
+    frame.strokeRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 0);
     container.add(frame);
 
     const iconBox = scene.add.graphics();
     iconBox.fillStyle(0x161b28, 1);
     iconBox.lineStyle(1, colorInt, 0.45);
-    iconBox.fillRoundedRect(-48, -62, 96, 84, 12);
-    iconBox.strokeRoundedRect(-48, -62, 96, 84, 12);
+    iconBox.fillRoundedRect(-48, -62, 96, 84, 0);
+    iconBox.strokeRoundedRect(-48, -62, 96, 84, 0);
     container.add(iconBox);
 
     if (chipIconKey && scene.textures.exists(chipIconKey)) {
@@ -320,8 +320,8 @@ export default class CardRenderer {
     const infoPanel = scene.add.graphics();
     infoPanel.fillStyle(0x0b0f18, 0.92);
     infoPanel.lineStyle(1.2, colorInt, 0.75);
-    infoPanel.fillRoundedRect(-52, 28, 104, 52, 12);
-    infoPanel.strokeRoundedRect(-52, 28, 104, 52, 12);
+    infoPanel.fillRoundedRect(-52, 28, 104, 52, 0);
+    infoPanel.strokeRoundedRect(-52, 28, 104, 52, 0);
     container.add(infoPanel);
 
     const starStr = '★'.repeat(Math.min(star, 5));
@@ -363,18 +363,21 @@ export default class CardRenderer {
       height = 276,
       quality = 'N',
       portraitKey = null,
-      element = 'water'
+      element = 'water',
+      showFrame = true
     } = options;
 
     const container = scene.add.container(x, y);
     const color = this.getQualityColorInt(quality);
 
-    const bg = scene.add.graphics();
-    bg.fillStyle(0xf2f4f8, 0.98);
-    bg.lineStyle(1.5, color, 0.5);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 18);
-    container.add(bg);
+    if (showFrame) {
+      const bg = scene.add.graphics();
+      bg.fillStyle(0xf2f4f8, 0.98);
+      bg.lineStyle(1.5, color, 0.5);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
+      container.add(bg);
+    }
 
     const resolvedPortraitKey = this.resolvePortraitTextureKey(scene, portraitKey, element);
     if (resolvedPortraitKey) {
@@ -417,8 +420,8 @@ export default class CardRenderer {
     const bg = scene.add.graphics();
     bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
     bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     button.add(bg);
 
     button.add(scene.add.text(0, 0, label, {
@@ -440,15 +443,15 @@ export default class CardRenderer {
       bg.clear();
       bg.fillStyle(Const.COLORS.BUTTON_CYAN, 1);
       bg.lineStyle(1, Const.COLORS.BUTTON_HOVER, 1);
-      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
-      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     });
     button.on('pointerout', () => {
       bg.clear();
       bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
       bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
-      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
-      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     });
 
     return button;
@@ -506,12 +509,29 @@ export default class CardRenderer {
     const bg = scene.add.graphics();
     bg.fillStyle(color, 0.18);
     bg.lineStyle(1, color, 0.95);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 5);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 5);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
     container.add(bg);
     container.add(scene.add.text(0, 0, label, {
       fontSize: '8px',
       fontFamily: Const.FONT.FAMILY_EN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5));
+    return container;
+  }
+
+  static createIconBadge(scene, x, y, width, height, color, icon, fontSize = '9px') {
+    const container = scene.add.container(x, y);
+    const bg = scene.add.graphics();
+    bg.fillStyle(color, 0.16);
+    bg.lineStyle(1, color, 0.95);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
+    container.add(bg);
+    container.add(scene.add.text(0, 0, icon, {
+      fontSize,
+      fontFamily: Const.FONT.FAMILY_CN,
       fontStyle: 'bold',
       color: '#ffffff'
     }).setOrigin(0.5));
@@ -523,8 +543,8 @@ export default class CardRenderer {
     const bg = scene.add.graphics();
     bg.fillStyle(0x11192a, 1);
     bg.lineStyle(1, 0x6eb7ff, 0.7);
-    bg.fillRoundedRect(-size / 2, -size / 2, size, size, 5);
-    bg.strokeRoundedRect(-size / 2, -size / 2, size, size, 5);
+    bg.fillRoundedRect(-size / 2, -size / 2, size, size, 0);
+    bg.strokeRoundedRect(-size / 2, -size / 2, size, size, 0);
     container.add(bg);
     container.add(scene.add.text(0, -1.5, label, {
       fontSize: '6px',

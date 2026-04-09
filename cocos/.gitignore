@@ -1,0 +1,9 @@
+library/
+local/
+profiles/
+temp/
+build/
+build-templates/
+.creator/
+.vscode/
+*.log

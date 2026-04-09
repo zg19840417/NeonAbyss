@@ -1,0 +1,11 @@
+{
+  "initial_mycelium": 60000,
+  "initial_source_core": 60000,
+  "initial_star_coin": 60000,
+  "initial_stamina": 30,
+  "max_stamina": 30,
+  "stamina_recover_minutes": 5,
+  "battle_speed_slow": 0.5,
+  "battle_speed_normal": 1,
+  "default_chapter_id": "CH01"
+}

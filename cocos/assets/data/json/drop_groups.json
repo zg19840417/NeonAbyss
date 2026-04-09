@@ -1,0 +1,589 @@
+[
+  {
+    "drop_group_id": "DG_CH01_ST01_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST01 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST01_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST01 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST01_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_FUSION_CARD_FG001",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST01 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST01_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG001_01_R",
+        "count": 1,
+        "weight": 80
+      },
+      {
+        "item_id": "ITM_PF_FG001_01_SR",
+        "count": 1,
+        "weight": 20
+      }
+    ],
+    "notes": "CH01_ST01 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST02_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST02 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST02_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST02 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST02_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG001_01_R",
+        "count": 2
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST02 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST02_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG001_01_R",
+        "count": 1,
+        "weight": 70
+      },
+      {
+        "item_id": "ITM_PF_FG001_01_SR",
+        "count": 1,
+        "weight": 30
+      }
+    ],
+    "notes": "CH01_ST02 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST03_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST03 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST03_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST03 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST03_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG002_01_R",
+        "count": 2
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST03 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST03_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG002_01_R",
+        "count": 1,
+        "weight": 70
+      },
+      {
+        "item_id": "ITM_PF_FG002_01_SR",
+        "count": 1,
+        "weight": 30
+      }
+    ],
+    "notes": "CH01_ST03 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST04_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST04 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST04_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST04 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST04_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_FUSION_CARD_FG004",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST04 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST04_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG004_01_R",
+        "count": 1,
+        "weight": 80
+      },
+      {
+        "item_id": "ITM_PF_FG004_01_SR",
+        "count": 1,
+        "weight": 20
+      }
+    ],
+    "notes": "CH01_ST04 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST05_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST05 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST05_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST05 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST05_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG004_01_R",
+        "count": 2
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST05 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST05_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG004_01_R",
+        "count": 1,
+        "weight": 75
+      },
+      {
+        "item_id": "ITM_PF_FG004_01_SR",
+        "count": 1,
+        "weight": 25
+      }
+    ],
+    "notes": "CH01_ST05 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST06_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST06 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST06_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST06 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST06_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG002_01_SR",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST06 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST06_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG002_01_R",
+        "count": 1,
+        "weight": 60
+      },
+      {
+        "item_id": "ITM_PF_FG002_01_SR",
+        "count": 1,
+        "weight": 35
+      },
+      {
+        "item_id": "ITM_PF_FG002_01_SSR",
+        "count": 1,
+        "weight": 5
+      }
+    ],
+    "notes": "CH01_ST06 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST07_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST07 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST07_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST07 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST07_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_FUSION_CARD_FG005",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST07 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST07_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG005_01_R",
+        "count": 1,
+        "weight": 80
+      },
+      {
+        "item_id": "ITM_PF_FG005_01_SR",
+        "count": 1,
+        "weight": 20
+      }
+    ],
+    "notes": "CH01_ST07 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST08_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST08 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST08_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST08 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST08_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG005_01_R",
+        "count": 2
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST08 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST08_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_SOURCE_CORE_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG005_01_R",
+        "count": 1,
+        "weight": 75
+      },
+      {
+        "item_id": "ITM_PF_FG005_01_SR",
+        "count": 1,
+        "weight": 25
+      }
+    ],
+    "notes": "CH01_ST08 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST09_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST09 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST09_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_STAR_COIN_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST09 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST09_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG003_01_SR",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST09 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST09_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_SMALL",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG003_01_R",
+        "count": 1,
+        "weight": 65
+      },
+      {
+        "item_id": "ITM_PF_FG003_01_SR",
+        "count": 1,
+        "weight": 30
+      },
+      {
+        "item_id": "ITM_PF_FG003_01_SSR",
+        "count": 1,
+        "weight": 5
+      }
+    ],
+    "notes": "CH01_ST09 ??????"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST10_F1",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      },
+      {
+        "item_id": "ITM_SOURCE_CORE_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST10 ??1???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST10_F2",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_STAR_COIN_SMALL",
+        "count": 2
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST10 ??2???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST10_F3",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_PF_FG001_01_UR",
+        "count": 1
+      },
+      {
+        "item_id": "ITM_PF_FG002_01_UR",
+        "count": 1
+      },
+      {
+        "item_id": "ITM_PF_FG003_01_UR",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [],
+    "notes": "CH01_ST10 ??3???"
+  },
+  {
+    "drop_group_id": "DG_CH01_ST10_R",
+    "fixed_drop_json": [
+      {
+        "item_id": "ITM_MYCELIUM_MEDIUM",
+        "count": 1
+      }
+    ],
+    "random_drop_json": [
+      {
+        "item_id": "ITM_PF_FG001_01_SR",
+        "count": 1,
+        "weight": 20
+      },
+      {
+        "item_id": "ITM_PF_FG002_01_SR",
+        "count": 1,
+        "weight": 20
+      },
+      {
+        "item_id": "ITM_PF_FG003_01_SR",
+        "count": 1,
+        "weight": 20
+      },
+      {
+        "item_id": "ITM_PF_FG004_01_SR",
+        "count": 1,
+        "weight": 20
+      },
+      {
+        "item_id": "ITM_PF_FG005_01_SR",
+        "count": 1,
+        "weight": 20
+      }
+    ],
+    "notes": "CH01_ST10 ??????"
+  }
+]

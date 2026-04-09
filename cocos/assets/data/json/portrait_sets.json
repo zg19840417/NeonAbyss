@@ -1,0 +1,47 @@
+[
+  {
+    "portrait_set_id": "PS_FG001_01",
+    "fusion_girl_id": "FG001",
+    "set_name": "FG001 Set 1",
+    "set_index": 1,
+    "is_active": true,
+    "preview_key": "FG001_P01",
+    "notes": "Placeholder portrait set"
+  },
+  {
+    "portrait_set_id": "PS_FG002_01",
+    "fusion_girl_id": "FG002",
+    "set_name": "FG002 Set 1",
+    "set_index": 1,
+    "is_active": true,
+    "preview_key": "FG002_P01",
+    "notes": "Placeholder portrait set"
+  },
+  {
+    "portrait_set_id": "PS_FG003_01",
+    "fusion_girl_id": "FG003",
+    "set_name": "FG003 Set 1",
+    "set_index": 1,
+    "is_active": true,
+    "preview_key": "FG003_P01",
+    "notes": "Placeholder portrait set"
+  },
+  {
+    "portrait_set_id": "PS_FG004_01",
+    "fusion_girl_id": "FG004",
+    "set_name": "FG004 Set 1",
+    "set_index": 1,
+    "is_active": true,
+    "preview_key": "FG004_P01",
+    "notes": "Placeholder portrait set"
+  },
+  {
+    "portrait_set_id": "PS_FG005_01",
+    "fusion_girl_id": "FG005",
+    "set_name": "FG005 Set 1",
+    "set_index": 1,
+    "is_active": true,
+    "preview_key": "FG005_P01",
+    "notes": "Placeholder portrait set"
+  }
+]

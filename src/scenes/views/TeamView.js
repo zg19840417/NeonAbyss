@@ -45,6 +45,7 @@ export default class TeamView {
     this.scene = scene;
     this.elements = [];
     this.overlayElements = [];
+    this.detailScrollCleanup = null;
     this.scrollHandlers = null;
     this.scrollState = null;
     this.contentContainer = null;
@@ -208,10 +209,10 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.45);
     bg.lineStyle(1.5, Const.COLORS.BUTTON_SECONDARY, 0.7);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 14);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 14);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
     bg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.25);
-    bg.strokeRoundedRect(-width / 2 + 5, -height / 2 + 5, width - 10, height - 10, 10);
+    bg.strokeRoundedRect(-width / 2 + 5, -height / 2 + 5, width - 10, height - 10, 0);
     container.add(bg);
 
     container.add(this.scene.add.text(0, -10, '+', {
@@ -243,10 +244,10 @@ export default class TeamView {
       const bg = this.scene.add.graphics();
       bg.fillStyle(Const.COLORS.BG_MID, 0.7);
       bg.lineStyle(1.5, Const.COLORS.BUTTON_SECONDARY, 0.7);
-      bg.fillRoundedRect(-width / 2, -36, width, 72, 18);
-      bg.strokeRoundedRect(-width / 2, -36, width, 72, 18);
+      bg.fillRoundedRect(-width / 2, -36, width, 72, 0);
+      bg.strokeRoundedRect(-width / 2, -36, width, 72, 0);
       bg.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.25);
-      bg.strokeRoundedRect(-width / 2 + 8, -28, width - 16, 56, 14);
+      bg.strokeRoundedRect(-width / 2 + 8, -28, width - 16, 56, 0);
       frame.add(bg);
 
       frame.add(this.scene.add.text(0, -6, '未装配芯片核心', {
@@ -283,8 +284,8 @@ export default class TeamView {
     const tag = this.scene.add.graphics();
     tag.fillStyle(Const.COLORS.BG_MID, 0.92);
     tag.lineStyle(1, Const.COLORS.BUTTON_SECONDARY, 0.7);
-    tag.fillRoundedRect(right - 82, headerY - 12, 82, 24, 12);
-    tag.strokeRoundedRect(right - 82, headerY - 12, 82, 24, 12);
+    tag.fillRoundedRect(right - 82, headerY - 12, 82, 24, 0);
+    tag.strokeRoundedRect(right - 82, headerY - 12, 82, 24, 0);
     tag.setDepth(Const.DEPTH.CONTENT + 2);
     this.elements.push(tag);
 
@@ -384,17 +385,17 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(0x0d111d, 0.94);
     bg.lineStyle(1.5, color, 0.78);
-    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
-    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 0);
+    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 0);
     bg.lineStyle(1, color, 0.22);
-    bg.strokeRoundedRect(-rowWidth / 2 + 5, -rowHeight / 2 + 5, rowWidth - 10, rowHeight - 10, 10);
+    bg.strokeRoundedRect(-rowWidth / 2 + 5, -rowHeight / 2 + 5, rowWidth - 10, rowHeight - 10, 0);
     row.add(bg);
 
     const portraitBox = this.scene.add.graphics();
     portraitBox.fillStyle(0xf2f4f8, 1);
     portraitBox.lineStyle(1, color, 0.7);
-    portraitBox.fillRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
-    portraitBox.strokeRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 12);
+    portraitBox.fillRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 0);
+    portraitBox.strokeRoundedRect(-rowWidth / 2 + 10, -28, 56, 56, 0);
     row.add(portraitBox);
 
     if (portraitKey && this.scene.textures.exists(portraitKey)) {
@@ -464,15 +465,15 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.92);
     bg.lineStyle(1.5, color, 0.75);
-    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
-    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 14);
+    bg.fillRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 0);
+    bg.strokeRoundedRect(-rowWidth / 2, -rowHeight / 2, rowWidth, rowHeight, 0);
     row.add(bg);
 
     const coreBg = this.scene.add.graphics();
     coreBg.fillStyle(color, 0.18);
     coreBg.lineStyle(1, color, 0.9);
-    coreBg.fillRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 10);
-    coreBg.strokeRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 10);
+    coreBg.fillRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 0);
+    coreBg.strokeRoundedRect(-rowWidth / 2 + 10, -18, 48, 36, 0);
     row.add(coreBg);
 
     row.add(this.scene.add.text(-rowWidth / 2 + 34, 0, 'CORE', {
@@ -526,25 +527,25 @@ export default class TeamView {
 
     const glow = this.scene.add.graphics();
     glow.fillStyle(color, 0.18);
-    glow.fillRoundedRect(-width / 2, -height / 2, width, height, 18);
-    glow.fillRoundedRect(-width / 2 + 14, -height / 2 - 10, 72, 20, 12);
-    glow.fillRoundedRect(width / 2 - 86, -height / 2 - 10, 72, 20, 12);
+    glow.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    glow.fillRoundedRect(-width / 2 + 14, -height / 2 - 10, 72, 20, 0);
+    glow.fillRoundedRect(width / 2 - 86, -height / 2 - 10, 72, 20, 0);
     container.add(glow);
 
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BG_MID, 0.96);
     bg.lineStyle(2, color, 0.85);
-    bg.fillRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 16);
-    bg.strokeRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 16);
+    bg.fillRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 0);
+    bg.strokeRoundedRect(-width / 2 + 2, -height / 2 + 2, width - 4, height - 4, 0);
     bg.lineStyle(1, color, 0.25);
-    bg.strokeRoundedRect(-width / 2 + 10, -height / 2 + 10, width - 20, height - 20, 12);
+    bg.strokeRoundedRect(-width / 2 + 10, -height / 2 + 10, width - 20, height - 20, 0);
     container.add(bg);
 
     const iconBg = this.scene.add.graphics();
     iconBg.fillStyle(color, 0.18);
     iconBg.lineStyle(1, color, 0.9);
-    iconBg.fillRoundedRect(-width / 2 + 14, -20, 54, 40, 12);
-    iconBg.strokeRoundedRect(-width / 2 + 14, -20, 54, 40, 12);
+    iconBg.fillRoundedRect(-width / 2 + 14, -20, 54, 40, 0);
+    iconBg.strokeRoundedRect(-width / 2 + 14, -20, 54, 40, 0);
     container.add(iconBg);
 
     container.add(this.scene.add.text(-width / 2 + 41, 0, 'CORE', {
@@ -601,8 +602,8 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(color, 0.18);
     bg.lineStyle(1, color, 0.9);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 6);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 6);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 0);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 0);
     container.add(bg);
 
     container.add(this.scene.add.text(0, 0, label, {
@@ -615,13 +616,32 @@ export default class TeamView {
     return container;
   }
 
+  createOutlinedBadge(x, y, size, color, label, fontSize = '10px') {
+    const container = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(0x0f1522, 0.98);
+    bg.lineStyle(1, color, 0.95);
+    bg.fillRoundedRect(-size / 2, -size / 2, size, size, 0);
+    bg.strokeRoundedRect(-size / 2, -size / 2, size, size, 0);
+    container.add(bg);
+
+    container.add(this.scene.add.text(0, 0, label, {
+      fontSize,
+      fontFamily: Const.FONT.FAMILY_CN,
+      fontStyle: 'bold',
+      color: '#ffffff'
+    }).setOrigin(0.5));
+
+    return container;
+  }
+
   createInlineButton(x, y, label, callback, width = 48, height = 22) {
     const button = this.scene.add.container(x, y);
     const bg = this.scene.add.graphics();
     bg.fillStyle(Const.COLORS.BUTTON_SECONDARY, 1);
     bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.8);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     button.add(bg);
 
     button.add(this.scene.add.text(0, 0, label, {
@@ -641,8 +661,8 @@ export default class TeamView {
       bg.clear();
       bg.fillStyle(Const.COLORS.BUTTON_CYAN, 1);
       bg.lineStyle(1, Const.COLORS.BUTTON_HOVER, 1);
-      bg.fillRoundedRect(-width / 2, -height / 2, width, height, 10);
-      bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 10);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     });
     button.on('pointerout', () => {
       bg.clear();
@@ -660,8 +680,8 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(color, 1);
     bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.65);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     button.add(bg);
 
     button.add(this.scene.add.text(0, 0, label, {
@@ -671,14 +691,17 @@ export default class TeamView {
       fontStyle: 'bold'
     }).setOrigin(0.5));
 
+    const hitZone = this.scene.add.zone(0, 0, width + 12, height + 10).setOrigin(0.5);
+    hitZone.setInteractive(new Phaser.Geom.Rectangle(-(width + 12) / 2, -(height + 10) / 2, width + 12, height + 10), Phaser.Geom.Rectangle.Contains);
+    button.add(hitZone);
+
     button.setSize(width, height);
-    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
-    button.on('pointerdown', (pointer) => {
+    hitZone.on('pointerdown', (pointer) => {
       pointer.event?.stopPropagation?.();
       callback();
     });
-    button.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
-    button.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
+    hitZone.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
+    hitZone.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
     this.elements.push(button);
     return button;
   }
@@ -689,8 +712,8 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(color, 1);
     bg.lineStyle(1, Const.COLORS.BUTTON_CYAN, 0.75);
-    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 12);
-    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 12);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     button.add(bg);
 
     button.add(this.scene.add.text(0, 0, label, {
@@ -700,14 +723,17 @@ export default class TeamView {
       fontStyle: 'bold'
     }).setOrigin(0.5));
 
+    const hitZone = this.scene.add.zone(0, 0, width + 12, height + 10).setOrigin(0.5);
+    hitZone.setInteractive(new Phaser.Geom.Rectangle(-(width + 12) / 2, -(height + 10) / 2, width + 12, height + 10), Phaser.Geom.Rectangle.Contains);
+    button.add(hitZone);
+
     button.setSize(width, height);
-    button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
-    button.on('pointerdown', (pointer) => {
+    hitZone.on('pointerdown', (pointer) => {
       pointer.event?.stopPropagation?.();
       callback();
     });
-    button.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
-    button.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
+    hitZone.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, button, true));
+    hitZone.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, button, false));
     return button;
   }
   setupScroll(contentHeight) {
@@ -826,9 +852,9 @@ export default class TeamView {
   showCardDetail(card, isMinion) {
     const width = this.scene.cameras.main.width;
     const height = this.scene.cameras.main.height;
-    const modalWidth = Math.min(width - 16, 344);
+    const modalWidth = Math.min(width - 12, 360);
     const isFusionGirl = !!card?.isFusionGirl;
-    const modalHeight = isFusionGirl && isMinion ? 632 : 524;
+    const modalHeight = isFusionGirl && isMinion ? Math.min(height - 20, 760) : 524;
     const displayQuality = isFusionGirl ? (card.quality || 'N') : (RARITY_TO_QUALITY[card.rarity] || 'N');
 
     const overlay = this.scene.add.graphics();
@@ -869,80 +895,376 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     const accentColor = this.getQualityColorInt(isMinion ? displayQuality : (card.quality || 'N'));
     bg.fillStyle(0x0b0f18, 0.98);
-    bg.fillRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 22);
+    bg.fillRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 0);
     modal.add(bg);
 
     if (isMinion) {
       const deployed = this.scene.fusionGirlManager?.deployedGirlIds?.includes(card.id);
-      const portraitShadow = this.scene.add.graphics();
-      portraitShadow.fillStyle(0x000000, 0.28);
-      portraitShadow.fillRoundedRect(-(modalWidth - 24) / 2, -246, modalWidth - 24, 394, 22);
-      modal.add(portraitShadow);
+      const portraitKey = extractPortraitKey(card.portrait);
+      const portraitFrame = portraitKey ? this.scene.textures.getFrame(portraitKey, '__BASE') : null;
+      const portraitWidth = modalWidth - 12;
+      const portraitHeight = Math.min(
+        Math.floor(portraitWidth * ((portraitFrame?.height || 1536) / (portraitFrame?.width || 1024))),
+        360
+      );
+      const portraitTop = -modalHeight / 2 + 8;
+      const portraitCenterY = portraitTop + portraitHeight / 2;
+      const detailTop = portraitTop + portraitHeight + 8;
+      const detailHeight = 196;
+      const tabHeaderHeight = 30;
+      const contentTop = detailTop + tabHeaderHeight + 6;
+      const descriptionHeight = 44;
+      const descriptionTop = detailTop + detailHeight - descriptionHeight - 8;
+      const contentHeight = descriptionTop - contentTop - 6;
+      const footerY = modalHeight / 2 - 28;
+
+      const portraitBg = this.scene.add.graphics();
+      portraitBg.fillStyle(0x05080f, 0.98);
+      portraitBg.fillRoundedRect(-portraitWidth / 2, portraitTop, portraitWidth, portraitHeight, 0);
+      modal.add(portraitBg);
 
       const portrait = CardRenderer.createDetailPortrait(this.scene, {
         x: 0,
-        y: -49,
-        width: modalWidth - 32,
-        height: 390,
+        y: portraitCenterY,
+        width: portraitWidth,
+        height: portraitHeight,
         quality: displayQuality,
-        portraitKey: extractPortraitKey(card.portrait),
-        element: card.element || 'water'
+        portraitKey,
+        element: card.element || 'water',
+        showFrame: false
       });
       modal.add(portrait);
 
-      const infoPanel = this.scene.add.graphics();
-      infoPanel.fillStyle(0x0f1522, 0.98);
-      infoPanel.lineStyle(1, accentColor, 0.35);
-      infoPanel.fillRoundedRect(-(modalWidth - 32) / 2, 160, modalWidth - 32, 78, 18);
-      infoPanel.strokeRoundedRect(-(modalWidth - 32) / 2, 160, modalWidth - 32, 78, 18);
-      modal.add(infoPanel);
+      const professionLabel = this.getProfessionLabel(card.profession || card.rawData?.profession);
+      const elementLabel = this.getElementLabel(card.element);
+      const activeSkills = this.getFusionActiveSkillEntries(card);
+      const abilityEntries = this.getFusionDetailAbilities(card);
+      const roleStyle = ROLE_STYLE[card.charClass] || ROLE_STYLE[RoleType.DPS];
+      const elementStyle = ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water;
+      const roleGlyphMap = {
+        [RoleType.TANK]: '⛨',
+        [RoleType.DPS]: '✦',
+        [RoleType.SUPPORT]: '✣',
+        [RoleType.HEALER]: '✚'
+      };
+      const detailPanel = this.scene.add.graphics();
+      detailPanel.fillStyle(0x0f1522, 0.98);
+      detailPanel.lineStyle(1, accentColor, 0.35);
+      detailPanel.fillRoundedRect(-(modalWidth - 20) / 2, detailTop, modalWidth - 20, detailHeight, 0);
+      detailPanel.strokeRoundedRect(-(modalWidth - 20) / 2, detailTop, modalWidth - 20, detailHeight, 0);
+      modal.add(detailPanel);
 
-      modal.add(this.scene.add.text(-132, 182, card.name, {
-        fontSize: '18px',
+      const tabButtonWidth = 84;
+      const tabSpacing = 10;
+      const tabY = detailTop + 16;
+      const tabCenters = [
+        -tabButtonWidth - tabSpacing,
+        0,
+        tabButtonWidth + tabSpacing
+      ];
+      const tabButtons = [];
+      const tabLabels = ['基础', '技能', '能力'];
+
+      const contentContainer = this.scene.add.container(0, contentTop);
+      modal.add(contentContainer);
+
+      const descPanel = this.scene.add.graphics();
+      descPanel.fillStyle(0x11192a, 0.98);
+      descPanel.lineStyle(1, accentColor, 0.24);
+      descPanel.fillRoundedRect(-(modalWidth - 28) / 2, descriptionTop, modalWidth - 28, descriptionHeight, 0);
+      descPanel.strokeRoundedRect(-(modalWidth - 28) / 2, descriptionTop, modalWidth - 28, descriptionHeight, 0);
+      modal.add(descPanel);
+
+      const descText = this.scene.add.text(0, descriptionTop + descriptionHeight / 2, '', {
+        fontSize: '11px',
         fontFamily: Const.FONT.FAMILY_CN,
-        fontStyle: 'bold',
-        color: this.getQualityColorText(displayQuality)
-      }).setOrigin(0, 0.5));
+        color: Const.TEXT_COLORS.SECONDARY,
+        align: 'left',
+        wordWrap: { width: modalWidth - 44 }
+      }).setOrigin(0.5);
+      modal.add(descText);
 
-      modal.add(this.scene.add.text(132, 182, `Lv${card.level || 1}`, {
-        fontSize: '14px',
-        fontFamily: Const.FONT.FAMILY_EN,
-        fontStyle: 'bold',
-        color: Const.TEXT_COLORS.CYAN
-      }).setOrigin(1, 0.5));
+      const setDescriptionVisible = (visible) => {
+        descPanel.setVisible(visible);
+        descText.setVisible(visible);
+      };
 
-      modal.add(this.scene.add.text(-132, 206, `HP ${card.maxHp || 0}   ATK ${card.atk || 0}   SPD ${this.getSpeedValue(card)}`, {
-        fontSize: '13px',
-        fontFamily: Const.FONT.FAMILY_EN,
-        color: Const.TEXT_COLORS.PRIMARY
-      }).setOrigin(0, 0.5));
+      const setDescription = (text) => {
+        descText.setText(text || '');
+      };
 
-      modal.add(this.scene.add.text(-132, 228, `${(ELEMENT_STYLE[card.element] || ELEMENT_STYLE.water).emoji}  能力x${this.getAbilityCount(card)}   品质 ${displayQuality}`, {
-        fontSize: '12px',
-        fontFamily: Const.FONT.FAMILY_CN,
-        color: Const.TEXT_COLORS.SECONDARY
-      }).setOrigin(0, 0.5));
+      const renderBaseTab = () => {
+        contentContainer.removeAll(true);
+        const panelWidth = modalWidth - 34;
+        const leftX = -panelWidth / 2;
+        const rightX = panelWidth / 2;
+        const topLineY = 2;
+        const hpLineY = 34;
+        const statLineY = 68;
+        const qualityGlyphMap = {
+          N: '◇',
+          R: '◈',
+          SR: '✦',
+          SSR: '✶',
+          UR: '✹',
+          LE: '✷'
+        };
 
-      const progressPanel = this.createFusionFragmentPanel(card, modalWidth - 32);
-      progressPanel.setPosition(0, 314);
-      modal.add(progressPanel);
+        const titleName = `${card.title || card.rawData?.title || ''} ${card.name || ''}`.trim();
+        const levelText = `Lv${card.level || 1}`;
+        contentContainer.add(this.scene.add.text(leftX + 2, topLineY, levelText, {
+          fontSize: '13px',
+          fontFamily: Const.FONT.FAMILY_EN,
+          fontStyle: 'bold',
+          color: Const.TEXT_COLORS.CYAN
+        }).setOrigin(0, 0.5));
+        contentContainer.add(this.createOutlinedBadge(leftX + 28, topLineY, 18, accentColor, qualityGlyphMap[displayQuality] || '◇', '10px'));
+        contentContainer.add(this.scene.add.text(leftX + 42, topLineY, titleName, {
+          fontSize: '16px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          fontStyle: 'bold',
+          color: this.getQualityColorText(displayQuality)
+        }).setOrigin(0, 0.5));
 
+        const professionText = this.scene.add.text(0, topLineY, professionLabel, {
+          fontSize: '11px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.PRIMARY
+        }).setOrigin(1, 0.5);
+        const elementText = this.scene.add.text(0, topLineY, elementLabel, {
+          fontSize: '11px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          color: Const.TEXT_COLORS.PRIMARY
+        }).setOrigin(1, 0.5);
+        const elementGroupRight = rightX;
+        const elementTextWidth = elementText.width;
+        const professionTextWidth = professionText.width;
+        contentContainer.add(this.createOutlinedBadge(elementGroupRight - elementTextWidth - 10, topLineY, 18, elementStyle.color, elementStyle.emoji || '✦', '10px'));
+        elementText.setX(elementGroupRight);
+        contentContainer.add(elementText);
+        contentContainer.add(this.createOutlinedBadge(elementGroupRight - elementTextWidth - 54 - professionTextWidth, topLineY, 18, roleStyle.color, roleGlyphMap[card.charClass] || '✦', '10px'));
+        professionText.setX(elementGroupRight - elementTextWidth - 14);
+        contentContainer.add(professionText);
+
+        const hpText = `${Math.max(0, Math.floor(card.currentHp ?? card.maxHp ?? 0))}/${Math.max(0, Math.floor(card.maxHp ?? 0))}`;
+        const hpBarWidth = panelWidth - 42;
+        const hpRatio = Math.max(0, Math.min(1, (card.currentHp ?? card.maxHp ?? 0) / Math.max(1, card.maxHp ?? 1)));
+        contentContainer.add(this.createOutlinedBadge(leftX + 12, hpLineY, 20, 0xe85d75, '♥', '11px'));
+        const hpTrack = this.scene.add.graphics();
+        hpTrack.fillStyle(0x1a2233, 1);
+        hpTrack.fillRoundedRect(leftX + 28, hpLineY - 9, hpBarWidth, 18, 0);
+        hpTrack.fillStyle(Const.BATTLE.COLORS.HP_RED, 1);
+        hpTrack.fillRoundedRect(leftX + 28, hpLineY - 9, hpBarWidth * hpRatio, 18, 0);
+        contentContainer.add(hpTrack);
+        const hpValueText = this.scene.add.text(leftX + 28 + hpBarWidth / 2, hpLineY, hpText, {
+          fontSize: '11px',
+          fontFamily: Const.FONT.FAMILY_EN,
+          fontStyle: 'bold',
+          color: '#ffffff'
+        }).setOrigin(0.5);
+        hpValueText.setStroke('#09101a', 3);
+        contentContainer.add(hpValueText);
+
+        const statWidth = (panelWidth - 8) / 2;
+        [
+          { x: leftX, icon: '⚔', label: '攻击', value: `${card.atk || 0}` },
+          { x: leftX + statWidth + 10, icon: '↯', label: '速度', value: `${this.getSpeedValue(card)}` }
+        ].forEach((stat) => {
+          const statBg = this.scene.add.graphics();
+          statBg.fillStyle(0x11192a, 0.98);
+          statBg.lineStyle(1, accentColor, 0.22);
+          statBg.fillRoundedRect(stat.x, statLineY - 12, statWidth, 24, 0);
+          statBg.strokeRoundedRect(stat.x, statLineY - 12, statWidth, 24, 0);
+          contentContainer.add(statBg);
+          contentContainer.add(this.createOutlinedBadge(stat.x + 10, statLineY, 18, accentColor, stat.icon, '10px'));
+          contentContainer.add(this.scene.add.text(stat.x + 28, statLineY, stat.label, {
+            fontSize: '9px',
+            fontFamily: Const.FONT.FAMILY_CN,
+            color: Const.TEXT_COLORS.SECONDARY
+          }).setOrigin(0, 0.5));
+          contentContainer.add(this.scene.add.text(stat.x + statWidth - 10, statLineY, stat.value, {
+            fontSize: '10px',
+            fontFamily: Const.FONT.FAMILY_EN,
+            fontStyle: 'bold',
+            color: Const.TEXT_COLORS.PRIMARY
+          }).setOrigin(1, 0.5));
+        });
+
+        setDescriptionVisible(false);
+        setDescription('');
+      };
+
+      const renderSkillTab = () => {
+        contentContainer.removeAll(true);
+        setDescriptionVisible(true);
+        const iconSize = 48;
+        const labelY = 64;
+        const skillStartX = -iconSize - 8;
+
+        activeSkills.forEach((skill, index) => {
+          const skillX = skillStartX + index * (iconSize + 8);
+          const skillCard = this.scene.add.container(skillX, 28);
+          const skillBg = this.scene.add.graphics();
+          skillBg.fillStyle(0x11192a, 0.98);
+          skillBg.lineStyle(1, skill.unlocked ? Const.COLORS.BUTTON_CYAN : 0x4a5670, 0.7);
+          skillBg.fillRoundedRect(-iconSize / 2, -iconSize / 2, iconSize, iconSize, 0);
+          skillBg.strokeRoundedRect(-iconSize / 2, -iconSize / 2, iconSize, iconSize, 0);
+          skillCard.add(skillBg);
+          skillCard.add(this.scene.add.text(0, -6, `${index + 1}`, {
+            fontSize: '13px',
+            fontFamily: Const.FONT.FAMILY_EN,
+            fontStyle: 'bold',
+            color: skill.unlocked ? Const.TEXT_COLORS.CYAN : Const.TEXT_COLORS.INACTIVE
+          }).setOrigin(0.5));
+          skillCard.add(this.scene.add.text(0, 12, '技', {
+            fontSize: '12px',
+            fontFamily: Const.FONT.FAMILY_CN,
+            fontStyle: 'bold',
+            color: skill.unlocked ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.INACTIVE
+          }).setOrigin(0.5));
+          skillCard.setSize(iconSize, iconSize);
+          skillCard.setInteractive(new Phaser.Geom.Rectangle(-iconSize / 2, -iconSize / 2, iconSize, iconSize), Phaser.Geom.Rectangle.Contains);
+          skillCard.on('pointerdown', (pointer) => {
+            pointer.event?.stopPropagation?.();
+            setDescription(skill.unlocked
+              ? skill.name
+              : `${skill.name}\n未解锁`);
+          });
+          contentContainer.add(skillCard);
+
+          contentContainer.add(this.scene.add.text(skillX, labelY, skill.name, {
+            fontSize: '10px',
+            fontFamily: Const.FONT.FAMILY_CN,
+            color: skill.unlocked ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.INACTIVE,
+            align: 'center',
+            wordWrap: { width: iconSize + 6 }
+          }).setOrigin(0.5, 0));
+        });
+
+        setDescription(activeSkills[0]?.unlocked
+          ? activeSkills[0].name
+          : `${activeSkills[0]?.name || '主动技能 1'}\n未解锁`);
+      };
+
+      const renderAbilityTab = () => {
+        contentContainer.removeAll(true);
+        setDescriptionVisible(true);
+        const columns = 4;
+        const cellGap = 6;
+        const cellSize = 34;
+        const totalRowWidth = cellSize * columns + cellGap * (columns - 1);
+
+        abilityEntries.slice(0, 8).forEach((ability, index) => {
+          const col = index % columns;
+          const row = Math.floor(index / columns);
+          const x = -totalRowWidth / 2 + cellSize / 2 + col * (cellSize + cellGap);
+          const y = 12 + row * (cellSize + 6);
+          const abilityCell = this.scene.add.container(x, y);
+          const cellBg = this.scene.add.graphics();
+          cellBg.fillStyle(ability.unlocked ? 0x121f30 : 0x111520, 0.98);
+          cellBg.lineStyle(1, ability.unlocked ? accentColor : 0x4a5670, ability.unlocked ? 0.4 : 0.25);
+          cellBg.fillRoundedRect(-cellSize / 2, -cellSize / 2, cellSize, cellSize, 0);
+          cellBg.strokeRoundedRect(-cellSize / 2, -cellSize / 2, cellSize, cellSize, 0);
+          abilityCell.add(cellBg);
+          abilityCell.add(this.scene.add.text(0, -3, `${index + 1}`, {
+            fontSize: '10px',
+            fontFamily: Const.FONT.FAMILY_EN,
+            fontStyle: 'bold',
+            color: ability.unlocked ? Const.TEXT_COLORS.CYAN : Const.TEXT_COLORS.INACTIVE
+          }).setOrigin(0.5));
+          abilityCell.add(this.scene.add.text(0, 11, '能', {
+            fontSize: '9px',
+            fontFamily: Const.FONT.FAMILY_CN,
+            fontStyle: ability.unlocked ? 'bold' : 'normal',
+            color: ability.unlocked ? Const.TEXT_COLORS.PRIMARY : Const.TEXT_COLORS.INACTIVE
+          }).setOrigin(0.5));
+          abilityCell.setSize(cellSize, cellSize);
+          abilityCell.setInteractive(new Phaser.Geom.Rectangle(-cellSize / 2, -cellSize / 2, cellSize, cellSize), Phaser.Geom.Rectangle.Contains);
+          abilityCell.on('pointerdown', (pointer) => {
+            pointer.event?.stopPropagation?.();
+            setDescription(ability.unlocked
+              ? ability.name
+              : `${ability.name}\n未配置`);
+          });
+          contentContainer.add(abilityCell);
+        });
+
+        setDescription(abilityEntries[0]?.unlocked
+          ? abilityEntries[0].name
+          : `${abilityEntries[0]?.name || '能力槽 01'}\n未配置`);
+      };
+
+      const setActiveTab = (tabKey) => {
+        tabButtons.forEach(({ key, bg, label }) => {
+          const active = key === tabKey;
+          bg.clear();
+          bg.fillStyle(active ? accentColor : 0x11192a, active ? 0.95 : 0.98);
+          bg.lineStyle(1, active ? accentColor : 0x4a5670, active ? 0.9 : 0.35);
+          bg.fillRoundedRect(-tabButtonWidth / 2, -12, tabButtonWidth, 24, 0);
+          bg.strokeRoundedRect(-tabButtonWidth / 2, -12, tabButtonWidth, 24, 0);
+          label.setColor(active ? Const.TEXT_COLORS.DARK : Const.TEXT_COLORS.PRIMARY);
+        });
+
+        if (tabKey === 'base') renderBaseTab();
+        else if (tabKey === 'skills') renderSkillTab();
+        else renderAbilityTab();
+      };
+
+      tabLabels.forEach((tabLabel, index) => {
+        const key = ['base', 'skills', 'abilities'][index];
+        const tab = this.scene.add.container(tabCenters[index], tabY);
+        const tabBg = this.scene.add.graphics();
+        const tabText = this.scene.add.text(0, 0, tabLabel, {
+          fontSize: '11px',
+          fontFamily: Const.FONT.FAMILY_CN,
+          fontStyle: 'bold',
+          color: Const.TEXT_COLORS.PRIMARY
+        }).setOrigin(0.5);
+        tab.add(tabBg);
+        tab.add(tabText);
+        tab.setSize(tabButtonWidth, 24);
+        tab.setInteractive(new Phaser.Geom.Rectangle(-tabButtonWidth / 2, -12, tabButtonWidth, 24), Phaser.Geom.Rectangle.Contains);
+        tab.on('pointerdown', (pointer) => {
+          pointer.event?.stopPropagation?.();
+          setActiveTab(key);
+        });
+        modal.add(tab);
+        tabButtons.push({ key, bg: tabBg, label: tabText });
+      });
+
+      setActiveTab('base');
+
+      const actionButtons = [];
       const actionLabel = deployed ? '卸下' : '上阵';
       const actionColor = deployed ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN;
-      const actionBtn = this.createModalActionButton(-100, 262, actionLabel, actionColor, () => {
+      actionButtons.push(this.createModalActionButton(0, footerY, actionLabel, actionColor, () => {
         this.closeCardDetail();
         this.toggleDeploy(card, true);
-      }, 88, 32);
-      actionBtn.setDepth(Const.DEPTH.MODAL_UI);
-      modal.add(actionBtn);
+      }, 92, 34));
 
       if (this.scene.fusionGirlManager?.canLevelUp?.(card.id)) {
-        const levelBtn = this.createModalActionButton(0, 262, `升级 ${this.scene.fusionGirlManager.getLevelUpCost(card.id)}`, Const.COLORS.BUTTON_PRIMARY, () => {
+        actionButtons.push(this.createModalActionButton(0, footerY, `升级 ${this.scene.fusionGirlManager.getLevelUpCost(card.id)}`, Const.COLORS.BUTTON_PRIMARY, () => {
           this.levelUpFusionGirl(card);
-        }, 104, 32);
-        levelBtn.setDepth(Const.DEPTH.MODAL_UI);
-        modal.add(levelBtn);
+        }, 108, 34));
       }
+
+      if ((card.pendingQualityUpgrades || 0) > 0) {
+        actionButtons.push(this.createModalActionButton(0, footerY, '升品质', Const.COLORS.PURPLE, () => {
+          this.upgradeCard(card, true);
+        }, 92, 34));
+      }
+
+      const totalButtonsWidth = actionButtons.reduce((sum, btn) => sum + (btn.width || btn.displayWidth || 92), 0);
+      const gap = 10;
+      const totalWidth = totalButtonsWidth + gap * Math.max(0, actionButtons.length - 1);
+      let cursorX = -totalWidth / 2;
+      actionButtons.forEach((button) => {
+        const btnWidth = button.width || button.displayWidth || 92;
+        button.x = cursorX + btnWidth / 2;
+        button.setDepth(Const.DEPTH.MODAL_UI);
+        modal.add(button);
+        cursorX += btnWidth + gap;
+      });
     } else {
       const detailCard = CardRenderer.createChipCard(this.scene, {
         x: 0,
@@ -984,10 +1306,10 @@ export default class TeamView {
     if ((isMinion && isFusionGirl && (card.pendingQualityUpgrades || 0) > 0)
       || (!isMinion && card.canUpgradeStar?.())) {
       const label = isFusionGirl ? '升品质' : '升星';
-      const upgradeY = isMinion ? 262 : 176;
+      const upgradeY = isMinion ? (modalHeight / 2 - 34) : 176;
       const upgradeBtn = this.createModalActionButton(isMinion ? 102 : -64, upgradeY, label, Const.COLORS.PURPLE, () => {
         this.upgradeCard(card, isMinion);
-      }, 84, 30);
+      }, isMinion ? 92 : 84, isMinion ? 34 : 30);
       upgradeBtn.setDepth(Const.DEPTH.MODAL_UI);
       modal.add(upgradeBtn);
     }
@@ -1005,6 +1327,7 @@ export default class TeamView {
   }
 
   closeCardDetail() {
+    this.clearDetailAbilityScroll();
     this.overlayElements.forEach((el) => {
       if (el && el.destroy) {
         el.destroy();
@@ -1113,8 +1436,8 @@ export default class TeamView {
     const bg = this.scene.add.graphics();
     bg.fillStyle(0x0b0f18, 0.98);
     bg.lineStyle(2, this.getQualityColorInt(nextQuality), 0.9);
-    bg.fillRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 18);
-    bg.strokeRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 18);
+    bg.fillRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 0);
+    bg.strokeRoundedRect(-modalWidth / 2, -modalHeight / 2, modalWidth, modalHeight, 0);
     modal.add(bg);
 
     modal.add(this.scene.add.text(0, -118, '品质提升预览', {
@@ -1212,6 +1535,106 @@ export default class TeamView {
     if (Array.isArray(card.skillIds)) return card.skillIds.length;
     if (card.passiveSkill) return 1;
     return 0;
+  }
+
+  getProfessionLabel(profession) {
+    const labels = {
+      tank: '坦克',
+      dps: '输出',
+      support: '辅助',
+      healer: '治疗'
+    };
+    return labels[profession] || '未定义';
+  }
+
+  getElementLabel(element) {
+    const labels = {
+      water: '水',
+      fire: '火',
+      wind: '风',
+      light: '光',
+      dark: '暗'
+    };
+    return labels[element] || '未知';
+  }
+
+  getFusionActiveSkillEntries(card) {
+    const skillIds = [
+      card?.rawData?.activeSkill1Id,
+      card?.rawData?.activeSkill2Id,
+      card?.rawData?.activeSkill3Id
+    ];
+    return skillIds.map((skillId, index) => ({
+      id: skillId || `skill_${index + 1}`,
+      name: this.getFusionSkillDisplayName(skillId, index),
+      unlocked: this.isFusionSkillUnlocked(card.rawRecord || card, index)
+    }));
+  }
+
+  getFusionSkillDisplayName(skillId, index) {
+    if (!skillId) {
+      return `主动技能 ${index + 1}`;
+    }
+    const prettyName = skillId
+      .replace(/^SKILL_/, '')
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+    return prettyName || `主动技能 ${index + 1}`;
+  }
+
+  getFusionDetailAbilities(card) {
+    const rawAbilities = Array.isArray(card?.rawData?.abilityIds)
+      ? card.rawData.abilityIds
+      : Array.isArray(card?.abilities)
+        ? card.abilities
+        : [];
+    const entries = Array.from({ length: 8 }, (_, index) => {
+      const abilityId = rawAbilities[index] || null;
+      return {
+        id: abilityId || `slot_${index + 1}`,
+        name: abilityId
+          ? this.getFusionSkillDisplayName(abilityId, index)
+          : `能力槽 ${String(index + 1).padStart(2, '0')}`,
+        unlocked: !!abilityId
+      };
+    });
+    return entries;
+  }
+
+  setupDetailAbilityScroll(container, viewport) {
+    this.clearDetailAbilityScroll();
+    if (!viewport || viewport.maxScroll <= 0) {
+      return;
+    }
+
+    const state = {
+      currentY: 0,
+      maxScroll: viewport.maxScroll
+    };
+
+    const baseY = container.y;
+    const wheelHandler = (pointer, gameObjects, deltaX, deltaY) => {
+      const withinX = pointer.x >= viewport.left && pointer.x <= viewport.left + viewport.width;
+      const withinY = pointer.y >= viewport.top && pointer.y <= viewport.top + viewport.height;
+      if (!withinX || !withinY) {
+        return;
+      }
+      state.currentY = Phaser.Math.Clamp(state.currentY - deltaY * 0.35, -state.maxScroll, 0);
+      container.y = baseY + state.currentY;
+    };
+
+    this.scene.input.on('wheel', wheelHandler);
+    this.detailScrollCleanup = () => {
+      this.scene.input.off('wheel', wheelHandler);
+      this.detailScrollCleanup = null;
+    };
+  }
+
+  clearDetailAbilityScroll() {
+    if (typeof this.detailScrollCleanup === 'function') {
+      this.detailScrollCleanup();
+    }
   }
 
   getFusionProgressSummary(card) {

@@ -1,0 +1,279 @@
+[
+  {
+    "enemy_id": "EN_SCAV_WATER_01",
+    "enemy_name": "Scav Water",
+    "title": "Ruins Picker",
+    "profession": "support",
+    "element": "water",
+    "quality": "R",
+    "portrait_key": "enemy_scav_water_01",
+    "base_hp": 860,
+    "base_atk": 22,
+    "base_spd": 14,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_SPLASH",
+        "name": "Splash",
+        "icon_key": "skill_water_01",
+        "cooldown": 2,
+        "description": "Deal water damage to one target."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_WATER_RES",
+        "name": "Cold Skin",
+        "icon_key": "ability_water_01",
+        "description": "Gain extra water resistance."
+      }
+    ],
+    "notes": "Chapter 1 common enemy"
+  },
+  {
+    "enemy_id": "EN_SCAV_DARK_01",
+    "enemy_name": "Scav Shade",
+    "title": "Night Prowler",
+    "profession": "dps",
+    "element": "wind",
+    "quality": "R",
+    "portrait_key": "enemy_scav_dark_01",
+    "base_hp": 780,
+    "base_atk": 28,
+    "base_spd": 16,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_SHADOW",
+        "name": "Shadow Jab",
+        "icon_key": "skill_dark_01",
+        "cooldown": 2,
+        "description": "Deal high single target damage."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_SHADOW_STEP",
+        "name": "Shadow Step",
+        "icon_key": "ability_dark_01",
+        "description": "Slight speed increase."
+      }
+    ],
+    "notes": "Chapter 1 common enemy"
+  },
+  {
+    "enemy_id": "EN_SCAV_FIRE_01",
+    "enemy_name": "Ash Drifter",
+    "title": "Burn Scar",
+    "profession": "dps",
+    "element": "fire",
+    "quality": "R",
+    "portrait_key": "enemy_scav_fire_01",
+    "base_hp": 820,
+    "base_atk": 26,
+    "base_spd": 15,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_BURN",
+        "name": "Spark",
+        "icon_key": "skill_fire_01",
+        "cooldown": 2,
+        "description": "Deal fire damage to one target."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_BURNING",
+        "name": "Burn Mark",
+        "icon_key": "ability_fire_01",
+        "description": "Slight attack increase."
+      }
+    ],
+    "notes": "Chapter 1 common enemy"
+  },
+  {
+    "enemy_id": "EN_SCAV_WIND_01",
+    "enemy_name": "Noise Hunter",
+    "title": "Dust Runner",
+    "profession": "dps",
+    "element": "wind",
+    "quality": "R",
+    "portrait_key": "enemy_scav_wind_01",
+    "base_hp": 800,
+    "base_atk": 24,
+    "base_spd": 18,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_GUST",
+        "name": "Gust Cut",
+        "icon_key": "skill_wind_01",
+        "cooldown": 2,
+        "description": "Deal wind damage to one target."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_SWIFT",
+        "name": "Swift Step",
+        "icon_key": "ability_speed_01",
+        "description": "Gain extra speed."
+      }
+    ],
+    "notes": "Chapter 1 common enemy"
+  },
+  {
+    "enemy_id": "EN_BRUTE_FIRE_01",
+    "enemy_name": "Forge Brute",
+    "title": "Heat Hammer",
+    "profession": "tank",
+    "element": "fire",
+    "quality": "SR",
+    "portrait_key": "enemy_brute_fire_01",
+    "base_hp": 1320,
+    "base_atk": 34,
+    "base_spd": 11,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_SMASH",
+        "name": "Smash",
+        "icon_key": "skill_fire_02",
+        "cooldown": 3,
+        "description": "Deal heavy front-row damage."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_TOUGH",
+        "name": "Thick Armor",
+        "icon_key": "ability_tank_01",
+        "description": "Gain extra max HP."
+      }
+    ],
+    "notes": "Chapter 1 elite enemy"
+  },
+  {
+    "enemy_id": "EN_SUPPORT_WATER_01",
+    "enemy_name": "Spring Medic",
+    "title": "Patch Worker",
+    "profession": "support",
+    "element": "water",
+    "quality": "SR",
+    "portrait_key": "enemy_support_water_01",
+    "base_hp": 1180,
+    "base_atk": 20,
+    "base_spd": 13,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_HEAL",
+        "name": "Patch Up",
+        "icon_key": "skill_heal_01",
+        "cooldown": 3,
+        "description": "Restore HP to one ally."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_SUPPORT",
+        "name": "Aid Circuit",
+        "icon_key": "ability_support_01",
+        "description": "Healing power increases."
+      }
+    ],
+    "notes": "Chapter 1 support enemy"
+  },
+  {
+    "enemy_id": "EN_BRUTE_WIND_01",
+    "enemy_name": "Rift Cleaver",
+    "title": "Storm Edge",
+    "profession": "tank",
+    "element": "wind",
+    "quality": "SR",
+    "portrait_key": "enemy_brute_wind_01",
+    "base_hp": 1280,
+    "base_atk": 32,
+    "base_spd": 13,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_CLEAVE",
+        "name": "Wind Cleave",
+        "icon_key": "skill_wind_02",
+        "cooldown": 3,
+        "description": "Damage multiple targets."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_PRESSURE",
+        "name": "Pressure",
+        "icon_key": "ability_attack_01",
+        "description": "Gain extra attack."
+      }
+    ],
+    "notes": "Chapter 1 elite enemy"
+  },
+  {
+    "enemy_id": "EN_SUPPORT_DARK_01",
+    "enemy_name": "Dusk Tactician",
+    "title": "Veil Watcher",
+    "profession": "support",
+    "element": "wind",
+    "quality": "SR",
+    "portrait_key": "enemy_support_dark_01",
+    "base_hp": 1100,
+    "base_atk": 24,
+    "base_spd": 17,
+    "skills_json": [
+      {
+        "skill_id": "SK_ENEMY_WEAKEN",
+        "name": "Corrode",
+        "icon_key": "skill_dark_02",
+        "cooldown": 3,
+        "description": "Lower enemy attack."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_ENEMY_CONTROL",
+        "name": "Control Line",
+        "icon_key": "ability_control_01",
+        "description": "Gain extra speed."
+      }
+    ],
+    "notes": "Chapter 1 elite enemy"
+  },
+  {
+    "enemy_id": "EN_BOSS_RADIANT_MOTHER",
+    "enemy_name": "Radiant Mother",
+    "title": "Core Husk",
+    "profession": "tank",
+    "element": "fire",
+    "quality": "SSR",
+    "portrait_key": "enemy_boss_radiant_mother",
+    "base_hp": 2680,
+    "base_atk": 48,
+    "base_spd": 12,
+    "skills_json": [
+      {
+        "skill_id": "SK_BOSS_RADIANCE",
+        "name": "Radiant Pulse",
+        "icon_key": "skill_boss_01",
+        "cooldown": 3,
+        "description": "Heavy damage to all targets."
+      },
+      {
+        "skill_id": "SK_BOSS_SUMMON",
+        "name": "Call Husk",
+        "icon_key": "skill_boss_02",
+        "cooldown": 4,
+        "description": "Summon husk support."
+      }
+    ],
+    "abilities_json": [
+      {
+        "ability_id": "AB_BOSS_RADIANT",
+        "name": "Radiant Core",
+        "icon_key": "ability_boss_01",
+        "description": "Increase all stats."
+      }
+    ],
+    "notes": "Chapter 1 boss"
+  }
+]

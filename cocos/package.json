@@ -1,0 +1,11 @@
+{
+  "name": "soda-dungeon-cocos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cocos Creator 3.x rebuild for Soda Dungeon-style mobile mini game",
+  "type": "module",
+  "creator": {
+    "version": "3.8.8"
+  },
+  "uuid": "3570ec71-80c6-4eab-b2af-456e8be23680"
+}

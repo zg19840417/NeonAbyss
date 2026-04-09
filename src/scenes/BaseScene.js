@@ -246,7 +246,7 @@ export default class BaseScene extends Phaser.Scene {
       const tabBg = this.add.graphics();
       if (isActive) {
         tabBg.fillStyle(Const.COLORS.PURPLE, 0.3);
-        tabBg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 8);
+        tabBg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 0);
       }
       tabContainer.add(tabBg);
 
@@ -304,7 +304,7 @@ export default class BaseScene extends Phaser.Scene {
       newTab.bg.fillStyle(Const.COLORS.PURPLE, 0.3);
       const tabWidth = newTab.container.width;
       const navHeight = newTab.container.height;
-      newTab.bg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 8);
+        newTab.bg.fillRoundedRect(-tabWidth / 2 + 4, -navHeight / 2 + 6, tabWidth - 8, navHeight - 10, 0);
       newTab.icon.setColor(Const.TEXT_COLORS.PRIMARY);
       newTab.label.setColor(Const.TEXT_COLORS.PRIMARY);
       newTab.isActive = true;
@@ -786,22 +786,24 @@ export default class BaseScene extends Phaser.Scene {
       fontStyle: 'bold',
       color: Const.TEXT_COLORS.DARK
     }).setOrigin(0.5);
+    const hitZone = this.add.zone(0, 0, 112, 40).setOrigin(0.5);
+    hitZone.setInteractive(this.createCenteredHitArea(112, 40), Phaser.Geom.Rectangle.Contains);
 
-    container.add([glowBg, bg, label]);
+    container.add([glowBg, bg, label, hitZone]);
     container.setSize(100, 32);
-    container.setInteractive(this.createCenteredHitArea(100, 32), Phaser.Geom.Rectangle.Contains);
 
-    container.on('pointerover', () => {
+    hitZone.on('pointerover', () => {
       this.tweens.add({ targets: glowBg, alpha: 0.8, duration: 150 });
       this.tweens.add({ targets: container, scaleX: 1.05, scaleY: 1.05, duration: 150 });
     });
 
-    container.on('pointerout', () => {
+    hitZone.on('pointerout', () => {
       this.tweens.add({ targets: glowBg, alpha: 0.5, duration: 150 });
       this.tweens.add({ targets: container, scaleX: 1, scaleY: 1, duration: 150 });
     });
 
-    container.on('pointerdown', () => {
+    hitZone.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
       if (callback) callback.call(this);
     });
 

@@ -1,0 +1,492 @@
+[
+  {
+    "item_id": "ITM_FUSION_CARD_FG001",
+    "item_name": "Aqua Card",
+    "item_type": "fusion_card",
+    "sub_type": "unlock_fusion_girl",
+    "quality": "N",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "unlock_fusion_girl",
+    "effect_params": {
+      "fusion_girl_id": "FG001"
+    },
+    "icon_key": "icon_fg001_card",
+    "notes": "Auto use unlock item"
+  },
+  {
+    "item_id": "ITM_FUSION_CARD_FG002",
+    "item_name": "Ember Card",
+    "item_type": "fusion_card",
+    "sub_type": "unlock_fusion_girl",
+    "quality": "N",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "unlock_fusion_girl",
+    "effect_params": {
+      "fusion_girl_id": "FG002"
+    },
+    "icon_key": "icon_fg002_card",
+    "notes": "Auto use unlock item"
+  },
+  {
+    "item_id": "ITM_FUSION_CARD_FG003",
+    "item_name": "Gale Card",
+    "item_type": "fusion_card",
+    "sub_type": "unlock_fusion_girl",
+    "quality": "N",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "unlock_fusion_girl",
+    "effect_params": {
+      "fusion_girl_id": "FG003"
+    },
+    "icon_key": "icon_fg003_card",
+    "notes": "Auto use unlock item"
+  },
+  {
+    "item_id": "ITM_FUSION_CARD_FG004",
+    "item_name": "Flare Card",
+    "item_type": "fusion_card",
+    "sub_type": "unlock_fusion_girl",
+    "quality": "R",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "unlock_fusion_girl",
+    "effect_params": {
+      "fusion_girl_id": "FG004"
+    },
+    "icon_key": "icon_fg004_card",
+    "notes": "Auto use unlock item"
+  },
+  {
+    "item_id": "ITM_FUSION_CARD_FG005",
+    "item_name": "Mist Card",
+    "item_type": "fusion_card",
+    "sub_type": "unlock_fusion_girl",
+    "quality": "SR",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "unlock_fusion_girl",
+    "effect_params": {
+      "fusion_girl_id": "FG005"
+    },
+    "icon_key": "icon_fg005_card",
+    "notes": "Auto use unlock item"
+  },
+  {
+    "item_id": "ITM_MYCELIUM_SMALL",
+    "item_name": "Mycelium Cache S",
+    "item_type": "resource",
+    "sub_type": "currency",
+    "quality": "N",
+    "auto_use": false,
+    "visible": false,
+    "effect_type": "add_currency",
+    "effect_params": {
+      "currency": "mycelium",
+      "amount": 50
+    },
+    "icon_key": "icon_mycelium",
+    "notes": "Small mycelium reward"
+  },
+  {
+    "item_id": "ITM_MYCELIUM_MEDIUM",
+    "item_name": "Mycelium Cache M",
+    "item_type": "resource",
+    "sub_type": "currency",
+    "quality": "N",
+    "auto_use": false,
+    "visible": false,
+    "effect_type": "add_currency",
+    "effect_params": {
+      "currency": "mycelium",
+      "amount": 120
+    },
+    "icon_key": "icon_mycelium",
+    "notes": "Medium mycelium reward"
+  },
+  {
+    "item_id": "ITM_SOURCE_CORE_SMALL",
+    "item_name": "Source Core S",
+    "item_type": "resource",
+    "sub_type": "currency",
+    "quality": "N",
+    "auto_use": false,
+    "visible": false,
+    "effect_type": "add_currency",
+    "effect_params": {
+      "currency": "source_core",
+      "amount": 30
+    },
+    "icon_key": "icon_source_core",
+    "notes": "Small source core reward"
+  },
+  {
+    "item_id": "ITM_SOURCE_CORE_MEDIUM",
+    "item_name": "Source Core M",
+    "item_type": "resource",
+    "sub_type": "currency",
+    "quality": "N",
+    "auto_use": false,
+    "visible": false,
+    "effect_type": "add_currency",
+    "effect_params": {
+      "currency": "source_core",
+      "amount": 80
+    },
+    "icon_key": "icon_source_core",
+    "notes": "Medium source core reward"
+  },
+  {
+    "item_id": "ITM_STAR_COIN_SMALL",
+    "item_name": "Star Coin S",
+    "item_type": "resource",
+    "sub_type": "currency",
+    "quality": "N",
+    "auto_use": false,
+    "visible": false,
+    "effect_type": "add_currency",
+    "effect_params": {
+      "currency": "star_coin",
+      "amount": 20
+    },
+    "icon_key": "icon_star_coin",
+    "notes": "Small star coin reward"
+  },
+  {
+    "item_id": "ITM_STAMINA_FULL",
+    "item_name": "Full Stamina Refill",
+    "item_type": "utility",
+    "sub_type": "stamina",
+    "quality": "R",
+    "auto_use": true,
+    "visible": false,
+    "effect_type": "fill_stamina",
+    "effect_params": {
+      "fill_to_max": true
+    },
+    "icon_key": "icon_stamina",
+    "notes": "Refill stamina to max"
+  },
+  {
+    "item_id": "ITM_PF_FG001_01_R",
+    "item_name": "Aqua Set1 R Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "R",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG001_01_R",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg001_r",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG001_01_SR",
+    "item_name": "Aqua Set1 SR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG001_01_SR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg001_sr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG001_01_SSR",
+    "item_name": "Aqua Set1 SSR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SSR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG001_01_SSR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg001_ssr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG001_01_UR",
+    "item_name": "Aqua Set1 UR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "UR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG001_01_UR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg001_ur",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG002_01_R",
+    "item_name": "Ember Set1 R Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "R",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG002_01_R",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg002_r",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG002_01_SR",
+    "item_name": "Ember Set1 SR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG002_01_SR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg002_sr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG002_01_SSR",
+    "item_name": "Ember Set1 SSR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SSR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG002_01_SSR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg002_ssr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG002_01_UR",
+    "item_name": "Ember Set1 UR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "UR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG002_01_UR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg002_ur",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG003_01_R",
+    "item_name": "Gale Set1 R Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "R",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG003_01_R",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg003_r",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG003_01_SR",
+    "item_name": "Gale Set1 SR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG003_01_SR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg003_sr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG003_01_SSR",
+    "item_name": "Gale Set1 SSR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SSR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG003_01_SSR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg003_ssr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG003_01_UR",
+    "item_name": "Gale Set1 UR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "UR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG003_01_UR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg003_ur",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG004_01_R",
+    "item_name": "Flare Set1 R Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "R",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG004_01_R",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg004_r",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG004_01_SR",
+    "item_name": "Flare Set1 SR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG004_01_SR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg004_sr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG004_01_SSR",
+    "item_name": "Flare Set1 SSR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SSR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG004_01_SSR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg004_ssr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG004_01_UR",
+    "item_name": "Flare Set1 UR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "UR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG004_01_UR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg004_ur",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG005_01_R",
+    "item_name": "Mist Set1 R Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "R",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG005_01_R",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg005_r",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG005_01_SR",
+    "item_name": "Mist Set1 SR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG005_01_SR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg005_sr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG005_01_SSR",
+    "item_name": "Mist Set1 SSR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "SSR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG005_01_SSR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg005_ssr",
+    "notes": "Portrait fragment sample"
+  },
+  {
+    "item_id": "ITM_PF_FG005_01_UR",
+    "item_name": "Mist Set1 UR Fragment",
+    "item_type": "portrait_fragment",
+    "sub_type": "fragment",
+    "quality": "UR",
+    "auto_use": false,
+    "visible": true,
+    "effect_type": "add_fragment",
+    "effect_params": {
+      "fragment_id": "PF_FG005_01_UR",
+      "count": 1
+    },
+    "icon_key": "icon_pf_fg005_ur",
+    "notes": "Portrait fragment sample"
+  }
+]

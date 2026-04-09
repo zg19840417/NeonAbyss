@@ -1,0 +1,16 @@
+[
+  {
+    "shop_item_id": "SHOP_STAMINA_FULL_01",
+    "shop_tab": "basic",
+    "item_id": "ITM_STAMINA_FULL",
+    "price_currency_type": "source_core",
+    "price_value": 100,
+    "effect_type": "fill_stamina",
+    "effect_params": {
+      "fill_to_max": true
+    },
+    "is_active": true,
+    "sort_order": 1,
+    "notes": "???????????????"
+  }
+]

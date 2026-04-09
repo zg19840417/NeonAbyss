@@ -33,29 +33,33 @@ export default class UIManager {
       fontFamily: 'Noto Sans SC'
     }).setOrigin(0.5);
     
-    container.add([bg, label]);
+    const hitZone = this.scene.add.zone(0, 0, width + 12, height + 10).setOrigin(0.5);
+    hitZone.setInteractive(this.createCenteredHitArea(width + 12, height + 10), Phaser.Geom.Rectangle.Contains);
+
+    container.add([bg, label, hitZone]);
     container.setSize(width, height);
-    container.setInteractive(this.createCenteredHitArea(width, height), Phaser.Geom.Rectangle.Contains);
     
     const originalBg = backgroundColor;
     
-    container.on('pointerover', () => {
+    hitZone.on('pointerover', () => {
       bg.setFillStyle(0x3a3530);
       label.setColor(hoverColor);
       container.setScale(1.02);
     });
     
-    container.on('pointerout', () => {
+    hitZone.on('pointerout', () => {
       bg.setFillStyle(originalBg);
       label.setColor(textColor);
       container.setScale(1);
     });
     
-    container.on('pointerdown', () => {
+    hitZone.on('pointerdown', (pointer) => {
+      pointer.event?.stopPropagation?.();
       container.setScale(0.98);
     });
     
-    container.on('pointerup', () => {
+    hitZone.on('pointerup', (pointer) => {
+      pointer.event?.stopPropagation?.();
       container.setScale(1);
       if (onClick) onClick();
     });

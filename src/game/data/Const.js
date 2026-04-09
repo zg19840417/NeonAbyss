@@ -54,11 +54,11 @@ export const Const = {
     TAB_Y: 55,
     MODAL_WIDTH: 260,
     MODAL_HEIGHT: 160,
-    MODAL_RADIUS: 12,
+    MODAL_RADIUS: 0,
     BUTTON_HEIGHT: 28,
-    BUTTON_RADIUS: 6,
-    CARD_RADIUS: 12,
-    CARD_RADIUS_SMALL: 8
+    BUTTON_RADIUS: 4,
+    CARD_RADIUS: 0,
+    CARD_RADIUS_SMALL: 0
   },
 
   FONT: {

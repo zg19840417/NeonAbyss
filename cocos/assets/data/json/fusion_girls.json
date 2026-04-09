@@ -1,0 +1,67 @@
+[
+  {
+    "fusion_girl_id": "FG001",
+    "name": "Aqua",
+    "title": "Tide Seed",
+    "profession": "support",
+    "element": "water",
+    "initial_quality": "N",
+    "initial_level": 1,
+    "portrait_key": "FG001_P01",
+    "is_initial": true,
+    "sort_order": 1,
+    "notes": "Placeholder runtime sample"
+  },
+  {
+    "fusion_girl_id": "FG002",
+    "name": "Ember",
+    "title": "Ash Bloom",
+    "profession": "dps",
+    "element": "fire",
+    "initial_quality": "N",
+    "initial_level": 1,
+    "portrait_key": "FG002_P01",
+    "is_initial": true,
+    "sort_order": 2,
+    "notes": "Placeholder runtime sample"
+  },
+  {
+    "fusion_girl_id": "FG003",
+    "name": "Gale",
+    "title": "Reed Guard",
+    "profession": "tank",
+    "element": "wind",
+    "initial_quality": "N",
+    "initial_level": 1,
+    "portrait_key": "FG003_P01",
+    "is_initial": true,
+    "sort_order": 3,
+    "notes": "Placeholder runtime sample"
+  },
+  {
+    "fusion_girl_id": "FG004",
+    "name": "Flare",
+    "title": "Rust Fang",
+    "profession": "dps",
+    "element": "fire",
+    "initial_quality": "N",
+    "initial_level": 1,
+    "portrait_key": "FG004_P01",
+    "is_initial": false,
+    "sort_order": 4,
+    "notes": "Placeholder runtime sample"
+  },
+  {
+    "fusion_girl_id": "FG005",
+    "name": "Mist",
+    "title": "Dew Chant",
+    "profession": "support",
+    "element": "water",
+    "initial_quality": "N",
+    "initial_level": 1,
+    "portrait_key": "FG005_P01",
+    "is_initial": false,
+    "sort_order": 5,
+    "notes": "Placeholder runtime sample"
+  }
+]

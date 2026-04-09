@@ -287,7 +287,7 @@ export default class WildStageView {
         color: textColor
       }).setOrigin(0.5));
 
-      if (isUnlocked && !isCleared) {
+      if (isUnlocked) {
         stageContainer.setSize(this.width - 30, 50);
         stageContainer.setInteractive(this.createLocalHitArea(15, 0, this.width - 30, 50), Phaser.Geom.Rectangle.Contains);
         stageContainer.on('pointerdown', () => this.showStagePreview(stage, region));
@@ -412,6 +412,15 @@ export default class WildStageView {
       fontFamily: Const.FONT.FAMILY_CN,
       color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5));
+
+    const cleared = WorldMapData.isStageCleared(stage.stageId);
+    if (cleared) {
+      modal.add(this.scene.add.text(this.width / 2, modalY + 92, '已通关，可重复挑战', {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.TEXT_COLORS.SUCCESS
+      }).setOrigin(0.5));
+    }
 
     const startBtn = this.scene.add.container(this.width / 2, modalY + 150);
     const startBg = this.scene.add.graphics();

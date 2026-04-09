@@ -49,10 +49,10 @@ export default class ShopView {
 
       const bg = this.scene.add.graphics();
       bg.fillStyle(isActive ? Const.COLORS.PURPLE : Const.COLORS.BG_MID, 0.95);
-      bg.fillRoundedRect(-tabWidth / 2 + 2, -tabHeight / 2, tabWidth - 4, tabHeight, 6);
+      bg.fillRoundedRect(-tabWidth / 2 + 2, -tabHeight / 2, tabWidth - 4, tabHeight, 0);
       if (isActive) {
         bg.lineStyle(2, Const.COLORS.PURPLE, 1);
-        bg.strokeRoundedRect(-tabWidth / 2 + 2, -tabHeight / 2, tabWidth - 4, tabHeight, 6);
+      bg.strokeRoundedRect(-tabWidth / 2 + 2, -tabHeight / 2, tabWidth - 4, tabHeight, 0);
       }
       container.add(bg);
 

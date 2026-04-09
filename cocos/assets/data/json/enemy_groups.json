@@ -1,0 +1,112 @@
+[
+  {
+    "enemy_group_id": "EG_CH01_01",
+    "group_name": "????1???",
+    "slot1_enemy_id": "EN_SCAV_WATER_01",
+    "slot1_level": 1,
+    "slot2_enemy_id": "EN_SCAV_WATER_01",
+    "slot2_level": 1,
+    "slot3_enemy_id": "EN_SCAV_DARK_01",
+    "slot3_level": 1,
+    "notes": "????????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_02",
+    "group_name": "????2???",
+    "slot1_enemy_id": "EN_SCAV_WATER_01",
+    "slot1_level": 2,
+    "slot2_enemy_id": "EN_SCAV_FIRE_01",
+    "slot2_level": 1,
+    "slot3_enemy_id": "EN_SCAV_DARK_01",
+    "slot3_level": 1,
+    "notes": "????????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_03",
+    "group_name": "????3???",
+    "slot1_enemy_id": "EN_SCAV_WATER_01",
+    "slot1_level": 2,
+    "slot2_enemy_id": "EN_SCAV_FIRE_01",
+    "slot2_level": 2,
+    "slot3_enemy_id": "EN_SCAV_WIND_01",
+    "slot3_level": 1,
+    "notes": "???????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_04",
+    "group_name": "????4???",
+    "slot1_enemy_id": "EN_SCAV_FIRE_01",
+    "slot1_level": 2,
+    "slot2_enemy_id": "EN_SCAV_FIRE_01",
+    "slot2_level": 2,
+    "slot3_enemy_id": "EN_BRUTE_FIRE_01",
+    "slot3_level": 2,
+    "notes": "?????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_05",
+    "group_name": "????5???",
+    "slot1_enemy_id": "EN_SCAV_WIND_01",
+    "slot1_level": 2,
+    "slot2_enemy_id": "EN_SCAV_WIND_01",
+    "slot2_level": 2,
+    "slot3_enemy_id": "EN_SUPPORT_WATER_01",
+    "slot3_level": 2,
+    "notes": "?????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_06",
+    "group_name": "????6???",
+    "slot1_enemy_id": "EN_BRUTE_FIRE_01",
+    "slot1_level": 3,
+    "slot2_enemy_id": "EN_SCAV_DARK_01",
+    "slot2_level": 2,
+    "slot3_enemy_id": "EN_SUPPORT_WATER_01",
+    "slot3_level": 2,
+    "notes": "??????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_07",
+    "group_name": "????7???",
+    "slot1_enemy_id": "EN_SCAV_WIND_01",
+    "slot1_level": 3,
+    "slot2_enemy_id": "EN_SCAV_FIRE_01",
+    "slot2_level": 3,
+    "slot3_enemy_id": "EN_BRUTE_WIND_01",
+    "slot3_level": 2,
+    "notes": "??????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_08",
+    "group_name": "????8???",
+    "slot1_enemy_id": "EN_BRUTE_WIND_01",
+    "slot1_level": 3,
+    "slot2_enemy_id": "EN_SUPPORT_WATER_01",
+    "slot2_level": 3,
+    "slot3_enemy_id": "EN_SCAV_DARK_01",
+    "slot3_level": 3,
+    "notes": "???????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_09",
+    "group_name": "????9???",
+    "slot1_enemy_id": "EN_BRUTE_FIRE_01",
+    "slot1_level": 4,
+    "slot2_enemy_id": "EN_BRUTE_WIND_01",
+    "slot2_level": 4,
+    "slot3_enemy_id": "EN_SUPPORT_DARK_01",
+    "slot3_level": 3,
+    "notes": "Boss????"
+  },
+  {
+    "enemy_group_id": "EG_CH01_10",
+    "group_name": "????10???",
+    "slot1_enemy_id": "EN_BOSS_RADIANT_MOTHER",
+    "slot1_level": 5,
+    "slot2_enemy_id": "EN_SCAV_DARK_01",
+    "slot2_level": 4,
+    "slot3_enemy_id": "EN_SUPPORT_WATER_01",
+    "slot3_level": 4,
+    "notes": "???Boss?"
+  }
+]
