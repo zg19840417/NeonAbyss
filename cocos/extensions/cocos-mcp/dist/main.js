@@ -1,516 +1,424 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.onLoad = onLoad;
-exports.onBeforeLoad = onBeforeLoad;
+exports.load = load;
+exports.unload = unload;
+const node_fs_1 = __importDefault(require("node:fs"));
+const node_path_1 = __importDefault(require("node:path"));
 const ws_1 = require("ws");
-const cc_1 = require("cc");
-let wss = null;
-let mcpClients = new Set();
-function startMCPServer() {
-    const port = 9988;
-    wss = new ws_1.WebSocketServer({ port });
-    wss.on('connection', (ws) => {
-        console.log('[Cocos MCP] AI Client connected');
-        mcpClients.add(ws);
-        ws.on('message', async (data) => {
-            try {
-                const message = JSON.parse(data.toString());
-                const response = await handleMCPMessage(message);
-                ws.send(JSON.stringify(response));
-            }
-            catch (error) {
-                const errorMessage = error instanceof Error ? error.message : String(error);
-                const errorResponse = {
-                    jsonrpc: '2.0',
-                    error: {
-                        code: -32603,
-                        message: `Internal error: ${errorMessage}`
-                    },
-                    id: null
-                };
-                ws.send(JSON.stringify(errorResponse));
-            }
-        });
-        ws.on('close', () => {
-            console.log('[Cocos MCP] AI Client disconnected');
-            mcpClients.delete(ws);
-        });
-        ws.on('error', (err) => {
-            console.error('[Cocos MCP] WebSocket error:', err);
-            mcpClients.delete(ws);
-        });
-    });
-    wss.on('error', (err) => {
-        console.error('[Cocos MCP] Server error:', err);
-    });
-    console.log(`[Cocos MCP] Server started on port ${port}`);
-}
-async function handleMCPMessage(message) {
-    const { method, params, id } = message;
-    switch (method) {
-        case 'initialize':
-            return {
-                jsonrpc: '2.0',
-                result: {
-                    protocolVersion: '2024-11-05',
-                    capabilities: {
-                        tools: {},
-                        resources: {}
-                    },
-                    serverInfo: {
-                        name: 'cocos-creator-mcp',
-                        version: '1.0.0'
-                    }
+const DEFAULT_PORT = 9988;
+const SCENE_SCRIPT_NAME = 'cocos-mcp';
+const TOOL_DEFINITIONS = [
+    {
+        name: 'cocos_status',
+        description: 'Get Cocos Creator bridge status and project path.',
+        inputSchema: { type: 'object', properties: {} },
+    },
+    {
+        name: 'scene_list',
+        description: 'List all scenes under assets/scenes.',
+        inputSchema: { type: 'object', properties: {} },
+    },
+    {
+        name: 'scene_open',
+        description: 'Open a scene in Cocos Creator.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                scenePath: {
+                    type: 'string',
+                    description: 'Scene path relative to assets/scenes, e.g. MainMenuScene.scene',
                 },
-                id
-            };
-        case 'tools/list':
-            return {
-                jsonrpc: '2.0',
-                result: {
-                    tools: [
-                        {
-                            name: 'scene_get_current',
-                            description: 'Get current open scene information',
-                            inputSchema: { type: 'object', properties: {} }
-                        },
-                        {
-                            name: 'scene_list',
-                            description: 'List all scenes in the project',
-                            inputSchema: { type: 'object', properties: {} }
-                        },
-                        {
-                            name: 'scene_open',
-                            description: 'Open a specific scene',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    scenePath: { type: 'string', description: 'Scene path relative to assets/scenes' }
-                                },
-                                required: ['scenePath']
-                            }
-                        },
-                        {
-                            name: 'scene_save',
-                            description: 'Save current scene',
-                            inputSchema: { type: 'object', properties: {} }
-                        },
-                        {
-                            name: 'node_create',
-                            description: 'Create a new node in current scene',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    name: { type: 'string', description: 'Node name' },
-                                    parentPath: { type: 'string', description: 'Parent node path in hierarchy' },
-                                    position: { type: 'object', description: 'Position {x, y, z}' },
-                                    components: { type: 'array', description: 'Array of component types to add' }
-                                },
-                                required: ['name']
-                            }
-                        },
-                        {
-                            name: 'node_find',
-                            description: 'Find node by name in current scene',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    name: { type: 'string', description: 'Node name to search' }
-                                },
-                                required: ['name']
-                            }
-                        },
-                        {
-                            name: 'node_get_children',
-                            description: 'Get children of a node',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    nodePath: { type: 'string', description: 'Node path in hierarchy' }
-                                },
-                                required: ['nodePath']
-                            }
-                        },
-                        {
-                            name: 'node_add_component',
-                            description: 'Add component to a node',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    nodePath: { type: 'string', description: 'Node path in hierarchy' },
-                                    componentType: { type: 'string', description: 'Component type (e.g., "cc.Sprite", "cc.Label")' }
-                                },
-                                required: ['nodePath', 'componentType']
-                            }
-                        },
-                        {
-                            name: 'node_set_property',
-                            description: 'Set property on a node component',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    nodePath: { type: 'string', description: 'Node path in hierarchy' },
-                                    componentType: { type: 'string', description: 'Component type' },
-                                    property: { type: 'string', description: 'Property name' },
-                                    value: { description: 'Property value' }
-                                },
-                                required: ['nodePath', 'componentType', 'property', 'value']
-                            }
-                        },
-                        {
-                            name: 'node_delete',
-                            description: 'Delete a node from scene',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    nodePath: { type: 'string', description: 'Node path in hierarchy' }
-                                },
-                                required: ['nodePath']
-                            }
-                        },
-                        {
-                            name: 'prefab_instantiate',
-                            description: 'Instantiate a prefab',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    prefabPath: { type: 'string', description: 'Prefab path relative to assets/prefabs' },
-                                    parentPath: { type: 'string', description: 'Parent node path' },
-                                    position: { type: 'object', description: 'Position {x, y, z}' }
-                                },
-                                required: ['prefabPath']
-                            }
-                        },
-                        {
-                            name: 'build_project',
-                            description: 'Build the project',
-                            inputSchema: {
-                                type: 'object',
-                                properties: {
-                                    platform: { type: 'string', description: 'Build platform (web-mobile, android, etc.)' },
-                                    buildPath: { type: 'string', description: 'Build output path' }
-                                }
-                            }
-                        }
-                    ]
-                },
-                id
-            };
-        case 'tools/call':
-            return await handleToolCall(params.name, params.arguments, id);
-        default:
-            return {
-                jsonrpc: '2.0',
-                error: {
-                    code: -32601,
-                    message: `Method not found: ${method}`
-                },
-                id
-            };
-    }
-}
-async function handleToolCall(toolName, args, id) {
-    try {
-        let result;
-        switch (toolName) {
-            case 'scene_get_current':
-                result = await getCurrentScene();
-                break;
-            case 'scene_list':
-                result = await listScenes();
-                break;
-            case 'scene_open':
-                result = await openScene(args.scenePath);
-                break;
-            case 'scene_save':
-                result = await saveScene();
-                break;
-            case 'node_create':
-                result = await createNode(args);
-                break;
-            case 'node_find':
-                result = await findNode(args.name);
-                break;
-            case 'node_get_children':
-                result = await getNodeChildren(args.nodePath);
-                break;
-            case 'node_add_component':
-                result = await addComponent(args);
-                break;
-            case 'node_set_property':
-                result = await setNodeProperty(args);
-                break;
-            case 'node_delete':
-                result = await deleteNode(args.nodePath);
-                break;
-            case 'prefab_instantiate':
-                result = await instantiatePrefab(args);
-                break;
-            case 'build_project':
-                result = await buildProject(args);
-                break;
-            default:
-                throw new Error(`Unknown tool: ${toolName}`);
-        }
-        return {
-            jsonrpc: '2.0',
-            result: { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] },
-            id
-        };
-    }
-    catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
-        return {
-            jsonrpc: '2.0',
-            error: {
-                code: -32603,
-                message: errorMessage
             },
-            id
-        };
-    }
+            required: ['scenePath'],
+        },
+    },
+    {
+        name: 'scene_save',
+        description: 'Save the currently open scene.',
+        inputSchema: { type: 'object', properties: {} },
+    },
+    {
+        name: 'scene_get_current',
+        description: 'Get the current open scene and basic stats.',
+        inputSchema: { type: 'object', properties: {} },
+    },
+    {
+        name: 'scene_get_hierarchy',
+        description: 'Get the node hierarchy of the current scene.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                depth: {
+                    type: 'number',
+                    description: 'Maximum depth to serialize. Default 5.',
+                },
+            },
+        },
+    },
+    {
+        name: 'node_find',
+        description: 'Find nodes by name in the current scene.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                name: {
+                    type: 'string',
+                    description: 'Node name to search.',
+                },
+            },
+            required: ['name'],
+        },
+    },
+    {
+        name: 'node_create',
+        description: 'Create a node under the given parent path.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                name: { type: 'string', description: 'Node name.' },
+                parentPath: {
+                    type: 'string',
+                    description: 'Hierarchy path such as Canvas/MainMenuRoot. Empty means scene root.',
+                },
+                position: {
+                    type: 'object',
+                    description: 'Position object: { x, y, z }',
+                },
+                components: {
+                    type: 'array',
+                    description: 'Component names such as cc.UITransform, cc.Sprite, cc.Label, cc.Button.',
+                    items: { type: 'string' },
+                },
+            },
+            required: ['name'],
+        },
+    },
+    {
+        name: 'node_delete',
+        description: 'Delete a node by hierarchy path.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                nodePath: {
+                    type: 'string',
+                    description: 'Hierarchy path of the node.',
+                },
+            },
+            required: ['nodePath'],
+        },
+    },
+    {
+        name: 'node_set_position',
+        description: 'Set the local position of a node.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                nodePath: { type: 'string' },
+                position: {
+                    type: 'object',
+                    description: 'Position object: { x, y, z }',
+                },
+            },
+            required: ['nodePath', 'position'],
+        },
+    },
+    {
+        name: 'node_set_active',
+        description: 'Set a node active or inactive.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                nodePath: { type: 'string' },
+                active: { type: 'boolean' },
+            },
+            required: ['nodePath', 'active'],
+        },
+    },
+    {
+        name: 'component_add',
+        description: 'Add a supported component to a node.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                nodePath: { type: 'string' },
+                componentType: {
+                    type: 'string',
+                    description: 'Supported: cc.UITransform, cc.Sprite, cc.Label, cc.Button.',
+                },
+            },
+            required: ['nodePath', 'componentType'],
+        },
+    },
+    {
+        name: 'label_set_text',
+        description: 'Set the string of a cc.Label component on a node.',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                nodePath: { type: 'string' },
+                text: { type: 'string' },
+            },
+            required: ['nodePath', 'text'],
+        },
+    },
+];
+let wss = null;
+const clients = new Set();
+function load() {
+    log('Extension loaded');
+    startServer();
 }
-async function getCurrentScene() {
-    const scene = cc_1.editor.Scene && cc_1.editor.Scene.scene;
-    if (!scene) {
-        return { error: 'No scene is currently open' };
-    }
-    return {
-        name: scene.name,
-        uuid: scene.uuid
-    };
+function unload() {
+    log('Extension unloading');
+    stopServer();
 }
-async function listScenes() {
-    const assetInfos = await cc_1.editor.assetdb.queryAssets('db://assets/scenes/**/*', 'uuid');
-    return {
-        scenes: assetInfos.map((info) => ({
-            path: info.path,
-            name: info.name,
-            uuid: info.uuid
-        }))
-    };
-}
-async function openScene(scenePath) {
-    const fullPath = `db://assets/scenes/${scenePath}`;
-    await cc_1.editor.SceneUtils.requestOpenScene(fullPath);
-    return { success: true, path: fullPath };
-}
-async function saveScene() {
-    await cc_1.editor.SceneUtils.saveScene();
-    return { success: true };
-}
-async function createNode(args) {
-    const scene = cc_1.editor.Scene && cc_1.editor.Scene.scene;
-    if (!scene) {
-        throw new Error('No scene is currently open');
+function startServer() {
+    if (wss) {
+        return;
     }
-    let parent = scene;
-    if (args.parentPath) {
-        const foundParent = findNodeByPath(args.parentPath);
-        if (!foundParent) {
-            throw new Error(`Parent node not found: ${args.parentPath}`);
-        }
-        parent = foundParent;
-    }
-    const newNode = new cc_1.Node(args.name);
-    if (args.position) {
-        newNode.position.set(args.position.x || 0, args.position.y || 0, args.position.z || 0);
-    }
-    if (args.components && Array.isArray(args.components)) {
-        for (const compType of args.components) {
-            const comp = addComponentByType(newNode, compType);
-            if (!comp) {
-                console.warn(`[Cocos MCP] Unknown component type: ${compType}`);
-            }
-        }
-    }
-    parent.addChild(newNode);
-    return {
-        success: true,
-        node: {
-            name: newNode.name,
-            path: getNodePath(newNode),
-            uuid: newNode.uuid
-        }
-    };
-}
-async function findNode(name) {
-    const scene = cc_1.editor.Scene && cc_1.editor.Scene.scene;
-    if (!scene) {
-        throw new Error('No scene is currently open');
-    }
-    const node = findNodeByName(scene, name);
-    if (!node) {
-        return { found: false, name };
-    }
-    return {
-        found: true,
-        node: {
-            name: node.name,
-            path: getNodePath(node),
-            active: node.active,
-            children: node.children.map((child) => child.name)
-        }
-    };
-}
-async function getNodeChildren(nodePath) {
-    const node = findNodeByPath(nodePath);
-    if (!node) {
-        throw new Error(`Node not found: ${nodePath}`);
-    }
-    return {
-        nodePath,
-        children: node.children.map((child) => ({
-            name: child.name,
-            path: getNodePath(child),
-            active: child.active
-        }))
-    };
-}
-async function addComponent(args) {
-    const node = findNodeByPath(args.nodePath);
-    if (!node) {
-        throw new Error(`Node not found: ${args.nodePath}`);
-    }
-    const comp = addComponentByType(node, args.componentType);
-    if (!comp) {
-        throw new Error(`Unknown component type: ${args.componentType}`);
-    }
-    return {
-        success: true,
-        component: {
-            type: args.componentType,
-            node: node.name
-        }
-    };
-}
-async function setNodeProperty(args) {
-    const node = findNodeByPath(args.nodePath);
-    if (!node) {
-        throw new Error(`Node not found: ${args.nodePath}`);
-    }
-    const comp = node.getComponent(args.componentType);
-    if (!comp) {
-        throw new Error(`Component ${args.componentType} not found on node ${node.name}`);
-    }
-    comp[args.property] = args.value;
-    return {
-        success: true,
-        node: node.name,
-        component: args.componentType,
-        property: args.property,
-        value: args.value
-    };
-}
-async function deleteNode(nodePath) {
-    const node = findNodeByPath(nodePath);
-    if (!node) {
-        throw new Error(`Node not found: ${nodePath}`);
-    }
-    const parent = node.parent;
-    if (parent) {
-        parent.removeChild(node);
-    }
-    return { success: true, deleted: nodePath };
-}
-async function instantiatePrefab(args) {
-    const prefabPath = `db://assets/prefabs/${args.prefabPath}`;
-    const assetInfo = await cc_1.editor.assetdb.queryAssetInfo(prefabPath);
-    if (!assetInfo) {
-        throw new Error(`Prefab not found: ${prefabPath}`);
-    }
-    let parent = null;
-    if (args.parentPath) {
-        parent = findNodeByPath(args.parentPath);
-    }
-    const newNode = await cc_1.editor.assetdb.loadWithArgs(prefabPath, (err, asset) => {
-        if (err) {
-            throw new Error(`Failed to load prefab: ${err}`);
-        }
+    wss = new ws_1.WebSocketServer({ port: DEFAULT_PORT });
+    wss.on('connection', (socket) => {
+        clients.add(socket);
+        log('MCP bridge client connected');
+        socket.on('message', async (raw) => {
+            const response = await handleIncomingMessage(String(raw));
+            socket.send(JSON.stringify(response));
+        });
+        socket.on('close', () => {
+            clients.delete(socket);
+            log('MCP bridge client disconnected');
+        });
+        socket.on('error', (error) => {
+            clients.delete(socket);
+            log(`Socket error: ${error instanceof Error ? error.message : String(error)}`);
+        });
     });
-    return {
-        success: true,
-        prefab: args.prefabPath,
-        instantiated: true
-    };
+    wss.on('listening', () => {
+        log(`Bridge listening on ws://127.0.0.1:${DEFAULT_PORT}`);
+    });
+    wss.on('error', (error) => {
+        log(`Server error: ${error instanceof Error ? error.message : String(error)}`);
+    });
 }
-async function buildProject(args) {
-    const buildOptions = {
-        platform: args.platform || 'web-mobile',
-        buildPath: args.buildPath || 'build',
-        debug: false
-    };
-    await cc_1.editor.Builder.build(buildOptions);
-    return {
-        success: true,
-        platform: buildOptions.platform,
-        buildPath: buildOptions.buildPath
-    };
-}
-function findNodeByName(node, name) {
-    if (node.name === name) {
-        return node;
+function stopServer() {
+    for (const client of clients) {
+        client.close();
     }
-    for (const child of node.children) {
-        const found = findNodeByName(child, name);
-        if (found) {
-            return found;
-        }
-    }
-    return null;
-}
-function findNodeByPath(path) {
-    const scene = cc_1.editor.Scene && cc_1.editor.Scene.scene;
-    if (!scene)
-        return null;
-    const parts = path.split('/').filter(p => p.length > 0);
-    let current = scene;
-    for (const part of parts) {
-        if (!current)
-            return null;
-        let foundChild = null;
-        for (const c of current.children) {
-            if (c.name === part) {
-                foundChild = c;
-                break;
-            }
-        }
-        if (!foundChild)
-            return null;
-        current = foundChild;
-    }
-    return current;
-}
-function getNodePath(node) {
-    const parts = [];
-    let current = node;
-    while (current) {
-        parts.unshift(current.name);
-        current = current.parent;
-    }
-    return parts.join('/');
-}
-function addComponentByType(node, type) {
-    const typeMap = {
-        'cc.UITransform': cc_1.UITransform,
-        'cc.Sprite': cc_1.Sprite,
-        'cc.Label': cc_1.Label,
-        'cc.Button': cc_1.Button
-    };
-    const ComponentClass = typeMap[type];
-    if (ComponentClass) {
-        return node.addComponent(ComponentClass);
-    }
-    return null;
-}
-function onLoad() {
-    console.log('[Cocos MCP] Plugin loaded');
-    startMCPServer();
-}
-function onBeforeLoad() {
-    console.log('[Cocos MCP] Plugin unloading');
+    clients.clear();
     if (wss) {
         wss.close();
         wss = null;
     }
+}
+async function handleIncomingMessage(payload) {
+    let message;
+    try {
+        message = JSON.parse(payload);
+    }
+    catch (error) {
+        return makeError(null, -32700, `Invalid JSON: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    const id = message?.id ?? null;
+    const method = message?.method;
+    try {
+        switch (method) {
+            case 'initialize':
+                return makeResult(id, {
+                    protocolVersion: '2024-11-05',
+                    capabilities: {
+                        tools: {},
+                    },
+                    serverInfo: {
+                        name: 'cocos-creator-bridge',
+                        version: '1.0.0',
+                    },
+                });
+            case 'tools/list':
+                return makeResult(id, { tools: TOOL_DEFINITIONS });
+            case 'tools/call':
+                return await handleToolCall(id, message?.params?.name, message?.params?.arguments ?? {});
+            default:
+                return makeError(id, -32601, `Method not found: ${String(method)}`);
+        }
+    }
+    catch (error) {
+        return makeError(id, -32603, error instanceof Error ? error.message : String(error));
+    }
+}
+async function handleToolCall(id, toolName, args) {
+    switch (toolName) {
+        case 'cocos_status':
+            return makeTextResult(id, {
+                ok: true,
+                port: DEFAULT_PORT,
+                projectPath: getProjectPath(),
+                extension: SCENE_SCRIPT_NAME,
+            });
+        case 'scene_list':
+            return makeTextResult(id, {
+                scenes: listFilesUnder('assets/scenes', '.scene'),
+            });
+        case 'scene_open':
+            return makeTextResult(id, await openScene(String(args.scenePath ?? '')));
+        case 'scene_save':
+            return makeTextResult(id, await saveScene());
+        case 'scene_get_current':
+            return makeTextResult(id, await executeSceneScript('sceneGetCurrent'));
+        case 'scene_get_hierarchy':
+            return makeTextResult(id, await executeSceneScript('sceneGetHierarchy', Number(args.depth ?? 5)));
+        case 'node_find':
+            return makeTextResult(id, await executeSceneScript('nodeFind', String(args.name ?? '')));
+        case 'node_create':
+            return makeTextResult(id, await executeSceneScript('nodeCreate', args));
+        case 'node_delete':
+            return makeTextResult(id, await executeSceneScript('nodeDelete', String(args.nodePath ?? '')));
+        case 'node_set_position':
+            return makeTextResult(id, await executeSceneScript('nodeSetPosition', String(args.nodePath ?? ''), args.position ?? {}));
+        case 'node_set_active':
+            return makeTextResult(id, await executeSceneScript('nodeSetActive', String(args.nodePath ?? ''), Boolean(args.active)));
+        case 'component_add':
+            return makeTextResult(id, await executeSceneScript('componentAdd', String(args.nodePath ?? ''), String(args.componentType ?? '')));
+        case 'label_set_text':
+            return makeTextResult(id, await executeSceneScript('labelSetText', String(args.nodePath ?? ''), String(args.text ?? '')));
+        default:
+            return makeError(id, -32601, `Unknown tool: ${toolName}`);
+    }
+}
+async function executeSceneScript(method, ...args) {
+    return await Editor.Message.request('scene', 'execute-scene-script', {
+        name: SCENE_SCRIPT_NAME,
+        method,
+        args,
+    });
+}
+async function openScene(scenePath) {
+    const normalized = normalizeAssetRelativePath(scenePath, 'scenes', '.scene');
+    const dbPath = `db://assets/scenes/${normalized}`;
+    const errors = [];
+    try {
+        const assetInfo = await Editor.Message.request('asset-db', 'query-asset-info', dbPath);
+        const openTarget = assetInfo?.uuid ?? dbPath;
+        await Editor.Message.request('asset-db', 'open-asset', openTarget);
+        return {
+            success: true,
+            scenePath: normalized,
+            dbPath,
+            uuid: assetInfo?.uuid ?? null,
+        };
+    }
+    catch (error) {
+        errors.push(`asset-db/open-asset failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    try {
+        await Editor.Message.request('scene', 'open-scene', dbPath);
+        return {
+            success: true,
+            scenePath: normalized,
+            dbPath,
+            via: 'scene/open-scene',
+        };
+    }
+    catch (error) {
+        errors.push(`scene/open-scene failed: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    throw new Error(`Unable to open scene ${dbPath}. ${errors.join(' | ')}`);
+}
+async function saveScene() {
+    const attempts = [
+        ['scene', 'save-scene'],
+        ['scene', 'save'],
+    ];
+    const errors = [];
+    for (const [channel, method] of attempts) {
+        try {
+            const result = await Editor.Message.request(channel, method);
+            return {
+                success: true,
+                via: `${channel}/${method}`,
+                result: result ?? null,
+            };
+        }
+        catch (error) {
+            errors.push(`${channel}/${method}: ${error instanceof Error ? error.message : String(error)}`);
+        }
+    }
+    throw new Error(`Unable to save current scene. ${errors.join(' | ')}`);
+}
+function listFilesUnder(relativeDir, extension) {
+    const baseDir = node_path_1.default.join(getProjectPath(), relativeDir);
+    if (!node_fs_1.default.existsSync(baseDir)) {
+        return [];
+    }
+    const results = [];
+    walkFiles(baseDir, (absolutePath) => {
+        if (absolutePath.endsWith(extension)) {
+            results.push(toPosixPath(node_path_1.default.relative(baseDir, absolutePath)));
+        }
+    });
+    return results.sort((a, b) => a.localeCompare(b));
+}
+function walkFiles(dirPath, onFile) {
+    const entries = node_fs_1.default.readdirSync(dirPath, { withFileTypes: true });
+    for (const entry of entries) {
+        const absolutePath = node_path_1.default.join(dirPath, entry.name);
+        if (entry.isDirectory()) {
+            walkFiles(absolutePath, onFile);
+            continue;
+        }
+        onFile(absolutePath);
+    }
+}
+function getProjectPath() {
+    return Editor?.Project?.path ?? process.cwd();
+}
+function normalizeAssetRelativePath(input, prefix, extension) {
+    const raw = toPosixPath(String(input || '').trim());
+    if (!raw) {
+        throw new Error('scenePath is required');
+    }
+    let normalized = raw.replace(/^db:\/\/assets\//, '');
+    if (normalized.startsWith(`${prefix}/`)) {
+        normalized = normalized.slice(prefix.length + 1);
+    }
+    if (!normalized.endsWith(extension)) {
+        normalized = `${normalized}${extension}`;
+    }
+    return normalized;
+}
+function toPosixPath(value) {
+    return value.replace(/\\/g, '/');
+}
+function makeResult(id, result) {
+    return {
+        jsonrpc: '2.0',
+        id,
+        result,
+    };
+}
+function makeTextResult(id, data) {
+    return makeResult(id, {
+        content: [
+            {
+                type: 'text',
+                text: JSON.stringify(data, null, 2),
+            },
+        ],
+        structuredContent: data,
+    });
+}
+function makeError(id, code, message) {
+    return {
+        jsonrpc: '2.0',
+        id,
+        error: {
+            code,
+            message,
+        },
+    };
+}
+function log(message) {
+    console.log(`[cocos-mcp] ${message}`);
 }

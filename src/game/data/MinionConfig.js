@@ -1,3 +1,5 @@
+import Const from './Const.js';
+
 // ===== 稀有度体系 =====
 export const Rarity = {
   COMMON: 'common',
@@ -11,10 +13,10 @@ export const RarityConfig = {
     name: '普通',
     nameEn: 'Common',
     statMultiplier: 1.0,
-    borderColor: 0x8a7a6a,
+    borderColor: Const.COLORS.GRAY,
     glowColor: null,
     particleColor: null,
-    textColor: '#8a7a6a'
+    textColor: Const.TEXT_COLORS.SECONDARY
   },
   [Rarity.RARE]: {
     name: '稀有',

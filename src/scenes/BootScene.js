@@ -1,4 +1,5 @@
 import ResponsiveUtils, { DesignWidth, DesignHeight } from '../utils/ResponsiveUtils.js';
+import Const from '../game/data/Const.js';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -13,7 +14,7 @@ export default class BootScene extends Phaser.Scene {
   create() {
     this.setupResponsive();
     this.setupGameScale();
-    this.scene.start('PreloadScene');
+    this.scene.start(Const.SCENES.PRELOAD);
   }
 
   setupResponsive() {
@@ -22,6 +23,9 @@ export default class BootScene extends Phaser.Scene {
 
     this.responsive = ResponsiveUtils.getInstance();
     this.responsive.update(width, height);
+
+    // 挂载到全局，方便非 Scene 代码访问
+    window.responsiveUtils = this.responsive;
 
     this._boundResize = this._onResize.bind(this);
     

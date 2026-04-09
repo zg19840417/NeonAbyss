@@ -1,7 +1,7 @@
 import StageData from '../data/StageData.js';
 import EnemyData from '../data/EnemyData.js';
 import RewardManager from './RewardManager.js';
-import { ensureGlobalGameData, saveGameData as persistGameData } from '../data/GameData.js';
+import EventBus, { GameEvents } from '../EventBus.js';
 
 /**
  * 野外关卡管理系统
@@ -15,7 +15,7 @@ export default class StageManager {
   }
 
   load() {
-    const gameData = ensureGlobalGameData();
+    const gameData = window.gameData;
     const clearedStageIds = Array.isArray(gameData?.progress?.clearedStages)
       ? gameData.progress.clearedStages
       : [];
@@ -27,12 +27,12 @@ export default class StageManager {
   }
 
   save() {
-    ensureGlobalGameData();
+    if (!window.gameData) return;
     if (!window.gameData.progress) {
       window.gameData.progress = { clearedStages: [] };
     }
     window.gameData.progress.clearedStages = this.getClearedStageIds();
-    persistGameData(window.gameData);
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
   }
 
   getClearedStageIds() {

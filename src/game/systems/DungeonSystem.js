@@ -325,11 +325,8 @@ export default class DungeonSystem {
   }
   
   save() {
-    try {
-      localStorage.setItem('dungeonSystem', JSON.stringify(this.toJSON()));
-    } catch (e) {
-      console.warn('Failed to save dungeon system:', e);
-    }
+    // 不再独立写入 localStorage，由 DungeonScene 通过 syncRuntimeGameData 统一持久化
+    // 保留 toJSON() 供 syncRuntimeGameData 使用
   }
   
   load() {

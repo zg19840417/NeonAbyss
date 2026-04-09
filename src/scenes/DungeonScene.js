@@ -1,11 +1,14 @@
 ﻿import DungeonSystem from '../game/systems/DungeonSystem.js';
-import EventBus from '../game/EventBus.js';
+import BaseSystem from '../game/systems/BaseSystem.js';
+import EventBus, { GameEvents } from '../game/EventBus.js';
 import ChipCardManager from '../game/systems/ChipCardManager.js';
 import FusionGirlManager from '../game/systems/FusionGirlManager.js';
 import { syncFusionGirlProgress } from '../game/systems/FusionGirlProgressSync.js';
 import { ensureGlobalGameData, syncRuntimeGameData } from '../game/data/GameData.js';
 import { getFusionGirlById, getPortraitSetsByFusionGirlId, getFusionGirlCombatStats } from '../game/data/FusionGirlData.js';
+import Const from '../game/data/Const.js';
 import enemiesData from '../../assets/data/json/enemies.json';
+import Const from '../game/data/Const.js';
 
 export default class DungeonScene extends Phaser.Scene {
   constructor() {
@@ -29,6 +32,7 @@ export default class DungeonScene extends Phaser.Scene {
   initializeDungeonSystem() {
     ensureGlobalGameData();
     syncFusionGirlProgress(window.gameData);
+    this.baseSystem = new BaseSystem(window.gameData.base);
     this.dungeonSystem = new DungeonSystem(window.gameData.dungeon);
     this.dungeonSystem.load();
     this.currentFloor = this.dungeonSystem.currentFloor;
@@ -37,7 +41,7 @@ export default class DungeonScene extends Phaser.Scene {
 
   createBackground(width, height) {
     const bg = this.add.graphics();
-    bg.fillGradientStyle(0x1a1815, 0x1a1815, 0x2d2824, 0x2d2824, 1);
+    bg.fillGradientStyle(Const.COLORS.BG_DARK, Const.COLORS.BG_DARK, Const.COLORS.BG_MID, Const.COLORS.BG_MID, 1);
     bg.fillRect(0, 0, width, height);
   }
 
@@ -48,26 +52,26 @@ export default class DungeonScene extends Phaser.Scene {
       fontSize: '24px',
       fontFamily: 'Noto Sans SC',
       fontStyle: 'bold',
-      color: '#d4a574'
+      color: Const.TEXT_COLORS.GOLD
     }).setOrigin(0.5);
 
     const bossLabel = isBossFloor ? ' BOSS' : '';
     this.add.text(width / 2, 100, `第${this.currentFloor}层${bossLabel}`, {
       fontSize: '18px',
       fontFamily: 'Noto Sans SC',
-      color: isBossFloor ? '#d86a6a' : '#d4a574'
+      color: isBossFloor ? '#d86a6a' : Const.TEXT_COLORS.GOLD
     }).setOrigin(0.5);
 
     this.add.text(width / 2, 130, `维度 ${this.currentDimension}`, {
       fontSize: '12px',
       fontFamily: 'Noto Sans SC',
-      color: '#8a7a6a'
+      color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
 
     this.add.text(width / 2, 180, '正在进入自动战斗...', {
       fontSize: '14px',
       fontFamily: 'Noto Sans SC',
-      color: '#8a7a6a'
+      color: Const.TEXT_COLORS.SECONDARY
     }).setOrigin(0.5);
   }
 
@@ -190,7 +194,7 @@ export default class DungeonScene extends Phaser.Scene {
 
   startAutoBattle() {
     this.time.delayedCall(1500, () => {
-      this.scene.start('BattleScene', {
+      this.scene.start(Const.SCENES.BATTLE, {
         floor: this.currentFloor,
         dimension: this.currentDimension,
         enemies: this.generateEnemiesForFloor(this.currentFloor).map((enemy) => ({
@@ -248,10 +252,8 @@ export default class DungeonScene extends Phaser.Scene {
         }
       : this.calculateBattleRewards(enemies);
 
-    if (window.gameData.base) {
-      window.gameData.base.mycelium = (window.gameData.base.mycelium || 0) + rewards.mycelium;
-      window.gameData.base.sourceCore = (window.gameData.base.sourceCore || 0) + rewards.sourceCore;
-    }
+    if (rewards.mycelium) this.baseSystem.addCurrency('mycelium', rewards.mycelium);
+    if (rewards.sourceCore) this.baseSystem.addCurrency('sourceCore', rewards.sourceCore);
 
     this.dungeonSystem.onBattleVictory(currentFloor, isBossFloor);
     this.currentFloor += 1;
@@ -264,10 +266,10 @@ export default class DungeonScene extends Phaser.Scene {
       this.currentDimension += 1;
     }
 
-    syncRuntimeGameData({ dungeonSystem: this.dungeonSystem });
+    syncRuntimeGameData({ baseSystem: this.baseSystem, dungeonSystem: this.dungeonSystem });
     this.dungeonSystem.save();
 
-    this.scene.start('BattleScene', {
+    this.scene.start(Const.SCENES.BATTLE, {
       floor: this.currentFloor,
       dimension: this.currentDimension,
       enemies: this.generateEnemiesForFloor(this.currentFloor).map((enemy) => ({
@@ -292,14 +294,12 @@ export default class DungeonScene extends Phaser.Scene {
     const currentFloor = data.floor || this.currentFloor;
     const consolationMycelium = Math.floor((10 + currentFloor * 5) * 0.1);
 
-    if (window.gameData.base) {
-      window.gameData.base.mycelium = (window.gameData.base.mycelium || 0) + consolationMycelium;
-    }
+    if (consolationMycelium > 0) this.baseSystem.addCurrency('mycelium', consolationMycelium);
 
     this.dungeonSystem.returnToBase();
-    syncRuntimeGameData({ dungeonSystem: this.dungeonSystem });
+    syncRuntimeGameData({ baseSystem: this.baseSystem, dungeonSystem: this.dungeonSystem });
     this.dungeonSystem.save();
-    this.scene.start('BaseScene');
+    this.scene.start(Const.SCENES.BASE);
   }
 
   shutdown() {

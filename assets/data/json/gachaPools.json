@@ -14,6 +14,7 @@
     "softPitySRStart": 8,
     "softPitySSRStart": 35,
     "softPityURStart": 180,
-    "description": "常驻融合姬卡池，SR10抽保底，SSR40抽保底，UR200抽保底"
+    "description": "常驻融合姬卡池，SR10抽保底，SSR40抽保底，UR200抽保底",
+    "poolItems": []
   }
 ]

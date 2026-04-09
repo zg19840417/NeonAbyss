@@ -122,7 +122,8 @@ export function createDefaultGameData() {
     shipParts: [],
     elementPoints: createDefaultElementPoints(),
     minionStones: 0,
-    starStones: 0
+    starStones: 0,
+    zone: { completedZones: [] }
   };
 }
 
@@ -209,16 +210,34 @@ export function loadGameData() {
 }
 
 export function saveGameData(gameData) {
-  const normalized = mergeGameData(gameData);
-  localStorage.setItem(SAVE_KEY, JSON.stringify(normalized));
-  return normalized;
+  try {
+    const normalized = mergeGameData(gameData);
+    localStorage.setItem(SAVE_KEY, JSON.stringify(normalized));
+    return normalized;
+  } catch (error) {
+    console.error('存档写入失败:', error);
+    // 尝试清理旧数据腾出空间后重试一次
+    try {
+      const normalized = mergeGameData(gameData);
+      localStorage.setItem(SAVE_KEY, JSON.stringify(normalized));
+      return normalized;
+    } catch (retryError) {
+      console.error('存档写入重试失败:', retryError);
+      return gameData; // 返回原始数据，至少保持内存中可用
+    }
+  }
 }
 
 export function resetGameData() {
-  const freshData = createDefaultGameData();
-  localStorage.removeItem(SAVE_KEY);
-  localStorage.setItem(SAVE_KEY, JSON.stringify(freshData));
-  return freshData;
+  try {
+    const freshData = createDefaultGameData();
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.setItem(SAVE_KEY, JSON.stringify(freshData));
+    return freshData;
+  } catch (error) {
+    console.error('存档重置失败:', error);
+    return createDefaultGameData(); // 返回默认数据
+  }
 }
 
 export function ensureGlobalGameData() {
@@ -232,7 +251,8 @@ export function syncRuntimeGameData({
   chipCardManager = null,
   fusionGirlManager = null,
   reputationSystem = null,
-  dungeonSystem = null
+  dungeonSystem = null,
+  zoneManager = null
 } = {}) {
   const current = mergeGameData(window.gameData || {});
 
@@ -250,6 +270,9 @@ export function syncRuntimeGameData({
   }
   if (dungeonSystem) {
     current.dungeon = dungeonSystem.toJSON();
+  }
+  if (zoneManager) {
+    current.zone = zoneManager.toJSON();
   }
 
   window.gameData = current;

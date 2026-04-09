@@ -1763,5 +1763,170 @@
     "id": "boss_omega_sentinel",
     "zh_cn": "终焉守卫",
     "en_us": "Omega Sentinel"
+  },
+  {
+    "id": "default_portrait",
+    "zh_cn": "默认立绘",
+    "en_us": "Default Portrait"
+  },
+  {
+    "id": "formation_title",
+    "zh_cn": "上阵阵容",
+    "en_us": "Formation"
+  },
+  {
+    "id": "empty_slot",
+    "zh_cn": "空位 {index}",
+    "en_us": "Empty Slot {index}"
+  },
+  {
+    "id": "unequip",
+    "zh_cn": "卸下",
+    "en_us": "Unequip"
+  },
+  {
+    "id": "equip",
+    "zh_cn": "装备",
+    "en_us": "Equip"
+  },
+  {
+    "id": "no_chip_equipped",
+    "zh_cn": "未装配芯片核心",
+    "en_us": "No Chip Core Equipped"
+  },
+  {
+    "id": "chip_aura_hint",
+    "zh_cn": "装备后可为整队提供光环加成",
+    "en_us": "Equip to provide aura bonus for the whole team"
+  },
+  {
+    "id": "reserve_library",
+    "zh_cn": "未上阵卡库",
+    "en_us": "Reserve Library"
+  },
+  {
+    "id": "waiting_count",
+    "zh_cn": "{count} 张待命",
+    "en_us": "{count} on standby"
+  },
+  {
+    "id": "no_available_girls",
+    "zh_cn": "暂无待命融合姬",
+    "en_us": "No available Fusion Maidens"
+  },
+  {
+    "id": "reserve_chips",
+    "zh_cn": "备用芯片",
+    "en_us": "Reserve Chips"
+  },
+  {
+    "id": "unnamed_girl",
+    "zh_cn": "未命名融合姬",
+    "en_us": "Unnamed Fusion Maiden"
+  },
+  {
+    "id": "deploy",
+    "zh_cn": "上阵",
+    "en_us": "Deploy"
+  },
+  {
+    "id": "skill",
+    "zh_cn": "技能",
+    "en_us": "Skill"
+  },
+  {
+    "id": "upgrade_star",
+    "zh_cn": "升星",
+    "en_us": "Upgrade Star"
+  },
+  {
+    "id": "upgrade_quality",
+    "zh_cn": "升品质",
+    "en_us": "Upgrade Quality"
+  },
+  {
+    "id": "quality_preview",
+    "zh_cn": "品质提升预览",
+    "en_us": "Quality Upgrade Preview"
+  },
+  {
+    "id": "fragment_progress",
+    "zh_cn": "立绘碎片进度",
+    "en_us": "Portrait Fragment Progress"
+  },
+  {
+    "id": "coming_soon",
+    "zh_cn": "敬请期待",
+    "en_us": "Coming Soon"
+  },
+  {
+    "id": "stage_progress",
+    "zh_cn": "进度: {current}/{total}",
+    "en_us": "Progress: {current}/{total}"
+  },
+  {
+    "id": "boss_stage",
+    "zh_cn": "Boss关卡",
+    "en_us": "Boss Stage"
+  },
+  {
+    "id": "normal_stage",
+    "zh_cn": "普通关卡",
+    "en_us": "Normal Stage"
+  },
+  {
+    "id": "zone_explore",
+    "zh_cn": "禁区",
+    "en_us": "Zone"
+  },
+  {
+    "id": "challenge_boss",
+    "zh_cn": "挑战Boss",
+    "en_us": "Challenge Boss"
+  },
+  {
+    "id": "select_path",
+    "zh_cn": "选择路径 ({count}选1)",
+    "en_us": "Select Path (choose 1 of {count})"
+  },
+  {
+    "id": "encounter_enemy",
+    "zh_cn": "遭遇敌人！",
+    "en_us": "Enemy Encountered!"
+  },
+  {
+    "id": "battle",
+    "zh_cn": "战斗",
+    "en_us": "Battle"
+  },
+  {
+    "id": "found_merchant",
+    "zh_cn": "发现商人！",
+    "en_us": "Merchant Found!"
+  },
+  {
+    "id": "continue_forward",
+    "zh_cn": "继续前进 →",
+    "en_us": "Continue →"
+  },
+  {
+    "id": "no_team_hint",
+    "zh_cn": "请先在队伍页上阵融合姬",
+    "en_us": "Please deploy Fusion Maidens in Team first"
+  },
+  {
+    "id": "main_stage",
+    "zh_cn": "主线关卡",
+    "en_us": "Main Stage"
+  },
+  {
+    "id": "zone_entrance",
+    "zh_cn": "禁区入口",
+    "en_us": "Zone Entrance"
+  },
+  {
+    "id": "zone_locked",
+    "zh_cn": "完成区域主线后解锁",
+    "en_us": "Unlocks after completing regional main stages"
   }
 ]

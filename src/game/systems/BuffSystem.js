@@ -1,3 +1,5 @@
+import Const from '../data/Const.js';
+
 export const BuffType = {
   ATK_UP: 'atk_up',
   ATK_DOWN: 'atk_down',
@@ -159,7 +161,7 @@ export default class BuffIconManager {
     
     const container = this.scene.add.container(x, y);
     
-    const bg = this.scene.add.circle(0, 0, size / 2, 0x2a2520);
+    const bg = this.scene.add.circle(0, 0, size / 2, Const.COLORS.BG_MID);
     bg.setStrokeStyle(1, buffInfo.positive ? 0xa8d8a8 : 0xd8a8a8);
     
     const icon = this.scene.add.text(0, 0, buffInfo.icon, {

@@ -1,0 +1,14 @@
+{
+  "name": "soda-dungeon-cocos-mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standard MCP stdio server for driving the local Cocos Creator bridge",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "ws": "^8.18.3"
+  }
+}

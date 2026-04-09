@@ -6,16 +6,14 @@
     "description": "大量变异菌丝虫从地面裂缝中涌出，覆盖了整条通道。",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 5
       },
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 6
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -35,16 +33,14 @@
     "description": "一群瞳孔涣散的失心者从废墟中冲出，发出刺耳的嘶吼。",
     "enemies": [
       {
-        "enemyId": "E011",
+        "enemyId": "E_L001",
         "level": 8
       },
       {
-        "enemyId": "E012",
+        "enemyId": "E_L002",
         "level": 8
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -64,20 +60,18 @@
     "description": "地面突然塌陷，你跌入了一个布满巨型蝎子的地下巢穴。",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 10
       },
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 11
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 12
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -97,16 +91,14 @@
     "description": "盖革计数器疯狂报警，一群被辐射扭曲的野兽正在逼近。",
     "enemies": [
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 15
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 15
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -126,20 +118,18 @@
     "description": "锈蚀的自动哨兵突然启动，红色激光扫过通道。",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 20
       },
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 20
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 21
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -163,16 +153,14 @@
     "description": "墙壁上覆盖的菌丝突然蠕动，从中剥落出人形的寄生体。",
     "enemies": [
       {
-        "enemyId": "E001",
+        "enemyId": "E_M001",
         "level": 25
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 26
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -192,20 +180,18 @@
     "description": "装备着残破外骨骼装甲的失心者列队冲来，战术配合令人不寒而栗。",
     "enemies": [
       {
-        "enemyId": "E014",
+        "enemyId": "E_L004",
         "level": 30
       },
       {
-        "enemyId": "E015",
+        "enemyId": "E_L005",
         "level": 30
       },
       {
-        "enemyId": "E016",
+        "enemyId": "E_L006",
         "level": 31
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -229,16 +215,14 @@
     "description": "巨大的藤蔓从地面破土而出，带刺的枝条像鞭子一样抽来。",
     "enemies": [
       {
-        "enemyId": "E004",
+        "enemyId": "E_M004",
         "level": 35
       },
       {
-        "enemyId": "E005",
+        "enemyId": "E_M005",
         "level": 36
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -258,16 +242,14 @@
     "description": "一台锈迹斑斑的工程机甲突然启动，机械臂疯狂挥舞。",
     "enemies": [
       {
-        "enemyId": "E008",
+        "enemyId": "E_M008",
         "level": 40
       },
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 41
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -291,20 +273,18 @@
     "description": "从地下深处爬出的变异体体型巨大，甲壳上闪烁着诡异的荧光。",
     "enemies": [
       {
-        "enemyId": "E002",
+        "enemyId": "E_M002",
         "level": 50
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 50
       },
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 51
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -328,16 +308,14 @@
     "description": "辐射风暴中，几道黑影在闪电间穿梭——它们在狩猎。",
     "enemies": [
       {
-        "enemyId": "E006",
+        "enemyId": "E_M006",
         "level": 55
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 56
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -357,20 +335,18 @@
     "description": "接近菌丝母体时，数个高阶变异体从菌毯中站起，挡住去路。",
     "enemies": [
       {
-        "enemyId": "E003",
+        "enemyId": "E_M003",
         "level": 60
       },
       {
-        "enemyId": "E007",
+        "enemyId": "E_M007",
         "level": 61
       },
       {
-        "enemyId": "E013",
+        "enemyId": "E_L003",
         "level": 62
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -394,16 +370,14 @@
     "description": "古老的防御系统被激活，激光栅栏和自动炮台封锁了整条走廊。",
     "enemies": [
       {
-        "enemyId": "E009",
+        "enemyId": "E_M009",
         "level": 70
       },
       {
-        "enemyId": "E010",
+        "enemyId": "E_M010",
         "level": 70
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -427,20 +401,18 @@
     "description": "核心禁区外围的守卫——半机械半生物的恐怖存在，缓缓转身。",
     "enemies": [
       {
-        "enemyId": "E017",
+        "enemyId": "E_L007",
         "level": 80
       },
       {
-        "enemyId": "E018",
+        "enemyId": "E_L008",
         "level": 80
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 81
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -468,16 +440,14 @@
     "description": "虚空裂隙中涌出不可名状的物质，凝聚成攻击性的实体。",
     "enemies": [
       {
-        "enemyId": "E019",
+        "enemyId": "E_L009",
         "level": 90
       },
       {
-        "enemyId": "E020",
+        "enemyId": "E_L010",
         "level": 91
       }
     ],
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -503,9 +473,7 @@
     "eventName": "幸存者的日志",
     "eventType": "story",
     "description": "在废墟中找到一本泛黄的日志，记录着灾变前最后的日子。",
-    "enemies": null,
     "storyContent": "日志的最后一页写着：'菌丝扩散速度超出预期，方舟计划必须提前启动。那些被感染的人……他们不再是人类了。我把钥匙藏在实验室第三层的安全柜里。如果你看到这段话，说明一切已经太迟了。'",
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -523,9 +491,7 @@
     "eventName": "废弃通讯站",
     "eventType": "story",
     "description": "一座半毁的通讯塔还在发出微弱的信号，接收器里传来断断续续的声音。",
-    "enemies": null,
     "storyContent": "信号经过无数次中继，终于拼凑出一段信息：'……方舟……仍在运行……核心温度稳定……等待……回收……坐标……北纬37度……'信号随即中断，只剩下电磁噪声。",
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -543,9 +509,7 @@
     "eventName": "冻结的实验室",
     "eventType": "story",
     "description": "低温保存室里，数十个休眠舱整齐排列，大部分已经破裂。",
-    "enemies": null,
     "storyContent": "唯一完好的休眠舱上刻着名字：'陈远征——方舟计划首席研究员'。舱内的人已经变成了一团菌丝和血肉的混合物，但他的手中紧握着一个数据芯片。芯片上的标签写着：'菌丝免疫血清——未完成'。",
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -567,9 +531,7 @@
     "eventName": "失心者的遗物",
     "eventType": "story",
     "description": "一个失心者的尸体旁散落着私人物品——照片、信件、一个孩子的玩具。",
-    "enemies": null,
     "storyContent": "信件上写着：'小雨，爸爸要去军事基地执行任务，很快就回来。你在家乖乖听妈妈的话，不要出门。外面的空气不好，记得戴面罩。'照片上是一家三口的合影，背景是尚未被菌丝覆盖的城市。",
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -587,9 +549,7 @@
     "eventName": "方舟的回响",
     "eventType": "story",
     "description": "深入地下设施后，墙壁上的管线突然震动，传来低沉的机械运转声。",
-    "enemies": null,
     "storyContent": "一个合成语音从扬声器中传出：'方舟核心系统自检完成。当前状态：休眠模式。外部生态评估：不可生存。建议操作：维持休眠。注意：检测到未授权生物信号进入核心区域。安全协议已激活。'走廊尽头的灯依次亮起，通向更深处。",
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -611,8 +571,6 @@
     "eventName": "流浪商人",
     "eventType": "trade",
     "description": "一个背着巨大行囊的老人从废墟后走出，摊开一块布，上面摆满了零件和物资。",
-    "enemies": null,
-    "storyContent": null,
     "tradeShopId": "SHOP_WANDERER",
     "rewards": [
       {
@@ -627,8 +585,6 @@
     "eventName": "黑市军火商",
     "eventType": "trade",
     "description": "昏暗的地下室里，一个戴着防毒面具的人敲了敲铁门：'要货？先看看你有多少菌丝。'",
-    "enemies": null,
-    "storyContent": null,
     "tradeShopId": "SHOP_BLACKMARKET",
     "rewards": [
       {
@@ -643,8 +599,6 @@
     "eventName": "拾荒者交易所",
     "eventType": "trade",
     "description": "一群拾荒者建立了一个简易交易点，用各种废品换取有用的物资。",
-    "enemies": null,
-    "storyContent": null,
     "tradeShopId": "SHOP_SCAVENGER",
     "rewards": [
       {
@@ -659,8 +613,6 @@
     "eventName": "军方补给站",
     "eventType": "trade",
     "description": "一个仍在运作的自动补给终端，需要军官权限才能访问——或者绕过安全系统。",
-    "enemies": null,
-    "storyContent": null,
     "tradeShopId": "SHOP_MILITARY",
     "rewards": [
       {
@@ -675,8 +627,6 @@
     "eventName": "菌丝商人",
     "eventType": "trade",
     "description": "一个全身包裹在菌丝织物中的神秘商人，用源核交换稀有材料。",
-    "enemies": null,
-    "storyContent": null,
     "tradeShopId": "SHOP_MYCELIUM",
     "rewards": [
       {
@@ -695,9 +645,6 @@
     "eventName": "神秘信号源",
     "eventType": "random",
     "description": "探测器捕捉到一个微弱的信号，来源不明，可能是求救，也可能是陷阱。",
-    "enemies": null,
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -715,9 +662,6 @@
     "eventName": "时空异常",
     "eventType": "random",
     "description": "前方的空间似乎发生了扭曲，光线弯曲，方向感完全丧失。",
-    "enemies": null,
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -735,9 +679,6 @@
     "eventName": "废弃补给箱",
     "eventType": "random",
     "description": "角落里有一个密封的补给箱，外壳上印着方舟计划的标志。",
-    "enemies": null,
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -755,9 +696,6 @@
     "eventName": "菌丝爆发",
     "eventType": "random",
     "description": "脚下的菌丝突然剧烈生长，将整条通道封锁，必须找到出路。",
-    "enemies": null,
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",
@@ -775,9 +713,6 @@
     "eventName": "未知频率",
     "eventType": "random",
     "description": "通讯器收到一段加密广播，解密后似乎是一组坐标和物资投放指令。",
-    "enemies": null,
-    "storyContent": null,
-    "tradeShopId": null,
     "rewards": [
       {
         "type": "exp",

@@ -224,7 +224,7 @@
     "skillType": "active",
     "targetType": "single",
     "effectType": "dark",
-    "element": "0.9",
+    "element": "dark",
     "baseMultiplier": 0.9,
     "cooldown": 4,
     "duration": 0,

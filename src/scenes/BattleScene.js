@@ -17,12 +17,18 @@ export default class BattleScene extends Phaser.Scene {
     super({ key: 'BattleScene' });
     this.logEntries = [];
     this.pauseOverlayBlocker = null;
+<<<<<<< HEAD
     this.cardDetailOverlay = [];
     this.speedModes = [
       { label: '1x', value: 0.5 },
       { label: '2x', value: 1 }
     ];
     this.currentSpeedModeIndex = 0;
+=======
+    this._logTexts = [];
+    this._logContainer = null;
+    this._logShownCount = 0;
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
   }
 
   init(data) {
@@ -448,14 +454,19 @@ export default class BattleScene extends Phaser.Scene {
 
     const maxLines = 16;
     const shown = this.logEntries.slice(-maxLines);
+    this._logContainer = this.add.container(-width / 2 + 28, -226);
     shown.forEach((entry, index) => {
-      container.add(this.add.text(-width / 2 + 28, -226 + index * 28, entry, {
+      const text = this.add.text(0, index * 28, entry, {
         fontSize: '12px',
         fontFamily: Const.FONT.FAMILY_CN,
         color: Const.BATTLE.COLORS.TEXT_PRIMARY,
         wordWrap: { width: width - 56 }
-      }).setOrigin(0, 0));
+      }).setOrigin(0, 0);
+      this._logContainer.add(text);
+      this._logTexts.push(text);
     });
+    this._logShownCount = shown.length;
+    container.add(this._logContainer);
 
     const continueBtn = this.createPillButton(-56, 256, '继续', () => this.closePauseOverlay(true), 96, 32);
     const surrenderBtn = this.createPillButton(56, 256, '投降', () => this.returnToBase(), 96, 32);
@@ -470,6 +481,9 @@ export default class BattleScene extends Phaser.Scene {
     this.pauseOverlay = null;
     this.pauseOverlayBlocker?.destroy();
     this.pauseOverlayBlocker = null;
+    this._logContainer = null;
+    this._logTexts = [];
+    this._logShownCount = 0;
     this.speedButton?.setVisible(true);
     this.pauseButton?.setVisible(true);
     if (resumeBattle) {
@@ -896,9 +910,30 @@ export default class BattleScene extends Phaser.Scene {
     if (this.logBarLabel) {
       this.logBarLabel.setText(entry);
     }
-    if (this.pauseOverlay) {
-      this.closePauseOverlay(false);
-      this.openPauseOverlay();
+    if (this.pauseOverlay && this._logContainer) {
+      // 增量追加新日志文本，而非重建整个覆盖层
+      const maxLines = 16;
+      const width = this.cameras.main.width;
+      const newLogText = this.add.text(0, this._logTexts.length * 28, entry, {
+        fontSize: '12px',
+        fontFamily: Const.FONT.FAMILY_CN,
+        color: Const.BATTLE.COLORS.TEXT_PRIMARY,
+        wordWrap: { width: width - 56 }
+      }).setOrigin(0, 0);
+      this._logContainer.add(newLogText);
+      this._logTexts.push(newLogText);
+      this._logShownCount++;
+
+      // 超出最大行数时移除最早的日志文本
+      while (this._logShownCount > maxLines) {
+        const oldest = this._logTexts.shift();
+        if (oldest) oldest.destroy();
+        this._logShownCount--;
+        // 重新排列剩余日志的位置
+        this._logTexts.forEach((text, idx) => {
+          text.setY(idx * 28);
+        });
+      }
     }
   }
 

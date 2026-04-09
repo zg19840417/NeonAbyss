@@ -3,6 +3,7 @@ import portraitSetsData from '../../../assets/data/json/portraitSets.json';
 import portraitFragmentsData from '../../../assets/data/json/portraitFragments.json';
 import FusionGirlManager from './FusionGirlManager.js';
 import { getFusionGirlById } from '../data/FusionGirlData.js';
+import EventBus, { GameEvents } from '../EventBus.js';
 
 const QUALITY_ORDER = ['R', 'SR', 'SSR', 'UR'];
 
@@ -39,6 +40,7 @@ export default class GachaSystem {
       window.gameData.gacha = { pityCounter: { count: 0, srCount: 0, ssrCount: 0, urCount: 0 }, history: [] };
     }
     window.gameData.gacha.pityCounter = { ...this.pityCounter };
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
   }
 
   loadHistory() {
@@ -51,6 +53,7 @@ export default class GachaSystem {
       window.gameData.gacha = { pityCounter: { count: 0, srCount: 0, ssrCount: 0, urCount: 0 }, history: [] };
     }
     window.gameData.gacha.history = [...this.history];
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
   }
 
   addToHistory(fragment) {
@@ -237,6 +240,7 @@ export default class GachaSystem {
     }
     window.gameData.fusionGirlManager = manager.toJSON();
     window.gameData.elementPoints = elementPoints;
+    EventBus.emit(GameEvents.SAVE_REQUESTED);
 
     return grants;
   }

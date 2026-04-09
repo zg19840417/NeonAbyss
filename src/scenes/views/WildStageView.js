@@ -1,4 +1,5 @@
 import Const from '../../game/data/Const.js';
+import ScrollHelper from '../../game/ui/ScrollHelper.js';
 import WorldMapData from '../../game/data/WorldMapData.js';
 import { t } from '../../game/data/Lang.js';
 import {
@@ -18,8 +19,7 @@ export default class WildStageView {
 
     this.frameElements = [];
     this.overlayElements = [];
-    this.scrollHandlers = null;
-    this.scrollState = null;
+    this._scrollHelper = null;
     this.viewLevel = 0;
     this.currentRegion = null;
 
@@ -41,14 +41,10 @@ export default class WildStageView {
   }
 
   clearScroll() {
-    if (!this.scrollHandlers) return;
-
-    this.scene.input.off('pointerdown', this.scrollHandlers.onPointerDown);
-    this.scene.input.off('pointermove', this.scrollHandlers.onPointerMove);
-    this.scene.input.off('pointerup', this.scrollHandlers.onPointerUp);
-    this.scene.input.off('wheel', this.scrollHandlers.onWheel);
-    this.scrollHandlers = null;
-    this.scrollState = null;
+    if (this._scrollHelper) {
+      this._scrollHelper.destroy();
+      this._scrollHelper = null;
+    }
   }
 
   clearView() {
@@ -72,59 +68,13 @@ export default class WildStageView {
   }
 
   setupScroll(contentHeight) {
-    const maxScroll = Math.max(0, contentHeight - this.viewportHeight);
-    this.scrollState = {
-      currentY: 0,
-      maxScroll,
-      isDragging: false,
-      lastPointerY: 0
-    };
-
-    if (maxScroll <= 0) {
-      return;
-    }
-
-    this.scrollHandlers = {
-      onPointerDown: (pointer) => {
-        if (pointer.y >= this.contentTop && pointer.y <= this.contentBottom) {
-          this.scrollState.isDragging = true;
-          this.scrollState.lastPointerY = pointer.y;
-        }
-      },
-      onPointerMove: (pointer) => {
-        if (!this.scrollState?.isDragging) return;
-
-        const deltaY = pointer.y - this.scrollState.lastPointerY;
-        this.scrollState.lastPointerY = pointer.y;
-        this.scrollState.currentY = Phaser.Math.Clamp(
-          this.scrollState.currentY + deltaY,
-          -this.scrollState.maxScroll,
-          0
-        );
-        this.container.y = this.contentTop + this.scrollState.currentY;
-      },
-      onPointerUp: () => {
-        if (this.scrollState) {
-          this.scrollState.isDragging = false;
-        }
-      },
-      onWheel: (pointer, gameObjects, deltaX, deltaY) => {
-        if (!this.scrollState) return;
-        if (pointer.y < this.contentTop || pointer.y > this.contentBottom) return;
-
-        this.scrollState.currentY = Phaser.Math.Clamp(
-          this.scrollState.currentY - deltaY * 0.35,
-          -this.scrollState.maxScroll,
-          0
-        );
-        this.container.y = this.contentTop + this.scrollState.currentY;
-      }
-    };
-
-    this.scene.input.on('pointerdown', this.scrollHandlers.onPointerDown);
-    this.scene.input.on('pointermove', this.scrollHandlers.onPointerMove);
-    this.scene.input.on('pointerup', this.scrollHandlers.onPointerUp);
-    this.scene.input.on('wheel', this.scrollHandlers.onWheel);
+    this.clearScroll();
+    this._scrollHelper = new ScrollHelper(this.scene, this.container, {
+      contentTop: this.contentTop,
+      contentBottom: this.contentBottom,
+      contentHeight,
+      maskGraphics: this.maskGraphics
+    });
   }
 
   showWorldMap() {
@@ -482,11 +432,11 @@ export default class WildStageView {
 
     if (minions.length === 0) {
       this.scene.showToast?.('请先在队伍页上阵融合姬');
-      this.scene.scene.start('BaseScene', { initialTab: 'team' });
+      this.scene.scene.start(Const.SCENES.BASE, { initialTab: 'team' });
       return;
     }
 
-    this.scene.scene.start('BattleScene', {
+    this.scene.scene.start(Const.SCENES.BATTLE, {
       enemies,
       stageId: stage.stageId,
       stageName: WorldMapData.getStageName(stage),
@@ -494,10 +444,10 @@ export default class WildStageView {
       equipmentCard,
       onVictory: () => {
         stageManager.clearStage(stage.stageId);
-        this.scene.scene.start('BaseScene', { initialTab: 'wild' });
+        this.scene.scene.start(Const.SCENES.BASE, { initialTab: 'wild' });
       },
       onDefeat: () => {
-        this.scene.scene.start('BaseScene', { initialTab: 'wild' });
+        this.scene.scene.start(Const.SCENES.BASE, { initialTab: 'wild' });
       }
     });
   }
@@ -505,7 +455,7 @@ export default class WildStageView {
   enterDungeon(dungeon, region) {
     this.destroy();
     console.log('Entering dungeon:', dungeon.dungeonId, WorldMapData.getDungeonName(dungeon));
-    this.scene.scene.start('DungeonScene');
+    this.scene.scene.start(Const.SCENES.DUNGEON);
   }
 
   getDeployedFusionGirls() {

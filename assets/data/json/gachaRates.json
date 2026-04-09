@@ -1,0 +1,16 @@
+[
+  {
+    "poolId": "POOL_NORMAL",
+    "quality": "SSR",
+    "baseRate": "0.15",
+    "softPityStart": "35",
+    "description": "SSR品质基础概率15%，35抽起软保底"
+  },
+  {
+    "poolId": "POOL_NORMAL",
+    "quality": "UR",
+    "baseRate": "0.05",
+    "softPityStart": "180",
+    "description": "UR品质基础概率5%，180抽起软保底"
+  }
+]

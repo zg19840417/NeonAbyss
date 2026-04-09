@@ -467,9 +467,9 @@ export default class BattleSystem {
         this.currentPhase = BattlePhase.SKILL;
         this.executeSkillAction(playerToAct, availableSkill, () => {
           this.decrementChipSkillCooldowns();
-          setTimeout(() => {
+          this.scene.time.delayedCall(200 / this.battleSpeed, () => {
             this.executeEnemyTurn();
-          }, 200 / this.battleSpeed);
+          });
         });
         return;
       }
@@ -483,17 +483,17 @@ export default class BattleSystem {
         // Windfury: second attack if available
         if (playerToAct.hasWindfury && playerToAct.hasWindfury() && !playerToAct._windfuryUsed && !playerToAct.isDead) {
           playerToAct._windfuryUsed = true;
-          setTimeout(() => {
+          this.scene.time.delayedCall(200 / this.battleSpeed, () => {
             this.executeCharacterAction(playerToAct, () => {
-              setTimeout(() => {
+              this.scene.time.delayedCall(300 / this.battleSpeed, () => {
                 this.executeEnemyTurn();
-              }, 300 / this.battleSpeed);
+              });
             });
-          }, 200 / this.battleSpeed);
+          });
         } else {
-          setTimeout(() => {
+          this.scene.time.delayedCall(300 / this.battleSpeed, () => {
             this.executeEnemyTurn();
-          }, 300 / this.battleSpeed);
+          });
         }
       });
     } else {
@@ -787,9 +787,9 @@ export default class BattleSystem {
       if (availableSkill) {
         this.currentPhase = BattlePhase.SKILL;
         this.executeSkillAction(enemyToAct, availableSkill, () => {
-          setTimeout(() => {
+          this.scene.time.delayedCall(200 / this.battleSpeed, () => {
             this.executeAutoBattle();
-          }, 200 / this.battleSpeed);
+          });
         });
         return;
       }
@@ -802,17 +802,17 @@ export default class BattleSystem {
         // 敌人风怒检查（与玩家风怒逻辑对称）
         if (enemyToAct.hasWindfury && enemyToAct.hasWindfury() && !enemyToAct._windfuryUsed && !enemyToAct.isDead) {
           enemyToAct._windfuryUsed = true;
-          setTimeout(() => {
+          this.scene.time.delayedCall(200 / this.battleSpeed, () => {
             this.executeCharacterAction(enemyToAct, () => {
-              setTimeout(() => {
+              this.scene.time.delayedCall(300 / this.battleSpeed, () => {
                 this.executeAutoBattle();
-              }, 300 / this.battleSpeed);
+              });
             });
-          }, 200 / this.battleSpeed);
+          });
         } else {
-          setTimeout(() => {
+          this.scene.time.delayedCall(300 / this.battleSpeed, () => {
             this.executeAutoBattle();
-          }, 300 / this.battleSpeed);
+          });
         }
       });
     } else {

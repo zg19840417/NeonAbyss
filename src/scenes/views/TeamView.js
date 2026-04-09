@@ -1,5 +1,20 @@
-﻿import Const from '../../game/data/Const.js';
+/**
+ * TeamView — 队伍管理页面
+ *
+ * 未来拆分计划（按功能模块）：
+ *   - TeamFormationView: 上阵阵容渲染 (show ~230行)
+ *   - TeamCollectionList: 待命卡库渲染 (show ~90行)
+ *   - TeamCardDetailModal: 卡牌详情弹窗 (showCardDetail ~180行)
+ *   - TeamQualityPreview: 品质提升预览 (showFusionQualityPreview ~87行)
+ *   - TeamFragmentPanel: 立绘碎片面板 (createFusionFragmentPanel ~86行)
+ *   - TeamChipSection: 芯片光环+备用芯片 (show ~80行)
+ *
+ * 拆分时机：当某个模块需要独立迭代时
+ */
+
+import Const from '../../game/data/Const.js';
 import AnimationHelper from '../../game/utils/AnimationHelper.js';
+import ScrollHelper from '../../game/ui/ScrollHelper.js';
 import CardRenderer from '../../game/utils/CardRenderer.js';
 import { extractPortraitKey } from '../../game/utils/PortraitRegistry.js';
 import { RoleType } from '../../game/data/CharacterClass.js';
@@ -45,9 +60,13 @@ export default class TeamView {
     this.scene = scene;
     this.elements = [];
     this.overlayElements = [];
+<<<<<<< HEAD
     this.detailScrollCleanup = null;
     this.scrollHandlers = null;
     this.scrollState = null;
+=======
+    this._scrollHelper = null;
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
     this.contentContainer = null;
     this.maskGraphics = null;
     this.collectionTop = 0;
@@ -195,9 +214,9 @@ export default class TeamView {
     this.elements.push(cardContainer);
     CardRenderer.addInteraction(this.scene, cardContainer, () => this.showCardDetail(card, true));
 
-    const action = this.createActionButton(x, y + 98, '卸下', Const.COLORS.BUTTON_SECONDARY, () => {
+    const action = this.createButton({ x, y: y + 98, label: '卸下', width: 50, height: 22, bgColor: Const.COLORS.BUTTON_SECONDARY, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
       this.toggleDeploy(card, true);
-    }, 50, 22);
+    } });
     action.setDepth(Const.DEPTH.CONTENT + 2);
   }
 
@@ -353,7 +372,7 @@ export default class TeamView {
       });
     }
 
-    this.setupScroll(Math.max(y + 20, this.collectionViewportHeight));
+    this.setupScroll(this.collectionTop, this.collectionBottom, Math.max(y + 20, this.collectionViewportHeight));
   }
 
   createCompactUnitRow(x, y, width, card) {
@@ -616,6 +635,7 @@ export default class TeamView {
     return container;
   }
 
+<<<<<<< HEAD
   createOutlinedBadge(x, y, size, color, label, fontSize = '10px') {
     const container = this.scene.add.container(x, y);
     const bg = this.scene.add.graphics();
@@ -643,14 +663,23 @@ export default class TeamView {
     bg.fillRoundedRect(-width / 2, -height / 2, width, height, 4);
     bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 4);
     button.add(bg);
+=======
+  createButton({ x, y, label, width = 100, height = 28, bgColor = 0x2a2520, borderColor = 0x4a4a6a, textColor = '#d4ccc0', callback, track = true, hoverStyle = 'tween' }) {
+    const container = this.scene.add.container(x, y);
+    const bg = this.scene.add.graphics();
+    bg.fillStyle(bgColor, 1);
+    bg.fillRoundedRect(-width / 2, -height / 2, width, height, 6);
+    bg.lineStyle(1, borderColor, 0.8);
+    bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 6);
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
 
-    button.add(this.scene.add.text(0, 0, label, {
+    const text = this.scene.add.text(0, 0, label, {
       fontSize: '11px',
-      fontFamily: Const.FONT.FAMILY_CN,
-      fontStyle: 'bold',
-      color: Const.TEXT_COLORS.PRIMARY
-    }).setOrigin(0.5));
+      fontFamily: 'Noto Sans SC',
+      color: textColor
+    }).setOrigin(0.5);
 
+<<<<<<< HEAD
     button.setSize(width, height);
     button.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
     button.on('pointerdown', (pointer) => {
@@ -749,57 +778,54 @@ export default class TeamView {
 
     if (maxScroll <= 0) {
       return;
+=======
+    container.add([bg, text]);
+    container.setSize(width, height);
+    container.setInteractive(new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height), Phaser.Geom.Rectangle.Contains);
+
+    if (hoverStyle === 'tween') {
+      container.on('pointerover', () => AnimationHelper.tweenCardHover(this.scene, container));
+      container.on('pointerout', () => AnimationHelper.tweenCardHover(this.scene, container, false));
+    } else {
+      container.on('pointerover', () => {
+        bg.clear();
+        bg.fillStyle(0x3a3a5a, 1);
+        bg.fillRoundedRect(-width / 2, -height / 2, width, height, 6);
+        bg.lineStyle(1, borderColor, 1);
+        bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 6);
+      });
+      container.on('pointerout', () => {
+        bg.clear();
+        bg.fillStyle(bgColor, 1);
+        bg.fillRoundedRect(-width / 2, -height / 2, width, height, 6);
+        bg.lineStyle(1, borderColor, 0.8);
+        bg.strokeRoundedRect(-width / 2, -height / 2, width, height, 6);
+      });
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
     }
 
-    this.scrollHandlers = {
-      onPointerDown: (pointer) => {
-        if (pointer.y >= this.collectionTop && pointer.y <= this.collectionBottom) {
-          this.scrollState.isDragging = true;
-          this.scrollState.lastPointerY = pointer.y;
-        }
-      },
-      onPointerMove: (pointer) => {
-        if (!this.scrollState?.isDragging) return;
-        const deltaY = pointer.y - this.scrollState.lastPointerY;
-        this.scrollState.lastPointerY = pointer.y;
-        this.scrollState.currentY = Phaser.Math.Clamp(
-          this.scrollState.currentY + deltaY,
-          -this.scrollState.maxScroll,
-          0
-        );
-        this.contentContainer.y = this.collectionTop + this.scrollState.currentY;
-      },
-      onPointerUp: () => {
-        if (this.scrollState) {
-          this.scrollState.isDragging = false;
-        }
-      },
-      onWheel: (pointer, gameObjects, deltaX, deltaY) => {
-        if (!this.scrollState) return;
-        if (pointer.y < this.collectionTop || pointer.y > this.collectionBottom) return;
-        this.scrollState.currentY = Phaser.Math.Clamp(
-          this.scrollState.currentY - deltaY * 0.35,
-          -this.scrollState.maxScroll,
-          0
-        );
-        this.contentContainer.y = this.collectionTop + this.scrollState.currentY;
-      }
-    };
+    container.on('pointerdown', () => {
+      if (callback) callback();
+    });
 
-    this.scene.input.on('pointerdown', this.scrollHandlers.onPointerDown);
-    this.scene.input.on('pointermove', this.scrollHandlers.onPointerMove);
-    this.scene.input.on('pointerup', this.scrollHandlers.onPointerUp);
-    this.scene.input.on('wheel', this.scrollHandlers.onWheel);
+    if (track) this.elements.push(container);
+    return container;
+  }
+  setupScroll(contentTop, contentBottom, contentHeight) {
+    this.clearScroll();
+    this._scrollHelper = new ScrollHelper(this.scene, this.contentContainer, {
+      contentTop,
+      contentBottom,
+      contentHeight,
+      maskGraphics: this.maskGraphics
+    });
   }
 
   clearScroll() {
-    if (!this.scrollHandlers) return;
-    this.scene.input.off('pointerdown', this.scrollHandlers.onPointerDown);
-    this.scene.input.off('pointermove', this.scrollHandlers.onPointerMove);
-    this.scene.input.off('pointerup', this.scrollHandlers.onPointerUp);
-    this.scene.input.off('wheel', this.scrollHandlers.onWheel);
-    this.scrollHandlers = null;
-    this.scrollState = null;
+    if (this._scrollHelper) {
+      this._scrollHelper.destroy();
+      this._scrollHelper = null;
+    }
   }
 
   toggleDeploy(card, isMinion) {
@@ -1237,6 +1263,7 @@ export default class TeamView {
       const actionButtons = [];
       const actionLabel = deployed ? '卸下' : '上阵';
       const actionColor = deployed ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN;
+<<<<<<< HEAD
       actionButtons.push(this.createModalActionButton(0, footerY, actionLabel, actionColor, () => {
         this.closeCardDetail();
         this.toggleDeploy(card, true);
@@ -1246,6 +1273,21 @@ export default class TeamView {
         actionButtons.push(this.createModalActionButton(0, footerY, `升级 ${this.scene.fusionGirlManager.getLevelUpCost(card.id)}`, Const.COLORS.BUTTON_PRIMARY, () => {
           this.levelUpFusionGirl(card);
         }, 108, 34));
+=======
+      const actionBtn = this.createButton({ x: -100, y: 262, label: actionLabel, width: 88, height: 32, bgColor: actionColor, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
+        this.closeCardDetail();
+        this.toggleDeploy(card, true);
+      }, track: false });
+      actionBtn.setDepth(Const.DEPTH.MODAL_UI);
+      modal.add(actionBtn);
+
+      if (this.scene.fusionGirlManager?.canLevelUp?.(card.id)) {
+        const levelBtn = this.createButton({ x: 0, y: 262, label: `升级 ${this.scene.fusionGirlManager.getLevelUpCost(card.id)}`, width: 104, height: 32, bgColor: Const.COLORS.BUTTON_PRIMARY, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
+          this.levelUpFusionGirl(card);
+        }, track: false });
+        levelBtn.setDepth(Const.DEPTH.MODAL_UI);
+        modal.add(levelBtn);
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
       }
 
       if ((card.pendingQualityUpgrades || 0) > 0) {
@@ -1295,10 +1337,10 @@ export default class TeamView {
         cursorY += 22;
       });
 
-      const chipAction = this.createModalActionButton(0, 176, isEquipped ? '卸下' : '装备', isEquipped ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN, () => {
+      const chipAction = this.createButton({ x: 0, y: 176, label: isEquipped ? '卸下' : '装备', width: 112, height: 30, bgColor: isEquipped ? Const.COLORS.BUTTON_SECONDARY : Const.COLORS.BUTTON_CYAN, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
         this.closeCardDetail();
         this.toggleDeploy(card, false);
-      }, 112, 30);
+      }, track: false });
       chipAction.setDepth(Const.DEPTH.MODAL_UI);
       modal.add(chipAction);
     }
@@ -1306,10 +1348,17 @@ export default class TeamView {
     if ((isMinion && isFusionGirl && (card.pendingQualityUpgrades || 0) > 0)
       || (!isMinion && card.canUpgradeStar?.())) {
       const label = isFusionGirl ? '升品质' : '升星';
+<<<<<<< HEAD
       const upgradeY = isMinion ? (modalHeight / 2 - 34) : 176;
       const upgradeBtn = this.createModalActionButton(isMinion ? 102 : -64, upgradeY, label, Const.COLORS.PURPLE, () => {
         this.upgradeCard(card, isMinion);
       }, isMinion ? 92 : 84, isMinion ? 34 : 30);
+=======
+      const upgradeY = isMinion ? 262 : 176;
+      const upgradeBtn = this.createButton({ x: isMinion ? 102 : -64, y: upgradeY, label, width: 84, height: 30, bgColor: Const.COLORS.PURPLE, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
+        this.upgradeCard(card, isMinion);
+      }, track: false });
+>>>>>>> 3c3392169233bc7b1f629d09a098998f2d549077
       upgradeBtn.setDepth(Const.DEPTH.MODAL_UI);
       modal.add(upgradeBtn);
     }
@@ -1469,10 +1518,10 @@ export default class TeamView {
       lineSpacing: 8
     }).setOrigin(0.5));
 
-    const cancelBtn = this.createModalActionButton(-66, 106, '取消', Const.COLORS.BUTTON_SECONDARY, () => {
+    const cancelBtn = this.createButton({ x: -66, y: 106, label: '取消', width: 96, height: 32, bgColor: Const.COLORS.BUTTON_SECONDARY, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
       this.closeCardDetail();
-    }, 96, 32);
-    const confirmBtn = this.createModalActionButton(66, 106, '确认提升', Const.COLORS.PURPLE, () => {
+    }, track: false });
+    const confirmBtn = this.createButton({ x: 66, y: 106, label: '确认提升', width: 112, height: 32, bgColor: Const.COLORS.PURPLE, borderColor: Const.COLORS.BUTTON_CYAN, textColor: Const.TEXT_COLORS.PRIMARY, callback: () => {
       const result = this.scene.fusionGirlManager.upgradeQuality(card.id);
       if (!result.success) {
         this.scene.showToast?.('当前无法提升品质');
@@ -1483,7 +1532,7 @@ export default class TeamView {
       this.closeCardDetail();
       this.scene.showToast?.(`品质提升成功，当前 ${result.newQuality}`);
       this.refresh();
-    }, 112, 32);
+    }, track: false });
     modal.add(cancelBtn);
     modal.add(confirmBtn);
 

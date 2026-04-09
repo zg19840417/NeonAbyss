@@ -1,0 +1,147 @@
+/* ===== DOM UI 组件样式 ===== */
+
+/* --- 通用按钮 --- */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ui-padding-sm) var(--ui-padding-lg);
+  border: 1px solid var(--ui-border-active);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-bg-card);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-cn);
+  font-size: var(--ui-font-size-md);
+  cursor: pointer;
+  transition: background var(--ui-transition-fast), border-color var(--ui-transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.ui-btn:hover {
+  background: var(--ui-bg-hover);
+  border-color: var(--ui-accent);
+}
+.ui-btn:active {
+  transform: scale(0.96);
+}
+.ui-btn--primary {
+  background: var(--ui-accent);
+  color: var(--ui-bg-dark);
+  border-color: var(--ui-accent);
+  font-weight: bold;
+}
+.ui-btn--danger {
+  border-color: var(--ui-red);
+  color: var(--ui-red);
+}
+.ui-btn--danger:hover {
+  background: rgba(255, 102, 102, 0.15);
+}
+.ui-btn--small {
+  padding: var(--ui-padding-xs) var(--ui-padding-sm);
+  font-size: var(--ui-font-size-sm);
+}
+
+/* --- 面板 / 卡片容器 --- */
+.ui-panel {
+  background: var(--ui-bg-card);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  padding: var(--ui-padding-lg);
+}
+.ui-panel--floating {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* --- 模态遮罩 --- */
+.ui-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* --- Toast 提示 --- */
+.ui-toast {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--ui-padding-sm) var(--ui-padding-xl);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-bg-card);
+  border: 1px solid var(--ui-border-active);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-cn);
+  font-size: var(--ui-font-size-md);
+  pointer-events: none;
+  animation: ui-toast-in 0.25s ease, ui-toast-out 0.3s ease 1.7s forwards;
+  z-index: 2000;
+}
+@keyframes ui-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes ui-toast-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* --- 滚动容器 --- */
+.ui-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-border-active) transparent;
+}
+.ui-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.ui-scroll::-webkit-scrollbar-thumb {
+  background: var(--ui-border-active);
+  border-radius: 2px;
+}
+
+/* --- 顶栏 --- */
+.ui-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 var(--ui-padding-lg);
+  background: var(--ui-bg-mid);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+/* --- 标签页 --- */
+.ui-tabs {
+  display: flex;
+  gap: var(--ui-margin-sm);
+}
+.ui-tab {
+  padding: var(--ui-padding-sm) var(--ui-padding-md);
+  border-radius: var(--ui-radius-sm);
+  color: var(--ui-text-secondary);
+  font-size: var(--ui-font-size-sm);
+  cursor: pointer;
+  transition: color var(--ui-transition-fast), background var(--ui-transition-fast);
+}
+.ui-tab:hover {
+  color: var(--ui-text-primary);
+  background: var(--ui-bg-hover);
+}
+.ui-tab--active {
+  color: var(--ui-accent);
+  background: rgba(212, 165, 116, 0.1);
+}
+
+/* --- 品质边框 --- */
+.ui-quality-N    { border-color: #888888; }
+.ui-quality-R    { border-color: #4a90d9; }
+.ui-quality-SR   { border-color: #9b59b6; }
+.ui-quality-SSR  { border-color: #f39c12; }
+.ui-quality-UR   { border-color: #ff4444; }
+.ui-quality-LE   { border-color: #ff00ff; }

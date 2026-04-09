@@ -11,6 +11,7 @@ export default class SaveSystem {
     this.SAVE_KEY = SAVE_KEY;
     this.AUTO_SAVE_INTERVAL = 30000;
     this.autoSaveTimer = null;
+    this.CURRENT_SAVE_VERSION = 2;
   }
 
   createNewGame() {
@@ -20,6 +21,7 @@ export default class SaveSystem {
   save(saveData) {
     try {
       const normalized = saveGameData(saveData);
+      this._createBackup(normalized);
       return { success: true, timestamp: Date.now(), data: normalized };
     } catch (error) {
       console.error('存档失败:', error);
@@ -28,11 +30,43 @@ export default class SaveSystem {
   }
 
   load() {
-    return loadGameData();
+    try {
+      const raw = localStorage.getItem(this.SAVE_KEY);
+      if (!raw) return null;
+      let data = JSON.parse(raw);
+      // 尝试迁移
+      data = this._migrateSaveData(data);
+      // 校验
+      if (!this._validateData(data)) {
+        console.warn('存档数据校验失败，尝试恢复备份');
+        const backup = this.loadBackup();
+        if (backup) {
+          this.save(backup); // 用备份覆盖损坏的存档
+          return backup;
+        }
+        return null;
+      }
+      // 迁移后重新保存
+      this.save(data);
+      return data;
+    } catch (e) {
+      console.error('加载存档失败:', e);
+      return null;
+    }
   }
 
   loadBackup() {
-    return loadGameData();
+    const backups = Object.keys(localStorage)
+      .filter(k => k.startsWith(this.SAVE_KEY + '_backup_'))
+      .sort()
+      .reverse();
+    if (backups.length === 0) return null;
+    try {
+      const data = JSON.parse(localStorage.getItem(backups[0]));
+      return this._validateData(data) ? data : null;
+    } catch (e) {
+      return null;
+    }
   }
 
   validateSaveData(saveData) {
@@ -126,5 +160,49 @@ export default class SaveSystem {
 
   hasQuickSave() {
     return this.hasSaveData();
+  }
+
+  _migrateSaveData(data) {
+    // v1 → v2: 添加 inventory 字段（如果不存在）
+    const versionNum = typeof data.version === 'number' ? data.version : parseInt(data.version, 10) || 0;
+    if (versionNum < 2) {
+      if (!data.base) data.base = {};
+      if (!data.base.inventory) data.base.inventory = {};
+      data.version = 2;
+    }
+    // 未来: if (data.version < 3) { ... migrate to v3 ... }
+    return data;
+  }
+
+  _validateData(data) {
+    if (!data || typeof data !== 'object') return false;
+    if (!data.version || (typeof data.version !== 'number' && typeof data.version !== 'string')) return false;
+    if (!data.base || typeof data.base !== 'object') return false;
+    if (typeof data.base.mycelium !== 'number') return false;
+    if (typeof data.base.sourceCore !== 'number') return false;
+    if (!data.dungeon || typeof data.dungeon !== 'object') return false;
+    if (!data.settings || typeof data.settings !== 'object') return false;
+    return true;
+  }
+
+  _createBackup(data) {
+    try {
+      const backupKey = this.SAVE_KEY + '_backup_' + Date.now();
+      localStorage.setItem(backupKey, JSON.stringify(data));
+      // 只保留最近3个备份
+      this._cleanOldBackups(3);
+    } catch (e) {
+      console.warn('创建备份失败:', e);
+    }
+  }
+
+  _cleanOldBackups(maxBackups = 3) {
+    const backups = Object.keys(localStorage)
+      .filter(k => k.startsWith(this.SAVE_KEY + '_backup_'))
+      .sort()
+      .reverse();
+    for (let i = maxBackups; i < backups.length; i++) {
+      localStorage.removeItem(backups[i]);
+    }
   }
 }

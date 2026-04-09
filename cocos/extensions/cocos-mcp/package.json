@@ -1,17 +1,23 @@
 {
   "name": "cocos-mcp",
-  "version": "1.0.0",
-  "description": "Cocos Creator MCP Plugin - AI Assistant Integration",
+  "version": "1.1.0",
+  "description": "Cocos Creator bridge extension for a local MCP server",
   "main": "dist/main.js",
   "author": "",
   "license": "MIT",
+  "package_version": 2,
   "creator": {
     "version": "3.8.8",
     "build-time": "2026-04-09"
   },
+  "contributions": {
+    "scene": {
+      "script": "dist/scene.js"
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "clean": "rmdir /s /q dist"
+    "build": "tsc -p .",
+    "clean": "if exist dist rmdir /s /q dist"
   },
   "dependencies": {
     "ws": "^8.16.0"
